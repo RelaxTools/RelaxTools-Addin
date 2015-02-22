@@ -1,7 +1,11 @@
-# RelaxTools(REcycle Logic Addin for eXcel) Addin 
-# Excel 2007/2010/2013 Ribbon対応版
+#RelaxTools(REcycle Logic Addin for eXcel) Addin 
+
+Excel 2007/2010/2013 Ribbon対応版
+
 各種変換、編集、検索などの機能追加を行うツールです。
+
 Copyright(C) Y.Watanabe 2009-2015
+
 ---
 5年間(2009年～)にわたって作成したマクロを汎用的、体系的にまとめました。
 そのため非常に多機能なツールとなります。
