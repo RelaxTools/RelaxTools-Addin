@@ -1,5 +1,5 @@
-#RelaxTools(REcycle Logic Addin for eXcel) Addin 
-Excel 2007/2010/2013 Ribbon対応版
+# RelaxTools(REcycle Logic Addin for eXcel) Addin 
+# Excel 2007/2010/2013 Ribbon対応版
 各種変換、編集、検索などの機能追加を行うツールです。
 Copyright(C) Y.Watanabe 2009-2015
 ---
@@ -50,6 +50,7 @@ Copyright(C) Y.Watanabe 2009-2015
 ・・・などなど230を超える機能を搭載しております！！
 
 ---
+
 * ファイルの内容
  - RelaxTools リリースノート.txt  ・・・・・・・・ 本書です。使用方法が書いてあります。
  - RelaxTools.xlam                ・・・・・・・・ RelaxTools本体
