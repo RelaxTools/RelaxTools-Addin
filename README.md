@@ -54,41 +54,42 @@ Copyright(C) Y.Watanabe 2009-2015
 
 ---
 
-* ファイルの内容
- - README.md                      ・・・・・・・・ 本書です。
- - RelaxTools.xlam                ・・・・・・・・ RelaxTools本体
- - install.vbs                    ・・・・・・・・ インストールに使用します。
- - uninstall.vbs                  ・・・・・・・・ アンインストールに使用します。
- - Section_No_Manual.xlsx         ・・・・・・・・ 段落番号の使用説明書です。
- - relaxtools.png                 ・・・・・・・・ アイコンファイルご自由にお使いください。
+## ファイルの内容
+* README.md                      ・・・・・・・・ 本書です。
+* RelaxTools.xlam                ・・・・・・・・ RelaxTools本体
+* install.vbs                    ・・・・・・・・ インストールに使用します。
+* uninstall.vbs                  ・・・・・・・・ アンインストールに使用します。
+* Section_No_Manual.xlsx         ・・・・・・・・ 段落番号の使用説明書です。
+* relaxtools.png                 ・・・・・・・・ アイコンファイルご自由にお使いください。
 
-* インストール方法
- - Excelが起動していないことを確認する。起動している場合は終了する。
- - install.vbs を実行する。
- - Excelを起動し「RelaxTools」タブが表示されることを確認する。
+## インストール方法
+* Excelが起動していないことを確認する。起動している場合は終了する。
+* install.vbs を実行する。
+* Excelを起動し「RelaxTools」タブが表示されることを確認する。
 
-* バージョンアップ方法
- - Excelが起動していないことを確認する。起動している場合は終了する。
- - install.vbs を実行する。
- - Excelを起動し「RelaxTools」タブが表示されることを確認する。
+## バージョンアップ方法
+* Excelが起動していないことを確認する。起動している場合は終了する。
+* install.vbs を実行する。
+* Excelを起動し「RelaxTools」タブが表示されることを確認する。
 
-* アンインストール方法
- - Excelが起動していないことを確認する。起動している場合は終了する。
- - uninstall.vbs を実行する。
- - Excelを起動し「RelaxTools」タブが表示されないことを確認する。
- - レジストリエディタで以下のキーを削除する。HKEY_CURRENT_USER\Software\VB and VBA Program Settings\RelaxTools」
+## アンインストール方法
+* Excelが起動していないことを確認する。起動している場合は終了する。
+* uninstall.vbs を実行する。
+* Excelを起動し「RelaxTools」タブが表示されないことを確認する。
+* レジストリエディタで以下のキーを削除する。HKEY_CURRENT_USER\Software\VB and VBA Program Settings\RelaxTools」
 
-* 使用方法
+## 使用方法
  使用方法についてはRelaxToolsを起動した後、ヘルプを表示してください。
  メニューにカーソルを当てることでポップアップヘルプを表示することが可能です。
 
-* サポート
+## サポート
  当ソフトはフリーソフトウェアです。
  個人・法人に限らず利用者は自由に使用および配布することができますが、著作権は作者にあります。
  当ソフトを使用した事によるいかなる損害も作者は一切の責任を負いません。
 
  作者：Y.Watanabe
- メールアドレス：relaxtools(atmark)opensquare.net
- サポートホームページ：http://software.opensquare.net/
 
+ メールアドレス：relaxtools(atmark)opensquare.net
+
+ サポートホームページ：http://software.opensquare.net/
 
