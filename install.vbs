@@ -1,4 +1,4 @@
-'On Error Resume Next
+On Error Resume Next
 
 Dim installPath 
 Dim addInName 
@@ -41,7 +41,6 @@ Set objExcel = Nothing
 
 IF Err.Number = 0 THEN 
    MsgBox "アドインのインストールが終了しました。", vbInformation, addInName 
-   objWshShell.Run "RelaxTools_リリースノート.txt"
 ELSE 
    MsgBox "エラーが発生しました。" & vbCrLF & "Excelが起動している場合は終了してください。", vbExclamation, addInName 
 End IF

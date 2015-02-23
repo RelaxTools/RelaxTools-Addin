@@ -55,13 +55,12 @@ Copyright(C) Y.Watanabe 2009-2015
 ---
 
 * ファイルの内容
- - RelaxTools リリースノート.txt  ・・・・・・・・ 本書です。使用方法が書いてあります。
+ - README.md                      ・・・・・・・・ 本書です。
  - RelaxTools.xlam                ・・・・・・・・ RelaxTools本体
  - install.vbs                    ・・・・・・・・ インストールに使用します。
  - uninstall.vbs                  ・・・・・・・・ アンインストールに使用します。
- - 段落番号使用説明書.xlsx        ・・・・・・・・ 段落番号の使用説明書です。
+ - Section_No_Manual.xlsx         ・・・・・・・・ 段落番号の使用説明書です。
  - relaxtools.png                 ・・・・・・・・ アイコンファイルご自由にお使いください。
- - README.md                      ・・・・・・・・ GitHubの説明ファイル。気にしないでください。
 
 * インストール方法
  - Excelが起動していないことを確認する。起動している場合は終了する。
@@ -80,5 +79,15 @@ Copyright(C) Y.Watanabe 2009-2015
  - レジストリエディタで以下のキーを削除する。HKEY_CURRENT_USER\Software\VB and VBA Program Settings\RelaxTools」
 
 * 使用方法
- - 使用方法についてはRelaxToolsを起動した後、ヘルプを表示してください。
- - メニューにカーソルを当てることでポップアップヘルプを表示することが可能です。
+ 使用方法についてはRelaxToolsを起動した後、ヘルプを表示してください。
+ メニューにカーソルを当てることでポップアップヘルプを表示することが可能です。
+
+* サポート
+ 当ソフトはフリーソフトウェアです。
+ 個人・法人に限らず利用者は自由に使用および配布することができますが、著作権は作者にあります。
+ 当ソフトを使用した事によるいかなる損害も作者は一切の責任を負いません。
+
+ 作者：Y.Watanabe
+ メールアドレス：relaxtools(atmark)opensquare.net
+ サポートホームページ：http://software.opensquare.net/
+
