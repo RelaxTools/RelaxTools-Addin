@@ -84,5 +84,5 @@ Copyright(C) Y.Watanabe 2009-2015
 
 * 作者：Y.Watanabe
 * メールアドレス：relaxtools(atmark)opensquare.net
-* サポートホームページ：http://software.opensquare.net/
+* サポートホームページ：http://software.opensquare.net/relaxtools/
 
