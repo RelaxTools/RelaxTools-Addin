@@ -57,3 +57,4 @@ IF Err.Number = 0 THEN
 ELSE 
    MsgBox "エラーが発生しました。" & vbCrLF & "Excelが起動している場合は終了してください。", vbExclamation, addInName 
 End IF
+
