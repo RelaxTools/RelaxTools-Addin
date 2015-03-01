@@ -62,12 +62,7 @@ Copyright(C) Y.Watanabe 2009-2015
 * Section_No_Manual.xlsx         ・・・・・・・・ 段落番号の使用説明書です。
 * relaxtools.png                 ・・・・・・・・ アイコンファイルご自由にお使いください。
 
-## インストール方法
-* Excelが起動していないことを確認する。起動している場合は終了する。
-* install.vbs を実行する。
-* Excelを起動し「RelaxTools」タブが表示されることを確認する。
-
-## バージョンアップ方法
+## インストール／バージョンアップ方法
 * Excelが起動していないことを確認する。起動している場合は終了する。
 * install.vbs を実行する。
 * Excelを起動し「RelaxTools」タブが表示されることを確認する。
@@ -87,9 +82,7 @@ Copyright(C) Y.Watanabe 2009-2015
  個人・法人に限らず利用者は自由に使用および配布することができますが、著作権は作者にあります。
  当ソフトを使用した事によるいかなる損害も作者は一切の責任を負いません。
 
- 作者：Y.Watanabe
-
- メールアドレス：relaxtools(atmark)opensquare.net
-
- サポートホームページ：http://software.opensquare.net/
+* 作者：Y.Watanabe
+* メールアドレス：relaxtools(atmark)opensquare.net
+* サポートホームページ：http://software.opensquare.net/relaxtools/
 
