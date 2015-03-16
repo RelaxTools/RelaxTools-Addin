@@ -50,7 +50,7 @@ Copyright(C) Y.Watanabe 2009-2015
 * 付箋作成機能。
 * Excel/Word/PowerPointのページ数カウント
 * VBAのステップカウント
-・・・などなど230を超える機能を搭載しております！！
+・・・などなど250を超える機能を搭載しております！！
 
 ---
 
@@ -67,7 +67,13 @@ Copyright(C) Y.Watanabe 2009-2015
 * install.vbs を実行する。
 * Excelを起動し「RelaxTools」タブが表示されることを確認する。
 
+## 設定のリセット(調子が悪い、エラーがでる場合におためしを)
+* RelaxToolsヘルプ　→　「RelaxToolsの初期化」ボタンを押下する。
+
 ## アンインストール方法
+* RelaxToolsヘルプ　→　「RelaxToolsのアンインストール」ボタンを押下する。
+
+## アンインストール方法(uninstall.vbsを使用する方法)
 * Excelが起動していないことを確認する。起動している場合は終了する。
 * uninstall.vbs を実行する。
 * Excelを起動し「RelaxTools」タブが表示されないことを確認する。
