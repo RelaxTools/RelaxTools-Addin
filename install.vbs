@@ -10,12 +10,18 @@ Dim objAddin
 addInName = "RelaxTools Addin" 
 addInFileName = "Relaxtools.xlam"
 
+Set objWshShell = CreateObject("WScript.Shell") 
+Set objFileSys = CreateObject("Scripting.FileSystemObject")
+
+IF Not objFileSys.FileExists(addInFileName) THEN
+   MsgBox "Zipファイルを解凍してから実行してください。", vbExclamation, addInName 
+   WScript.Quit 
+END IF
+
 IF MsgBox(addInName & " をインストールしますか？", vbYesNo + vbQuestion, addInName) = vbNo Then 
   WScript.Quit 
 End IF
 
-Set objWshShell = CreateObject("WScript.Shell") 
-Set objFileSys = CreateObject("Scripting.FileSystemObject")
 
 'インストール先パスの作成 
 '(ex)C:\Users\[User]\AppData\Roaming\Microsoft\AddIns\[addInFileName] 
