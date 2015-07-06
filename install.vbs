@@ -52,7 +52,7 @@ ELSE
     WScript.Quit 
 End IF
 
-If MsgBox("エクスプローラ右クリック(Excelの読み取り専用)を有効にしますか？", vbYesNo + vbQuestion, "読み取り専用有効化") = vbNo Then 
+If MsgBox("エクスプローラ右クリック(Excelの読み取り専用)を有効にしますか？" & vbCrLf & "実行には管理者権限が必要です。", vbYesNo + vbQuestion, "読み取り専用有効化") = vbNo Then 
     WScript.Quit 
 End IF
 
