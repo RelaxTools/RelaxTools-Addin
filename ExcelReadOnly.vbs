@@ -30,9 +30,6 @@ If WScript.Arguments.Count = 0 Then
     
 End If
 
-If MsgBox("エクスプローラ右クリック(Excelの読み取り専用)を有効にしますか？", vbYesNo + vbQuestion, "読み取り専用有効化") = vbNo Then 
-    WScript.Quit 
-End IF
 
 With WScript.CreateObject("WScript.Shell")
 

@@ -49,6 +49,14 @@ IF Err.Number = 0 THEN
    MsgBox "アドインのインストールが終了しました。", vbInformation, addInName 
 ELSE 
    MsgBox "エラーが発生しました。" & vbCrLF & "Excelが起動している場合は終了してください。", vbExclamation, addInName 
+    WScript.Quit 
 End IF
+
+If MsgBox("エクスプローラ右クリック(Excelの読み取り専用)を有効にしますか？", vbYesNo + vbQuestion, "読み取り専用有効化") = vbNo Then 
+    WScript.Quit 
+End IF
+
+objWshShell.Run "ExcelReadOnly.vbs"
+
 Set objWshShell = Nothing 
 
