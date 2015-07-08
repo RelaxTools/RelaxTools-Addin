@@ -62,6 +62,7 @@ Copyright(C) Y.Watanabe 2009-2015
 * Section_No_Manual.xlsx         ・・・・・・・・ 段落番号の使用説明書です。
 * relaxtools.png                 ・・・・・・・・ アイコンファイルご自由にお使いください。
 * ExcelReadOnly.vbs              ・・・・・・・・ エクスプローラの右クリックメニューに「読み取り専用で開く」を追加するスクリプト
+* ExcelSetHomePosition.vbs       ・・・・・・・・ ホームポジション設定スクリプト
 
 ## インストール／バージョンアップ方法
 * Excelが起動していないことを確認する。起動している場合は終了する。
