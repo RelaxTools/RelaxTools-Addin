@@ -1,8 +1,8 @@
-#RelaxTools Addin For Excel 2007/2010/2013 
+#RelaxTools Addin For Excel 2007/2010/2013/2016 
 
 各種変換、編集、検索などの機能追加を行うツールです。
 
-Copyright(C) Y.Watanabe 2009-2015
+Copyright(C) Y.Watanabe 2009-2016
 
 ---
 
