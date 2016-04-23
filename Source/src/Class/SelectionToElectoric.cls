@@ -1,0 +1,203 @@
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+END
+Attribute VB_Name = "SelectionToElectoric"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = False
+'-----------------------------------------------------------------------------------------------------
+'
+' [RelaxTools-Addin] v4
+'
+' Copyright (c) 2009 Yasuhiro Watanabe
+' https://github.com/RelaxTools/RelaxTools-Addin
+' author:relaxtools@opensquare.net
+'
+' The MIT License (MIT)
+'
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+'
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+'
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
+'
+'-----------------------------------------------------------------------------------------------------
+Option Explicit
+'------------------------------------------------------------------------------------------------------------------------
+' SelectionFrameWork éŒ¾
+'------------------------------------------------------------------------------------------------------------------------
+Private WithEvents SFWork As SelectionFrameWork
+Attribute SFWork.VB_VarHelpID = -1
+Private mstrString As String
+
+'------------------------------------------------------------------------------------------------------------------------
+' SelectionFrameWork ì¬
+'------------------------------------------------------------------------------------------------------------------------
+Private Sub Class_Initialize()
+    Set SFWork = New SelectionFrameWork
+End Sub
+
+'------------------------------------------------------------------------------------------------------------------------
+' SelectionFrameWork ŠJ•ú
+'------------------------------------------------------------------------------------------------------------------------
+Private Sub Class_Terminate()
+    Set SFWork = Nothing
+End Sub
+
+'------------------------------------------------------------------------------------------------------------------------
+' SelectionFrameWork Run
+'------------------------------------------------------------------------------------------------------------------------
+Public Sub Run()
+    SFWork.Run
+End Sub
+
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+
+    On Error GoTo e
+
+    mstrString = StrConvU(GetSetting(C_TITLE, "electoric", "String", ""), vbNarrow)
+    Undo = True
+    
+    Exit Sub
+e:
+    Call rlxErrMsg(err)
+End Sub
+
+'------------------------------------------------------------------------------------------------------------------------
+' Žåˆ—(UOC)
+'------------------------------------------------------------------------------------------------------------------------
+Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
+
+    Dim strSource As String
+    Dim strDest As String
+    Dim strBuf As String
+    Dim lngPos As Long
+    Dim blnKana As Boolean
+    Dim strChar As String
+    
+    Dim lngLen As Long
+    
+    On Error GoTo e
+    
+'    If r.HasFormula Then
+'        Exit Sub
+'    End If
+    
+    strSource = StrConvU(r.value, vbNarrow)
+    
+    lngLen = Len(strSource)
+    strDest = ""
+    
+    For lngPos = 1 To lngLen
+    
+        strChar = Mid$(strSource, lngPos, 1)
+        
+        If InStr(mstrString, strChar) > 0 Then
+            strChar = StrConvU(strChar, vbWide)
+        End If
+        
+        Select Case strChar
+            Case "¡" To "ß" '¡ß
+                If blnKana Then
+                    strBuf = strBuf & strChar
+                Else
+                    blnKana = True
+                    strBuf = strChar
+                End If
+            Case Else
+                If blnKana Then
+                    blnKana = False
+                    strDest = strDest & StrConvU(strBuf, vbWide) & strChar
+                Else
+                    strDest = strDest & strChar
+                End If
+        End Select
+    
+    Next
+    
+    If blnKana Then
+        strDest = strDest & StrConvU(strBuf, vbWide)
+    End If
+        
+    r.value = strDest
+    
+    Exit Sub
+e:
+    Call rlxErrMsg(err)
+    Cancel = True
+End Sub
+
+Private Sub SFWork_SelectionMainShape(r As Shape, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
+
+    Dim strSource As String
+    Dim strDest As String
+    Dim strBuf As String
+    Dim lngPos As Long
+    Dim blnKana As Boolean
+    Dim strChar As String
+    
+    Dim lngLen As Long
+    
+    On Error GoTo e
+    
+    If Not r.TextFrame2.HasText Then
+        Exit Sub
+    End If
+    
+    strSource = StrConvU(r.TextFrame2.TextRange.Characters.Text, vbNarrow)
+    
+    lngLen = Len(strSource)
+    strDest = ""
+    
+    For lngPos = 1 To lngLen
+    
+        strChar = Mid$(strSource, lngPos, 1)
+        
+        If InStr(mstrString, strChar) > 0 Then
+            strChar = StrConvU(strChar, vbWide)
+        End If
+        
+        Select Case strChar
+            Case "¡" To "ß" '¡ß
+                If blnKana Then
+                    strBuf = strBuf & strChar
+                Else
+                    blnKana = True
+                    strBuf = strChar
+                End If
+            Case Else
+                If blnKana Then
+                    blnKana = False
+                    strDest = strDest & StrConvU(strBuf, vbWide) & strChar
+                Else
+                    strDest = strDest & strChar
+                End If
+        End Select
+    
+    Next
+    
+    If blnKana Then
+        strDest = strDest & StrConvU(strBuf, vbWide)
+    End If
+        
+    r.TextFrame2.TextRange.Characters.Text = strDest
+    
+    Exit Sub
+e:
+    Call rlxErrMsg(err)
+    Cancel = True
+End Sub

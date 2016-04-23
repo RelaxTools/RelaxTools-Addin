@@ -1,3 +1,11 @@
+' -------------------------------------------------------------------------------
+' RelaxTools-Addin インストールスクリプト Ver.1.0.1
+' -------------------------------------------------------------------------------
+' 参考サイト
+' ある SE のつぶやき
+' VBScript で Excel にアドインを自動でインストール/アンインストールする方法
+' http://fnya.cocolog-nifty.com/blog/2014/03/vbscript-excel-.html
+' -------------------------------------------------------------------------------
 On Error Resume Next
 
 Dim installPath 
@@ -18,7 +26,7 @@ IF Not objFileSys.FileExists(addInFileName) THEN
    WScript.Quit 
 END IF
 
-IF MsgBox(addInName & " をインストールしますか？", vbYesNo + vbQuestion, addInName) = vbNo Then 
+IF MsgBox(addInName & " をインストールしますか？" & vbCrLf &  "Version 4.0.0 以降とそれ以前では設定が引き継がれませんのでご了承ください。", vbYesNo + vbQuestion, addInName) = vbNo Then 
   WScript.Quit 
 End IF
 

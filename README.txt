@@ -65,6 +65,9 @@ Copyright(C) Y.Watanabe 2009-2016
 * ExcelReadOnly.vbs              ・・・・・・・・ エクスプローラの右クリックメニューに「読み取り専用で開く」を追加するスクリプト
 * ExcelSetHomePosition.vbs       ・・・・・・・・ ホームポジション設定スクリプト
 
+* RelaxTools.xlsm                ・・・・・・・・ RelaxToolsソース
+* src                            ・・・・・・・・ ソースファイル
+
 ## インストール／バージョンアップ方法
 * Excelが起動していないことを確認する。起動している場合は終了する。
 * install.vbs を実行する。
@@ -90,6 +93,8 @@ Copyright(C) Y.Watanabe 2009-2016
  当ソフトはフリーソフトウェアです。
  個人・法人に限らず利用者は自由に使用および配布することができますが、著作権は作者にあります。
  当ソフトを使用した事によるいかなる損害も作者は一切の責任を負いません。
+ 
+ ソースを利用する場合にはMITライセンスです。
 
 * 作者：Y.Watanabe
 * メールアドレス：relaxtools(atmark)opensquare.net
