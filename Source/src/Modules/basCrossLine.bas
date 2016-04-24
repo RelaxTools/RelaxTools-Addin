@@ -31,16 +31,7 @@ Attribute VB_Name = "basCrossLine"
 Option Explicit
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
-    Private Declare PtrSafe Function SendInput Lib "user32.dll" (ByVal nInputs As LongPtr, pInputs As INPUT_TYPE, ByVal cbsize As LongPtr) As LongPtr
-#Else
-    Private Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
-    Private Declare Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
-#End If
-
-Private Type POINTAPI
-    X As Long
-    Y As Long
-End Type
+    Private Declare PtrSafe Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
 
 Private Type KEYBDINPUT
     wVk As Integer
@@ -50,6 +41,27 @@ Private Type KEYBDINPUT
     dwExtraInfo As LongPtr
     dummy1 As Long
     dummy2 As Long
+End Type
+
+#Else
+    Private Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
+    Private Declare Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
+
+Private Type KEYBDINPUT
+    wVk As Integer
+    wScan As Integer
+    dwFlags As Long
+    time As Long
+    dwExtraInfo As Long
+    dummy1 As Long
+    dummy2 As Long
+End Type
+
+#End If
+
+Private Type POINTAPI
+    X As Long
+    Y As Long
 End Type
 
 Private Type INPUT_TYPE
@@ -99,32 +111,32 @@ Sub rlxCrossClick()
                 
                 With inputevents(1)
                     .dwType = INPUT_KEYBOARD
-                    .ki.wVk = vbKeyHome
-                    .ki.wScan = 0
-                    .ki.dwFlags = KEYEVENTF_KEYDOWN
-                    .ki.time = 0
-                    .ki.dwExtraInfo = 0
-                End With
-
-                With inputevents(2)
-                    .dwType = INPUT_KEYBOARD
                     .ki.wVk = vbKeyF2
                     .ki.wScan = 0
                     .ki.dwFlags = KEYEVENTF_KEYUP
                     .ki.time = 0
                     .ki.dwExtraInfo = 0
                 End With
+
+'                With inputevents(2)
+'                    .dwType = INPUT_KEYBOARD
+'                    .ki.wVk = vbKeyHome
+'                    .ki.wScan = 0
+'                    .ki.dwFlags = KEYEVENTF_KEYDOWN
+'                    .ki.time = 0
+'                    .ki.dwExtraInfo = 0
+'                End With
+'
+'                With inputevents(3)
+'                    .dwType = INPUT_KEYBOARD
+'                    .ki.wVk = vbKeyHome
+'                    .ki.wScan = 0
+'                    .ki.dwFlags = KEYEVENTF_KEYUP
+'                    .ki.time = 0
+'                    .ki.dwExtraInfo = 0
+'                End With
                 
-                With inputevents(3)
-                    .dwType = INPUT_KEYBOARD
-                    .ki.wVk = vbKeyHome
-                    .ki.wScan = 0
-                    .ki.dwFlags = KEYEVENTF_KEYUP
-                    .ki.time = 0
-                    .ki.dwExtraInfo = 0
-                End With
-                
-                SendInput 4, inputevents(0), Len(inputevents(0))
+                SendInput 2, inputevents(0), Len(inputevents(0))
 
             End If
         Else

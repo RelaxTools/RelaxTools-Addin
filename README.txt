@@ -3,7 +3,7 @@
 *対応Excel: 2007, 2010, 2013, 2016
 
 各種変換、編集、検索などの機能追加を行うツールです。
-Copyright(C) Y.Watanabe 2009-2016
+Copyright(C) Yasuhiro Watanabe 2009
 
 ---
 
@@ -64,9 +64,9 @@ Copyright(C) Y.Watanabe 2009-2016
 * relaxtools.png                 ・・・・・・・・ アイコンファイルご自由にお使いください。
 * ExcelReadOnly.vbs              ・・・・・・・・ エクスプローラの右クリックメニューに「読み取り専用で開く」を追加するスクリプト
 * ExcelSetHomePosition.vbs       ・・・・・・・・ ホームポジション設定スクリプト
+* keyConfig                      ・・・・・・・・ ショートカットキー設定ファイルフォルダ
 
-* RelaxTools.xlsm                ・・・・・・・・ RelaxToolsソース
-* src                            ・・・・・・・・ ソースファイル
+* Source                         ・・・・・・・・ ソースフォルダ
 
 ## インストール／バージョンアップ方法
 * Excelが起動していないことを確認する。起動している場合は終了する。
@@ -83,7 +83,7 @@ Copyright(C) Y.Watanabe 2009-2016
 * Excelが起動していないことを確認する。起動している場合は終了する。
 * uninstall.vbs を実行する。
 * Excelを起動し「RelaxTools」タブが表示されないことを確認する。
-* レジストリエディタで以下のキーを削除する。HKEY_CURRENT_USER\Software\VB and VBA Program Settings\RelaxTools」
+* レジストリエディタで以下のキーを削除する。HKEY_CURRENT_USER\Software\VB and VBA Program Settings\RelaxTools-Addin」
 
 ## 使用方法
  使用方法についてはRelaxToolsを起動した後、ヘルプを表示してください。
@@ -96,7 +96,7 @@ Copyright(C) Y.Watanabe 2009-2016
  
  ソースを利用する場合にはMITライセンスです。
 
-* 作者：Y.Watanabe
-* メールアドレス：relaxtools(atmark)opensquare.net
+* 作者：Yasuhiro Watanabe
+* メールアドレス：relaxtools(a)opensquare.net
 * サポートホームページ：http://software.opensquare.net/relaxtools/
 

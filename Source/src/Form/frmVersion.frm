@@ -50,6 +50,10 @@ Private Sub cmdOk_Click()
     Unload Me
 End Sub
 
+Private Sub lblGitHub_Click()
+    Call GotoGitHub
+End Sub
+
 Private Sub lblUrl_Click()
 
     Dim WSH As Object
@@ -80,6 +84,7 @@ Private Sub UserForm_Initialize()
     lblTitle.Caption = strTitle
     lblComment.Caption = strTitle & " " & strVer
     lblUrl.Caption = C_URL
+    lblGitHub.Caption = C_GITHUB_URL
     
     Dim strBuf As String
     Dim col As New Collection

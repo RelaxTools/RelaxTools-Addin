@@ -46,7 +46,7 @@ Sub reboot()
     err.Clear
     On Error Resume Next
     
-    If MsgBox("RelaxToolsを再起動しますがよろしいですか？", vbYesNo + vbQuestion, "RelaxTools") <> vbYes Then
+    If MsgBox("RelaxToolsを再起動しますがよろしいですか？", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
         Exit Sub
     End If
 
@@ -61,7 +61,7 @@ Sub reboot()
     Next
 
     If err.Number <> 0 Then
-        MsgBox "再起動中にエラーがありました。Excel自体の再起動が必要な場合があります。", vbExclamation + vbOKOnly, "RelaxTools"
+        MsgBox "再起動中にエラーがありました。Excel自体の再起動が必要な場合があります。", vbExclamation + vbOKOnly, "RelaxTools-Addin"
     End If
 
 End Sub
@@ -72,7 +72,7 @@ Sub RelaxInit()
     err.Clear
     On Error Resume Next
 
-    If MsgBox("RelaxToolsの設定を初期化しますがよろしいですか？", vbYesNo + vbQuestion, "RelaxTools") <> vbYes Then
+    If MsgBox("RelaxToolsの設定を初期化しますがよろしいですか？", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
         Exit Sub
     End If
     
@@ -82,7 +82,7 @@ Sub RelaxInit()
         
             a.Installed = False
             
-            DeleteSetting "RelaxTools"
+            DeleteSetting "RelaxTools-Addin"
             
             a.Installed = True
             Exit For
@@ -91,7 +91,7 @@ Sub RelaxInit()
     Next
 
     If err.Number <> 0 Then
-        MsgBox "初期化中にエラーがありました。Excel自体の再起動が必要な場合があります。", vbExclamation + vbOKOnly, "RelaxTools"
+        MsgBox "初期化中にエラーがありました。Excel自体の再起動が必要な場合があります。", vbExclamation + vbOKOnly, "RelaxTools-Addin"
     End If
 
 End Sub
@@ -101,7 +101,7 @@ Sub RelaxUninstall()
     
     On Error GoTo e
     
-    If MsgBox("RelaxToolsをアンインストールしますがよろしいですか？", vbYesNo + vbQuestion, "RelaxTools") <> vbYes Then
+    If MsgBox("RelaxToolsをアンインストールしますがよろしいですか？", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
         Exit Sub
     End If
 
@@ -116,9 +116,9 @@ Sub RelaxUninstall()
     Next
 
     DeleteSetting "RelaxTools"
-    MsgBox "正常にアンインストールされました。", vbInformation + vbOKOnly, "RelaxTools"
+    MsgBox "正常にアンインストールされました。", vbInformation + vbOKOnly, "RelaxTools-Addin"
     Exit Sub
 e:
-    MsgBox "アンインストールが正常に行われませんでした。", vbCritical + vbOKOnly, "RelaxTools"
+    MsgBox "アンインストールが正常に行われませんでした。", vbCritical + vbOKOnly, "RelaxTools-Addin"
     
 End Sub

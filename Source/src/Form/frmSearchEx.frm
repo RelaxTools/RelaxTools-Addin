@@ -1033,7 +1033,10 @@ Private Sub lstResult_MouseDown(ByVal Button As Integer, ByVal Shift As Integer,
 End Sub
 
 Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+#If VBA7 And Win64 Then
+#Else
     Set MW.obj = lstResult
+#End If
 End Sub
 
 Private Sub schTab_Change()
@@ -1062,7 +1065,11 @@ End Sub
 
 
 Private Sub schTab_MouseMove(ByVal Index As Long, ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+#If VBA7 And Win64 Then
+#Else
     Set MW.obj = Nothing
+#End If
+
 End Sub
 
 Private Sub UserForm_Activate()
@@ -1155,9 +1162,12 @@ Private Sub UserForm_Initialize()
     mlngLblPlaceLeft = Me.lblPlace.Left
     mlngColumnWidth = Val(Split(Me.lstResult.ColumnWidths, ";")(1))
 
+#If VBA7 And Win64 Then
+#Else
     Set MW = basMouseWheel.GetInstance
     MW.Install
-    
+#End If
+
 End Sub
 Public Sub Start(ByVal lngTab As Long)
 
@@ -1333,7 +1343,10 @@ Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal id As Strin
 End Function
 
 Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+#If VBA7 And Win64 Then
+#Else
     Set MW.obj = Nothing
+#End If
 End Sub
 
 Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
@@ -1378,8 +1391,11 @@ End Sub
 
 Private Sub UserForm_Terminate()
 
+#If VBA7 And Win64 Then
+#Else
     MW.UnInstall
     Set MW = Nothing
+#End If
 
 End Sub
 

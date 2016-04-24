@@ -33,24 +33,24 @@ Option Private Module
 
 #If VBA7 And Win64 Then
 
-    Private Declare PtrSafe Function SetWindowLong Lib "user32" Alias "SetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As LongPtr) As LongPtr
-    Private Declare PtrSafe Function CallWindowProc Lib "user32" Alias "CallWindowProcA" (ByVal lpPrevWndFunc As LongPtr, ByVal hWnd As LongPtr, ByVal Msg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
+    Private Declare PtrSafe Function SetWindowLong Lib "user32" Alias "SetWindowLongPtrA" (ByVal hwnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As LongPtr) As LongPtr
+    Private Declare PtrSafe Function CallWindowProc Lib "user32" Alias "CallWindowProcA" (ByVal lpPrevWndFunc As LongPtr, ByVal hwnd As LongPtr, ByVal Msg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
 
     Private Declare PtrSafe Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
 
-    Private Declare PtrSafe Function AddClipboardFormatListener Lib "user32.dll" (ByVal hWnd As LongPtr) As Long
-    Private Declare PtrSafe Function RemoveClipboardFormatListener Lib "user32.dll" (ByVal hWnd As LongPtr) As Long
+    Private Declare PtrSafe Function AddClipboardFormatListener Lib "user32.dll" (ByVal hwnd As LongPtr) As Long
+    Private Declare PtrSafe Function RemoveClipboardFormatListener Lib "user32.dll" (ByVal hwnd As LongPtr) As Long
     Private Declare PtrSafe Function GetForegroundWindow Lib "user32" () As LongPtr
     
 #Else
     
-    Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
-    Private Declare Function CallWindowProc Lib "user32" Alias "CallWindowProcA" (ByVal lpPrevWndFunc As Long, ByVal hWnd As Long, ByVal Msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+    Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+    Private Declare Function CallWindowProc Lib "user32" Alias "CallWindowProcA" (ByVal lpPrevWndFunc As Long, ByVal hwnd As Long, ByVal Msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
 
     Private Declare Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
     
-    Private Declare Function AddClipboardFormatListener Lib "user32.dll" (ByVal hWnd As Long) As Long
-    Private Declare Function RemoveClipboardFormatListener Lib "user32.dll" (ByVal hWnd As Long) As Long
+    Private Declare Function AddClipboardFormatListener Lib "user32.dll" (ByVal hwnd As Long) As Long
+    Private Declare Function RemoveClipboardFormatListener Lib "user32.dll" (ByVal hwnd As Long) As Long
     Private Declare Function GetForegroundWindow Lib "user32" () As Long
     
 #End If
@@ -117,7 +117,7 @@ Public Sub StartScreenShot()
     mlngPageBreakNun = lngPageBreakNun
     Set WS = ActiveSheet
 
-    mSetHWnd = frmScreenShot.hWnd
+    mSetHWnd = frmScreenShot.hwnd
     
     'クリップボードを監視
     AddClipboardFormatListener mSetHWnd
@@ -126,7 +126,7 @@ Public Sub StartScreenShot()
 
     Set tray = New TaskTrayView
     
-    Call tray.AddIcon(Application.hWnd, "Excelスクショ")  'システムトレイにアイコンを登録
+    Call tray.AddIcon(Application.hwnd, "Excelスクショ")  'システムトレイにアイコンを登録
     Call tray.ShowBalloon("Excelスクショモード開始")
 
 End Sub
@@ -150,7 +150,7 @@ End Sub
 ' ホットキー検出
 '-------------------------------------------------------
 #If VBA7 And Win64 Then
-Public Function WndProc(ByVal hWnd As LongPtr, ByVal uMsg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
+Public Function WndProc(ByVal hwnd As LongPtr, ByVal uMsg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
 
     Static bolWndProcCheck As Boolean
 
@@ -160,7 +160,7 @@ Public Function WndProc(ByVal hWnd As LongPtr, ByVal uMsg As Long, ByVal wParam 
         
         Select Case uMsg
             Case WM_CLIPBOARDUPDATE
-                If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hWnd Then
+                If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hwnd Then
                     Application.OnTime Now, "pasteScreenShot"
                 End If
         End Select
@@ -169,11 +169,11 @@ Public Function WndProc(ByVal hWnd As LongPtr, ByVal uMsg As Long, ByVal wParam 
     
     End If
     
-    WndProc = CallWindowProc(mGetHWnd, hWnd, uMsg, wParam, lParam)
+    WndProc = CallWindowProc(mGetHWnd, hwnd, uMsg, wParam, lParam)
 
 End Function
 #Else
-Public Function WndProc(ByVal hWnd As Long, ByVal uMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+Public Function WndProc(ByVal hwnd As Long, ByVal uMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
 
     Static bolWndProcCheck As Boolean
 
@@ -183,7 +183,7 @@ Public Function WndProc(ByVal hWnd As Long, ByVal uMsg As Long, ByVal wParam As 
         
         Select Case uMsg
             Case WM_CLIPBOARDUPDATE
-                If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hWnd Then
+                If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hwnd Then
                     Application.OnTime Now, "pasteScreenShot"
                 End If
         End Select
@@ -192,7 +192,7 @@ Public Function WndProc(ByVal hWnd As Long, ByVal uMsg As Long, ByVal wParam As 
     
     End If
     
-    WndProc = CallWindowProc(mGetHWnd, hWnd, uMsg, wParam, lParam)
+    WndProc = CallWindowProc(mGetHWnd, hwnd, uMsg, wParam, lParam)
 
 End Function
 #End If

@@ -418,6 +418,31 @@ Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As
 
     Set getObjFromIDSub = ret
 End Function
+'Private Function setCellPos(ByRef r As Range) As Range
+'
+'    Dim lngRow As Long
+'    Dim lngCol As Long
+'
+'    Dim lngCol1 As Long
+'    Dim lngCol2 As Long
+'
+'    lngCol1 = Windows(1).VisibleRange(1).Column
+'    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.count).Column
+'
+'    If lngCol1 <= r.Column And r.Column <= lngCol2 Then
+'        lngCol = lngCol1
+'    Else
+'        lngCol = r.Column
+'    End If
+'
+'    lngRow = r.row - 5
+'    If lngRow < 1 Then
+'        lngRow = 1
+'    End If
+'
+'    Set setCellPos = r.Worksheet.Cells(lngRow, lngCol)
+'
+'End Function
 Private Function setCellPos(ByRef r As Range) As Range
 
     Dim lngRow As Long
@@ -429,18 +454,14 @@ Private Function setCellPos(ByRef r As Range) As Range
     lngCol1 = Windows(1).VisibleRange(1).Column
     lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.count).Column
     
-    If lngCol1 <= r.Column And r.Column <= lngCol2 Then
-        lngCol = lngCol1
-    Else
-        lngCol = r.Column
-    End If
-    
-    lngRow = r.row - 5
-    If lngRow < 1 Then
-        lngRow = 1
-    End If
+    Select Case r.Column
+        Case lngCol1 To lngCol2
+            lngCol = lngCol1
+        Case Else
+            lngCol = r.Column
+    End Select
 
-    Set setCellPos = r.Worksheet.Cells(lngRow, lngCol)
+    Set setCellPos = r.Worksheet.Cells(r.row, lngCol)
 
 End Function
 

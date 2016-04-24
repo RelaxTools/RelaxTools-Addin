@@ -36,7 +36,7 @@ Option Private Module
 #If VBA7 And Win64 Then
     'VBA7 = Excel2010以降。赤くコンパイルエラーになって見えますが問題ありません。
     Private Declare PtrSafe Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
-    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hWnd As LongPtr) As Long
+    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hwnd As LongPtr) As Long
     Private Declare PtrSafe Function CloseClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function EmptyClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As LongPtr
@@ -83,7 +83,7 @@ Option Private Module
     
     Private Type FLASHWINFO
         cbsize As LongPtr
-        hWnd As LongPtr
+        hwnd As LongPtr
         dwFlags As Long
         uCount As Long
         dwTimeout As LongPtr
@@ -104,7 +104,7 @@ Option Private Module
     End Type
 #Else
     Private Declare Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
-    Declare Function OpenClipboard Lib "user32" (ByVal hWnd As Long) As Long
+    Declare Function OpenClipboard Lib "user32" (ByVal hwnd As Long) As Long
     Declare Function CloseClipboard Lib "user32" () As Long
     Declare Function EmptyClipboard Lib "user32" () As Long
     Declare Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As Long
@@ -151,7 +151,7 @@ Option Private Module
     
     Private Type FLASHWINFO
         cbsize As Long
-        hWnd As Long
+        hwnd As Long
         dwFlags As Long
         uCount As Long
         dwTimeout As Long
@@ -1821,9 +1821,9 @@ End Function
 Sub rlxFlashWindow()
 
 #If VBA7 And Win64 Then
-    Dim hWnd As LongPtr
+    Dim hwnd As LongPtr
 #Else
-    Dim hWnd As Long
+    Dim hwnd As Long
 #End If
     Dim udtFLASHWINFO As FLASHWINFO
     
@@ -1834,12 +1834,12 @@ Sub rlxFlashWindow()
     Const FLASH_TIMER = &H4
     Const FLASH_TIMERNOFG = &HC
 
-    hWnd = FindWindow("XLMAIN", Application.Caption)
+    hwnd = FindWindow("XLMAIN", Application.Caption)
     
     '点滅の設定
     With udtFLASHWINFO
         .cbsize = Len(udtFLASHWINFO)
-        .hWnd = hWnd
+        .hwnd = hwnd
         .dwFlags = FLASH_ALL
         .uCount = 5
         .dwTimeout = 100
