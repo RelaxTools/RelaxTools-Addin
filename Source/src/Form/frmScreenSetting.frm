@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmScreenSetting 
-   Caption         =   "ExcelƒXƒNƒVƒ‡ƒ‚[ƒhİ’è"
+   Caption         =   "Excelã‚¹ã‚¯ã‚·ãƒ§ãƒ¢ãƒ¼ãƒ‰è¨­å®š"
    ClientHeight    =   2700
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   8400
    OleObjectBlob   =   "frmScreenSetting.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmScreenSetting"
 Attribute VB_GlobalNameSpace = False
@@ -91,14 +91,14 @@ Private Sub cmdOk_Click()
     If chkZoomEnable.value Then
         If IsNumeric(txtZoomNum.Text) Then
         Else
-            MsgBox "‰æ‘œ‚Ìk¬—¦‚É‚Í”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ç”»åƒã®ç¸®å°ç‡ã«ã¯æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„", vbOKOnly + vbExclamation, C_TITLE
             txtZoomNum.SetFocus
             Exit Sub
         End If
         Select Case Val(txtZoomNum.Text)
             Case 10 To 200
             Case Else
-                MsgBox "‰æ‘œ‚Ìk¬—¦‚É‚Í10`200%‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢", vbOKOnly + vbExclamation, C_TITLE
+                MsgBox "ç”»åƒã®ç¸®å°ç‡ã«ã¯10ï½200%ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„", vbOKOnly + vbExclamation, C_TITLE
                 txtZoomNum.SetFocus
                 Exit Sub
         End Select
@@ -108,14 +108,14 @@ Private Sub cmdOk_Click()
     
     If IsNumeric(txtBlankNum.Text) Then
     Else
-        MsgBox "‰æ‘œ‚ÌŠÔŠu‚É‚Í”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ç”»åƒã®é–“éš”ã«ã¯æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„", vbOKOnly + vbExclamation, C_TITLE
         txtBlankNum.SetFocus
         Exit Sub
     End If
     Select Case Val(txtBlankNum.Text)
         Case 0 To 99
         Case Else
-            MsgBox "s”‚ÌŠÔŠu‚É‚Í0`99‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "è¡Œæ•°ã®é–“éš”ã«ã¯0ï½99ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„", vbOKOnly + vbExclamation, C_TITLE
             txtBlankNum.SetFocus
             Exit Sub
     End Select
@@ -123,14 +123,14 @@ Private Sub cmdOk_Click()
     If chkPageBreakEnable.value Then
         If IsNumeric(txtPageBreakNum.Text) Then
         Else
-            MsgBox "‰üƒy[ƒW‚ÌŠÔŠu‚É‚Í”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "æ”¹ãƒšãƒ¼ã‚¸ã®é–“éš”ã«ã¯æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„", vbOKOnly + vbExclamation, C_TITLE
             txtPageBreakNum.SetFocus
             Exit Sub
         End If
         Select Case Val(txtPageBreakNum.Text)
             Case 0 To 99
             Case Else
-                MsgBox "‰üƒy[ƒW‚ÌŠÔŠu‚É‚Í0`99‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢", vbOKOnly + vbExclamation, C_TITLE
+                MsgBox "æ”¹ãƒšãƒ¼ã‚¸ã®é–“éš”ã«ã¯0ï½99ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„", vbOKOnly + vbExclamation, C_TITLE
                 txtPageBreakNum.SetFocus
                 Exit Sub
         End Select

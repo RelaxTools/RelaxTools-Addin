@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmReSelect 
-   Caption         =   "‘I‘ğ”ÍˆÍ‚Ì•œŒ³"
+   Caption         =   "é¸æŠç¯„å›²ã®å¾©å…ƒ"
    ClientHeight    =   1695
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   4620
    OleObjectBlob   =   "frmReSelect.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmReSelect"
 Attribute VB_GlobalNameSpace = False
@@ -62,7 +62,7 @@ Private Sub cboRange_Change()
         
         Range(cboRange.Text).Offset(lngTop, lngLeft).Select
     Else
-        '‘I‘ğ”ÍˆÍ‚ğ•œŒ³
+        'é¸æŠç¯„å›²ã‚’å¾©å…ƒ
         Range(cboRange.Text).Select
     End If
 End Sub
@@ -72,7 +72,7 @@ Private Sub chkOffset_Click()
 End Sub
 
 Private Sub cmdCancel_Click()
-    '‘I‘ğ”ÍˆÍ‚ğ•œŒ³
+    'é¸æŠç¯„å›²ã‚’å¾©å…ƒ
     Range(mstrSelRenge).Select
     Unload Me
 End Sub
@@ -93,7 +93,7 @@ Private Sub cmdOk_Click()
         If cboRange.List(i) <> cboRange.Text Then
             strBuf = strBuf & vbTab & cboRange.List(i)
             lngCount = lngCount + 1
-            'ƒŠƒXƒg‚ÍÅ‘å‚P‚O
+            'ãƒªã‚¹ãƒˆã¯æœ€å¤§ï¼‘ï¼
             If lngCount >= 20 Then
                 Exit For
             End If
@@ -111,7 +111,7 @@ Private Sub UserForm_Initialize()
     Dim strBuf As String
     Dim i As Long
     
-    'Œ»İ‚Ì‘I‘ğ”ÍˆÍ‚ğ•Û‘¶
+    'ç¾åœ¨ã®é¸æŠç¯„å›²ã‚’ä¿å­˜
     mstrSelRenge = Selection.Address
     
     mlngLeft = getLeft(Selection)

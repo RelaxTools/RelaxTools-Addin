@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmEdit 
-   Caption         =   "ƒZƒ‹‚ÌŠg‘å•\¦{•ÒW"
+   Caption         =   "ã‚»ãƒ«ã®æ‹¡å¤§è¡¨ç¤ºï¼‹ç·¨é›†"
    ClientHeight    =   9330
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   13365
    OleObjectBlob   =   "frmEdit.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmEdit"
 Attribute VB_GlobalNameSpace = False
@@ -79,7 +79,7 @@ Private Sub cmdOk_Click()
     If err.Number = 0 Then
         Unload Me
     Else
-        MsgBox "®‚Ìİ’è‚É¸”s‚µ‚Ü‚µ‚½B®‚ª³‚µ‚­‚È‚¢‰Â”\«‚ª‚ ‚è‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "å¼ã®è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸã€‚å¼ãŒæ­£ã—ããªã„å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
     End If
 
 End Sub
@@ -97,7 +97,7 @@ Private Sub cmdReload_Click()
     
     Exit Sub
 e:
-    MsgBox "®‚Ìİ’è‚É¸”s‚µ‚Ü‚µ‚½B®‚ª³‚µ‚­‚È‚¢‰Â”\«‚ª‚ ‚è‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+    MsgBox "å¼ã®è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸã€‚å¼ãŒæ­£ã—ããªã„å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
     txtValue.Text = C_ERROR
 End Sub
 
@@ -150,7 +150,7 @@ Private Sub UserForm_Initialize()
     Dim strFont As String
     Dim strSize As String
     
-    strFont = GetSetting(C_TITLE, "Edit", "Font", "‚l‚r ƒSƒVƒbƒN")
+    strFont = GetSetting(C_TITLE, "Edit", "Font", "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯")
     strSize = GetSetting(C_TITLE, "Edit", "Size", "12")
     
     Dim i As Long

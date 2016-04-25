@@ -28,16 +28,16 @@ Attribute VB_Name = "basMouseWheel"
 ' SOFTWARE.
 '
 '-----------------------------------------------------------------------------------------------------
-' ˆÈ‰ºURL‚ğQl‚É‚µ‚Ä‚¢‚Ü‚·
+' ä»¥ä¸‹URLã‚’å‚è€ƒã«ã—ã¦ã„ã¾ã™
 '--------------------------------------------------------------
-' ƒGƒNƒZƒ‹‚ÌŠwZ
+' ã‚¨ã‚¯ã‚»ãƒ«ã®å­¦æ ¡
 ' http://www.excel.studio-kazu.jp/kw/20141022104627.html
 '--------------------------------------------------------------
 Option Explicit
 Option Private Module
 Private MH As New MouseWheel
 '--------------------------------------------------------------
-' •K‚¸‚±‚Ìƒƒ\ƒbƒh‚É‚ÄƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾‚·‚é‚±‚ÆB
+' å¿…ãšã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã«ã¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹ã“ã¨ã€‚
 '--------------------------------------------------------------
 Public Property Get GetInstance() As MouseWheel
 
@@ -50,7 +50,7 @@ Public Property Get GetInstance() As MouseWheel
 End Property
     
 '--------------------------------------------------------------
-' SetWindowsHookEx‚ÌƒR[ƒ‹ƒoƒbƒNƒƒ\ƒbƒh(’¼ÚŒÄ‚Î‚È‚¢‚±‚Æ)
+' SetWindowsHookExã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ¡ã‚½ãƒƒãƒ‰(ç›´æ¥å‘¼ã°ãªã„ã“ã¨)
 '--------------------------------------------------------------
 #If VBA7 And Win64 Then
     Public Function MouseEventHookHandler(ByVal uMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As LongPtr

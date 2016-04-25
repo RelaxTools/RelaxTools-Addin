@@ -38,21 +38,21 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork êÈåæ
+' SelectionFrameWork ÂÆ£Ë®Ä
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 Private mstrString As String
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork çÏê¨
+' SelectionFrameWork ‰ΩúÊàê
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork äJï˙
+' SelectionFrameWork ÈñãÊîæ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -78,7 +78,7 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' éÂèàóù(UOC)
+' ‰∏ªÂá¶ÁêÜ(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
 
@@ -111,7 +111,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         End If
         
         Select Case strChar
-            Case "°" To "ﬂ" '°ﬂ
+            Case "ÔΩ°" To "Ôæü" 'ÔΩ°Ôæü
                 If blnKana Then
                     strBuf = strBuf & strChar
                 Else
@@ -172,7 +172,7 @@ Private Sub SFWork_SelectionMainShape(r As Shape, ByVal NotHoldFormat As Boolean
         End If
         
         Select Case strChar
-            Case "°" To "ﬂ" '°ﬂ
+            Case "ÔΩ°" To "Ôæü" 'ÔΩ°Ôæü
                 If blnKana Then
                     strBuf = strBuf & strChar
                 Else

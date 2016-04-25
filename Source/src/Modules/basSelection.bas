@@ -38,7 +38,7 @@ Sub SelectionUndo()
 
 End Sub
 '--------------------------------------------------------------
-' w’è”ÍˆÍ‘I‘ğ(SelectionFrameWorkg—p)
+' æŒ‡å®šç¯„å›²é¸æŠ(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowSelect()
     
@@ -52,7 +52,7 @@ Sub execSelectionRowSelect()
 
 End Sub
 '--------------------------------------------------------------
-' SQL®Œ`(SelectionFrameWorkg—p)
+' SQLæ•´å½¢(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionFormatSql()
     
@@ -66,7 +66,7 @@ Sub execSelectionFormatSql()
 
 End Sub
 '--------------------------------------------------------------
-' ®‚ÌÄİ’è(SelectionFrameWorkg—p)
+' å¼ã®å†è¨­å®š(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToFormula()
     
@@ -80,7 +80,7 @@ Sub execSelectionToFormula()
     
 End Sub
 '--------------------------------------------------------------
-' —ñ‚Ìƒ}[ƒW(SelectionRowFrameWorkg—p)
+' åˆ—ã®ãƒãƒ¼ã‚¸(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowMergeCol()
     
@@ -94,7 +94,7 @@ Sub execSelectionRowMergeCol()
     
 End Sub
 '--------------------------------------------------------------
-' INSERT•¶¶¬(SelectionRowFrameWorkg—p)
+' INSERTæ–‡ç”Ÿæˆ(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowMakeSQLInsert()
     
@@ -108,7 +108,7 @@ Sub execSelectionRowMakeSQLInsert()
     
 End Sub
 '--------------------------------------------------------------
-' CRLFíœ(SelectionFrameWorkg—p)
+' CRLFå‰Šé™¤(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRemoveCrLf()
     
@@ -123,7 +123,7 @@ Sub execSelectionRemoveCrLf()
 End Sub
 
 '--------------------------------------------------------------
-' w’è”ÍˆÍ‘I‘ğ(SelectionFrameWorkg—p)
+' æŒ‡å®šç¯„å›²é¸æŠ(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowSelectCell()
     
@@ -137,7 +137,7 @@ Sub execSelectionRowSelectCell()
     
 End Sub
 '--------------------------------------------------------------
-' w’è”ÍˆÍƒVƒtƒg(SelectionFrameWorkg—p)
+' æŒ‡å®šç¯„å›²ã‚·ãƒ•ãƒˆ(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowShiftSelect()
     
@@ -151,7 +151,7 @@ Sub execSelectionRowShiftSelect()
     
 End Sub
 '--------------------------------------------------------------
-' ‹ó”’œ‹(SelectionFrameWorkg—p)
+' ç©ºç™½é™¤å»(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionTrimCell()
 
@@ -165,7 +165,7 @@ Sub execSelectionTrimCell()
     
 End Sub
 '--------------------------------------------------------------
-' ¶w’è•¶š”íœ(SelectionFrameWorkg—p)
+' å·¦æŒ‡å®šæ–‡å­—æ•°å‰Šé™¤(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRemoveLeftString()
     
@@ -179,7 +179,7 @@ Sub execSelectionRemoveLeftString()
     
 End Sub
 '--------------------------------------------------------------
-' w’è•¶š”ˆÈ~íœ(SelectionFrameWorkg—p)
+' æŒ‡å®šæ–‡å­—æ•°ä»¥é™å‰Šé™¤(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRemoveLeftToString()
     
@@ -193,7 +193,7 @@ Sub execSelectionRemoveLeftToString()
     
 End Sub
 '--------------------------------------------------------------
-' w’è•¶šˆÈ‘O~íœ(SelectionFrameWorkg—p)
+' æŒ‡å®šæ–‡å­—ä»¥å‰é™å‰Šé™¤(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRemoveRightToString()
     
@@ -206,7 +206,7 @@ Sub execSelectionRemoveRightToString()
     Set obj = Nothing
     
 End Sub '--------------------------------------------------------------
-' ‰Ew’è•¶š”íœ(SelectionFrameWorkg—p)
+' å³æŒ‡å®šæ–‡å­—æ•°å‰Šé™¤(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRemoveRightString()
 
@@ -221,7 +221,7 @@ Sub execSelectionRemoveRightString()
 
 End Sub
 '--------------------------------------------------------------
-' s“ª•¶š’Ç‰Á(SelectionAllFrameWorkg—p)
+' è¡Œé ­æ–‡å­—è¿½åŠ (SelectionAllFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionAllInsertHead()
 
@@ -235,7 +235,7 @@ Sub execSelectionAllInsertHead()
     
 End Sub
 '--------------------------------------------------------------
-' s––•¶š’Ç‰Á(SelectionAllFrameWorkg—p)
+' è¡Œæœ«æ–‡å­—è¿½åŠ (SelectionAllFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionAllInsertBottom()
 
@@ -249,7 +249,7 @@ Sub execSelectionAllInsertBottom()
     
 End Sub
 '--------------------------------------------------------------
-' s’†•¶š’Ç‰Á(SelectionAllFrameWorkg—p)
+' è¡Œä¸­æ–‡å­—è¿½åŠ (SelectionAllFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionAllInsertMiddle()
 
@@ -262,7 +262,7 @@ Sub execSelectionAllInsertMiddle()
     Set obj = Nothing
     
 End Sub '--------------------------------------------------------------
-' ‘®ƒNƒŠƒA(SelectionFrameWorkg—p)
+' æ›¸å¼ã‚¯ãƒªã‚¢(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionInitialize()
 
@@ -276,7 +276,7 @@ Sub execSelectionInitialize()
     
 End Sub
 '--------------------------------------------------------------
-' ¬•¶š•ÏŠ·(SelectionFrameWorkg—p)
+' å°æ–‡å­—å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToLower()
 
@@ -290,7 +290,7 @@ Sub execSelectionToLower()
 
 End Sub
 '--------------------------------------------------------------
-' ‘å•¶š•ÏŠ·(SelectionFrameWorkg—p)
+' å¤§æ–‡å­—å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToUpper()
 
@@ -304,7 +304,7 @@ Sub execSelectionToUpper()
 
 End Sub
 '--------------------------------------------------------------
-' ”¼Šp•ÏŠ·(SelectionFrameWorkg—p)
+' åŠè§’å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToHankaku()
 
@@ -319,7 +319,7 @@ Sub execSelectionToHankaku()
 
 End Sub
 '--------------------------------------------------------------
-' ‘SŠp•ÏŠ·(SelectionFrameWorkg—p)
+' å…¨è§’å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToZenkaku()
 
@@ -333,7 +333,7 @@ Sub execSelectionToZenkaku()
 
 End Sub
 '--------------------------------------------------------------
-' ‘SŠp‚Ğ‚ç‚ª‚È•ÏŠ·(SelectionFrameWorkg—p)
+' å…¨è§’ã²ã‚‰ãŒãªå¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToHiragana()
 
@@ -347,7 +347,7 @@ Sub execSelectionToHiragana()
 
 End Sub
 '--------------------------------------------------------------
-' ‘SŠpƒJƒ^ƒJƒi•ÏŠ·(SelectionFrameWorkg—p)
+' å…¨è§’ã‚«ã‚¿ã‚«ãƒŠå¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToKatakana()
 
@@ -361,7 +361,7 @@ Sub execSelectionToKatakana()
 
 End Sub
 '--------------------------------------------------------------
-' “dq”[•i•ÏŠ·(SelectionFrameWorkg—p)
+' é›»å­ç´å“å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToElectoric()
 
@@ -374,7 +374,7 @@ Sub execSelectionToElectoric()
     Set obj = Nothing
 
 End Sub '--------------------------------------------------------------
-' ’PŒê‚Ìæ“ª‚Ì‚İ‘å•¶š(SelectionFrameWorkg—p)
+' å˜èªã®å…ˆé ­ã®ã¿å¤§æ–‡å­—(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToPropercase()
   
@@ -388,7 +388,7 @@ Sub execSelectionToPropercase()
 
 End Sub
 '--------------------------------------------------------------
-' 8ƒPƒ^•¶š‚ğ“ú•t‚É•ÏŠ·(SelectionFrameWorkg—p)
+' 8ã‚±ã‚¿æ–‡å­—ã‚’æ—¥ä»˜ã«å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToDate8()
 
@@ -402,7 +402,7 @@ Sub execSelectionToDate8()
 
 End Sub
 '--------------------------------------------------------------
-' 6ƒPƒ^•¶š(YYMMDD)‚ğ“ú•t‚É•ÏŠ·(SelectionFrameWorkg—p)
+' 6ã‚±ã‚¿æ–‡å­—(YYMMDD)ã‚’æ—¥ä»˜ã«å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToDate6()
 
@@ -417,7 +417,7 @@ Sub execSelectionToDate6()
 
 End Sub
 '--------------------------------------------------------------
-' 6ƒPƒ^•¶š(MMDDYY)‚ğ“ú•t‚É•ÏŠ·(SelectionFrameWorkg—p)
+' 6ã‚±ã‚¿æ–‡å­—(MMDDYY)ã‚’æ—¥ä»˜ã«å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToDate6mdy()
 
@@ -431,7 +431,7 @@ Sub execSelectionToDate6mdy()
 
 End Sub
 '--------------------------------------------------------------
-' 6ƒPƒ^•¶š(DDMMYY)‚ğ“ú•t‚É•ÏŠ·(SelectionFrameWorkg—p)
+' 6ã‚±ã‚¿æ–‡å­—(DDMMYY)ã‚’æ—¥ä»˜ã«å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToDate6dmy()
 
@@ -445,7 +445,7 @@ Sub execSelectionToDate6dmy()
 
 End Sub
 '--------------------------------------------------------------
-' ‘I‘ğ‚µ‚Ä‚¢‚é•¶š—ñ‚ÅƒtƒHƒ‹ƒ_ì¬(SelectionFrameWorkg—p)
+' é¸æŠã—ã¦ã„ã‚‹æ–‡å­—åˆ—ã§ãƒ•ã‚©ãƒ«ãƒ€ä½œæˆ(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCreateFolder()
 
@@ -459,7 +459,7 @@ Sub execSelectionCreateFolder()
 
 End Sub
 '--------------------------------------------------------------
-' ƒtƒ@ƒCƒ‹–¼‚Ì‚İ‚É‚·‚é(SelectionFrameWorkg—p)
+' ãƒ•ã‚¡ã‚¤ãƒ«åã®ã¿ã«ã™ã‚‹(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRemovePath()
 
@@ -473,7 +473,7 @@ Sub execSelectionRemovePath()
 
 End Sub
 '--------------------------------------------------------------
-' Šg’£q‚ğíœ(SelectionFrameWorkg—p)
+' æ‹¡å¼µå­ã‚’å‰Šé™¤(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRemoveExt()
 
@@ -487,7 +487,7 @@ Sub execSelectionRemoveExt()
 
 End Sub
 '--------------------------------------------------------------
-' ƒtƒHƒ‹ƒ_–¼‚Ì‚İ‚É‚·‚é(SelectionFrameWorkg—p)
+' ãƒ•ã‚©ãƒ«ãƒ€åã®ã¿ã«ã™ã‚‹(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRemoveFilename()
 
@@ -501,7 +501,7 @@ Sub execSelectionRemoveFilename()
 
 End Sub
 '--------------------------------------------------------------
-' ƒZƒ‹‚Ì”wŒiF‚ğ‚q‚f‚a‚Åæ“¾(SelectionFrameWorkg—p)
+' ã‚»ãƒ«ã®èƒŒæ™¯è‰²ã‚’ï¼²ï¼§ï¼¢ã§å–å¾—(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckCellColor()
 
@@ -515,7 +515,7 @@ Sub execSelectionCheckCellColor()
 
 End Sub
 '--------------------------------------------------------------
-' ˆêˆÓƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' ä¸€æ„ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckUniq()
 
@@ -529,7 +529,7 @@ Sub execSelectionCheckUniq()
 
 End Sub
 '--------------------------------------------------------------
-' ˆêˆÓƒ`ƒFƒbƒNis‘Î‰j(SelectionRowFrameWorkg—p)
+' ä¸€æ„ãƒã‚§ãƒƒã‚¯ï¼ˆè¡Œå¯¾å¿œï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowCheckUniq()
 
@@ -543,7 +543,7 @@ Sub execSelectionRowCheckUniq()
 
 End Sub
 '--------------------------------------------------------------
-' ˆêˆÓƒ`ƒFƒbƒNi”ÍˆÍj(SelectionRowFrameWorkg—p)
+' ä¸€æ„ãƒã‚§ãƒƒã‚¯ï¼ˆç¯„å›²ï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowCheckFromTo()
 
@@ -557,7 +557,7 @@ Sub execSelectionRowCheckFromTo()
 
 End Sub
 '--------------------------------------------------------------
-' d•¡‚µ‚½€–Ú‚ğíœ(SelectionFrameWorkg—p)
+' é‡è¤‡ã—ãŸé …ç›®ã‚’å‰Šé™¤(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionSetUniq()
     
@@ -571,7 +571,7 @@ Sub execSelectionSetUniq()
 
 End Sub
 '--------------------------------------------------------------
-' d•¡‚µ‚½€–Ú‚ğíœs‘Î‰(SelectionFrameWorkBoxg—p)
+' é‡è¤‡ã—ãŸé …ç›®ã‚’å‰Šé™¤è¡Œå¯¾å¿œ(SelectionFrameWorkBoxä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowSetUniq()
     
@@ -585,11 +585,11 @@ Sub execSelectionRowSetUniq()
 
 End Sub
 '--------------------------------------------------------------
-' DBƒtƒB[ƒ‹ƒh–¼‚©‚çJAVA–¼(get)(SelectionFrameWorkg—p)
+' DBãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åã‹ã‚‰JAVAå(get)(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToJavaStringGet()
 
-    'Java•¶š—ñ‚Ö
+    'Javaæ–‡å­—åˆ—ã¸
     Dim obj As SelectionToJavaString
     
     Set obj = New SelectionToJavaString
@@ -602,11 +602,11 @@ Sub execSelectionToJavaStringGet()
     
 End Sub
 '--------------------------------------------------------------
-' DBƒtƒB[ƒ‹ƒh–¼‚©‚çJAVA–¼(set)(SelectionFrameWorkg—p)
+' DBãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åã‹ã‚‰JAVAå(set)(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToJavaStringSet()
 
-    'Java•¶š—ñ‚Ö
+    'Javaæ–‡å­—åˆ—ã¸
     Dim obj As SelectionToJavaString
     
     Set obj = New SelectionToJavaString
@@ -619,11 +619,11 @@ Sub execSelectionToJavaStringSet()
 
 End Sub
 '--------------------------------------------------------------
-' DBƒtƒB[ƒ‹ƒh–¼‚©‚çJAVA–¼(SelectionFrameWorkg—p)
+' DBãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åã‹ã‚‰JAVAå(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToJavaString()
 
-    'Java•¶š—ñ‚Ö
+    'Javaæ–‡å­—åˆ—ã¸
     Dim obj As SelectionToJavaString
     
     Set obj = New SelectionToJavaString
@@ -634,11 +634,11 @@ Sub execSelectionToJavaString()
 
 End Sub
 '--------------------------------------------------------------
-' DBƒtƒB[ƒ‹ƒh–¼‚©‚çJAVA–¼(SelectionFrameWorkg—p)
+' DBãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åã‹ã‚‰JAVAå(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToJavaStringU()
 
-    'Java•¶š—ñ‚Ö
+    'Javaæ–‡å­—åˆ—ã¸
     Dim obj As SelectionToJavaStringU
     
     Set obj = New SelectionToJavaStringU
@@ -649,11 +649,11 @@ Sub execSelectionToJavaStringU()
 
 End Sub
 '--------------------------------------------------------------
-' JAVA–¼‚©‚çDBƒtƒB[ƒ‹ƒh–¼(SelectionFrameWorkg—p)
+' JAVAåã‹ã‚‰DBãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToDBString()
 
-    'Java•¶š—ñ‚Ö
+    'Javaæ–‡å­—åˆ—ã¸
     Dim obj As SelectionToDBString
     
     Set obj = New SelectionToDBString
@@ -664,7 +664,7 @@ Sub execSelectionToDBString()
 
 End Sub
 '--------------------------------------------------------------
-' ‚©‚ñ‚½‚ñ•\i•ûŠá†—pj(SelectionRowFrameWorkg—p)
+' ã‹ã‚“ãŸã‚“è¡¨ï¼ˆæ–¹çœ¼ç´™ç”¨ï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowDrawGridHogan()
 
@@ -683,7 +683,7 @@ Sub execSelectionRowDrawGridHogan()
 
 End Sub
 '--------------------------------------------------------------
-' ‚©‚ñ‚½‚ñ•\iƒVƒ“ƒvƒ‹j(SelectionRowFrameWorkg—p)
+' ã‹ã‚“ãŸã‚“è¡¨ï¼ˆã‚·ãƒ³ãƒ—ãƒ«ï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowDrawGrid()
 
@@ -702,7 +702,7 @@ Sub execSelectionRowDrawGrid()
 
 End Sub
 '--------------------------------------------------------------
-' ‚©‚ñ‚½‚ñ•\iƒVƒ“ƒvƒ‹js‚P—ñ‚P(SelectionRowFrameWorkg—p)
+' ã‹ã‚“ãŸã‚“è¡¨ï¼ˆã‚·ãƒ³ãƒ—ãƒ«ï¼‰è¡Œï¼‘åˆ—ï¼‘(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowDrawGrid1And1()
 
@@ -724,7 +724,7 @@ Sub execSelectionRowDrawGrid1And1()
 
 End Sub
 '--------------------------------------------------------------
-' ‚©‚ñ‚½‚ñ•\i•W€Eƒwƒbƒ_‚Qsj(SelectionRowFrameWorkg—p)
+' ã‹ã‚“ãŸã‚“è¡¨ï¼ˆæ¨™æº–ãƒ»ãƒ˜ãƒƒãƒ€ï¼’è¡Œï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowDrawGrid2()
 
@@ -744,7 +744,7 @@ Sub execSelectionRowDrawGrid2()
 
 End Sub
 '--------------------------------------------------------------
-' ‚©‚ñ‚½‚ñ•\i•W€Eƒwƒbƒ_‚Rsj(SelectionRowFrameWorkg—p)
+' ã‹ã‚“ãŸã‚“è¡¨ï¼ˆæ¨™æº–ãƒ»ãƒ˜ãƒƒãƒ€ï¼“è¡Œï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowDrawGrid3()
 
@@ -764,7 +764,7 @@ Sub execSelectionRowDrawGrid3()
 
 End Sub
 '--------------------------------------------------------------
-' ‚©‚ñ‚½‚ñ•\i‚µ‚Ü‚µ‚Üƒuƒ‹[j(SelectionRowFrameWorkg—p)
+' ã‹ã‚“ãŸã‚“è¡¨ï¼ˆã—ã¾ã—ã¾ãƒ–ãƒ«ãƒ¼ï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowDrawGridBlue()
 
@@ -784,7 +784,7 @@ Sub execSelectionRowDrawGridBlue()
 
 End Sub
 '--------------------------------------------------------------
-' ‚©‚ñ‚½‚ñ•\i‚µ‚Ü‚µ‚Üƒx[ƒWƒ…j(SelectionRowFrameWorkg—p)
+' ã‹ã‚“ãŸã‚“è¡¨ï¼ˆã—ã¾ã—ã¾ãƒ™ãƒ¼ã‚¸ãƒ¥ï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowDrawGridBeige()
 
@@ -804,7 +804,7 @@ Sub execSelectionRowDrawGridBeige()
 
 End Sub
 '--------------------------------------------------------------
-' ‚©‚ñ‚½‚ñ•\iƒJƒXƒ^ƒ€j(SelectionRowFrameWorkg—p)
+' ã‹ã‚“ãŸã‚“è¡¨ï¼ˆã‚«ã‚¹ã‚¿ãƒ ï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowDrawGridCustom()
 
@@ -824,7 +824,7 @@ Sub execSelectionRowDrawGridCustom()
 
 End Sub
 '--------------------------------------------------------------
-' ‘I‘ğiŠï”sj(SelectionRowFrameWorkg—p)
+' é¸æŠï¼ˆå¥‡æ•°è¡Œï¼‰(SelectionRowFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRowSelectOdd()
 
@@ -838,7 +838,7 @@ Sub execSelectionRowSelectOdd()
 
 End Sub
 '--------------------------------------------------------------
-' ‘I‘ğiŠï”—ñj(SelectionColFrameWorkg—p)
+' é¸æŠï¼ˆå¥‡æ•°åˆ—ï¼‰(SelectionColFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionColSelectOdd()
 
@@ -852,7 +852,7 @@ Sub execSelectionColSelectOdd()
 
 End Sub
 '--------------------------------------------------------------
-' ƒnƒCƒp[ƒŠƒ“ƒN‚Ìíœ(SelectionFrameWorkg—p)
+' ãƒã‚¤ãƒ‘ãƒ¼ãƒªãƒ³ã‚¯ã®å‰Šé™¤(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionRemoveHyperlink()
 
@@ -866,7 +866,7 @@ Sub execSelectionRemoveHyperlink()
 
 End Sub
 '--------------------------------------------------------------
-' ‘I‘ğ‚µ‚Ä‚¢‚éƒZƒ‹‚Ì”(SelectionFrameWorkg—p)
+' é¸æŠã—ã¦ã„ã‚‹ã‚»ãƒ«ã®æ•°(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckCount()
 
@@ -880,7 +880,7 @@ Sub execSelectionCheckCount()
 
 End Sub
 '--------------------------------------------------------------
-' ‘I‘ğ‚µ‚Ä‚¢‚éƒZƒ‹‚Ì•¶š”(SelectionFrameWorkg—p)
+' é¸æŠã—ã¦ã„ã‚‹ã‚»ãƒ«ã®æ–‡å­—æ•°(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckSize()
 
@@ -896,7 +896,7 @@ Sub execSelectionCheckSize()
 
 End Sub
 '--------------------------------------------------------------
-' ‘I‘ğ‚µ‚Ä‚¢‚éƒZƒ‹‚Ì•¶š”(SelectionFrameWorkg—p)UTF8
+' é¸æŠã—ã¦ã„ã‚‹ã‚»ãƒ«ã®æ–‡å­—æ•°(SelectionFrameWorkä½¿ç”¨)UTF8
 '--------------------------------------------------------------
 Sub execSelectionCheckSizeUTF8()
 
@@ -912,7 +912,7 @@ Sub execSelectionCheckSizeUTF8()
 
 End Sub
 '--------------------------------------------------------------
-' ‘I‘ğ”ÍˆÍ‚Å’l‚Ì‚ ‚éƒZƒ‹‚ğ‘I‘ğ(SelectionFrameWorkg—p)
+' é¸æŠç¯„å›²ã§å€¤ã®ã‚ã‚‹ã‚»ãƒ«ã‚’é¸æŠ(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionSelectValueCell()
 
@@ -926,7 +926,7 @@ Sub execSelectionSelectValueCell()
 
 End Sub
 '--------------------------------------------------------------
-' ‘I‘ğ”ÍˆÍ‚Å’l‚Ì‚È‚¢ƒZƒ‹‚ğ‘I‘ğ(SelectionAllFrameWorkg—p)
+' é¸æŠç¯„å›²ã§å€¤ã®ãªã„ã‚»ãƒ«ã‚’é¸æŠ(SelectionAllFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionAllSelectEmptyCell()
 
@@ -940,7 +940,7 @@ Sub execSelectionAllSelectEmptyCell()
 
 End Sub
 '--------------------------------------------------------------
-' ’l‚ÅXV(SelectionFrameWorkg—p)
+' å€¤ã§æ›´æ–°(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToValue()
 
@@ -954,7 +954,7 @@ Sub execSelectionToValue()
 
 End Sub
 '--------------------------------------------------------------
-' w”•\‹L‚ğ•¶š—ñ‚É•ÏŠ·(SelectionFrameWorkg—p)
+' æŒ‡æ•°è¡¨è¨˜ã‚’æ–‡å­—åˆ—ã«å¤‰æ›(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionStringFormura()
 
@@ -969,7 +969,7 @@ Sub execSelectionStringFormura()
 End Sub
 
 '--------------------------------------------------------------
-' ƒ[ƒ–„‚ß(SelectionFrameWorkg—p)
+' ã‚¼ãƒ­åŸ‹ã‚(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionStringZeroPadding()
 
@@ -983,7 +983,7 @@ Sub execSelectionStringZeroPadding()
 
 End Sub
 '--------------------------------------------------------------
-' Luhnƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' Luhnãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckLuhn()
 
@@ -997,7 +997,7 @@ Sub execSelectionCheckLuhn()
 
 End Sub
 '--------------------------------------------------------------
-' ƒ‚ƒWƒ…ƒ‰ƒX‚P‚Oƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹ï¼‘ï¼ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckModulus10()
 
@@ -1011,7 +1011,7 @@ Sub execSelectionCheckModulus10()
 
 End Sub
 '--------------------------------------------------------------
-' ƒ‚ƒWƒ…ƒ‰ƒX‚P‚Pƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹ï¼‘ï¼‘ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckModulus11_10_2()
 
@@ -1025,7 +1025,7 @@ Sub execSelectionCheckModulus11_10_2()
 
 End Sub
 '--------------------------------------------------------------
-' ƒ‚ƒWƒ…ƒ‰ƒX‚P‚Pƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹ï¼‘ï¼‘ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckModulus11_2_7()
 
@@ -1039,7 +1039,7 @@ Sub execSelectionCheckModulus11_2_7()
 
 End Sub
 '--------------------------------------------------------------
-' ƒ‚ƒWƒ…ƒ‰ƒX‚P‚Pƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹ï¼‘ï¼‘ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckModulus11_Pref()
 
@@ -1054,7 +1054,7 @@ Sub execSelectionCheckModulus11_Pref()
 End Sub
 
 '--------------------------------------------------------------
-' ”šƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' æ•°å­—ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckNumber()
 
@@ -1068,7 +1068,7 @@ Sub execSelectionCheckNumber()
 
 End Sub
 '--------------------------------------------------------------
-' ‰pšƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' è‹±å­—ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckAlphabet()
 
@@ -1082,7 +1082,7 @@ Sub execSelectionCheckAlphabet()
 
 End Sub
 '--------------------------------------------------------------
-' ‰p”šƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' è‹±æ•°å­—ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckAlphaAndNum()
 
@@ -1097,7 +1097,7 @@ Sub execSelectionCheckAlphaAndNum()
 End Sub
 
 '--------------------------------------------------------------
-' ”’l‘Ã“–«ƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' æ•°å€¤å¦¥å½“æ€§ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckNumeric()
 
@@ -1112,7 +1112,7 @@ Sub execSelectionCheckNumeric()
 End Sub
 
 '--------------------------------------------------------------
-' “ú•t‘Ã“–«ƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' æ—¥ä»˜å¦¥å½“æ€§ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckDate()
 
@@ -1126,7 +1126,7 @@ Sub execSelectionCheckDate()
 
 End Sub
 '--------------------------------------------------------------
-' ”¼Šp•¶š—ñ‘¶İƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' åŠè§’æ–‡å­—åˆ—å­˜åœ¨ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckAsc()
 
@@ -1140,7 +1140,7 @@ Sub execSelectionCheckAsc()
 
 End Sub
 '--------------------------------------------------------------
-' ‘SŠp•¶š—ñ‘¶İƒ`ƒFƒbƒN(SelectionFrameWorkg—p)
+' å…¨è§’æ–‡å­—åˆ—å­˜åœ¨ãƒã‚§ãƒƒã‚¯(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionCheckSJIS()
 
@@ -1154,7 +1154,7 @@ Sub execSelectionCheckSJIS()
 
 End Sub
 '--------------------------------------------------------------
-' ƒlƒbƒgƒ[ƒNƒhƒ‰ƒCƒu¨UNC(SelectionFrameWorkg—p)
+' ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ‰ãƒ©ã‚¤ãƒ–â†’UNC(SelectionFrameWorkä½¿ç”¨)
 '--------------------------------------------------------------
 Sub execSelectionToUNC()
 
@@ -1168,7 +1168,7 @@ Sub execSelectionToUNC()
 
 End Sub
 '--------------------------------------------------------------
-' c•ûŒü‚Éƒ}[ƒW
+' ç¸¦æ–¹å‘ã«ãƒãƒ¼ã‚¸
 '--------------------------------------------------------------
 Sub execSelectionColMerge()
 
@@ -1183,7 +1183,7 @@ Sub execSelectionColMerge()
 End Sub
 
 '--------------------------------------------------------------
-' ƒZƒ‹‚ÌÅŒã‚É‚Ps‰üs‚ğ•t‰Á‚·‚éB
+' ã‚»ãƒ«ã®æœ€å¾Œã«ï¼‘è¡Œæ”¹è¡Œã‚’ä»˜åŠ ã™ã‚‹ã€‚
 '--------------------------------------------------------------
 Sub execSelectionLineFeedInsert()
 
@@ -1197,7 +1197,7 @@ Sub execSelectionLineFeedInsert()
 
 End Sub
 '--------------------------------------------------------------
-' ƒZƒ‹‚ÌÅŒã‚É‚Ps‰üs‚ğíœ‚·‚éB
+' ã‚»ãƒ«ã®æœ€å¾Œã«ï¼‘è¡Œæ”¹è¡Œã‚’å‰Šé™¤ã™ã‚‹ã€‚
 '--------------------------------------------------------------
 Sub execSelectionLineFeedDelete()
 
@@ -1211,7 +1211,7 @@ Sub execSelectionLineFeedDelete()
 
 End Sub
 '--------------------------------------------------------------
-' ƒZƒ‹‚ÉƒnƒCƒtƒ“‚ğİ’è‚·‚éB
+' ã‚»ãƒ«ã«ãƒã‚¤ãƒ•ãƒ³ã‚’è¨­å®šã™ã‚‹ã€‚
 '--------------------------------------------------------------
 Sub execSelectionInsertHyphen()
 
@@ -1226,7 +1226,7 @@ Sub execSelectionInsertHyphen()
 
 End Sub
 '--------------------------------------------------------------
-' ƒZƒ‹‚ÉƒnƒCƒtƒ“‚ğİ’è‚·‚éB
+' ã‚»ãƒ«ã«ãƒã‚¤ãƒ•ãƒ³ã‚’è¨­å®šã™ã‚‹ã€‚
 '--------------------------------------------------------------
 Sub execSelectionInsertHyphenZen()
 
@@ -1234,14 +1234,14 @@ Sub execSelectionInsertHyphenZen()
     
     Set obj = New SelectionInsertStrInCell
     
-    obj.InsertStr = "|"
+    obj.InsertStr = "ï¼"
     obj.Run
     
     Set obj = Nothing
 
 End Sub
 '--------------------------------------------------------------
-' ’i—”Ô†‚ğU‚é
+' æ®µè½ç•ªå·ã‚’æŒ¯ã‚‹
 '--------------------------------------------------------------
 Sub execSelectionSectionNumber()
 
@@ -1255,7 +1255,7 @@ Sub execSelectionSectionNumber()
 
 End Sub
 '--------------------------------------------------------------
-' ’i—”Ô†‚ğU‚é(¶ƒCƒ“ƒfƒ“ƒg)
+' æ®µè½ç•ªå·ã‚’æŒ¯ã‚‹(å·¦ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆ)
 '--------------------------------------------------------------
 Sub execSelectionSectionNumberIndentL()
 
@@ -1271,7 +1271,7 @@ Sub execSelectionSectionNumberIndentL()
 
 End Sub
 '--------------------------------------------------------------
-' ’i—”Ô†‚ğU‚é(‰EƒCƒ“ƒfƒ“ƒg)
+' æ®µè½ç•ªå·ã‚’æŒ¯ã‚‹(å³ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆ)
 '--------------------------------------------------------------
 Sub execSelectionSectionNumberIndentR()
 
@@ -1287,7 +1287,7 @@ Sub execSelectionSectionNumberIndentR()
 
 End Sub
 '--------------------------------------------------------------
-' ‰EƒCƒ“ƒfƒ“ƒg
+' å³ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆ
 '--------------------------------------------------------------
 Sub execSelectionAllIndentR()
 
@@ -1303,7 +1303,7 @@ Sub execSelectionAllIndentR()
 
 End Sub
 '--------------------------------------------------------------
-' ¶ƒCƒ“ƒfƒ“ƒg
+' å·¦ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆ
 '--------------------------------------------------------------
 Sub execSelectionAllIndentL()
 
@@ -1319,7 +1319,7 @@ Sub execSelectionAllIndentL()
 
 End Sub
 '--------------------------------------------------------------
-' ¶ã‚ª‚èŒrü
+' å·¦ä¸ŠãŒã‚Šç½«ç·š
 '--------------------------------------------------------------
 Sub execSelectionAllDiagonalUp()
 
@@ -1346,7 +1346,7 @@ Sub execSelectionAllDiagonalUp()
 
 End Sub
 '--------------------------------------------------------------
-' ‰Eã‚ª‚èŒrü
+' å³ä¸ŠãŒã‚Šç½«ç·š
 '--------------------------------------------------------------
 Sub execSelectionAllDiagonalDown()
 
@@ -1372,7 +1372,7 @@ Sub execSelectionAllDiagonalDown()
 
 End Sub
 '--------------------------------------------------------------
-' ¶‚PŒ…íœ
+' å·¦ï¼‘æ¡å‰Šé™¤
 '--------------------------------------------------------------
 Sub execSelectionDelete1Char()
 
@@ -1386,7 +1386,7 @@ Sub execSelectionDelete1Char()
 
 End Sub
 '--------------------------------------------------------------
-' ‰E‚PŒ…íœ
+' å³ï¼‘æ¡å‰Šé™¤
 '--------------------------------------------------------------
 Sub execSelectionDelete1RightChar()
 
@@ -1400,7 +1400,7 @@ Sub execSelectionDelete1RightChar()
 
 End Sub
 '--------------------------------------------------------------
-' ‚Ó‚è‰¼–¼ƒNƒŠƒA
+' ãµã‚Šä»®åã‚¯ãƒªã‚¢
 '--------------------------------------------------------------
 Sub execSelectionClearPhonetic()
 
@@ -1415,7 +1415,7 @@ Sub execSelectionClearPhonetic()
 End Sub
 
 '--------------------------------------------------------------
-' ’i—”Ô†íœ
+' æ®µè½ç•ªå·å‰Šé™¤
 '--------------------------------------------------------------
 Sub execSelectionDelSectionNo()
 
@@ -1429,7 +1429,7 @@ Sub execSelectionDelSectionNo()
 
 End Sub
 '--------------------------------------------------------------
-' ’i—”Ô†’Ç‰Á
+' æ®µè½ç•ªå·è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddSectionNo()
 
@@ -1443,7 +1443,7 @@ Sub execSelectionAllAddSectionNo()
 
 End Sub
 '--------------------------------------------------------------
-' ’i—”Ô†ƒRƒs[
+' æ®µè½ç•ªå·ã‚³ãƒ”ãƒ¼
 '--------------------------------------------------------------
 Sub execSelectionCopySectionNo()
 
@@ -1457,7 +1457,7 @@ Sub execSelectionCopySectionNo()
 
 End Sub
 '--------------------------------------------------------------
-' ‰Óğ‘‚«íœ
+' ç®‡æ¡æ›¸ãå‰Šé™¤
 '--------------------------------------------------------------
 Sub execSelectionDelItemNo()
 
@@ -1470,7 +1470,7 @@ Sub execSelectionDelItemNo()
     Set obj = Nothing
 
 End Sub '--------------------------------------------------------------
-' uEv’Ç‰Á
+' ã€Œãƒ»ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemPoint()
 
@@ -1486,7 +1486,7 @@ Sub execSelectionAllAddItemPoint()
 
 End Sub
 '--------------------------------------------------------------
-' uœv’Ç‰Á
+' ã€Œâ—ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemCircleB()
 
@@ -1502,7 +1502,7 @@ Sub execSelectionAllAddItemCircleB()
 
 End Sub
 '--------------------------------------------------------------
-' u›v’Ç‰Á
+' ã€Œâ—‹ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemCircleW()
 
@@ -1518,7 +1518,7 @@ Sub execSelectionAllAddItemCircleW()
 
 End Sub
 '--------------------------------------------------------------
-' uŸv’Ç‰Á
+' ã€Œâ—†ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemDiaB()
 
@@ -1534,7 +1534,7 @@ Sub execSelectionAllAddItemDiaB()
 
 End Sub
 '--------------------------------------------------------------
-' uv’Ç‰Á
+' ã€Œâ—‡ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemDiaW()
 
@@ -1550,7 +1550,7 @@ Sub execSelectionAllAddItemDiaW()
 
 End Sub
 '--------------------------------------------------------------
-' u¥v’Ç‰Á
+' ã€Œâ–¼ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemRevTriB()
 
@@ -1566,7 +1566,7 @@ Sub execSelectionAllAddItemRevTriB()
 
 End Sub
 '--------------------------------------------------------------
-' u¤v’Ç‰Á
+' ã€Œâ–½ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemRevTriW()
 
@@ -1582,7 +1582,7 @@ Sub execSelectionAllAddItemRevTriW()
 
 End Sub
 '--------------------------------------------------------------
-' u¡v’Ç‰Á
+' ã€Œâ– ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemSquareB()
 
@@ -1598,7 +1598,7 @@ Sub execSelectionAllAddItemSquareB()
 
 End Sub
 '--------------------------------------------------------------
-' u v’Ç‰Á
+' ã€Œâ–¡ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemSquareW()
 
@@ -1615,7 +1615,7 @@ Sub execSelectionAllAddItemSquareW()
 End Sub
 
 '--------------------------------------------------------------
-' u1)v’Ç‰Á
+' ã€Œ1)ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNum1()
 
@@ -1631,7 +1631,7 @@ Sub execSelectionAllAddItemNum1()
 
 End Sub
 '--------------------------------------------------------------
-' u(a)v’Ç‰Á
+' ã€Œ(a)ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumA2()
 
@@ -1647,7 +1647,7 @@ Sub execSelectionAllAddItemNumA2()
 
 End Sub
 '--------------------------------------------------------------
-' u‡@v’Ç‰Á
+' ã€Œâ‘ ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumC()
 
@@ -1663,7 +1663,7 @@ Sub execSelectionAllAddItemNumC()
 
 End Sub
 '--------------------------------------------------------------
-' ua)v’Ç‰Á
+' ã€Œa)ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumA()
 
@@ -1679,7 +1679,7 @@ Sub execSelectionAllAddItemNumA()
 
 End Sub
 '--------------------------------------------------------------
-' u—á‚P)v’Ç‰Á
+' ã€Œä¾‹ï¼‘)ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumExp()
 
@@ -1695,7 +1695,7 @@ Sub execSelectionAllAddItemNumExp()
 
 End Sub
 '--------------------------------------------------------------
-' u1.v’Ç‰Á
+' ã€Œ1.ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumPoint2()
 
@@ -1711,7 +1711,7 @@ Sub execSelectionAllAddItemNumPoint2()
 
 End Sub
 '--------------------------------------------------------------
-' u¦v’Ç‰Á
+' ã€Œâ€»ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumImp()
 
@@ -1727,7 +1727,7 @@ Sub execSelectionAllAddItemNumImp()
 
 End Sub
 '--------------------------------------------------------------
-' uv’Ç‰Á
+' ã€Œâ—ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumDouble()
 
@@ -1743,7 +1743,7 @@ Sub execSelectionAllAddItemNumDouble()
 
 End Sub
 '--------------------------------------------------------------
-' ušv’Ç‰Á
+' ã€Œâ˜…ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumStarB()
 
@@ -1759,7 +1759,7 @@ Sub execSelectionAllAddItemNumStarB()
 
 End Sub
 '--------------------------------------------------------------
-' u™v’Ç‰Á
+' ã€Œâ˜†ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumStarW()
 
@@ -1775,7 +1775,7 @@ Sub execSelectionAllAddItemNumStarW()
 
 End Sub
 '--------------------------------------------------------------
-' uYv’Ç‰Á
+' ã€Œã€†ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumSime()
 
@@ -1791,7 +1791,7 @@ Sub execSelectionAllAddItemNumSime()
 
 End Sub
 '--------------------------------------------------------------
-' uËv’Ç‰Á
+' ã€Œâ‡’ã€è¿½åŠ 
 '--------------------------------------------------------------
 Sub execSelectionAllAddItemNumDblR()
 
@@ -1807,7 +1807,7 @@ Sub execSelectionAllAddItemNumDblR()
 
 End Sub
 '--------------------------------------------------------------
-' ‚¨‚È‚¶’l‚ğƒ}[ƒW
+' ãŠãªã˜å€¤ã‚’ãƒãƒ¼ã‚¸
 '--------------------------------------------------------------
 Sub execSelectionMerge()
 
@@ -1821,7 +1821,7 @@ Sub execSelectionMerge()
 
 End Sub
 '--------------------------------------------------------------
-' ‚¨‚È‚¶’l‚ğƒ}[ƒW
+' ãŠãªã˜å€¤ã‚’ãƒãƒ¼ã‚¸
 '--------------------------------------------------------------
 Sub execSelectionMergeLine()
 
@@ -1835,7 +1835,7 @@ Sub execSelectionMergeLine()
 
 End Sub
 '--------------------------------------------------------------
-' ƒ}[ƒW‚Ì‹t
+' ãƒãƒ¼ã‚¸ã®é€†
 '--------------------------------------------------------------
 Sub execSelectionNoMerge()
 
@@ -1849,7 +1849,7 @@ Sub execSelectionNoMerge()
 
 End Sub
 '--------------------------------------------------------------
-' ƒNƒŠƒbƒvƒ{[ƒhƒtƒ@ƒCƒ‹ƒRƒs[
+' ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ”ãƒ¼
 '--------------------------------------------------------------
 Sub execSelectionSetClipboardCopy()
 
@@ -1864,7 +1864,7 @@ Sub execSelectionSetClipboardCopy()
 End Sub
 
 '--------------------------------------------------------------
-' ‚ ‚é•¶š‚©‚ç¶‘¤‚ğíœ
+' ã‚ã‚‹æ–‡å­—ã‹ã‚‰å·¦å´ã‚’å‰Šé™¤
 '--------------------------------------------------------------
 Sub execSelectionRemoveLeftToChar()
 
@@ -1878,7 +1878,7 @@ Sub execSelectionRemoveLeftToChar()
 
 End Sub
 '--------------------------------------------------------------
-' ‚ ‚é•¶š‚©‚ç‰E‘¤‚ğíœ
+' ã‚ã‚‹æ–‡å­—ã‹ã‚‰å³å´ã‚’å‰Šé™¤
 '--------------------------------------------------------------
 Sub execSelectionRemoveRightToChar()
 
@@ -1892,7 +1892,7 @@ Sub execSelectionRemoveRightToChar()
 
 End Sub
 '--------------------------------------------------------------
-' â‘ÎQÆ•ÏŠ·
+' çµ¶å¯¾å‚ç…§å¤‰æ›
 '--------------------------------------------------------------
 Sub execSelectionToAbsolute()
 
@@ -1908,7 +1908,7 @@ Sub execSelectionToAbsolute()
 
 End Sub
 '--------------------------------------------------------------
-' ‘Š‘ÎQÆ•ÏŠ·
+' ç›¸å¯¾å‚ç…§å¤‰æ›
 '--------------------------------------------------------------
 Sub execSelectionToRelative()
 
@@ -1924,7 +1924,7 @@ Sub execSelectionToRelative()
 
 End Sub
 '--------------------------------------------------------------
-' â‘ÎQÆ•ÏŠ·(—ñ)
+' çµ¶å¯¾å‚ç…§å¤‰æ›(åˆ—)
 '--------------------------------------------------------------
 Sub execSelectionToRelRowAbsColumn()
 
@@ -1940,7 +1940,7 @@ Sub execSelectionToRelRowAbsColumn()
 
 End Sub
 '--------------------------------------------------------------
-' â‘ÎQÆ•ÏŠ·(s)
+' çµ¶å¯¾å‚ç…§å¤‰æ›(è¡Œ)
 '--------------------------------------------------------------
 Sub execSelectionToAbsRowRelColumn()
 
@@ -1956,7 +1956,7 @@ Sub execSelectionToAbsRowRelColumn()
 
 End Sub
 '--------------------------------------------------------------
-' •¶š‹l‚ß
+' æ–‡å­—è©°ã‚
 '--------------------------------------------------------------
 Sub execSelectionAlignTopLeft()
 
@@ -1973,7 +1973,7 @@ Sub execSelectionAlignTopLeft()
 
 End Sub
 '--------------------------------------------------------------
-' •¶š‹l‚ß
+' æ–‡å­—è©°ã‚
 '--------------------------------------------------------------
 Sub execSelectionAlignTopCenter()
 
@@ -1990,7 +1990,7 @@ Sub execSelectionAlignTopCenter()
 
 End Sub
 '--------------------------------------------------------------
-' •¶š‹l‚ß
+' æ–‡å­—è©°ã‚
 '--------------------------------------------------------------
 Sub execSelectionAlignTopRight()
 
@@ -2007,7 +2007,7 @@ Sub execSelectionAlignTopRight()
 
 End Sub
 '--------------------------------------------------------------
-' •¶š‹l‚ß
+' æ–‡å­—è©°ã‚
 '--------------------------------------------------------------
 Sub execSelectionAlignCenterLeft()
 
@@ -2024,7 +2024,7 @@ Sub execSelectionAlignCenterLeft()
 
 End Sub
 '--------------------------------------------------------------
-' •¶š‹l‚ß
+' æ–‡å­—è©°ã‚
 '--------------------------------------------------------------
 Sub execSelectionAlignCenterCenter()
 
@@ -2041,7 +2041,7 @@ Sub execSelectionAlignCenterCenter()
 
 End Sub
 '--------------------------------------------------------------
-' •¶š‹l‚ß
+' æ–‡å­—è©°ã‚
 '--------------------------------------------------------------
 Sub execSelectionAlignCenterRight()
 
@@ -2058,7 +2058,7 @@ Sub execSelectionAlignCenterRight()
 
 End Sub
 '--------------------------------------------------------------
-' •¶š‹l‚ß
+' æ–‡å­—è©°ã‚
 '--------------------------------------------------------------
 Sub execSelectionAlignBottomLeft()
 
@@ -2075,7 +2075,7 @@ Sub execSelectionAlignBottomLeft()
 
 End Sub
 '--------------------------------------------------------------
-' •¶š‹l‚ß
+' æ–‡å­—è©°ã‚
 '--------------------------------------------------------------
 Sub execSelectionAlignBottomCenter()
 
@@ -2092,7 +2092,7 @@ Sub execSelectionAlignBottomCenter()
 
 End Sub
 '--------------------------------------------------------------
-' •¶š‹l‚ß
+' æ–‡å­—è©°ã‚
 '--------------------------------------------------------------
 Sub execSelectionAlignBottomRight()
 
@@ -2109,7 +2109,7 @@ Sub execSelectionAlignBottomRight()
 
 End Sub
 '--------------------------------------------------------------
-' ƒCƒ“ƒfƒ“ƒgƒNƒŠƒA
+' ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆã‚¯ãƒªã‚¢
 '--------------------------------------------------------------
 Sub execSelectionSectionIndentClear()
 
@@ -2123,7 +2123,7 @@ Sub execSelectionSectionIndentClear()
 
 End Sub
 '--------------------------------------------------------------
-' Ÿ”Ô†
+' æ¬¡ç•ªå·
 '--------------------------------------------------------------
 Sub getNextNumber()
     
@@ -2137,7 +2137,7 @@ Sub getNextNumber()
     
 End Sub
 '--------------------------------------------------------------
-' Ÿ”Ô†(¶)
+' æ¬¡ç•ªå·(å·¦)
 '--------------------------------------------------------------
 Sub getNextNumberLeft()
     
@@ -2151,7 +2151,7 @@ Sub getNextNumberLeft()
     
 End Sub
 '--------------------------------------------------------------
-' RelaxƒtƒBƒ‹({‚P)
+' Relaxãƒ•ã‚£ãƒ«(ï¼‹ï¼‘)
 '--------------------------------------------------------------
 Sub execSelectionAllPlus()
     
@@ -2165,7 +2165,7 @@ Sub execSelectionAllPlus()
     
 End Sub
 '--------------------------------------------------------------
-' RelaxƒtƒBƒ‹(|‚P)
+' Relaxãƒ•ã‚£ãƒ«(ï¼ï¼‘)
 '--------------------------------------------------------------
 Sub execSelectionAllMinus()
     
@@ -2179,7 +2179,7 @@ Sub execSelectionAllMinus()
     
 End Sub
 '--------------------------------------------------------------
-' ƒ}ƒCƒiƒ“ƒo[iŒÂljƒ`ƒFƒbƒNƒfƒWƒbƒg
+' ãƒã‚¤ãƒŠãƒ³ãƒãƒ¼ï¼ˆå€‹äººï¼‰ãƒã‚§ãƒƒã‚¯ãƒ‡ã‚¸ãƒƒãƒˆ
 '--------------------------------------------------------------
 Sub execSelectionCheckMyNumber()
     
@@ -2193,7 +2193,7 @@ Sub execSelectionCheckMyNumber()
     
 End Sub
 '--------------------------------------------------------------
-' ƒ}ƒCƒiƒ“ƒo[iŠé‹Æjƒ`ƒFƒbƒNƒfƒWƒbƒg
+' ãƒã‚¤ãƒŠãƒ³ãƒãƒ¼ï¼ˆä¼æ¥­ï¼‰ãƒã‚§ãƒƒã‚¯ãƒ‡ã‚¸ãƒƒãƒˆ
 '--------------------------------------------------------------
 Sub execSelectionCheckCorpNumber()
     
@@ -2207,7 +2207,7 @@ Sub execSelectionCheckCorpNumber()
     
 End Sub
 '--------------------------------------------------------------
-' 2003ŒİŠ·F(•¶šF)
+' 2003äº’æ›è‰²(æ–‡å­—è‰²)
 '--------------------------------------------------------------
 Sub execSelectionFormatFontColor()
     
@@ -2221,7 +2221,7 @@ Sub execSelectionFormatFontColor()
 
 End Sub
 '--------------------------------------------------------------
-' 2003ŒİŠ·F(”wŒiF)
+' 2003äº’æ›è‰²(èƒŒæ™¯è‰²)
 '--------------------------------------------------------------
 Sub execSelectionFormatBackColor()
     
@@ -2235,7 +2235,7 @@ Sub execSelectionFormatBackColor()
 
 End Sub
 '--------------------------------------------------------------
-' 2003ŒİŠ·F(˜güF)
+' 2003äº’æ›è‰²(æ ç·šè‰²)
 '--------------------------------------------------------------
 Sub execSelectionFormatLineColor()
     

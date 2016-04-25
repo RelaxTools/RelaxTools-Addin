@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSearchFusen 
-   Caption         =   "•tâ³‚ÌŒŸõ"
+   Caption         =   "ä»˜ç®‹ã®æ¤œç´¢"
    ClientHeight    =   6450
    ClientLeft      =   45
    ClientTop       =   390
@@ -85,9 +85,9 @@ Private Sub searchShape(ByRef strPattern As String, ByRef objSheet As Worksheet)
                     lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                     lstResult.List(mlngCount, C_SEARCH_STR) = Left(c.TextFrame2.TextRange.Text, C_SIZE)
                     If c.visible Then
-                        lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "•\¦"
+                        lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "è¡¨ç¤º"
                     Else
-                        lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "”ñ•\¦"
+                        lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "éè¡¨ç¤º"
                     End If
                     lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
                     lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
@@ -104,7 +104,7 @@ Private Sub searchShape(ByRef strPattern As String, ByRef objSheet As Worksheet)
     Next
 
 End Sub
-'Ä‹A‚É‚ÄƒOƒ‹[ƒvˆÈ‰º‚ÌƒVƒFƒCƒv‚ğŒŸõ
+'å†å¸°ã«ã¦ã‚°ãƒ«ãƒ¼ãƒ—ä»¥ä¸‹ã®ã‚·ã‚§ã‚¤ãƒ—ã‚’æ¤œç´¢
 Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape As Shape, ByRef strPattern As String)
 
     Dim matchCount As Long
@@ -115,7 +115,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
         
         Select Case c.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                'ƒVƒFƒCƒv‚É•¶š‚ª‚ ‚é‚©‚È‚¢‚©”»’f‚ª‚Â‚©‚È‚¢‚½‚ßƒGƒ‰[ŒŸo‚É‚Äˆ—
+                'ã‚·ã‚§ã‚¤ãƒ—ã«æ–‡å­—ãŒã‚ã‚‹ã‹ãªã„ã‹åˆ¤æ–­ãŒã¤ã‹ãªã„ãŸã‚ã‚¨ãƒ©ãƒ¼æ¤œå‡ºã«ã¦å‡¦ç†
                 
                 strBuf = c.AlternativeText
                 matchCount = InStr(UCase(strBuf), UCase(strPattern))
@@ -126,9 +126,9 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                     lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                     lstResult.List(mlngCount, C_SEARCH_STR) = Left(c.TextFrame2.TextRange.Text, C_SIZE)
                     If c.visible Then
-                        lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "•\¦"
+                        lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "è¡¨ç¤º"
                     Else
-                        lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "”ñ•\¦"
+                        lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "éè¡¨ç¤º"
                     End If
                     lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.Name
                     lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
@@ -139,7 +139,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                 End If
                 
             Case msoGroup
-                'Ä‹AŒÄo
+                'å†å¸°å‘¼å‡º
                 grouprc WS, objTop, c, strPattern
             
         End Select
@@ -147,7 +147,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
 
 End Sub
 
-'ƒOƒ‹[ƒv•¶š—ñ‚ğæ“¾
+'ã‚°ãƒ«ãƒ¼ãƒ—æ–‡å­—åˆ—ã‚’å–å¾—
 Private Function getGroupId(ByRef objShape As Object) As String
 
     Dim strBuf As String
@@ -191,7 +191,7 @@ Private Sub cmdDsp_Click()
             If objShape Is Nothing Then
             Else
                 objShape.visible = True
-                lstResult.List(lngCnt, C_SEARCH_VISIBLE) = "•\¦"
+                lstResult.List(lngCnt, C_SEARCH_VISIBLE) = "è¡¨ç¤º"
             End If
         End If
     Next
@@ -220,7 +220,7 @@ Private Sub cmdNoDsp_Click()
             If objShape Is Nothing Then
             Else
                 objShape.visible = False
-                lstResult.List(lngCnt, C_SEARCH_VISIBLE) = "”ñ•\¦"
+                lstResult.List(lngCnt, C_SEARCH_VISIBLE) = "éè¡¨ç¤º"
             End If
         End If
     Next
@@ -297,14 +297,14 @@ Private Sub lstResult_Change()
                     mblnRefresh = True
                 Else
                     If blnCell Then
-                        '‚Ps–Ú‚ªƒZƒ‹‚Å‚Qs–ÚˆÈ~‚ÅƒZƒ‹ˆÈŠO
+                        'ï¼‘è¡Œç›®ãŒã‚»ãƒ«ã§ï¼’è¡Œç›®ä»¥é™ã§ã‚»ãƒ«ä»¥å¤–
                         If Left$(lstResult.List(lngCnt, C_SEARCH_ID), 1) <> "$" Then
                             mblnRefresh = False
                             lstResult.Selected(lngCnt) = False
                             mblnRefresh = True
                         End If
                     Else
-                        '‚Ps–Ú‚ªƒVƒFƒCƒv
+                        'ï¼‘è¡Œç›®ãŒã‚·ã‚§ã‚¤ãƒ—
                         If Left$(lstResult.List(lngCnt, C_SEARCH_ID), 1) = "$" Then
                             mblnRefresh = False
                             lstResult.Selected(lngCnt) = False
@@ -348,7 +348,7 @@ Private Sub lstResult_Change()
             
             Set objShape = getObjFromID(Worksheets(selSheet), Mid$(strBuf, InStrRev(strBuf, ":") + 1))
             
-            'SmartArt‚Ìê‡
+            'SmartArtã®å ´åˆ
             If InStr(strBuf, C_SEARCH_ID_SMARTART) > 0 Then
             
             Else

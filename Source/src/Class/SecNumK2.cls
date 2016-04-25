@@ -37,16 +37,16 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private Const C_SECTION_REGEXP As String = "^\([±-›]+\)[ ]"
+Private Const C_SECTION_REGEXP As String = "^\([ÔΩ±-Ôæù]+\)[ ]"
 Private Const C_SECTION_SEPARATER As String = " "
-Private Const C_SECTION_NAME As String = "(±), (≤), (≥) ••• (›)"
+Private Const C_SECTION_NAME As String = "(ÔΩ±), (ÔΩ≤), (ÔΩ≥) ÔΩ•ÔΩ•ÔΩ• (Ôæù)"
 Private Const C_SECTION_CLASS As String = "SecNumK2"
 Public Property Get Class() As String
     Class = C_SECTION_CLASS
 End Property
 Public Function SectionLevelName(ByVal lngLevel As Long) As String
     
-    SectionLevelName = " (±) ÑüÑüÑüÑü"
+    SectionLevelName = " (ÔΩ±) ‚îÄ‚îÄ‚îÄ‚îÄ"
 
 End Function
 Public Property Get SectionName() As String
@@ -91,11 +91,11 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngFromLevel As Long, By
     strNumber = Trim(SectionNumber(v))
     
     If strNumber = "" Or lngFromLevel <> lngIndentLevel Then
-        strNewNum = "(±)" & C_SECTION_SEPARATER
+        strNewNum = "(ÔΩ±)" & C_SECTION_SEPARATER
     Else
         lngAsc = Asc(Replace(Replace(strNumber, "(", ""), ")", "")) + 1
-        If lngAsc > Asc("›") Then
-            lngAsc = Asc("±")
+        If lngAsc > Asc("Ôæù") Then
+            lngAsc = Asc("ÔΩ±")
         End If
         strNewNum = "(" & Chr(lngAsc) & ")" & C_SECTION_SEPARATER
     End If

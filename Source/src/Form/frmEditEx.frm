@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmEditEx 
-   Caption         =   "ŠO•”ƒGƒfƒBƒ^‚Ìİ’è"
+   Caption         =   "å¤–éƒ¨ã‚¨ãƒ‡ã‚£ã‚¿ã®è¨­å®š"
    ClientHeight    =   2190
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   6855
    OleObjectBlob   =   "frmEditEx.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmEditEx"
 Attribute VB_GlobalNameSpace = False
@@ -61,9 +61,9 @@ Private Sub cmdFile_Click()
 
     Dim strFile As String
 
-    strFile = Application.GetOpenFilename("ƒtƒ@ƒCƒ‹(*.*),(*.*)", , "Àsƒtƒ@ƒCƒ‹", , False)
+    strFile = Application.GetOpenFilename("ãƒ•ã‚¡ã‚¤ãƒ«(*.*),(*.*)", , "å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«", , False)
     If strFile = "False" Then
-        'ƒtƒ@ƒCƒ‹–¼‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+        'ãƒ•ã‚¡ã‚¤ãƒ«åãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
         Exit Sub
     End If
     
@@ -107,7 +107,7 @@ Private Sub UserForm_Initialize()
     strEncode = GetSetting(C_TITLE, "EditEx", "Encode", C_SJIS)
     blnBOM = GetSetting(C_TITLE, "EditEx", "BOM", False)
     
-    '‹Œ•¶š—ñ‚Ìê‡“Ç‚İ‘Ö‚¦‚é
+    'æ—§æ–‡å­—åˆ—ã®å ´åˆèª­ã¿æ›¿ãˆã‚‹
     If strEncode = C_SJIS_OLD Then
         strEncode = C_SJIS
     End If

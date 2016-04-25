@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSheetManager 
-   Caption         =   "ƒV[ƒgŠÇ—"
+   Caption         =   "ã‚·ãƒ¼ãƒˆç®¡ç†"
    ClientHeight    =   6045
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   8385
    OleObjectBlob   =   "frmSheetManager.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmSheetManager"
 Attribute VB_GlobalNameSpace = False
@@ -60,9 +60,9 @@ Private Const C_UP As Long = 1
 Private Const C_DOWN As Long = 2
 'Private Const C_DEL As Long = 3
 
-Private Const C_HIDE As String = " |"
-Private Const C_SHOW As String = " ›"
-Private Const C_DEL As String = "íœ"
+Private Const C_HIDE As String = " ï¼"
+Private Const C_SHOW As String = " â—‹"
+Private Const C_DEL As String = "å‰Šé™¤"
 
 Private mBook As Workbook
 
@@ -121,7 +121,7 @@ Private Sub cmdSaveBook_Click()
                 End If
     
             Else
-                MsgBox "•\¦ƒV[ƒgˆÈŠO‚Í•Û‘¶‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+                MsgBox "è¡¨ç¤ºã‚·ãƒ¼ãƒˆä»¥å¤–ã¯ä¿å­˜ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
                 Exit Sub
             End If
         End If
@@ -132,13 +132,13 @@ Private Sub cmdSaveBook_Click()
         Dim o As Object
         Dim vntFileName As Variant
         
-        vntFileName = Application.GetSaveAsFilename(InitialFileName:="", FileFilter:="Excel ƒuƒbƒN(*.xlsx),*.xlsx,Excel ƒ}ƒNƒ—LŒøƒuƒbƒN(*.xlsm),*.xlsm,Excel 97-2003ƒuƒbƒN(*.xls),*.xls", Title:="ƒuƒbƒN‚Ì•Û‘¶")
+        vntFileName = Application.GetSaveAsFilename(InitialFileName:="", FileFilter:="Excel ãƒ–ãƒƒã‚¯(*.xlsx),*.xlsx,Excel ãƒã‚¯ãƒ­æœ‰åŠ¹ãƒ–ãƒƒã‚¯(*.xlsm),*.xlsm,Excel 97-2003ãƒ–ãƒƒã‚¯(*.xls),*.xls", Title:="ãƒ–ãƒƒã‚¯ã®ä¿å­˜")
         
         If vntFileName <> False Then
         
             For Each b In Workbooks
                 If UCase(b.Name) = UCase(rlxGetFullpathFromFileName(vntFileName)) Then
-                    MsgBox "Œ»İŠJ‚¢‚Ä‚¢‚éƒuƒbƒN‚Æ“¯‚¶–¼‘O‚Íw’è‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+                    MsgBox "ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ãƒ–ãƒƒã‚¯ã¨åŒã˜åå‰ã¯æŒ‡å®šã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
                     Exit Sub
                 End If
             Next
@@ -160,7 +160,7 @@ Private Sub cmdSaveBook_Click()
             b.Close
             Set b = Nothing
             Application.DisplayAlerts = True
-            MsgBox "•Û‘¶‚µ‚Ü‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+            MsgBox "ä¿å­˜ã—ã¾ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
         End If
     End If
 
@@ -183,7 +183,7 @@ Private Sub txtSheetName_Change()
 '            Exit Sub
 '    End Select
 '
-'    strBuf = ":\/?*[]F^H–mn"
+'    strBuf = ":\/?*[]ï¼šï¿¥ï¼ï¼Ÿï¼Šï¼»ï¼½"
 '    lngLen = Len(strBuf)
 '
 '    For i = 1 To lngLen
@@ -199,7 +199,7 @@ Private Sub txtSheetName_Change()
 '
 '        If lstSheet.Selected(i) Then
 '            If lstSheet.List(i, C_SHEET_STATUS) = C_DEL Then
-'                MsgBox "íœ—\’è‚ÌƒV[ƒg–¼‚ÌC³‚Í‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+'                MsgBox "å‰Šé™¤äºˆå®šã®ã‚·ãƒ¼ãƒˆåã®ä¿®æ­£ã¯ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
 '                Exit Sub
 '            End If
 '        End If
@@ -221,7 +221,7 @@ Private Sub txtSheetName_Change()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ƒŠƒXƒg‰Šú•\¦ƒCƒxƒ“ƒg
+' ãƒªã‚¹ãƒˆåˆæœŸè¡¨ç¤ºã‚¤ãƒ™ãƒ³ãƒˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub UserForm_Initialize()
 
@@ -250,7 +250,7 @@ Private Sub UserForm_Initialize()
     MW.Install
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ƒŠƒtƒŒƒbƒVƒ…ˆ—
+' ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub refreshList()
 
@@ -304,7 +304,7 @@ Private Sub refreshList()
     
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ƒŠƒXƒg•ÏXƒCƒxƒ“ƒg
+' ãƒªã‚¹ãƒˆå¤‰æ›´ã‚¤ãƒ™ãƒ³ãƒˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub lstSheet_Change()
 
@@ -323,13 +323,13 @@ Private Sub lstSheet_Change()
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' •Â‚¶‚éƒ{ƒ^ƒ“
+' é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğƒ{ƒ^ƒ“
+' é¸æŠãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdSelect_Click()
 
@@ -352,7 +352,7 @@ Private Sub cmdSelect_Click()
     Next
 
     If strSheets = "" Then
-        MsgBox "‘I‘ğ‚Å‚«‚éƒV[ƒg‚ª‚ ‚è‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "é¸æŠã§ãã‚‹ã‚·ãƒ¼ãƒˆãŒã‚ã‚Šã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
 
@@ -369,7 +369,7 @@ Private Sub cmdSelect_Click()
     
     Next
     
-    'Å‰‚ÉˆÚ“®‚µ‚Ä‚©‚ç•\¦‚³‚ê‚Ä‚¢‚éƒV[ƒg•ªˆÚ“®‚·‚éB
+    'æœ€åˆã«ç§»å‹•ã—ã¦ã‹ã‚‰è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‚·ãƒ¼ãƒˆåˆ†ç§»å‹•ã™ã‚‹ã€‚
     ActiveWindow.ScrollWorkbookTabs Position:=xlFirst
     ActiveWindow.ScrollWorkbookTabs Sheets:=lngPos - 1
     Unload Me
@@ -379,7 +379,7 @@ Private Sub lstSheet_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
     Call cmdSelect_Click
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ƒV[ƒg–¼•ÏXƒ{ƒ^ƒ“
+' ã‚·ãƒ¼ãƒˆåå¤‰æ›´ãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 'Private Sub btnChange_Click()
 '
@@ -394,7 +394,7 @@ End Sub
 '            Exit Sub
 '    End Select
 '
-'    strBuf = ":\/?*[]F^H–mn"
+'    strBuf = ":\/?*[]ï¼šï¿¥ï¼ï¼Ÿï¼Šï¼»ï¼½"
 '    lngLen = Len(strBuf)
 '
 '    For i = 1 To lngLen
@@ -410,13 +410,13 @@ End Sub
 '
 '        If lstSheet.Selected(i) Then
 '            If lstSheet.List(i, C_SHEET_STATUS) = C_DEL Then
-'                MsgBox "íœ—\’è‚ÌƒV[ƒg–¼‚ÌC³‚Í‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+'                MsgBox "å‰Šé™¤äºˆå®šã®ã‚·ãƒ¼ãƒˆåã®ä¿®æ­£ã¯ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
 '                Exit Sub
 '            End If
 '        End If
 '
 ''        If lstSheet.List(i, C_SHEET_NEW_NAME) = txtSheetName.Text Then
-''            MsgBox "ƒV[ƒg‚Ì–¼‘O‚ğ‚Ù‚©‚ÌƒV[ƒgAVisual Basic ‚ÅQÆ‚³‚ê‚éƒIƒuƒWƒFƒNƒg ƒ‰ƒCƒuƒ‰ƒŠ‚Ü‚½‚Íƒ[ƒNƒV[ƒg‚Æ“¯‚¶–¼‘O‚É•ÏX‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+''            MsgBox "ã‚·ãƒ¼ãƒˆã®åå‰ã‚’ã»ã‹ã®ã‚·ãƒ¼ãƒˆã€Visual Basic ã§å‚ç…§ã•ã‚Œã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¾ãŸã¯ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆã¨åŒã˜åå‰ã«å¤‰æ›´ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
 ''            Exit Sub
 ''        End If
 '
@@ -437,35 +437,35 @@ End Sub
 '
 'End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ƒƒbƒZ[ƒW•\¦
+' ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub errorMsg()
-    MsgBox "“ü—Í‚³‚ê‚½ƒV[ƒg‚Ü‚½‚ÍƒOƒ‰ƒt‚Ì–¼‘O‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñBŸ‚Ì“_‚ğŠm”F‚µ‚ÄC³‚µ‚Ä‚­‚¾‚³‚¢B" & vbCrLf & vbCrLf & _
-    "E“ü—Í•¶š‚ª31•¶šˆÈ“à‚Å‚ ‚é‚±‚Æ" & vbCrLf & _
-    "EŸ‚Ìg—p‚Å‚«‚È‚¢•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚È‚¢‚±‚Æ:ƒRƒƒ“(:)A‰~‹L†(\)AƒXƒ‰ƒbƒVƒ…(/)A‹^–â•„(?)AƒAƒXƒ^ƒŠƒXƒN(*)A¶Šp‚©‚Á‚±([)A‰EŠp‚©‚Á‚±(])" & vbCrLf & _
-    "E–¼‘O‚ª‹ó”’‚Å‚È‚¢‚±‚Æ", vbOKOnly + vbExclamation, C_TITLE
+    MsgBox "å…¥åŠ›ã•ã‚ŒãŸã‚·ãƒ¼ãƒˆã¾ãŸã¯ã‚°ãƒ©ãƒ•ã®åå‰ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚æ¬¡ã®ç‚¹ã‚’ç¢ºèªã—ã¦ä¿®æ­£ã—ã¦ãã ã•ã„ã€‚" & vbCrLf & vbCrLf & _
+    "ãƒ»å…¥åŠ›æ–‡å­—ãŒ31æ–‡å­—ä»¥å†…ã§ã‚ã‚‹ã“ã¨" & vbCrLf & _
+    "ãƒ»æ¬¡ã®ä½¿ç”¨ã§ããªã„æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ãªã„ã“ã¨:ã‚³ãƒ­ãƒ³(:)ã€å††è¨˜å·(\)ã€ã‚¹ãƒ©ãƒƒã‚·ãƒ¥(/)ã€ç–‘å•ç¬¦(?)ã€ã‚¢ã‚¹ã‚¿ãƒªã‚¹ã‚¯(*)ã€å·¦è§’ã‹ã£ã“([)ã€å³è§’ã‹ã£ã“(])" & vbCrLf & _
+    "ãƒ»åå‰ãŒç©ºç™½ã§ãªã„ã“ã¨", vbOKOnly + vbExclamation, C_TITLE
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ¸‡ƒ\[ƒgƒ{ƒ^ƒ“
+' æ˜‡é †ã‚½ãƒ¼ãƒˆãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdAsc_Click()
 
-    '¸‡ƒ\[ƒg
+    'æ˜‡é †ã‚½ãƒ¼ãƒˆ
     sortList C_SORT_ASC
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ~‡ƒ\[ƒgƒ{ƒ^ƒ“
+' é™é †ã‚½ãƒ¼ãƒˆãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdDesc_Click()
     
-    '~‡ƒ\[ƒg
+    'é™é †ã‚½ãƒ¼ãƒˆ
     sortList C_SORT_DESC
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ƒ\[ƒgˆ—
+' ã‚½ãƒ¼ãƒˆå‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub sortList(ByVal lngSort As Long)
     
@@ -480,7 +480,7 @@ Private Sub sortList(ByVal lngSort As Long)
     Dim cnt As Long
     
 
-    '‚P‚Â‚È‚çƒ\[ƒg•s—v
+    'ï¼‘ã¤ãªã‚‰ã‚½ãƒ¼ãƒˆä¸è¦
     If lstSheet.ListCount <= 1 Then
         Exit Sub
     End If
@@ -553,7 +553,7 @@ Private Sub sortList(ByVal lngSort As Long)
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' •\¦ƒ{ƒ^ƒ“
+' è¡¨ç¤ºãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdShow_Click()
 
@@ -570,7 +570,7 @@ Private Sub cmdShow_Click()
     
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ”ñ•\¦ƒ{ƒ^ƒ“
+' éè¡¨ç¤ºãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdHide_Click()
 
@@ -588,19 +588,19 @@ Private Sub cmdHide_Click()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğã‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸Šã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdUp_Click()
      Call moveList(C_UP)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğ‰º‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸‹ã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdDown_Click()
      Call moveList(C_DOWN)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ˆÚ“®ˆ—
+' ç§»å‹•å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub moveList(ByVal lngMode As Long)
 
@@ -613,7 +613,7 @@ Private Sub moveList(ByVal lngMode As Long)
     Dim lngEnd As Long
     Dim lngInc As Long
 
-    '‚P‚Â‚È‚ç•s—v
+    'ï¼‘ã¤ãªã‚‰ä¸è¦
     If lstSheet.ListCount <= 1 Then
         Exit Sub
     End If
@@ -632,7 +632,7 @@ Private Sub moveList(ByVal lngMode As Long)
     For lngCnt = lngStart To lngEnd Step lngInc
     
         If lstSheet.Selected(lngCnt) Then
-            '‘I‘ğ‚³‚ê‚½s‚ª‚·‚Å‚ÉŠJns‚Ìê‡ˆÚ“®•s‰Â
+            'é¸æŠã•ã‚ŒãŸè¡ŒãŒã™ã§ã«é–‹å§‹è¡Œã®å ´åˆç§»å‹•ä¸å¯
             If lngCnt = lngStart Then
                 Exit For
             End If
@@ -654,7 +654,7 @@ Private Sub moveList(ByVal lngMode As Long)
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' íœƒ{ƒ^ƒ“
+' å‰Šé™¤ãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdDel_Click()
 
@@ -665,7 +665,7 @@ Private Sub cmdDel_Click()
     
         If lstSheet.Selected(lngCnt) Then
         
-'            strBuf = "áíœâ" & lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
+'            strBuf = "â‰ªå‰Šé™¤â‰«" & lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
 '            lstSheet.List(lngCnt, C_SHEET_DSP_NAME) = strBuf
 '            lstSheet.List(lngCnt, C_SHEET_NEW_NAME) = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
 '            lstSheet.List(lngCnt, C_SHEET_DEL) = C_DEL
@@ -676,7 +676,7 @@ Private Sub cmdDel_Click()
     
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' íœ‰ğœƒ{ƒ^ƒ“
+' å‰Šé™¤è§£é™¤ãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdUndo_Click()
 
@@ -696,14 +696,14 @@ Private Sub cmdUndo_Click()
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-'‰Šúó‘Ô‚É–ß‚·ƒ{ƒ^ƒ“
+'åˆæœŸçŠ¶æ…‹ã«æˆ»ã™ãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdInitialize_Click()
     Call refreshList
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' •ÏX“à—e‚ğ”½‰fƒ{ƒ^ƒ“
+' å¤‰æ›´å†…å®¹ã‚’åæ˜ ãƒœã‚¿ãƒ³
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdSubmit_Click()
 
@@ -720,7 +720,7 @@ Private Sub cmdSubmit_Click()
 
     Dim lngLast As Long
     
-    strBuf = ":\/?*[]F^H–mn"
+    strBuf = ":\/?*[]ï¼šï¿¥ï¼ï¼Ÿï¼Šï¼»ï¼½"
     lngLen = Len(strBuf)
 
     For lngCnt = 0 To lstSheet.ListCount - 1
@@ -741,14 +741,14 @@ Private Sub cmdSubmit_Click()
         End If
     Next
     If lngVisibleCount = lstSheet.ListCount Then
-        MsgBox "‚·‚×‚Ä‚ÌƒV[ƒg‚ğ”ñ•\¦‚É‚Í‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ã™ã¹ã¦ã®ã‚·ãƒ¼ãƒˆã‚’éè¡¨ç¤ºã«ã¯ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
     lngDeleteCount = 0
     For lngCnt = 0 To lstSheet.ListCount - 1
     
-        'ˆÙ‚È‚éê‡AƒŠƒXƒg‚ğ³‚Æ‚µAŒ»İ‚ÌƒV[ƒg‚Ì‘O‚ÉˆÚ“®B
+        'ç•°ãªã‚‹å ´åˆã€ãƒªã‚¹ãƒˆã‚’æ­£ã¨ã—ã€ç¾åœ¨ã®ã‚·ãƒ¼ãƒˆã®å‰ã«ç§»å‹•ã€‚
         If lstSheet.List(lngCnt, C_SHEET_STATUS) = C_DEL Then
             lngDeleteCount = lngDeleteCount + 1
         End If
@@ -756,7 +756,7 @@ Private Sub cmdSubmit_Click()
     Next
     
     If lngDeleteCount = lstSheet.ListCount Then
-        MsgBox "‚·‚×‚Ä‚ÌƒV[ƒg‚ğíœ‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ã™ã¹ã¦ã®ã‚·ãƒ¼ãƒˆã‚’å‰Šé™¤ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
@@ -765,7 +765,7 @@ Private Sub cmdSubmit_Click()
         For lngCnt2 = lngCnt + 1 To lstSheet.ListCount - 1
             If lstSheet.List(lngCnt, C_SHEET_STATUS) <> C_DEL And lstSheet.List(lngCnt2, C_SHEET_STATUS) <> C_DEL Then
                 If lstSheet.List(lngCnt, C_SHEET_NEW_NAME) = lstSheet.List(lngCnt2, C_SHEET_NEW_NAME) Then
-                    MsgBox "ƒV[ƒg‚Ì–¼‘O‚ğ‚Ù‚©‚ÌƒV[ƒgAVisual Basic ‚ÅQÆ‚³‚ê‚éƒIƒuƒWƒFƒNƒg ƒ‰ƒCƒuƒ‰ƒŠ‚Ü‚½‚Íƒ[ƒNƒV[ƒg‚Æ“¯‚¶–¼‘O‚É•ÏX‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+                    MsgBox "ã‚·ãƒ¼ãƒˆã®åå‰ã‚’ã»ã‹ã®ã‚·ãƒ¼ãƒˆã€Visual Basic ã§å‚ç…§ã•ã‚Œã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¾ãŸã¯ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆã¨åŒã˜åå‰ã«å¤‰æ›´ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
                     Exit Sub
                 End If
             End If
@@ -773,7 +773,7 @@ Private Sub cmdSubmit_Click()
     Next
     
     
-    If MsgBox("•ÒW“à—e‚ğ”½‰f‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("ç·¨é›†å†…å®¹ã‚’åæ˜ ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
@@ -786,7 +786,7 @@ Private Sub cmdSubmit_Click()
     Dim strDel As String
     For lngCnt = lstSheet.ListCount - 1 To 0 Step -1
         
-        'ƒV[ƒg‚Ìíœ
+        'ã‚·ãƒ¼ãƒˆã®å‰Šé™¤
         If lstSheet.List(lngCnt, C_SHEET_STATUS) = C_DEL Then
             strDel = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
             mBook.Sheets(strDel).Delete
@@ -796,24 +796,24 @@ Private Sub cmdSubmit_Click()
     Next
     
     Set WS = mBook.ActiveSheet
-    'ƒV[ƒg‚Ì•À‚Ñ‡”½‰f
+    'ã‚·ãƒ¼ãƒˆã®ä¸¦ã³é †åæ˜ 
     For lngCnt = 0 To lstSheet.ListCount - 1
     
-        '–¼Ì‚ª“¯‚¶‚È‚ç‰½‚à‚µ‚È‚¢
+        'åç§°ãŒåŒã˜ãªã‚‰ä½•ã‚‚ã—ãªã„
         If mBook.Sheets(lngCnt + 1).Name = lstSheet.List(lngCnt, C_SHEET_OLD_NAME) Then
         Else
-            'ˆÙ‚È‚éê‡AƒŠƒXƒg‚ğ³‚Æ‚µAŒ»İ‚ÌƒV[ƒg‚Ì‘O‚ÉˆÚ“®B
+            'ç•°ãªã‚‹å ´åˆã€ãƒªã‚¹ãƒˆã‚’æ­£ã¨ã—ã€ç¾åœ¨ã®ã‚·ãƒ¼ãƒˆã®å‰ã«ç§»å‹•ã€‚
             mBook.Sheets(lstSheet.List(lngCnt, C_SHEET_OLD_NAME)).Move Before:=mBook.Sheets(lngCnt + 1)
         End If
         
     Next
-    '‚à‚Æ‚à‚ÆƒAƒNƒeƒBƒu‚¾‚Á‚½ƒV[ƒg‚ğ‘I‘ğ
+    'ã‚‚ã¨ã‚‚ã¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã ã£ãŸã‚·ãƒ¼ãƒˆã‚’é¸æŠ
     WS.Select
     
-    '•\¦¨”ñ•\¦‚Ì‡”Ô‚És‚¤Bi“r’†‚Å‘S”ñ•\¦‚É‚È‚é‰Â”\«‚ª‚ ‚é‚½‚ßj
+    'è¡¨ç¤ºâ†’éè¡¨ç¤ºã®é †ç•ªã«è¡Œã†ã€‚ï¼ˆé€”ä¸­ã§å…¨éè¡¨ç¤ºã«ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ãŸã‚ï¼‰
     For lngCnt = 0 To lstSheet.ListCount - 1
         
-        '•\¦
+        'è¡¨ç¤º
         Select Case lstSheet.List(lngCnt, C_SHEET_STATUS)
             Case C_SHOW
                 mBook.Sheets(lstSheet.List(lngCnt, C_SHEET_OLD_NAME)).visible = xlSheetVisible
@@ -822,7 +822,7 @@ Private Sub cmdSubmit_Click()
     Next
     For lngCnt = 0 To lstSheet.ListCount - 1
         
-        '”ñ•\¦
+        'éè¡¨ç¤º
         Select Case lstSheet.List(lngCnt, C_SHEET_STATUS)
             Case C_HIDE
                 mBook.Sheets(lstSheet.List(lngCnt, C_SHEET_OLD_NAME)).visible = xlSheetHidden
@@ -835,7 +835,7 @@ Private Sub cmdSubmit_Click()
         Dim strNew As String
 
         
-        'ƒV[ƒg–¼•ÏX
+        'ã‚·ãƒ¼ãƒˆåå¤‰æ›´
         strNew = C_TEMP_NAME & lngCnt
         strOld = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
         
@@ -847,7 +847,7 @@ Private Sub cmdSubmit_Click()
     
     For lngCnt = 0 To lstSheet.ListCount - 1
         
-        'ƒV[ƒg–¼•ÏX
+        'ã‚·ãƒ¼ãƒˆåå¤‰æ›´
         strNew = lstSheet.List(lngCnt, C_SHEET_NEW_NAME)
         strOld = C_TEMP_NAME & lngCnt
         
@@ -855,7 +855,7 @@ Private Sub cmdSubmit_Click()
             mBook.Sheets(strOld).Name = strNew
         End If
         
-'        'ƒV[ƒg‚Ìíœ
+'        'ã‚·ãƒ¼ãƒˆã®å‰Šé™¤
 '        If lstSheet.List(lngCnt, C_SHEET_STATUS) = C_DEL Then
 '            strDel = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
 '            mBook.Sheets(strDel).Delete
@@ -866,7 +866,7 @@ Private Sub cmdSubmit_Click()
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
     
-    'Ä•\¦
+    'å†è¡¨ç¤º
     Call refreshList
     
 '    If lngLast > lstSheet.ListCount - 1 Then

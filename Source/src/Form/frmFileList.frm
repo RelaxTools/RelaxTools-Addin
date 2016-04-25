@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFileList 
-   Caption         =   "ƒtƒ@ƒCƒ‹ˆê——æ“¾"
+   Caption         =   "ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§å–å¾—"
    ClientHeight    =   2520
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   7260
    OleObjectBlob   =   "frmFileList.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmFileList"
 Attribute VB_GlobalNameSpace = False
@@ -55,7 +55,7 @@ Private Sub cmdFolder_Click()
 
     Dim strFile As String
 
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFile = rlxSelectFolder()
     
     If Trim(strFile) <> "" Then
@@ -73,22 +73,22 @@ Private Sub cmdRun_Click()
     Dim objFs As Object
     
     If ActiveCell Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒZƒ‹‚ª‚İ‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚»ãƒ«ãŒã¿ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     FileName = txtFolder.Text
     If FileName = "" Then
-        MsgBox "ƒtƒ@ƒCƒ‹ˆê——‚ğæ“¾‚·‚éƒtƒHƒ‹ƒ_‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, "ƒtƒ@ƒCƒ‹ˆê——æ“¾"
+        MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§ã‚’å–å¾—ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation, "ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§å–å¾—"
         txtFolder.SetFocus
         Exit Sub
     End If
     
-    'ƒ`ƒFƒbƒN‚ª‚Ç‚ê‚©‚P‚Â‚Å‚à“ü—Í‚³‚ê‚Ä‚¢‚È‚¢ê‡
+    'ãƒã‚§ãƒƒã‚¯ãŒã©ã‚Œã‹ï¼‘ã¤ã§ã‚‚å…¥åŠ›ã•ã‚Œã¦ã„ãªã„å ´åˆ
     If chkFile.value Or chkFolder.value Or chkFileSize.value Or chkDate.value Then
     Else
-        MsgBox "o—Í€–Ú‚ğ‚P‚ÂˆÈã‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, "ƒtƒ@ƒCƒ‹ˆê——æ“¾"
+        MsgBox "å‡ºåŠ›é …ç›®ã‚’ï¼‘ã¤ä»¥ä¸Šé¸æŠã—ã¦ãã ã•ã„ã€‚", vbExclamation, "ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§å–å¾—"
         chkFile.SetFocus
         Exit Sub
     End If
@@ -101,7 +101,7 @@ Private Sub cmdRun_Click()
     Set mMm.Form = Me
     
     mMm.Disable
-    mMm.DispGuidance "ƒtƒ@ƒCƒ‹‚Ì”‚ğƒJƒEƒ“ƒg‚µ‚Ä‚¢‚Ü‚·..."
+    mMm.DispGuidance "ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦ã„ã¾ã™..."
     
     rlxGetFilesCount objFs, FileName, lngFCnt, True, chkFolder.value, chkSubFolder.value
     
@@ -119,7 +119,7 @@ Private Sub cmdRun_Click()
     Set mMm = Nothing
     Select Case err.Number
     Case 75, 76
-        MsgBox "ƒtƒHƒ‹ƒ_‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, "ƒtƒ@ƒCƒ‹ˆê——æ“¾"
+        MsgBox "ãƒ•ã‚©ãƒ«ãƒ€ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, "ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§å–å¾—"
         txtFolder.SetFocus
         Exit Sub
     End Select
@@ -142,7 +142,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
     Set objfld = objFs.GetFolder(strPath)
     Set colFiles = New Collection
     
-    'ƒtƒ@ƒCƒ‹–¼æ“¾
+    'ãƒ•ã‚¡ã‚¤ãƒ«åå–å¾—
     For Each objfl In objfld.files
         DoEvents
         If mblnCancel Then
@@ -151,7 +151,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
         colFiles.Add objfl, objfl.Name
     Next
     
-    'ƒRƒŒƒNƒVƒ‡ƒ“‚Ìƒ\[ƒg
+    'ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚½ãƒ¼ãƒˆ
     rlxSortCollection colFiles
     
     For Each objfl In colFiles
@@ -195,7 +195,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
         colFolders.Add objSub, objSub.Name
     Next
     
-    'ƒRƒŒƒNƒVƒ‡ƒ“‚Ìƒ\[ƒg
+    'ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚½ãƒ¼ãƒˆ
     rlxSortCollection colFolders
     
     For Each objSub In colFolders
@@ -203,7 +203,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
         If mblnCancel Then
             Exit Sub
         End If
-        'ƒtƒHƒ‹ƒ_æ“¾‚ ‚è
+        'ãƒ•ã‚©ãƒ«ãƒ€å–å¾—ã‚ã‚Š
         If chkFolders.value Then
             lngCol2 = lngCol
             If chkFile.value Then
@@ -228,7 +228,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
             lngRow = lngRow + 1
             lngCount = lngCount + 1
         End If
-        'ƒTƒuƒtƒHƒ‹ƒ_ŒŸõ‚ ‚è
+        'ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€æ¤œç´¢ã‚ã‚Š
         If chkSubFolder.value Then
             FileDisp objFs, objSub.Path, lngRow, lngCol, lngCount, lngMax
         End If

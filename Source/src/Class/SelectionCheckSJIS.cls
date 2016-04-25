@@ -41,20 +41,20 @@ Option Explicit
 Dim lngAsc As Long
 Dim c As Range
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork �錾
+' SelectionFrameWork 宣言
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork �쐬
+' SelectionFrameWork 作成
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork �J��
+' SelectionFrameWork 開放
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -68,7 +68,7 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' �O����(UOC)
+' 前処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
 
@@ -116,9 +116,9 @@ Private Sub SFWork_SelectionTerm()
     End If
     
     If lngAsc > 0 Then
-        MsgBox "�S�p������̂���Z����" & lngAsc & "������܂����B", vbOKOnly + vbInformation, C_TITLE
+        MsgBox "全角文字列のあるセルが" & lngAsc & "個見つかりました。", vbOKOnly + vbInformation, C_TITLE
     Else
-        MsgBox "�S�p�����͌�����܂���ł����B", vbOKOnly + vbInformation, C_TITLE
+        MsgBox "全角文字は見つかりませんでした。", vbOKOnly + vbInformation, C_TITLE
     End If
 
     Exit Sub

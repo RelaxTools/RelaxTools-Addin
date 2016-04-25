@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFavorite 
-   Caption         =   "‚¨‹C‚É“ü‚è"
+   Caption         =   "ãŠæ°—ã«å…¥ã‚Š"
    ClientHeight    =   7230
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   11925
    OleObjectBlob   =   "frmFavorite.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmFavorite"
 Attribute VB_GlobalNameSpace = False
@@ -82,10 +82,10 @@ Private Const C_DOWN As Long = 2
 'Private Const C_MOD As Long = 2
 Private Const C_HEAD As Long = 3
 Private Const C_TAIL As Long = 4
-Private Const C_FAV_ALL As String = "‹K’è‚ÌƒJƒeƒSƒŠ"
+Private Const C_FAV_ALL As String = "è¦å®šã®ã‚«ãƒ†ã‚´ãƒª"
 Private mblnSainyu As Boolean
 Private mstrFirstBook As String
-Private Const C_FILE_INFO As String = "ƒtƒ@ƒCƒ‹î•ñF"
+Private Const C_FILE_INFO As String = "ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ï¼š"
 
 Public mobjCategory As Object
 
@@ -119,7 +119,7 @@ Public Sub execActiveAdd()
     strBook = ActiveWorkbook.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ƒuƒbƒN‚ª‘¶İ‚µ‚Ü‚¹‚ñB•Û‘¶‚µ‚Ä‚©‚çˆ—‚ğs‚Á‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ãƒ–ãƒƒã‚¯ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚ä¿å­˜ã—ã¦ã‹ã‚‰å‡¦ç†ã‚’è¡Œã£ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
@@ -128,7 +128,7 @@ Public Sub execActiveAdd()
         For i = 0 To .ListCount - 1
         
             If .List(i, C_ORIGINAL) = strBook Then
-                MsgBox "‚·‚Å‚É“¯–¼‚ÌƒuƒbƒN“o˜^‚³‚ê‚Ä‚¢‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+                MsgBox "ã™ã§ã«åŒåã®ãƒ–ãƒƒã‚¯ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
                 Exit Sub
             End If
         
@@ -161,7 +161,7 @@ Public Sub execDel()
     Dim i As Long
     Dim lngLast As Long
     
-    If MsgBox("‘I‘ğs‚ğíœ‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("é¸æŠè¡Œã‚’å‰Šé™¤ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
@@ -217,7 +217,7 @@ Private Sub lstCategory_BeforeDropOrPaste(ByVal Cancel As MSForms.ReturnBoolean,
 '
 '            If lstCategory.ListCount <= 1 Then
 '                With .Controls.Add
-'                    .Caption = "ˆÚ“®‚Å‚«‚éƒJƒeƒSƒŠ‚ª‚ ‚è‚Ü‚¹‚ñ"
+'                    .Caption = "ç§»å‹•ã§ãã‚‹ã‚«ãƒ†ã‚´ãƒªãŒã‚ã‚Šã¾ã›ã‚“"
 '                End With
 '            Else
 '                Dim a As Variant
@@ -327,13 +327,13 @@ End Sub
 
 
 Private Sub lstFavorite_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
-''ƒ}ƒEƒX¶ƒ{ƒ^ƒ“‚Ìƒhƒ‰ƒbƒO‚É‘Î‰
+''ãƒã‚¦ã‚¹å·¦ãƒœã‚¿ãƒ³ã®ãƒ‰ãƒ©ãƒƒã‚°æ™‚ã«å¯¾å¿œ
 'If Button <> 1 Then Exit Sub
-''ƒf[ƒ^ƒIƒuƒWƒFƒNƒg‚ÉŒ»İ‚Ì‘I‘ğ’n‚ğŠi”[
+''ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç¾åœ¨ã®é¸æŠåœ°ã‚’æ ¼ç´
 '    Dim D As DataObject
 '    Set D = New DataObject
 ''D.SetText ListBox1.Value
-'D.StartDrag 'ƒhƒ‰ƒbƒOŠJn
+'D.StartDrag 'ãƒ‰ãƒ©ãƒƒã‚°é–‹å§‹
 
     Set MW.obj = lstFavorite
 
@@ -397,39 +397,39 @@ Private Sub UserForm_Initialize()
     Set mBarCat = CommandBars.Add(Position:=msoBarPopup, Temporary:=True)
     With mBarCat
         With .Controls.Add
-            .Caption = "æ“ª‚ÉˆÚ“®"
+            .Caption = "å…ˆé ­ã«ç§»å‹•"
             .OnAction = "'basFavorite.moveListCategoryFirst(""" & C_HEAD & """)'"
             .FaceId = 594
         End With
         With .Controls.Add
-            .Caption = "1‚Âã‚ÉˆÚ“®"
+            .Caption = "1ã¤ä¸Šã«ç§»å‹•"
             .OnAction = "'basFavorite.moveListCategory(""" & C_UP & """)'"
             .FaceId = 595
         End With
         With .Controls.Add
             .BeginGroup = True
-            .Caption = "1‚Â‰º‚ÉˆÚ“®"
+            .Caption = "1ã¤ä¸‹ã«ç§»å‹•"
             .OnAction = "'basFavorite.moveListCategory(""" & C_DOWN & """)'"
             .FaceId = 596
         End With
         With .Controls.Add
-            .Caption = "ÅŒã‚ÉˆÚ“®"
+            .Caption = "æœ€å¾Œã«ç§»å‹•"
             .OnAction = "'basFavorite.moveListCategoryFirst(""" & C_TAIL & """)'"
             .FaceId = 597
         End With
         With .Controls.Add
             .BeginGroup = True
-            .Caption = "ƒJƒeƒSƒŠ‚Ì’Ç‰Á"
+            .Caption = "ã‚«ãƒ†ã‚´ãƒªã®è¿½åŠ "
             .OnAction = "basFavorite.addCategory"
             .FaceId = 535
         End With
         With .Controls.Add
-            .Caption = "ƒJƒeƒSƒŠ‚Ì•ÏX"
+            .Caption = "ã‚«ãƒ†ã‚´ãƒªã®å¤‰æ›´"
             .OnAction = "basFavorite.modCategory"
             .FaceId = 534
         End With
         With .Controls.Add
-            .Caption = "ƒJƒeƒSƒŠ‚Ìíœ"
+            .Caption = "ã‚«ãƒ†ã‚´ãƒªã®å‰Šé™¤"
             .OnAction = "basFavorite.delCategory"
             .FaceId = 536
         End With
@@ -513,8 +513,8 @@ Private Sub UserForm_Initialize()
     End If
 
     
-'    cmdDel.Caption = "ˆê——‚©‚ç" & vbCrLf & "íœ"
-'    cmdAdd.Caption = "Œ»İ‚ÌƒuƒbƒN‚ğ" & vbCrLf & "’Ç‰Á"
+'    cmdDel.Caption = "ä¸€è¦§ã‹ã‚‰" & vbCrLf & "å‰Šé™¤"
+'    cmdAdd.Caption = "ç¾åœ¨ã®ãƒ–ãƒƒã‚¯ã‚’" & vbCrLf & "è¿½åŠ "
     
     RW.FormWidth = Me.Width
     RW.FormHeight = Me.Height
@@ -535,7 +535,7 @@ Private Sub UserForm_Initialize()
 '    Me.Width = GetSetting(C_TITLE, "Favirite", "Width", Me.Width)
 '    Me.Height = GetSetting(C_TITLE, "Favirite", "Height", Me.Height)
     
-    lblMsg.Caption = " ‘€ì‚ÍƒŠƒXƒg‚ğ‰EƒNƒŠƒbƒNBˆê——‚Ö‚Ì’Ç‰Á‚ÍƒGƒNƒXƒvƒ[ƒ‰‚©‚ç‚ÌƒRƒsƒy(CTRL+V)‚Å‰Â”\‚Å‚·BExcelƒtƒ@ƒCƒ‹ˆÈŠO‚Ìƒtƒ@ƒCƒ‹AƒtƒHƒ‹ƒ_‚à’Ç‰Á‰Â”\‚Å‚·B"
+    lblMsg.Caption = " æ“ä½œã¯ãƒªã‚¹ãƒˆã‚’å³ã‚¯ãƒªãƒƒã‚¯ã€‚ä¸€è¦§ã¸ã®è¿½åŠ ã¯ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã‹ã‚‰ã®ã‚³ãƒ”ãƒš(CTRL+V)ã§å¯èƒ½ã§ã™ã€‚Excelãƒ•ã‚¡ã‚¤ãƒ«ä»¥å¤–ã®ãƒ•ã‚¡ã‚¤ãƒ«ã€ãƒ•ã‚©ãƒ«ãƒ€ã‚‚è¿½åŠ å¯èƒ½ã§ã™ã€‚"
     
     chkDetail.value = GetSetting(C_TITLE, "Favirite", "Detail", False)
     
@@ -544,7 +544,7 @@ Private Sub UserForm_Initialize()
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ˆÚ“®ˆ—
+' ç§»å‹•å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Public Sub moveList(ByVal lngMode As Long)
 
@@ -558,7 +558,7 @@ Public Sub moveList(ByVal lngMode As Long)
     Dim lngInc As Long
     Dim lngSel As Long
 
-    '‚P‚Â‚È‚ç•s—v
+    'ï¼‘ã¤ãªã‚‰ä¸è¦
     If lstFavorite.ListCount <= 1 Then
         Exit Sub
     End If
@@ -578,7 +578,7 @@ Public Sub moveList(ByVal lngMode As Long)
     For lngCnt = lngStart To lngEnd Step lngInc
     
         If lstFavorite.Selected(lngCnt) Then
-            '‘I‘ğ‚³‚ê‚½s‚ª‚·‚Å‚ÉŠJns‚Ìê‡ˆÚ“®•s‰Â
+            'é¸æŠã•ã‚ŒãŸè¡ŒãŒã™ã§ã«é–‹å§‹è¡Œã®å ´åˆç§»å‹•ä¸å¯
             If lngCnt = lngStart Then
                 Exit For
             End If
@@ -605,7 +605,7 @@ Public Sub moveList(ByVal lngMode As Long)
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ˆÚ“®ˆ—
+' ç§»å‹•å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Public Sub moveListFirst(ByVal lngMode As Long)
 
@@ -623,7 +623,7 @@ Public Sub moveListFirst(ByVal lngMode As Long)
     Dim lngDec As Long
     Dim lngLast As Long
 
-    '‚P‚Â‚È‚ç•s—v
+    'ï¼‘ã¤ãªã‚‰ä¸è¦
     If lstFavorite.ListCount <= 1 Then
         Exit Sub
     End If
@@ -653,18 +653,18 @@ Public Sub moveListFirst(ByVal lngMode As Long)
             
                 Dim k As Long
                 For k = C_FILE_NAME To C_CATEGORY
-                    '’l‚ğŒğŠ·
+                    'å€¤ã‚’äº¤æ›
                     varTmp = lstFavorite.List(lngSel, k)
                     lstFavorite.List(lngSel, k) = lstFavorite.List(lngCmp, k)
                     lstFavorite.List(lngCmp, k) = varTmp
                 Next
                 
-                '‘I‘ğ‚àŒğŠ·
+                'é¸æŠã‚‚äº¤æ›
                 blnTmp = lstFavorite.Selected(lngSel)
                 lstFavorite.Selected(lngSel) = lstFavorite.Selected(lngCmp)
                 lstFavorite.Selected(lngCmp) = blnTmp
                 
-                'ƒJƒŒƒ“ƒgs‚àŒğŠ·
+                'ã‚«ãƒ¬ãƒ³ãƒˆè¡Œã‚‚äº¤æ›
                 If lstFavorite.ListIndex = lngSel Then
                     lstFavorite.ListIndex = lngCmp
                 End If
@@ -753,13 +753,13 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
             Select Case True
                 Case rlxIsExcelFile(strBook)
                     If Not rlxIsFileExists(strBook) Then
-                        MsgBox "ƒuƒbƒN‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+                        MsgBox "ãƒ–ãƒƒã‚¯ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
                     Else
                         On Error Resume Next
                         err.Clear
                         Workbooks.Open FileName:=strBook, ReadOnly:=blnReadOnly
                         If err.Number <> 0 Then
-                            MsgBox "ƒuƒbƒN‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B", vbOKOnly + vbExclamation, C_TITLE
+                            MsgBox "ãƒ–ãƒƒã‚¯ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚", vbOKOnly + vbExclamation, C_TITLE
                         End If
                         AppActivate Application.Caption
                     End If
@@ -771,7 +771,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                         .visible = True
                         Call .Presentations.Open(FileName:=strBook, ReadOnly:=blnReadOnly)
                         If err.Number <> 0 Then
-                            MsgBox "ƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B", vbOKOnly + vbExclamation, C_TITLE
+                            MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚", vbOKOnly + vbExclamation, C_TITLE
                         End If
                         AppActivate .Caption
                     End With
@@ -783,7 +783,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                         .visible = True
                         .Documents.Open FileName:=strBook, ReadOnly:=blnReadOnly
                         If err.Number <> 0 Then
-                            MsgBox "ƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B", vbOKOnly + vbExclamation, C_TITLE
+                            MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚", vbOKOnly + vbExclamation, C_TITLE
                         End If
                         AppActivate .Caption
                     End With
@@ -795,7 +795,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                     
                     WSH.Run ("""" & strBook & """")
                      If err.Number <> 0 Then
-                        MsgBox "ƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B", vbOKOnly + vbExclamation, C_TITLE
+                        MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚", vbOKOnly + vbExclamation, C_TITLE
                     End If
                     Set WSH = Nothing
                 End Select
@@ -808,13 +808,13 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğã‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸Šã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdUp_Click()
      Call moveList(C_UP)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğ‰º‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸‹ã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdDown_Click()
      Call moveList(C_DOWN)
@@ -864,35 +864,35 @@ Public Sub lstFavoriteDispDetail()
         
                 
             strMsg = strMsg & vbCrLf
-            strMsg = strMsg & "@ƒtƒHƒ‹ƒ_–¼F" & rlxGetFullpathFromPathName(strBook) & vbCrLf           ''ƒtƒ@ƒCƒ‹–¼
-            strMsg = strMsg & "@ƒtƒ@ƒCƒ‹–¼F" & rlxGetFullpathFromFileName(strBook) & vbCrLf           ''ƒtƒ@ƒCƒ‹–¼
+            strMsg = strMsg & "ã€€ãƒ•ã‚©ãƒ«ãƒ€åï¼š" & rlxGetFullpathFromPathName(strBook) & vbCrLf           ''ãƒ•ã‚¡ã‚¤ãƒ«å
+            strMsg = strMsg & "ã€€ãƒ•ã‚¡ã‚¤ãƒ«åï¼š" & rlxGetFullpathFromFileName(strBook) & vbCrLf           ''ãƒ•ã‚¡ã‚¤ãƒ«å
             
             If GetSetting(C_TITLE, "Favirite", "Detail", False) Then
                 Set Shell = CreateObject("Shell.Application")
                 Set Folder = Shell.Namespace(rlxGetFullpathFromPathName(strBook))
-                strMsg = strMsg & "@ì¬ÒF" & Folder.GetDetailsOf(Folder.ParseName(rlxGetFullpathFromFileName(strBook)), 20) & vbCrLf  ''ì¬Ò
-                strMsg = strMsg & "@ƒ^ƒCƒgƒ‹F" & Folder.GetDetailsOf(Folder.ParseName(rlxGetFullpathFromFileName(strBook)), 21) & vbCrLf   ''ƒ^ƒCƒgƒ‹
-                strMsg = strMsg & "@ƒTƒuƒ^ƒCƒgƒ‹F" & Folder.GetDetailsOf(Folder.ParseName(rlxGetFullpathFromFileName(strBook)), 22) & vbCrLf   ''ƒTƒuƒ^ƒCƒgƒ‹
+                strMsg = strMsg & "ã€€ä½œæˆè€…ï¼š" & Folder.GetDetailsOf(Folder.ParseName(rlxGetFullpathFromFileName(strBook)), 20) & vbCrLf  ''ä½œæˆè€…
+                strMsg = strMsg & "ã€€ã‚¿ã‚¤ãƒˆãƒ«ï¼š" & Folder.GetDetailsOf(Folder.ParseName(rlxGetFullpathFromFileName(strBook)), 21) & vbCrLf   ''ã‚¿ã‚¤ãƒˆãƒ«
+                strMsg = strMsg & "ã€€ã‚µãƒ–ã‚¿ã‚¤ãƒˆãƒ«ï¼š" & Folder.GetDetailsOf(Folder.ParseName(rlxGetFullpathFromFileName(strBook)), 22) & vbCrLf   ''ã‚µãƒ–ã‚¿ã‚¤ãƒˆãƒ«
                 Set Folder = Nothing
                 Set Shell = Nothing
             End If
             
             Select Case True
                 Case rlxIsExcelFile(strBook)
-                    strCat = "Excelƒtƒ@ƒCƒ‹"
+                    strCat = "Excelãƒ•ã‚¡ã‚¤ãƒ«"
                 Case rlxIsPowerPointFile(strBook)
-                    strCat = "PowerPointƒtƒ@ƒCƒ‹"
+                    strCat = "PowerPointãƒ•ã‚¡ã‚¤ãƒ«"
                 Case rlxIsWordFile(strBook)
-                    strCat = "Wordƒtƒ@ƒCƒ‹"
+                    strCat = "Wordãƒ•ã‚¡ã‚¤ãƒ«"
                 Case Else
-                    strCat = "‚»‚Ì‘¼"
+                    strCat = "ãã®ä»–"
             End Select
             
-            strMsg = strMsg & "@í—ŞF" & strCat
+            strMsg = strMsg & "ã€€ç¨®é¡ï¼š" & strCat
             
 '        Else
 '            strMsg = strMsg & vbCrLf
-'            strMsg = strMsg & "@ƒtƒHƒ‹ƒ_‚Ü‚½‚Íƒtƒ@ƒCƒ‹‚ª‚ ‚è‚Ü‚¹‚ñB" & vbCrLf
+'            strMsg = strMsg & "ã€€ãƒ•ã‚©ãƒ«ãƒ€ã¾ãŸã¯ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“ã€‚" & vbCrLf
 '        End If
     Else
     
@@ -905,13 +905,13 @@ Public Sub lstFavoriteDispDetail()
                 
                 Select Case True
                     Case rlxIsExcelFile(strBook)
-                        strCat = "Excelƒtƒ@ƒCƒ‹"
+                        strCat = "Excelãƒ•ã‚¡ã‚¤ãƒ«"
                     Case rlxIsPowerPointFile(strBook)
-                        strCat = "PowerPointƒtƒ@ƒCƒ‹"
+                        strCat = "PowerPointãƒ•ã‚¡ã‚¤ãƒ«"
                     Case rlxIsWordFile(strBook)
-                        strCat = "Wordƒtƒ@ƒCƒ‹"
+                        strCat = "Wordãƒ•ã‚¡ã‚¤ãƒ«"
                     Case Else
-                        strCat = "‚»‚Ì‘¼"
+                        strCat = "ãã®ä»–"
                 End Select
                 
                 strMsg = strMsg & ", " & strCat
@@ -933,71 +933,71 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
         Set mBarFav = CommandBars.Add(Position:=msoBarPopup, Temporary:=True)
         With mBarFav
             With .Controls.Add
-                .Caption = "ŠJ‚­"
+                .Caption = "é–‹ã"
                 .OnAction = "'basFavorite.execOpen(""" & False & """)'"
                 .FaceId = 23
             End With
             With .Controls.Add
-                .Caption = "“Ç‚İæ‚èê—p‚ÅŠJ‚­"
+                .Caption = "èª­ã¿å–ã‚Šå°‚ç”¨ã§é–‹ã"
                 .OnAction = "'basFavorite.execOpen(""" & True & """)'"
                 .FaceId = 456
             End With
             With .Controls.Add
-                .Caption = "ƒtƒ@ƒCƒ‹‚Ì‚ ‚éƒtƒHƒ‹ƒ_‚ğŠJ‚­"
+                .Caption = "ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ã"
                 .OnAction = "basFavorite.execOpenFolder"
                 .FaceId = 23
             End With
             With .Controls.Add
                 .BeginGroup = True
-                .Caption = "æ“ª‚ÉˆÚ“®"
+                .Caption = "å…ˆé ­ã«ç§»å‹•"
                 .OnAction = "'basFavorite.moveListFirst(""" & C_HEAD & """)'"
                 .FaceId = 594
             End With
             With .Controls.Add
-                .Caption = "1‚Âã‚ÉˆÚ“®"
+                .Caption = "1ã¤ä¸Šã«ç§»å‹•"
                 .OnAction = "'basFavorite.moveList(""" & C_UP & """)'"
                 .FaceId = 595
             End With
             With .Controls.Add
                 .BeginGroup = True
-                .Caption = "1‚Â‰º‚ÉˆÚ“®"
+                .Caption = "1ã¤ä¸‹ã«ç§»å‹•"
                 .OnAction = "'basFavorite.moveList(""" & C_DOWN & """)'"
                 .FaceId = 596
             End With
             With .Controls.Add
-                .Caption = "ÅŒã‚ÉˆÚ“®"
+                .Caption = "æœ€å¾Œã«ç§»å‹•"
                 .OnAction = "'basFavorite.moveListFirst(""" & C_TAIL & """)'"
                 .FaceId = 597
             End With
             
             With .Controls.Add
-                .Caption = "’Ç‰Á"
+                .Caption = "è¿½åŠ "
                 .BeginGroup = True
                 .OnAction = "basFavorite.execAdd"
                 .FaceId = 535
             End With
             
             With .Controls.Add
-                .Caption = "•ÒW"
+                .Caption = "ç·¨é›†"
                 .OnAction = "basFavorite.execEdit"
                 .FaceId = 534
             End With
             
             With .Controls.Add
-                .Caption = "íœ"
+                .Caption = "å‰Šé™¤"
                 .OnAction = "basFavorite.execDel"
                 .FaceId = 536
             End With
             
             With .Controls.Add
-                .Caption = "ƒAƒNƒeƒBƒuƒuƒbƒN‚ğ’Ç‰Á"
+                .Caption = "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒ–ãƒƒã‚¯ã‚’è¿½åŠ "
                 .BeginGroup = True
                 .OnAction = "basFavorite.execActiveAdd"
                 .FaceId = 535
             End With
             
             With .Controls.Add
-                .Caption = "ƒGƒNƒXƒvƒ[ƒ‰‚©‚ç“\‚è•t‚¯"
+                .Caption = "ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ©ã‹ã‚‰è²¼ã‚Šä»˜ã‘"
                 .OnAction = "basFavorite.favPaste"
                 .FaceId = 1436
             End With
@@ -1005,13 +1005,13 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
             Dim myCBCtrl2 As Variant
             Set myCBCtrl2 = .Controls.Add(Type:=msoControlPopup)
             With myCBCtrl2
-                .Caption = "ƒJƒeƒSƒŠ[ˆÚ“®"
+                .Caption = "ã‚«ãƒ†ã‚´ãƒªãƒ¼ç§»å‹•"
 '                .BeginGroup = True
             End With
         
             If lstCategory.ListCount <= 1 Then
                 With myCBCtrl2.Controls.Add
-                    .Caption = "ˆÚ“®‚Å‚«‚éƒJƒeƒSƒŠ‚ª‚ ‚è‚Ü‚¹‚ñ"
+                    .Caption = "ç§»å‹•ã§ãã‚‹ã‚«ãƒ†ã‚´ãƒªãŒã‚ã‚Šã¾ã›ã‚“"
                 End With
             Else
                 Dim a As Variant
@@ -1125,12 +1125,12 @@ Private Sub UserForm_Terminate()
     End If
     
     If blnFind Then
-        MsgBox "’†g‚Ì‚È‚¢ƒJƒeƒSƒŠ‚Ííœ‚³‚ê‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ä¸­èº«ã®ãªã„ã‚«ãƒ†ã‚´ãƒªã¯å‰Šé™¤ã•ã‚Œã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
     End If
     
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ˆÚ“®ˆ—
+' ç§»å‹•å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Public Sub moveListCategory(ByVal lngMode As Long)
 
@@ -1144,7 +1144,7 @@ Public Sub moveListCategory(ByVal lngMode As Long)
     Dim lngInc As Long
     Dim lngSel As Long
 
-    '‚P‚Â‚È‚ç•s—v
+    'ï¼‘ã¤ãªã‚‰ä¸è¦
     If lstCategory.ListCount <= 1 Then
         Exit Sub
     End If
@@ -1164,7 +1164,7 @@ Public Sub moveListCategory(ByVal lngMode As Long)
     For lngCnt = lngStart To lngEnd Step lngInc
     
         If lstCategory.Selected(lngCnt) Then
-            '‘I‘ğ‚³‚ê‚½s‚ª‚·‚Å‚ÉŠJns‚Ìê‡ˆÚ“®•s‰Â
+            'é¸æŠã•ã‚ŒãŸè¡ŒãŒã™ã§ã«é–‹å§‹è¡Œã®å ´åˆç§»å‹•ä¸å¯
             If lngCnt = lngStart Then
                 Exit For
             End If
@@ -1186,7 +1186,7 @@ Public Sub moveListCategory(ByVal lngMode As Long)
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ˆÚ“®ˆ—
+' ç§»å‹•å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Public Sub moveListCategoryFirst(ByVal lngMode As Long)
 
@@ -1204,7 +1204,7 @@ Public Sub moveListCategoryFirst(ByVal lngMode As Long)
     Dim lngDec As Long
     Dim lngLast As Long
 
-    '‚P‚Â‚È‚ç•s—v
+    'ï¼‘ã¤ãªã‚‰ä¸è¦
     If lstCategory.ListCount <= 1 Then
         Exit Sub
     End If
@@ -1232,17 +1232,17 @@ Public Sub moveListCategoryFirst(ByVal lngMode As Long)
                 lngSel = j
                 lngCmp = j + lngDec
             
-                '’l‚ğŒğŠ·
+                'å€¤ã‚’äº¤æ›
                 varTmp = lstCategory.List(lngSel)
                 lstCategory.List(lngSel) = lstCategory.List(lngCmp)
                 lstCategory.List(lngCmp) = varTmp
                 
-                '‘I‘ğ‚àŒğŠ·
+                'é¸æŠã‚‚äº¤æ›
                 blnTmp = lstCategory.Selected(lngSel)
                 lstCategory.Selected(lngSel) = lstCategory.Selected(lngCmp)
                 lstCategory.Selected(lngCmp) = blnTmp
                 
-                'ƒJƒŒƒ“ƒgs‚àŒğŠ·
+                'ã‚«ãƒ¬ãƒ³ãƒˆè¡Œã‚‚äº¤æ›
                 If lstCategory.ListIndex = lngSel Then
                     lstCategory.ListIndex = lngCmp
                 End If
@@ -1337,7 +1337,7 @@ Sub favPaste()
             Dim j As Long
             For j = 0 To .ListCount - 1
             
-                '‚·‚Å‚É‚ ‚Á‚½‚ç–³‹
+                'ã™ã§ã«ã‚ã£ãŸã‚‰ç„¡è¦–
                 If .List(j, C_ORIGINAL) = files(i) Then
                     GoTo pass
                 End If
@@ -1385,13 +1385,13 @@ Sub delCategory()
         End If
         
         If .ListCount = 1 Then
-            MsgBox "ƒJƒeƒSƒŠ‚Í­‚È‚­‚Æ‚à‚P‚Â•K—v‚Å‚·Bíœ‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ã‚«ãƒ†ã‚´ãƒªã¯å°‘ãªãã¨ã‚‚ï¼‘ã¤å¿…è¦ã§ã™ã€‚å‰Šé™¤ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
         End If
         
         Dim KEY As String
         
-        If MsgBox("ƒJƒeƒSƒŠ‚Æ‚»‚êˆÈ‰º‚Ì‚¨‹C‚É“ü‚è‚ğíœ‚µ‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        If MsgBox("ã‚«ãƒ†ã‚´ãƒªã¨ãã‚Œä»¥ä¸‹ã®ãŠæ°—ã«å…¥ã‚Šã‚’å‰Šé™¤ã—ã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
             Exit Sub
         End If
         
@@ -1401,7 +1401,7 @@ Sub delCategory()
             mobjCategory.Remove KEY
         End If
         
-        '‚¨‹C‚É“ü‚è‚ğƒNƒŠƒA
+        'ãŠæ°—ã«å…¥ã‚Šã‚’ã‚¯ãƒªã‚¢
         lstFavorite.Clear
         
         .RemoveItem lstCategory.ListIndex
@@ -1446,7 +1446,7 @@ Sub execEdit()
         End If
     Next
     If lngCnt <> 1 Then
-        MsgBox "ƒŠƒXƒg‚ğ‚P‚Â‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "ãƒªã‚¹ãƒˆã‚’ï¼‘ã¤é¸æŠã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If
     

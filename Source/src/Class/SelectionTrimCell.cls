@@ -38,20 +38,20 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork êÈåæ
+' SelectionFrameWork ÂÆ£Ë®Ä
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork çÏê¨
+' SelectionFrameWork ‰ΩúÊàê
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork äJï˙
+' SelectionFrameWork ÈñãÊîæ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -69,7 +69,7 @@ Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boo
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' éÂèàóù(UOC)
+' ‰∏ªÂá¶ÁêÜ(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
         
@@ -87,7 +87,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
                 Select Case r.Characters(i, 1).Text
                     Case Is <= Space$(1)
 '                    Case vbTab
-                    Case "Å@"
+                    Case "„ÄÄ"
                     Case Else
                         Exit Do
                 End Select
@@ -100,7 +100,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
                 Select Case r.Characters(i, 1).Text
                     Case Is <= Space$(1)
 '                    Case vbTab
-                    Case "Å@"
+                    Case "„ÄÄ"
                     Case Else
                         Exit Do
                 End Select

@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmScreenShot 
-   Caption         =   "EccelƒXƒNƒVƒ‡ƒ‚[ƒhŠJn"
+   Caption         =   "Eccelã‚¹ã‚¯ã‚·ãƒ§ãƒ¢ãƒ¼ãƒ‰é–‹å§‹"
    ClientHeight    =   4095
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   7125
    OleObjectBlob   =   "frmScreenShot.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmScreenShot"
 Attribute VB_GlobalNameSpace = False
@@ -75,15 +75,15 @@ Private Sub cmdOk_Click()
     If blnSave Then
         If rlxIsFileExists(ActiveWorkbook.FullName) Then
         Else
-            MsgBox "ƒuƒbƒN‚Ì•Û‘¶‚ª—LŒø‚É‚È‚Á‚Ä‚¢‚Ü‚·‚ªAŒ»İ‚ÌƒuƒbƒN‚ª‚P“x‚à•Û‘¶‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB" & vbCrLf & "•Û‘¶‚µ‚Ä‚©‚çÀs‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ãƒ–ãƒƒã‚¯ã®ä¿å­˜ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã¾ã™ãŒã€ç¾åœ¨ã®ãƒ–ãƒƒã‚¯ãŒï¼‘åº¦ã‚‚ä¿å­˜ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚" & vbCrLf & "ä¿å­˜ã—ã¦ã‹ã‚‰å®Ÿè¡Œã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
         End If
     End If
     
-    'ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹‚Ìæ“¾
+    'ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
     hwnd = FindWindow(0&, Me.Caption)
 
-    'ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒgˆ—ŠJn
+    'ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆå‡¦ç†é–‹å§‹
     basScreenShot.StartScreenShot
     
     Me.Hide
@@ -118,7 +118,7 @@ Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
     If blnCancel Or CloseMode = 0 Then
     Else
     
-        'ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒgˆ—I—¹
+        'ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆå‡¦ç†çµ‚äº†
         basScreenShot.StopScreenShot
         
     End If

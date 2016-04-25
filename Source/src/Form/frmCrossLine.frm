@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCrossLine 
-   Caption         =   "\šƒJ[ƒ\ƒ‹İ’è"
+   Caption         =   "åå­—ã‚«ãƒ¼ã‚½ãƒ«è¨­å®š"
    ClientHeight    =   6270
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   8580
    OleObjectBlob   =   "frmCrossLine.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmCrossLine"
 Attribute VB_GlobalNameSpace = False
@@ -100,14 +100,14 @@ Private Sub cmdOk_Click()
     Select Case Val(txtHead.value)
         Case 0 To 100
         Case Else
-            MsgBox "“§–¾“x‚Í‚O`‚P‚O‚O‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "é€æ˜åº¦ã¯ï¼ï½ï¼‘ï¼ï¼ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
     End Select
     
     Select Case Val(txtCol.value)
         Case 1 To 100
         Case Else
-            MsgBox "ü‚Ì•‚Í‚P`‚P‚O‚O‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ç·šã®å¹…ã¯ï¼‘ï½ï¼‘ï¼ï¼ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
     End Select
     

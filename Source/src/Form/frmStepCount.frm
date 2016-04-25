@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmStepCount 
-   Caption         =   "VBAƒXƒeƒbƒvƒJƒEƒ“ƒg"
+   Caption         =   "VBAã‚¹ãƒ†ãƒƒãƒ—ã‚«ã‚¦ãƒ³ãƒˆ"
    ClientHeight    =   8520
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   7620
    OleObjectBlob   =   "frmStepCount.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   2  '‰æ–Ê‚Ì’†‰›
+   StartUpPosition =   2  'ç”»é¢ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmStepCount"
 Attribute VB_GlobalNameSpace = False
@@ -101,7 +101,7 @@ Private Sub cmdOk_Click()
     Dim lngCnt As Long
     
     If cboSrcBook.ListIndex = -1 Then
-        MsgBox "VBAƒvƒƒWƒFƒNƒg‚Ì‚ ‚éƒuƒbƒN–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "VBAãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®ã‚ã‚‹ãƒ–ãƒƒã‚¯åã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
         
@@ -113,12 +113,12 @@ Private Sub cmdOk_Click()
     
     lngCnt = 2
     WB.Worksheets(1).Cells(lngCnt, C_NO).value = "No."
-    WB.Worksheets(1).Cells(lngCnt, C_MODULE).value = "ƒIƒuƒWƒFƒNƒg"
-    WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "í—Ş"
-    WB.Worksheets(1).Cells(lngCnt, C_CODE).value = "Às"
-    WB.Worksheets(1).Cells(lngCnt, C_COMMENT).value = "ºÒİÄ"
-    WB.Worksheets(1).Cells(lngCnt, C_BLANK).value = "‹ó”’"
-    WB.Worksheets(1).Cells(lngCnt, C_ALL).value = "‘Ss"
+    WB.Worksheets(1).Cells(lngCnt, C_MODULE).value = "ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ"
+    WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "ç¨®é¡"
+    WB.Worksheets(1).Cells(lngCnt, C_CODE).value = "å®Ÿè¡Œ"
+    WB.Worksheets(1).Cells(lngCnt, C_COMMENT).value = "ï½ºï¾’ï¾ï¾„"
+    WB.Worksheets(1).Cells(lngCnt, C_BLANK).value = "ç©ºç™½"
+    WB.Worksheets(1).Cells(lngCnt, C_ALL).value = "å…¨è¡Œ"
     lngCnt = 3
     
     For Each o In Target.VBProject.VBComponents
@@ -132,13 +132,13 @@ Private Sub cmdOk_Click()
         
         Select Case o.Type
             Case 1
-                WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "•W€ƒ‚ƒWƒ…[ƒ‹"
+                WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "æ¨™æº–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«"
                 WB.Worksheets(1).Cells(lngCnt, C_SORT).value = 4
             Case 2
-                WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "ƒNƒ‰ƒXƒ‚ƒWƒ…[ƒ‹"
+                WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "ã‚¯ãƒ©ã‚¹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«"
                 WB.Worksheets(1).Cells(lngCnt, C_SORT).value = 5
             Case 3
-                WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "ƒtƒH[ƒ€"
+                WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "ãƒ•ã‚©ãƒ¼ãƒ "
                 WB.Worksheets(1).Cells(lngCnt, C_SORT).value = 3
             Case Else
                 If o.Name = "ThisWorkbook" Then
@@ -202,8 +202,8 @@ Private Sub cmdOk_Click()
     WB.Worksheets(1).Range("A2").CurrentRegion.Select
     execSelectionRowDrawGrid
     
-    WB.Worksheets(1).Cells(1, C_NO).value = Target.Name & " ƒXƒeƒbƒvƒJƒEƒ“ƒg"
-    WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "‡Œv"
+    WB.Worksheets(1).Cells(1, C_NO).value = Target.Name & " ã‚¹ãƒ†ãƒƒãƒ—ã‚«ã‚¦ãƒ³ãƒˆ"
+    WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "åˆè¨ˆ"
     WB.Worksheets(1).Cells(lngCnt, C_CODE).Formula = "=sum(D3:D" & lngCnt - 1 & ")"
     WB.Worksheets(1).Cells(lngCnt, C_COMMENT).Formula = "=sum(E3:E" & lngCnt - 1 & ")"
     WB.Worksheets(1).Cells(lngCnt, C_BLANK).Formula = "=sum(F3:F" & lngCnt - 1 & ")"
@@ -215,7 +215,7 @@ Private Sub cmdOk_Click()
     Exit Sub
 ErrHandle:
     Application.ScreenUpdating = True
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 
 

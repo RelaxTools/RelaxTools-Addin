@@ -41,7 +41,7 @@ Const C_COL_RESERVED As Long = 6
 
 
 Function rlxFormatSql(ByVal strSource As String) As String
-Attribute rlxFormatSql.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxFormatSql.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim strBuf As String
@@ -62,7 +62,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
     On Error GoTo er
     
     '--------------------------------------------------
-    ' š‹å‰ğÍ
+    ' å­—å¥è§£æ
     '--------------------------------------------------
     strBuf = strSource
     lngLen = Len(strBuf)
@@ -75,24 +75,24 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
     
     For i = 1 To lngLen
     
-        'Œ»
+        'ç¾
         strChar = Mid$(strBuf, i, 1)
         
-        '‚PŒÂæ
+        'ï¼‘å€‹å…ˆ
         If i = lngLen Then
             strNextChar = ""
         Else
             strNextChar = Mid$(strBuf, i + 1, 1)
         End If
         
-        '‚QŒÂæ
+        'ï¼’å€‹å…ˆ
         If i + 1 = lngLen Then
             strNextNChar = ""
         Else
             strNextNChar = Mid$(strBuf, i + 2, 1)
         End If
         
-        '‚PŒÂ‘O
+        'ï¼‘å€‹å‰
         If i = 1 Then
             strBeforeChar = ""
         Else
@@ -101,7 +101,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
         
         Select Case True
             Case sw1
-                'ƒRƒƒ“ƒg(/* ` */)‘Îô
+                'ã‚³ãƒ¡ãƒ³ãƒˆ(/* ï½ */)å¯¾ç­–
                 Select Case True
                     Case strBeforeChar = "*" And strChar = "/"
                         setJiku strJiku(), lngCnt, strTango & strChar
@@ -111,7 +111,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                     strTango = strTango & strChar
                 End Select
             Case sw2
-                'ƒRƒƒ“ƒg(--)‘Îô
+                'ã‚³ãƒ¡ãƒ³ãƒˆ(--)å¯¾ç­–
                 Select Case True
                     Case strChar = vbCr Or strChar = vbLf Or strChar = vbCrLf
                         setJiku strJiku(), lngCnt, strTango
@@ -121,7 +121,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                     strTango = strTango & strChar
                 End Select
             Case sw3
-                'ƒR[ƒe[ƒVƒ‡ƒ““à‚Ì‹ó”’‘Îô
+                'ã‚³ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³å†…ã®ç©ºç™½å¯¾ç­–
                 Select Case True
                     Case strChar = "'"
                         setJiku strJiku(), lngCnt, strTango & strChar
@@ -215,7 +215,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
     strTango = ""
     
     '--------------------------------------------------
-    ' —\–ñŒê‚ğ‹­§“I‚É‘å•¶š‚É•ÏŠ·
+    ' äºˆç´„èªã‚’å¼·åˆ¶çš„ã«å¤§æ–‡å­—ã«å¤‰æ›
     '--------------------------------------------------
     If GetSetting(C_TITLE, "FormatSql", "UpperCase", False) Then
         For i = 1 To UBound(strJiku)
@@ -227,11 +227,11 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
         Next
     End If
     '--------------------------------------------------
-    ' \•¶‰ğÍ
+    ' æ§‹æ–‡è§£æ
     '--------------------------------------------------
     Const C_NEST_SIZE As Long = 6
     
-    'Å‰‚ÌSQL‚ÆŒ»İ‚ÌSQL‚ª‰½‚©”»’è
+    'æœ€åˆã®SQLã¨ç¾åœ¨ã®SQLãŒä½•ã‹åˆ¤å®š
     Dim lngSqlFirst As Long
     Dim lngSqlNow As Long
     Const C_SQL_NONE As Long = 0
@@ -240,7 +240,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
     Const C_SQL_DELETE As Long = 3
     Const C_SQL_INSERT_OR_DDL As Long = 4
     
-    'Àsƒ‚[ƒh”»’è
+    'å®Ÿè¡Œãƒ¢ãƒ¼ãƒ‰åˆ¤å®š
     Dim lngMode As Long
     Const C_MODE_SEARCH_COMMAND As Long = 1
     Const C_MODE_SEARCH_COMMA As Long = 2
@@ -278,10 +278,10 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
             Case C_MODE_SEARCH_COMMAND
             
                 Select Case True
-                    'ƒV[ƒg‚ÌƒRƒ}ƒ“ƒh•¶š—ñ‚Éˆê’v
+                    'ã‚·ãƒ¼ãƒˆã®ã‚³ãƒãƒ³ãƒ‰æ–‡å­—åˆ—ã«ä¸€è‡´
                     Case existStr(UCase(strJiku(i)), C_COL_COMMAND)
                     
-                        'Å‰‚Éˆê’v‚µ‚½SQL‚ğ”»’è
+                        'æœ€åˆã«ä¸€è‡´ã—ãŸSQLã‚’åˆ¤å®š
                         If lngSqlFirst = C_SQL_NONE Then
                             Select Case UCase(strJiku(i))
                                 Case "SELECT"
@@ -305,15 +305,15 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                                 lngSqlNow = C_SQL_INSERT_OR_DDL
                         End Select
                         
-                        'Å‰‚ÌƒNƒGƒŠ[
+                        'æœ€åˆã®ã‚¯ã‚¨ãƒªãƒ¼
                         If Len(strResult) = 0 Then
                             lngMode = C_MODE_ADD_FIRST_STR
                         Else
-                            '’Êí‚ÌƒTƒuƒNƒGƒŠ[
+                            'é€šå¸¸ã®ã‚µãƒ–ã‚¯ã‚¨ãƒªãƒ¼
                             If lngSqlNow = C_SQL_SELECT Then
                                 If UCase(Right$(strResult, 1)) = "(" Then
                                     lngMode = C_MODE_ADD_STR
-                                'Š‡ŒÊ‚ª–³‚¢ê‡iINSERT INTO ` SELECT ‚Æ‚© UNION ALL‚ÌŒã)
+                                'æ‹¬å¼§ãŒç„¡ã„å ´åˆï¼ˆINSERT INTO ï½ SELECT ã¨ã‹ UNION ALLã®å¾Œ)
                                 Else
                                     lngMode = C_MODE_ADD_BEFORE_CRLF
                                 End If
@@ -323,20 +323,20 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                             
                         End If
                         
-                    'ƒV[ƒg‚Ì‘O‰üs•¶š—ñ‚Éˆê’v
+                    'ã‚·ãƒ¼ãƒˆã®å‰æ”¹è¡Œæ–‡å­—åˆ—ã«ä¸€è‡´
                     Case existStr(UCase(strJiku(i)), C_COL_BEFORE_CRLF)
-                        'BETWEEN‘¶İƒ`ƒFƒbƒN
+                        'BETWEENå­˜åœ¨ãƒã‚§ãƒƒã‚¯
                         If existBetween(strJiku(), i) Then
                             lngMode = C_MODE_ADD_STR
                         Else
                             lngMode = C_MODE_ADD_BEFORE_CRLF
                         End If
                         
-                    'ƒV[ƒg‚ÌŒã‰üs•¶š—ñ‚Éˆê’v
+                    'ã‚·ãƒ¼ãƒˆã®å¾Œæ”¹è¡Œæ–‡å­—åˆ—ã«ä¸€è‡´
                     Case existStr(UCase(strJiku(i)), C_COL_AFTER_CRLF)
                         lngMode = C_MODE_ADD_AFTER_CRLF
                         
-                    'ƒJƒ“ƒ}
+                    'ã‚«ãƒ³ãƒ
                     Case strJiku(i) = ","
                         If GetSetting(C_TITLE, "FormatSql", "RightComma", False) Then
                             lngMode = C_MODE_ADD_BEFORE_COMMA_CRLF
@@ -344,15 +344,15 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                             lngMode = C_MODE_ADD_AFTER_COMMA_CRLF
                         End If
                         
-                    'ƒRƒƒ“ƒg
+                    'ã‚³ãƒ¡ãƒ³ãƒˆ
                     Case Left$(strJiku(i), 2) = "/*" Or Left$(strJiku(i), 2) = "--"
-                        'ƒqƒ“ƒg‹å‚Ìê‡A•’Ê‚Ì—ñˆµ‚¢
+                        'ãƒ’ãƒ³ãƒˆå¥ã®å ´åˆã€æ™®é€šã®åˆ—æ‰±ã„
                         If Left$(strJiku(i), 3) = "/*+" Then
                             lngMode = C_MODE_ADD_AFTER_CRLF
                         Else
                             lngMode = C_MODE_ADD_COMMENT
                         End If
-                    '¶Š‡ŒÊ
+                    'å·¦æ‹¬å¼§
                     Case strJiku(i) = "("
                         If i = 1 Then
                             lngMode = C_MODE_ADD_NEST
@@ -364,15 +364,15 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                             End If
 
                         End If
-                    '‰EŠ‡ŒÊ
+                    'å³æ‹¬å¼§
                     Case strJiku(i) = ")"
                         lngMode = C_MODE_DEL_NEST
                     
-                    'CASE•¶
+                    'CASEæ–‡
                     Case UCase(strJiku(i)) = "CASE"
                         lngMode = C_MODE_ADD_STR
 
-                    'CASE•¶
+                    'CASEæ–‡
                     Case UCase(strJiku(i)) = "WHEN" Or UCase(strJiku(i)) = "THEN" Or UCase(strJiku(i)) = "ELSE"
                         If i = 1 Then
                             lngMode = C_MODE_ADD_STR
@@ -384,19 +384,19 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                             End If
                         End If
 
-                    'CASE•¶‚ÌÅŒã
+                    'CASEæ–‡ã®æœ€å¾Œ
                     Case UCase(strJiku(i)) = "END"
                         lngMode = C_MODE_ADD_BEFORE_CRLF_END
                     
-                    '‚»‚Ì‘¼
+                    'ãã®ä»–
                     Case Else
                         lngMode = C_MODE_ADD_STR
-                        'ƒ}ƒCƒiƒX”»’èiˆø‚«Z‚©ƒ}ƒCƒiƒX‚©j
+                        'ãƒã‚¤ãƒŠã‚¹åˆ¤å®šï¼ˆå¼•ãç®—ã‹ãƒã‚¤ãƒŠã‚¹ã‹ï¼‰
                         If isMinus(strJiku(), i) Then
                             lngMode = C_MODE_ADD_STR_NO_SP
                         End If
                         
-                        'æ“ª‚ªƒhƒbƒg‚Ìê‡
+                        'å…ˆé ­ãŒãƒ‰ãƒƒãƒˆã®å ´åˆ
                         If Left$(strJiku(i), 1) = "." Then
                             lngMode = C_MODE_ADD_STR_NO_SP
                         End If
@@ -460,7 +460,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                 
             Case C_MODE_DEL_NEST
                 lngNest = lngNest - 1
-                'Š‡ŒÊ‘Î‰Œë‚è‚ğl—¶
+                'æ‹¬å¼§å¯¾å¿œèª¤ã‚Šã‚’è€ƒæ…®
                 If lngNest < 0 Then
                     lngNest = 0
                 End If
@@ -468,7 +468,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                 lngMode = C_MODE_ADD_BEFORE_CRLF
                 
             Case C_MODE_NEXT_CHAR
-                '•¶š‚ğŸ‚Éi‚ß‚é
+                'æ–‡å­—ã‚’æ¬¡ã«é€²ã‚ã‚‹
                 i = i + 1
                 If UBound(strJiku) < i Then
                     lngMode = C_MODE_END
@@ -477,14 +477,14 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                 End If
                 
             Case C_MODE_FUNCTION
-                'ŠÖ””»’è
+                'é–¢æ•°åˆ¤å®š
                 Dim lngFuncNest As Long
                 lngFuncNest = 0
                 Do
                     Select Case UCase(strJiku(i))
                         Case "("
                             lngFuncNest = lngFuncNest + 1
-                            '+-*/IN/WHEN/THEN/ELSE ‚È‚ç ƒXƒy[ƒX‚ğ‹ó‚¯‚é
+                            '+-*/IN/WHEN/THEN/ELSE ãªã‚‰ ã‚¹ãƒšãƒ¼ã‚¹ã‚’ç©ºã‘ã‚‹
                             If Right$(strResult, 1) = "," Or Right$(strResult, 1) = "+" Or Right$(strResult, 1) = "-" Or Right$(strResult, 1) = "*" Or Right$(strResult, 1) = "/" Or UCase(Right$(strResult, 3)) = " IN" Or UCase(Right$(strResult, 4)) = "WHEN" Or UCase(Right$(strResult, 4)) = "THEN" Or UCase(Right$(strResult, 4)) = "ELSE" Then
                                 strResult = strResult & " " & strJiku(i)
                             Else
@@ -499,7 +499,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                             If Right$(strResult, 1) = "(" Then
                                 strResult = strResult & strJiku(i)
                             Else
-                                'ƒ}ƒCƒiƒX”»’èiˆø‚«Z‚©ƒ}ƒCƒiƒX‚©j
+                                'ãƒã‚¤ãƒŠã‚¹åˆ¤å®šï¼ˆå¼•ãç®—ã‹ãƒã‚¤ãƒŠã‚¹ã‹ï¼‰
                                 If isMinus(strJiku(), i) Then
                                     strResult = strResult & strJiku(i)
                                 Else
@@ -519,7 +519,7 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                 End If
                 
             Case C_MODE_END
-                'ˆ—‚ğI—¹‚·‚é
+                'å‡¦ç†ã‚’çµ‚äº†ã™ã‚‹
                 If Len(strResult) > 0 Then
                     strResult = strResult & " "
                 End If
@@ -560,7 +560,7 @@ Private Function padStrL(ByVal strBuf As String, ByVal lngLen As Long) As String
     End If
     padStrL = Left$(strBuf & Space(lngLen), lngLen)
 
-End Function 'EXCEL•\‚æ‚è•¶š—ñ‚ğŒŸõ
+End Function 'EXCELè¡¨ã‚ˆã‚Šæ–‡å­—åˆ—ã‚’æ¤œç´¢
 Private Function existStr(ByVal strBuf As String, ByVal lngCol As Long) As Boolean
 
     Dim i As Long
@@ -581,7 +581,7 @@ Private Function existStr(ByVal strBuf As String, ByVal lngCol As Long) As Boole
     Loop
 
 End Function
-'Function‚Ü‚½‚ÍIN‹å‚Æ”»’è‚³‚ê‚½Š‡ŒÊ‚Ì’†‚ÉSELECT•¶‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN
+'Functionã¾ãŸã¯INå¥ã¨åˆ¤å®šã•ã‚ŒãŸæ‹¬å¼§ã®ä¸­ã«SELECTæ–‡ãŒå­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 Private Function existFuncInSel(ByRef strJiku() As String, ByVal lngPos As Long) As Boolean
 
     Dim i As Long
@@ -609,7 +609,7 @@ Private Function existFuncInSel(ByRef strJiku() As String, ByVal lngPos As Long)
     Loop Until lngFuncNest = 0
 
 End Function
-'AND ‚Ì‚Qƒpƒ‰ƒOƒ‰ƒt‘O‚ÉBETWEEN‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN
+'AND ã®ï¼’ãƒ‘ãƒ©ã‚°ãƒ©ãƒ•å‰ã«BETWEENãŒå­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 Private Function existBetween(ByRef strJiku() As String, ByVal lngPos As Long) As Boolean
 
     Dim i As Long
@@ -629,7 +629,7 @@ Private Function existBetween(ByRef strJiku() As String, ByVal lngPos As Long) A
         Exit Function
     End If
     
-    '1‚Âƒpƒ‰ƒOƒ‰ƒt”ò‚Î‚·
+    '1ã¤ãƒ‘ãƒ©ã‚°ãƒ©ãƒ•é£›ã°ã™
     Do
         Select Case UCase(strJiku(i))
             Case ")"
@@ -644,7 +644,7 @@ Private Function existBetween(ByRef strJiku() As String, ByVal lngPos As Long) A
         End If
     Loop Until lngFuncNest = 0
     
-    'ŠÖ”–¼‚¾‚Á‚½ê‡A‚³‚ç‚É‘O‚Ìƒpƒ‰ƒOƒ‰ƒt‚ğ’²¸
+    'é–¢æ•°åã ã£ãŸå ´åˆã€ã•ã‚‰ã«å‰ã®ãƒ‘ãƒ©ã‚°ãƒ©ãƒ•ã‚’èª¿æŸ»
     Dim j As Long
     
     j = i
@@ -661,7 +661,7 @@ Private Function existBetween(ByRef strJiku() As String, ByVal lngPos As Long) A
     End If
 
 End Function
-'•¶š—ñ’†‚Ìu|v‚ªˆø‚«Z‚©ƒ}ƒCƒiƒX‰‰Z‚©‚ğ”»’è‚·‚éB
+'æ–‡å­—åˆ—ä¸­ã®ã€Œï¼ã€ãŒå¼•ãç®—ã‹ãƒã‚¤ãƒŠã‚¹æ¼”ç®—ã‹ã‚’åˆ¤å®šã™ã‚‹ã€‚
 Private Function isMinus(ByRef strJiku() As String, ByVal i As Long) As Boolean
 
     isMinus = False
@@ -670,9 +670,9 @@ Private Function isMinus(ByRef strJiku() As String, ByVal i As Long) As Boolean
         Exit Function
     End If
 
-    'ƒ}ƒCƒiƒX”»’èiˆø‚«Z‚©ƒ}ƒCƒiƒX‚©j
+    'ãƒã‚¤ãƒŠã‚¹åˆ¤å®šï¼ˆå¼•ãç®—ã‹ãƒã‚¤ãƒŠã‚¹ã‹ï¼‰
     If strJiku(i - 1) = "-" Then
-        'ƒnƒCƒtƒ“‚Ì‘O‚ª‰‰Zq‚â”äŠr‰‰Zq“™‚Å‚ ‚ê‚Îƒ}ƒCƒiƒX
+        'ãƒã‚¤ãƒ•ãƒ³ã®å‰ãŒæ¼”ç®—å­ã‚„æ¯”è¼ƒæ¼”ç®—å­ç­‰ã§ã‚ã‚Œã°ãƒã‚¤ãƒŠã‚¹
         Select Case strJiku(i - 2)
             Case "+", "-", "*", "/", "(", ",", "<", ">", "=", "<=", ">=", "^=", "!=", "<>"
                 isMinus = True
@@ -716,19 +716,19 @@ Private Function isFunction(ByRef strJiku() As String, ByVal i As Long) As Long
         End Select
     Next
 
-    '()‚Ìê‡
+    '()ã®å ´åˆ
     If lngOther = 0 And lngComma = 0 Then
         isFunction = True
         Exit Function
     End If
     
-    'ƒZƒ“ƒeƒ“ƒX‚ª‚P‚Â‚¾‚¯‚Ìê‡
+    'ã‚»ãƒ³ãƒ†ãƒ³ã‚¹ãŒï¼‘ã¤ã ã‘ã®å ´åˆ
     If lngOther = 1 And lngComma = 0 Then
         isFunction = True
         Exit Function
     End If
 
-    'ƒZƒ“ƒeƒ“ƒX‚ªƒJƒ“ƒ}‹æØ‚è‚Ìê‡
+    'ã‚»ãƒ³ãƒ†ãƒ³ã‚¹ãŒã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šã®å ´åˆ
     If lngOther - 1 = lngComma Then
         isFunction = True
         Exit Function

@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmRedmine 
-   Caption         =   "•\‚ÌTextile•ÏŠ·"
+   Caption         =   "è¡¨ã®Textileå¤‰æ›"
    ClientHeight    =   6825
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   11565
    OleObjectBlob   =   "frmRedmine.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmRedmine"
 Attribute VB_GlobalNameSpace = False
@@ -88,7 +88,7 @@ Private Sub TextileConv()
             
             Set r = Selection(lngRow, lngCol)
             
-            'ƒ}[ƒWƒZƒ‹‚Ìê‡
+            'ãƒãƒ¼ã‚¸ã‚»ãƒ«ã®å ´åˆ
             If r.MergeCells Then
             
                 If r.MergeArea(1, 1).Address = r.Address Then

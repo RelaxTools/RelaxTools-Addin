@@ -41,20 +41,20 @@ Option Explicit
 Private mlngSize As String
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -73,7 +73,7 @@ Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boo
 
     On Error GoTo e
     
-    mlngSize = frmInputLength.Start("ƒ[ƒ–„‚ß‚ğs‚¤ƒtƒB[ƒ‹ƒh‚ÌŒ…”‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B")
+    mlngSize = frmInputLength.Start("ã‚¼ãƒ­åŸ‹ã‚ã‚’è¡Œã†ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æ¡æ•°ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚")
     If mlngSize = 0 Then
         Cancel = True
     End If
@@ -87,17 +87,17 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' åˆ—(UOC)
+' ä¸»å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
     
     On Error GoTo e
     
-    'Œ»İ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒZƒ‹‚ğ‚·‚×‚Äu•¶š—ñv‚É‚·‚éB
+    'ç¾åœ¨é¸æŠã•ã‚Œã¦ã„ã‚‹ã‚»ãƒ«ã‚’ã™ã¹ã¦ã€Œæ–‡å­—åˆ—ã€ã«ã™ã‚‹ã€‚
     r.NumberFormatLocal = "@"
 
-    'Œ»İ‘I‘ğ‚³‚ê‚½‚¢‚éêŠ‚Æg—p‰ÓŠ‚Åd‚È‚Á‚Ä‚¢‚éêŠ‚É‚Â‚¢‚Ä
-    'w”•\‹L‚ğ”š‚ÉXV‚·‚éB
+    'ç¾åœ¨é¸æŠã•ã‚ŒãŸã„ã‚‹å ´æ‰€ã¨ä½¿ç”¨ç®‡æ‰€ã§é‡ãªã£ã¦ã„ã‚‹å ´æ‰€ã«ã¤ã„ã¦
+    'æŒ‡æ•°è¡¨è¨˜ã‚’æ•°å­—ã«æ›´æ–°ã™ã‚‹ã€‚
     r.value = Right(String$(mlngSize, "0") & r.value, mlngSize)
     
     Exit Sub

@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmBackupSetting 
-   Caption         =   "ŠÈˆÕ¢‘ãŠÇ—‘ÎÛƒtƒ@ƒCƒ‹ƒpƒ^[ƒ“İ’è"
+   Caption         =   "ç°¡æ˜“ä¸–ä»£ç®¡ç†å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¿ãƒ¼ãƒ³è¨­å®š"
    ClientHeight    =   7680
    ClientLeft      =   45
    ClientTop       =   435
@@ -76,7 +76,7 @@ Private Sub cmdFolder_Click()
 
     Dim strFile As String
 
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFile = rlxSelectFolder()
     
     If Trim(strFile) <> "" Then
@@ -96,7 +96,7 @@ Private Sub cmdOk_Click()
     For i = 0 To lstResult.ListCount - 1
         strList = LCase(lstResult.List(i, C_FILE_STR))
         If strFile = strList Then
-            MsgBox "‚·‚Å‚É“¯—l‚Ìƒtƒ@ƒCƒ‹ƒpƒ^[ƒ“‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ã™ã§ã«åŒæ§˜ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
         End If
     Next
@@ -119,7 +119,7 @@ Private Sub cmdSave_Click()
     
     If Len(txtFolder.Text) <> 0 Then
         If Not rlxIsFolderExists(txtFolder.Text) Then
-            MsgBox "w’è‚³‚ê‚½ƒtƒHƒ‹ƒ_‚Í‘¶İ‚µ‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚©ãƒ«ãƒ€ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtFolder.SetFocus
             Exit Sub
         End If
@@ -128,7 +128,7 @@ Private Sub cmdSave_Click()
     Select Case Val(txtGen.Text)
         Case 1 To 999
         Case Else
-            MsgBox "¢‘ã”‚É‚Í1`999‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ä¸–ä»£æ•°ã«ã¯1ï½999ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtGen.SetFocus
             Exit Sub
     End Select
@@ -152,19 +152,19 @@ End Sub
 
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğã‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸Šã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdUp_Click()
      Call moveList(C_UP)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğ‰º‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸‹ã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdDown_Click()
      Call moveList(C_DOWN)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ˆÚ“®ˆ—
+' ç§»å‹•å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub moveList(ByVal lngMode As Long)
 
@@ -177,7 +177,7 @@ Private Sub moveList(ByVal lngMode As Long)
     Dim lngEnd As Long
     Dim lngInc As Long
 
-    '‚P‚Â‚È‚ç•s—v
+    'ï¼‘ã¤ãªã‚‰ä¸è¦
     If lstResult.ListCount <= 1 Then
         Exit Sub
     End If
@@ -196,7 +196,7 @@ Private Sub moveList(ByVal lngMode As Long)
     For lngCnt = lngStart To lngEnd Step lngInc
     
         If lstResult.Selected(lngCnt) Then
-            '‘I‘ğ‚³‚ê‚½s‚ª‚·‚Å‚ÉŠJns‚Ìê‡ˆÚ“®•s‰Â
+            'é¸æŠã•ã‚ŒãŸè¡ŒãŒã™ã§ã«é–‹å§‹è¡Œã®å ´åˆç§»å‹•ä¸å¯
             If lngCnt = lngStart Then
                 Exit For
             End If

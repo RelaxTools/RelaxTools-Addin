@@ -38,7 +38,7 @@ Attribute VB_Name = "Logger"
 Private mLog As New LogManager
 Private colStack As New Collection
 
-'ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìæ“¾
+'ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å–å¾—
 Private Function GetInstance() As LogManager
 
     If mLog Is Nothing Then
@@ -98,7 +98,7 @@ Public Sub LogFinish(Message As String)
     End If
 End Sub
 Public Sub LogFatal(Message As String)
-    GetInstance.Log LogLevel.Fatal, "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B(" & Message & ")"
+    GetInstance.Log LogLevel.Fatal, "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚(" & Message & ")"
 End Sub
 Public Property Let Level(ByVal l As LogLevel)
     GetInstance.Level = l

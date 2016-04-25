@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmGrid 
-   Caption         =   "かんたん表"
+   Caption         =   "縺九ｓ縺溘ｓ陦ｨ"
    ClientHeight    =   3780
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   3870
    OleObjectBlob   =   "frmGrid.frx":0000
-   StartUpPosition =   1  'オーナー フォームの中央
+   StartUpPosition =   1  '繧ｪ繝ｼ繝翫�ｼ 繝輔か繝ｼ繝縺ｮ荳ｭ螟ｮ
 End
 Attribute VB_Name = "frmGrid"
 Attribute VB_GlobalNameSpace = False

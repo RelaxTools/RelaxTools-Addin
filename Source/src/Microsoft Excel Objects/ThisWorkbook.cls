@@ -62,13 +62,13 @@ Public Sub setIRibbon(ByRef r As IRibbonUI)
 End Sub
 
 '--------------------------------------------------------------
-'@ƒuƒbƒNƒI[ƒvƒ“ƒCƒxƒ“ƒg
+'ã€€ãƒ–ãƒƒã‚¯ã‚ªãƒ¼ãƒ—ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------
 Private Sub Workbook_Open()
     
     Logger.LogBegin "Workbook_Open"
     
-    'ƒVƒ‡[ƒgƒJƒbƒgƒL[İ’è
+    'ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼è¨­å®š
     Call setShortCutKey
     
     Call createAllSectionObject
@@ -84,7 +84,7 @@ Private Sub Workbook_Open()
 
 End Sub
 '--------------------------------------------------------------
-'@ƒuƒbƒNƒNƒ[ƒY‘OƒCƒxƒ“ƒg
+'ã€€ãƒ–ãƒƒã‚¯ã‚¯ãƒ­ãƒ¼ã‚ºå‰ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------
 Private Sub Workbook_BeforeClose(Cancel As Boolean)
 
@@ -130,7 +130,7 @@ Private Sub XL_WindowResize(ByVal WB As Workbook, ByVal Wn As Window)
 End Sub
 
 '--------------------------------------------------------------
-'@ƒuƒbƒN•Û‘¶‘OƒCƒxƒ“ƒg
+'ã€€ãƒ–ãƒƒã‚¯ä¿å­˜å‰ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------
 Private Sub XL_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolean, Cancel As Boolean)
 
@@ -148,7 +148,7 @@ Private Sub XL_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolea
     Dim blnScreenUpdating As Boolean
     Dim blnDisplayAlerts As Boolean
     
-    'ƒCƒxƒ“ƒg‚ÌƒLƒƒƒ“ƒZƒ‹
+    'ã‚¤ãƒ™ãƒ³ãƒˆã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
     If mblnEventCancel Then
         Exit Sub
     End If
@@ -159,7 +159,7 @@ Private Sub XL_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolea
     End If
     
     '-------------------------------------------------
-    ' ŠÈˆÕ¢‘ãŠÇ—
+    ' ç°¡æ˜“ä¸–ä»£ç®¡ç†
     '-------------------------------------------------
     exec = CBool(GetSetting(C_TITLE, "Backup", "Check", False))
     If rlxIsExcelFile(WB.FullName) And exec Then
@@ -192,13 +192,13 @@ Private Sub XL_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolea
     
     strName = WB.FullName
     
-    'ƒpƒX‘¶İƒ`ƒFƒbƒN
+    'ãƒ‘ã‚¹å­˜åœ¨ãƒã‚§ãƒƒã‚¯
     strFolder = rlxGetFullpathFromPathName(strName)
     If Len(Trim(strFolder)) = 0 Then
         GoTo pass
     End If
 
-    'ƒtƒ@ƒCƒ‹‘¶İƒ`ƒFƒbƒN
+    'ãƒ•ã‚¡ã‚¤ãƒ«å­˜åœ¨ãƒã‚§ãƒƒã‚¯
     If Not rlxIsFileExists(strName) Then
         GoTo pass
     End If
@@ -237,7 +237,7 @@ pass:
 End Sub
 
 '--------------------------------------------------------------
-'@ƒuƒbƒN•Û‘¶ŒãƒCƒxƒ“ƒg
+'ã€€ãƒ–ãƒƒã‚¯ä¿å­˜å¾Œã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------
 Private Sub XL_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
 
@@ -252,7 +252,7 @@ Private Sub XL_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
     Dim blnScreenUpdating As Boolean
     Dim blnDisplayAlerts As Boolean
     
-    'ƒCƒxƒ“ƒg‚ÌƒLƒƒƒ“ƒZƒ‹
+    'ã‚¤ãƒ™ãƒ³ãƒˆã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
     If mblnEventCancel Or Success = False Then
         Exit Sub
     End If
@@ -260,7 +260,7 @@ Private Sub XL_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
     backexec = GetSetting(C_TITLE, "Backup", "Check", False)
     
     '-------------------------------------------------
-    ' ŠÈˆÕ¢‘ãŠÇ—
+    ' ç°¡æ˜“ä¸–ä»£ç®¡ç†
     '-------------------------------------------------
     If rlxIsExcelFile(WB.FullName) And backexec Then
     
@@ -524,7 +524,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
 
     Call getCrossLineSetting(lngType, lngFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit)
 
-    '‰¡²
+    'æ¨ªè»¸
     If lngType And C_HOLIZON Then
         Set r = Range(sh.Cells(lngRow, 1), sh.Cells(lngRow, sh.Columns.count - 1))
         
@@ -554,7 +554,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         Set r = Nothing
     End If
     
-    'c²
+    'ç¸¦è»¸
     If lngType And C_VERTICAL Then
         Set r = Range(sh.Cells(1, lngCol), sh.Cells(sh.Rows.count - 1, lngCol))
     
@@ -584,7 +584,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         Set r = Nothing
     End If
 
-    '‚w‚xƒ‰ƒxƒ‹
+    'ï¼¸ï¼¹ãƒ©ãƒ™ãƒ«
     If blnGuid Then
         Set r = Range(sh.Cells(1, lngCol), sh.Cells(sh.Rows.count - 1, lngCol))
     
@@ -614,8 +614,8 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         
         Dim strBuf As String
         
-        strBuf = "  —ñ:" & Target(1).Column & vbCrLf
-        strBuf = strBuf & "  s:" & Target(1).row
+        strBuf = "  åˆ—:" & Target(1).Column & vbCrLf
+        strBuf = strBuf & "  è¡Œ:" & Target(1).row
         With sh.Shapes(C_XY_BAR_NAME).TextFrame2
             .TextRange.Text = strBuf
             .TextRange.Font.NameComplexScript = "Meiryo UI"

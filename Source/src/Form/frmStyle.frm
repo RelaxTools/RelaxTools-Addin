@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmStyle 
-   Caption         =   "ƒXƒ^ƒCƒ‹‚Ìíœ"
+   Caption         =   "ã‚¹ã‚¿ã‚¤ãƒ«ã®å‰Šé™¤"
    ClientHeight    =   5385
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   5265
    OleObjectBlob   =   "frmStyle.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmStyle"
 Attribute VB_GlobalNameSpace = False
@@ -51,7 +51,7 @@ Private Sub cmdAll_Click()
 
     Dim i As Long
     
-    If MsgBox("‚·‚×‚Ä‚ÌƒXƒ^ƒCƒ‹‚ğíœ‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("ã™ã¹ã¦ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å‰Šé™¤ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     

@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmHotKey 
-   Caption         =   "ƒVƒ‡[ƒgƒJƒbƒgƒL[Š„‚è“–‚Ä"
+   Caption         =   "ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼å‰²ã‚Šå½“ã¦"
    ClientHeight    =   8730
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   10065
    OleObjectBlob   =   "frmHotKey.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmHotKey"
 Attribute VB_GlobalNameSpace = False
@@ -70,8 +70,8 @@ Const C_SETLIST_CATEGORY As Long = 4
 Const C_SETLIST_MACRO_NAME As Long = 5
 Const C_SETLIST_MACRO As Long = 6
 
-Const C_ENABLE As String = " › "
-Const C_DISABLE As String = " ~ "
+Const C_ENABLE As String = " â—‹ "
+Const C_DISABLE As String = " Ã— "
 
 
 Private WithEvents MW As MouseWheel
@@ -103,7 +103,7 @@ Private Sub cmdAdd_Click()
     strkey = cmbShift.List(cmbShift.ListIndex, 1) & lstKey.List(lstKey.ListIndex, 2)
     Select Case strkey
         Case "^%{DELETE}", "^+{ESCAPE}"
-            MsgBox "ƒVƒXƒeƒ€‚Åg—p‚³‚ê‚Ä‚¢‚éƒL[‚Í“o˜^‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‚­ãƒ¼ã¯ç™»éŒ²ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
     End Select
     
@@ -120,7 +120,7 @@ Private Sub cmdAdd_Click()
     End If
     
     If blnFind Then
-        If MsgBox("‚·‚Å‚ÉƒVƒ‡[ƒgƒJƒbƒgƒL[‚ª’è‹`‚³‚ê‚Ä‚¢‚Ü‚·Bã‘‚«‚µ‚Ü‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        If MsgBox("ã™ã§ã«ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ãŒå®šç¾©ã•ã‚Œã¦ã„ã¾ã™ã€‚ä¸Šæ›¸ãã—ã¾ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
             Exit Sub
         End If
     Else
@@ -204,14 +204,14 @@ Private Sub cmdExport_Click()
     
     Dim vntFileName As Variant
     
-    vntFileName = Application.GetSaveAsFilename(InitialFileName:="export.key", FileFilter:="ƒL[’è‹`(*.key),*.key", Title:="ƒL[’è‹`‚ÌƒGƒNƒXƒ|[ƒg")
+    vntFileName = Application.GetSaveAsFilename(InitialFileName:="export.key", FileFilter:="ã‚­ãƒ¼å®šç¾©(*.key),*.key", Title:="ã‚­ãƒ¼å®šç¾©ã®ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆ")
     
     If vntFileName = False Then
         Exit Sub
     End If
     
     If rlxIsFileExists(vntFileName) Then
-        If MsgBox("‚·‚Å‚Éƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚·Bã‘‚«‚µ‚Ü‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        If MsgBox("ã™ã§ã«ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã™ã€‚ä¸Šæ›¸ãã—ã¾ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
             Exit Sub
         End If
     End If
@@ -225,13 +225,13 @@ Private Sub cmdExport_Click()
     Open vntFileName For Output As fp
     sw = True
     
-    Print #fp, "# RelaxTools Addin ƒVƒ‡[ƒgƒJƒbƒgƒL[’è‹`"
+    Print #fp, "# RelaxTools Addin ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼å®šç¾©"
     Dim strVer As String
     strVer = Split(ThisWorkbook.BuiltinDocumentProperties("Comments").value, vbLf)(0)
     Print #fp, "# Export " & strVer
     Print #fp, "#"
     For i = 0 To lstSetting.ListCount - 1
-        Print #fp, "# y" & lstSetting.List(i, C_SETLIST_KEY_NAME) & "z" & lstSetting.List(i, C_SETLIST_MACRO_NAME)
+        Print #fp, "# ã€" & lstSetting.List(i, C_SETLIST_KEY_NAME) & "ã€‘" & lstSetting.List(i, C_SETLIST_MACRO_NAME)
     Next
     Print #fp, "#"
     Print #fp, "# Author:" & Application.UserName
@@ -247,10 +247,10 @@ Private Sub cmdExport_Click()
     sw = False
     Close fp
     
-    MsgBox "ƒGƒNƒXƒ|[ƒg‚³‚ê‚Ü‚µ‚½", vbOKOnly + vbInformation, C_TITLE
+    MsgBox "ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã•ã‚Œã¾ã—ãŸ", vbOKOnly + vbInformation, C_TITLE
     Exit Sub
 e:
-    MsgBox "ƒGƒNƒXƒ|[ƒg‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½", vbOKOnly + vbCritical, C_TITLE
+    MsgBox "ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ", vbOKOnly + vbCritical, C_TITLE
     If sw Then Close
 
 End Sub
@@ -262,20 +262,20 @@ Private Sub cmdImport_Click()
 
     On Error GoTo ErrHandle
 
-    strFile = Application.GetOpenFilename("ƒL[’è‹`ƒtƒ@ƒCƒ‹(*.key),*.key", , "ƒL[’è‹`‚ÌƒCƒ“ƒ|[ƒg", , False)
+    strFile = Application.GetOpenFilename("ã‚­ãƒ¼å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«(*.key),*.key", , "ã‚­ãƒ¼å®šç¾©ã®ã‚¤ãƒ³ãƒãƒ¼ãƒˆ", , False)
     If strFile = False Then
-        'ƒtƒ@ƒCƒ‹–¼‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+        'ãƒ•ã‚¡ã‚¤ãƒ«åãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
         Exit Sub
     End If
     
-    'ƒtƒ@ƒCƒ‹‚Ì‘¶İƒ`ƒFƒbƒN
+    'ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
     If rlxIsFileExists(strFile) Then
     Else
-        MsgBox "ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+        MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
 
-'    If MsgBox("’è‹`‚Ìæ‚ğs‚¢‚Ü‚·BŒ»İ‚Ì’è‹`‚É’Ç‰Á‚µ‚Ü‚·‚©H" & vbCrLf & "d•¡‚·‚éƒL[’è‹`‚Íã‘‚«‚³‚ê‚Ü‚·B" & vbCrLf & "u‚¢‚¢‚¦v‚ğ‘I‘ğ‚µ‚½ê‡AƒL[’è‹`‚ÍƒNƒŠƒA‚³‚ê‚Ü‚·B", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
+'    If MsgBox("å®šç¾©ã®å–è¾¼ã‚’è¡Œã„ã¾ã™ã€‚ç¾åœ¨ã®å®šç¾©ã«è¿½åŠ ã—ã¾ã™ã‹ï¼Ÿ" & vbCrLf & "é‡è¤‡ã™ã‚‹ã‚­ãƒ¼å®šç¾©ã¯ä¸Šæ›¸ãã•ã‚Œã¾ã™ã€‚" & vbCrLf & "ã€Œã„ã„ãˆã€ã‚’é¸æŠã—ãŸå ´åˆã€ã‚­ãƒ¼å®šç¾©ã¯ã‚¯ãƒªã‚¢ã•ã‚Œã¾ã™ã€‚", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
 '    Else
 '        lstSetting.Clear
 '    End If
@@ -347,11 +347,11 @@ pass:
                     lstSetting.List(i, C_SETLIST_ENABLE) = C_ENABLE
                     i = i + 1
                 Case -2
-                    MsgBox "‘¶İ‚µ‚È‚¢ƒL[(" & varField(3) & ")‚Å‚·Bs=" & l, vbOKOnly + vbExclamation, C_TITLE
+                    MsgBox "å­˜åœ¨ã—ãªã„ã‚­ãƒ¼(" & varField(3) & ")ã§ã™ã€‚è¡Œ=" & l, vbOKOnly + vbExclamation, C_TITLE
                     Close fp
                     Exit Sub
                 Case -3
-                    MsgBox "‘¶İ‚µ‚È‚¢ƒ}ƒNƒ–¼(" & varField(6) & ")‚Å‚·Bs=" & l, vbOKOnly + vbExclamation, C_TITLE
+                    MsgBox "å­˜åœ¨ã—ãªã„ãƒã‚¯ãƒ­å(" & varField(6) & ")ã§ã™ã€‚è¡Œ=" & l, vbOKOnly + vbExclamation, C_TITLE
                     Close fp
                     Exit Sub
                 Case Else
@@ -363,7 +363,7 @@ pass:
                     lstSetting.List(k, C_SETLIST_ENABLE) = C_ENABLE
             End Select
         Else
-            MsgBox "ƒCƒ“ƒ|[ƒgƒtƒ@ƒCƒ‹‚ÌŒ`®‚ª•s³‚Å‚·B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ã‚¤ãƒ³ãƒãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®å½¢å¼ãŒä¸æ­£ã§ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
             Close fp
             Exit Sub
         End If
@@ -378,11 +378,11 @@ pass:
         cmdDel.enabled = False
     End If
     
-    MsgBox "³í‚ÉƒCƒ“ƒ|[ƒg‚³‚ê‚Ü‚µ‚½B" & vbCrLf, vbOKOnly + vbInformation, C_TITLE
+    MsgBox "æ­£å¸¸ã«ã‚¤ãƒ³ãƒãƒ¼ãƒˆã•ã‚Œã¾ã—ãŸã€‚" & vbCrLf, vbOKOnly + vbInformation, C_TITLE
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒCƒ“ƒ|[ƒg‚É¸”s‚µ‚Ü‚µ‚½B", vbOKOnly + vbCritical, C_TITLE
+    MsgBox "ã‚¤ãƒ³ãƒãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã—ãŸã€‚", vbOKOnly + vbCritical, C_TITLE
 
 End Sub
 Private Function existMacro(ByVal strMacro As String) As Boolean
@@ -395,10 +395,10 @@ Private Function existMacro(ByVal strMacro As String) As Boolean
     Set WS = ThisWorkbook.Worksheets("HELP")
     i = C_COM_DATA
 
-    'ƒ}ƒNƒƒV[ƒg‚Ìƒ[ƒh
+    'ãƒã‚¯ãƒ­ã‚·ãƒ¼ãƒˆã®ãƒ­ãƒ¼ãƒ‰
     Do Until WS.Cells(i, C_COM_NO).value = ""
 
-        If WS.Cells(i, C_COM_USE).value <> "|" Then
+        If WS.Cells(i, C_COM_USE).value <> "ï¼" Then
         
             If WS.Cells(i, C_COM_MACRO).value = strMacro Then
                 existMacro = True
@@ -417,7 +417,7 @@ Private Function existHotKey(ByVal strkey As String) As Boolean
     
     existHotKey = False
     
-    'ƒVƒtƒgƒL[‚ğíœ
+    'ã‚·ãƒ•ãƒˆã‚­ãƒ¼ã‚’å‰Šé™¤
     Dim lngPos As Long
     
     lngPos = InStr(strkey, "{^}")
@@ -432,7 +432,7 @@ Private Function existHotKey(ByVal strkey As String) As Boolean
     Set WS = ThisWorkbook.Worksheets("key")
     i = C_KEY_DATA
 
-    'ƒ}ƒNƒƒV[ƒg‚Ìƒ[ƒh
+    'ãƒã‚¯ãƒ­ã‚·ãƒ¼ãƒˆã®ãƒ­ãƒ¼ãƒ‰
     Do Until WS.Cells(i, C_KEY_NO).value = ""
         
         If WS.Cells(i, C_KEY_KEY).value = strkey Then
@@ -452,18 +452,18 @@ Private Function existKey(ByRef varBuf As Variant) As Long
     
     For i = 0 To lstSetting.ListCount - 1
     
-        'ƒŠƒXƒg‚Ìd•¡ƒ`ƒFƒbƒN
+        'ãƒªã‚¹ãƒˆã®é‡è¤‡ãƒã‚§ãƒƒã‚¯
         If lstSetting.List(i, C_SETLIST_KEY) = varBuf(3) Then
             existKey = i
         End If
         
-        'ƒL[‚Ì‘¶İƒ`ƒFƒbƒN
+        'ã‚­ãƒ¼ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
         If existHotKey(varBuf(3)) = False Then
             existKey = -2
             Exit Function
         End If
         
-        'ƒ}ƒNƒ‚Ì‘¶İƒ`ƒFƒbƒN
+        'ãƒã‚¯ãƒ­ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
         If existMacro(varBuf(6)) = False Then
             existKey = -3
             Exit Function
@@ -494,7 +494,7 @@ Private Sub cmdSave_Click()
     
     SaveSetting C_TITLE, "ShortCut", "KeyList", strBuf
     
-    'ƒVƒ‡[ƒgƒJƒbƒgƒL[‚Ì“o˜^
+    'ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã®ç™»éŒ²
     Call setShortCutKey
     
     Unload Me
@@ -592,7 +592,7 @@ Private Sub UserForm_Initialize()
     Dim j As Long
 
     cmbShift.AddItem ""
-    cmbShift.List(0, 0) = "ƒVƒtƒgƒL[‚È‚µ"
+    cmbShift.List(0, 0) = "ã‚·ãƒ•ãƒˆã‚­ãƒ¼ãªã—"
     cmbShift.List(0, 1) = ""
     cmbShift.AddItem ""
     cmbShift.List(1, 0) = "SHIFT"
@@ -620,11 +620,11 @@ Private Sub UserForm_Initialize()
     Dim strBefore As String
     strBefore = ""
     
-    cboCategory.AddItem "‚·‚×‚Ä"
-    'ƒ}ƒNƒƒV[ƒg‚Ìƒ[ƒh
+    cboCategory.AddItem "ã™ã¹ã¦"
+    'ãƒã‚¯ãƒ­ã‚·ãƒ¼ãƒˆã®ãƒ­ãƒ¼ãƒ‰
     Do Until WS.Cells(i, C_COM_NO).value = ""
 
-        If WS.Cells(i, C_COM_USE).value <> "|" Then
+        If WS.Cells(i, C_COM_USE).value <> "ï¼" Then
             If WS.Cells(i, C_COM_CATEGORY).value <> strBefore Then
                 cboCategory.AddItem WS.Cells(i, C_COM_CATEGORY).value
                 strBefore = WS.Cells(i, C_COM_CATEGORY).value
@@ -642,7 +642,7 @@ Private Sub UserForm_Initialize()
     i = C_KEY_DATA
     j = 0
 
-    'ƒ}ƒNƒƒV[ƒg‚Ìƒ[ƒh
+    'ãƒã‚¯ãƒ­ã‚·ãƒ¼ãƒˆã®ãƒ­ãƒ¼ãƒ‰
     Do Until WS.Cells(i, C_KEY_NO).value = ""
         
         lstKey.AddItem ""
@@ -716,10 +716,10 @@ Sub dispCommand()
     
     lstCommand.Clear
 
-    'ƒ}ƒNƒƒV[ƒg‚Ìƒ[ƒh
+    'ãƒã‚¯ãƒ­ã‚·ãƒ¼ãƒˆã®ãƒ­ãƒ¼ãƒ‰
     Do Until WS.Cells(i, C_COM_NO).value = ""
         
-        If WS.Cells(i, C_COM_USE).value <> "|" Then
+        If WS.Cells(i, C_COM_USE).value <> "ï¼" Then
             If (cboCategory.ListIndex = 0 Or cboCategory.Text = WS.Cells(i, C_COM_CATEGORY).value) And (txtKinou.Text = "" Or InStr(WS.Cells(i, C_COM_DISP_NAME).value, txtKinou.Text) > 0) Then
                 lstCommand.AddItem ""
                 lstCommand.List(j, 0) = j + 1
@@ -749,11 +749,11 @@ Sub getGuidence()
     
     txtGuidence.Text = ""
 
-    'ƒ}ƒNƒƒV[ƒg‚Ìƒ[ƒh
+    'ãƒã‚¯ãƒ­ã‚·ãƒ¼ãƒˆã®ãƒ­ãƒ¼ãƒ‰
     Do Until WS.Cells(i, 1).value = ""
         
         If WS.Cells(i, 3).value = cmbShift.List(cmbShift.ListIndex, 1) & lstKey.List(lstKey.ListIndex, 2) Then
-            txtGuidence.Text = "y" & WS.Cells(i, 2).value & "z" & WS.Cells(i, 4).value
+            txtGuidence.Text = "ã€" & WS.Cells(i, 2).value & "ã€‘" & WS.Cells(i, 4).value
             Exit Do
         End If
         i = i + 1

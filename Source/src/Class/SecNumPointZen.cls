@@ -37,9 +37,9 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private Const C_SECTION_REGEXP As String = "^[‚O-‚XD]+[ ]"
+Private Const C_SECTION_REGEXP As String = "^[ï¼-ï¼™ï¼]+[ ]"
 Private Const C_SECTION_SEPARATER As String = " "
-Private Const C_SECTION_NAME As String = "‚P, ‚PD‚P, ‚PD‚PD‚P ¥¥¥ ‡"
+Private Const C_SECTION_NAME As String = "ï¼‘, ï¼‘ï¼ï¼‘, ï¼‘ï¼ï¼‘ï¼ï¼‘ ï½¥ï½¥ï½¥ âˆ"
 Private Const C_SECTION_CLASS As String = "SecNumPointZen"
 Public Property Get Class() As String
     Class = C_SECTION_CLASS
@@ -49,17 +49,17 @@ Public Function SectionLevelName(ByVal lngLevel As Long) As String
     Dim strBuf As String
     Select Case lngLevel
         Case 1
-            strBuf = " ‚P „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " ï¼‘ â”€â”€â”€â”€"
         Case 2
-            strBuf = " ‚PD‚P „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " ï¼‘ï¼ï¼‘ â”€â”€â”€â”€"
         Case 3
-            strBuf = " ‚PD‚PD‚P „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " ï¼‘ï¼ï¼‘ï¼ï¼‘ â”€â”€â”€â”€"
         Case 4
-            strBuf = " ‚PD‚PD‚PD‚P „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " ï¼‘ï¼ï¼‘ï¼ï¼‘ï¼ï¼‘ â”€â”€â”€â”€"
         Case 5
-            strBuf = " ‚PD‚PD‚PD‚PD‚P „Ÿ„Ÿ"
+            strBuf = " ï¼‘ï¼ï¼‘ï¼ï¼‘ï¼ï¼‘ï¼ï¼‘ â”€â”€"
         Case Else
-            strBuf = " ‚PD‚PD‚PD‚PD‚PD‚P „Ÿ"
+            strBuf = " ï¼‘ï¼ï¼‘ï¼ï¼‘ï¼ï¼‘ï¼ï¼‘ï¼ï¼‘ â”€"
     End Select
     
     SectionLevelName = strBuf
@@ -106,20 +106,20 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngFromLevel As Long, By
     strNumber = Trim(SectionNumber(v))
     
     If strNumber = "" Then
-        '”Ô†‚ª–³‚¢ê‡AƒŒƒxƒ‹‚É‰‚¶‚½”Ô†‚ğ¶¬‚·‚éB
+        'ç•ªå·ãŒç„¡ã„å ´åˆã€ãƒ¬ãƒ™ãƒ«ã«å¿œã˜ãŸç•ªå·ã‚’ç”Ÿæˆã™ã‚‹ã€‚
         For i = 0 To lngIndentLevel
             If strNewNum = "" Then
-                strNewNum = "‚P"
+                strNewNum = "ï¼‘"
             Else
-                strNewNum = strNewNum & "D" & "‚P"
+                strNewNum = strNewNum & "ï¼" & "ï¼‘"
             End If
         Next
     Else
-        'Ÿ‚Ì”Ô†‚ğ•t”Ô‚·‚é
+        'æ¬¡ã®ç•ªå·ã‚’ä»˜ç•ªã™ã‚‹
         Dim num As Variant
         Dim lngNum As Long
         
-        num = Split(strNumber, "D")
+        num = Split(strNumber, "ï¼")
 
         For i = 0 To lngIndentLevel
         
@@ -135,7 +135,7 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngFromLevel As Long, By
             If strNewNum = "" Then
                 strNewNum = StrConv(lngNum, vbWide)
             Else
-                strNewNum = strNewNum & "D" & StrConv(lngNum, vbWide)
+                strNewNum = strNewNum & "ï¼" & StrConv(lngNum, vbWide)
             End If
         Next
     End If

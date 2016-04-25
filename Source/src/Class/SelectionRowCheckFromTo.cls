@@ -38,26 +38,26 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionRowFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' ƒƒ“ƒo•Ï”éŒ¾•”(UOC)
+' ãƒ¡ãƒ³ãƒå¤‰æ•°å®£è¨€éƒ¨(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private mlngMatch As Long
 Private mobjCol As Collection
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionRowFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -71,14 +71,14 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘Oˆ—(UOC)
+' å‰å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(ByRef rAreas As Excel.Areas, Cancel As Boolean, Undo As Boolean)
     
     On Error GoTo e
     
     If rAreas.count > 1 Then
-        MsgBox "•¡”‚ÌƒGƒŠƒA‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+        MsgBox "è¤‡æ•°ã®ã‚¨ãƒªã‚¢ã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
         Cancel = True
         Exit Sub
     End If
@@ -94,7 +94,7 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' åˆ—(UOC)
+' ä¸»å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boolean)
 
@@ -109,7 +109,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
     
     On Error GoTo e
 
-    'ƒL[‚Ìì¬
+    'ã‚­ãƒ¼ã®ä½œæˆ
     strkey = ""
     For Each v In r
         If IsError(v.value) Then
@@ -128,14 +128,14 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
         Exit Sub
     End If
 
-    'ƒRƒŒƒNƒVƒ‡ƒ““à‚Éˆê’v‚·‚é‚à‚Ì‚ª‚ ‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+    'ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã«ä¸€è‡´ã™ã‚‹ã‚‚ã®ãŒã‚ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
     blnMatch = False
     
     For Each c In mobjCol
         strFrom = c.Cells(1, 1).value
         strTo = c.Cells(1, 2).value
     
-        'ŠúŠÔd•¡ƒ`ƒFƒbƒN
+        'æœŸé–“é‡è¤‡ãƒã‚§ãƒƒã‚¯
         If schCell(0) <= strTo And schCell(1) >= strFrom Then
                 blnMatch = True
                 With c.Interior
@@ -146,7 +146,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
         
     Next
     
-    'ˆê’v‚·‚é‚à‚Ì‚ª‚P‚Â‚Å‚à‘¶İ‚µ‚½ê‡
+    'ä¸€è‡´ã™ã‚‹ã‚‚ã®ãŒï¼‘ã¤ã§ã‚‚å­˜åœ¨ã—ãŸå ´åˆ
     If blnMatch Then
         mlngMatch = mlngMatch + 1
         With r.Interior
@@ -154,7 +154,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
             .Pattern = xlSolid
         End With
     Else
-        '‘¶İ‚µ‚È‚¢ê‡ƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+        'å­˜åœ¨ã—ãªã„å ´åˆã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
         Call mobjCol.Add(r, strkey)
     End If
 
@@ -165,19 +165,19 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' I—¹ˆ—(UOC)
+' çµ‚äº†å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionTerm()
     
     On Error GoTo e
     
     If mlngMatch > 0 Then
-        MsgBox mlngMatch & " ŒÂ ˆê’v‚µ‚Ü‚µ‚½BŠm”F‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox mlngMatch & " å€‹ ä¸€è‡´ã—ã¾ã—ãŸã€‚ç¢ºèªã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
     Else
-        MsgBox "ˆê’v‚·‚é‚à‚Ì‚Í‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½B", vbInformation, C_TITLE
+        MsgBox "ä¸€è‡´ã™ã‚‹ã‚‚ã®ã¯ã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚", vbInformation, C_TITLE
     End If
     
-    'Collection‚ÌŠJ•ú
+    'Collectionã®é–‹æ”¾
     Set mobjCol = Nothing
 
     Exit Sub

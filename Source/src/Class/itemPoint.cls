@@ -37,9 +37,9 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private Const C_SECTION_REGEXP As String = "^[・]"
+Private Const C_SECTION_REGEXP As String = "^[繝ｻ]"
 Private Const C_SECTION_SEPARATER As String = ""
-Private Const C_SECTION_NAME As String = "・(中点)"
+Private Const C_SECTION_NAME As String = "繝ｻ(荳ｭ轤ｹ)"
 Private Const C_SECTION_CLASS As String = "itemPoint"
 Public Property Get Class() As String
     Class = C_SECTION_CLASS
@@ -47,7 +47,7 @@ End Property
 
 Public Function SectionLevelName(ByVal lngLevel As Long) As String
     
-    SectionLevelName = " ・ ────"
+    SectionLevelName = " 繝ｻ 笏笏笏笏"
 
 End Function
 Public Property Get SectionName() As String
@@ -84,7 +84,7 @@ Public Property Get SectionNumber(ByVal v As String) As String
 End Property
 Public Property Get NextNumber(ByVal v As String, ByVal lngIndentLevel As Long) As String
     
-    NextNumber = "・" & C_SECTION_SEPARATER
+    NextNumber = "繝ｻ" & C_SECTION_SEPARATER
 
 End Property
 

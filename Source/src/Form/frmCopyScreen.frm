@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCopyScreen 
-   Caption         =   "‘I‘ğ”ÍˆÍ‚ÌƒsƒNƒ`ƒƒ‰»İ’è"
+   Caption         =   "é¸æŠç¯„å›²ã®ãƒ”ã‚¯ãƒãƒ£åŒ–è¨­å®š"
    ClientHeight    =   2640
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   3645
    OleObjectBlob   =   "frmCopyScreen.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmCopyScreen"
 Attribute VB_GlobalNameSpace = False

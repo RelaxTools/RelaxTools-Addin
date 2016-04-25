@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmGridText 
-   Caption         =   "•\‚ÌƒeƒLƒXƒg‰»"
+   Caption         =   "è¡¨ã®ãƒ†ã‚­ã‚¹ãƒˆåŒ–"
    ClientHeight    =   6000
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   8415
    OleObjectBlob   =   "frmGridText.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmGridText"
 Attribute VB_GlobalNameSpace = False
@@ -74,79 +74,79 @@ Private mlngCol As Long
 Private mlngWidthMax As Long
 Private mlngHeightMax As Long
 
-'Œrü‚Ì‘¾‚³ğŒ
+'ç½«ç·šã®å¤ªã•æ¡ä»¶
 Private mlngBorderWeight1 As Long
 Private mlngBorderWeight2 As Long
 
 Private Const C_LINE_WIDTH As Long = 2
     
-Private Const C_BORDER_NONE     As Long = 0     '‚È‚µ
-Private Const C_BORDER_TOP      As Long = 1     'ã
-Private Const C_BORDER_BOTTOM   As Long = 2     '‰º
-Private Const C_BORDER_LEFT     As Long = 4     '¶
-Private Const C_BORDER_RIGHT    As Long = 8     '‰E
+Private Const C_BORDER_NONE     As Long = 0     'ãªã—
+Private Const C_BORDER_TOP      As Long = 1     'ä¸Š
+Private Const C_BORDER_BOTTOM   As Long = 2     'ä¸‹
+Private Const C_BORDER_LEFT     As Long = 4     'å·¦
+Private Const C_BORDER_RIGHT    As Long = 8     'å³
 
-Private Const C_BORDER_TOP_BOLD      As Long = 16     'ã
-Private Const C_BORDER_BOTTOM_BOLD   As Long = 32     '‰º
-Private Const C_BORDER_LEFT_BOLD     As Long = 64     '¶
-Private Const C_BORDER_RIGHT_BOLD    As Long = 128    '‰E
+Private Const C_BORDER_TOP_BOLD      As Long = 16     'ä¸Š
+Private Const C_BORDER_BOTTOM_BOLD   As Long = 32     'ä¸‹
+Private Const C_BORDER_LEFT_BOLD     As Long = 64     'å·¦
+Private Const C_BORDER_RIGHT_BOLD    As Long = 128    'å³
 
-Private Const C_BORDER_LR As Long = C_BORDER_LEFT + C_BORDER_RIGHT      '„Ÿ(‚æ‚±)
-Private Const C_BORDER_TB As Long = C_BORDER_TOP + C_BORDER_BOTTOM      '„ (‚½‚Ä)
-Private Const C_BORDER_TL As Long = C_BORDER_TOP + C_BORDER_LEFT        '„£(‰E‰º)
-Private Const C_BORDER_TR As Long = C_BORDER_TOP + C_BORDER_RIGHT       '„¤(¶‰º)
-Private Const C_BORDER_BR As Long = C_BORDER_BOTTOM + C_BORDER_RIGHT    '„¡(¶ã)
-Private Const C_BORDER_BL As Long = C_BORDER_BOTTOM + C_BORDER_LEFT     '„¢(‰Eã)
-Private Const C_BORDER_TBR As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_RIGHT    '„¥(c‰E)
-Private Const C_BORDER_BLT As Long = C_BORDER_BOTTOM + C_BORDER_LEFT + C_BORDER_RIGHT   '„¦(‰¡‰º)
-Private Const C_BORDER_TBL As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_LEFT     '„§(c¶)
-Private Const C_BORDER_TLR As Long = C_BORDER_TOP + C_BORDER_LEFT + C_BORDER_RIGHT      '„¨(‰¡ã)
-Private Const C_BORDER_CROSS As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_LEFT + C_BORDER_RIGHT  '„©(^’†)
+Private Const C_BORDER_LR As Long = C_BORDER_LEFT + C_BORDER_RIGHT      'â”€(ã‚ˆã“)
+Private Const C_BORDER_TB As Long = C_BORDER_TOP + C_BORDER_BOTTOM      'â”‚(ãŸã¦)
+Private Const C_BORDER_TL As Long = C_BORDER_TOP + C_BORDER_LEFT        'â”˜(å³ä¸‹)
+Private Const C_BORDER_TR As Long = C_BORDER_TOP + C_BORDER_RIGHT       'â””(å·¦ä¸‹)
+Private Const C_BORDER_BR As Long = C_BORDER_BOTTOM + C_BORDER_RIGHT    'â”Œ(å·¦ä¸Š)
+Private Const C_BORDER_BL As Long = C_BORDER_BOTTOM + C_BORDER_LEFT     'â”(å³ä¸Š)
+Private Const C_BORDER_TBR As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_RIGHT    'â”œ(ç¸¦å³)
+Private Const C_BORDER_BLT As Long = C_BORDER_BOTTOM + C_BORDER_LEFT + C_BORDER_RIGHT   'â”¬(æ¨ªä¸‹)
+Private Const C_BORDER_TBL As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_LEFT     'â”¤(ç¸¦å·¦)
+Private Const C_BORDER_TLR As Long = C_BORDER_TOP + C_BORDER_LEFT + C_BORDER_RIGHT      'â”´(æ¨ªä¸Š)
+Private Const C_BORDER_CROSS As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_LEFT + C_BORDER_RIGHT  'â”¼(çœŸä¸­)
 
-Private Const C_BORDER_LR_BOLD As Long = C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD      '„ª(‚æ‚±)
-Private Const C_BORDER_TB_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD      '„«(‚½‚Ä)
-Private Const C_BORDER_TL_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT_BOLD        '„®(‰E‰º)
-Private Const C_BORDER_TR_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_RIGHT_BOLD       '„¯(¶‰º)
-Private Const C_BORDER_BR_BOLD As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_RIGHT_BOLD    '„¬(¶ã)
-Private Const C_BORDER_BL_BOLD As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD     '„­(‰Eã)
-Private Const C_BORDER_TBR_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_RIGHT_BOLD    '„°(c‰E)
-Private Const C_BORDER_BLT_BOLD As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD   '„±(‰¡‰º)
-Private Const C_BORDER_TBL_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD     '„²(c¶)
-Private Const C_BORDER_TLR_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD      '„³(‰¡ã)
-Private Const C_BORDER_CROSS_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD  '„´(^’†)
+Private Const C_BORDER_LR_BOLD As Long = C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD      'â”(ã‚ˆã“)
+Private Const C_BORDER_TB_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD      'â”ƒ(ãŸã¦)
+Private Const C_BORDER_TL_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT_BOLD        'â”›(å³ä¸‹)
+Private Const C_BORDER_TR_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_RIGHT_BOLD       'â”—(å·¦ä¸‹)
+Private Const C_BORDER_BR_BOLD As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_RIGHT_BOLD    'â”(å·¦ä¸Š)
+Private Const C_BORDER_BL_BOLD As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD     'â”“(å³ä¸Š)
+Private Const C_BORDER_TBR_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_RIGHT_BOLD    'â”£(ç¸¦å³)
+Private Const C_BORDER_BLT_BOLD As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD   'â”³(æ¨ªä¸‹)
+Private Const C_BORDER_TBL_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD     'â”«(ç¸¦å·¦)
+Private Const C_BORDER_TLR_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD      'â”»(æ¨ªä¸Š)
+Private Const C_BORDER_CROSS_BOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD  'â•‹(çœŸä¸­)
 
-Private Const C_BORDER_TBR_BH As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_RIGHT    '„µ(c‰E)
-Private Const C_BORDER_BLT_BH As Long = C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD   '„¶(‰¡‰º)
-Private Const C_BORDER_TBL_BH As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT     '„·(c¶)
-Private Const C_BORDER_TLR_BH As Long = C_BORDER_TOP + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD      '„¸(‰¡ã)
-Private Const C_BORDER_CROSS_BH As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD  '„¹(^’†)
+Private Const C_BORDER_TBR_BH As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_RIGHT    'â” (ç¸¦å³)
+Private Const C_BORDER_BLT_BH As Long = C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD   'â”¯(æ¨ªä¸‹)
+Private Const C_BORDER_TBL_BH As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT     'â”¨(ç¸¦å·¦)
+Private Const C_BORDER_TLR_BH As Long = C_BORDER_TOP + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD      'â”·(æ¨ªä¸Š)
+Private Const C_BORDER_CROSS_BH As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD  'â”¿(çœŸä¸­)
 
-Private Const C_BORDER_TBR_HB As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_RIGHT_BOLD    '„º(c‰E)
-Private Const C_BORDER_BLT_HB As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT + C_BORDER_RIGHT   '„»(‰¡‰º)
-Private Const C_BORDER_TBL_HB As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD     '„¼(c¶)
-Private Const C_BORDER_TLR_HB As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT + C_BORDER_RIGHT      '„½(‰¡ã)
-Private Const C_BORDER_CROSS_HB As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT + C_BORDER_RIGHT  '„¾(^’†)
+Private Const C_BORDER_TBR_HB As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_RIGHT_BOLD    'â”(ç¸¦å³)
+Private Const C_BORDER_BLT_HB As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT + C_BORDER_RIGHT   'â”°(æ¨ªä¸‹)
+Private Const C_BORDER_TBL_HB As Long = C_BORDER_TOP + C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD     'â”¥(ç¸¦å·¦)
+Private Const C_BORDER_TLR_HB As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT + C_BORDER_RIGHT      'â”¸(æ¨ªä¸Š)
+Private Const C_BORDER_CROSS_HB As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT + C_BORDER_RIGHT  'â•‚(çœŸä¸­)
 
-Private Const C_BORDER_TL_BH As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT             '„®(‰E‰º)
-Private Const C_BORDER_TR_BH As Long = C_BORDER_TOP_BOLD + C_BORDER_RIGHT            '„¯(¶‰º)
-Private Const C_BORDER_BR_BH As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_RIGHT         '„¬(¶ã)
-Private Const C_BORDER_BL_BH As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT          '„­(‰Eã)
+Private Const C_BORDER_TL_BH As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT             'â”›(å³ä¸‹)
+Private Const C_BORDER_TR_BH As Long = C_BORDER_TOP_BOLD + C_BORDER_RIGHT            'â”—(å·¦ä¸‹)
+Private Const C_BORDER_BR_BH As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_RIGHT         'â”(å·¦ä¸Š)
+Private Const C_BORDER_BL_BH As Long = C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT          'â”“(å³ä¸Š)
 
 
 
-'Œrü‚¾‚¯‚Å‚Í•\Œ»‚Å‚«‚È‚¢‚à‚Ì
-Private Const C_BORDER_TL_HB As Long = C_BORDER_TOP + C_BORDER_LEFT_BOLD             '„®(‰E‰º)
-Private Const C_BORDER_TR_HB As Long = C_BORDER_TOP + C_BORDER_RIGHT_BOLD            '„¯(¶‰º)
-Private Const C_BORDER_BR_HB As Long = C_BORDER_BOTTOM + C_BORDER_RIGHT_BOLD         '„¬(¶ã)
-Private Const C_BORDER_BL_HB As Long = C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD          '„­(‰Eã)
+'ç½«ç·šã ã‘ã§ã¯è¡¨ç¾ã§ããªã„ã‚‚ã®
+Private Const C_BORDER_TL_HB As Long = C_BORDER_TOP + C_BORDER_LEFT_BOLD             'â”›(å³ä¸‹)
+Private Const C_BORDER_TR_HB As Long = C_BORDER_TOP + C_BORDER_RIGHT_BOLD            'â”—(å·¦ä¸‹)
+Private Const C_BORDER_BR_HB As Long = C_BORDER_BOTTOM + C_BORDER_RIGHT_BOLD         'â”(å·¦ä¸Š)
+Private Const C_BORDER_BL_HB As Long = C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD          'â”“(å³ä¸Š)
 
-'‰º‚¾‚¯×‚¢\š
-Private Const C_BORDER_CROSS_BOLD_UL As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD  '„´(^’†)
-Private Const C_BORDER_CROSS_UB As Long = C_BORDER_TOP + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD  '„¾(‰E‚¾‚¯×‚¢\š)
-Private Const C_BORDER_CROSS_RB As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT  '„¾(‰E‚¾‚¯×‚¢\š)
-Private Const C_BORDER_CROSS_LB As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT + C_BORDER_RIGHT_BOLD  '„¾(¶‚¾‚¯×‚¢\š)
+'ä¸‹ã ã‘ç´°ã„åå­—
+Private Const C_BORDER_CROSS_BOLD_UL As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD  'â•‹(çœŸä¸­)
+Private Const C_BORDER_CROSS_UB As Long = C_BORDER_TOP + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT_BOLD  'â•‚(å³ã ã‘ç´°ã„åå­—)
+Private Const C_BORDER_CROSS_RB As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT  'â•‚(å³ã ã‘ç´°ã„åå­—)
+Private Const C_BORDER_CROSS_LB As Long = C_BORDER_TOP_BOLD + C_BORDER_BOTTOM_BOLD + C_BORDER_LEFT + C_BORDER_RIGHT_BOLD  'â•‚(å·¦ã ã‘ç´°ã„åå­—)
 
-Private Const C_BORDER_TLR_TLBOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT      '„³(‰¡ã)
+Private Const C_BORDER_TLR_TLBOLD As Long = C_BORDER_TOP_BOLD + C_BORDER_LEFT_BOLD + C_BORDER_RIGHT      'â”»(æ¨ªä¸Š)
 
 Private Const C_SQUARE_TOP_LEFT As Long = 1
 Private Const C_SQUARE_TOP_MIDDLE As Long = 2
@@ -159,7 +159,7 @@ Private Const C_SQUARE_BOTTOM_RIGHT As Long = 8
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
 '--------------------------------------------------------------
-'@‚©‚ñ‚½‚ñŒrü
+'ã€€ã‹ã‚“ãŸã‚“ç½«ç·š
 '--------------------------------------------------------------
 Private Sub kantanLineRun()
 
@@ -171,34 +171,34 @@ Private Sub kantanLineRun()
     mlngRow = Selection.Rows.count
     mlngCol = Selection.Columns.count
 
-    'ƒƒ‚ƒŠ‚ÌŠm•Û
+    'ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
     ReDim mlngWidth(1 To Selection.Columns.count)
     ReDim mlngMaxColWidth(1 To Selection.Columns.count)
     ReDim mlngHeight(1 To Selection.Rows.count)
     ReDim mudtGrid(1 To mlngRow, 1 To mlngCol)
     ReDim mblnFixColumn(1 To Selection.Columns.count)
 
-    'Å‘å•‚æ‚èAŒrü•‚ğˆø‚¢‚½ÀÛ‚Ì•
+    'æœ€å¤§å¹…ã‚ˆã‚Šã€ç½«ç·šå¹…ã‚’å¼•ã„ãŸå®Ÿéš›ã®å¹…
     lngJitsuLineMax = mlngMaxKeta - (mlngCol + 1) * 2
 
     If Selection.Areas.count > 1 Then
         Exit Sub
     End If
     
-    '•\ƒf[ƒ^‚ÌƒZƒbƒg(ˆêŸj
+    'è¡¨ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ(ä¸€æ¬¡ï¼‰
     Call setGridData
 
-    'Še—ñ‚ÌÅ‘åŒ…”‚ğ‹‚ß‚é
+    'å„åˆ—ã®æœ€å¤§æ¡æ•°ã‚’æ±‚ã‚ã‚‹
     For lngIdxRow = 1 To mlngRow
         For lngIdxCol = 1 To mlngCol
             
            Dim lngLen As Long
            
-            'ƒ}[ƒWƒZƒ‹ˆÈŠO
+            'ãƒãƒ¼ã‚¸ã‚»ãƒ«ä»¥å¤–
             If mudtGrid(lngIdxRow, lngIdxCol).ColSpan = 1 Then
                 lngLen = mudtGrid(lngIdxRow, lngIdxCol).TextMaxLength
                 
-                'Šï”‚¾‚Á‚½ê‡{‚P
+                'å¥‡æ•°ã ã£ãŸå ´åˆï¼‹ï¼‘
                 If lngLen Mod 2 = 1 Then
                     lngLen = lngLen + 1
                 End If
@@ -214,7 +214,7 @@ Private Sub kantanLineRun()
         Next
     Next
     
-    'Œ‹‡ƒZƒ‹‚Ì•‚ğİ’è‚·‚éB
+    'çµåˆã‚»ãƒ«ã®å¹…ã‚’è¨­å®šã™ã‚‹ã€‚
     For lngIdxRow = 1 To mlngRow
         For lngIdxCol = 1 To mlngCol
             
@@ -222,7 +222,7 @@ Private Sub kantanLineRun()
             
                 lngLen = mudtGrid(lngIdxRow, lngIdxCol).TextMaxLength
                 
-                'Šï”‚¾‚Á‚½ê‡{‚P
+                'å¥‡æ•°ã ã£ãŸå ´åˆï¼‹ï¼‘
                 If lngLen Mod 2 = 1 Then
                     lngLen = lngLen + 1
                 End If
@@ -233,18 +233,18 @@ Private Sub kantanLineRun()
                     lngSize = lngSize + mlngMaxColWidth(lngIdxCol + i - 1)
                 Next
                 
-                'Œ‹‡‚µ‚Ä‚¢‚éƒZƒ‹‚Ì“à—e‚Ì•û‚ª‘å‚«‚¢ê‡
+                'çµåˆã—ã¦ã„ã‚‹ã‚»ãƒ«ã®å†…å®¹ã®æ–¹ãŒå¤§ãã„å ´åˆ
                 If lngLen > lngSize Then
                 
                     Dim lngSa As Long
                     lngSa = (lngLen - lngSize) \ mudtGrid(lngIdxRow, lngIdxCol).ColSpan
                 
-                    'Šï”‚¾‚Á‚½ê‡{‚P
+                    'å¥‡æ•°ã ã£ãŸå ´åˆï¼‹ï¼‘
                     If lngSa Mod 2 = 1 Then
                         lngSa = lngSa + 1
                     End If
                 
-                    'Œ‹‡ƒZƒ‹‚ª•\¦‚³‚ê‚é‚æ‚¤‚ÉŠeƒZƒ‹‚ÉŠ„‚èU‚é
+                    'çµåˆã‚»ãƒ«ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«å„ã‚»ãƒ«ã«å‰²ã‚ŠæŒ¯ã‚‹
                     For i = 1 To mudtGrid(lngIdxRow, lngIdxCol).ColSpan
                         mlngMaxColWidth(lngIdxCol + i - 1) = mlngMaxColWidth(lngIdxCol + i - 1) + lngSa
                     Next
@@ -258,23 +258,23 @@ Private Sub kantanLineRun()
     
     
     
-    '•\‘S‘Ì‚Ì•‚ğ‹‚ß‚éB
+    'è¡¨å…¨ä½“ã®å¹…ã‚’æ±‚ã‚ã‚‹ã€‚
     mlngWidthMax = 0
 
     For lngIdxCol = 1 To mlngCol
         mlngWidthMax = mlngWidthMax + mlngMaxColWidth(lngIdxCol)
     Next
     
-    '•\‚Ì•‚ªÀ•‚æ‚è’´‚¦‚Ä‚¢‚½ê‡
+    'è¡¨ã®å¹…ãŒå®Ÿå¹…ã‚ˆã‚Šè¶…ãˆã¦ã„ãŸå ´åˆ
     If mlngWidthMax > lngJitsuLineMax Then
-        'Œ»İ‚ÌƒZƒ‹•‚ÌŠ„‡‚É‰‚¶‚ÄÅ‘åŒ…”•ªŠ„‚èU‚éB
+        'ç¾åœ¨ã®ã‚»ãƒ«å¹…ã®å‰²åˆã«å¿œã˜ã¦æœ€å¤§æ¡æ•°åˆ†å‰²ã‚ŠæŒ¯ã‚‹ã€‚
 
         Dim lngWk As Long
         Dim lngMaxPos As Long
         Dim lngMaxWidth As Long
         Dim lngAmari As Long
         
-        'ŒÅ’èƒtƒB[ƒ‹ƒh‚Ì”‚ğ”‚¦‚é
+        'å›ºå®šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æ•°ã‚’æ•°ãˆã‚‹
         Dim lngFix As Long
         Dim lngFixSize As Long
         lngFix = 0
@@ -300,12 +300,12 @@ Private Sub kantanLineRun()
         End If
     
         For lngIdxCol = 1 To mlngCol
-            'Š„‡‚ÅŠe—ñ‚Ì•‚ğŒvZ‚·‚éB
+            'å‰²åˆã§å„åˆ—ã®å¹…ã‚’è¨ˆç®—ã™ã‚‹ã€‚
             If mblnFixColumn(lngIdxCol) Then
                 mlngWidth(lngIdxCol) = mlngMaxColWidth(lngIdxCol)
             Else
                 mlngWidth(lngIdxCol) = Fix(lngDelSize * (mlngMaxColWidth(lngIdxCol) / lngNoFixSize))
-                'Šï”‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚½ê‡|‚P
+                'å¥‡æ•°ã«ãªã£ã¦ã—ã¾ã£ãŸå ´åˆï¼ï¼‘
                 If mlngWidth(lngIdxCol) Mod 2 = 1 Then
                     mlngWidth(lngIdxCol) = mlngWidth(lngIdxCol) - 1
                 End If
@@ -315,14 +315,14 @@ Private Sub kantanLineRun()
             End If
             
             If lngMaxWidth < mlngWidth(lngIdxCol) Then
-                'Å‘å‚Ì—ñ‚ğ‹‚ß‚éB
+                'æœ€å¤§ã®åˆ—ã‚’æ±‚ã‚ã‚‹ã€‚
                 lngMaxWidth = mlngWidth(lngIdxCol)
                 lngMaxPos = lngIdxCol
             End If
             lngWk = lngWk + mlngWidth(lngIdxCol)
         Next
 
-        '—ñ‚ÅÅ‘å‚Ì‚à‚Ì‚É—]‚è‚ğŠñ‚¹‚é
+        'åˆ—ã§æœ€å¤§ã®ã‚‚ã®ã«ä½™ã‚Šã‚’å¯„ã›ã‚‹
         lngAmari = lngJitsuLineMax - lngWk
         If lngAmari < 0 Then
             lngAmari = 0
@@ -336,11 +336,11 @@ Private Sub kantanLineRun()
         
     End If
     
-    '•\ƒf[ƒ^‚ÌƒZƒbƒg(“ñŸj
-    'Œˆ’è‚µ‚½•‚Å“à—e‚ğ‚Â‚ß‚È‚¨‚·B
+    'è¡¨ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ(äºŒæ¬¡ï¼‰
+    'æ±ºå®šã—ãŸå¹…ã§å†…å®¹ã‚’ã¤ã‚ãªãŠã™ã€‚
     Call setGridData
 
-    'Šes‚ÌÅ‘å‚Ì‚‚³‚ğ‹‚ß‚éB
+    'å„è¡Œã®æœ€å¤§ã®é«˜ã•ã‚’æ±‚ã‚ã‚‹ã€‚
     For lngIdxRow = 1 To mlngRow
         For lngIdxCol = 1 To mlngCol
             
@@ -353,7 +353,7 @@ Private Sub kantanLineRun()
         Next
     Next
     
-    'Šes‚ÌÅ‘å‚Ì‚‚³‚ğ‹‚ß‚éB
+    'å„è¡Œã®æœ€å¤§ã®é«˜ã•ã‚’æ±‚ã‚ã‚‹ã€‚
     For lngIdxRow = 1 To mlngRow
         For lngIdxCol = 1 To mlngCol
         
@@ -366,12 +366,12 @@ Private Sub kantanLineRun()
                     lngSize = lngSize + mlngHeight(lngIdxRow + i - 1)
                 Next
                 
-                'Œ‹‡‚µ‚Ä‚¢‚éƒZƒ‹‚Ì“à—e‚Ì•û‚ª‘å‚«‚¢ê‡
+                'çµåˆã—ã¦ã„ã‚‹ã‚»ãƒ«ã®å†…å®¹ã®æ–¹ãŒå¤§ãã„å ´åˆ
                 If lngLen > lngSize Then
                 
                     lngSa = (lngLen - lngSize) \ mudtGrid(lngIdxRow, lngIdxCol).ColSpan
                 
-                    'Œ‹‡ƒZƒ‹‚ª•\¦‚³‚ê‚é‚æ‚¤‚ÉŠeƒZƒ‹‚ÉŠ„‚èU‚é
+                    'çµåˆã‚»ãƒ«ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«å„ã‚»ãƒ«ã«å‰²ã‚ŠæŒ¯ã‚‹
                     For i = 1 To mudtGrid(lngIdxRow, lngIdxCol).RowSpan
                         mlngHeight(lngIdxRow + i - 1) = mlngHeight(lngIdxRow + i - 1) + lngSa
                     Next
@@ -391,14 +391,14 @@ Private Sub kantanLineRun()
     
     
     
-    '•\‚Ì‚‚³‚ğ‹‚ß‚éB
+    'è¡¨ã®é«˜ã•ã‚’æ±‚ã‚ã‚‹ã€‚
     mlngHeightMax = 0
 
     For lngIdxRow = 1 To mlngRow
         mlngHeightMax = mlngHeightMax + mlngHeight(lngIdxRow)
     Next
     
-    'Œrü‚Ìì¬
+    'ç½«ç·šã®ä½œæˆ
     Dim strGrid As String
     strGrid = drawGridData()
     
@@ -410,7 +410,7 @@ Private Sub kantanLineRun()
     
 End Sub
 '--------------------------------------------------------------
-'@Œrü‚Ìì¬
+'ã€€ç½«ç·šã®ä½œæˆ
 '--------------------------------------------------------------
 Private Function drawGridData() As String
 
@@ -432,7 +432,7 @@ Private Function drawGridData() As String
     
     lngLineCount = 0
     
-    '‚·‚×‚Ä‚Ìs”‚ğ‹‚ß‚éB
+    'ã™ã¹ã¦ã®è¡Œæ•°ã‚’æ±‚ã‚ã‚‹ã€‚
     For lngIdxRow = 1 To mlngRow
         lngLineCount = lngLineCount + mlngHeight(lngIdxRow)
     Next
@@ -445,26 +445,26 @@ Private Function drawGridData() As String
 
     ReDim bytGrid(1 To lngLineCount, 1 To lngColCount)
 
-    'ƒXƒy[ƒX‚Å‰Šú‰»
+    'ã‚¹ãƒšãƒ¼ã‚¹ã§åˆæœŸåŒ–
     For lngIdxRow = 1 To lngLineCount
         For lngIdxCol = 1 To lngColCount
             bytGrid(lngIdxRow, lngIdxCol) = &H20
         Next
     Next
 
-    'Œ‹‡ƒZƒ‹‚Ì“à‘¤‚Ìü‚ğƒNƒŠƒA‚·‚éB
+    'çµåˆã‚»ãƒ«ã®å†…å´ã®ç·šã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
     clearInsideLine
     
-    'üí‚ğŒˆ’è‚·‚éB
+    'ç·šç¨®ã‚’æ±ºå®šã™ã‚‹ã€‚
     checkWeight
 
     '--------------------------------------------------------------
-    '@Œrü‚Ì•`‰æ
+    'ã€€ç½«ç·šã®æç”»
     '--------------------------------------------------------------
     lngLine = 1
     For lngIdxRow = 1 To mlngRow
 
-        'ãü
+        'ä¸Šç·š
         strGrid = ""
         For lngIdxCol = 1 To mlngCol
 
@@ -488,7 +488,7 @@ Private Function drawGridData() As String
         Call setByte(strGrid, bytGrid(), lngLine, 1)
         lngLine = lngLine + 1
 
-        '’†g
+        'ä¸­èº«
         For lngIdxHeight = 1 To mlngHeight(lngIdxRow)
             strGrid = ""
             For lngIdxCol = 1 To mlngCol
@@ -506,7 +506,7 @@ Private Function drawGridData() As String
             lngLine = lngLine + 1
         Next
         
-        '‰ºü
+        'ä¸‹ç·š
         If lngIdxRow = mlngRow Then
             strGrid = ""
             For lngIdxCol = 1 To mlngCol
@@ -534,12 +534,12 @@ Private Function drawGridData() As String
     Next
 
     '--------------------------------------------------------------
-    '@’l‚Ì•`‰æ
+    'ã€€å€¤ã®æç”»
     '--------------------------------------------------------------
 '    lngLine = 1
 '    For lngIdxRow = 1 To mlngRow
 '
-'        'Œrü•ª
+'        'ç½«ç·šåˆ†
 '        lngLine = lngLine + 1
 '
 '        For lngIdxHeight = 1 To mlngHeight(lngIdxRow)
@@ -548,7 +548,7 @@ Private Function drawGridData() As String
 '            For lngIdxCol = 1 To mlngCol
 '
 '                Dim lngShift As Long
-'                '˜AŒ‹ƒZƒ‹‚Ìê‡
+'                'é€£çµã‚»ãƒ«ã®å ´åˆ
 '                If mudtGrid(lngIdxRow, lngIdxCol).RowSpan > 1 Then
 '
 '                    Dim lngHeight As Long
@@ -579,7 +579,7 @@ Private Function drawGridData() As String
 '                        For i = 0 To mudtGrid(lngIdxRow, lngIdxCol).ColSpan - 1
 '                            lngSize = lngSize + mlngWidth(lngIdxCol + i)
 '                        Next
-'                        'Œrü•ª‚ğƒvƒ‰ƒX
+'                        'ç½«ç·šåˆ†ã‚’ãƒ—ãƒ©ã‚¹
 '                        lngSize = lngSize + (mudtGrid(lngIdxRow, lngIdxCol).ColSpan - 1) * 2
 '                        strGrid = setAlign(mudtGrid(lngIdxRow, lngIdxCol).Text(lngIdxHeight), lngSize, mudtGrid(lngIdxRow, lngIdxCol).Align)
 '
@@ -603,7 +603,7 @@ Private Function drawGridData() As String
     lngLine = 1
     For lngIdxRow = 1 To mlngRow
 
-        'Œrü•ª
+        'ç½«ç·šåˆ†
         lngLine = lngLine + 1
 
 
@@ -614,7 +614,7 @@ Private Function drawGridData() As String
             For lngTextCount = 1 To mudtGrid(lngIdxRow, lngIdxCol).TextCount
 
                 Dim lngShift As Long
-                '˜AŒ‹ƒZƒ‹‚Ìê‡
+                'é€£çµã‚»ãƒ«ã®å ´åˆ
                 If mudtGrid(lngIdxRow, lngIdxCol).RowSpan > 1 Then
 
                     Dim lngHeight As Long
@@ -648,7 +648,7 @@ Private Function drawGridData() As String
                     For i = 0 To mudtGrid(lngIdxRow, lngIdxCol).ColSpan - 1
                         lngSize = lngSize + mlngWidth(lngIdxCol + i)
                     Next
-                    'Œrü•ª‚ğƒvƒ‰ƒX
+                    'ç½«ç·šåˆ†ã‚’ãƒ—ãƒ©ã‚¹
                     lngSize = lngSize + (mudtGrid(lngIdxRow, lngIdxCol).ColSpan - 1) * 2
                     strGrid = setAlign(mudtGrid(lngIdxRow, lngIdxCol).Text(lngTextCount), lngSize, mudtGrid(lngIdxRow, lngIdxCol).Align)
 
@@ -685,7 +685,7 @@ Private Function drawGridData() As String
 
 
     '--------------------------------------------------------------
-    '@•¶š—ñ‚Ì‘g‚İ—§‚Ä
+    'ã€€æ–‡å­—åˆ—ã®çµ„ã¿ç«‹ã¦
     '--------------------------------------------------------------
     Dim strBuf As String
     strClipBoard = ""
@@ -701,7 +701,7 @@ Private Function drawGridData() As String
 
 End Function
 '--------------------------------------------------------------
-'@•`‰æŒ…‚Ìæ“¾
+'ã€€æç”»æ¡ã®å–å¾—
 '--------------------------------------------------------------
 Private Function getPos(ByVal lngIdxCol As Long) As Long
 
@@ -717,7 +717,7 @@ Private Function getPos(ByVal lngIdxCol As Long) As Long
 
 End Function
 '--------------------------------------------------------------
-'@•¶š—ñ‚ğƒoƒCƒgŒ^”z—ñ‚Éİ’è
+'ã€€æ–‡å­—åˆ—ã‚’ãƒã‚¤ãƒˆå‹é…åˆ—ã«è¨­å®š
 '--------------------------------------------------------------
 Private Sub setByte(ByVal strBuf As String, ByRef bytBuf() As Byte, ByVal lngLine As Long, ByVal lngPos As Long)
 
@@ -733,7 +733,7 @@ Private Sub setByte(ByVal strBuf As String, ByRef bytBuf() As Byte, ByVal lngLin
     lngStart = 1
     lngEnd = LenB(strSjis)
     
-    '•K‚¸‚QƒoƒCƒg‚¸‚Âİ’è
+    'å¿…ãšï¼’ãƒã‚¤ãƒˆãšã¤è¨­å®š
     If lngEnd Mod 2 = 1 Then
         strSjis = strSjis & ChrB(&H20)
         lngEnd = lngEnd + 1
@@ -743,7 +743,7 @@ Private Sub setByte(ByVal strBuf As String, ByRef bytBuf() As Byte, ByVal lngLin
     
     For lngIdx = lngStart To lngEnd
     
-        '”z—ñˆÈã‚Ìê‡İ’è‚µ‚È‚¢
+        'é…åˆ—ä»¥ä¸Šã®å ´åˆè¨­å®šã—ãªã„
         If lngPos > lngTerm Then
             Exit For
         End If
@@ -755,7 +755,7 @@ Private Sub setByte(ByVal strBuf As String, ByRef bytBuf() As Byte, ByVal lngLin
 
 End Sub
 '--------------------------------------------------------------
-'@•¶š‚Ì”z’u
+'ã€€æ–‡å­—ã®é…ç½®
 '--------------------------------------------------------------
 Private Function setAlign(ByVal strValue As String, ByVal lngSize As Long, ByVal lngAlign As Long) As String
 
@@ -792,7 +792,7 @@ Private Function setAlign(ByVal strValue As String, ByVal lngSize As Long, ByVal
 
 End Function
 '--------------------------------------------------------------
-'@ŠeƒZƒ‹‚Ì“à—e‚ğƒ[ƒNƒGƒŠƒA‚É•Û
+'ã€€å„ã‚»ãƒ«ã®å†…å®¹ã‚’ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã«ä¿æŒ
 '--------------------------------------------------------------
 Private Sub setGridData()
 
@@ -819,7 +819,7 @@ Private Sub setGridData()
             strSrc = Selection(lngIdxRow, lngIdxCol).Text
             lngNewSize = mlngWidth(lngIdxCol)
             
-            'ƒ}[ƒWƒZƒ‹‚Ìê‡
+            'ãƒãƒ¼ã‚¸ã‚»ãƒ«ã®å ´åˆ
             If Selection(lngIdxRow, lngIdxCol).MergeCells Then
                 If Selection(lngIdxRow, lngIdxCol).MergeArea(1, 1).Address = Selection(lngIdxRow, lngIdxCol).Address Then
                     lngNewSize = 0
@@ -833,25 +833,25 @@ Private Sub setGridData()
                 lngNewSize = C_DEFAULT_COL
             End If
             
-            'Šeí‘®«İ’è
-'b’è ‚Æ‚è‚ ‚¦‚¸‘S•”Ü‚è•Ô‚·B
+            'å„ç¨®å±æ€§è¨­å®š
+'æš«å®š ã¨ã‚Šã‚ãˆãšå…¨éƒ¨æŠ˜ã‚Šè¿”ã™ã€‚
 '            mudtGrid(lngIdxRow, lngIdxCol).WrapText = Selection(lngIdxRow, lngIdxCol).WrapText
             mudtGrid(lngIdxRow, lngIdxCol).WrapText = True
             
-            '‰¡ˆÊ’u‚ª•W€ˆÈŠO‚Å‚ ‚ê‚Î‚»‚ê‚É‚ ‚í‚¹‚é
+            'æ¨ªä½ç½®ãŒæ¨™æº–ä»¥å¤–ã§ã‚ã‚Œã°ãã‚Œã«ã‚ã‚ã›ã‚‹
             Select Case Selection(lngIdxRow, lngIdxCol).HorizontalAlignment
                 Case xlGeneral
-                    '‘®‚ª•¶š—ñ‚È‚ç¶Šñ‚¹
+                    'æ›¸å¼ãŒæ–‡å­—åˆ—ãªã‚‰å·¦å¯„ã›
                     Select Case True
                         Case Selection(lngIdxRow, lngIdxCol).NumberFormatLocal = "@"
                             mudtGrid(lngIdxRow, lngIdxCol).Align = xlLeft
                             
                         Case IsNumeric(Selection(lngIdxRow, lngIdxCol).value)
-                            '”’l‚Ìê‡A‰EŠñ‚¹
+                            'æ•°å€¤ã®å ´åˆã€å³å¯„ã›
                             mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
                         
                         Case IsDate(Selection(lngIdxRow, lngIdxCol).value)
-                            '“ú•t‚Ìê‡A‰EŠñ‚¹
+                            'æ—¥ä»˜ã®å ´åˆã€å³å¯„ã›
                             mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
                             
                         Case Else
@@ -859,18 +859,18 @@ Private Sub setGridData()
                     End Select
                     
                 Case xlFill, xlJustify
-                    'ŒJ‚è•Ô‚µ,—¼’[‘µ‚¦
+                    'ç¹°ã‚Šè¿”ã—,ä¸¡ç«¯æƒãˆ
                     mudtGrid(lngIdxRow, lngIdxCol).Align = xlLeft
                 
                 Case xlCenterAcrossSelection, xlDistributed
-                    '‘I‘ğ”ÍˆÍ“à‚Å’†‰›, ‹Ï“™Š„‚è•t‚¯
+                    'é¸æŠç¯„å›²å†…ã§ä¸­å¤®, å‡ç­‰å‰²ã‚Šä»˜ã‘
                     mudtGrid(lngIdxRow, lngIdxCol).Align = xlCenter
                 
                 Case Else
                     mudtGrid(lngIdxRow, lngIdxCol).Align = Selection(lngIdxRow, lngIdxCol).HorizontalAlignment
             End Select
             
-            'cˆÊ’u
+            'ç¸¦ä½ç½®
             Select Case Selection(lngIdxRow, lngIdxCol).VerticalAlignment
                 Case xlJustify
                     mudtGrid(lngIdxRow, lngIdxCol).vAlign = xlTop
@@ -882,11 +882,11 @@ Private Sub setGridData()
             
             Select Case True
                 Case IsNumeric(Selection(lngIdxRow, lngIdxCol).Text) And mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
-                    '”’l‚Ìê‡Aword wrap‚µ‚È‚¢
+                    'æ•°å€¤ã®å ´åˆã€word wrapã—ãªã„
                     mudtGrid(lngIdxRow, lngIdxCol).NoWrapField = True
                 
                 Case IsDate(Selection(lngIdxRow, lngIdxCol).value) And mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
-                    '“ú•t‚Ìê‡Aword wrap‚µ‚È‚¢
+                    'æ—¥ä»˜ã®å ´åˆã€word wrapã—ãªã„
                     mudtGrid(lngIdxRow, lngIdxCol).NoWrapField = True
             
                 Case Else
@@ -905,31 +905,31 @@ Private Sub setGridData()
                 
                 Select Case True
                     Case strChr = vbCrLf
-                        '‰üsƒR[ƒh‚Ìê‡
+                        'æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã®å ´åˆ
                         lngLine = lngLine + 1
                         ReDim Preserve strLine(1 To lngLine)
                         strLine(lngLine) = strBuf
                 
-                        '‰üsƒR[ƒh‚ğÌ‚Ä‚é
+                        'æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’æ¨ã¦ã‚‹
                         strBuf = ""
                 
                     Case strChr = vbLf Or strChr = vbCr
-                        '‰üsƒR[ƒh‚Ìê‡
+                        'æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã®å ´åˆ
                         lngLine = lngLine + 1
                         ReDim Preserve strLine(1 To lngLine)
                         strLine(lngLine) = strBuf
                 
-                        '‰üsƒR[ƒh‚ğÌ‚Ä‚é
+                        'æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’æ¨ã¦ã‚‹
                         strBuf = ""
                 
                     Case rlxAscLen(strBuf & strChr) > lngNewSize And mudtGrid(lngIdxRow, lngIdxCol).WrapText = True And mudtGrid(lngIdxRow, lngIdxCol).NoWrapField = False
 '                    Case rlxAscLen(strBuf & strChr)
-                        '•‚ğ’´‚¦‚éê‡
+                        'å¹…ã‚’è¶…ãˆã‚‹å ´åˆ
                         lngLine = lngLine + 1
                         ReDim Preserve strLine(1 To lngLine)
                         strLine(lngLine) = strBuf
                         
-                        'ƒoƒbƒtƒ@‚ğ‰Šú‰»
+                        'ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–
                         strBuf = strChr
                 
                     Case Else
@@ -972,20 +972,20 @@ Private Sub setGridData()
             
 '            mudtGrid(lngIdxRow, lngIdxCol).WrapText = Selection(lngIdxRow, lngIdxCol).WrapText
 '
-'            '‰¡ˆÊ’u‚ª•W€ˆÈŠO‚Å‚ ‚ê‚Î‚»‚ê‚É‚ ‚í‚¹‚é
+'            'æ¨ªä½ç½®ãŒæ¨™æº–ä»¥å¤–ã§ã‚ã‚Œã°ãã‚Œã«ã‚ã‚ã›ã‚‹
 '            Select Case Selection(lngIdxRow, lngIdxCol).HorizontalAlignment
 '                Case xlGeneral
-'                    '‘®‚ª•¶š—ñ‚È‚ç¶Šñ‚¹
+'                    'æ›¸å¼ãŒæ–‡å­—åˆ—ãªã‚‰å·¦å¯„ã›
 '                    Select Case True
 '                        Case Selection(lngIdxRow, lngIdxCol).NumberFormatLocal = "@"
 '                            mudtGrid(lngIdxRow, lngIdxCol).Align = xlLeft
 '
 '                        Case IsNumeric(Selection(lngIdxRow, lngIdxCol).Value)
-'                            '”’l‚Ìê‡A‰EŠñ‚¹
+'                            'æ•°å€¤ã®å ´åˆã€å³å¯„ã›
 '                            mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
 '
 '                        Case IsDate(Selection(lngIdxRow, lngIdxCol).Value)
-'                            '“ú•t‚Ìê‡A‰EŠñ‚¹
+'                            'æ—¥ä»˜ã®å ´åˆã€å³å¯„ã›
 '                            mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
 '
 '                        Case Else
@@ -993,18 +993,18 @@ Private Sub setGridData()
 '                    End Select
 '
 '                Case xlFill, xlJustify
-'                    'ŒJ‚è•Ô‚µ,—¼’[‘µ‚¦
+'                    'ç¹°ã‚Šè¿”ã—,ä¸¡ç«¯æƒãˆ
 '                    mudtGrid(lngIdxRow, lngIdxCol).Align = xlLeft
 '
 '                Case xlCenterAcrossSelection, xlDistributed
-'                    '‘I‘ğ”ÍˆÍ“à‚Å’†‰›, ‹Ï“™Š„‚è•t‚¯
+'                    'é¸æŠç¯„å›²å†…ã§ä¸­å¤®, å‡ç­‰å‰²ã‚Šä»˜ã‘
 '                    mudtGrid(lngIdxRow, lngIdxCol).Align = xlCenter
 '
 '                Case Else
 '                    mudtGrid(lngIdxRow, lngIdxCol).Align = Selection(lngIdxRow, lngIdxCol).HorizontalAlignment
 '            End Select
 '
-'            'cˆÊ’u
+'            'ç¸¦ä½ç½®
 '            Select Case Selection(lngIdxRow, lngIdxCol).VerticalAlignment
 '                Case xlJustify
 '                    mudtGrid(lngIdxRow, lngIdxCol).vAlign = xlTop
@@ -1019,31 +1019,31 @@ Private Sub setGridData()
     
 End Sub
 '--------------------------------------------------------------
-'@üíiŒ`j‚Ì”»’è
+'ã€€ç·šç¨®ï¼ˆå½¢ï¼‰ã®åˆ¤å®š
 '--------------------------------------------------------------
 Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, ByVal lngSquare As Long) As String
 
     Dim lngResult As Long
     Dim strResult As String
 
-    'ˆÈ‰ºAƒRƒƒ“ƒg‚É”Ô†‚ª‚ ‚é‚à‚Ì‚Í•\‚ÌêŠ‚ğ•\‚·
+    'ä»¥ä¸‹ã€ã‚³ãƒ¡ãƒ³ãƒˆã«ç•ªå·ãŒã‚ã‚‹ã‚‚ã®ã¯è¡¨ã®å ´æ‰€ã‚’è¡¨ã™
 
-    '‚P„ ‚Q
-    '„Ÿ„©„Ÿ
-    '‚R„ ‚S
+    'ï¼‘â”‚ï¼’
+    'â”€â”¼â”€
+    'ï¼“â”‚ï¼”
 
 
     Select Case lngSquare
         Case C_SQUARE_TOP_LEFT
-            '¶ã
+            'å·¦ä¸Š
 
-            '¶ã„ ã
-            '@„Ÿ„©„Ÿ
-            '@¶„ ›
+            'å·¦ä¸Šâ”‚ä¸Š
+            'ã€€â”€â”¼â”€
+            'ã€€å·¦â”‚â—‹
 
 
             If lngIdxRow <> 1 And lngIdxCol <> 1 Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(-1, -1)  '‘I‘ğƒZƒ‹‚Ì¶ãi‚Pj
+                With Selection(lngIdxRow, lngIdxCol).Offset(-1, -1)  'é¸æŠã‚»ãƒ«ã®å·¦ä¸Šï¼ˆï¼‘ï¼‰
     
                     If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1068,7 +1068,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End If
 
             If lngIdxRow <> 1 Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(-1, 0)   '‘I‘ğƒZƒ‹‚Ìãi‚Qj
+                With Selection(lngIdxRow, lngIdxCol).Offset(-1, 0)   'é¸æŠã‚»ãƒ«ã®ä¸Šï¼ˆï¼’ï¼‰
     
                     If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1092,7 +1092,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End If
 
             If lngIdxCol <> 1 Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(0, -1)   '‘I‘ğƒZƒ‹‚Ì¶i‚Rj
+                With Selection(lngIdxRow, lngIdxCol).Offset(0, -1)   'é¸æŠã‚»ãƒ«ã®å·¦ï¼ˆï¼“ï¼‰
     
                     If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1115,7 +1115,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
                 End With
             End If
 
-            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    '‘I‘ğƒZƒ‹i‚S)
+            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    'é¸æŠã‚»ãƒ«ï¼ˆï¼”)
 
                 If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1138,13 +1138,13 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End With
 
         Case C_SQUARE_TOP_MIDDLE
-            'ã’†
+            'ä¸Šä¸­
 
-            'ã
-            '„Ÿ
-            '›
+            'ä¸Š
+            'â”€
+            'â—‹
             If lngIdxRow <> 1 Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(-1, 0)   '‘I‘ğƒZƒ‹‚Ìãi‚Qj
+                With Selection(lngIdxRow, lngIdxCol).Offset(-1, 0)   'é¸æŠã‚»ãƒ«ã®ä¸Šï¼ˆï¼’ï¼‰
     
                     If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1158,7 +1158,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
                 End With
             End If
 
-            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    '‘I‘ğƒZƒ‹i‚S)
+            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    'é¸æŠã‚»ãƒ«ï¼ˆï¼”)
 
                 If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1172,13 +1172,13 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End With
 
         Case C_SQUARE_TOP_RIGHT
-            '‰Eã
+            'å³ä¸Š
 
-            '@ã„ ‰Eã
-            '@„Ÿ„©„Ÿ
-            '@›„ ‰E
+            'ã€€ä¸Šâ”‚å³ä¸Š
+            'ã€€â”€â”¼â”€
+            'ã€€â—‹â”‚å³
             If lngIdxRow <> 1 Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(-1, 0)   'ãi‚Pj
+                With Selection(lngIdxRow, lngIdxCol).Offset(-1, 0)   'ä¸Šï¼ˆï¼‘ï¼‰
     
                     If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1202,7 +1202,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End If
             
             If lngIdxRow <> 1 And lngIdxCol <> mlngCol Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(-1, 1)  '‰Eãi‚Qj
+                With Selection(lngIdxRow, lngIdxCol).Offset(-1, 1)  'å³ä¸Šï¼ˆï¼’ï¼‰
     
                     If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1225,7 +1225,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
                 End With
             End If
 
-            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    '‘I‘ğƒZƒ‹i‚Rj
+            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    'é¸æŠã‚»ãƒ«ï¼ˆï¼“ï¼‰
 
                 If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1248,7 +1248,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End With
 
             If lngIdxCol <> mlngCol Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(0, 1)    '‰Ei‚Sj
+                With Selection(lngIdxRow, lngIdxCol).Offset(0, 1)    'å³ï¼ˆï¼”ï¼‰
         
                     If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1273,11 +1273,11 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
 
         Case C_SQUARE_LEFT_MIDDLE
 
-            '¶’†
+            'å·¦ä¸­
 
-            '@¶„ ›
+            'ã€€å·¦â”‚â—‹
             If lngIdxCol <> 1 Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(0, -1)   '¶i‚Pj
+                With Selection(lngIdxRow, lngIdxCol).Offset(0, -1)   'å·¦ï¼ˆï¼‘ï¼‰
     
                     If .Borders(xlEdgeRight).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeRight).Weight
@@ -1291,7 +1291,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
                 End With
             End If
 
-            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    '‘I‘ğƒZƒ‹i‚Qj
+            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    'é¸æŠã‚»ãƒ«ï¼ˆï¼’ï¼‰
 
                 If .Borders(xlEdgeLeft).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeLeft).Weight
@@ -1306,11 +1306,11 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
 
         Case C_SQUARE_RIGHT_MIDDLE
 
-            '‰E’†
+            'å³ä¸­
 
-            '@›„ ‰E
+            'ã€€â—‹â”‚å³
             If lngIdxCol <> mlngCol Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(0, 1)   '‰Ei‚Pj
+                With Selection(lngIdxRow, lngIdxCol).Offset(0, 1)   'å³ï¼ˆï¼‘ï¼‰
     
                     If .Borders(xlEdgeLeft).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeLeft).Weight
@@ -1324,7 +1324,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
                 End With
             End If
 
-            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    '‘I‘ğƒZƒ‹i‚Qj
+            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    'é¸æŠã‚»ãƒ«ï¼ˆï¼’ï¼‰
 
                 If .Borders(xlEdgeRight).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeRight).Weight
@@ -1339,13 +1339,13 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
 
         Case C_SQUARE_BOTTOM_LEFT
 
-            '¶‰º
+            'å·¦ä¸‹
 
-            '@¶„ ›
-            '@„Ÿ„©„Ÿ
-            '¶‰º„ ‰º
+            'ã€€å·¦â”‚â—‹
+            'ã€€â”€â”¼â”€
+            'å·¦ä¸‹â”‚ä¸‹
             If lngIdxCol <> 1 Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(0, -1)   '¶i‚Pj
+                With Selection(lngIdxRow, lngIdxCol).Offset(0, -1)   'å·¦ï¼ˆï¼‘ï¼‰
     
                     If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1368,7 +1368,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
                 End With
             End If
 
-            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    '‘I‘ğƒZƒ‹i‚Qj
+            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    'é¸æŠã‚»ãƒ«ï¼ˆï¼’ï¼‰
 
                 If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1391,7 +1391,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End With
 
             If lngIdxRow <> mlngRow And lngIdxCol <> 1 Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(1, -1)   '¶‰ºi‚Rj
+                With Selection(lngIdxRow, lngIdxCol).Offset(1, -1)   'å·¦ä¸‹ï¼ˆï¼“ï¼‰
     
                     If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1415,7 +1415,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End If
 
             If lngIdxRow <> mlngRow Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(1, 0)    '‰ºi‚Sj
+                With Selection(lngIdxRow, lngIdxCol).Offset(1, 0)    'ä¸‹ï¼ˆï¼”ï¼‰
     
                     If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1440,12 +1440,12 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
 
         Case C_SQUARE_BOTTOM_MIDDLE
 
-            '‰º’†
+            'ä¸‹ä¸­
 
-            '›
-            '„Ÿ
-            '‰º
-            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    '‘I‘ğƒZƒ‹i‚Qj
+            'â—‹
+            'â”€
+            'ä¸‹
+            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    'é¸æŠã‚»ãƒ«ï¼ˆï¼’ï¼‰
 
                 If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1459,7 +1459,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End With
 
             If lngIdxRow <> mlngRow Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(1, 0)    '‰ºi‚Sj
+                With Selection(lngIdxRow, lngIdxCol).Offset(1, 0)    'ä¸‹ï¼ˆï¼”ï¼‰
     
                     If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1474,12 +1474,12 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End If
 
         Case C_SQUARE_BOTTOM_RIGHT
-            '‰E‰º
+            'å³ä¸‹
 
-            '@›„ ‰E
-            '@„Ÿ„©„Ÿ
-            '@‰º„ ‰E‰º
-            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    '‘I‘ğƒZƒ‹i‚Pj
+            'ã€€â—‹â”‚å³
+            'ã€€â”€â”¼â”€
+            'ã€€ä¸‹â”‚å³ä¸‹
+            With Selection(lngIdxRow, lngIdxCol).Offset(0, 0)    'é¸æŠã‚»ãƒ«ï¼ˆï¼‘ï¼‰
 
                 If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1502,7 +1502,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End With
 
             If lngIdxCol <> mlngCol Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(0, 1)   '‰Ei‚Qj
+                With Selection(lngIdxRow, lngIdxCol).Offset(0, 1)   'å³ï¼ˆï¼’ï¼‰
     
                     If .Borders(xlEdgeBottom).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeBottom).Weight
@@ -1526,7 +1526,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End If
 
             If lngIdxRow <> mlngRow Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(1, 0)    '‰ºi‚Rj
+                With Selection(lngIdxRow, lngIdxCol).Offset(1, 0)    'ä¸‹ï¼ˆï¼“ï¼‰
     
                     If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1550,7 +1550,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
             End If
 
             If lngIdxRow <> mlngRow And lngIdxCol <> mlngCol Then
-                With Selection(lngIdxRow, lngIdxCol).Offset(1, 1)   '‰E‰º(‚S)
+                With Selection(lngIdxRow, lngIdxCol).Offset(1, 1)   'å³ä¸‹(ï¼”)
     
                     If .Borders(xlEdgeTop).LineStyle <> xlNone Then
                         Select Case .Borders(xlEdgeTop).Weight
@@ -1576,105 +1576,105 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
 
     Select Case lngResult
         Case C_BORDER_LR, C_BORDER_LEFT, C_BORDER_RIGHT
-            strResult = "„Ÿ"
+            strResult = "â”€"
 
         Case C_BORDER_TB, C_BORDER_TOP, C_BORDER_BOTTOM
-            strResult = "„ "
+            strResult = "â”‚"
 
         Case C_BORDER_TL
-            strResult = "„£"
+            strResult = "â”˜"
 
         Case C_BORDER_TR
-            strResult = "„¤"
+            strResult = "â””"
 
         Case C_BORDER_BR
-            strResult = "„¡"
+            strResult = "â”Œ"
 
         Case C_BORDER_BL
-            strResult = "„¢"
+            strResult = "â”"
 
         Case C_BORDER_TBR
-            strResult = "„¥"
+            strResult = "â”œ"
 
         Case C_BORDER_BLT
-            strResult = "„¦"
+            strResult = "â”¬"
 
         Case C_BORDER_TBL
-            strResult = "„§"
+            strResult = "â”¤"
 
         Case C_BORDER_TLR
-            strResult = "„¨"
+            strResult = "â”´"
 
         Case C_BORDER_CROSS
-            strResult = "„©"
+            strResult = "â”¼"
             
             
         Case C_BORDER_LR_BOLD, C_BORDER_LEFT_BOLD, C_BORDER_RIGHT_BOLD
-            strResult = "„ª"
+            strResult = "â”"
 
         Case C_BORDER_TB_BOLD, C_BORDER_TOP_BOLD, C_BORDER_BOTTOM_BOLD
-            strResult = "„«"
+            strResult = "â”ƒ"
 
         Case C_BORDER_TL_BOLD, C_BORDER_TL_BH, C_BORDER_TL_HB
-            strResult = "„®"
+            strResult = "â”›"
 
         Case C_BORDER_TR_BOLD, C_BORDER_TR_BH, C_BORDER_TR_HB
-            strResult = "„¯"
+            strResult = "â”—"
 
         Case C_BORDER_BR_BOLD, C_BORDER_BR_BH, C_BORDER_BR_HB
-            strResult = "„¬"
+            strResult = "â”"
 
         Case C_BORDER_BL_BOLD, C_BORDER_BL_BH, C_BORDER_BL_HB
-            strResult = "„­"
+            strResult = "â”“"
 
         Case C_BORDER_TBR_BOLD
-            strResult = "„°"
+            strResult = "â”£"
 
         Case C_BORDER_BLT_BOLD
-            strResult = "„±"
+            strResult = "â”³"
 
         Case C_BORDER_TBL_BOLD
-            strResult = "„²"
+            strResult = "â”«"
 
         Case C_BORDER_TLR_BOLD, C_BORDER_TLR_TLBOLD
-            strResult = "„³"
+            strResult = "â”»"
 
         Case C_BORDER_CROSS_BOLD, C_BORDER_CROSS_BOLD_UL, C_BORDER_CROSS_RB, C_BORDER_CROSS_UB, C_BORDER_CROSS_LB
-            strResult = "„´"
+            strResult = "â•‹"
             
         
         
         Case C_BORDER_TBR_BH
-            strResult = "„µ"
+            strResult = "â” "
 
         Case C_BORDER_BLT_BH
-            strResult = "„¶"
+            strResult = "â”¯"
 
         Case C_BORDER_TBL_BH
-            strResult = "„·"
+            strResult = "â”¨"
 
         Case C_BORDER_TLR_BH
-            strResult = "„¸"
+            strResult = "â”·"
 
         Case C_BORDER_CROSS_BH
-            strResult = "„¹"
+            strResult = "â”¿"
             
         
         
         Case C_BORDER_TBR_HB
-            strResult = "„º"
+            strResult = "â”"
 
         Case C_BORDER_BLT_HB
-            strResult = "„»"
+            strResult = "â”°"
 
         Case C_BORDER_TBL_HB
-            strResult = "„¼"
+            strResult = "â”¥"
 
         Case C_BORDER_TLR_HB
-            strResult = "„½"
+            strResult = "â”¸"
 
         Case C_BORDER_CROSS_HB
-            strResult = "„¾"
+            strResult = "â•‚"
             
         
         
@@ -1690,7 +1690,7 @@ Private Function getLineData(ByVal lngIdxRow As Long, ByVal lngIdxCol As Long, B
 
 End Function
 '--------------------------------------------------------------
-'@üíi‘¾‚³j‚Ì”»’è
+'ã€€ç·šç¨®ï¼ˆå¤ªã•ï¼‰ã®åˆ¤å®š
 '--------------------------------------------------------------
 Private Sub checkWeight()
 
@@ -1835,7 +1835,7 @@ Private Sub checkWeight()
 
 End Sub
 '--------------------------------------------------------------
-'@Œ‹‡ƒZƒ‹‚Ì“à‘¤‚Ìü‚ğƒNƒŠƒA‚·‚éB
+'ã€€çµåˆã‚»ãƒ«ã®å†…å´ã®ç·šã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
 '--------------------------------------------------------------
 Private Sub clearInsideLine()
 
@@ -1895,12 +1895,12 @@ Private Sub cmdRun_Click()
         mlngMinKeta = (Selection.Columns.count + 1) * 2 + (Selection.Columns.count * 2)
     
         If mlngMinKeta > lngKeta Then
-            MsgBox CStr(mlngMinKeta) & "Œ…ˆÈ‰º‚É‚Íw’è‚Å‚«‚Ü‚¹‚ñB" & "‚±‚êˆÈã•\‚ğ¬‚³‚­‚·‚éê‡‚Í‘I‘ğ—ñ‚ğŒ¸‚ç‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+            MsgBox CStr(mlngMinKeta) & "æ¡ä»¥ä¸‹ã«ã¯æŒ‡å®šã§ãã¾ã›ã‚“ã€‚" & "ã“ã‚Œä»¥ä¸Šè¡¨ã‚’å°ã•ãã™ã‚‹å ´åˆã¯é¸æŠåˆ—ã‚’æ¸›ã‚‰ã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
             Exit Sub
         End If
     
         If lngKeta Mod 2 = 1 Then
-            MsgBox "Œ…‚É‚Í‹ô”‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+            MsgBox "æ¡ã«ã¯å¶æ•°ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
             Exit Sub
         End If
     

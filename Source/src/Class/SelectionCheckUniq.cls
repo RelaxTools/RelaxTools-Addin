@@ -38,13 +38,13 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' ƒƒ“ƒo•Ï”éŒ¾•”(UOC)
+' ãƒ¡ãƒ³ãƒå¤‰æ•°å®£è¨€éƒ¨(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private mlngMax As Long
 Private mlngMatch As Long
@@ -52,14 +52,14 @@ Private mlngMatch As Long
 Private mobjCol As Object
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -73,7 +73,7 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘Oˆ—(UOC)
+' å‰å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
 
@@ -93,7 +93,7 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' Žåˆ—(UOC)
+' ä¸»å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
 
@@ -108,7 +108,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         Exit Sub
     End If
     
-    'ƒRƒŒƒNƒVƒ‡ƒ““à‚Éˆê’v‚·‚é‚à‚Ì‚ª‚ ‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+    'ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã«ä¸€è‡´ã™ã‚‹ã‚‚ã®ãŒã‚ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
     blnMatch = False
 
     Set c = Nothing
@@ -122,7 +122,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         End With
     End If
     
-    'ˆê’v‚·‚é‚à‚Ì‚ª‚P‚Â‚Å‚à‘¶Ý‚µ‚½ê‡
+    'ä¸€è‡´ã™ã‚‹ã‚‚ã®ãŒï¼‘ã¤ã§ã‚‚å­˜åœ¨ã—ãŸå ´åˆ
     If blnMatch Then
         mlngMatch = mlngMatch + 1
         With r.Interior
@@ -130,7 +130,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
             .Pattern = xlSolid
         End With
     Else
-        '‘¶Ý‚µ‚È‚¢ê‡ƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+        'å­˜åœ¨ã—ãªã„å ´åˆã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
         mlngMax = mlngMax + 1
         Call mobjCol.Add(CStr(r.value), r)
     End If
@@ -142,7 +142,7 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' I—¹ˆ—(UOC)
+' çµ‚äº†å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionTerm()
     
@@ -151,9 +151,9 @@ Private Sub SFWork_SelectionTerm()
     Set mobjCol = Nothing
     
     If mlngMatch > 0 Then
-        MsgBox mlngMatch & " ŒÂ ˆê’v‚µ‚Ü‚µ‚½BŠm”F‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox mlngMatch & " å€‹ ä¸€è‡´ã—ã¾ã—ãŸã€‚ç¢ºèªã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
     Else
-        MsgBox "ˆê’v‚·‚é‚à‚Ì‚Í‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½B", vbInformation, C_TITLE
+        MsgBox "ä¸€è‡´ã™ã‚‹ã‚‚ã®ã¯ã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚", vbInformation, C_TITLE
     End If
 
     Exit Sub

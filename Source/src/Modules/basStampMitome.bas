@@ -34,7 +34,7 @@ Option Private Module
 Public Const C_STAMP_MITOME_NORMAL As Long = 1
 Public Const C_STAMP_MITOME_FILE As Long = 2
 '--------------------------------------------------------------
-'@”Fˆóİ’è‰æ–Ê
+'ã€€èªå°è¨­å®šç”»é¢
 '--------------------------------------------------------------
 Sub showMitome()
 
@@ -144,11 +144,11 @@ Public Function editStampMitome(ByRef s As StampMitomeDTO, ByVal lngFormat As Lo
     
 End Function
 '--------------------------------------------------------------
-'@bzƒCƒ[ƒWƒtƒ@ƒCƒ‹ì¬
+'ã€€bzã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 '--------------------------------------------------------------
 Function getImageStampMitome(ByVal Index As Long) As StdPicture
 
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
     Dim col As Collection
     Dim bz As StampMitomeDTO
     
@@ -184,11 +184,11 @@ Public Sub MitomePaste()
 
 End Sub
 '--------------------------------------------------------------
-'@ƒf[ƒ^ˆó“\‚è•t‚¯
+'ã€€ãƒ‡ãƒ¼ã‚¿å°è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub MitomePaste2(Optional ByVal Index As Variant)
 
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
     Dim col As Collection
     Dim s As StampMitomeDTO
     Dim ss As Range
@@ -205,20 +205,20 @@ Sub MitomePaste2(Optional ByVal Index As Variant)
         Case Else
     End Select
 
-    'Index‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+    'IndexãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
     If IsMissing(Index) Then
         Index = 1
     End If
     
     If rlxCheckSelectRange() = False Then
-        MsgBox "‘I‘ğ”ÍˆÍ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "é¸æŠç¯„å›²ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
 
     If GetSetting(C_TITLE, "StampMitome", "Confirm", False) Then
     Else
         If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.count Then
-            If MsgBox("•¡”ƒZƒ‹‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚·B‚·‚×‚Ä‚ÌƒZƒ‹‚É’£‚è•t‚¯‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbQuestion + vbYesNo, C_TITLE) <> vbYes Then
+            If MsgBox("è¤‡æ•°ã‚»ãƒ«é¸æŠã•ã‚Œã¦ã„ã¾ã™ã€‚ã™ã¹ã¦ã®ã‚»ãƒ«ã«å¼µã‚Šä»˜ã‘ã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbQuestion + vbYesNo, C_TITLE) <> vbYes Then
                 Exit Sub
             End If
         End If
@@ -248,9 +248,9 @@ Sub MitomePaste2(Optional ByVal Index As Variant)
     
     For Each ss In Selection
 
-        ''ƒtƒBƒ‹ƒ^‚¨‚æ‚Ñ”ñ•\¦‘ÎôB
+        ''ãƒ•ã‚£ãƒ«ã‚¿ãŠã‚ˆã³éè¡¨ç¤ºå¯¾ç­–ã€‚
         If ss.Rows.Hidden Or ss.Columns.Hidden Then
-            'ƒtƒBƒ‹ƒ^‚Ü‚½‚Í”ñ•\¦‚ÌsE—ñ‚Ìˆ—‚Ís‚í‚È‚¢B
+            'ãƒ•ã‚£ãƒ«ã‚¿ã¾ãŸã¯éè¡¨ç¤ºã®è¡Œãƒ»åˆ—ã®å‡¦ç†ã¯è¡Œã‚ãªã„ã€‚
         Else
 
             If ss.Address = ss.MergeArea(1, 1).Address Then
@@ -293,7 +293,7 @@ Function getRect(rect As String) As Single
 End Function
 
 '--------------------------------------------------------------
-'@ƒŒƒWƒXƒgƒŠİ’è’læ“¾
+'ã€€ãƒ¬ã‚¸ã‚¹ãƒˆãƒªè¨­å®šå€¤å–å¾—
 '--------------------------------------------------------------
 Public Function getPropertyMitome() As Collection
 
@@ -312,8 +312,8 @@ Public Function getPropertyMitome() As Collection
         Set s = New StampMitomeDTO
         
         s.StampType = C_STAMP_MITOME_NORMAL
-        s.Text = "R“c"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Text = "å±±ç”°"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Color = "&H0"
         s.Line = C_STAMP_LINE_SINGLE
         s.Size = "10.5"
@@ -331,8 +331,8 @@ Public Function getPropertyMitome() As Collection
         Set s = New StampMitomeDTO
         
         s.StampType = C_STAMP_MITOME_NORMAL
-        s.Text = "“c’†"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Text = "ç”°ä¸­"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Color = "&HFF"
         s.Line = C_STAMP_LINE_DOUBLE
         s.Size = "10.5"
@@ -350,8 +350,8 @@ Public Function getPropertyMitome() As Collection
         Set s = New StampMitomeDTO
         
         s.StampType = C_STAMP_MITOME_NORMAL
-        s.Text = "Š”®‰ïĞ" & vbCrLf & "“ú–{H‹Æ" & vbCrLf & "Šé‰æ”Vˆó"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Text = "æ ªå¼ä¼šç¤¾" & vbCrLf & "æ—¥æœ¬å·¥æ¥­" & vbCrLf & "ä¼ç”»ä¹‹å°"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Color = "&HFF"
         s.Line = C_STAMP_LINE_BOLD
         s.Size = "30"
@@ -372,8 +372,8 @@ Public Function getPropertyMitome() As Collection
             Set s = New StampMitomeDTO
         
             s.StampType = GetSetting(C_TITLE, "StampMitome", "StampType" & Format$(i, "000"), C_STAMP_MITOME_NORMAL)
-            s.Text = Replace(GetSetting(C_TITLE, "StampMitome", "Text" & Format$(i, "000"), "“c’†"), vbVerticalTab, vbCrLf)
-            s.Font = GetSetting(C_TITLE, "StampMitome", "Font" & Format$(i, "000"), "‚l‚r ƒSƒVƒbƒN")
+            s.Text = Replace(GetSetting(C_TITLE, "StampMitome", "Text" & Format$(i, "000"), "ç”°ä¸­"), vbVerticalTab, vbCrLf)
+            s.Font = GetSetting(C_TITLE, "StampMitome", "Font" & Format$(i, "000"), "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯")
             s.Color = GetSetting(C_TITLE, "StampMitome", "Color" & Format$(i, "000"), "&HFF")
             s.Line = GetSetting(C_TITLE, "StampMitome", "Line" & Format$(i, "000"), C_STAMP_LINE_SINGLE)
             s.Size = GetSetting(C_TITLE, "StampMitome", "Size" & Format$(i, "000"), "15")
@@ -394,7 +394,7 @@ Public Function getPropertyMitome() As Collection
     
 End Function
 '--------------------------------------------------------------
-'@ƒŒƒWƒXƒgƒŠİ’è’læ“¾
+'ã€€ãƒ¬ã‚¸ã‚¹ãƒˆãƒªè¨­å®šå€¤å–å¾—
 '--------------------------------------------------------------
 Public Sub setPropertyMitome(ByRef col As Collection)
 
@@ -442,5 +442,5 @@ Public Sub setPropertyMitome(ByRef col As Collection)
 End Sub
 
 Sub FilePaste()
-    MsgBox "‚±‚Ì‹@”\‚ÍuˆóŠÓv‹@”\‚É“‡‚³‚ê‚Ü‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+    MsgBox "ã“ã®æ©Ÿèƒ½ã¯ã€Œå°é‘‘ã€æ©Ÿèƒ½ã«çµ±åˆã•ã‚Œã¾ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
 End Sub

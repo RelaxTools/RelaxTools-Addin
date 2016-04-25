@@ -37,7 +37,7 @@ Attribute VB_Exposed = True
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private Const C_TITLE As String = "Grep’uŠ·"
+Private Const C_TITLE As String = "Grepç½®æ›"
 Private Const C_SEARCH_NO As Long = 1
 Private Const C_SEARCH_BOOK As Long = 2
 Private Const C_SEARCH_SHEET As Long = 3
@@ -70,13 +70,13 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
         Exit Sub
     End If
 
-    'ƒpƒXƒ[ƒh‚Ìæ“¾
+    'ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®å–å¾—
     Dim lngPos As Long
     Dim varPassword As Variant
     Dim varPass As Variant
     Dim strBuf As String
     
-    lngPos = InStr(Cells(8, C_SEARCH_NO).value, "F")
+    lngPos = InStr(Cells(8, C_SEARCH_NO).value, "ï¼š")
     If lngPos > 0 Then
         strBuf = Mid(Cells(8, C_SEARCH_NO).value, lngPos + 1)
         varPassword = Split(strBuf, ",")
@@ -98,7 +98,7 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
         Next
     End If
     If err.Number <> 0 Then
-        MsgBox "ƒuƒbƒN‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½B", vbExclamation, "Grep"
+        MsgBox "ãƒ–ãƒƒã‚¯ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚", vbExclamation, "Grep"
         Exit Sub
     End If
 
@@ -179,12 +179,12 @@ Sub ReplaceStr()
         Exit Sub
     End If
     
-    If Cells(6, 1).value = "ŒŸõ‘ÎÛF’l" Then
-        MsgBox "ŒŸõ‘ÎÛ‚ª’l‚Ìê‡AGrep’uŠ·‚Í‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbCritical, C_TITLE
+    If Cells(6, 1).value = "æ¤œç´¢å¯¾è±¡ï¼šå€¤" Then
+        MsgBox "æ¤œç´¢å¯¾è±¡ãŒå€¤ã®å ´åˆã€Grepç½®æ›ã¯ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbCritical, C_TITLE
         Exit Sub
     End If
     
-    If MsgBox("Grep’uŠ·‚ÍƒÀ”Å‚Å‚·B’uŠ·‘O‚Ìƒtƒ@ƒCƒ‹‚Í" & vbCrLf & "uƒtƒ@ƒCƒ‹–¼v+ YYYYMMDDHHMMSS ‚ÌŒ`®‚Å" & vbCrLf & "•Û‘¶‚³‚ê‚Ü‚·BÀs‚µ‚Ü‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("Grepç½®æ›ã¯Î²ç‰ˆã§ã™ã€‚ç½®æ›å‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯" & vbCrLf & "ã€Œãƒ•ã‚¡ã‚¤ãƒ«åã€+ YYYYMMDDHHMMSS ã®å½¢å¼ã§" & vbCrLf & "ä¿å­˜ã•ã‚Œã¾ã™ã€‚å®Ÿè¡Œã—ã¾ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
@@ -193,13 +193,13 @@ Sub ReplaceStr()
 
     lngRow = C_START_ROW
     
-    'ƒpƒXƒ[ƒh‚Ìæ“¾
+    'ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®å–å¾—
     Dim lngPos As Long
     Dim varPassword As Variant
     Dim varPass As Variant
     Dim strBuf As String
     
-    lngPos = InStr(Cells(8, C_SEARCH_NO).value, "F")
+    lngPos = InStr(Cells(8, C_SEARCH_NO).value, "ï¼š")
     If lngPos > 0 Then
         strBuf = Mid(Cells(8, C_SEARCH_NO).value, lngPos + 1)
         varPassword = Split(strBuf, ",")
@@ -211,7 +211,7 @@ Sub ReplaceStr()
         
         strBook = Cells(lngRow, C_SEARCH_BOOK).value
         
-        'ƒoƒbƒNƒAƒbƒv‚·‚é
+        'ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã™ã‚‹
         FS.CopyFile strBook, strBook & "." & Format$(Now(), "yyyymmddhhnnss")
         
         If strBuf = "" Then
@@ -226,7 +226,7 @@ Sub ReplaceStr()
             Next
         End If
         If err.Number <> 0 Then
-            MsgBox "ƒuƒbƒN‚ªŠJ‚¯‚Ü‚¹‚ñ(" & FS.getFileName(strBook) & ")‚Å‚·B" & vbCrLf & "Grep’uŠ·‚ğƒXƒLƒbƒv‚µ‚Ü‚·B", vbOKOnly + vbCritical, C_TITLE
+            MsgBox "ãƒ–ãƒƒã‚¯ãŒé–‹ã‘ã¾ã›ã‚“(" & FS.getFileName(strBook) & ")ã§ã™ã€‚" & vbCrLf & "Grepç½®æ›ã‚’ã‚¹ã‚­ãƒƒãƒ—ã—ã¾ã™ã€‚", vbOKOnly + vbCritical, C_TITLE
             lngRow = lngRow + 1
             GoTo pass
         End If
@@ -260,7 +260,7 @@ Sub ReplaceStr()
         
         
         If WB.ReadOnly Then
-            MsgBox "“Ç‚İæ‚èê—p‚ÌƒuƒbƒN(" & WB.Name & ")‚Å‚·B" & vbCrLf & "Grep’uŠ·‚ğƒXƒLƒbƒv‚µ‚Ü‚·B", vbOKOnly + vbCritical, C_TITLE
+            MsgBox "èª­ã¿å–ã‚Šå°‚ç”¨ã®ãƒ–ãƒƒã‚¯(" & WB.Name & ")ã§ã™ã€‚" & vbCrLf & "Grepç½®æ›ã‚’ã‚¹ã‚­ãƒƒãƒ—ã—ã¾ã™ã€‚", vbOKOnly + vbCritical, C_TITLE
             WB.Saved = True
         Else
             On Error GoTo e
@@ -278,13 +278,13 @@ pass:
     
     Set FS = Nothing
     
-    MsgBox "Grep’uŠ·Š®—¹‚µ‚Ü‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+    MsgBox "Grepç½®æ›å®Œäº†ã—ã¾ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
     Exit Sub
 e:
-    If MsgBox("ƒuƒbƒN•Û‘¶‚ÉƒGƒ‰[‚É‚È‚è‚Ü‚µ‚½B(" & err.Description & ")" & vbCrLf & "Äs‚µ‚Ü‚·‚©H", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
+    If MsgBox("ãƒ–ãƒƒã‚¯ä¿å­˜æ™‚ã«ã‚¨ãƒ©ãƒ¼ã«ãªã‚Šã¾ã—ãŸã€‚(" & err.Description & ")" & vbCrLf & "å†è©¦è¡Œã—ã¾ã™ã‹ï¼Ÿ", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
         Resume
     Else
-        MsgBox "Grep’uŠ·‚ğ’†’f‚µ‚Ü‚µ‚½B", vbOKOnly + vbCritical, C_TITLE
+        MsgBox "Grepç½®æ›ã‚’ä¸­æ–­ã—ã¾ã—ãŸã€‚", vbOKOnly + vbCritical, C_TITLE
     End If
         
 End Sub

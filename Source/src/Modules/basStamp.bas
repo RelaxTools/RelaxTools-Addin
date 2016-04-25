@@ -47,7 +47,7 @@ Public Const C_STAMP_FILL_ON As String = "1"
 Public Const C_RASIO As Single = 2.83
 
 '--------------------------------------------------------------
-'@Eˆóİ’è‰æ–Ê
+'ã€€è·å°è¨­å®šç”»é¢
 '--------------------------------------------------------------
 Sub showStamp()
 
@@ -67,7 +67,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
     strMiddle = getFormatDate(s.DateFormat, s.DateType, s.UserDate)
     
     If Len(s.Upper) > 1 Then
-        'ã’i
+        'ä¸Šæ®µ
         WS.Shapes("shpUp").TextFrame2.TextRange.Text = s.Upper
         With WS.Shapes("shpUp").TextFrame2.TextRange.Font
             .NameComplexScript = s.Font
@@ -82,7 +82,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         WS.Shapes("shpUp").visible = True
         WS.Shapes("shpUp2").visible = False
     Else
-        'ã’i
+        'ä¸Šæ®µ
         WS.Shapes("shpUp2").TextFrame2.TextRange.Text = s.Upper
         With WS.Shapes("shpUp2").TextFrame2.TextRange.Font
             .NameComplexScript = s.Font
@@ -98,7 +98,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         WS.Shapes("shpUp").visible = False
     End If
     
-    '’†’i
+    'ä¸­æ®µ
     WS.Shapes("shpMid").TextFrame2.TextRange.Text = strMiddle
     With WS.Shapes("shpMid").TextFrame2.TextRange.Font
         .NameComplexScript = s.Font
@@ -112,7 +112,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
     End With
     
     If Len(s.Lower) > 1 Then
-        '‰º’i
+        'ä¸‹æ®µ
         WS.Shapes("shpLow").TextFrame2.TextRange.Text = s.Lower
         With WS.Shapes("shpLow").TextFrame2.TextRange.Font
             .NameComplexScript = s.Font
@@ -127,7 +127,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         WS.Shapes("shpLow").visible = True
         WS.Shapes("shpLow2").visible = False
     Else
-        '‰º’i
+        'ä¸‹æ®µ
         WS.Shapes("shpLow2").TextFrame2.TextRange.Text = s.Lower
         With WS.Shapes("shpLow2").TextFrame2.TextRange.Font
             .NameComplexScript = s.Font
@@ -198,11 +198,11 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
     
 End Function
 '--------------------------------------------------------------
-'@bzƒCƒ[ƒWƒtƒ@ƒCƒ‹ì¬
+'ã€€bzã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 '--------------------------------------------------------------
 Function getImageStamp(ByVal Index As Long) As StdPicture
 
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
     Dim col As Collection
     Dim bz As StampDatDTO
     
@@ -227,11 +227,11 @@ Public Sub StampPaste()
 End Sub
 
 '--------------------------------------------------------------
-'@ƒf[ƒ^ˆó“\‚è•t‚¯
+'ã€€ãƒ‡ãƒ¼ã‚¿å°è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub pasteStamp2(ByVal Index As Long)
 
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
     Dim col As Collection
     Dim s As StampDatDTO
     Dim r As Shape
@@ -240,14 +240,14 @@ Sub pasteStamp2(ByVal Index As Long)
     On Error Resume Next
 
     If rlxCheckSelectRange() = False Then
-        MsgBox "‘I‘ğ”ÍˆÍ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "é¸æŠç¯„å›²ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
 
     If GetSetting(C_TITLE, "Stamp", "Confirm", False) Then
     Else
         If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.count Then
-            If MsgBox("•¡”ƒZƒ‹‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚·B‚·‚×‚Ä‚ÌƒZƒ‹‚É’£‚è•t‚¯‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbQuestion + vbYesNo, C_TITLE) <> vbYes Then
+            If MsgBox("è¤‡æ•°ã‚»ãƒ«é¸æŠã•ã‚Œã¦ã„ã¾ã™ã€‚ã™ã¹ã¦ã®ã‚»ãƒ«ã«å¼µã‚Šä»˜ã‘ã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbQuestion + vbYesNo, C_TITLE) <> vbYes Then
                 Exit Sub
             End If
         End If
@@ -280,9 +280,9 @@ Sub pasteStamp2(ByVal Index As Long)
 
     For Each ss In Selection
 
-        ''ƒtƒBƒ‹ƒ^‚¨‚æ‚Ñ”ñ•\¦‘ÎôB
+        ''ãƒ•ã‚£ãƒ«ã‚¿ãŠã‚ˆã³éè¡¨ç¤ºå¯¾ç­–ã€‚
         If ss.Rows.Hidden Or ss.Columns.Hidden Then
-            'ƒtƒBƒ‹ƒ^‚Ü‚½‚Í”ñ•\¦‚ÌsE—ñ‚Ìˆ—‚Ís‚í‚È‚¢B
+            'ãƒ•ã‚£ãƒ«ã‚¿ã¾ãŸã¯éè¡¨ç¤ºã®è¡Œãƒ»åˆ—ã®å‡¦ç†ã¯è¡Œã‚ãªã„ã€‚
         Else
 
             If ss.Address = ss.MergeArea(1, 1).Address Then
@@ -309,7 +309,7 @@ Sub pasteStamp2(ByVal Index As Long)
 End Sub
 
 '--------------------------------------------------------------
-'@ƒŒƒWƒXƒgƒŠİ’è’læ“¾
+'ã€€ãƒ¬ã‚¸ã‚¹ãƒˆãƒªè¨­å®šå€¤å–å¾—
 '--------------------------------------------------------------
 Public Function getProperty() As Collection
 
@@ -327,12 +327,12 @@ Public Function getProperty() As Collection
     
         Set s = New StampDatDTO
         
-        s.Upper = "R"
+        s.Upper = "å±±"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = ""
-        s.Lower = "“c"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Lower = "ç”°"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Color = "&H0"
         s.Line = C_STAMP_LINE_SINGLE
         s.Size = "15"
@@ -345,12 +345,12 @@ Public Function getProperty() As Collection
         
         Set s = New StampDatDTO
         
-        s.Upper = "“ñ‰Û"
+        s.Upper = "äºŒèª²"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = ""
-        s.Lower = "’ºg‰ÍŒ´"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Lower = "å‹…ä½¿æ²³åŸ"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Color = "&HFF"
         s.Line = C_STAMP_LINE_SINGLE
         s.Size = "15"
@@ -363,12 +363,12 @@ Public Function getProperty() As Collection
     
         Set s = New StampDatDTO
         
-        s.Upper = "ŒŸ"
+        s.Upper = "æ¤œ"
         s.DateType = C_STAMP_DATE_SYSTEM
-        s.DateFormat = "•i¿ŠÇ—‰Û"
+        s.DateFormat = "å“è³ªç®¡ç†èª²"
         s.UserDate = ""
-        s.Lower = "ˆó"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Lower = "å°"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Color = "&H0"
         s.Line = C_STAMP_LINE_SINGLE
         s.Size = "15"
@@ -383,12 +383,12 @@ Public Function getProperty() As Collection
             
             Set s = New StampDatDTO
         
-            s.Upper = Replace(GetSetting(C_TITLE, "Stamp", "Upper" & Format$(i, "000"), "‚w‚w‰Û"), vbVerticalTab, vbCrLf)
+            s.Upper = Replace(GetSetting(C_TITLE, "Stamp", "Upper" & Format$(i, "000"), "ï¼¸ï¼¸èª²"), vbVerticalTab, vbCrLf)
             s.DateType = GetSetting(C_TITLE, "Stamp", "DateType" & Format$(i, "000"), C_STAMP_DATE_SYSTEM)
             s.DateFormat = GetSetting(C_TITLE, "Stamp", "DateFormat" & Format$(i, "000"), "yyyy.m.d")
             s.UserDate = GetSetting(C_TITLE, "Stamp", "UserDate" & Format$(i, "000"), "")
-            s.Lower = Replace(GetSetting(C_TITLE, "Stamp", "Lower" & Format$(i, "000"), "R“c"), vbVerticalTab, vbCrLf)
-            s.Font = GetSetting(C_TITLE, "Stamp", "Font" & Format$(i, "000"), "‚l‚r ƒSƒVƒbƒN")
+            s.Lower = Replace(GetSetting(C_TITLE, "Stamp", "Lower" & Format$(i, "000"), "å±±ç”°"), vbVerticalTab, vbCrLf)
+            s.Font = GetSetting(C_TITLE, "Stamp", "Font" & Format$(i, "000"), "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯")
             s.Color = GetSetting(C_TITLE, "Stamp", "Color" & Format$(i, "000"), "&H0")
             s.Line = GetSetting(C_TITLE, "Stamp", "Line" & Format$(i, "000"), C_STAMP_LINE_SINGLE)
             s.Size = GetSetting(C_TITLE, "Stamp", "Size" & Format$(i, "000"), "15")
@@ -405,7 +405,7 @@ Public Function getProperty() As Collection
     
 End Function
 '--------------------------------------------------------------
-'@ƒŒƒWƒXƒgƒŠİ’è’læ“¾
+'ã€€ãƒ¬ã‚¸ã‚¹ãƒˆãƒªè¨­å®šå€¤å–å¾—
 '--------------------------------------------------------------
 Public Sub setProperty(ByRef col As Collection)
 
@@ -451,7 +451,7 @@ Public Sub setProperty(ByRef col As Collection)
 End Sub
 
 '--------------------------------------------------------------
-'@“ú•t‘®İ’è
+'ã€€æ—¥ä»˜æ›¸å¼è¨­å®š
 '--------------------------------------------------------------
 Private Function getFormatDate(ByVal strFormat As String, _
                         ByVal strType As String, _

@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmContents 
-   Caption         =   "–ÚŸ‚Ìì¬"
+   Caption         =   "ç›®æ¬¡ã®ä½œæˆ"
    ClientHeight    =   7545
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   5985
    OleObjectBlob   =   "frmContents.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmContents"
 Attribute VB_GlobalNameSpace = False
@@ -44,7 +44,7 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 
-Private Const C_NAME As String = "–ÚŸ"
+Private Const C_NAME As String = "ç›®æ¬¡"
 Private Const C_NO As Long = 1
 Private Const C_SHEET_NAME As Long = 2
 Private Const C_PAPER_SIZE As Long = 3
@@ -93,7 +93,7 @@ Private Sub cmdOk_Click()
     Select Case Val(txtLevel.Text)
         Case 1 To 10
         Case Else
-            MsgBox "ƒŒƒxƒ‹‚Íu‚P`‚P‚O‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly, C_TITLE
+            MsgBox "ãƒ¬ãƒ™ãƒ«ã¯ã€Œï¼‘ï½ï¼‘ï¼ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly, C_TITLE
             Exit Sub
     End Select
     
@@ -101,60 +101,60 @@ Private Sub cmdOk_Click()
     Else
     
         If Len(txtDanrakuCell.Text) = 0 Then
-            MsgBox "—ñ(’i—”Ô†)‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "åˆ—(æ®µè½ç•ªå·)ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtDanrakuCell.SetFocus
             Exit Sub
         End If
         If rlxIsAlphabet(txtDanrakuCell.Text) Then
         Else
-            MsgBox "(’i—”Ô†)—ñ‚ÍƒAƒ‹ƒtƒ@ƒxƒbƒg‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "(æ®µè½ç•ªå·)åˆ—ã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtDanrakuCell.SetFocus
             Exit Sub
         End If
         If getAto1(txtDanrakuCell.Text) > ActiveSheet.Columns.count Then
-            MsgBox "—ñ(’i—”Ô†)‚ÌÅ‘å’l‚ğ’´‚¦‚Ä‚¢‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "åˆ—(æ®µè½ç•ªå·)ã®æœ€å¤§å€¤ã‚’è¶…ãˆã¦ã„ã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtDanrakuCell.SetFocus
             Exit Sub
         End If
         
         If Len(txtPageCell.Text) = 0 Then
-            MsgBox "—ñ(ƒy[ƒW)‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "åˆ—(ãƒšãƒ¼ã‚¸)ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtPageCell.SetFocus
             Exit Sub
         End If
         If rlxIsAlphabet(txtPageCell.Text) Then
         Else
-            MsgBox "—ñ(ƒy[ƒW)‚ÍƒAƒ‹ƒtƒ@ƒxƒbƒg‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "åˆ—(ãƒšãƒ¼ã‚¸)ã¯ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtPageCell.SetFocus
             Exit Sub
         End If
         If getAto1(txtPageCell.Text) > ActiveSheet.Columns.count Then
-            MsgBox "—ñ(ƒy[ƒW)‚ÌÅ‘å’l‚ğ’´‚¦‚Ä‚¢‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "åˆ—(ãƒšãƒ¼ã‚¸)ã®æœ€å¤§å€¤ã‚’è¶…ãˆã¦ã„ã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtPageCell.SetFocus
             Exit Sub
         End If
         
         
         If getAto1(txtPageCell.Text) = getAto1(txtDanrakuCell.Text) Then
-            MsgBox "’i—”Ô†‚Æƒy[ƒW‚ÍˆÙ‚È‚é—ñ‚É‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "æ®µè½ç•ªå·ã¨ãƒšãƒ¼ã‚¸ã¯ç•°ãªã‚‹åˆ—ã«ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtPageCell.SetFocus
             Exit Sub
         End If
         
         
         If Len(txtRow.Text) = 0 Then
-            MsgBox "s‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "è¡Œã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtRow.SetFocus
             Exit Sub
         End If
         If rlxIsNumber(txtRow.Text) Then
         Else
-            MsgBox "s‚Í”’l‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "è¡Œã¯æ•°å€¤ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtRow.SetFocus
             Exit Sub
         End If
         If Val(txtRow.Text) > ActiveSheet.Rows.count Then
-            MsgBox "s‚ÌÅ‘å’l‚ğ’´‚¦‚Ä‚¢‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "è¡Œã®æœ€å¤§å€¤ã‚’è¶…ãˆã¦ã„ã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
             txtRow.SetFocus
             Exit Sub
         End If
@@ -168,13 +168,13 @@ Private Sub cmdOk_Click()
     
     If optNew.value Then
         
-        'ƒV[ƒg‚Ì‘¶İƒ`ƒFƒbƒN
+        'ã‚·ãƒ¼ãƒˆã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
         For Each s In WB.Worksheets
             If s.Name = C_NAME Then
-                If MsgBox("u" & C_NAME & "vƒV[ƒg‚ªŠù‚É‘¶İ‚µ‚Ü‚·Bíœ‚µ‚Ä‚¢‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+                If MsgBox("ã€Œ" & C_NAME & "ã€ã‚·ãƒ¼ãƒˆãŒæ—¢ã«å­˜åœ¨ã—ã¾ã™ã€‚å‰Šé™¤ã—ã¦ã„ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
                     Exit Sub
                 Else
-                    '‘¶İ‚·‚éê‡‚Ííœ
+                    'å­˜åœ¨ã™ã‚‹å ´åˆã¯å‰Šé™¤
                     Application.DisplayAlerts = False
                     s.Delete
                     Application.DisplayAlerts = True
@@ -189,7 +189,7 @@ Private Sub cmdOk_Click()
         Set WS = WB.Worksheets.Add(WB.Worksheets(1))
         WS.Name = C_NAME
         WS.Cells(C_HEAD_ROW, C_CONTENT_LIST).value = C_NAME
-        WS.Cells(C_HEAD_ROW, C_CONTENT_PAGE).value = "ƒy[ƒW"
+        WS.Cells(C_HEAD_ROW, C_CONTENT_PAGE).value = "ãƒšãƒ¼ã‚¸"
     Else
         C_CONTENT_LIST = getAto1(txtDanrakuCell.Text)
         C_CONTENT_PAGE = getAto1(txtPageCell.Text)
@@ -315,7 +315,7 @@ Private Function getSectionCol(ByRef WS As Worksheet) As Long
         
             strBuf = WS.Cells(i, j).value
                         
-            '’i—”Ô†ƒŒƒxƒ‹‚P`‚Q‚ª‘¶İ‚·‚éê‡
+            'æ®µè½ç•ªå·ãƒ¬ãƒ™ãƒ«ï¼‘ï½ï¼’ãŒå­˜åœ¨ã™ã‚‹å ´åˆ
             If rlxHasSectionNo(strBuf, 0) Or rlxHasSectionNo(strBuf, 1) Then
                 blnFind = True
                 GoTo pass
@@ -491,7 +491,7 @@ Private Function get1toA(ByVal lngCol As Long) As String
     Dim strRet As String
     Dim lngAns As Long
 
-    '1`26‚Ì—ñ”Ô†‚ğ0`25‚É•ÏŠ·
+    '1ï½26ã®åˆ—ç•ªå·ã‚’0ï½25ã«å¤‰æ›
     lngCol = lngCol - 1
 
     Do Until lngCol < 0
@@ -500,7 +500,7 @@ Private Function get1toA(ByVal lngCol As Long) As String
 
         strRet = Chr$(Asc("A") + lngAns) & strRet
 
-        '‰EƒVƒtƒg
+        'å³ã‚·ãƒ•ãƒˆ
         lngCol = Fix(lngCol / 26) - 1
 
     Loop

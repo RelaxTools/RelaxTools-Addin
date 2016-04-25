@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmStampBz 
-   Caption         =   "ƒrƒWƒlƒXˆó"
+   Caption         =   "ãƒ“ã‚¸ãƒã‚¹å°"
    ClientHeight    =   7230
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   11520
    OleObjectBlob   =   "frmStampBz.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmStampBz"
 Attribute VB_GlobalNameSpace = False
@@ -182,7 +182,7 @@ Private Sub cmdDel_Click()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğã‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸Šã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdUp_Click()
     mblnRefresh = True
@@ -190,7 +190,7 @@ Private Sub cmdUp_Click()
     mblnRefresh = False
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğ‰º‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸‹ã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdDown_Click()
     mblnRefresh = True
@@ -198,7 +198,7 @@ Private Sub cmdDown_Click()
     mblnRefresh = False
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ˆÚ“®ˆ—
+' ç§»å‹•å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub moveList(ByVal lngMode As Long)
 
@@ -211,7 +211,7 @@ Private Sub moveList(ByVal lngMode As Long)
     Dim lngEnd As Long
     Dim lngInc As Long
 
-    '‚P‚Â‚È‚ç•s—v
+    'ï¼‘ã¤ãªã‚‰ä¸è¦
     If lstStampBz.ListCount <= 1 Then
         Exit Sub
     End If
@@ -230,7 +230,7 @@ Private Sub moveList(ByVal lngMode As Long)
     For lngCnt = lngStart To lngEnd Step lngInc
     
         If lstStampBz.Selected(lngCnt) Then
-            '‘I‘ğ‚³‚ê‚½s‚ª‚·‚Å‚ÉŠJns‚Ìê‡ˆÚ“®•s‰Â
+            'é¸æŠã•ã‚ŒãŸè¡ŒãŒã™ã§ã«é–‹å§‹è¡Œã®å ´åˆç§»å‹•ä¸å¯
             If lngCnt = lngStart Then
                 Exit For
             End If
@@ -254,7 +254,7 @@ End Sub
 
 Private Sub cmdHelp_Click()
         
-    If MsgBox("ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
@@ -411,7 +411,7 @@ Sub dispPreview()
 '    End With
         
         
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
 '    Dim lngWidth As Long
 '    Dim lngHeight As Long
     Dim strPath As String
@@ -482,7 +482,7 @@ Sub dispPreview()
     imgPreview.Picture = editStampBz(bz, xlBitmap)
 '    imgPreview.Picture = CreatePictureFromClipboard()
 
-    '•ÒWŒ‹‰Ê‚ğƒŠƒXƒg‚Éİ’è
+    'ç·¨é›†çµæœã‚’ãƒªã‚¹ãƒˆã«è¨­å®š
     Dim i As Long
 
     i = lstStampBz.ListIndex
@@ -555,7 +555,7 @@ Private Sub cmdOk_Click()
 
 
     Set col = New Collection
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
 
     For i = 0 To lstStampBz.ListCount - 1
         
@@ -579,7 +579,7 @@ Private Sub cmdOk_Click()
         If datStampBz.DateType = C_STAMP_DATE_USER Then
             If IsDate(datStampBz.UserDate) Then
             Else
-                MsgBox "w’è“ú•t‚É‚Í—LŒø‚È“ú•t‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+                MsgBox "æŒ‡å®šæ—¥ä»˜ã«ã¯æœ‰åŠ¹ãªæ—¥ä»˜ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
                 lstStampBz.Selected(i) = True
                 txtUserDate.SetFocus
                 Exit Sub
@@ -588,14 +588,14 @@ Private Sub cmdOk_Click()
         
         If IsNumeric(datStampBz.Size) Then
         Else
-            MsgBox "•‚É‚Í”’l‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+            MsgBox "å¹…ã«ã¯æ•°å€¤ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
             lstStampBz.Selected(i) = True
             txtWidth.SetFocus
             Exit Sub
         End If
         
         If CDbl(datStampBz.Size) < 0 Then
-            MsgBox "•‚Í‚OˆÈã‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+            MsgBox "å¹…ã¯ï¼ä»¥ä¸Šã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
             lstStampBz.Selected(i) = True
             txtWidth.SetFocus
             Exit Sub
@@ -603,14 +603,14 @@ Private Sub cmdOk_Click()
         
         If IsNumeric(datStampBz.LineSize) Then
         Else
-            MsgBox "ŠO˜g‚É‚Í”’l‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+            MsgBox "å¤–æ ã«ã¯æ•°å€¤ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
             lstStampBz.Selected(i) = True
             txtLineSize.SetFocus
             Exit Sub
         End If
         
         If CDbl(datStampBz.LineSize) < 0 Then
-            MsgBox "ŠO˜g‚Í‚OˆÈã‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+            MsgBox "å¤–æ ã¯ï¼ä»¥ä¸Šã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
             lstStampBz.Selected(i) = True
             txtLineSize.SetFocus
             Exit Sub
@@ -618,7 +618,7 @@ Private Sub cmdOk_Click()
         
         If IsNumeric(datStampBz.Round) Then
         Else
-            MsgBox "ŠpŠÛ‚É‚Í”’l‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+            MsgBox "è§’ä¸¸ã«ã¯æ•°å€¤ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
             lstStampBz.Selected(i) = True
             txtRound.SetFocus
             Exit Sub
@@ -627,7 +627,7 @@ Private Sub cmdOk_Click()
         Select Case CDbl(datStampBz.Round)
             Case 0 To 0.5
             Case Else
-                MsgBox "ŠpŠÛ‚Í‚O`‚OD‚T‚ÌŠÔ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+                MsgBox "è§’ä¸¸ã¯ï¼ï½ï¼ï¼ï¼•ã®é–“ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
                 lstStampBz.Selected(i) = True
                 txtRound.SetFocus
                 Exit Sub
@@ -639,12 +639,12 @@ Private Sub cmdOk_Click()
         
     Next
 
-    'ƒvƒƒpƒeƒB•Û‘¶
+    'ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ä¿å­˜
     setPropertyBz col
     
     Set col = Nothing
     
-    'ƒŠƒ{ƒ“‚ÌƒŠƒtƒŒƒbƒVƒ…
+    'ãƒªãƒœãƒ³ã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
     Call RefreshRibbon
     
     Unload Me
@@ -920,7 +920,7 @@ Private Sub UserForm_Initialize()
     
     ReDim varBuf(C_Text To C_LineSize)
 
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
     Set col = getPropertyBz()
 
     For i = 1 To col.count
@@ -958,7 +958,7 @@ Private Sub UserForm_Initialize()
     Else
         mblnRefresh = True
         
-        cmbFont.Text = "‚l‚r ƒSƒVƒbƒN"
+        cmbFont.Text = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         txtUserDate.Text = Format$(Now, "yyyy/m/d")
         optRectangle.value = True
         optSystemDate = True

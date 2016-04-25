@@ -39,7 +39,7 @@ Attribute VB_Exposed = False
 Option Explicit
 Private Const C_SECTION_REGEXP As String = "^[0-9.]+"
 Private Const C_SECTION_SEPARATER As String = ""
-Private Const C_SECTION_NAME As String = "1., 1.1., 1.1.1. ¥¥¥ ‡"
+Private Const C_SECTION_NAME As String = "1., 1.1., 1.1.1. ï½¥ï½¥ï½¥ âˆ"
 Private Const C_SECTION_CLASS As String = "itemNumPoint2"
 Public Property Get Class() As String
     Class = C_SECTION_CLASS
@@ -50,17 +50,17 @@ Public Function SectionLevelName(ByVal lngLevel As Long) As String
     Dim strBuf As String
     Select Case lngLevel
         Case 1
-            strBuf = " 1. „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " 1. â”€â”€â”€â”€"
         Case 2
-            strBuf = " 1.1. „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " 1.1. â”€â”€â”€â”€"
         Case 3
-            strBuf = " 1.1.1. „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " 1.1.1. â”€â”€â”€â”€"
         Case 4
-            strBuf = " 1.1.1.1. „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " 1.1.1.1. â”€â”€â”€â”€"
         Case 5
-            strBuf = " 1.1.1.1.1. „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " 1.1.1.1.1. â”€â”€â”€â”€"
         Case Else
-            strBuf = " 1.1.1.1.1.1. „Ÿ„Ÿ„Ÿ„Ÿ"
+            strBuf = " 1.1.1.1.1.1. â”€â”€â”€â”€"
     End Select
     
     SectionLevelName = strBuf
@@ -107,7 +107,7 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngIndentLevel As Long) 
     strNumber = Trim(SectionNumber(v))
     
     If strNumber = "" Then
-        '”Ô†‚ª–³‚¢ê‡AƒŒƒxƒ‹‚É‰‚¶‚½”Ô†‚ğ¶¬‚·‚éB
+        'ç•ªå·ãŒç„¡ã„å ´åˆã€ãƒ¬ãƒ™ãƒ«ã«å¿œã˜ãŸç•ªå·ã‚’ç”Ÿæˆã™ã‚‹ã€‚
         For i = 0 To lngIndentLevel
             If strNewNum = "" Then
                 strNewNum = "1"
@@ -116,7 +116,7 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngIndentLevel As Long) 
             End If
         Next
     Else
-        'Ÿ‚Ì”Ô†‚ğ•t”Ô‚·‚é
+        'æ¬¡ã®ç•ªå·ã‚’ä»˜ç•ªã™ã‚‹
         Dim num As Variant
         Dim lngNum As Long
         

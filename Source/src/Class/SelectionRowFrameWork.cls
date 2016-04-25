@@ -38,24 +38,24 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 ' SelectionRowFrameWork 1.00 2011/07/22 Y.Watanabe
 '--------------------------------------------------------------
-' Selection.Areas‚ğs’PˆÊ‚Éˆ—‚·‚éƒtƒŒ[ƒ€ƒ[ƒN
+' Selection.Areasã‚’è¡Œå˜ä½ã«å‡¦ç†ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
 '--------------------------------------------------------------
 Option Explicit
 
-'‰Šú‰»ƒCƒxƒ“ƒg
+'åˆæœŸåŒ–ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionInit(ByRef rArea As Excel.Areas, ByRef Cancel As Boolean, ByRef Undo As Boolean)
-'‘Oˆ—ƒCƒxƒ“ƒg
+'å‰å‡¦ç†ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionBegin(ByRef rArea As Range, ByRef Cancel As Boolean)
-'ƒƒCƒ“ˆ—ƒCƒxƒ“ƒg
+'ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionMain(ByRef r As Range, ByVal row As Long, ByRef Cancel As Boolean)
-'Œãˆ—ƒCƒxƒ“ƒg
+'å¾Œå‡¦ç†ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionFinal(ByRef rAarea As Range)
-'I—¹ƒCƒxƒ“ƒg
+'çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionTerm()
 
 Public Sub Run()
 
-    '•Ï”éŒ¾
+    'å¤‰æ•°å®£è¨€
     Dim r As Range
     Dim Cancel As Boolean
     Dim Undo As Boolean
@@ -64,51 +64,51 @@ Public Sub Run()
     Dim lngCur As Long
     Dim i As Long
     
-    'Selectioni’»ƒo[
+    'Selectioné€²æ—ãƒãƒ¼
     Dim objStatus As SelectionStatusBar
     
     On Error GoTo ErrHandle
     
     If Selection Is Nothing Then
-        MsgBox "‘I‘ğ”ÍˆÍ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "é¸æŠç¯„å›²ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
 
     If TypeOf Selection Is Range Then
     Else
-        MsgBox "‘I‘ğ”ÍˆÍ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "é¸æŠç¯„å›²ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
 '    If selection.count > C_MAX_CELLS Then
     If Selection.CountLarge > C_MAX_CELLS Then
         Dim ret As VbMsgBoxResult
-        ret = MsgBox("‘å—Ê‚ÌƒZƒ‹‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚·Bˆ—‚ÉŠÔ‚ª‚©‚©‚é•Œ³‚É–ß‚¹‚Ü‚¹‚ñ‚ª‘±s‚µ‚Ü‚·‚©H", vbInformation + vbOKCancel + vbDefaultButton2, C_TITLE)
+        ret = MsgBox("å¤§é‡ã®ã‚»ãƒ«ãŒé¸æŠã•ã‚Œã¦ã„ã¾ã™ã€‚å‡¦ç†ã«æ™‚é–“ãŒã‹ã‹ã‚‹ï¼†å…ƒã«æˆ»ã›ã¾ã›ã‚“ãŒç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ", vbInformation + vbOKCancel + vbDefaultButton2, C_TITLE)
         If ret = vbCancel Then
             Exit Sub
         End If
     End If
         
-    'ƒLƒƒƒ“ƒZƒ‹‚Ì‰Šú‰»
+    'ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®åˆæœŸåŒ–
     Cancel = False
     Undo = False
     
     '---------------------------
-    '‰Šú‰»ƒCƒxƒ“ƒg
+    'åˆæœŸåŒ–ã‚¤ãƒ™ãƒ³ãƒˆ
     '---------------------------
     RaiseEvent SelectionInit(Selection.Areas, Cancel, Undo)
 
-    'ƒLƒƒƒ“ƒZƒ‹‚Ìê‡
+    'ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®å ´åˆ
     If Cancel Then
         Exit Sub
     End If
     
-    '‘å—ÊƒZƒ‹‚Ìê‡UNDO•s‰Â
+    'å¤§é‡ã‚»ãƒ«ã®å ´åˆUNDOä¸å¯
     If ret = vbOK Then
         Undo = False
     End If
     
-    'Undo‚Ìê‡
+    'Undoã®å ´åˆ
     If Undo Then
     
         ThisWorkbook.Worksheets("Undo").Cells.Clear
@@ -123,10 +123,10 @@ Public Sub Run()
     
     End If
 
-    'Selectioni’»ƒo[Instance‰»
+    'Selectioné€²æ—ãƒãƒ¼InstanceåŒ–
     Set objStatus = New SelectionStatusBar
     
-    'ˆ—Å‘å”‚ğƒZƒbƒg
+    'å‡¦ç†æœ€å¤§æ•°ã‚’ã‚»ãƒƒãƒˆ
     Dim lngMax As Long
     Dim nArea As Range
     lngMax = 0
@@ -139,7 +139,7 @@ Public Sub Run()
     For Each rArea In Selection.Areas
 
         '---------------------------
-        '‘Oˆ—ƒCƒxƒ“ƒg
+        'å‰å‡¦ç†ã‚¤ãƒ™ãƒ³ãƒˆ
         '---------------------------
         RaiseEvent SelectionBegin(rArea, Cancel)
         If Cancel Then
@@ -151,12 +151,12 @@ Public Sub Run()
     
         For lngCur = 1 To lngRows
         
-            '‚Ps•ª‚ÌRange‚ğì¬
+            'ï¼‘è¡Œåˆ†ã®Rangeã‚’ä½œæˆ
             
             Set r = Nothing
             
             For i = 1 To lngCols
-                ''ƒtƒBƒ‹ƒ^‚¨‚æ‚Ñ”ñ•\¦‘ÎôB
+                ''ãƒ•ã‚£ãƒ«ã‚¿ãŠã‚ˆã³éè¡¨ç¤ºå¯¾ç­–ã€‚
                 If rArea(lngCur, i).Rows.Hidden Or rArea(lngCur, i).Columns.Hidden Then
                 Else
                     If r Is Nothing Then
@@ -168,7 +168,7 @@ Public Sub Run()
             Next
         
             '---------------------------
-            'ƒƒCƒ“ˆ—ƒCƒxƒ“ƒg
+            'ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚¤ãƒ™ãƒ³ãƒˆ
             '---------------------------
             If r Is Nothing Then
             Else
@@ -178,23 +178,23 @@ Public Sub Run()
                 End If
             End If
             
-            'Selectioni’»ƒo[‚ÌXV
+            'Selectioné€²æ—ãƒãƒ¼ã®æ›´æ–°
             objStatus.Refresh
         Next
         '---------------------------
-        'Œãˆ—ƒCƒxƒ“ƒg
+        'å¾Œå‡¦ç†ã‚¤ãƒ™ãƒ³ãƒˆ
         '---------------------------
         RaiseEvent SelectionFinal(rArea)
     
     Next
     
-    'Selectioni’»ƒo[‚ÌDispose
+    'Selectioné€²æ—ãƒãƒ¼ã®Dispose
     objStatus.Dispose
     
     Set objStatus = Nothing
 
     '---------------------------
-    'I—¹ƒCƒxƒ“ƒg
+    'çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆ
     '---------------------------
     Application.ScreenUpdating = False
     
@@ -209,7 +209,7 @@ Public Sub Run()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 
 

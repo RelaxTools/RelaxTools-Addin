@@ -39,31 +39,31 @@ Attribute VB_Exposed = False
 '--------------------------------------------------------------
 ' SelectionFrameWork 1.00 2011/07/22 Y.Watanabe
 '--------------------------------------------------------------
-' Selection‚ÉŠÜ‚Ü‚ê‚éCell‚Ì”‚¾‚¯ˆ—‚ğs‚¤ƒtƒŒ[ƒ€ƒ[ƒN
+' Selectionã«å«ã¾ã‚Œã‚‹Cellã®æ•°ã ã‘å‡¦ç†ã‚’è¡Œã†ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
 '--------------------------------------------------------------
 Option Explicit
 
-'‰Šú‰»ƒCƒxƒ“ƒg
+'åˆæœŸåŒ–ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionInit(ByRef Cancel As Boolean, ByRef Undo As Boolean)
-'ƒƒCƒ“ƒCƒxƒ“ƒg
+'ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionMain(ByRef r As Range)
-'ƒƒCƒ“ƒCƒxƒ“ƒg(Shape)
+'ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ(Shape)
 Public Event SelectionMainShape(ByRef r As Shape, ByRef Cancel As Boolean)
-'I—¹ƒCƒxƒ“ƒg
+'çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionTerm()
 
 Public Sub Run()
 
-    '•Ï”éŒ¾
+    'å¤‰æ•°å®£è¨€
     Dim r As Range
     Dim Cancel As Boolean
     Dim Undo As Boolean
 
-    'ƒLƒƒƒ“ƒZƒ‹‚Ì‰Šú‰»
+    'ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®åˆæœŸåŒ–
     Cancel = False
     Undo = False
     
-'    'Selectioni’»ƒo[
+'    'Selectioné€²æ—ãƒãƒ¼
 '    Dim objStatus As SelectionStatusBar
     
     On Error GoTo ErrHandle
@@ -87,11 +87,11 @@ Public Sub Run()
     End Select
     If blnRange Or blnObject Then
     Else
-        MsgBox "‘I‘ğ”ÍˆÍ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "é¸æŠç¯„å›²ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
-    'Shepe‚Ìê‡‚ÌÀsˆ—
+    'Shepeã®å ´åˆã®å®Ÿè¡Œå‡¦ç†
     If blnObject Then
         If Selection.ShapeRange.count > 0 Then
         
@@ -126,27 +126,27 @@ Public Sub Run()
 '
 '
 '    If Selection Is Nothing Then
-'        MsgBox "‘I‘ğ”ÍˆÍ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+'        MsgBox "é¸æŠç¯„å›²ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
 '        Exit Sub
 '    End If
 '
 '    If TypeOf Selection Is Range Then
 '    Else
-'        MsgBox "‘I‘ğ”ÍˆÍ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+'        MsgBox "é¸æŠç¯„å›²ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
 '        Exit Sub
 '    End If
     
     '---------------------------
-    '‰Šú‰»ƒCƒxƒ“ƒg
+    'åˆæœŸåŒ–ã‚¤ãƒ™ãƒ³ãƒˆ
     '---------------------------
     RaiseEvent SelectionInit(Cancel, Undo)
     
-    'ƒLƒƒƒ“ƒZƒ‹‚Ìê‡
+    'ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®å ´åˆ
     If Cancel Then
         Exit Sub
     End If
     
-    'Undo‚Ìê‡
+    'Undoã®å ´åˆ
     If Undo Then
         
         ThisWorkbook.Worksheets("Undo").Cells.Clear
@@ -162,14 +162,14 @@ Public Sub Run()
     End If
                 
     '---------------------------
-    'ƒƒCƒ“ƒCƒxƒ“ƒg
+    'ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
     '---------------------------
     Application.ScreenUpdating = False
     
     RaiseEvent SelectionMain(Selection)
 
     '---------------------------
-    'I—¹ƒCƒxƒ“ƒg
+    'çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆ
     '---------------------------
     
     RaiseEvent SelectionTerm
@@ -183,12 +183,12 @@ Public Sub Run()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 
 
-'Ä‹A‚É‚ÄƒOƒ‹[ƒvˆÈ‰º‚ÌƒVƒFƒCƒv‚ğŒŸõ
+'å†å¸°ã«ã¦ã‚°ãƒ«ãƒ¼ãƒ—ä»¥ä¸‹ã®ã‚·ã‚§ã‚¤ãƒ—ã‚’æ¤œç´¢
 Private Sub grouprc(ByRef objShape As Shape, ByRef Cancel As Boolean)
     
     Dim c As Shape

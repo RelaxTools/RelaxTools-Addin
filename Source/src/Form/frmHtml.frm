@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmHtml 
-   Caption         =   "•\‚ÌHTML•ÏŠ·"
+   Caption         =   "è¡¨ã®HTMLå¤‰æ›"
    ClientHeight    =   6930
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   11565
    OleObjectBlob   =   "frmHtml.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmHtml"
 Attribute VB_GlobalNameSpace = False
@@ -195,7 +195,7 @@ Private Sub htmlConv(ByVal flg As Variant)
     
 '    If flg Then
 '        Me.Hide
-'        frmInformation.Message = "HTML•ÏŠ·’†‚Å‚·B‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢B"
+'        frmInformation.Message = "HTMLå¤‰æ›ä¸­ã§ã™ã€‚ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€‚"
 '        frmInformation.Show
 '        DoEvents
 '    End If
@@ -284,7 +284,7 @@ Private Sub htmlConv(ByVal flg As Variant)
             
             Set r = Selection(lngRow, lngCol)
             
-            'ƒ}[ƒWƒZƒ‹‚Ìê‡
+            'ãƒãƒ¼ã‚¸ã‚»ãƒ«ã®å ´åˆ
             If r.MergeCells Then
             
                 If r.MergeArea(1, 1).Address = r.Address Then

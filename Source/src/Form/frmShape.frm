@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmShape 
-   Caption         =   "ƒJƒXƒ^ƒ€ƒVƒFƒCƒv"
+   Caption         =   "ã‚«ã‚¹ã‚¿ãƒ ã‚·ã‚§ã‚¤ãƒ—"
    ClientHeight    =   8985
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   15765
    OleObjectBlob   =   "frmShape.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmShape"
 Attribute VB_GlobalNameSpace = False
@@ -154,7 +154,7 @@ Attribute VB_Exposed = False
 '            s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
 '    End Select
 '
-'    '•ÒWŒ‹‰Ê‚ğƒŠƒXƒg‚Éİ’è
+'    'ç·¨é›†çµæœã‚’ãƒªã‚¹ãƒˆã«è¨­å®š
 '    Dim i As Long
 '
 '    i = lstStamp.ListIndex
@@ -194,7 +194,7 @@ Attribute VB_Exposed = False
 '    Else
 '        imgPreview.Picture = LoadPicture("")
 '
-'        'ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¢ê‡A
+'        'ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„å ´åˆã€
 '        If Not rlxIsFileExists(txtFile.Text) Then
 '           Exit Sub
 '        End If
@@ -232,7 +232,7 @@ Attribute VB_Exposed = False
 'End Sub
 '
 ''------------------------------------------------------------------------------------------------------------------------
-'' ‘I‘ğs‚ğã‚ÉˆÚ“®
+'' é¸æŠè¡Œã‚’ä¸Šã«ç§»å‹•
 ''------------------------------------------------------------------------------------------------------------------------
 'Private Sub cmdUp_Click()
 '    mblnRefresh = True
@@ -240,7 +240,7 @@ Attribute VB_Exposed = False
 '    mblnRefresh = False
 'End Sub
 ''------------------------------------------------------------------------------------------------------------------------
-'' ‘I‘ğs‚ğ‰º‚ÉˆÚ“®
+'' é¸æŠè¡Œã‚’ä¸‹ã«ç§»å‹•
 ''------------------------------------------------------------------------------------------------------------------------
 'Private Sub cmdDown_Click()
 '    mblnRefresh = True
@@ -248,7 +248,7 @@ Attribute VB_Exposed = False
 '    mblnRefresh = False
 'End Sub
 ''------------------------------------------------------------------------------------------------------------------------
-'' ˆÚ“®ˆ—
+'' ç§»å‹•å‡¦ç†
 ''------------------------------------------------------------------------------------------------------------------------
 'Private Sub moveList(ByVal lngMode As Long)
 '
@@ -261,7 +261,7 @@ Attribute VB_Exposed = False
 '    Dim lngEnd As Long
 '    Dim lngInc As Long
 '
-'    '‚P‚Â‚È‚ç•s—v
+'    'ï¼‘ã¤ãªã‚‰ä¸è¦
 '    If lstStamp.ListCount <= 1 Then
 '        Exit Sub
 '    End If
@@ -280,7 +280,7 @@ Attribute VB_Exposed = False
 '    For lngCnt = lngStart To lngEnd Step lngInc
 '
 '        If lstStamp.Selected(lngCnt) Then
-'            '‘I‘ğ‚³‚ê‚½s‚ª‚·‚Å‚ÉŠJns‚Ìê‡ˆÚ“®•s‰Â
+'            'é¸æŠã•ã‚ŒãŸè¡ŒãŒã™ã§ã«é–‹å§‹è¡Œã®å ´åˆç§»å‹•ä¸å¯
 '            If lngCnt = lngStart Then
 '                Exit For
 '            End If
@@ -307,9 +307,9 @@ Attribute VB_Exposed = False
 '   Dim strFile As String
 '
 '
-'    strFile = Application.GetOpenFilename("ƒtƒ@ƒCƒ‹(*.*),(*.*)", , "‰æ‘œƒtƒ@ƒCƒ‹", , False)
+'    strFile = Application.GetOpenFilename("ãƒ•ã‚¡ã‚¤ãƒ«(*.*),(*.*)", , "ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«", , False)
 '    If strFile = "False" Then
-'        'ƒtƒ@ƒCƒ‹–¼‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+'        'ãƒ•ã‚¡ã‚¤ãƒ«åãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
 '        Exit Sub
 '    End If
 '
@@ -324,7 +324,7 @@ Attribute VB_Exposed = False
 '    Dim i As Long
 '
 '    Set col = New Collection
-'    'İ’èî•ñæ“¾
+'    'è¨­å®šæƒ…å ±å–å¾—
 '
 '    For i = 0 To lstStamp.ListCount - 1
 '
@@ -346,14 +346,14 @@ Attribute VB_Exposed = False
 '
 '        If IsNumeric(s.Size) Then
 '        Else
-'            MsgBox "•‚É‚Í”’l‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+'            MsgBox "å¹…ã«ã¯æ•°å€¤ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
 '            lstStamp.Selected(i) = True
 '            txtSize.SetFocus
 '            Exit Sub
 '        End If
 '
 '        If CDbl(s.Size) < 0 Then
-'            MsgBox "•‚Í‚OˆÈã‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+'            MsgBox "å¹…ã¯ï¼ä»¥ä¸Šã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
 '            lstStamp.Selected(i) = True
 '            txtSize.SetFocus
 '            Exit Sub
@@ -361,14 +361,14 @@ Attribute VB_Exposed = False
 '
 '        If IsNumeric(s.LineSize) Then
 '        Else
-'            MsgBox "ŠO˜g‚É‚Í”’l‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+'            MsgBox "å¤–æ ã«ã¯æ•°å€¤ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
 '            lstStamp.Selected(i) = True
 '            txtLineSize.SetFocus
 '            Exit Sub
 '        End If
 '
 '        If CDbl(s.LineSize) < 0 Then
-'            MsgBox "ŠO˜g‚Í‚OˆÈã‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+'            MsgBox "å¤–æ ã¯ï¼ä»¥ä¸Šã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
 '            lstStamp.Selected(i) = True
 '            txtLineSize.SetFocus
 '            Exit Sub
@@ -376,23 +376,23 @@ Attribute VB_Exposed = False
 '
 '        If IsNumeric(s.Round) Then
 '        Else
-'            MsgBox "ŠpŠÛ‚É‚Í”’l‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+'            MsgBox "è§’ä¸¸ã«ã¯æ•°å€¤ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
 '            lstStamp.Selected(i) = True
 '            txtRound.SetFocus
 '            Exit Sub
 '        End If
 '
 '        If CDbl(s.Round) < 0 Then
-'            MsgBox "ŠpŠÛ‚Í0.00`0.50‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+'            MsgBox "è§’ä¸¸ã¯0.00ï½0.50ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
 '            lstStamp.Selected(i) = True
 '            txtRound.SetFocus
 '            Exit Sub
 '        End If
 '
-'        'ƒtƒ@ƒCƒ‹‚Ì‘¶İƒ`ƒFƒbƒN
+'        'ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 '        If s.StampType = C_STAMP_MITOME_FILE Then
 '            If Not rlxIsFileExists(s.FilePath) Then
-'                MsgBox "‰æ‘œƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation + vbOKOnly, C_TITLE
+'                MsgBox "ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation + vbOKOnly, C_TITLE
 '                lstStamp.Selected(i) = True
 '                txtFile.SetFocus
 '                Exit Sub
@@ -405,12 +405,12 @@ Attribute VB_Exposed = False
 '
 '    Next
 '
-'    'ƒvƒƒpƒeƒB•Û‘¶
+'    'ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ä¿å­˜
 '    setPropertyMitome col
 '
 '    Set col = Nothing
 '
-'    'ƒŠƒ{ƒ“‚ÌƒŠƒtƒŒƒbƒVƒ…
+'    'ãƒªãƒœãƒ³ã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
 '    Call RefreshRibbon
 '
 '    On Error GoTo 0
@@ -613,7 +613,7 @@ Attribute VB_Exposed = False
 '
 '    ReDim varBuf(C_Text To C_Rotate)
 '
-'    'İ’èî•ñæ“¾
+'    'è¨­å®šæƒ…å ±å–å¾—
 '    Set col = getPropertyMitome()
 '
 '    For i = 1 To col.count
@@ -655,7 +655,7 @@ Attribute VB_Exposed = False
 '
 '        txtName.Text = ""
 '        txtFile.Text = ""
-'        cmbFont.Text = "‚l‚r ƒSƒVƒbƒN"
+'        cmbFont.Text = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
 '        optLineSingle.Value = True
 '        optNormal.Value = True
 '        txtSize.Text = "10.5"
@@ -810,7 +810,7 @@ Private Sub cmdHelp_Click()
 
     If Val(Application.Version) >= C_EXCEL_VERSION_2013 Then
     
-        If MsgBox("ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        If MsgBox("ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
             Exit Sub
         End If
         

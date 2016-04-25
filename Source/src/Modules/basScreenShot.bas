@@ -57,7 +57,7 @@ Option Private Module
 
 Private Const GWL_WNDPROC = (-4)
 
-Private Const CF_BITMAP = 2                          'ƒrƒbƒgƒ}ƒbƒv
+Private Const CF_BITMAP = 2                          'ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 Private Const WM_CLIPBOARDUPDATE = &H31D
 
 #If VBA7 And Win64 Then
@@ -119,15 +119,15 @@ Public Sub StartScreenShot()
 
     mSetHWnd = frmScreenShot.hwnd
     
-    'ƒNƒŠƒbƒvƒ{[ƒh‚ğŠÄ‹
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ç›£è¦–
     AddClipboardFormatListener mSetHWnd
     
     mGetHWnd = SetWindowLong(mSetHWnd, GWL_WNDPROC, AddressOf WndProc)
 
     Set tray = New TaskTrayView
     
-    Call tray.AddIcon(Application.hwnd, "ExcelƒXƒNƒVƒ‡")  'ƒVƒXƒeƒ€ƒgƒŒƒC‚ÉƒAƒCƒRƒ“‚ğ“o˜^
-    Call tray.ShowBalloon("ExcelƒXƒNƒVƒ‡ƒ‚[ƒhŠJn")
+    Call tray.AddIcon(Application.hwnd, "Excelã‚¹ã‚¯ã‚·ãƒ§")  'ã‚·ã‚¹ãƒ†ãƒ ãƒˆãƒ¬ã‚¤ã«ã‚¢ã‚¤ã‚³ãƒ³ã‚’ç™»éŒ²
+    Call tray.ShowBalloon("Excelã‚¹ã‚¯ã‚·ãƒ§ãƒ¢ãƒ¼ãƒ‰é–‹å§‹")
 
 End Sub
 
@@ -147,7 +147,7 @@ Public Sub StopScreenShot()
 End Sub
 
 '-------------------------------------------------------
-' ƒzƒbƒgƒL[ŒŸo
+' ãƒ›ãƒƒãƒˆã‚­ãƒ¼æ¤œå‡º
 '-------------------------------------------------------
 #If VBA7 And Win64 Then
 Public Function WndProc(ByVal hwnd As LongPtr, ByVal uMsg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
@@ -202,34 +202,34 @@ Public Sub pasteScreenShot()
     On Error Resume Next
     
     If WS Is Nothing Then
-        tray.ShowBalloon "“\‚è‚Â‚¯‚éƒV[ƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñBƒRƒs[¸”s‚µ‚Ü‚µ‚½"
+        tray.ShowBalloon "è²¼ã‚Šã¤ã‘ã‚‹ã‚·ãƒ¼ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚ã‚³ãƒ”ãƒ¼å¤±æ•—ã—ã¾ã—ãŸ"
     Else
         
-        '‰æ‘œ‚ğ’£•t
+        'ç”»åƒã‚’å¼µä»˜
         WS.Paste
     
         If err.Number <> 0 Then
-            tray.ShowBalloon "ƒRƒs[¸”s‚µ‚Ü‚µ‚½"
+            tray.ShowBalloon "ã‚³ãƒ”ãƒ¼å¤±æ•—ã—ã¾ã—ãŸ"
         Else
     
-            ' ‰æ‘œ‚Ìk¬
+            ' ç”»åƒã®ç¸®å°
             If mblnZoomEnable Then
                 Selection.ShapeRange.ScaleHeight CDbl(mlngZoomNum) / 100, msoFalse, msoScaleFromTopLeft
             End If
         
             Dim lngRow As Long
             
-            ' ƒuƒ‰ƒ“ƒNs‚ğŒvZ‚µ‚Ä‚¨‚­
+            ' ãƒ–ãƒ©ãƒ³ã‚¯è¡Œã‚’è¨ˆç®—ã—ã¦ãŠã
             lngRow = Selection.BottomRightCell.row + mlngBlankNum
         
-            ' ‰üs‚Ìİ’è
+            ' æ”¹è¡Œã®è¨­å®š
             If mblnPageBreakEnable Then
                 ActiveWindow.SelectedSheets.HPageBreaks.Add Before:=WS.Cells(Selection.BottomRightCell.row + mlngPageBreakNun, Selection.TopLeftCell.Column)
             End If
         
             WS.Cells(lngRow, Selection.TopLeftCell.Column).Select
             
-            '•Û‘¶
+            'ä¿å­˜
             If mblnSave Then
                 WS.Parent.Save
             End If

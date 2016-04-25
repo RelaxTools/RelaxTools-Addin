@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCreateFolder 
-   Caption         =   "ƒtƒHƒ‹ƒ_ì¬"
+   Caption         =   "ãƒ•ã‚©ãƒ«ãƒ€ä½œæˆ"
    ClientHeight    =   1500
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   7155
    OleObjectBlob   =   "frmCreateFolder.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmCreateFolder"
 Attribute VB_GlobalNameSpace = False
@@ -66,7 +66,7 @@ Private Sub cmdRun_Click()
     strFolder = txtFolder.Text
 
     If Not rlxIsFolderExists(strFolder) Then
-        MsgBox "w’è‚³‚ê‚½ƒtƒHƒ‹ƒ_‚Í‘¶İ‚µ‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚©ãƒ«ãƒ€ã¯å­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     

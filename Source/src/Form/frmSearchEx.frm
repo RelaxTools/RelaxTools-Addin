@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSearchEx 
-   Caption         =   "ƒZƒ‹EƒVƒFƒCƒv‚Ì³‹K•\Œ»ŒŸõ^’uŠ·"
+   Caption         =   "ã‚»ãƒ«ãƒ»ã‚·ã‚§ã‚¤ãƒ—ã®æ­£è¦è¡¨ç¾æ¤œç´¢ï¼ç½®æ›"
    ClientHeight    =   6150
    ClientLeft      =   45
    ClientTop       =   435
@@ -60,14 +60,14 @@ Private Const C_SEARCH_SHEET As Long = 3
 Private Const C_SEARCH_ID As Long = 4
 Private Const C_SEARCH_BOOK As Long = 5
 
-Private Const C_SEARCH_PLACE_SHEET = "Œ»İ‚ÌƒV[ƒg"
-Private Const C_SEARCH_PLACE_SELECT = "‘I‘ğ‚µ‚½ƒV[ƒg"
-Private Const C_SEARCH_PLACE_BOOK = "ƒuƒbƒN‘S‘Ì"
-Private Const C_SEARCH_OBJECT_CELL = "ƒZƒ‹‚Ì‚İ"
-Private Const C_SEARCH_OBJECT_SHAPE = "ƒVƒFƒCƒv‚Ì‚İ"
-Private Const C_SEARCH_OBJECT_CELL_AND_SHAPE = "ƒZƒ‹•ƒVƒFƒCƒv"
-Private Const C_SEARCH_VALUE_VALUE = "’l"
-Private Const C_SEARCH_VALUE_FORMULA = "®"
+Private Const C_SEARCH_PLACE_SHEET = "ç¾åœ¨ã®ã‚·ãƒ¼ãƒˆ"
+Private Const C_SEARCH_PLACE_SELECT = "é¸æŠã—ãŸã‚·ãƒ¼ãƒˆ"
+Private Const C_SEARCH_PLACE_BOOK = "ãƒ–ãƒƒã‚¯å…¨ä½“"
+Private Const C_SEARCH_OBJECT_CELL = "ã‚»ãƒ«ã®ã¿"
+Private Const C_SEARCH_OBJECT_SHAPE = "ã‚·ã‚§ã‚¤ãƒ—ã®ã¿"
+Private Const C_SEARCH_OBJECT_CELL_AND_SHAPE = "ã‚»ãƒ«ï¼†ã‚·ã‚§ã‚¤ãƒ—"
+Private Const C_SEARCH_VALUE_VALUE = "å€¤"
+Private Const C_SEARCH_VALUE_FORMULA = "å¼"
 Private Const C_SEARCH_ID_CELL As String = "Cell:"
 Private Const C_SEARCH_ID_SHAPE As String = "Shape"
 Private Const C_SEARCH_ID_SMARTART As String = "SmartArt"
@@ -101,7 +101,7 @@ End Sub
 
 Private Sub cmdHelp_Click()
         
-    If MsgBox("ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
@@ -112,12 +112,12 @@ End Sub
 Private Sub cmdOk_Click()
 
     If Len(Trim(txtSearch.Text)) = 0 Then
-        MsgBox "ŒŸõ•¶š—ñ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
         txtSearch.SetFocus
         Exit Sub
     End If
     
-    '³‹K•\Œ»‚Ìê‡
+    'æ­£è¦è¡¨ç¾ã®å ´åˆ
     If chkRegEx.value Then
         Dim o As Object
         Set o = CreateObject("VBScript.RegExp")
@@ -128,7 +128,7 @@ Private Sub cmdOk_Click()
         On Error Resume Next
         o.Execute ""
         If err.Number <> 0 Then
-            MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+            MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
             txtSearch.SetFocus
             Exit Sub
         End If
@@ -149,7 +149,7 @@ Private Sub cmdOk_Click()
         If txtSearch.List(i) <> txtSearch.Text Then
             strBuf = strBuf & vbTab & txtSearch.List(i)
             lngCount = lngCount + 1
-            'ƒŠƒXƒg‚ÍÅ‘å‚P‚O
+            'ãƒªã‚¹ãƒˆã¯æœ€å¤§ï¼‘ï¼
             If lngCount >= 10 Then
                 Exit For
             End If
@@ -178,7 +178,7 @@ Private Sub cmdOk_Click()
     Logger.LogFinish TypeName(Me) & ".cmdOk_Click"
     
     If lstResult.ListCount = 0 Then
-        MsgBox "ŒŸõ‘ÎÛ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B", vbInformation + vbOKOnly, C_TITLE
+        MsgBox "æ¤œç´¢å¯¾è±¡ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚", vbInformation + vbOKOnly, C_TITLE
     End If
     
 End Sub
@@ -189,12 +189,12 @@ Private Sub cmdReplace_Click()
     Dim lngret As Long
 
     If Len(Trim(txtSearch.Text)) = 0 Then
-        MsgBox "ŒŸõ•¶š—ñ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
         txtSearch.SetFocus
         Exit Sub
     End If
     
-    '³‹K•\Œ»‚Ìê‡
+    'æ­£è¦è¡¨ç¾ã®å ´åˆ
     If chkRegEx.value Then
         Dim o As Object
         Set o = CreateObject("VBScript.RegExp")
@@ -205,7 +205,7 @@ Private Sub cmdReplace_Click()
         On Error Resume Next
         o.Execute ""
         If err.Number <> 0 Then
-            MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+            MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
             txtSearch.SetFocus
             Exit Sub
         End If
@@ -214,7 +214,7 @@ Private Sub cmdReplace_Click()
     Call searchStart
     
     If lstResult.ListCount = 0 Then
-        MsgBox "ŒŸõ‘ÎÛ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B", vbInformation + vbOKOnly, C_TITLE
+        MsgBox "æ¤œç´¢å¯¾è±¡ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚", vbInformation + vbOKOnly, C_TITLE
         Exit Sub
     End If
     
@@ -223,7 +223,7 @@ Private Sub cmdReplace_Click()
         Exit Sub
     End If
         
-    MsgBox lngret & " ŒÂ‚Ì•¶š—ñ‚ğ’uŠ·‚µ‚Ü‚µ‚½B", vbInformation + vbOKOnly, C_TITLE
+    MsgBox lngret & " å€‹ã®æ–‡å­—åˆ—ã‚’ç½®æ›ã—ã¾ã—ãŸã€‚", vbInformation + vbOKOnly, C_TITLE
     
     Dim strBuf As String
     Dim i As Long
@@ -237,7 +237,7 @@ Private Sub cmdReplace_Click()
         If txtSearch.List(i) <> txtSearch.Text Then
             strBuf = strBuf & vbTab & txtSearch.List(i)
             lngCount = lngCount + 1
-            'ƒŠƒXƒg‚ÍÅ‘å‚P‚O
+            'ãƒªã‚¹ãƒˆã¯æœ€å¤§ï¼‘ï¼
             If lngCount >= 10 Then
                 Exit For
             End If
@@ -261,7 +261,7 @@ Private Sub cmdReplace_Click()
         If txtReplace.List(i) <> txtReplace.Text Then
             strBuf = strBuf & vbTab & txtReplace.List(i)
             lngCount = lngCount + 1
-            'ƒŠƒXƒg‚ÍÅ‘å‚P‚O
+            'ãƒªã‚¹ãƒˆã¯æœ€å¤§ï¼‘ï¼
             If lngCount >= 10 Then
                 Exit For
             End If
@@ -340,7 +340,7 @@ Private Function replaceStart(ByVal blnAsk As Boolean) As Long
             Dim r As Range
             Set r = Worksheets(strSheet).Range(strAddress)
            
-            '³‹K•\Œ»‚Ìê‡
+            'æ­£è¦è¡¨ç¾ã®å ´åˆ
             If chkRegEx.value Then
             
                 Set objRegx = CreateObject("VBScript.RegExp")
@@ -372,7 +372,7 @@ Private Function replaceStart(ByVal blnAsk As Boolean) As Long
 
             Set s = getObjFromID(Worksheets(strSheet), Mid$(strAddress, InStrRev(strAddress, ":") + 1))
            
-            '³‹K•\Œ»‚Ìê‡
+            'æ­£è¦è¡¨ç¾ã®å ´åˆ
             If chkRegEx.value Then
               
                 Set objRegx = CreateObject("VBScript.RegExp")
@@ -503,7 +503,7 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
     
     strPattern = txtSearch.Text
         
-    '³‹K•\Œ»‚Ìê‡
+    'æ­£è¦è¡¨ç¾ã®å ´åˆ
     If chkRegEx Then
     
         Dim objRegx As Object
@@ -627,11 +627,11 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
     Dim colShapes As Collection
     Set colShapes = New Collection
 
-    Const C_RESULT_NAME As String = "ƒVƒFƒCƒvŒŸõResult"
+    Const C_RESULT_NAME As String = "ã‚·ã‚§ã‚¤ãƒ—æ¤œç´¢Result"
     
     strPattern = txtSearch.Text
     
-    '³‹K•\Œ»‚Ìê‡
+    'æ­£è¦è¡¨ç¾ã®å ´åˆ
     If chkRegEx Then
         Set mobjRegx = CreateObject("VBScript.RegExp")
         mobjRegx.Pattern = strPattern
@@ -643,18 +643,18 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
         
         Select Case c.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                'ƒVƒFƒCƒv‚É•¶š‚ª‚ ‚é‚©‚È‚¢‚©”»’f‚ª‚Â‚©‚È‚¢‚½‚ßƒGƒ‰[ŒŸo‚É‚Äˆ—
+                'ã‚·ã‚§ã‚¤ãƒ—ã«æ–‡å­—ãŒã‚ã‚‹ã‹ãªã„ã‹åˆ¤æ–­ãŒã¤ã‹ãªã„ãŸã‚ã‚¨ãƒ©ãƒ¼æ¤œå‡ºã«ã¦å‡¦ç†
 
                 If c.TextFrame2.HasText Then
                     strBuf = c.TextFrame2.TextRange.Text
                     
-                    '³‹K•\Œ»‚Ìê‡
+                    'æ­£è¦è¡¨ç¾ã®å ´åˆ
                     If chkRegEx Then
                         err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
                         If err.Number <> 0 Then
-                            MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+                            MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
                             txtSearch.SetFocus
                             Exit Sub
                         End If
@@ -688,7 +688,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
                 grouprc objSheet, c, c, colShapes
 
             Case msoSmartArt
-                'check ‚ª‚ ‚é‚Æ‚«‚Ì‚İŒŸõ
+                'check ãŒã‚ã‚‹ã¨ãã®ã¿æ¤œç´¢
                 If chkSmartArt.value Then
                     SmartArtprc objSheet, c, c, colShapes
                 End If
@@ -697,7 +697,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
     Next
 
 End Sub
-'Ä‹A‚É‚ÄƒOƒ‹[ƒvˆÈ‰º‚ÌƒVƒFƒCƒv‚ğŒŸõ
+'å†å¸°ã«ã¦ã‚°ãƒ«ãƒ¼ãƒ—ä»¥ä¸‹ã®ã‚·ã‚§ã‚¤ãƒ—ã‚’æ¤œç´¢
 Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape As Shape, ByRef colShapes As Collection)
 
     Dim matchCount As Long
@@ -711,17 +711,17 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
         
         Select Case c.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                'ƒVƒFƒCƒv‚É•¶š‚ª‚ ‚é‚©‚È‚¢‚©”»’f‚ª‚Â‚©‚È‚¢‚½‚ßƒGƒ‰[ŒŸo‚É‚Äˆ—
+                'ã‚·ã‚§ã‚¤ãƒ—ã«æ–‡å­—ãŒã‚ã‚‹ã‹ãªã„ã‹åˆ¤æ–­ãŒã¤ã‹ãªã„ãŸã‚ã‚¨ãƒ©ãƒ¼æ¤œå‡ºã«ã¦å‡¦ç†
                 If c.TextFrame2.HasText Then
                     strBuf = c.TextFrame2.TextRange.Text
                     
-                    '³‹K•\Œ»‚Ìê‡
+                    'æ­£è¦è¡¨ç¾ã®å ´åˆ
                     If chkRegEx Then
                         err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
                         If err.Number <> 0 Then
-                            MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+                            MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
                             txtSearch.SetFocus
                             Exit Sub
                         End If
@@ -753,11 +753,11 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                     err.Clear
                 End If
             Case msoGroup
-                'Ä‹AŒÄo
+                'å†å¸°å‘¼å‡º
                 grouprc WS, objTop, c, colShapes
             
             Case msoSmartArt
-                'check ‚ª‚ ‚é‚Æ‚«‚Ì‚İŒŸõ
+                'check ãŒã‚ã‚‹ã¨ãã®ã¿æ¤œç´¢
                 If chkSmartArt.value Then
                     SmartArtprc WS, c, c, colShapes
                 End If
@@ -765,7 +765,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
     Next
 
 End Sub
-'ƒXƒ}[ƒgƒA[ƒg‚ğŒŸõ
+'ã‚¹ãƒãƒ¼ãƒˆã‚¢ãƒ¼ãƒˆã‚’æ¤œç´¢
 Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape As Shape, ByRef colShapes As Collection)
 
     Dim matchCount As Long
@@ -781,18 +781,18 @@ Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objS
     
         Set c = objShape.SmartArt.AllNodes(lngIdx)
                 
-        'ƒVƒFƒCƒv‚É•¶š‚ª‚ ‚é‚©‚È‚¢‚©”»’f‚ª‚Â‚©‚È‚¢‚½‚ßƒGƒ‰[ŒŸo‚É‚Äˆ—
+        'ã‚·ã‚§ã‚¤ãƒ—ã«æ–‡å­—ãŒã‚ã‚‹ã‹ãªã„ã‹åˆ¤æ–­ãŒã¤ã‹ãªã„ãŸã‚ã‚¨ãƒ©ãƒ¼æ¤œå‡ºã«ã¦å‡¦ç†
         If c.TextFrame2.HasText Then
         
             strBuf = c.TextFrame2.TextRange.Text
             
-            '³‹K•\Œ»‚Ìê‡
+            'æ­£è¦è¡¨ç¾ã®å ´åˆ
             If chkRegEx Then
                 err.Clear
                 On Error Resume Next
                 Set objMatch = mobjRegx.Execute(strBuf)
                 If err.Number <> 0 Then
-                    MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+                    MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
                     txtSearch.SetFocus
                     Exit Sub
                 End If
@@ -823,7 +823,7 @@ Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objS
     Next
 
 End Sub
-'ƒOƒ‹[ƒv•¶š—ñ‚ğæ“¾
+'ã‚°ãƒ«ãƒ¼ãƒ—æ–‡å­—åˆ—ã‚’å–å¾—
 Private Function getGroupId(ByRef objShape As Object) As String
 
     Dim strBuf As String
@@ -883,14 +883,14 @@ Private Sub lstResult_Change()
                     mblnRefresh = True
                 Else
                     If blnCell Then
-                        '‚Ps–Ú‚ªƒZƒ‹‚Å‚Qs–ÚˆÈ~‚ÅƒZƒ‹ˆÈŠO
+                        'ï¼‘è¡Œç›®ãŒã‚»ãƒ«ã§ï¼’è¡Œç›®ä»¥é™ã§ã‚»ãƒ«ä»¥å¤–
                         If Left$(lstResult.List(lngCnt, C_SEARCH_ID), 1) <> "$" Then
                             mblnRefresh = False
                             lstResult.Selected(lngCnt) = False
                             mblnRefresh = True
                         End If
                     Else
-                        '‚Ps–Ú‚ªƒVƒFƒCƒv
+                        'ï¼‘è¡Œç›®ãŒã‚·ã‚§ã‚¤ãƒ—
                         If Left$(lstResult.List(lngCnt, C_SEARCH_ID), 1) = "$" Then
                             mblnRefresh = False
                             lstResult.Selected(lngCnt) = False
@@ -952,7 +952,7 @@ Private Sub lstResult_Change()
                 
                 Set objShape = getObjFromID(Worksheets(selSheet), Mid$(strBuf, InStrRev(strBuf, ":") + 1))
                 
-                'SmartArt‚Ìê‡
+                'SmartArtã®å ´åˆ
                 If InStr(strBuf, C_SEARCH_ID_SMARTART) > 0 Then
                 
                     Set objArt = getObjFromID2(Worksheets(selSheet), Mid$(strBuf, InStrRev(strBuf, ":") + 1))
@@ -1022,7 +1022,7 @@ Private Sub lstResult_MouseDown(ByVal Button As Integer, ByVal Shift As Integer,
     
         With CommandBars.Add(Position:=msoBarPopup, Temporary:=True)
             With .Controls.Add
-                .Caption = "ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒRƒs["
+                .Caption = "ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚³ãƒ”ãƒ¼"
                 .OnAction = "basSearchEx.listCopy"
                 .FaceId = 1436
             End With
@@ -1131,8 +1131,8 @@ Private Sub UserForm_Initialize()
     cboValue.AddItem C_SEARCH_VALUE_VALUE
     cboValue.ListIndex = GetSetting(C_TITLE, "Search", "cboValue", 0)
     
-    schTab.Tabs(0).Caption = "ŒŸõ"
-    schTab.Tabs(1).Caption = "’uŠ·"
+    schTab.Tabs(0).Caption = "æ¤œç´¢"
+    schTab.Tabs(1).Caption = "ç½®æ›"
     schTab.value = 0
     Call schTab_Change
     

@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmDoc 
-   Caption         =   "Excel•ûŠá†@ƒ†[ƒUİ’è"
+   Caption         =   "Excelæ–¹çœ¼ç´™ã€€ãƒ¦ãƒ¼ã‚¶è¨­å®š"
    ClientHeight    =   3900
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   4515
    OleObjectBlob   =   "frmDoc.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmDoc"
 Attribute VB_GlobalNameSpace = False
@@ -57,17 +57,17 @@ End Sub
 Private Sub cmdOk_Click()
     
     If Not IsNumeric(txtFont.value) Then
-        MsgBox "ƒtƒHƒ“ƒgƒTƒCƒY‚É”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºã«æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
     If chkSize.value Then
         If Not IsNumeric(txtCol.value) Then
-            MsgBox "—ñ‚Ì•‚É”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "åˆ—ã®å¹…ã«æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
         End If
 '        If Not IsNumeric(txtRow.Value) Then
-'            MsgBox "s‚Ì‚‚³‚É”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+'            MsgBox "è¡Œã®é«˜ã•ã«æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
 '            Exit Sub
 '        End If
     End If
@@ -122,7 +122,7 @@ Private Sub UserForm_Initialize()
         optBunrui1.value = False
         optBunrui2.value = True
     End If
-    strFont = GetSetting(C_TITLE, "FormatCell", "Font", "‚l‚r ƒSƒVƒbƒN")
+    strFont = GetSetting(C_TITLE, "FormatCell", "Font", "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯")
     txtFont.value = GetSetting(C_TITLE, "FormatCell", "Point", "9")
     txtCol.value = GetSetting(C_TITLE, "FormatCell", "Col", "8.5")
 '    txtRow.Value = GetSetting(C_TITLE, "FormatCell", "Row", "11.25")

@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmReplace 
-   Caption         =   "’uŠ·ƒtƒHƒ‹ƒ_‘I‘ğ"
+   Caption         =   "ç½®æ›ãƒ•ã‚©ãƒ«ãƒ€é¸æŠ"
    ClientHeight    =   1485
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   7230
    OleObjectBlob   =   "frmReplace.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmReplace"
 Attribute VB_GlobalNameSpace = False
@@ -48,15 +48,15 @@ Private mResult As VbMsgBoxResult
 
 Public Function Start(ByRef strFolder As String, ByRef blnSubFolder As Boolean) As VbMsgBoxResult
 
-    'ƒfƒtƒHƒ‹ƒg’l‚ÌƒZƒbƒg
+    'ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã®ã‚»ãƒƒãƒˆ
     txtFolder.Text = ""
     chkSubFolder.value = False
     mResult = vbCancel
     
-    'ƒtƒH[ƒ€‚Ì•\¦
+    'ãƒ•ã‚©ãƒ¼ãƒ ã®è¡¨ç¤º
     Me.Show vbModal
 
-    'Œ‹‰Ê‚Ìİ’è
+    'çµæœã®è¨­å®š
     strFolder = txtFolder.Text
     blnSubFolder = chkSubFolder.value
     Start = mResult
@@ -74,7 +74,7 @@ Private Sub cmdFolder_Click()
 
     Dim strFile As String
 
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFile = rlxSelectFolder()
     
     If Trim(strFile) <> "" Then
@@ -92,14 +92,14 @@ Private Sub cmdRun_Click()
 '    Dim objFs As Object
     
 '    If ActiveCell Is Nothing Then
-'        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒZƒ‹‚ª‚İ‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+'        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚»ãƒ«ãŒã¿ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
 '        Exit Sub
 '    End If
     
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     FileName = txtFolder.Text
     If FileName = "" Then
-        MsgBox "ƒtƒHƒ‹ƒ_‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox "ãƒ•ã‚©ãƒ«ãƒ€ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
         txtFolder.SetFocus
         Exit Sub
     End If
@@ -113,7 +113,7 @@ Private Sub cmdRun_Click()
 '    FileDisp objFs, FileName, lngRow, lngCol
 '    Select Case Err.Number
 '    Case 75, 76
-'        MsgBox "ƒtƒHƒ‹ƒ_‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+'        MsgBox "ãƒ•ã‚©ãƒ«ãƒ€ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
 '        txtFolder.SetFocus
 '        Exit Sub
 '    End Select
@@ -154,7 +154,7 @@ End Sub
 '        lngRow = lngRow + 1
 '    Next
 '
-'    'ƒTƒuƒtƒHƒ‹ƒ_ŒŸõ‚ ‚è
+'    'ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€æ¤œç´¢ã‚ã‚Š
 '    If chkSubFolder.Value Then
 '        For Each objSub In objFld.SubFolders
 '            FileDisp objFs, objSub.Path, lngRow, lngCol

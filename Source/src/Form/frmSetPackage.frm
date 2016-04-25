@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSetPackage 
-   Caption         =   "JavaƒpƒbƒP[ƒW”z’u"
+   Caption         =   "Javaãƒ‘ãƒƒã‚±ãƒ¼ã‚¸é…ç½®"
    ClientHeight    =   5625
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   8745
    OleObjectBlob   =   "frmSetPackage.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmSetPackage"
 Attribute VB_GlobalNameSpace = False
@@ -54,7 +54,7 @@ Private Sub cmdFolder_Click()
 
     Dim strFile As String
 
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFile = rlxSelectFolder()
     
     If Trim(strFile) <> "" Then
@@ -67,7 +67,7 @@ Private Sub cmdPackage_Click()
 
     Dim strFile As String
 
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFile = rlxSelectFolder()
     
     If Trim(strFile) <> "" Then
@@ -79,12 +79,12 @@ End Sub
 Private Sub cmdRun_Click()
 
     If Len(Trim(txtFolder.Text)) = 0 Then
-        MsgBox "Javaƒtƒ@ƒCƒ‹‚Ì‚ ‚éƒtƒHƒ‹ƒ_‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox "Javaãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
 
     If Len(Trim(txtPackage.Text)) = 0 Then
-        MsgBox "Javaƒtƒ@ƒCƒ‹‚ğ”z’u‚·‚éƒtƒHƒ‹ƒ_‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox "Javaãƒ•ã‚¡ã‚¤ãƒ«ã‚’é…ç½®ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
 
@@ -136,14 +136,14 @@ Private Sub setJavaPackage()
     
     strDir = Dir(BASE_FOLDER & "*.java")
     If strDir = "" Then
-        MsgBox "ˆ—‘ÎÛ‚ÌJavaƒtƒ@ƒCƒ‹‚ª‚ ‚è‚Ü‚¹‚ñBˆ—‚ğI—¹‚µ‚Ü‚·B", vbExclamation, C_TITLE
+        MsgBox "å‡¦ç†å¯¾è±¡ã®Javaãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“ã€‚å‡¦ç†ã‚’çµ‚äº†ã—ã¾ã™ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
     
     Set FS = CreateObject("Scripting.FileSystemObject")
     Set D = FS.GetFolder(BASE_FOLDER)
 
-    'ˆ—Œ‹‰ÊƒŠƒXƒg‚ÌƒNƒŠƒA
+    'å‡¦ç†çµæœãƒªã‚¹ãƒˆã®ã‚¯ãƒªã‚¢
     lstResult.Clear
     lngCount = 0
 
@@ -161,7 +161,7 @@ Private Sub setJavaPackage()
         fp = FreeFile()
         Open BASE_FOLDER & strDir For Binary As fp
         
-        'æ“ª2KB‚¾‚¯æ“Ç‚İ‚·‚éB
+        'å…ˆé ­2KBã ã‘å…ˆèª­ã¿ã™ã‚‹ã€‚
         Const C_MAX_READ As Long = 2048
         Select Case LOF(fp)
             Case 0
@@ -203,11 +203,11 @@ Private Sub setJavaPackage()
 '        Do Until EOF(fp)
 '            Line Input #fp, strLine
             
-            'u;v‚Æ‘OŒãƒXƒy[ƒX‚ğíœ‚µ‚ÄƒXƒy[ƒX‚ğ‹æØ‚è‚Æ‚µ‚Ä•ªŠ„
+            'ã€Œ;ã€ã¨å‰å¾Œã‚¹ãƒšãƒ¼ã‚¹ã‚’å‰Šé™¤ã—ã¦ã‚¹ãƒšãƒ¼ã‚¹ã‚’åŒºåˆ‡ã‚Šã¨ã—ã¦åˆ†å‰²
             strBuf = Split(Trim(Replace(strLine(i), ";", "")), " ")
             
             If UBound(strBuf) > 0 Then
-                'ƒpƒ‰ƒOƒ‰ƒt‚ªupackagev‚Ìê‡
+                'ãƒ‘ãƒ©ã‚°ãƒ©ãƒ•ãŒã€Œpackageã€ã®å ´åˆ
                 If InStr(strBuf(0), "package") > 0 Then
                 
 '                    Close fp
@@ -244,11 +244,11 @@ Private Sub setJavaPackage()
                     On Error GoTo 0
                     err.Clear
                     
-                    'ƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚éê‡
+                    'ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹å ´åˆ
                     lngDeleteSuccess = C_DELETE_NONE
                     If chkDelete.value Then
                         If Dir$(strDest) <> "" Then
-                            'Œ³ƒtƒ@ƒCƒ‹‚ğíœ‚·‚éB
+                            'å…ƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ã€‚
                             On Error Resume Next
                             Kill strSource
                             If err.Number = 0 Then
@@ -278,25 +278,25 @@ pass:
         Dim strDeleteResult As String
         
         If blnNoPackage Then
-            strPackageResult = "|"
-            strCopyResult = "|"
-            strDeleteResult = "|"
+            strPackageResult = "ï¼"
+            strCopyResult = "ï¼"
+            strDeleteResult = "ï¼"
         Else
-            strPackageResult = "›"
+            strPackageResult = "â—‹"
             
             If blnCopySuccess Then
-                strCopyResult = "›"
+                strCopyResult = "â—‹"
             Else
-                strCopyResult = "~"
+                strCopyResult = "Ã—"
             End If
             
             Select Case lngDeleteSuccess
                 Case C_DELETE_NONE
-                    strDeleteResult = "|"
+                    strDeleteResult = "ï¼"
                 Case C_DELETE_SUCCESS
-                    strDeleteResult = "›"
+                    strDeleteResult = "â—‹"
                 Case C_DELETE_FAIL
-                    strDeleteResult = "~"
+                    strDeleteResult = "Ã—"
             End Select
             
         End If
@@ -312,7 +312,7 @@ pass:
     'Loop
     Next
 
-    MsgBox "”z’u‚ªŠ®—¹‚µ‚Ü‚µ‚½B", vbInformation, C_TITLE
+    MsgBox "é…ç½®ãŒå®Œäº†ã—ã¾ã—ãŸã€‚", vbInformation, C_TITLE
 
 End Sub
 

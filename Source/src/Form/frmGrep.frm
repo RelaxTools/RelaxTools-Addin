@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmGrep 
-   Caption         =   "Excelƒtƒ@ƒCƒ‹‚ÌGrep"
+   Caption         =   "Excelãƒ•ã‚¡ã‚¤ãƒ«ã®Grep"
    ClientHeight    =   4860
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   8115
    OleObjectBlob   =   "frmGrep.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   2  '‰æ–Ê‚Ì’†‰›
+   StartUpPosition =   2  'ç”»é¢ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmGrep"
 Attribute VB_GlobalNameSpace = False
@@ -65,11 +65,11 @@ Private Const C_SEARCH_ADDRESS As Long = 4
 Private Const C_SEARCH_STR As Long = 5
 'Private Const C_SEARCH_ID As Long = 6
 
-Private Const C_SEARCH_OBJECT_CELL = "ƒZƒ‹‚Ì‚İ"
-Private Const C_SEARCH_OBJECT_SHAPE = "ƒVƒFƒCƒv‚Ì‚İ"
-Private Const C_SEARCH_OBJECT_CELL_AND_SHAPE = "ƒZƒ‹•ƒVƒFƒCƒv"
-Private Const C_SEARCH_VALUE_VALUE = "’l"
-Private Const C_SEARCH_VALUE_FORMULA = "®"
+Private Const C_SEARCH_OBJECT_CELL = "ã‚»ãƒ«ã®ã¿"
+Private Const C_SEARCH_OBJECT_SHAPE = "ã‚·ã‚§ã‚¤ãƒ—ã®ã¿"
+Private Const C_SEARCH_OBJECT_CELL_AND_SHAPE = "ã‚»ãƒ«ï¼†ã‚·ã‚§ã‚¤ãƒ—"
+Private Const C_SEARCH_VALUE_VALUE = "å€¤"
+Private Const C_SEARCH_VALUE_FORMULA = "å¼"
 
 Private mMm As MacroManager
 
@@ -86,7 +86,7 @@ End Sub
 'End Sub
 
 Private Sub cmdCancel_Click()
-    If cmdCancel.Caption = "•Â‚¶‚é" Then
+    If cmdCancel.Caption = "é–‰ã˜ã‚‹" Then
         Unload Me
     Else
         mblnCancel = True
@@ -97,7 +97,7 @@ Private Sub cmdFolder_Click()
 
     Dim strFile As String
 
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFile = rlxSelectFolder()
     
     If Trim(strFile) <> "" Then
@@ -108,7 +108,7 @@ End Sub
 
 Private Sub cmdHelp_Click()
     
-    If MsgBox("ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
@@ -137,13 +137,13 @@ Private Sub cmdOk_Click()
 '    a = Timer
     
     If Len(Trim(cboSearch.Text)) = 0 Then
-        MsgBox "ŒŸõ•¶š—ñ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢...", vbExclamation, C_TITLE
+        MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã‚’æŒ‡å®šã—ã¦ãã ã•ã„...", vbExclamation, C_TITLE
         cboSearch.SetFocus
         Exit Sub
     End If
     
     
-    '³‹K•\Œ»‚Ìê‡
+    'æ­£è¦è¡¨ç¾ã®å ´åˆ
     If chkRegEx.value Then
         Dim o As Object
         Set o = CreateObject("VBScript.RegExp")
@@ -154,7 +154,7 @@ Private Sub cmdOk_Click()
         On Error Resume Next
         o.Execute ""
         If err.Number <> 0 Then
-            MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+            MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
             cboSearch.SetFocus
             Exit Sub
         End If
@@ -172,14 +172,14 @@ Private Sub cmdOk_Click()
     Set mMm = New MacroManager
     Set mMm.Form = Me
     mMm.Disable
-    mMm.DispGuidance "ƒtƒ@ƒCƒ‹‚Ì”‚ğƒJƒEƒ“ƒg‚µ‚Ä‚¢‚Ü‚·..."
+    mMm.DispGuidance "ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦ã„ã¾ã™..."
     
     FileSearch objFs, strPath, strPatterns(), colBook
     Select Case err.Number
     Case 75, 76
         mMm.Enable
         Set mMm = Nothing
-        MsgBox "ƒtƒHƒ‹ƒ_‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, "ExcelGrep"
+        MsgBox "ãƒ•ã‚©ãƒ«ãƒ€ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, "ExcelGrep"
         cboFolder.SetFocus
         Exit Sub
     End Select
@@ -187,31 +187,31 @@ Private Sub cmdOk_Click()
     
     Set objFs = Nothing
     
-    ThisWorkbook.Worksheets("GrepŒ‹‰Ê").Copy
+    ThisWorkbook.Worksheets("Grepçµæœ").Copy
     Set ResultWS = ActiveSheet
     
     'Set ResultWS = Workbooks.Add.Worksheets(1)
-    ResultWS.Name = "GrepŒ‹‰Ê"
+    ResultWS.Name = "Grepçµæœ"
     
-    ResultWS.Cells(1, C_SEARCH_NO).value = "Excelƒtƒ@ƒCƒ‹‚ÌGrep"
-    ResultWS.Cells(2, C_SEARCH_NO).value = "ğŒF" & cboSearch.Text
-    ResultWS.Cells(3, C_SEARCH_NO).value = "ƒtƒ@ƒCƒ‹F" & txtPattern.Text
-    ResultWS.Cells(4, C_SEARCH_NO).value = "ƒtƒHƒ‹ƒ_F" & cboFolder.Text
-    ResultWS.Cells(5, C_SEARCH_NO).value = "ŒŸõƒIƒuƒWƒFƒNƒgF" & cboObj.Text
-    ResultWS.Cells(6, C_SEARCH_NO).value = "ŒŸõ‘ÎÛF" & cboValue.Text
-    ResultWS.Cells(7, C_SEARCH_NO).value = "³‹K•\Œ»F" & chkRegEx.value
-    ResultWS.Cells(8, C_SEARCH_NO).value = "“ÇæƒpƒXƒ[ƒhF" & txtPassword.Text
+    ResultWS.Cells(1, C_SEARCH_NO).value = "Excelãƒ•ã‚¡ã‚¤ãƒ«ã®Grep"
+    ResultWS.Cells(2, C_SEARCH_NO).value = "æ¡ä»¶ï¼š" & cboSearch.Text
+    ResultWS.Cells(3, C_SEARCH_NO).value = "ãƒ•ã‚¡ã‚¤ãƒ«ï¼š" & txtPattern.Text
+    ResultWS.Cells(4, C_SEARCH_NO).value = "ãƒ•ã‚©ãƒ«ãƒ€ï¼š" & cboFolder.Text
+    ResultWS.Cells(5, C_SEARCH_NO).value = "æ¤œç´¢ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼š" & cboObj.Text
+    ResultWS.Cells(6, C_SEARCH_NO).value = "æ¤œç´¢å¯¾è±¡ï¼š" & cboValue.Text
+    ResultWS.Cells(7, C_SEARCH_NO).value = "æ­£è¦è¡¨ç¾ï¼š" & chkRegEx.value
+    ResultWS.Cells(8, C_SEARCH_NO).value = "èª­å–ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ï¼š" & txtPassword.Text
     
     ResultWS.Cells(10, C_SEARCH_NO).value = "No."
-    ResultWS.Cells(10, C_SEARCH_BOOK).value = "ƒuƒbƒN–¼"
+    ResultWS.Cells(10, C_SEARCH_BOOK).value = "ãƒ–ãƒƒã‚¯å"
     ResultWS.Cells(10, C_SEARCH_BOOK).ColumnWidth = 60
-    ResultWS.Cells(10, C_SEARCH_SHEET).value = "ƒV[ƒg–¼"
-    ResultWS.Cells(10, C_SEARCH_ADDRESS).value = "ƒZƒ‹/ƒVƒFƒCƒv"
-    ResultWS.Cells(10, C_SEARCH_STR).value = "ŒŸõ•¶š—ñ"
+    ResultWS.Cells(10, C_SEARCH_SHEET).value = "ã‚·ãƒ¼ãƒˆå"
+    ResultWS.Cells(10, C_SEARCH_ADDRESS).value = "ã‚»ãƒ«/ã‚·ã‚§ã‚¤ãƒ—"
+    ResultWS.Cells(10, C_SEARCH_STR).value = "æ¤œç´¢æ–‡å­—åˆ—"
 '    ResultWS.Cells(9, C_SEARCH_ID).Value = "ID"
     mlngCount = C_START_ROW
 
-    cmdCancel.Caption = "ƒLƒƒƒ“ƒZƒ‹"
+    cmdCancel.Caption = "ã‚­ãƒ£ãƒ³ã‚»ãƒ«"
     
     Set XL = New Excel.Application
     
@@ -271,7 +271,7 @@ Private Sub cmdOk_Click()
         Else
             ResultWS.Cells(mlngCount, C_SEARCH_NO).value = mlngCount - C_START_ROW + 1
             ResultWS.Cells(mlngCount, C_SEARCH_BOOK).value = varBook
-            ResultWS.Cells(mlngCount, C_SEARCH_SHEET).value = "ƒuƒbƒN‚ğŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½"
+            ResultWS.Cells(mlngCount, C_SEARCH_SHEET).value = "ãƒ–ãƒƒã‚¯ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸ"
             ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).value = ""
     
             ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
@@ -312,7 +312,7 @@ Private Sub cmdOk_Click()
         If cboSearch.List(i) <> cboSearch.Text Then
             strBuf = strBuf & vbTab & cboSearch.List(i)
             lngCount = lngCount + 1
-            'ƒŠƒXƒg‚ÍÅ‘å‚P‚O
+            'ãƒªã‚¹ãƒˆã¯æœ€å¤§ï¼‘ï¼
             If lngCount >= 10 Then
                 Exit For
             End If
@@ -326,7 +326,7 @@ Private Sub cmdOk_Click()
         If cboFolder.List(i) <> cboFolder.Text Then
             strBuf = strBuf & vbTab & cboFolder.List(i)
             lngCount = lngCount + 1
-            'ƒŠƒXƒg‚ÍÅ‘å‚P‚O
+            'ãƒªã‚¹ãƒˆã¯æœ€å¤§ï¼‘ï¼
             If lngCount >= 10 Then
                 Exit For
             End If
@@ -354,7 +354,7 @@ Private Sub cmdOk_Click()
     Set ResultWS = Nothing
     
     If mlngCount - C_START_ROW = 0 Then
-        MsgBox "ŒŸõ‘ÎÛ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B", vbInformation + vbOKOnly, C_TITLE
+        MsgBox "æ¤œç´¢å¯¾è±¡ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚", vbInformation + vbOKOnly, C_TITLE
     End If
     
 End Sub
@@ -369,7 +369,7 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
 
     Set objfld = objFs.GetFolder(strPath)
     
-    'ƒtƒ@ƒCƒ‹–¼æ“¾
+    'ãƒ•ã‚¡ã‚¤ãƒ«åå–å¾—
     For Each objfl In objfld.files
     
         Dim blnFind As Boolean
@@ -389,7 +389,7 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
         End If
     Next
     
-    'ƒTƒuƒtƒHƒ‹ƒ_ŒŸõ‚ ‚è
+    'ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€æ¤œç´¢ã‚ã‚Š
     If chkSubFolder.value Then
         For Each objSub In objfld.SubFolders
             DoEvents
@@ -410,7 +410,7 @@ End Sub
 '
 '    strPattern = cboSearch.Text
 '
-'    '³‹K•\Œ»‚Ìê‡
+'    'æ­£è¦è¡¨ç¾ã®å ´åˆ
 '    If chkRegEx Then
 '        Set mobjRegx = CreateObject("VBScript.RegExp")
 '        mobjRegx.Pattern = strPattern
@@ -420,13 +420,13 @@ End Sub
 '
 '    For Each c In objSheet.UsedRange
 '
-'        '³‹K•\Œ»‚Ìê‡
+'        'æ­£è¦è¡¨ç¾ã®å ´åˆ
 '        If chkRegEx Then
 '            err.Clear
 '            On Error Resume Next
 '            Set objMatch = mobjRegx.Execute(c.Value)
 '            If err.Number <> 0 Then
-'                MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+'                MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
 '                cboSearch.SetFocus
 '                Exit Sub
 '            End If
@@ -460,7 +460,7 @@ End Sub
 '
 '    strPattern = cboSearch.Text
 '
-'    '³‹K•\Œ»‚Ìê‡
+'    'æ­£è¦è¡¨ç¾ã®å ´åˆ
 '    If chkRegEx Then
 '        Set mobjRegx = CreateObject("VBScript.RegExp")
 '        mobjRegx.Pattern = strPattern
@@ -497,13 +497,13 @@ End Sub
 '        Exit Sub
 '    End If
 '
-'    '³‹K•\Œ»‚Ìê‡
+'    'æ­£è¦è¡¨ç¾ã®å ´åˆ
 '    If chkRegEx Then
 '        err.Clear
 '        On Error Resume Next
 '        Set objMatch = mobjRegx.Execute(strSearch)
 '        If err.Number <> 0 Then
-'            MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+'            MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
 '            cboSearch.SetFocus
 '            Exit Sub
 '        End If
@@ -534,7 +534,7 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
     
     strPattern = cboSearch.Text
         
-    '³‹K•\Œ»‚Ìê‡
+    'æ­£è¦è¡¨ç¾ã®å ´åˆ
     If chkRegEx Then
     
         Dim objRegx As Object
@@ -646,11 +646,11 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
     Dim colShapes As Collection
     Set colShapes = New Collection
 
-    Const C_RESULT_NAME As String = "ƒVƒFƒCƒvŒŸõResult"
+    Const C_RESULT_NAME As String = "ã‚·ã‚§ã‚¤ãƒ—æ¤œç´¢Result"
     
     strPattern = cboSearch.Text
     
-    '³‹K•\Œ»‚Ìê‡
+    'æ­£è¦è¡¨ç¾ã®å ´åˆ
     If chkRegEx Then
         Set mobjRegx = CreateObject("VBScript.RegExp")
         mobjRegx.Pattern = strPattern
@@ -662,19 +662,19 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
         
         Select Case c.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                'ƒVƒFƒCƒv‚É•¶š‚ª‚ ‚é‚©‚È‚¢‚©”»’f‚ª‚Â‚©‚È‚¢‚½‚ßƒGƒ‰[ŒŸo‚É‚Äˆ—
+                'ã‚·ã‚§ã‚¤ãƒ—ã«æ–‡å­—ãŒã‚ã‚‹ã‹ãªã„ã‹åˆ¤æ–­ãŒã¤ã‹ãªã„ãŸã‚ã‚¨ãƒ©ãƒ¼æ¤œå‡ºã«ã¦å‡¦ç†
                 On Error Resume Next
                 strBuf = c.TextFrame.Characters.Text
                 If err.Number = 0 Then
                     On Error GoTo 0
                     
-                    '³‹K•\Œ»‚Ìê‡
+                    'æ­£è¦è¡¨ç¾ã®å ´åˆ
                     If chkRegEx Then
                         err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
                         If err.Number <> 0 Then
-                            MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+                            MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
                             cboSearch.SetFocus
                             Exit Sub
                         End If
@@ -728,7 +728,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
     Next
 
 End Sub
-'Ä‹A‚É‚ÄƒOƒ‹[ƒvˆÈ‰º‚ÌƒVƒFƒCƒv‚ğŒŸõ
+'å†å¸°ã«ã¦ã‚°ãƒ«ãƒ¼ãƒ—ä»¥ä¸‹ã®ã‚·ã‚§ã‚¤ãƒ—ã‚’æ¤œç´¢
 Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colShapes As Collection, ByRef ResultWS As Worksheet)
 
     Dim matchCount As Long
@@ -742,19 +742,19 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
         
         Select Case c.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                'ƒVƒFƒCƒv‚É•¶š‚ª‚ ‚é‚©‚È‚¢‚©”»’f‚ª‚Â‚©‚È‚¢‚½‚ßƒGƒ‰[ŒŸo‚É‚Äˆ—
+                'ã‚·ã‚§ã‚¤ãƒ—ã«æ–‡å­—ãŒã‚ã‚‹ã‹ãªã„ã‹åˆ¤æ–­ãŒã¤ã‹ãªã„ãŸã‚ã‚¨ãƒ©ãƒ¼æ¤œå‡ºã«ã¦å‡¦ç†
                 On Error Resume Next
                 strBuf = c.TextFrame.Characters.Text
                 If err.Number = 0 Then
                     On Error GoTo 0
                     
-                    '³‹K•\Œ»‚Ìê‡
+                    'æ­£è¦è¡¨ç¾ã®å ´åˆ
                     If chkRegEx Then
                         err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
                         If err.Number <> 0 Then
-                            MsgBox "ŒŸõ•¶š—ñ‚Ì³‹K•\Œ»‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+                            MsgBox "æ¤œç´¢æ–‡å­—åˆ—ã®æ­£è¦è¡¨ç¾ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
                             cboSearch.SetFocus
                             Exit Sub
                         End If
@@ -797,7 +797,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     err.Clear
                 End If
             Case msoGroup
-                'Ä‹AŒÄo
+                'å†å¸°å‘¼å‡º
                 grouprc objTop, c, colShapes, ResultWS
             
         End Select
@@ -867,7 +867,7 @@ Private Sub UserForm_Initialize()
 
     lblGauge.visible = False
 
-   ' txtBack.Value = "ExcelƒuƒbƒN‚ÌGrep‚ğs‚¢‚Ü‚·"
+   ' txtBack.Value = "Excelãƒ–ãƒƒã‚¯ã®Grepã‚’è¡Œã„ã¾ã™"
 
 '    Me.Top = (Application.Top + Application.Height - Me.Height) - 20
 '    Me.Left = (Application.Left + Application.Width - Me.Width) - 20

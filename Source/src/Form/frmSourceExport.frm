@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSourceExport 
-   Caption         =   "VBAƒ\[ƒXƒGƒNƒXƒ|[ƒg"
+   Caption         =   "VBAã‚½ãƒ¼ã‚¹ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆ"
    ClientHeight    =   3360
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   7560
    OleObjectBlob   =   "frmSourceExport.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   2  '‰æ–Ê‚Ì’†‰›
+   StartUpPosition =   2  'ç”»é¢ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmSourceExport"
 Attribute VB_GlobalNameSpace = False
@@ -46,15 +46,15 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-'•W€ƒ‚ƒWƒ…[ƒ‹
+'æ¨™æº–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 Const vbext_ct_StdModule As Integer = 1
-'ƒNƒ‰ƒX ƒ‚ƒWƒ…[ƒ‹
+'ã‚¯ãƒ©ã‚¹ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 Const vbext_ct_ClassModule As Integer = 2
 'Microsoft Forms
 Const vbext_ct_MSForm As Integer = 3
-'ActiveX ƒfƒUƒCƒi[
+'ActiveX ãƒ‡ã‚¶ã‚¤ãƒŠãƒ¼
 Const vbext_ct_ActiveXDesigner As Integer = 11
-'ƒhƒLƒ…ƒƒ“ƒg ƒ‚ƒWƒ…[ƒ‹
+'ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 Const vbext_ct_Document As Integer = 100
 Private Sub cmdCancel_Click()
     Unload Me
@@ -66,7 +66,7 @@ Private Sub cmdFolder_Click()
 
     Dim strFile As String
 
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFile = rlxSelectFolder()
     
     If Trim(strFile) <> "" Then
@@ -92,6 +92,7 @@ Private Sub UserForm_Initialize()
     lblGauge.visible = False
     txtFolder.Text = GetSetting(C_TITLE, "VBAExport", "Path")
     chkCategory.value = GetSetting(C_TITLE, "VBAExport", "Category", False)
+    chkUTF8.value = GetSetting(C_TITLE, "VBAExport", "UTF8", False)
     
 End Sub
 
@@ -106,14 +107,14 @@ Private Sub cmdOk_Click()
     
     If rlxIsFolderExists(strFile) Then
     Else
-        If MsgBox("o—ÍæƒtƒHƒ‹ƒ_‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB" & vbCrLf & "ì¬‚µ‚Ü‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        If MsgBox("å‡ºåŠ›å…ˆãƒ•ã‚©ãƒ«ãƒ€ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚" & vbCrLf & "ä½œæˆã—ã¾ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
            Exit Sub
         Else
             rlxCreateFolder strFile
         End If
     End If
     
-    If MsgBox("VBAƒ\[ƒX‚ğƒGƒNƒXƒ|[ƒg‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("VBAã‚½ãƒ¼ã‚¹ã‚’ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
@@ -137,11 +138,11 @@ Private Sub cmdOk_Click()
         Dim strFolder As String
         Select Case vb_component.Type
             Case vbext_ct_StdModule
-                '•W€ƒ‚ƒWƒ…[ƒ‹
+                'æ¨™æº–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
                 extention = ".bas"
                 strFolder = "Modules"
             Case vbext_ct_ClassModule
-                'ƒNƒ‰ƒX ƒ‚ƒWƒ…[ƒ‹
+                'ã‚¯ãƒ©ã‚¹ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
                 extention = ".cls"
                 strFolder = "Class"
             Case vbext_ct_MSForm
@@ -149,20 +150,64 @@ Private Sub cmdOk_Click()
                 extention = ".frm"
                 strFolder = "Form"
             Case vbext_ct_ActiveXDesigner
-                'ActiveX ƒfƒUƒCƒi[
+                'ActiveX ãƒ‡ã‚¶ã‚¤ãƒŠãƒ¼
                 extention = ".cls"
                 strFolder = "cls"
             Case vbext_ct_Document
-                'ƒhƒLƒ…ƒƒ“ƒg ƒ‚ƒWƒ…[ƒ‹
+                'ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
                 extention = ".cls"
                 strFolder = "Microsoft Excel Objects"
         End Select
+        
+        Dim strFrom As String
+        Dim strTo As String
+        Dim fp1 As Integer
+        Dim fp2 As Integer
+        Dim strBuf As String
+        Dim bytBuf() As Byte
+        
         If chkCategory.value Then
             rlxCreateFolder rlxAddFileSeparator(strFile) & strFolder
-            vb_component.Export rlxAddFileSeparator(strFile) & strFolder & "\" & vb_component.Name & extention
+            strTo = rlxAddFileSeparator(strFile) & strFolder & "\" & vb_component.Name & extention
+            strFrom = rlxGetTempFolder & vb_component.Name & extention
         Else
-            vb_component.Export rlxAddFileSeparator(strFile) & vb_component.Name & extention
+            strTo = rlxAddFileSeparator(strFile) & vb_component.Name & extention
+            strFrom = rlxGetTempFolder & vb_component.Name & extention
         End If
+        
+        If chkUTF8.value Then
+            
+            vb_component.Export strFrom
+               
+            Dim U8 As UTF8Encoding
+            Set U8 = New UTF8Encoding
+            
+            fp2 = FreeFile
+            Open strTo For Output As fp2
+            Close fp2
+            
+            fp2 = FreeFile
+            Open strTo For Binary As fp2
+            
+            fp1 = FreeFile
+            Open strFrom For Input As fp1
+            
+            Do Until EOF(fp1)
+                Line Input #fp1, strBuf
+            
+                bytBuf = U8.getBytes(strBuf & vbCrLf)
+                Put #fp2, , bytBuf
+            
+            Loop
+            
+            Close fp1
+            Close fp2
+            
+            Set U8 = Nothing
+        Else
+            vb_component.Export strTo
+        End If
+        
         lngCnt = lngCnt + 1
         mMm.DisplayGauge lngCnt
     Next
@@ -170,10 +215,11 @@ Private Sub cmdOk_Click()
     
     SaveSetting C_TITLE, "VBAExport", "Path", strFile
     SaveSetting C_TITLE, "VBAExport", "Category", chkCategory.value
+    SaveSetting C_TITLE, "VBAExport", "UTF8", chkUTF8.value
     
     Application.ScreenUpdating = True
     
-    MsgBox "ƒGƒNƒXƒ|[ƒgŠ®—¹‚µ‚Ü‚µ‚½B" & vbCrLf & "‚n‚j‚ğ‰Ÿ‚·‚ÆƒGƒNƒXƒ|[ƒgæ‚ÌƒtƒHƒ‹ƒ_‚ğŠJ‚«‚Ü‚·B", vbOKOnly + vbInformation, C_TITLE
+    MsgBox "ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆå®Œäº†ã—ã¾ã—ãŸã€‚" & vbCrLf & "ï¼¯ï¼«ã‚’æŠ¼ã™ã¨ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆå…ˆã®ãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ãã¾ã™ã€‚", vbOKOnly + vbInformation, C_TITLE
     
     Unload Me
     
@@ -191,7 +237,7 @@ ErrHandle:
     Else
         mMm.Enable
     End If
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B" & vbCrLf & err.Description, vbOKOnly + vbCritical, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚" & vbCrLf & err.Description, vbOKOnly + vbCritical, C_TITLE
     Set mMm = Nothing
 End Sub
 

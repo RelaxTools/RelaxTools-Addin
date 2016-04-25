@@ -39,20 +39,20 @@ Attribute VB_Exposed = False
 Option Explicit
 Private mr As Range
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork êÈåæ
+' SelectionFrameWork ÂÆ£Ë®Ä
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionColFramework
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork çÏê¨
+' SelectionFrameWork ‰ΩúÊàê
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionColFramework
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork äJï˙
+' SelectionFrameWork ÈñãÊîæ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -73,7 +73,7 @@ Private Sub SFWork_SelectionInit(rArea As Areas, Cancel As Boolean, Undo As Bool
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' éÂèàóù(UOC)
+' ‰∏ªÂá¶ÁêÜ(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 
 Private Sub SFWork_SelectionMain(r As Range, ByVal col As Long, Cancel As Boolean)

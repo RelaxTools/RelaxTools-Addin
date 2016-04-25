@@ -32,9 +32,9 @@ Option Explicit
 Option Private Module
 
 ' 32-bit Function version.
-' ƒhƒ‰ƒCƒu–¼‚©‚çƒlƒbƒgƒ[ƒNƒhƒ‰ƒCƒu‚ğæ“¾
+' ãƒ‰ãƒ©ã‚¤ãƒ–åã‹ã‚‰ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ‰ãƒ©ã‚¤ãƒ–ã‚’å–å¾—
 #If VBA7 And Win64 Then
-    'VBA7 = Excel2010ˆÈ~BÔ‚­ƒRƒ“ƒpƒCƒ‹ƒGƒ‰[‚É‚È‚Á‚ÄŒ©‚¦‚Ü‚·‚ª–â‘è‚ ‚è‚Ü‚¹‚ñB
+    'VBA7 = Excel2010ä»¥é™ã€‚èµ¤ãã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ã«ãªã£ã¦è¦‹ãˆã¾ã™ãŒå•é¡Œã‚ã‚Šã¾ã›ã‚“ã€‚
     Private Declare PtrSafe Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
     Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hwnd As LongPtr) As Long
     Private Declare PtrSafe Function CloseClipboard Lib "user32" () As Long
@@ -177,10 +177,10 @@ Option Private Module
 Private Const CF_BITMAP      As Long = 2
 Private Const CF_PALETTE     As Long = 9
 
-Private Const CC_RGBINIT = &H1                'F‚ÌƒfƒtƒHƒ‹ƒg’l‚ğİ’è
-Private Const CC_LFULLOPEN = &H2              'F‚Ìì¬‚ğs‚¤•”•ª‚ğ•\¦
-Private Const CC_PREVENTFULLOPEN = &H4        'F‚Ìì¬ƒ{ƒ^ƒ“‚ğ–³Œø‚É‚·‚é
-Private Const CC_SHOWHELP = &H8               'ƒwƒ‹ƒvƒ{ƒ^ƒ“‚ğ•\¦
+Private Const CC_RGBINIT = &H1                'è‰²ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’è¨­å®š
+Private Const CC_LFULLOPEN = &H2              'è‰²ã®ä½œæˆã‚’è¡Œã†éƒ¨åˆ†ã‚’è¡¨ç¤º
+Private Const CC_PREVENTFULLOPEN = &H4        'è‰²ã®ä½œæˆãƒœã‚¿ãƒ³ã‚’ç„¡åŠ¹ã«ã™ã‚‹
+Private Const CC_SHOWHELP = &H8               'ãƒ˜ãƒ«ãƒ—ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤º
 
 Private Const NO_ERROR As Long = 0
 Private Const lBUFFER_SIZE As Long = 255
@@ -195,7 +195,7 @@ Public Const C_EXCEL_VERSION_2010 As Long = 14
 Public Const C_EXCEL_VERSION_2007 As Long = 12
 Public Const C_EXCEL_VERSION_2003 As Long = 11
 
-'UNDOƒoƒbƒtƒ@
+'UNDOãƒãƒƒãƒ•ã‚¡
 Public Const C_TITLE As String = "RelaxTools-Addin"
 Public Const C_GITHUB_URL As String = "https://github.com/RelaxTools/RelaxTools-Addin"
 Public Const C_URL As String = "http://software.opensquare.net/relaxtools/"
@@ -211,15 +211,15 @@ Public Const C_UTF8 As String = "UTF-8"
 Public Const C_SJIS As String = "MS932(ShiftJIS)"
 Public Const C_SJIS_OLD As String = "Shift-JIS"
 Public Const C_ERROR As String = "<<ERROR>>"
-Public Const CF_TEXT As Long = 1  'ƒeƒLƒXƒgƒf[ƒ^‚ğ“Ç‚İ‘‚«‚·‚éê‡‚Ì’è”‚Å‚·
+Public Const CF_TEXT As Long = 1  'ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿æ›¸ãã™ã‚‹å ´åˆã®å®šæ•°ã§ã™
 Public Const CF_HDROP As Long = 15
-Public Const C_REF_TEXT As String = "(QÆ—p)"
+Public Const C_REF_TEXT As String = "(å‚ç…§ç”¨)"
 
 Public Const C_ALL As Long = 3
 Public Const C_HOLIZON As Long = 1
 Public Const C_VERTICAL As Long = 2
 '--------------------------------------------------------------
-'@ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹‚ÌƒzƒC[ƒ‹—Êæ“¾
+'ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ã®ãƒ›ã‚¤ãƒ¼ãƒ«é‡å–å¾—
 '--------------------------------------------------------------
 Function scrollPush() As Boolean
     Dim lngValue As Long
@@ -231,7 +231,7 @@ Function scrollPush() As Boolean
 
 End Function
 '--------------------------------------------------------------
-'@ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹‚ÌƒzƒC[ƒ‹—Ê‚Ps
+'ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ã®ãƒ›ã‚¤ãƒ¼ãƒ«é‡ï¼‘è¡Œ
 '--------------------------------------------------------------
 Sub scrollLine1()
 
@@ -244,7 +244,7 @@ Sub scrollLine1()
 
 End Sub
 '--------------------------------------------------------------
-'@ƒRƒ“ƒgƒ[ƒ‹ƒpƒlƒ‹‚ÌƒzƒC[ƒ‹—Ê‚Rs
+'ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒãƒ«ã®ãƒ›ã‚¤ãƒ¼ãƒ«é‡ï¼“è¡Œ
 '--------------------------------------------------------------
 Sub scrollLine3()
 
@@ -257,20 +257,20 @@ Sub scrollLine3()
 
 End Sub
 '--------------------------------------------------------------
-'@F‚ğ‚P‚Ui•¶š—ñ‚É•ÏŠ·
+'ã€€è‰²ã‚’ï¼‘ï¼–é€²æ–‡å­—åˆ—ã«å¤‰æ›
 '--------------------------------------------------------------
 Public Function getHexColor(ByVal lngColor As Long) As String
     getHexColor = "&H" & Right$("00000000" & Hex(lngColor), 8)
 End Function
 '--------------------------------------------------------------
-'@‚P‚Ui•¶š—ñ‚ğF‚É•ÏŠ·
+'ã€€ï¼‘ï¼–é€²æ–‡å­—åˆ—ã‚’è‰²ã«å¤‰æ›
 '--------------------------------------------------------------
 Public Function getLongColor(ByVal strColor As String) As Long
     On Error Resume Next
     getLongColor = CLng(strColor)
 End Function
 '--------------------------------------------------------------
-'@ƒAƒhƒŒƒX•¶š—ñ‚©‚çƒIƒuƒWƒFƒNƒg‚É•ÏŠ·
+'ã€€ã‚¢ãƒ‰ãƒ¬ã‚¹æ–‡å­—åˆ—ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¤‰æ›
 '--------------------------------------------------------------
 Public Function getObjectFromAddres(ByVal strAddress As String) As Object
 
@@ -290,7 +290,7 @@ Public Function getObjectFromAddres(ByVal strAddress As String) As Object
 
 End Function
 '--------------------------------------------------------------
-'@ƒtƒ@ƒCƒ‹”ƒJƒEƒ“ƒg
+'ã€€ãƒ•ã‚¡ã‚¤ãƒ«æ•°ã‚«ã‚¦ãƒ³ãƒˆ
 '--------------------------------------------------------------
 Public Sub rlxGetFilesCount(ByRef objFs As Object, ByVal strPath As String, ByRef lngFCnt As Long, ByVal blnFile As Boolean, ByVal blnFolder As Boolean, ByVal blnSubFolder As Boolean)
 
@@ -307,7 +307,7 @@ Public Sub rlxGetFilesCount(ByRef objFs As Object, ByVal strPath As String, ByRe
         lngFCnt = lngFCnt + objfld.SubFolders.count
     End If
     
-        'ƒtƒHƒ‹ƒ_æ“¾‚ ‚è
+        'ãƒ•ã‚©ãƒ«ãƒ€å–å¾—ã‚ã‚Š
     If blnSubFolder Then
         For Each objSub In objfld.SubFolders
             DoEvents
@@ -317,10 +317,10 @@ Public Sub rlxGetFilesCount(ByRef objFs As Object, ByVal strPath As String, ByRe
     End If
 End Sub
 '--------------------------------------------------------------
-'@ƒtƒ@ƒCƒ‹ƒZƒpƒŒ[ƒ^•t‰Á
+'ã€€ãƒ•ã‚¡ã‚¤ãƒ«ã‚»ãƒ‘ãƒ¬ãƒ¼ã‚¿ä»˜åŠ 
 '--------------------------------------------------------------
 Public Function rlxAddFileSeparator(ByVal strFile As String) As String
-Attribute rlxAddFileSeparator.VB_Description = "ƒpƒX‚Æƒtƒ@ƒCƒ‹‚ğ˜AŒ‹‚·‚éÛ‚É‹æØ‚è•¶š(""\\"")‚ğ•âŠ®‚µ‚Ü‚·B"
+Attribute rlxAddFileSeparator.VB_Description = "ãƒ‘ã‚¹ã¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é€£çµã™ã‚‹éš›ã«åŒºåˆ‡ã‚Šæ–‡å­—(""\\"")ã‚’è£œå®Œã—ã¾ã™ã€‚"
 Attribute rlxAddFileSeparator.VB_ProcData.VB_Invoke_Func = " \n19"
     If Right(strFile, 1) = "\" Then
         rlxAddFileSeparator = strFile
@@ -329,10 +329,10 @@ Attribute rlxAddFileSeparator.VB_ProcData.VB_Invoke_Func = " \n19"
     End If
 End Function
 '--------------------------------------------------------------
-'@ƒtƒHƒ‹ƒ_‘I‘ğ
+'ã€€ãƒ•ã‚©ãƒ«ãƒ€é¸æŠ
 '--------------------------------------------------------------
 Public Function rlxSelectFolder() As String
-Attribute rlxSelectFolder.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxSelectFolder.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxSelectFolder.VB_ProcData.VB_Invoke_Func = " \n19"
  
     Dim objShell As Object
@@ -341,11 +341,11 @@ Attribute rlxSelectFolder.VB_ProcData.VB_Invoke_Func = " \n19"
     Dim strFolder As String
     
     Set objShell = CreateObject("Shell.Application")
-    Set objPath = objShell.BrowseForFolder(&O0, "ƒtƒHƒ‹ƒ_‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢", &H1 + &H10, "")
+    Set objPath = objShell.BrowseForFolder(&O0, "ãƒ•ã‚©ãƒ«ãƒ€ã‚’é¸ã‚“ã§ãã ã•ã„", &H1 + &H10, "")
     If Not objPath Is Nothing Then
     
-        '‚È‚º‚©uƒfƒXƒNƒgƒbƒvv‚ÌƒpƒX‚ªæ“¾‚Å‚«‚È‚¢
-        If objPath = "ƒfƒXƒNƒgƒbƒv" Then
+        'ãªãœã‹ã€Œãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã€ã®ãƒ‘ã‚¹ãŒå–å¾—ã§ããªã„
+        If objPath = "ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—" Then
             Set WS = CreateObject("WScript.Shell")
             rlxSelectFolder = WS.SpecialFolders("Desktop")
         Else
@@ -358,10 +358,10 @@ Attribute rlxSelectFolder.VB_ProcData.VB_Invoke_Func = " \n19"
     
 End Function
 '--------------------------------------------------------------
-'@ƒtƒ@ƒCƒ‹–¼æ“¾
+'ã€€ãƒ•ã‚¡ã‚¤ãƒ«åå–å¾—
 '--------------------------------------------------------------
 Public Function rlxGetFullpathFromFileName(ByVal strPath As String) As String
-Attribute rlxGetFullpathFromFileName.VB_Description = "ƒpƒX{ƒtƒ@ƒCƒ‹î•ñ‚©‚çƒtƒ@ƒCƒ‹–¼‚Ì‚İ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxGetFullpathFromFileName.VB_Description = "ãƒ‘ã‚¹ï¼‹ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«åã®ã¿è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxGetFullpathFromFileName.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngCnt As Long
@@ -389,10 +389,10 @@ Attribute rlxGetFullpathFromFileName.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒtƒ@ƒCƒ‹–¼æ“¾(Šg’£q”²‚«)
+'ã€€ãƒ•ã‚¡ã‚¤ãƒ«åå–å¾—(æ‹¡å¼µå­æŠœã)
 '--------------------------------------------------------------
 Public Function rlxGetFullpathFromExt(ByVal strPath As String) As String
-Attribute rlxGetFullpathFromExt.VB_Description = "ƒpƒX{ƒtƒ@ƒCƒ‹î•ñ‚©‚çŠg’£q‚Ì‚İ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxGetFullpathFromExt.VB_Description = "ãƒ‘ã‚¹ï¼‹ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‹ã‚‰æ‹¡å¼µå­ã®ã¿è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxGetFullpathFromExt.VB_ProcData.VB_Invoke_Func = " \n19"
 
    Dim lngCnt As Long
@@ -418,10 +418,10 @@ Attribute rlxGetFullpathFromExt.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒpƒXî•ñæ“¾
+'ã€€ãƒ‘ã‚¹æƒ…å ±å–å¾—
 '--------------------------------------------------------------
 Public Function rlxGetFullpathFromPathName(ByVal strPath As String) As String
-Attribute rlxGetFullpathFromPathName.VB_Description = "ƒpƒX{ƒtƒ@ƒCƒ‹î•ñ‚©‚çƒfƒBƒŒƒNƒgƒŠî•ñ‚Ì‚İ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxGetFullpathFromPathName.VB_Description = "ãƒ‘ã‚¹ï¼‹ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæƒ…å ±ã®ã¿è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxGetFullpathFromPathName.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngCnt As Long
@@ -448,10 +448,10 @@ Attribute rlxGetFullpathFromPathName.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@DOSƒRƒ}ƒ“ƒhÀs
+'ã€€DOSã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
 '--------------------------------------------------------------
 Function rlxShellExec(ByVal strCommand As String) As String
-Attribute rlxShellExec.VB_Description = "DOSƒRƒ}ƒ“ƒh‚ğÀs‚µA•W€o—Í‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxShellExec.VB_Description = "DOSã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œã—ã€æ¨™æº–å‡ºåŠ›ã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxShellExec.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim WSH As Object
@@ -471,10 +471,10 @@ Attribute rlxShellExec.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@¬•¶š‚ª‚È‚©‚Á‚½‚çDB€–Úi‘åG”cj
+'ã€€å°æ–‡å­—ãŒãªã‹ã£ãŸã‚‰DBé …ç›®ï¼ˆå¤§é›‘æŠŠï¼‰
 '--------------------------------------------------------------
 Public Function rlxIsDBField(ByVal strBuf As String) As Boolean
-Attribute rlxIsDBField.VB_Description = "DB€–Ú–¼i”¼Šp‘å•¶š{ƒAƒ“ƒ_[ƒo[j‚Ìê‡\ntrue‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsDBField.VB_Description = "DBé …ç›®åï¼ˆåŠè§’å¤§æ–‡å­—ï¼‹ã‚¢ãƒ³ãƒ€ãƒ¼ãƒãƒ¼ï¼‰ã®å ´åˆ\ntrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsDBField.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -500,10 +500,10 @@ Attribute rlxIsDBField.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@JavaƒtƒB[ƒ‹ƒh–¼¨DB€–Ú–¼
+'ã€€Javaãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åâ†’DBé …ç›®å
 '--------------------------------------------------------------
 Public Function rlxToDBFieldNm(ByVal strJavaField As String) As String
-Attribute rlxToDBFieldNm.VB_Description = "Java€–Ú–¼‚ğDB€–Ú–¼‚É•ÏŠ·‚µ‚Ü‚·B\n ex. dbFieldName ¨ DB_FIELD_NAME"
+Attribute rlxToDBFieldNm.VB_Description = "Javaé …ç›®åã‚’DBé …ç›®åã«å¤‰æ›ã—ã¾ã™ã€‚\n ex. dbFieldName â†’ DB_FIELD_NAME"
 Attribute rlxToDBFieldNm.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim s As String
@@ -519,7 +519,7 @@ Attribute rlxToDBFieldNm.VB_ProcData.VB_Invoke_Func = " \n19"
     
     strSrc = strJavaField
     
-    '‚·‚Å‚ÉDB€–Ú‚È‚çˆ—‚µ‚È‚¢
+    'ã™ã§ã«DBé …ç›®ãªã‚‰å‡¦ç†ã—ãªã„
     If rlxIsDBField(strSrc) Then
         rlxToDBFieldNm = strSrc
         Exit Function
@@ -557,10 +557,10 @@ Attribute rlxToDBFieldNm.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@DB€–Ú–¼¨JavaƒtƒB[ƒ‹ƒh–¼
+'ã€€DBé …ç›®åâ†’Javaãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å
 '--------------------------------------------------------------
 Public Function rlxToJavaFieldNm(ByVal strDBFieldName As String) As String
-Attribute rlxToJavaFieldNm.VB_Description = "DB€–Ú–¼‚ğJava€–Ú–¼‚É•ÏŠ·‚µ‚Ü‚·B\n ex. DB_FIELD_NAME ¨ dbFieldName"
+Attribute rlxToJavaFieldNm.VB_Description = "DBé …ç›®åã‚’Javaé …ç›®åã«å¤‰æ›ã—ã¾ã™ã€‚\n ex. DB_FIELD_NAME â†’ dbFieldName"
 Attribute rlxToJavaFieldNm.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim s As String
@@ -616,10 +616,10 @@ Attribute rlxToJavaFieldNm.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@•¶š—ñ‚ÌƒoƒCƒg”‚ğ‹‚ß‚éBŠ¿š‚QƒoƒCƒgA”¼Šp‚PƒoƒCƒgB
+'ã€€æ–‡å­—åˆ—ã®ãƒã‚¤ãƒˆæ•°ã‚’æ±‚ã‚ã‚‹ã€‚æ¼¢å­—ï¼’ãƒã‚¤ãƒˆã€åŠè§’ï¼‘ãƒã‚¤ãƒˆã€‚
 '--------------------------------------------------------------
 Public Function rlxAscLen(ByVal var As Variant) As Long
-Attribute rlxAscLen.VB_Description = "•¶š—ñ‚ÌƒoƒCƒg”‚ğ‹‚ß‚Ü‚·BŠ¿š‚Í‚QƒoƒCƒgA\n”¼Šp•¶š‚Í‚PƒoƒCƒg‚Æ”‚¦‚Ü‚·B"
+Attribute rlxAscLen.VB_Description = "æ–‡å­—åˆ—ã®ãƒã‚¤ãƒˆæ•°ã‚’æ±‚ã‚ã¾ã™ã€‚æ¼¢å­—ã¯ï¼’ãƒã‚¤ãƒˆã€\nåŠè§’æ–‡å­—ã¯ï¼‘ãƒã‚¤ãƒˆã¨æ•°ãˆã¾ã™ã€‚"
 Attribute rlxAscLen.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim ascVar As Variant
@@ -631,10 +631,10 @@ Attribute rlxAscLen.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '----------------------------------------------------------------------------------
-'@•¶š—ñ‚Ì¶’[‚©‚çw’è‚µ‚½•¶š”•ª‚Ì•¶š—ñ‚ğ•Ô‚·BŠ¿š‚QƒoƒCƒgA”¼Šp‚PƒoƒCƒgB
+'ã€€æ–‡å­—åˆ—ã®å·¦ç«¯ã‹ã‚‰æŒ‡å®šã—ãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’è¿”ã™ã€‚æ¼¢å­—ï¼’ãƒã‚¤ãƒˆã€åŠè§’ï¼‘ãƒã‚¤ãƒˆã€‚
 '----------------------------------------------------------------------------------
 Public Function rlxAscLeft(ByVal var As Variant, ByVal lngSize As Long) As String
-Attribute rlxAscLeft.VB_Description = "•¶š—ñ‚Ì¶’[‚©‚çw’è‚µ‚½•¶š”•ª‚Ì•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B\nŠ¿š‚QƒoƒCƒgA”¼Šp‚PƒoƒCƒgB"
+Attribute rlxAscLeft.VB_Description = "æ–‡å­—åˆ—ã®å·¦ç«¯ã‹ã‚‰æŒ‡å®šã—ãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚\næ¼¢å­—ï¼’ãƒã‚¤ãƒˆã€åŠè§’ï¼‘ãƒã‚¤ãƒˆã€‚"
 Attribute rlxAscLeft.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -660,10 +660,10 @@ Attribute rlxAscLeft.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '----------------------------------------------------------------------------------
-'@•¶š—ñ‚Ì‰E’[‚©‚çw’è‚µ‚½•¶š”•ª‚Ì•¶š—ñ‚ğ•Ô‚·BŠ¿š‚QƒoƒCƒgA”¼Šp‚PƒoƒCƒgB
+'ã€€æ–‡å­—åˆ—ã®å³ç«¯ã‹ã‚‰æŒ‡å®šã—ãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’è¿”ã™ã€‚æ¼¢å­—ï¼’ãƒã‚¤ãƒˆã€åŠè§’ï¼‘ãƒã‚¤ãƒˆã€‚
 '----------------------------------------------------------------------------------
 Public Function rlxAscRight(ByVal var As Variant, ByVal lngSize As Long) As String
-Attribute rlxAscRight.VB_Description = "•¶š—ñ‚Ì‰E’[‚©‚çw’è‚µ‚½•¶š”•ª‚Ì•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B\nŠ¿š‚QƒoƒCƒgA”¼Šp‚PƒoƒCƒgB"
+Attribute rlxAscRight.VB_Description = "æ–‡å­—åˆ—ã®å³ç«¯ã‹ã‚‰æŒ‡å®šã—ãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚\næ¼¢å­—ï¼’ãƒã‚¤ãƒˆã€åŠè§’ï¼‘ãƒã‚¤ãƒˆã€‚"
 Attribute rlxAscRight.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim ascVar As Variant
@@ -674,10 +674,10 @@ Attribute rlxAscRight.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '----------------------------------------------------------------------------------
-'@•¶š—ñ‚©‚çw’è‚µ‚½•¶š”•ª‚Ì•¶š—ñ‚ğ•Ô‚·BŠ¿š‚QƒoƒCƒgA”¼Šp‚PƒoƒCƒgB
+'ã€€æ–‡å­—åˆ—ã‹ã‚‰æŒ‡å®šã—ãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’è¿”ã™ã€‚æ¼¢å­—ï¼’ãƒã‚¤ãƒˆã€åŠè§’ï¼‘ãƒã‚¤ãƒˆã€‚
 '----------------------------------------------------------------------------------
 Public Function rlxAscMid(ByVal var As Variant, ByVal lngPos As Long, Optional ByVal varSize As Variant) As String
-Attribute rlxAscMid.VB_Description = "•¶š—ñ‚©‚çw’è‚µ‚½•¶š”•ª‚Ì•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B\nŠ¿š‚QƒoƒCƒgA”¼Šp‚PƒoƒCƒgB"
+Attribute rlxAscMid.VB_Description = "æ–‡å­—åˆ—ã‹ã‚‰æŒ‡å®šã—ãŸæ–‡å­—æ•°åˆ†ã®æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚\næ¼¢å­—ï¼’ãƒã‚¤ãƒˆã€åŠè§’ï¼‘ãƒã‚¤ãƒˆã€‚"
 Attribute rlxAscMid.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim ascVar As Variant
@@ -692,23 +692,23 @@ Attribute rlxAscMid.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒhƒ‰ƒCƒu–¼¨UNC–¼•ÏŠ·
-'@ƒhƒ‰ƒCƒu–¼(J:“™)‚ğw’èBƒGƒ‰[‚Ìê‡ƒhƒ‰ƒCƒu–¼‚ğ‚»‚Ì‚Ü‚Ü•Ô‹p
+'ã€€ãƒ‰ãƒ©ã‚¤ãƒ–åâ†’UNCåå¤‰æ›
+'ã€€ãƒ‰ãƒ©ã‚¤ãƒ–å(J:ç­‰)ã‚’æŒ‡å®šã€‚ã‚¨ãƒ©ãƒ¼ã®å ´åˆãƒ‰ãƒ©ã‚¤ãƒ–åã‚’ãã®ã¾ã¾è¿”å´
 '--------------------------------------------------------------
 Public Function rlxDriveToUNC(ByVal strPath As String) As String
-Attribute rlxDriveToUNC.VB_Description = "ƒlƒbƒgƒ[ƒNƒhƒ‰ƒCƒu‚ğUNC‚É•ÏŠ·‚µ‚Ü‚·B"
+Attribute rlxDriveToUNC.VB_Description = "ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ‰ãƒ©ã‚¤ãƒ–ã‚’UNCã«å¤‰æ›ã—ã¾ã™ã€‚"
 Attribute rlxDriveToUNC.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lStatus As Long
     Dim strDrive As String
     
-    'ƒfƒtƒHƒ‹ƒg‚ÅƒpƒX‚ğƒZƒbƒg
+    'ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ãƒ‘ã‚¹ã‚’ã‚»ãƒƒãƒˆ
     rlxDriveToUNC = strPath
     
     If InStr(strPath, ":") = 2 Then
         strDrive = Left$(strPath, 2)
     Else
-        'ƒhƒ‰ƒCƒuî•ñ‚ªŠÜ‚Ü‚ê‚È‚¢B
+        'ãƒ‰ãƒ©ã‚¤ãƒ–æƒ…å ±ãŒå«ã¾ã‚Œãªã„ã€‚
         Exit Function
     End If
 
@@ -721,16 +721,16 @@ Attribute rlxDriveToUNC.VB_ProcData.VB_Invoke_Func = " \n19"
     If lStatus& = NO_ERROR Then
         rlxDriveToUNC = Left$(lpszRemoteName, InStr(lpszRemoteName, Chr$(0)) - 1) & Mid$(strPath, 3)
     Else
-        'ƒhƒ‰ƒCƒuî•ñ‚ªŠÜ‚Ü‚ê‚é‚ªƒlƒbƒgƒ[ƒNƒhƒ‰ƒCƒu‚Å‚Í‚È‚¢‰Â”\«B
+        'ãƒ‰ãƒ©ã‚¤ãƒ–æƒ…å ±ãŒå«ã¾ã‚Œã‚‹ãŒãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ‰ãƒ©ã‚¤ãƒ–ã§ã¯ãªã„å¯èƒ½æ€§ã€‚
         rlxDriveToUNC = strPath
     End If
 
 End Function
 '--------------------------------------------------------------
-'@ƒtƒ@ƒCƒ‹‘¶İƒ`ƒFƒbƒN
+'ã€€ãƒ•ã‚¡ã‚¤ãƒ«å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 '--------------------------------------------------------------
 Public Function rlxIsFileExists(ByVal strFile As String) As Boolean
-Attribute rlxIsFileExists.VB_Description = "ƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚éê‡true‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsFileExists.VB_Description = "ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹å ´åˆtrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsFileExists.VB_ProcData.VB_Invoke_Func = " \n19"
  
     With CreateObject("Scripting.FileSystemObject")
@@ -739,10 +739,10 @@ Attribute rlxIsFileExists.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒtƒHƒ‹ƒ_‘¶İƒ`ƒFƒbƒN
+'ã€€ãƒ•ã‚©ãƒ«ãƒ€å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 '--------------------------------------------------------------
 Public Function rlxIsFolderExists(ByVal strFile As String) As Boolean
-Attribute rlxIsFolderExists.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxIsFolderExists.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxIsFolderExists.VB_ProcData.VB_Invoke_Func = " \n19"
  
     With CreateObject("Scripting.FileSystemObject")
@@ -751,7 +751,7 @@ Attribute rlxIsFolderExists.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒeƒ“ƒ|ƒ‰ƒŠƒtƒHƒ‹ƒ_æ“¾
+'ã€€ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚©ãƒ«ãƒ€å–å¾—
 '--------------------------------------------------------------
 Public Function rlxGetTempFolder() As String
 
@@ -777,7 +777,7 @@ Public Function rlxGetTempFolder() As String
 
 End Function
 '--------------------------------------------------------------
-'@ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒtƒHƒ‹ƒ_æ“¾
+'ã€€ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚©ãƒ«ãƒ€å–å¾—
 '--------------------------------------------------------------
 Public Function rlxGetAppDataFolder() As String
 
@@ -803,53 +803,53 @@ Public Function rlxGetAppDataFolder() As String
 
 End Function
 '--------------------------------------------------------------
-'@w’èŒ…‚Å‚ÌlÌŒÜ“ü(decimalŒ^”ñ‘ÎÌ)
+'ã€€æŒ‡å®šæ¡ã§ã®å››æ¨äº”å…¥(decimalå‹éå¯¾ç§°)
 '--------------------------------------------------------------
-Public Function rlxRound(ByVal ”’l As Variant, ByVal Œ…” As Long) As Variant
-Attribute rlxRound.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚ÌRound‚Æ“¯‚¶g—p•û–@B\nŒvZ‚ğDecimalŒ^‚Ås‚Á‚Ä‚¢‚Ü‚·Bˆ—‚Í’x‚¢‚Å‚·B"
+Public Function rlxRound(ByVal æ•°å€¤ As Variant, ByVal æ¡æ•° As Long) As Variant
+Attribute rlxRound.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã®Roundã¨åŒã˜ä½¿ç”¨æ–¹æ³•ã€‚\nè¨ˆç®—ã‚’Decimalå‹ã§è¡Œã£ã¦ã„ã¾ã™ã€‚å‡¦ç†ã¯é…ã„ã§ã™ã€‚"
 Attribute rlxRound.VB_ProcData.VB_Invoke_Func = " \n19"
 
-    rlxRound = Int(CDec(”’l) * (10 ^ Œ…”) + CDec(0.5)) / 10 ^ Œ…”
+    rlxRound = Int(CDec(æ•°å€¤) * (10 ^ æ¡æ•°) + CDec(0.5)) / 10 ^ æ¡æ•°
 
 End Function
 '--------------------------------------------------------------
-'@w’èŒ…‚Å‚ÌØÌ‚Ä(decimalŒ^”ñ‘ÎÌ)
+'ã€€æŒ‡å®šæ¡ã§ã®åˆ‡æ¨ã¦(decimalå‹éå¯¾ç§°)
 '--------------------------------------------------------------
-Public Function rlxRoundDown(ByVal ”’l As Variant, ByVal Œ…” As Long) As Variant
-Attribute rlxRoundDown.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚ÌRoundDown‚Æ“¯‚¶g—p•û–@B\nŒvZ‚ğDecimalŒ^‚Ås‚Á‚Ä‚¢‚Ü‚·Bˆ—‚Í’x‚¢‚Å‚·B"
+Public Function rlxRoundDown(ByVal æ•°å€¤ As Variant, ByVal æ¡æ•° As Long) As Variant
+Attribute rlxRoundDown.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã®RoundDownã¨åŒã˜ä½¿ç”¨æ–¹æ³•ã€‚\nè¨ˆç®—ã‚’Decimalå‹ã§è¡Œã£ã¦ã„ã¾ã™ã€‚å‡¦ç†ã¯é…ã„ã§ã™ã€‚"
 Attribute rlxRoundDown.VB_ProcData.VB_Invoke_Func = " \n19"
 
-    rlxRoundDown = Int(CDec(”’l) * (10 ^ Œ…”)) / 10 ^ Œ…”
+    rlxRoundDown = Int(CDec(æ•°å€¤) * (10 ^ æ¡æ•°)) / 10 ^ æ¡æ•°
 
 End Function
 '--------------------------------------------------------------
-'@w’èŒ…‚Å‚ÌØã‚°(decimalŒ^”ñ‘ÎÌ)
+'ã€€æŒ‡å®šæ¡ã§ã®åˆ‡ä¸Šã’(decimalå‹éå¯¾ç§°)
 '--------------------------------------------------------------
-Public Function rlxRoundUp(ByVal ”’l As Variant, ByVal Œ…” As Long) As Variant
-Attribute rlxRoundUp.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚ÌRoundUp‚Æ“¯‚¶g—p•û–@B\nŒvZ‚ğDecimalŒ^‚Ås‚Á‚Ä‚¢‚Ü‚·Bˆ—‚Í’x‚¢‚Å‚·B"
+Public Function rlxRoundUp(ByVal æ•°å€¤ As Variant, ByVal æ¡æ•° As Long) As Variant
+Attribute rlxRoundUp.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã®RoundUpã¨åŒã˜ä½¿ç”¨æ–¹æ³•ã€‚\nè¨ˆç®—ã‚’Decimalå‹ã§è¡Œã£ã¦ã„ã¾ã™ã€‚å‡¦ç†ã¯é…ã„ã§ã™ã€‚"
 Attribute rlxRoundUp.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim work As Variant
     Dim work2 As Variant
 
-    work = Int(CDec(”’l) * (10 ^ Œ…”))
-    work2 = CDec(”’l) * (10 ^ Œ…”)
+    work = Int(CDec(æ•°å€¤) * (10 ^ æ¡æ•°))
+    work2 = CDec(æ•°å€¤) * (10 ^ æ¡æ•°)
     
-    '¬”“_ˆÈ‰º‚ª‘¶İ‚·‚éê‡
+    'å°æ•°ç‚¹ä»¥ä¸‹ãŒå­˜åœ¨ã™ã‚‹å ´åˆ
     If work = work2 Then
     Else
         work = work + 1
     End If
     
-    rlxRoundUp = work / 10 ^ Œ…”
+    rlxRoundUp = work / 10 ^ æ¡æ•°
 
 End Function
 '--------------------------------------------------------------
-'@LuhnƒAƒ‹ƒSƒŠƒYƒ€iISO/IEC 7812-1j
-'@ƒNƒŒƒWƒbƒgƒJ[ƒh”Ô†‚Ìƒ`ƒFƒbƒN
+'ã€€Luhnã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ï¼ˆISO/IEC 7812-1ï¼‰
+'ã€€ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã‚«ãƒ¼ãƒ‰ç•ªå·ã®ãƒã‚§ãƒƒã‚¯
 '--------------------------------------------------------------
 Function rlxIsLuhn(ByVal strNo As String) As Boolean
-Attribute rlxIsLuhn.VB_Description = "LuhnƒAƒ‹ƒSƒŠƒYƒ€(ƒNƒŒƒWƒbƒgƒJ[ƒh”Ô†‚È‚Çj‚Ì\nƒ`ƒFƒbƒNƒfƒBƒWƒbƒg‚ª³‚µ‚¢ê‡true‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsLuhn.VB_Description = "Luhnã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ (ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã‚«ãƒ¼ãƒ‰ç•ªå·ãªã©ï¼‰ã®\nãƒã‚§ãƒƒã‚¯ãƒ‡ã‚£ã‚¸ãƒƒãƒˆãŒæ­£ã—ã„å ´åˆtrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsLuhn.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -880,10 +880,10 @@ Attribute rlxIsLuhn.VB_ProcData.VB_Invoke_Func = " \n19"
     For i = 1 To lngLen
     
         If (i Mod 2) = 1 Then
-            'Šï”Œ…‚Ì‚İ‚ğ‰ÁZiƒ`ƒFƒbƒNƒfƒBƒWƒbƒg‚ğœ‚­j
+            'å¥‡æ•°æ¡ã®ã¿ã‚’åŠ ç®—ï¼ˆãƒã‚§ãƒƒã‚¯ãƒ‡ã‚£ã‚¸ãƒƒãƒˆã‚’é™¤ãï¼‰
             lngOdd = lngOdd + Val(Mid$(strNo, lngLen - i + 1, 1))
         Else
-            '‹ô”Œ…‚Ì‚İ‚ğ‰ÁZ
+            'å¶æ•°æ¡ã®ã¿ã‚’åŠ ç®—
             Dim lngWork As Long
             lngWork = Val(Mid$(strNo, lngLen - i + 1, 1)) * 2
             lngEvn = lngEvn + Fix(lngWork / 10) + lngWork Mod 10
@@ -901,11 +901,11 @@ Attribute rlxIsLuhn.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒ}ƒCƒiƒ“ƒo[ƒ`ƒFƒbƒNƒfƒWƒbƒgiŒÂlj
+'ã€€ãƒã‚¤ãƒŠãƒ³ãƒãƒ¼ãƒã‚§ãƒƒã‚¯ãƒ‡ã‚¸ãƒƒãƒˆï¼ˆå€‹äººï¼‰
 '--------------------------------------------------------------
 Function rlxIsMyNumber(ByVal strNo As String) As Boolean
 
- 'ƒ}ƒCƒiƒ“ƒo[ƒ`ƒFƒbƒNƒfƒWƒbƒgƒ`ƒFƒbƒN
+ 'ãƒã‚¤ãƒŠãƒ³ãƒãƒ¼ãƒã‚§ãƒƒã‚¯ãƒ‡ã‚¸ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
     Dim strBuf As String
     Dim i As Long
     Dim c As Long
@@ -954,11 +954,11 @@ Function rlxIsMyNumber(ByVal strNo As String) As Boolean
     
 End Function
 '--------------------------------------------------------------
-'@ƒ}ƒCƒiƒ“ƒo[ƒ`ƒFƒbƒNƒfƒWƒbƒg(Šé‹Æ)
+'ã€€ãƒã‚¤ãƒŠãƒ³ãƒãƒ¼ãƒã‚§ãƒƒã‚¯ãƒ‡ã‚¸ãƒƒãƒˆ(ä¼æ¥­)
 '--------------------------------------------------------------
 Function rlxIsCorpNumber(ByVal strNo As String) As Boolean
 
-    '–@l”Ô†ƒ`ƒFƒbƒNƒfƒWƒbƒgƒ`ƒFƒbƒN
+    'æ³•äººç•ªå·ãƒã‚§ãƒƒã‚¯ãƒ‡ã‚¸ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
     Dim strBuf As String
     Dim i As Long
     Dim c As Long
@@ -1001,10 +1001,10 @@ Function rlxIsCorpNumber(ByVal strNo As String) As Boolean
     
 End Function
 '--------------------------------------------------------------
-'@ƒ‚ƒWƒ…ƒ‰ƒX‚P‚O/ƒEƒFƒCƒg3-1
+'ã€€ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹ï¼‘ï¼/ã‚¦ã‚§ã‚¤ãƒˆ3-1
 '--------------------------------------------------------------
 Function rlxIsModulus10(ByVal strNo As String) As Boolean
-Attribute rlxIsModulus10.VB_Description = "ƒ‚ƒWƒ…ƒ‰ƒX10ƒEƒFƒCƒg3-1/JAN/EAN/ISBN13‚Ì\nƒ`ƒFƒbƒNƒfƒBƒWƒbƒg‚ª³‚µ‚¢ê‡true‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsModulus10.VB_Description = "ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹10ã‚¦ã‚§ã‚¤ãƒˆ3-1/JAN/EAN/ISBN13ã®\nãƒã‚§ãƒƒã‚¯ãƒ‡ã‚£ã‚¸ãƒƒãƒˆãŒæ­£ã—ã„å ´åˆtrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsModulus10.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -1038,16 +1038,16 @@ Attribute rlxIsModulus10.VB_ProcData.VB_Invoke_Func = " \n19"
             lngCheckDigit = Val(Mid$(strNo, lngLen - i + 1, 1))
         Else
             If (i Mod 2) = 1 Then
-                'Šï”Œ…‚Ì‚İ‚ğ‰ÁZiƒ`ƒFƒbƒNƒfƒBƒWƒbƒg‚ğœ‚­j
+                'å¥‡æ•°æ¡ã®ã¿ã‚’åŠ ç®—ï¼ˆãƒã‚§ãƒƒã‚¯ãƒ‡ã‚£ã‚¸ãƒƒãƒˆã‚’é™¤ãï¼‰
                 lngOdd = lngOdd + Val(Mid$(strNo, lngLen - i + 1, 1))
             Else
-                '‹ô”Œ…‚Ì‚İ‚ğ‰ÁZ
+                'å¶æ•°æ¡ã®ã¿ã‚’åŠ ç®—
                 lngEvn = lngEvn + Val(Mid$(strNo, lngLen - i + 1, 1))
             End If
         End If
     Next
 
-    'Šï”‚Ì‰ÁZ‚Æ‹ô”‚Ì‰ÁZ‚ğ‚R”{‚µ‚½‚à‚Ì‚ğ‰ÁZB‰º‚PŒ…‚ğ‚P‚O‚©‚çˆø‚­
+    'å¥‡æ•°ã®åŠ ç®—ã¨å¶æ•°ã®åŠ ç®—ã‚’ï¼“å€ã—ãŸã‚‚ã®ã‚’åŠ ç®—ã€‚ä¸‹ï¼‘æ¡ã‚’ï¼‘ï¼ã‹ã‚‰å¼•ã
     lngAns = 10 - (lngOdd + lngEvn * 3) Mod 10
 
     If lngAns = lngCheckDigit Then
@@ -1058,10 +1058,10 @@ Attribute rlxIsModulus10.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒ‚ƒWƒ…ƒ‰ƒX‚P‚PƒEƒFƒCƒg10-2
+'ã€€ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹ï¼‘ï¼‘ã‚¦ã‚§ã‚¤ãƒˆ10-2
 '--------------------------------------------------------------
 Function rlxIsModulus11_10_2(ByVal strNo As String) As Boolean
-Attribute rlxIsModulus11_10_2.VB_Description = "ƒ‚ƒWƒ…ƒ‰ƒX11ƒEƒFƒCƒg10-2/ISBN10‚Ì\nƒ`ƒFƒbƒNƒfƒBƒWƒbƒg‚ª³‚µ‚¢ê‡true‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsModulus11_10_2.VB_Description = "ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹11ã‚¦ã‚§ã‚¤ãƒˆ10-2/ISBN10ã®\nãƒã‚§ãƒƒã‚¯ãƒ‡ã‚£ã‚¸ãƒƒãƒˆãŒæ­£ã—ã„å ´åˆtrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsModulus11_10_2.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -1122,7 +1122,7 @@ Attribute rlxIsModulus11_10_2.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ISBNƒR[ƒh‚Åƒ`ƒFƒbƒNƒfƒBƒWƒbƒg‚ª‚w‚É‚È‚Á‚½ê‡‚Ì•ÏŠ·B
+'ã€€ISBNã‚³ãƒ¼ãƒ‰ã§ãƒã‚§ãƒƒã‚¯ãƒ‡ã‚£ã‚¸ãƒƒãƒˆãŒï¼¸ã«ãªã£ãŸå ´åˆã®å¤‰æ›ã€‚
 '--------------------------------------------------------------
 Private Function xVal(ByVal strNo) As Long
     If LCase(strNo) = "x" Then
@@ -1132,10 +1132,10 @@ Private Function xVal(ByVal strNo) As Long
     End If
 End Function
 '--------------------------------------------------------------
-'@ƒ‚ƒWƒ…ƒ‰ƒX‚P‚PƒEƒFƒCƒg2-7
+'ã€€ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹ï¼‘ï¼‘ã‚¦ã‚§ã‚¤ãƒˆ2-7
 '--------------------------------------------------------------
 Function rlxIsModulus11_2_7(ByVal strNo As String) As Boolean
-Attribute rlxIsModulus11_2_7.VB_Description = "ƒ‚ƒWƒ…ƒ‰ƒX11/’n•ûŒö‹¤’c‘ÌƒR[ƒh‚Ì\nƒ`ƒFƒbƒNƒfƒBƒWƒbƒg‚ª³‚µ‚¢ê‡true‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsModulus11_2_7.VB_Description = "ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹11/åœ°æ–¹å…¬å…±å›£ä½“ã‚³ãƒ¼ãƒ‰ã®\nãƒã‚§ãƒƒã‚¯ãƒ‡ã‚£ã‚¸ãƒƒãƒˆãŒæ­£ã—ã„å ´åˆtrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsModulus11_2_7.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -1195,10 +1195,10 @@ Attribute rlxIsModulus11_2_7.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒ‚ƒWƒ…ƒ‰ƒX11/’n•ûŒö‹¤’c‘ÌƒR[ƒh
+'ã€€ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹11/åœ°æ–¹å…¬å…±å›£ä½“ã‚³ãƒ¼ãƒ‰
 '--------------------------------------------------------------
 Function rlxIsModulus11_Pref(ByVal strNo As String) As Boolean
-Attribute rlxIsModulus11_Pref.VB_Description = "ƒ‚ƒWƒ…ƒ‰ƒX11ƒEƒFƒCƒg2-7/NW-7/–Æ‹–Ø”Ô†1`11‚Ì\nƒ`ƒFƒbƒNƒfƒBƒWƒbƒg‚ª³‚µ‚¢ê‡true‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsModulus11_Pref.VB_Description = "ãƒ¢ã‚¸ãƒ¥ãƒ©ã‚¹11ã‚¦ã‚§ã‚¤ãƒˆ2-7/NW-7/å…è¨±è¨¼ç•ªå·1ï½11ã®\nãƒã‚§ãƒƒã‚¯ãƒ‡ã‚£ã‚¸ãƒƒãƒˆãŒæ­£ã—ã„å ´åˆtrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsModulus11_Pref.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -1252,10 +1252,10 @@ Attribute rlxIsModulus11_Pref.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@”šƒ`ƒFƒbƒN
+'ã€€æ•°å­—ãƒã‚§ãƒƒã‚¯
 '--------------------------------------------------------------
 Function rlxIsNumber(ByVal strNo As String) As Boolean
-Attribute rlxIsNumber.VB_Description = "”š‚Ì‚İ‚Ìê‡true‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsNumber.VB_Description = "æ•°å­—ã®ã¿ã®å ´åˆtrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsNumber.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -1277,10 +1277,10 @@ Attribute rlxIsNumber.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@‰pšƒ`ƒFƒbƒN
+'ã€€è‹±å­—ãƒã‚§ãƒƒã‚¯
 '--------------------------------------------------------------
 Function rlxIsAlphabet(ByVal strNo As String) As Boolean
-Attribute rlxIsAlphabet.VB_Description = "‰pš‚Ì‚İ‚Ìê‡true‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsAlphabet.VB_Description = "è‹±å­—ã®ã¿ã®å ´åˆtrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsAlphabet.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -1303,10 +1303,10 @@ Attribute rlxIsAlphabet.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@‰p”šƒ`ƒFƒbƒN
+'ã€€è‹±æ•°å­—ãƒã‚§ãƒƒã‚¯
 '--------------------------------------------------------------
 Function rlxIsAlphaAndNum(ByVal strNo As String) As Boolean
-Attribute rlxIsAlphaAndNum.VB_Description = "‰p”š‚Ì‚İ‚Ìê‡true‚ğ•Ô‹p‚µ‚Ü‚·B"
+Attribute rlxIsAlphaAndNum.VB_Description = "è‹±æ•°å­—ã®ã¿ã®å ´åˆtrueã‚’è¿”å´ã—ã¾ã™ã€‚"
 Attribute rlxIsAlphaAndNum.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -1330,10 +1330,10 @@ Attribute rlxIsAlphaAndNum.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'  ‚g‚s‚l‚k•¶š—ñ‚ÌƒTƒjƒ^ƒCƒWƒ“ƒO‚ğs‚¤B
+'  ï¼¨ï¼´ï¼­ï¼¬æ–‡å­—åˆ—ã®ã‚µãƒ‹ã‚¿ã‚¤ã‚¸ãƒ³ã‚°ã‚’è¡Œã†ã€‚
 '--------------------------------------------------------------
 Public Function rlxHtmlSanitizing(ByVal strBuf As String) As String
-Attribute rlxHtmlSanitizing.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxHtmlSanitizing.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxHtmlSanitizing.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim strRep As String
@@ -1345,7 +1345,7 @@ Attribute rlxHtmlSanitizing.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'  ƒRƒŒƒNƒVƒ‡ƒ“‚Ìƒ\[ƒg
+'  ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚½ãƒ¼ãƒˆ
 '--------------------------------------------------------------
 Public Sub rlxSortCollection(ByRef col As Collection)
 
@@ -1358,12 +1358,12 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     Dim strkey() As String
     Dim wk As String
 
-    'Collection‚ª‹ó‚È‚ç‚È‚É‚à‚µ‚È‚¢
+    'CollectionãŒç©ºãªã‚‰ãªã«ã‚‚ã—ãªã„
     If col Is Nothing Then
         Exit Sub
     End If
 
-    'Collection‚Ì—v‘f”‚ª‚O‚Ü‚½‚Í‚P‚Ìê‡ƒ\[ƒg•s—v
+    'Collectionã®è¦ç´ æ•°ãŒï¼ã¾ãŸã¯ï¼‘ã®å ´åˆã‚½ãƒ¼ãƒˆä¸è¦
     If col.count <= 1 Then
         Exit Sub
     End If
@@ -1375,7 +1375,7 @@ Public Sub rlxSortCollection(ByRef col As Collection)
         strkey(i) = col.Item(i).Name
     Next
 
-    '‘}“üƒ\[ƒg
+    'æŒ¿å…¥ã‚½ãƒ¼ãƒˆ
     For i = 2 To n
 
         wk = strkey(i)
@@ -1411,7 +1411,7 @@ Public Sub rlxSortCollection(ByRef col As Collection)
 
 End Sub
 
-'ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ğ‘‚«‚ŞƒvƒƒV[ƒWƒƒ
+'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 Public Sub SetClipText(strData As String)
 
 #If VBA7 And Win64 Then
@@ -1428,45 +1428,45 @@ Public Sub SetClipText(strData As String)
 
   blnErrflg = True
   
-  'ƒNƒŠƒbƒvƒ{[ƒh‚ğƒI[ƒvƒ“
+  'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚ªãƒ¼ãƒ—ãƒ³
   If OpenClipboard(0&) <> 0 Then
   
-    'ƒNƒŠƒbƒvƒ{[ƒh‚ğ‹ó‚É‚·‚é
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ç©ºã«ã™ã‚‹
     If EmptyClipboard() <> 0 Then
     
-        'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠ‚É‘‚«‚Ş—Ìˆæ‚ğŠm•Û‚µ‚Ä‚»‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾
+        'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªã«æ›¸ãè¾¼ã‚€é ˜åŸŸã‚’ç¢ºä¿ã—ã¦ãã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
         lngDataLen = LenB(strData) + 1
         
         lngHwnd = GlobalAlloc(GMEM_MOVEABLE, lngDataLen)
         
         If lngHwnd <> 0 Then
       
-            'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠ‚ğƒƒbƒN‚µ‚Ä‚»‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+            'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªã‚’ãƒ­ãƒƒã‚¯ã—ã¦ãã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
             lngMEM = GlobalLock(lngHwnd)
             
             If lngMEM <> 0 Then
         
-                '‘‚«‚ŞƒeƒLƒXƒg‚ğƒOƒ[ƒoƒ‹ƒƒ‚ƒŠ‚ÉƒRƒs[
+                'æ›¸ãè¾¼ã‚€ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªã«ã‚³ãƒ”ãƒ¼
                 If lstrcpy(lngMEM, strData) <> 0 Then
-                    'ƒNƒŠƒbƒvƒ{[ƒh‚Éƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒf[ƒ^‚ğ‘‚«‚İ
+                    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿
                     lngret = SetClipboardData(CF_TEXT, lngHwnd)
                     blnErrflg = False
                 End If
-                'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒƒbƒN‚ğ‰ğœ
+                'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤
                 lngret = GlobalUnlock(lngHwnd)
             End If
         End If
     End If
-    'ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒ[ƒY(‚±‚ê‚ÍWindows‚É§Œä‚ª
-    '–ß‚ç‚È‚¢‚¤‚¿‚É‚Å‚«‚éŒÀ‚è‘¬‚â‚©‚És‚¤)
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚¯ãƒ­ãƒ¼ã‚º(ã“ã‚Œã¯Windowsã«åˆ¶å¾¡ãŒ
+    'æˆ»ã‚‰ãªã„ã†ã¡ã«ã§ãã‚‹é™ã‚Šé€Ÿã‚„ã‹ã«è¡Œã†)
     lngret = CloseClipboard()
   End If
 
-  If blnErrflg Then MsgBox "ƒNƒŠƒbƒvƒ{[ƒh‚Éî•ñ‚ª‘‚«‚ß‚Ü‚¹‚ñ", vbOKOnly, C_TITLE
+  If blnErrflg Then MsgBox "ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æƒ…å ±ãŒæ›¸ãè¾¼ã‚ã¾ã›ã‚“", vbOKOnly, C_TITLE
 
 End Sub
 
-'ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒgƒf[ƒ^‚ğ‘‚«‚ŞƒvƒƒV[ƒWƒƒ
+'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 Public Sub SetCopyClipText(strBuf() As String)
 
 #If VBA7 And Win64 Then
@@ -1496,35 +1496,35 @@ Public Sub SetCopyClipText(strBuf() As String)
 
     blnErrflg = True
   
-    'ƒNƒŠƒbƒvƒ{[ƒh‚ğƒI[ƒvƒ“
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚ªãƒ¼ãƒ—ãƒ³
     If OpenClipboard(0&) <> 0 Then
   
-        'ƒNƒŠƒbƒvƒ{[ƒh‚ğ‹ó‚É‚·‚é
+        'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ç©ºã«ã™ã‚‹
         If EmptyClipboard() <> 0 Then
     
-            'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠ‚É‘‚«‚Ş—Ìˆæ‚ğŠm•Û‚µ‚Ä‚»‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾
+            'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªã«æ›¸ãè¾¼ã‚€é ˜åŸŸã‚’ç¢ºä¿ã—ã¦ãã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
             lngDataLen = LenB(strData) + LenB(df) + 1024
             
             lngHwnd = GlobalAlloc(GMEM_MOVEABLE, lngDataLen)
             
             If lngHwnd <> 0 Then
             
-                'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠ‚ğƒƒbƒN‚µ‚Ä‚»‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+                'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªã‚’ãƒ­ãƒƒã‚¯ã—ã¦ãã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
                 lngMEM = GlobalLock(lngHwnd)
                 
                 If lngMEM <> 0 Then
                 
                     df.pFiles = LenB(df)
             
-                    '‘‚«‚ŞƒeƒLƒXƒg‚ğƒOƒ[ƒoƒ‹ƒƒ‚ƒŠ‚ÉƒRƒs[
+                    'æ›¸ãè¾¼ã‚€ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªã«ã‚³ãƒ”ãƒ¼
                     CopyMemory ByVal lngMEM, df, LenB(df)
                     CopyMemory ByVal (lngMEM + LenB(df)), ByVal strData, LenB(strData)
                     
-                    'ƒNƒŠƒbƒvƒ{[ƒh‚Éƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒf[ƒ^‚ğ‘‚«‚İ
+                    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿
                     lngret = SetClipboardData(CF_HDROP, lngHwnd)
                     blnErrflg = False
                 
-                    'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒƒbƒN‚ğ‰ğœ
+                    'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤
                     lngret = GlobalUnlock(lngHwnd)
                     
                 End If
@@ -1533,16 +1533,16 @@ Public Sub SetCopyClipText(strBuf() As String)
             
         End If
         
-        'ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒ[ƒY(‚±‚ê‚ÍWindows‚É§Œä‚ª
-        '–ß‚ç‚È‚¢‚¤‚¿‚É‚Å‚«‚éŒÀ‚è‘¬‚â‚©‚És‚¤)
+        'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚¯ãƒ­ãƒ¼ã‚º(ã“ã‚Œã¯Windowsã«åˆ¶å¾¡ãŒ
+        'æˆ»ã‚‰ãªã„ã†ã¡ã«ã§ãã‚‹é™ã‚Šé€Ÿã‚„ã‹ã«è¡Œã†)
         lngret = CloseClipboard()
     End If
     
-    If blnErrflg Then MsgBox "ƒNƒŠƒbƒvƒ{[ƒh‚Éî•ñ‚ª‘‚«‚ß‚Ü‚¹‚ñ", vbOKOnly, C_TITLE
+    If blnErrflg Then MsgBox "ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æƒ…å ±ãŒæ›¸ãè¾¼ã‚ã¾ã›ã‚“", vbOKOnly, C_TITLE
 
 End Sub
 Function rlxSetLimit(ByVal l As Long, ByVal h As Long, ByVal lngVal As Long) As Long
-Attribute rlxSetLimit.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxSetLimit.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxSetLimit.VB_ProcData.VB_Invoke_Func = " \n19"
 
     If lngVal < l Then
@@ -1557,7 +1557,7 @@ Attribute rlxSetLimit.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒCƒ“ƒfƒ“ƒgİ’è
+'ã€€ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆè¨­å®š
 '--------------------------------------------------------------
 Sub setIndent(ByRef r As Range, ByVal lngIndent As Long)
     If lngIndent <> 0 Then
@@ -1569,10 +1569,10 @@ Sub setIndent(ByRef r As Range, ByVal lngIndent As Long)
     End If
 End Sub
 '--------------------------------------------------------------
-'@ƒ[ƒ}”š¨”š
+'ã€€ãƒ­ãƒ¼ãƒæ•°å­—â†’æ•°å­—
 '--------------------------------------------------------------
 Public Function rlxArabic(ByVal strRoman As String) As Long
-Attribute rlxArabic.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxArabic.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxArabic.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngret As Long
@@ -1624,10 +1624,10 @@ Attribute rlxArabic.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@”šƒ[ƒ}¨”š
+'ã€€æ•°å­—ãƒ­ãƒ¼ãƒâ†’æ•°å­—
 '--------------------------------------------------------------
 Public Function rlxRoman(ByVal lngRoman As Long) As String
-Attribute rlxRoman.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxRoman.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxRoman.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim strRet As String
@@ -1679,10 +1679,10 @@ Attribute rlxRoman.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒJƒ‰[ƒ_ƒCƒAƒƒO•\¦
+'ã€€ã‚«ãƒ©ãƒ¼ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤º
 '--------------------------------------------------------------
 Public Function rlxGetColorDlg(lngDefColor As Long) As Long
-Attribute rlxGetColorDlg.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetColorDlg.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetColorDlg.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngBackColor As Long
@@ -1711,10 +1711,10 @@ Attribute rlxGetColorDlg.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@ƒNƒŠƒbƒvƒ{[ƒh‚©‚çƒtƒ@ƒCƒ‹–¼‚ğæ“¾
+'ã€€ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å–å¾—
 '--------------------------------------------------------------
 Public Function rlxGetFileNameFromCli() As String
-Attribute rlxGetFileNameFromCli.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetFileNameFromCli.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetFileNameFromCli.VB_ProcData.VB_Invoke_Func = " \n19"
 
 #If VBA7 And Win64 Then
@@ -1751,10 +1751,10 @@ Attribute rlxGetFileNameFromCli.VB_ProcData.VB_Invoke_Func = " \n19"
     
 End Function
 '--------------------------------------------------------------
-'@Excelƒtƒ@ƒCƒ‹”»’è
+'ã€€Excelãƒ•ã‚¡ã‚¤ãƒ«åˆ¤å®š
 '--------------------------------------------------------------
 Function rlxIsExcelFile(ByVal strFile As String) As Boolean
-Attribute rlxIsExcelFile.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxIsExcelFile.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxIsExcelFile.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim varExt As Variant
@@ -1774,7 +1774,7 @@ Attribute rlxIsExcelFile.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@PowerPointƒtƒ@ƒCƒ‹”»’è
+'ã€€PowerPointãƒ•ã‚¡ã‚¤ãƒ«åˆ¤å®š
 '--------------------------------------------------------------
 Function rlxIsPowerPointFile(ByVal strFile As String) As Boolean
 
@@ -1795,7 +1795,7 @@ Function rlxIsPowerPointFile(ByVal strFile As String) As Boolean
 
 End Function
 '--------------------------------------------------------------
-'@Wordƒtƒ@ƒCƒ‹”»’è
+'ã€€Wordãƒ•ã‚¡ã‚¤ãƒ«åˆ¤å®š
 '--------------------------------------------------------------
 Function rlxIsWordFile(ByVal strFile As String) As Boolean
 
@@ -1816,7 +1816,7 @@ Function rlxIsWordFile(ByVal strFile As String) As Boolean
 
 End Function
 '--------------------------------------------------------------
-'@ƒ^ƒCƒgƒ‹ƒo[“_–Å
+'ã€€ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ç‚¹æ»…
 '--------------------------------------------------------------
 Sub rlxFlashWindow()
 
@@ -1836,7 +1836,7 @@ Sub rlxFlashWindow()
 
     hwnd = FindWindow("XLMAIN", Application.Caption)
     
-    '“_–Å‚Ìİ’è
+    'ç‚¹æ»…ã®è¨­å®š
     With udtFLASHWINFO
         .cbsize = Len(udtFLASHWINFO)
         .hwnd = hwnd
@@ -1845,26 +1845,26 @@ Sub rlxFlashWindow()
         .dwTimeout = 100
     End With
 
-    '“_–ÅÀs
+    'ç‚¹æ»…å®Ÿè¡Œ
     Call FlashWindowEx(udtFLASHWINFO)
     
 End Sub
 '--------------------------------------------------------------
-'@ƒGƒ‰[ƒƒbƒZ[ƒW•\¦
+'ã€€ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 '--------------------------------------------------------------
 Sub rlxErrMsg(ByRef objErr As Object)
 
     Select Case objErr.Number
         Case 0
         Case 1004
-            MsgBox "ƒGƒ‰[‚Å‚·BƒV[ƒg•ÛŒì‚È‚Ç‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B", vbCritical + vbOKOnly, C_TITLE
+            MsgBox "ã‚¨ãƒ©ãƒ¼ã§ã™ã€‚ã‚·ãƒ¼ãƒˆä¿è­·ãªã©ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚", vbCritical + vbOKOnly, C_TITLE
         Case Else
             MsgBox objErr.Description & "(" & err.Number & ")", vbCritical + vbOKOnly, C_TITLE
     End Select
 
 End Sub
 '----------------------------------------------------------------------
-' ƒNƒŠƒbƒvƒ{[ƒh‚Ìƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚©‚ç Picture ƒIƒuƒWƒFƒNƒg‚ğì¬
+' ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ Picture ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
 '----------------------------------------------------------------------
 Public Function CreatePictureFromClipboard(o As Object) As StdPicture
   
@@ -1885,10 +1885,10 @@ Public Function CreatePictureFromClipboard(o As Object) As StdPicture
   
     Dim c As New Collection
     
-    'ƒNƒŠƒbƒvƒ{[ƒh‚Ì•Û‘¶
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®ä¿å­˜
 '    SaveClipData c
   
-    'w’èƒVƒFƒCƒv‚ğƒrƒbƒgƒ}ƒbƒv‚ÅƒNƒŠƒbƒvƒ{[ƒh‚É“\‚è•t‚¯
+    'æŒ‡å®šã‚·ã‚§ã‚¤ãƒ—ã‚’ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«è²¼ã‚Šä»˜ã‘
     o.CopyPicture Appearance:=xlScreen, Format:=xlBitmap
     
     If IsClipboardFormatAvailable(CF_BITMAP) <> 0 Then
@@ -1926,12 +1926,12 @@ Public Function CreatePictureFromClipboard(o As Object) As StdPicture
         
     End If
     
-    'ƒNƒŠƒbƒvƒ{[ƒh‚Ì•œŒ³
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®å¾©å…ƒ
 '    RestoreClipData c
 
 End Function
 '--------------------------------------------------------------
-'ƒNƒŠƒbƒvƒ{[ƒh‚Éƒf[ƒ^‚ğ•Û‘¶‚·‚éƒvƒƒV[ƒWƒƒ
+'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 '--------------------------------------------------------------
 Public Sub SaveClipData(c As Collection)
 
@@ -1954,14 +1954,14 @@ Public Sub SaveClipData(c As Collection)
     Dim lngFormatID As Long
     Dim s As ClipDataDTO
 
-    'ƒNƒŠƒbƒvƒ{[ƒh‚ğƒI[ƒvƒ“
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚ªãƒ¼ãƒ—ãƒ³
     If OpenClipboard(0&) <> 0 Then
   
         lngFormatID = EnumClipboardFormats(0)
         
         Do Until lngFormatID = 0
         
-            'ƒNƒŠƒbƒvƒ{[ƒh‚Éw’è‚ÌŒ`®‚ª‘¶İ‚·‚é‚©
+            'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«æŒ‡å®šã®å½¢å¼ãŒå­˜åœ¨ã™ã‚‹ã‹
             If IsClipboardFormatAvailable(lngFormatID) <> 0 Then
             
                 lngMEM = GetClipboardData(lngFormatID)
@@ -1972,12 +1972,12 @@ Public Sub SaveClipData(c As Collection)
                     
                     If lngDataLen <> 0 Then
                 
-                        'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠ‚É‘‚«‚Ş—Ìˆæ‚ğŠm•Û‚µ‚Ä‚»‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾
+                        'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªã«æ›¸ãè¾¼ã‚€é ˜åŸŸã‚’ç¢ºä¿ã—ã¦ãã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
                         lngHwnd = GlobalAlloc(GMEM_MOVEABLE, lngDataLen)
                         
                         If lngHwnd <> 0 Then
                             
-                            'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠ‚ğƒƒbƒN‚µ‚Ä‚»‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+                            'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªã‚’ãƒ­ãƒƒã‚¯ã—ã¦ãã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
                             lngDst = GlobalLock(lngHwnd)
                             lngSrc = GlobalLock(lngMEM)
                     
@@ -2009,15 +2009,15 @@ Public Sub SaveClipData(c As Collection)
         
         Call EmptyClipboard
 
-        'ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒ[ƒY(‚±‚ê‚ÍWindows‚É§Œä‚ª
-        '–ß‚ç‚È‚¢‚¤‚¿‚É‚Å‚«‚éŒÀ‚è‘¬‚â‚©‚És‚¤)
+        'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚¯ãƒ­ãƒ¼ã‚º(ã“ã‚Œã¯Windowsã«åˆ¶å¾¡ãŒ
+        'æˆ»ã‚‰ãªã„ã†ã¡ã«ã§ãã‚‹é™ã‚Šé€Ÿã‚„ã‹ã«è¡Œã†)
         lngret = CloseClipboard()
         
     End If
 
 End Sub
 '--------------------------------------------------------------
-'ƒNƒŠƒbƒvƒ{[ƒh‚Éƒf[ƒ^‚ğ•œŒ³‚·‚éƒvƒƒV[ƒWƒƒ
+'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ‡ãƒ¼ã‚¿ã‚’å¾©å…ƒã™ã‚‹ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 '--------------------------------------------------------------
 Public Sub RestoreClipData(c As Collection)
 
@@ -2037,25 +2037,25 @@ Public Sub RestoreClipData(c As Collection)
         Exit Sub
     End If
 
-    'ƒNƒŠƒbƒvƒ{[ƒh‚ğƒI[ƒvƒ“
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚ªãƒ¼ãƒ—ãƒ³
     If OpenClipboard(0&) <> 0 Then
   
-        'ƒNƒŠƒbƒvƒ{[ƒh‚ğ‹ó‚É‚·‚é
+        'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ç©ºã«ã™ã‚‹
         If EmptyClipboard() <> 0 Then
     
             For Each s In c
         
                 If s.lngHandle <> 0 Then
         
-                    'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠ‚ğƒƒbƒN‚µ‚Ä‚»‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+                    'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªã‚’ãƒ­ãƒƒã‚¯ã—ã¦ãã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
                     lngMEM = GlobalLock(s.lngHandle)
               
                     If lngMEM <> 0 Then
                     
-                        'ƒNƒŠƒbƒvƒ{[ƒh‚Éƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒf[ƒ^‚ğ‘‚«‚İ
+                        'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿
                         lngret = SetClipboardData(s.lngFormat, s.lngHandle)
                     
-                        'ƒOƒ[ƒoƒ‹ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒƒbƒN‚ğ‰ğœ
+                        'ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤
                         lngret = GlobalUnlock(s.lngHandle)
                         
                         'lngRet = GlobalFree(s.lngHandle)
@@ -2073,7 +2073,7 @@ Public Sub RestoreClipData(c As Collection)
 
 End Sub
 '--------------------------------------------------------------
-'ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒŠƒA‚·‚é
+'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 '--------------------------------------------------------------
 Public Sub ClearClipboard()
 
@@ -2084,7 +2084,7 @@ Public Sub ClearClipboard()
 
 End Sub
 '--------------------------------------------------------------
-'•¶š‰»‚¯‘Î‰StrConv(vbUnicode, vbFromUnicode‚Íg‚¦‚Ü‚¹‚ñ)
+'æ–‡å­—åŒ–ã‘å¯¾å¿œStrConv(vbUnicode, vbFromUnicodeã¯ä½¿ãˆã¾ã›ã‚“)
 '--------------------------------------------------------------
 Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
 
@@ -2104,13 +2104,13 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
         c = Mid(strSource, i, 1)
 
         Select Case c
-            '‘SŠp‚Ì‘÷“_A”¼‘÷“_
-            Case "K", "J"
+            'å…¨è§’ã®æ¿ç‚¹ã€åŠæ¿ç‚¹
+            Case "ã‚œ", "ã‚›"
                 If (conv And vbNarrow) > 0 Then
-                    If c = "K" Then
-                        strChr = "ß"
+                    If c = "ã‚œ" Then
+                        strChr = "ï¾Ÿ"
                     Else
-                        strChr = "Ş"
+                        strChr = "ï¾"
                     End If
                 Else
                     strChr = c
@@ -2118,15 +2118,15 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
                 strRet = strRet & StrConv(strBuf, conv) & strChr
                 strBuf = ""
                 
-            '”¼Šp‚Ì”¼‘÷“_
-            Case "ß"
-                '‚P‚Â‘O‚Ì•¶š
+            'åŠè§’ã®åŠæ¿ç‚¹
+            Case "ï¾Ÿ"
+                'ï¼‘ã¤å‰ã®æ–‡å­—
                 Select Case strBefore
-                    Case "Ê" To "Î"
+                    Case "ï¾Š" To "ï¾"
                         strBuf = strBuf & c
                     Case Else
                         If (conv And vbWide) > 0 Then
-                             strChr = "K"
+                             strChr = "ã‚œ"
                         Else
                             strChr = c
                         End If
@@ -2134,15 +2134,15 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
                         strBuf = ""
                 End Select
                 
-            '”¼Šp‚Ì‘÷“_
-            Case "Ş"
-                '‚P‚Â‘O‚Ì•¶š
+            'åŠè§’ã®æ¿ç‚¹
+            Case "ï¾"
+                'ï¼‘ã¤å‰ã®æ–‡å­—
                 Select Case strBefore
-                    Case "¶" To "º", "»" To "¿", "À" To "Ä", "Ê" To "Î"
+                    Case "ï½¶" To "ï½º", "ï½»" To "ï½¿", "ï¾€" To "ï¾„", "ï¾Š" To "ï¾"
                         strBuf = strBuf & c
                     Case Else
                         If (conv And vbWide) > 0 Then
-                            strChr = "J"
+                            strChr = "ã‚›"
                         Else
                             strChr = c
                         End If
@@ -2150,9 +2150,9 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
                         strBuf = ""
                 End Select
                 
-            '‚»‚Ì‘¼
+            'ãã®ä»–
             Case Else
-                '‘æ“ñ…€“™StrConv‚Å•¶š‰»‚¯‚·‚é‚à‚Ì‚ğ‘Ş”ğ
+                'ç¬¬äºŒæ°´æº–ç­‰StrConvã§æ–‡å­—åŒ–ã‘ã™ã‚‹ã‚‚ã®ã‚’é€€é¿
                 If Asc(c) = 63 And c <> "?" Then
                     strRet = strRet & StrConv(strBuf, conv) & c
                     strBuf = ""
@@ -2161,7 +2161,7 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
                 End If
         End Select
         
-        '‚PŒÂ‘O‚Ì•¶š
+        'ï¼‘å€‹å‰ã®æ–‡å­—
         strBefore = c
 
     Next
@@ -2174,7 +2174,7 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
 
 End Function
 '--------------------------------------------------------------
-'  ƒtƒHƒ‹ƒ_‚Ìì¬
+'  ãƒ•ã‚©ãƒ«ãƒ€ã®ä½œæˆ
 '--------------------------------------------------------------
 Sub rlxCreateFolder(ByVal strPath As String)
 
@@ -2200,7 +2200,7 @@ Sub rlxCreateFolder(ByVal strPath As String)
 
 End Sub
 '--------------------------------------------------------------
-'  Excelƒtƒ@ƒCƒ‹‚ğŠJ‚«’¼‚·
+'  Excelãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãç›´ã™
 '--------------------------------------------------------------
 Sub CloseAndOpen()
 
@@ -2226,7 +2226,7 @@ Sub CloseAndOpen()
 End Sub
 
 '--------------------------------------------------------------
-'  ‘SŠpƒgƒŠƒ€
+'  å…¨è§’ãƒˆãƒªãƒ 
 '--------------------------------------------------------------
 Function TrimZen(ByVal strBuf As String) As String
  
@@ -2240,7 +2240,7 @@ Function TrimZen(ByVal strBuf As String) As String
     Do Until lngStart > lngLen
         Select Case Mid$(strBuf, lngStart, 1)
             Case Is <= " "
-            Case Is = "@"
+            Case Is = "ã€€"
             Case Else
                 Exit Do
         End Select
@@ -2251,7 +2251,7 @@ Function TrimZen(ByVal strBuf As String) As String
     Do Until lngEnd < 1
         Select Case Mid$(strBuf, lngEnd, 1)
             Case Is <= " "
-            Case Is = "@"
+            Case Is = "ã€€"
             Case Else
                 Exit Do
         End Select
@@ -2266,7 +2266,7 @@ Function TrimZen(ByVal strBuf As String) As String
 
 End Function
 '--------------------------------------------------------------
-'  ƒ}ƒCƒhƒLƒ…ƒƒ“ƒgƒtƒHƒ‹ƒ_ˆÚ“®
+'  ãƒã‚¤ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆãƒ•ã‚©ãƒ«ãƒ€ç§»å‹•
 '--------------------------------------------------------------
 Sub SetMyDocument()
     On Error Resume Next

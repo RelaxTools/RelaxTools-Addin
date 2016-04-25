@@ -37,16 +37,16 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private Const C_SECTION_REGEXP As String = "^—á[‚P-‚X]+\)"
+Private Const C_SECTION_REGEXP As String = "^ä¾‹[ï¼‘-ï¼™]+\)"
 Private Const C_SECTION_SEPARATER As String = ""
-Private Const C_SECTION_NAME As String = "—á‚P)"
+Private Const C_SECTION_NAME As String = "ä¾‹ï¼‘)"
 Private Const C_SECTION_CLASS As String = "itemNumExp"
 Public Property Get Class() As String
     Class = C_SECTION_CLASS
 End Property
 Public Function SectionLevelName(ByVal lngLevel As Long) As String
     
-    SectionLevelName = " —á‚P) „Ÿ„Ÿ„Ÿ„Ÿ"
+    SectionLevelName = " ä¾‹ï¼‘) â”€â”€â”€â”€"
 
 End Function
 Public Property Get SectionName() As String
@@ -87,18 +87,18 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngIndentLevel As Long) 
     Dim strNewNum As String
     Dim strNumber As String
     Dim lngPos As Long
-    Const STR As String = "‚P‚Q‚R‚S‚T‚U‚V‚W‚X"
+    Const STR As String = "ï¼‘ï¼’ï¼“ï¼”ï¼•ï¼–ï¼—ï¼˜ï¼™"
     
     strNumber = Trim(SectionNumber(v))
     
     If strNumber = "" Then
-        strNewNum = "—á‚P)" & C_SECTION_SEPARATER
+        strNewNum = "ä¾‹ï¼‘)" & C_SECTION_SEPARATER
     Else
-        lngPos = InStr(STR, Replace(Replace(strNumber, "—á", ""), ")", "")) + 1
+        lngPos = InStr(STR, Replace(Replace(strNumber, "ä¾‹", ""), ")", "")) + 1
         If lngPos > Len(STR) Then
             lngPos = 1
         End If
-        strNewNum = "—á" & Mid$(STR, lngPos, 1) & ")" & C_SECTION_SEPARATER
+        strNewNum = "ä¾‹" & Mid$(STR, lngPos, 1) & ")" & C_SECTION_SEPARATER
     End If
     
     NextNumber = strNewNum

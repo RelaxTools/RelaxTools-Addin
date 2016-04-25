@@ -33,13 +33,13 @@ Option Private Module
 
 
 '--------------------------------------------------------------
-'@ƒL[Àsƒ‰ƒbƒp[
+'ã€€ã‚­ãƒ¼å®Ÿè¡Œãƒ©ãƒƒãƒ‘ãƒ¼
 '--------------------------------------------------------------
 Sub execOnKey(ByVal strMacro As String, ByVal strLabel As String)
 
     On Error Resume Next
 
-    'ŠJnƒƒO
+    'é–‹å§‹ãƒ­ã‚°
     Logger.LogBegin strMacro
     
     Application.Run strMacro
@@ -48,12 +48,12 @@ Sub execOnKey(ByVal strMacro As String, ByVal strLabel As String)
         Application.OnRepeat strLabel, strMacro
     End If
     
-    'I—¹ƒƒO
+    'çµ‚äº†ãƒ­ã‚°
     Logger.LogFinish strMacro
     
 End Sub
 '--------------------------------------------------------------
-'@ˆÃ†‰»ƒoƒbƒtƒ@ƒGƒŠƒA
+'ã€€æš—å·åŒ–ãƒãƒƒãƒ•ã‚¡ã‚¨ãƒªã‚¢
 '--------------------------------------------------------------
 'Private mbytBuf() As Byte
 
@@ -65,19 +65,19 @@ Sub saveWorkSheets()
     
     On Error GoTo ErrHandle
         
-    vntFileName = Application.GetSaveAsFilename(InitialFileName:="", FileFilter:="Excel ƒuƒbƒN(*.xlsx),*.xlsx,Excel ƒ}ƒNƒ—LŒøƒuƒbƒN(*.xlsm),*.xlsm,Excel 97-2003ƒuƒbƒN(*.xls),*.xls", Title:="ƒuƒbƒN‚Ì•Û‘¶")
+    vntFileName = Application.GetSaveAsFilename(InitialFileName:="", FileFilter:="Excel ãƒ–ãƒƒã‚¯(*.xlsx),*.xlsx,Excel ãƒã‚¯ãƒ­æœ‰åŠ¹ãƒ–ãƒƒã‚¯(*.xlsm),*.xlsm,Excel 97-2003ãƒ–ãƒƒã‚¯(*.xls),*.xls", Title:="ãƒ–ãƒƒã‚¯ã®ä¿å­˜")
     
     If vntFileName <> False Then
     
         For Each b In Workbooks
             If UCase(b.Name) = UCase(rlxGetFullpathFromFileName(vntFileName)) Then
-                MsgBox "Œ»İŠJ‚¢‚Ä‚¢‚éƒuƒbƒN‚Æ“¯‚¶–¼‘O‚Íw’è‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbExclamation, C_TITLE
+                MsgBox "ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ãƒ–ãƒƒã‚¯ã¨åŒã˜åå‰ã¯æŒ‡å®šã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbExclamation, C_TITLE
                 Exit Sub
             End If
         Next
         
         If rlxIsFileExists(vntFileName) Then
-            If MsgBox("‚·‚Å‚É“¯–¼‚ÌƒuƒbƒN‚ª‘¶İ‚·‚µ‚Ü‚·Bã‘‚«‚µ‚Ü‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            If MsgBox("ã™ã§ã«åŒåã®ãƒ–ãƒƒã‚¯ãŒå­˜åœ¨ã™ã—ã¾ã™ã€‚ä¸Šæ›¸ãã—ã¾ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
                 Exit Sub
             End If
         End If
@@ -96,16 +96,16 @@ Sub saveWorkSheets()
         b.Close
         Set b = Nothing
         Application.DisplayAlerts = True
-        MsgBox "•Û‘¶‚µ‚Ü‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+        MsgBox "ä¿å­˜ã—ã¾ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
     End If
      
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@sƒRƒs[
+'ã€€è¡Œã‚³ãƒ”ãƒ¼
 '--------------------------------------------------------------
 Sub lineCopy()
 
@@ -136,12 +136,12 @@ Sub lineCopy()
     Application.ScreenUpdating = True
     
     'Undo
-    Application.OnUndo "s’Ç‰Á", "execInsUndo"
+    Application.OnUndo "è¡Œè¿½åŠ ", "execInsUndo"
     
     
 End Sub
 '--------------------------------------------------------------
-'@s‘}“ü
+'ã€€è¡ŒæŒ¿å…¥
 '--------------------------------------------------------------
 Sub lineInsert()
     
@@ -173,11 +173,11 @@ Sub lineInsert()
     Application.ScreenUpdating = True
     
     'Undo
-    Application.OnUndo "s’Ç‰Á", "execInsUndo"
+    Application.OnUndo "è¡Œè¿½åŠ ", "execInsUndo"
     
 End Sub
 '--------------------------------------------------------------
-'@síœ
+'ã€€è¡Œå‰Šé™¤
 '--------------------------------------------------------------
 Sub lineDel()
 
@@ -211,12 +211,12 @@ Sub lineDel()
     Selection.Select
     
     'Undo
-    Application.OnUndo "síœ", "execDelUndo"
+    Application.OnUndo "è¡Œå‰Šé™¤", "execDelUndo"
     
     
 End Sub
 '--------------------------------------------------------------
-'@•¡”sƒRƒs[
+'ã€€è¤‡æ•°è¡Œã‚³ãƒ”ãƒ¼
 '--------------------------------------------------------------
 Sub lineNCopy()
 
@@ -230,7 +230,7 @@ Sub lineNCopy()
         Exit Sub
     End If
 
-    lngBuf = frmInputLength.Start("s‚ğƒRƒs[‚·‚é”‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B" & vbCrLf & "ãŒÀ(1000)")
+    lngBuf = frmInputLength.Start("è¡Œã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹æ•°ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚" & vbCrLf & "ä¸Šé™(1000)")
     If lngBuf = 0 Then
         Exit Sub
     End If
@@ -256,10 +256,10 @@ Sub lineNCopy()
     
 End Sub
 '--------------------------------------------------------------
-'@Range‚ªæ“¾‚Å‚«‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN‚·‚é
+'ã€€RangeãŒå–å¾—ã§ãã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 '--------------------------------------------------------------
 Function rlxCheckSelectRange() As Boolean
-Attribute rlxCheckSelectRange.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxCheckSelectRange.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxCheckSelectRange.VB_ProcData.VB_Invoke_Func = " \n19"
     
     On Error GoTo ErrHandle
@@ -283,11 +283,11 @@ Attribute rlxCheckSelectRange.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Exit Function
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Function
 '--------------------------------------------------------------
-'@ƒNƒŠƒbƒvƒ{[ƒh“\‚è•t‚¯
+'ã€€ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Public Sub putClipboard(ByVal strBuf As String)
     On Error GoTo ErrHandle
@@ -296,11 +296,11 @@ Public Sub putClipboard(ByVal strBuf As String)
     SetClipText strBuf
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@g—p‚³‚ê‚Ä‚¢‚éƒGƒŠƒA‚Ì‘I‘ğ
+'ã€€ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‚¨ãƒªã‚¢ã®é¸æŠ
 '--------------------------------------------------------------
 Sub usedRangeSelect()
     On Error GoTo ErrHandle
@@ -311,11 +311,11 @@ Sub usedRangeSelect()
     ActiveSheet.UsedRange.Select
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@ƒJ[ƒ\ƒ‹‚Ì‚ ‚éƒGƒŠƒA‚Ì‘I‘ğ
+'ã€€ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚ã‚‹ã‚¨ãƒªã‚¢ã®é¸æŠ
 '--------------------------------------------------------------
 Sub currentRegionSelect()
     On Error GoTo ErrHandle
@@ -328,11 +328,11 @@ Sub currentRegionSelect()
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@ƒƒjƒ…[İ’u’lo—ÍiƒfƒoƒbƒO‹@”\j
+'ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­ç½®å€¤å‡ºåŠ›ï¼ˆãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ï¼‰
 '--------------------------------------------------------------
 Sub commandList()
 
@@ -347,7 +347,7 @@ Sub commandList()
         Exit Sub
     End If
     
-    If MsgBox("Œ»İ‚ÌƒV[ƒg‚Éƒƒjƒ…[İ’è’l‚ğo—Í‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbQuestion + vbOKCancel, C_TITLE) <> vbOK Then
+    If MsgBox("ç¾åœ¨ã®ã‚·ãƒ¼ãƒˆã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®šå€¤ã‚’å‡ºåŠ›ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbQuestion + vbOKCancel, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
@@ -368,30 +368,30 @@ Sub commandList()
     Next
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰["
+    MsgBox "ã‚¨ãƒ©ãƒ¼"
 End Sub
 '--------------------------------------------------------------
-'@–¼‘O‚ğ‘Síœ
+'ã€€åå‰ã‚’å…¨å‰Šé™¤
 '--------------------------------------------------------------
 Sub delnamae()
 
     On Error GoTo ErrHandle
     
-    '•Ï”éŒ¾
-    Dim namae As Name '–¼‘O
-    Dim namae_del As String 'Á–Å‚µ‚½–¼‘OƒŠƒXƒg
+    'å¤‰æ•°å®£è¨€
+    Dim namae As Name 'åå‰
+    Dim namae_del As String 'æ¶ˆæ»…ã—ãŸåå‰ãƒªã‚¹ãƒˆ
     
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
-    If MsgBox("ƒuƒbƒN“à‚Ì‘S‚Ä‚Ì–¼‘O‚ğíœ‚µ‚Ü‚·(uPrint_v‚Ån‚Ü‚é‚à‚ÌˆÈŠO)B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbQuestion + vbOKCancel, C_TITLE) <> vbOK Then
+    If MsgBox("ãƒ–ãƒƒã‚¯å†…ã®å…¨ã¦ã®åå‰ã‚’å‰Šé™¤ã—ã¾ã™(ã€ŒPrint_ã€ã§å§‹ã¾ã‚‹ã‚‚ã®ä»¥å¤–)ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbQuestion + vbOKCancel, C_TITLE) <> vbOK Then
         Exit Sub
     End If
         namae_del = ""
     
-    '–¼‘OÁ–Å
+    'åå‰æ¶ˆæ»…
     For Each namae In ActiveWorkbook.Names
         If InStr(namae.Name, "Print_") > 0 Then
         Else
@@ -400,20 +400,20 @@ Sub delnamae()
         End If
     Next
     
-    'Œ‹‰Ê•ñ
+    'çµæœå ±å‘Š
     If Len(namae_del) = 0 Then
-        MsgBox "–¼‘O‚ª‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½B", vbExclamation, C_TITLE
+        MsgBox "åå‰ãŒã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚", vbExclamation, C_TITLE
     Else
-        MsgBox "ˆÈ‰º‚Ì–¼‘O‚ğÁ–Å‚³‚¹‚Ü‚µ‚½B" & namae_del, vbInformation, C_TITLE
+        MsgBox "ä»¥ä¸‹ã®åå‰ã‚’æ¶ˆæ»…ã•ã›ã¾ã—ãŸã€‚" & namae_del, vbInformation, C_TITLE
     End If
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@‚·‚×‚Ä‚ÌƒV[ƒg‚Ì‘I‘ğˆÊ’u‚ğ‚`‚P‚ÉƒZƒbƒg
+'ã€€ã™ã¹ã¦ã®ã‚·ãƒ¼ãƒˆã®é¸æŠä½ç½®ã‚’ï¼¡ï¼‘ã«ã‚»ãƒƒãƒˆ
 '--------------------------------------------------------------
 Sub setAllA1()
 
@@ -426,7 +426,7 @@ Sub setAllA1()
     Dim lngPercent As Long
  
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -459,7 +459,7 @@ Sub setAllA1()
         End If
     Next
 
-    '”ñ•\¦‚Ì‚P–‡–Ú‚ğ‘I‘ğ‚µ‚Äu‚Í‚ŸHvó‘Ô‚¾‚Á‚½‚Ì‚Å•\¦’†‚Ì‚P–‡–Ú‚É‚·‚éB
+    'éè¡¨ç¤ºã®ï¼‘æšç›®ã‚’é¸æŠã—ã¦ã€Œã¯ãï¼Ÿã€çŠ¶æ…‹ã ã£ãŸã®ã§è¡¨ç¤ºä¸­ã®ï¼‘æšç›®ã«ã™ã‚‹ã€‚
     'ActiveWorkbook.Worksheets(1).Select
     For Each WS In WB.Worksheets
         If WS.visible = xlSheetVisible Then
@@ -477,7 +477,7 @@ Sub setAllA1()
 End Sub
 
 '--------------------------------------------------------------
-'@‚·‚×‚Ä‚ÌƒV[ƒg‚Ì‘I‘ğˆÊ’u‚ğ‚`‚P‚ÉƒZƒbƒg‚µ‚Ä•Û‘¶
+'ã€€ã™ã¹ã¦ã®ã‚·ãƒ¼ãƒˆã®é¸æŠä½ç½®ã‚’ï¼¡ï¼‘ã«ã‚»ãƒƒãƒˆã—ã¦ä¿å­˜
 '--------------------------------------------------------------
 Sub setAllA1save()
 
@@ -485,7 +485,7 @@ Sub setAllA1save()
     Dim varRet As Variant
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
 
@@ -498,24 +498,24 @@ Sub setAllA1save()
     mA1Save = True
     
     If ActiveWorkbook.ReadOnly Then
-        MsgBox "“Ç‚İæ‚èê—pƒuƒbƒN‚Ì‚½‚ß•Û‘¶‚Å‚«‚Ü‚¹‚ñB", vbOKOnly + vbCritical, C_TITLE
+        MsgBox "èª­ã¿å–ã‚Šå°‚ç”¨ãƒ–ãƒƒã‚¯ã®ãŸã‚ä¿å­˜ã§ãã¾ã›ã‚“ã€‚", vbOKOnly + vbCritical, C_TITLE
         GoTo pass
     End If
     
     If rlxIsFileExists(ActiveWorkbook.FullName) Then
     Else
-        MsgBox "‚Ü‚¾ˆê“x‚à•Û‘¶‚µ‚Ä‚¢‚È‚¢ƒtƒ@ƒCƒ‹‚Å‚·Bˆê“xExcel‚Å•Û‘¶‚ğs‚Á‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ã¾ã ä¸€åº¦ã‚‚ä¿å­˜ã—ã¦ã„ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚ä¸€åº¦Excelã§ä¿å­˜ã‚’è¡Œã£ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
         GoTo pass
     End If
     
     varRet = getAttr(ActiveWorkbook.FullName)
     If err.Number > 0 Then
-        MsgBox "Œ»İ‚Ìƒtƒ@ƒCƒ‹‚ÉƒAƒNƒZƒX‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B•Û‘¶‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ç¾åœ¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ä¿å­˜ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", vbOKOnly + vbExclamation, C_TITLE
         GoTo pass
     End If
     
     If (varRet And vbReadOnly) > 0 Then
-        MsgBox "w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Í“Ç‚İæ‚èê—p‚Å‚·B•Û‘¶‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã¯èª­ã¿å–ã‚Šå°‚ç”¨ã§ã™ã€‚ä¿å­˜ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", vbOKOnly + vbExclamation, C_TITLE
         GoTo pass
     End If
     
@@ -530,7 +530,7 @@ pass:
 
 End Sub
 '--------------------------------------------------------------
-'@ƒV[ƒg–¼‚ğƒNƒŠƒbƒvƒ{[ƒh‚É“\‚è•t‚¯
+'ã€€ã‚·ãƒ¼ãƒˆåã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub getSheetName()
 
@@ -540,7 +540,7 @@ Sub getSheetName()
     On Error GoTo ErrHandle
   
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
   
@@ -551,17 +551,17 @@ Sub getSheetName()
 
     Next
 
-    'ƒNƒŠƒbƒvƒ{[ƒh“\‚è•t‚¯
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰è²¼ã‚Šä»˜ã‘
     putClipboard strBuf
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 
 '-----------------------------------------------------------------------
-'@ŠJ‚¢‚Ä‚¢‚éƒ[ƒNƒuƒbƒN–¼iƒuƒbƒN–¼‚Ì‚İj‚ğƒNƒŠƒbƒvƒ{[ƒh‚É“\‚è•t‚¯
+'ã€€é–‹ã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯åï¼ˆãƒ–ãƒƒã‚¯åã®ã¿ï¼‰ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«è²¼ã‚Šä»˜ã‘
 '------------------------------------------------------------------------
 Sub getBookName()
 
@@ -571,7 +571,7 @@ Sub getBookName()
     On Error GoTo ErrHandle
   
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -580,17 +580,17 @@ Sub getBookName()
         strBuf = strBuf & WB.Name & vbCrLf
     Next
     
-    'ƒNƒŠƒbƒvƒ{[ƒh“\‚è•t‚¯
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰è²¼ã‚Šä»˜ã‘
     putClipboard strBuf
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
     
 End Sub
 
 '------------------------------------------------------------------
-'@ŠJ‚¢‚Ä‚¢‚éƒ[ƒNƒuƒbƒN–¼iƒtƒ‹ƒpƒXj‚ğƒNƒŠƒbƒvƒ{[ƒh‚É“\‚è•t‚¯
+'ã€€é–‹ã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯åï¼ˆãƒ•ãƒ«ãƒ‘ã‚¹ï¼‰ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«è²¼ã‚Šä»˜ã‘
 '------------------------------------------------------------------
 Sub getBookFullName()
 
@@ -600,7 +600,7 @@ Sub getBookFullName()
     On Error GoTo ErrHandle
   
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -609,58 +609,58 @@ Sub getBookFullName()
         strBuf = strBuf & rlxDriveToUNC(WB.FullName) & vbCrLf
     Next
     
-    'ƒNƒŠƒbƒvƒ{[ƒh“\‚è•t‚¯
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰è²¼ã‚Šä»˜ã‘
     putClipboard strBuf
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
     
 End Sub
 
 '--------------------------------------------------------------
-'@Œ»İ‚Ìƒ[ƒNƒuƒbƒN–¼iƒtƒ‹ƒpƒXj‚ğƒNƒŠƒbƒvƒ{[ƒh‚É“\‚è•t‚¯
+'ã€€ç¾åœ¨ã®ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯åï¼ˆãƒ•ãƒ«ãƒ‘ã‚¹ï¼‰ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub getCurrentBookFullName()
     
     On Error GoTo ErrHandle
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
-    'ƒNƒŠƒbƒvƒ{[ƒh“\‚è•t‚¯
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰è²¼ã‚Šä»˜ã‘
     putClipboard rlxDriveToUNC(ActiveWorkbook.FullName) '& vbCrLf
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
     
 End Sub
 '--------------------------------------------------------------
-'@Œ»İ‚Ìƒ[ƒNƒuƒbƒN–¼iƒtƒ‹ƒpƒXj‚ğƒNƒŠƒbƒvƒ{[ƒh‚É“\‚è•t‚¯
+'ã€€ç¾åœ¨ã®ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯åï¼ˆãƒ•ãƒ«ãƒ‘ã‚¹ï¼‰ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub getCurrentBookName()
 
     On Error GoTo ErrHandle
     
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
-    'ƒNƒŠƒbƒvƒ{[ƒh“\‚è•t‚¯
+    'ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰è²¼ã‚Šä»˜ã‘
     putClipboard rlxDriveToUNC(ActiveWorkbook.Name) '& vbCrLf
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
     
 End Sub
 
 '--------------------------------------------------------------
-'@Œ»İ‚Ìƒ[ƒNƒuƒbƒN–¼iƒtƒ‹ƒpƒXj‚ÌƒtƒHƒ‹ƒ_‚ğŠJ‚­
+'ã€€ç¾åœ¨ã®ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯åï¼ˆãƒ•ãƒ«ãƒ‘ã‚¹ï¼‰ã®ãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ã
 '--------------------------------------------------------------
 Sub openDocumentPath()
     
@@ -670,7 +670,7 @@ Sub openDocumentPath()
     On Error Resume Next
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -684,7 +684,7 @@ Sub openDocumentPath()
     
 End Sub
 '--------------------------------------------------------------
-'@ƒ[ƒNƒuƒbƒN‚Ì•ªŠ„
+'ã€€ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯ã®åˆ†å‰²
 '--------------------------------------------------------------
 Sub divideWorkBook()
 
@@ -698,15 +698,15 @@ Sub divideWorkBook()
     On Error GoTo ErrHandle
     
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
-    If MsgBox("Œ»İ‚ÌƒuƒbƒN‚Ìì‹ÆƒtƒHƒ‹ƒ_‚ÉuƒuƒbƒN–¼_ƒV[ƒg–¼v‚ÅƒV[ƒg–ˆ‚É•ªŠ„‚µ‚Ü‚·B" & vbCrLf & "‚æ‚ë‚µ‚¢‚Å‚·‚©H(”ñ•\¦ƒV[ƒg‚Íˆ—‚µ‚Ü‚¹‚ñ)", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("ç¾åœ¨ã®ãƒ–ãƒƒã‚¯ã®ä½œæ¥­ãƒ•ã‚©ãƒ«ãƒ€ã«ã€Œãƒ–ãƒƒã‚¯å_ã‚·ãƒ¼ãƒˆåã€ã§ã‚·ãƒ¼ãƒˆæ¯ã«åˆ†å‰²ã—ã¾ã™ã€‚" & vbCrLf & "ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ(éè¡¨ç¤ºã‚·ãƒ¼ãƒˆã¯å‡¦ç†ã—ã¾ã›ã‚“)", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
-    'Œ»İ‚Ìƒ[ƒNƒuƒbƒN‚ğ‘ÎÛ‚Æ‚·‚éB
+    'ç¾åœ¨ã®ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯ã‚’å¯¾è±¡ã¨ã™ã‚‹ã€‚
     Set motoWB = ActiveWorkbook
     
     If motoWB Is Nothing Then
@@ -715,7 +715,7 @@ Sub divideWorkBook()
     
     strWorkPath = motoWB.Path
     If strWorkPath = "" Then
-        MsgBox "Œ³ƒuƒbƒN‚ÌƒpƒX‚ªæ“¾‚Å‚«‚Ü‚¹‚ñB•Û‘¶‚µ‚Ä‚©‚çÄ“xÀs‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox "å…ƒãƒ–ãƒƒã‚¯ã®ãƒ‘ã‚¹ãŒå–å¾—ã§ãã¾ã›ã‚“ã€‚ä¿å­˜ã—ã¦ã‹ã‚‰å†åº¦å®Ÿè¡Œã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
 
@@ -723,12 +723,12 @@ Sub divideWorkBook()
     
         If WS.visible = xlSheetVisible Then
 
-            'Œ»İ‚ÌƒV[ƒg‚ğƒRƒs[‚µ‚ÄV‹K‚Ìƒ[ƒNƒuƒbƒN‚ğì¬‚·‚éB
+            'ç¾åœ¨ã®ã‚·ãƒ¼ãƒˆã‚’ã‚³ãƒ”ãƒ¼ã—ã¦æ–°è¦ã®ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯ã‚’ä½œæˆã™ã‚‹ã€‚
             WS.Copy
             
             Set WB = ActiveWorkbook
             
-            'V‹Kì¬‚µ‚½ƒ[ƒNƒuƒbƒN‚ğ•Û‘¶‚·‚éBƒtƒH[ƒ}ƒbƒg‚Íe‚Æ“¯‚¶
+            'æ–°è¦ä½œæˆã—ãŸãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯ã‚’ä¿å­˜ã™ã‚‹ã€‚ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯è¦ªã¨åŒã˜
             Application.DisplayAlerts = False
             WB.SaveAs FileName:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name, FileFormat:=motoWB.FileFormat, Local:=True
             Application.DisplayAlerts = True
@@ -739,7 +739,7 @@ Sub divideWorkBook()
         End If
     Next
 
-    '•ªŠ„‚µ‚½ƒtƒHƒ‹ƒ_‚ğŠJ‚­
+    'åˆ†å‰²ã—ãŸãƒ•ã‚©ãƒ«ãƒ€ã‚’é–‹ã
     On Error Resume Next
 
     Set WSH = CreateObject("WScript.Shell")
@@ -750,11 +750,11 @@ Sub divideWorkBook()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
     
 End Sub
 '--------------------------------------------------------------
-'@ƒ[ƒNƒuƒbƒN‚Ìƒ}[ƒW
+'ã€€ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯ã®ãƒãƒ¼ã‚¸
 '--------------------------------------------------------------
 Sub mergeWorkBook()
 
@@ -769,7 +769,7 @@ Sub mergeWorkBook()
     On Error GoTo ErrHandle
     
     
-    'ƒ[ƒNƒuƒbƒN‚ª‚Q–¢–‚Ìê‡Aˆ—•s—v
+    'ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯ãŒï¼’æœªæº€ã®å ´åˆã€å‡¦ç†ä¸è¦
     If Workbooks.count < 2 Then
         Exit Sub
     End If
@@ -791,12 +791,12 @@ Sub mergeWorkBook()
     Next
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 
 '--------------------------------------------------------------
-'@‘I‘ğ”ÍˆÍ‚Ì‰æ‘œ•ÏŠ·
+'ã€€é¸æŠç¯„å›²ã®ç”»åƒå¤‰æ›
 '--------------------------------------------------------------
 Sub execSelectionPictureCopy()
 
@@ -831,12 +831,12 @@ Sub execSelectionPictureCopy()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@ƒtƒ@ƒCƒ‹‚Ì“ï“Ç‰»
-'@ƒoƒbƒtƒ@“Ç‚İ‚İ‘Î‰(2GBˆÈ‰º)
+'ã€€ãƒ•ã‚¡ã‚¤ãƒ«ã®é›£èª­åŒ–
+'ã€€ãƒãƒƒãƒ•ã‚¡èª­ã¿è¾¼ã¿å¯¾å¿œ(2GBä»¥ä¸‹)
 '--------------------------------------------------------------
 Sub encryptionFileEx()
 
@@ -855,16 +855,16 @@ Sub encryptionFileEx()
     
     On Error GoTo ErrHandle
     
-    strFile = Application.GetOpenFilename(, , "ƒtƒ@ƒCƒ‹‚Ì“ï“Ç‰»", , False)
+    strFile = Application.GetOpenFilename(, , "ãƒ•ã‚¡ã‚¤ãƒ«ã®é›£èª­åŒ–", , False)
     If strFile = "False" Then
-        'ƒtƒ@ƒCƒ‹–¼‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+        'ãƒ•ã‚¡ã‚¤ãƒ«åãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
         Exit Sub
     End If
     
-    'ƒtƒ@ƒCƒ‹‚Ì‘¶İƒ`ƒFƒbƒN
+    'ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
     If rlxIsFileExists(strFile) Then
     Else
-        MsgBox "ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+        MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
 
@@ -884,18 +884,18 @@ Sub encryptionFileEx()
             lngRead = C_BUFFER_SIZE
         End If
     
-        'Å‘å‚Å10MB‚Ìƒƒ‚ƒŠ‚ğŠm•ÛB
+        'æœ€å¤§ã§10MBã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã€‚
         ReDim bytBuf(0 To lngRead - 1)
     
-        'Šm•Û‚µ‚½ƒoƒCƒg”•ª“Ç‚İ‚İ
+        'ç¢ºä¿ã—ãŸãƒã‚¤ãƒˆæ•°åˆ†èª­ã¿è¾¼ã¿
         Get intIn, , bytBuf
         
-        '‚È‚ñ‚¿‚á‚Á‚ÄˆÃ†‰»
+        'ãªã‚“ã¡ã‚ƒã£ã¦æš—å·åŒ–
         For i = 0 To lngRead - 1
             bytBuf(i) = bytBuf(i) Xor KEY
         Next
         
-        'Œ‹‰Ê‚ğ‘‚«‚Ş
+        'çµæœã‚’æ›¸ãè¾¼ã‚€
         Put intOut, , bytBuf
 
         lngSize = lngSize - lngRead
@@ -907,17 +907,17 @@ Sub encryptionFileEx()
     Kill strFile
     Name strFile & C_TEMP_FILE_EXT As strFile
 
-    MsgBox "“ï“Ç‰»^•œ†‰»‚ªŠ®—¹‚µ‚Ü‚µ‚½B", vbInformation, C_TITLE
+    MsgBox "é›£èª­åŒ–ï¼å¾©å·åŒ–ãŒå®Œäº†ã—ã¾ã—ãŸã€‚", vbInformation, C_TITLE
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 
 End Sub
 '--------------------------------------------------------------
-'@ƒNƒŠƒbƒvƒ{[ƒh‚É‚ ‚é‚b‚r‚uƒf[ƒ^‚ğ
-'@Œ»İ‚ÌƒV[ƒg‚É•¶š—ñ‚Æ‚µ‚Ä“\‚è•t‚¯‚Ü‚·B
+'ã€€ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚ã‚‹ï¼£ï¼³ï¼¶ãƒ‡ãƒ¼ã‚¿ã‚’
+'ã€€ç¾åœ¨ã®ã‚·ãƒ¼ãƒˆã«æ–‡å­—åˆ—ã¨ã—ã¦è²¼ã‚Šä»˜ã‘ã¾ã™ã€‚
 '--------------------------------------------------------------
 Sub pasteCSV()
 
@@ -942,7 +942,7 @@ Sub pasteCSV()
         
     End With
     
-    'CRLF‚ğ‹æØ‚è‚Æ‚µ‚Äs’PˆÊ‚É•ªŠ„
+    'CRLFã‚’åŒºåˆ‡ã‚Šã¨ã—ã¦è¡Œå˜ä½ã«åˆ†å‰²
     Dim strCsv() As String
     Select Case True
         Case InStr(strBuf, vbCrLf) > 0
@@ -968,25 +968,25 @@ Sub pasteCSV()
     lngRow = ActiveCell.row
     For i = 0 To lngCount - 1
     
-        'ƒJƒ“ƒ}‹æØ‚è‚Å•ªŠ„‚ğs‚¤iƒ_ƒuƒ‹ƒR[ƒe[ƒVƒ‡ƒ““àƒJƒ“ƒ}‘Î‰j
+        'ã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šã§åˆ†å‰²ã‚’è¡Œã†ï¼ˆãƒ€ãƒ–ãƒ«ã‚³ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³å†…ã‚«ãƒ³ãƒå¯¾å¿œï¼‰
         varRow = rlxCsvPart(strCsv(i))
         
         lngCol = ActiveCell.Column
         
-        'Å‰‚Ì‚P‰ñ–Ú
+        'æœ€åˆã®ï¼‘å›ç›®
         If i = 0 Then
-            '€–Ú”‚Ì•ªA—ñ‚Ì‘I‘ğ‚ğ‚µA•¶š—ñŒ`®‚É‚·‚éB
+            'é …ç›®æ•°ã®åˆ†ã€åˆ—ã®é¸æŠã‚’ã—ã€æ–‡å­—åˆ—å½¢å¼ã«ã™ã‚‹ã€‚
             Set r = Range(Columns(lngCol), Columns(lngCol + UBound(varRow) - 1))
             r.NumberFormatLocal = "@"
         End If
         
-        's’PˆÊ‚É“\‚è•t‚¯
+        'è¡Œå˜ä½ã«è²¼ã‚Šä»˜ã‘
         Range(Cells(lngRow, lngCol), Cells(lngRow, lngCol + UBound(varRow) - 1)).value = varRow
     
         lngRow = lngRow + 1
     Next
 
-    '‚·‚×‚Ä“\‚è•t‚¯‚½‚ç—ñŠÔŠu‚ğ’²®
+    'ã™ã¹ã¦è²¼ã‚Šä»˜ã‘ãŸã‚‰åˆ—é–“éš”ã‚’èª¿æ•´
     If r Is Nothing Then
     Else
         r.AutoFit
@@ -995,15 +995,15 @@ Sub pasteCSV()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 
 End Sub
 '--------------------------------------------------------------
-'@•¶š—ñ‚Ì•ªŠ„iƒJƒ“ƒ}j
+'ã€€æ–‡å­—åˆ—ã®åˆ†å‰²ï¼ˆã‚«ãƒ³ãƒï¼‰
 '--------------------------------------------------------------
 Public Function rlxCsvPart(ByVal strBuf As String) As Variant
-Attribute rlxCsvPart.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxCsvPart.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxCsvPart.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
@@ -1060,10 +1060,10 @@ Attribute rlxCsvPart.VB_ProcData.VB_Invoke_Func = " \n19"
     
     Exit Function
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Function
 '--------------------------------------------------------------
-'@‹¤—LƒuƒbƒN‚Ìƒ†[ƒU–¼æ“¾
+'ã€€å…±æœ‰ãƒ–ãƒƒã‚¯ã®ãƒ¦ãƒ¼ã‚¶åå–å¾—
 '--------------------------------------------------------------
 Sub getShareUsers()
 
@@ -1074,20 +1074,20 @@ Sub getShareUsers()
     On Error GoTo er
     
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
     Users = ActiveWorkbook.UserStatus
     
-    strBuf = "Œ»İ‚±‚ÌBook‚ğ•ÒW‚µ‚Ä‚¢‚éƒ†[ƒUF" & vbCrLf & vbCrLf
+    strBuf = "ç¾åœ¨ã“ã®Bookã‚’ç·¨é›†ã—ã¦ã„ã‚‹ãƒ¦ãƒ¼ã‚¶ï¼š" & vbCrLf & vbCrLf
     For i = LBound(Users) To UBound(Users)
         strBuf = strBuf & rlxAscLeft(Users(i, 1) & Space(16), 16) & vbTab & Format(Users(i, 2), "yyyy/mm/dd hh:nn:ss") & vbTab
         Select Case Users(i, 3)
             Case 1
-                strBuf = strBuf & "”r‘¼"
+                strBuf = strBuf & "æ’ä»–"
             Case 2
-                strBuf = strBuf & "‹¤—L"
+                strBuf = strBuf & "å…±æœ‰"
         End Select
         strBuf = strBuf & vbCrLf
         
@@ -1097,23 +1097,23 @@ Sub getShareUsers()
 
     Exit Sub
 er:
-    MsgBox "Œ»İ‚ÌƒuƒbƒN‚Í”r‘¼g—p‚Å‚·B", vbExclamation, C_TITLE
+    MsgBox "ç¾åœ¨ã®ãƒ–ãƒƒã‚¯ã¯æ’ä»–ä½¿ç”¨ã§ã™ã€‚", vbExclamation, C_TITLE
 
 End Sub
 
 '--------------------------------------------------------------
-'@’P•[ƒf[ƒ^æƒV[ƒgŒÄo(&T)
+'ã€€å˜ç¥¨ãƒ‡ãƒ¼ã‚¿å–è¾¼ã‚·ãƒ¼ãƒˆå‘¼å‡º(&T)
 '--------------------------------------------------------------
 Sub callTanpyo()
     On Error GoTo ErrHandle
 
-    ThisWorkbook.Worksheets("’P•[Œ`®ƒtƒ@ƒCƒ‹“Ç’è‹`ƒV[ƒg").Copy
+    ThisWorkbook.Worksheets("å˜ç¥¨å½¢å¼ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼å®šç¾©ã‚·ãƒ¼ãƒˆ").Copy
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@ƒwƒ‹ƒvƒV[ƒgŒÄo(&T)
+'ã€€ãƒ˜ãƒ«ãƒ—ã‚·ãƒ¼ãƒˆå‘¼å‡º(&T)
 '--------------------------------------------------------------
 Sub callHelp()
     On Error GoTo ErrHandle
@@ -1122,10 +1122,10 @@ Sub callHelp()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‘I‘ğ”ÍˆÍ‚Ì¶ƒVƒtƒg
+'ã€€é¸æŠç¯„å›²ã®å·¦ã‚·ãƒ•ãƒˆ
 '--------------------------------------------------------------
 Sub ShiftLeft()
     On Error GoTo ErrHandle
@@ -1136,10 +1136,10 @@ Sub ShiftLeft()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‘I‘ğ”ÍˆÍ‚Ì‰EƒVƒtƒg
+'ã€€é¸æŠç¯„å›²ã®å³ã‚·ãƒ•ãƒˆ
 '--------------------------------------------------------------
 Sub ShiftRight()
     On Error GoTo ErrHandle
@@ -1150,10 +1150,10 @@ Sub ShiftRight()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‘I‘ğ”ÍˆÍ‚ÌãƒVƒtƒg
+'ã€€é¸æŠç¯„å›²ã®ä¸Šã‚·ãƒ•ãƒˆ
 '--------------------------------------------------------------
 Sub ShiftUp()
     On Error GoTo ErrHandle
@@ -1164,10 +1164,10 @@ Sub ShiftUp()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‘I‘ğ”ÍˆÍ‚Ì‰ºƒVƒtƒg
+'ã€€é¸æŠç¯„å›²ã®ä¸‹ã‚·ãƒ•ãƒˆ
 '--------------------------------------------------------------
 Sub ShiftDown()
 
@@ -1180,10 +1180,10 @@ Sub ShiftDown()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‘I‘ğ”ÍˆÍƒVƒtƒg
+'ã€€é¸æŠç¯„å›²ã‚·ãƒ•ãƒˆ
 '--------------------------------------------------------------
 Private Sub SelectionShiftCell(ByVal lngRow As Long, ByVal lngCol As Long)
     
@@ -1215,11 +1215,11 @@ Private Sub SelectionShiftCell(ByVal lngRow As Long, ByVal lngCol As Long)
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@QÆ—pƒ[ƒNƒuƒbƒN•\¦
+'ã€€å‚ç…§ç”¨ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯è¡¨ç¤º
 '--------------------------------------------------------------
 Public Sub createReferenceBook()
 
@@ -1238,7 +1238,7 @@ Public Sub createReferenceBook()
     
     
     If ActiveWorkbook.Path = "" Then
-        MsgBox "Œ³ƒuƒbƒN‚ÌƒpƒX‚ªæ“¾‚Å‚«‚Ü‚¹‚ñB•Û‘¶‚µ‚Ä‚©‚çÄ“xÀs‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox "å…ƒãƒ–ãƒƒã‚¯ã®ãƒ‘ã‚¹ãŒå–å¾—ã§ãã¾ã›ã‚“ã€‚ä¿å­˜ã—ã¦ã‹ã‚‰å†åº¦å®Ÿè¡Œã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
 
@@ -1272,10 +1272,10 @@ Public Sub createReferenceBook()
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@Œ»İ‚ÌƒuƒbƒN‚ğ“Ç‚İæ‚èê—p‚ÅŠJ‚«‚È‚¨‚·
+'ã€€ç¾åœ¨ã®ãƒ–ãƒƒã‚¯ã‚’èª­ã¿å–ã‚Šå°‚ç”¨ã§é–‹ããªãŠã™
 '--------------------------------------------------------------
 Public Sub changeReferenceBook()
 
@@ -1293,14 +1293,14 @@ Public Sub changeReferenceBook()
     End If
     
     If ActiveWorkbook.Path = "" Then
-        MsgBox "Œ³ƒuƒbƒN‚ÌƒpƒX‚ªæ“¾‚Å‚«‚Ü‚¹‚ñB•Û‘¶‚µ‚Ä‚©‚çÄ“xÀs‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox "å…ƒãƒ–ãƒƒã‚¯ã®ãƒ‘ã‚¹ãŒå–å¾—ã§ãã¾ã›ã‚“ã€‚ä¿å­˜ã—ã¦ã‹ã‚‰å†åº¦å®Ÿè¡Œã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
 
     Set FS = CreateObject("Scripting.FileSystemObject")
 
     If Left$(FS.getFileName(ActiveWorkbook.Name), 5) = C_REF_TEXT Then
-        MsgBox "‚·‚Å‚ÉQÆ—p‚ÌƒuƒbƒN‚ªŠJ‚©‚ê‚Ä‚¢‚Ü‚·B", vbExclamation, C_TITLE
+        MsgBox "ã™ã§ã«å‚ç…§ç”¨ã®ãƒ–ãƒƒã‚¯ãŒé–‹ã‹ã‚Œã¦ã„ã¾ã™ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
     
@@ -1321,10 +1321,10 @@ Public Sub changeReferenceBook()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@QÆ—pƒ[ƒNƒuƒbƒN•\¦
+'ã€€å‚ç…§ç”¨ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯è¡¨ç¤º
 '--------------------------------------------------------------
 Public Sub OpenReferenceBook()
 
@@ -1335,16 +1335,16 @@ Public Sub OpenReferenceBook()
     On Error GoTo ErrHandle
     
     SetMyDocument
-    strFile = Application.GetOpenFilename(, , "QÆƒ[ƒNƒuƒbƒN‘I‘ğ", , False)
+    strFile = Application.GetOpenFilename(, , "å‚ç…§ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯é¸æŠ", , False)
     If strFile = "False" Then
-        'ƒtƒ@ƒCƒ‹–¼‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+        'ãƒ•ã‚¡ã‚¤ãƒ«åãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
         Exit Sub
     End If
     
-    'ƒtƒ@ƒCƒ‹‚Ì‘¶İƒ`ƒFƒbƒN
+    'ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
     If rlxIsFileExists(strFile) Then
     Else
-        MsgBox "ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+        MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
 
@@ -1382,11 +1382,11 @@ Public Sub OpenReferenceBook()
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
     
 End Sub
 '--------------------------------------------------------------
-'@2003ŒİŠ·F(”wŒiF)
+'ã€€2003äº’æ›è‰²(èƒŒæ™¯è‰²)
 '--------------------------------------------------------------
 Sub LegacyBackColor()
 
@@ -1395,7 +1395,7 @@ Sub LegacyBackColor()
     On Error GoTo ErrHandle
     
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -1408,11 +1408,11 @@ Sub LegacyBackColor()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@2003ŒİŠ·F(•¶šF)
+'ã€€2003äº’æ›è‰²(æ–‡å­—è‰²)
 '--------------------------------------------------------------
 Sub LegacyFontColor()
 
@@ -1433,7 +1433,7 @@ Sub LegacyFontColor()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 Private Function checkInit() As Long
@@ -1441,7 +1441,7 @@ Private Function checkInit() As Long
     On Error GoTo ErrHandle
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         checkInit = vbCancel
         Exit Function
     End If
@@ -1450,11 +1450,11 @@ Private Function checkInit() As Long
     
     Exit Function
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Function
 '--------------------------------------------------------------
-'@ˆóüƒvƒŒƒrƒ…[
+'ã€€å°åˆ·ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼
 '--------------------------------------------------------------
 Sub execPreview()
     On Error Resume Next
@@ -1476,14 +1476,14 @@ Sub verticalLine()
     
 End Sub
 '--------------------------------------------------------------
-'@‚’¼üƒgƒOƒ‹
+'ã€€å‚ç›´ç·šãƒˆã‚°ãƒ«
 '--------------------------------------------------------------
 Sub verticalLineToggle()
     On Error Resume Next
     setLineStyle Selection.Borders(xlInsideVertical)
 End Sub
 '--------------------------------------------------------------
-'@˜güƒgƒOƒ‹
+'ã€€æ ç·šãƒˆã‚°ãƒ«
 '--------------------------------------------------------------
 Sub aroundLineToggle()
 
@@ -1557,7 +1557,7 @@ Sub aroundLineToggle()
     
 End Sub
 '--------------------------------------------------------------
-'@˜güƒgƒOƒ‹
+'ã€€æ ç·šãƒˆã‚°ãƒ«
 '--------------------------------------------------------------
 Sub tableLineToggle()
 
@@ -1625,7 +1625,7 @@ Sub tableLineToggle()
     End With
 End Sub
 '--------------------------------------------------------------
-'@˜güƒgƒOƒ‹
+'ã€€æ ç·šãƒˆã‚°ãƒ«
 '--------------------------------------------------------------
 Sub winLineToggle()
     Dim ret As Long
@@ -1701,7 +1701,7 @@ Sub winLineToggle()
     End With
 End Sub
 '--------------------------------------------------------------
-'@‚’¼üÁ‹
+'ã€€å‚ç›´ç·šæ¶ˆå»
 '--------------------------------------------------------------
 Sub verticalNoLine()
 
@@ -1718,7 +1718,7 @@ Sub verticalNoLine()
     
 End Sub
 '--------------------------------------------------------------
-'@…•½’†ü
+'ã€€æ°´å¹³ä¸­ç·š
 '--------------------------------------------------------------
 Sub HorizontalLine()
     
@@ -1736,14 +1736,14 @@ Sub HorizontalLine()
     
 End Sub
 '--------------------------------------------------------------
-'@…•½üƒgƒOƒ‹
+'ã€€æ°´å¹³ç·šãƒˆã‚°ãƒ«
 '--------------------------------------------------------------
 Sub HorizontalLineToggle()
     On Error Resume Next
     setLineStyle Selection.Borders(xlInsideHorizontal)
 End Sub
 '--------------------------------------------------------------
-'@…•½üÁ‹
+'ã€€æ°´å¹³ç·šæ¶ˆå»
 '--------------------------------------------------------------
 Sub HorizontalNoLine()
     
@@ -1794,10 +1794,10 @@ Private Sub setLineStyle(ByRef r As Border)
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‚l‚rƒSƒVƒbƒN‚Xƒ|ƒCƒ“ƒg•¶š—ñ
+'ã€€ï¼­ï¼³ã‚´ã‚·ãƒƒã‚¯ï¼™ãƒã‚¤ãƒ³ãƒˆæ–‡å­—åˆ—
 '--------------------------------------------------------------
 Sub documentSheet()
 
@@ -1810,8 +1810,8 @@ Sub documentSheet()
     r.NumberFormatLocal = "@"
     
     With r.Font
-        .Name = "‚l‚r ƒSƒVƒbƒN"
-        .FontStyle = "•W€"
+        .Name = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
+        .FontStyle = "æ¨™æº–"
         .Size = 9
         .Strikethrough = False
         .Superscript = False
@@ -1826,7 +1826,7 @@ Sub documentSheet()
     
 End Sub
 '--------------------------------------------------------------
-'@ƒƒCƒŠƒI‚Xƒ|ƒCƒ“ƒg•¶š—ñ
+'ã€€ãƒ¡ã‚¤ãƒªã‚ªï¼™ãƒã‚¤ãƒ³ãƒˆæ–‡å­—åˆ—
 '--------------------------------------------------------------
 Sub documentSheetMeiryo()
 
@@ -1839,8 +1839,8 @@ Sub documentSheetMeiryo()
     r.NumberFormatLocal = "@"
     
     With r.Font
-        .Name = "ƒƒCƒŠƒI"
-        .FontStyle = "•W€"
+        .Name = "ãƒ¡ã‚¤ãƒªã‚ª"
+        .FontStyle = "æ¨™æº–"
         .Size = 9
         .Strikethrough = False
         .Superscript = False
@@ -1855,7 +1855,7 @@ Sub documentSheetMeiryo()
     
 End Sub
 '--------------------------------------------------------------
-'@Meiryo UI ‚Xƒ|ƒCƒ“ƒg•¶š—ñ
+'ã€€Meiryo UI ï¼™ãƒã‚¤ãƒ³ãƒˆæ–‡å­—åˆ—
 '--------------------------------------------------------------
 Sub documentSheetMeiryoUI()
 
@@ -1869,7 +1869,7 @@ Sub documentSheetMeiryoUI()
     
     With r.Font
         .Name = "Meiryo UI"
-        .FontStyle = "•W€"
+        .FontStyle = "æ¨™æº–"
         .Size = 9
         .Strikethrough = False
         .Superscript = False
@@ -1884,7 +1884,7 @@ Sub documentSheetMeiryoUI()
     
 End Sub
 '--------------------------------------------------------------
-'@•ûŠá†•‚Q
+'ã€€æ–¹çœ¼ç´™å¹…ï¼’
 '--------------------------------------------------------------
 Sub documentSheetHogan2()
 
@@ -1898,7 +1898,7 @@ Sub documentSheetHogan2()
     
 End Sub
 '--------------------------------------------------------------
-'@‚l‚rƒSƒVƒbƒN‚Xƒ|ƒCƒ“ƒg•ûŠá†•‚Q
+'ã€€ï¼­ï¼³ã‚´ã‚·ãƒƒã‚¯ï¼™ãƒã‚¤ãƒ³ãƒˆæ–¹çœ¼ç´™å¹…ï¼’
 '--------------------------------------------------------------
 Sub documentSheetHogan2Gothic9()
 
@@ -1911,14 +1911,14 @@ Sub documentSheetHogan2Gothic9()
     r.ColumnWidth = 2
     
     With r.Font
-        .Name = "‚l‚r ƒSƒVƒbƒN"
-        .FontStyle = "•W€"
+        .Name = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
+        .FontStyle = "æ¨™æº–"
         .Size = 9
     End With
     
 End Sub
 '--------------------------------------------------------------
-'@‚l‚rƒSƒVƒbƒN‚Xƒ|ƒCƒ“ƒg•¶š—ñ•ûŠá†•‚Q
+'ã€€ï¼­ï¼³ã‚´ã‚·ãƒƒã‚¯ï¼™ãƒã‚¤ãƒ³ãƒˆæ–‡å­—åˆ—æ–¹çœ¼ç´™å¹…ï¼’
 '--------------------------------------------------------------
 Sub documentSheetHogan2Gothic9Str()
 
@@ -1932,14 +1932,14 @@ Sub documentSheetHogan2Gothic9Str()
     r.ColumnWidth = 2
     
     With r.Font
-        .Name = "‚l‚r ƒSƒVƒbƒN"
-        .FontStyle = "•W€"
+        .Name = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
+        .FontStyle = "æ¨™æº–"
         .Size = 9
     End With
     
 End Sub
 '--------------------------------------------------------------
-'@‚l‚rƒSƒVƒbƒN‚P‚Pƒ|ƒCƒ“ƒg•ûŠá†•‚Q
+'ã€€ï¼­ï¼³ã‚´ã‚·ãƒƒã‚¯ï¼‘ï¼‘ãƒã‚¤ãƒ³ãƒˆæ–¹çœ¼ç´™å¹…ï¼’
 '--------------------------------------------------------------
 Sub documentSheetHogan2Gothic11()
 
@@ -1952,14 +1952,14 @@ Sub documentSheetHogan2Gothic11()
     r.ColumnWidth = 2
     
     With r.Font
-        .Name = "‚l‚r ƒSƒVƒbƒN"
-        .FontStyle = "•W€"
+        .Name = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
+        .FontStyle = "æ¨™æº–"
         .Size = 11
     End With
     
 End Sub
 '--------------------------------------------------------------
-'@‚l‚rƒSƒVƒbƒN‚P‚Pƒ|ƒCƒ“ƒg•¶š—ñ•ûŠá†•‚Q
+'ã€€ï¼­ï¼³ã‚´ã‚·ãƒƒã‚¯ï¼‘ï¼‘ãƒã‚¤ãƒ³ãƒˆæ–‡å­—åˆ—æ–¹çœ¼ç´™å¹…ï¼’
 '--------------------------------------------------------------
 Sub documentSheetHogan2Gothic11Str()
 
@@ -1973,14 +1973,14 @@ Sub documentSheetHogan2Gothic11Str()
     r.ColumnWidth = 2
     
     With r.Font
-        .Name = "‚l‚r ƒSƒVƒbƒN"
-        .FontStyle = "•W€"
+        .Name = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
+        .FontStyle = "æ¨™æº–"
         .Size = 11
     End With
     
 End Sub
 '--------------------------------------------------------------
-'@ƒ†[ƒU’è‹`•ûŠá†
+'ã€€ãƒ¦ãƒ¼ã‚¶å®šç¾©æ–¹çœ¼ç´™
 '--------------------------------------------------------------
 Sub documentSheetUser()
 
@@ -1996,13 +1996,13 @@ Sub documentSheetUser()
     Set r = ActiveSheet.Cells
 
     blnBunrui = GetSetting(C_TITLE, "FormatCell", "Bunrui", False)
-    strFont = GetSetting(C_TITLE, "FormatCell", "Font", "‚l‚r ƒSƒVƒbƒN")
+    strFont = GetSetting(C_TITLE, "FormatCell", "Font", "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯")
     strPoint = GetSetting(C_TITLE, "FormatCell", "Point", "9")
     strCol = GetSetting(C_TITLE, "FormatCell", "Col", "8.5")
     strRow = GetSetting(C_TITLE, "FormatCell", "Row", "11.25")
 
     If blnBunrui Then
-        r.NumberFormatLocal = "G/•W€"
+        r.NumberFormatLocal = "G/æ¨™æº–"
     Else
         r.NumberFormatLocal = "@"
     End If
@@ -2016,7 +2016,7 @@ Sub documentSheetUser()
     
     With r.Font
         .Name = strFont
-        .FontStyle = "•W€"
+        .FontStyle = "æ¨™æº–"
         .Size = Val(strPoint)
         .Strikethrough = False
         .Superscript = False
@@ -2031,7 +2031,7 @@ Sub documentSheetUser()
     
 End Sub
 '--------------------------------------------------------------
-' s—ñ‚Ì“ü‚ê‘Ö‚¦
+' è¡Œåˆ—ã®å…¥ã‚Œæ›¿ãˆ
 '--------------------------------------------------------------
 Sub selTranspose()
 
@@ -2082,19 +2082,19 @@ e:
 End Sub
 
 '--------------------------------------------------------------
-'@ƒV[ƒg–¼‚ğA1ƒZƒ‹‚É“\‚è•t‚¯
+'ã€€ã‚·ãƒ¼ãƒˆåã‚’A1ã‚»ãƒ«ã«è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub setA1SheetName()
 
     On Error GoTo ErrHandle
     
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
             
     If ActiveSheet Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒV[ƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚·ãƒ¼ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -2102,11 +2102,11 @@ Sub setA1SheetName()
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@ƒV[ƒg–¼‚ğA1ƒZƒ‹‚É“\‚è•t‚¯(ALL)
+'ã€€ã‚·ãƒ¼ãƒˆåã‚’A1ã‚»ãƒ«ã«è²¼ã‚Šä»˜ã‘(ALL)
 '--------------------------------------------------------------
 Sub setA1SheetAll()
 
@@ -2116,7 +2116,7 @@ Sub setA1SheetAll()
     On Error GoTo ErrHandle
     
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
   
@@ -2130,51 +2130,51 @@ Sub setA1SheetAll()
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@ã‘I‘ğ
+'ã€€ä¸Šé¸æŠ
 '--------------------------------------------------------------
 Sub selectionTop()
     On Error GoTo ErrHandle
     Range(Selection, Selection.End(xlUp)).Select
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@¶‘I‘ğ
+'ã€€å·¦é¸æŠ
 '--------------------------------------------------------------
 Sub selectionLeft()
     On Error GoTo ErrHandle
     Range(Selection, Selection.End(xlToLeft)).Select
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‰E‘I‘ğ
+'ã€€å³é¸æŠ
 '--------------------------------------------------------------
 Sub selectionRight()
     On Error GoTo ErrHandle
     Range(Selection, Selection.End(xlToRight)).Select
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‰º‘I‘ğ
+'ã€€ä¸‹é¸æŠ
 '--------------------------------------------------------------
 Sub selectionDown()
     On Error GoTo ErrHandle
     Range(Selection, Selection.End(xlDown)).Select
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@¶ã‘I‘ğ
+'ã€€å·¦ä¸Šé¸æŠ
 '--------------------------------------------------------------
 Sub selectionLeftTop()
     On Error GoTo ErrHandle
@@ -2182,10 +2182,10 @@ Sub selectionLeftTop()
     Range(Selection, Selection.End(xlToLeft)).Select
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‰E‰º‘I‘ğ
+'ã€€å³ä¸‹é¸æŠ
 '--------------------------------------------------------------
 Sub selectionRightDown()
     On Error GoTo ErrHandle
@@ -2193,10 +2193,10 @@ Sub selectionRightDown()
     Range(Selection, Selection.End(xlDown)).Select
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@ƒ^ƒOƒWƒƒƒ“ƒviƒJ[ƒ\ƒ‹ˆÊ’u‚Ìî•ñ‚©‚çExcel‚ğŠJ‚«ƒZƒ‹‚ğ‘I‘ğj
+'ã€€ã‚¿ã‚°ã‚¸ãƒ£ãƒ³ãƒ—ï¼ˆã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®æƒ…å ±ã‹ã‚‰Excelã‚’é–‹ãã‚»ãƒ«ã‚’é¸æŠï¼‰
 '--------------------------------------------------------------
 Sub tagJump()
 
@@ -2243,10 +2243,10 @@ Sub tagJump()
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‘I‘ğ”ÍˆÍ‚Ì•œŒ³
+'ã€€é¸æŠç¯„å›²ã®å¾©å…ƒ
 '--------------------------------------------------------------
 Sub saveRange()
 
@@ -2271,7 +2271,7 @@ Sub saveRange()
         If strRange(i) <> strSaveRange Then
             strBuf = strBuf & vbTab & strRange(i)
             lngCount = lngCount + 1
-            'ƒŠƒXƒg‚ÍÅ‘å‚P‚O
+            'ãƒªã‚¹ãƒˆã¯æœ€å¤§ï¼‘ï¼
             If lngCount >= 10 Then
                 Exit For
             End If
@@ -2281,10 +2281,10 @@ Sub saveRange()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‚¨‹C‚É“ü‚è‚Ì’Ç‰Á
+'ã€€ãŠæ°—ã«å…¥ã‚Šã®è¿½åŠ 
 '--------------------------------------------------------------
 Sub addFavorite()
 
@@ -2304,7 +2304,7 @@ Sub addFavorite()
     strBook = ActiveWorkbook.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ƒuƒbƒN‚ª‘¶İ‚µ‚Ü‚¹‚ñB•Û‘¶‚µ‚Ä‚©‚çˆ—‚ğs‚Á‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ãƒ–ãƒƒã‚¯ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚ä¿å­˜ã—ã¦ã‹ã‚‰å‡¦ç†ã‚’è¡Œã£ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
 
@@ -2313,7 +2313,7 @@ Sub addFavorite()
     
     For i = LBound(strBooks) To UBound(strBooks)
         If LCase(Split(strBooks(i), vbTab)(0)) = LCase(strBook) Then
-            MsgBox "‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
         End If
     Next
@@ -2328,11 +2328,11 @@ Sub addFavorite()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
     
 End Sub
 '--------------------------------------------------------------
-'@Ÿƒ[ƒNƒV[ƒg•\¦
+'ã€€æ¬¡ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆè¡¨ç¤º
 '--------------------------------------------------------------
 Sub nextWorksheet()
 
@@ -2353,10 +2353,10 @@ Sub nextWorksheet()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‘Oƒ[ƒNƒV[ƒg•\¦
+'ã€€å‰ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆè¡¨ç¤º
 '--------------------------------------------------------------
 Sub prevWorksheet()
     
@@ -2376,10 +2376,10 @@ Sub prevWorksheet()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@Ÿƒ[ƒNƒuƒbƒN•\¦
+'ã€€æ¬¡ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯è¡¨ç¤º
 '--------------------------------------------------------------
 Sub nextWorkbook()
 
@@ -2406,10 +2406,10 @@ Sub nextWorkbook()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‘Oƒ[ƒNƒuƒbƒN•\¦
+'ã€€å‰ãƒ¯ãƒ¼ã‚¯ãƒ–ãƒƒã‚¯è¡¨ç¤º
 '--------------------------------------------------------------
 Sub prevWorkbook()
 
@@ -2436,14 +2436,14 @@ Sub prevWorkbook()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@–ÚŸì¬
+'ã€€ç›®æ¬¡ä½œæˆ
 '--------------------------------------------------------------
 Sub createContentsEx()
 
-    Const C_NAME As String = "–ÚŸ"
+    Const C_NAME As String = "ç›®æ¬¡"
     Const C_NO As Long = 1
     Const C_SHEET_NAME As Long = 2
     Const C_PAPER_SIZE As Long = 3
@@ -2458,13 +2458,13 @@ Sub createContentsEx()
 
     Set WB = ActiveWorkbook
     
-    'ƒV[ƒg‚Ì‘¶İƒ`ƒFƒbƒN
+    'ã‚·ãƒ¼ãƒˆã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
     For Each s In WB.Worksheets
         If s.Name = C_NAME Then
-            If MsgBox("u" & C_NAME & "vƒV[ƒg‚ªŠù‚É‘¶İ‚µ‚Ü‚·Bíœ‚µ‚Ä‚¢‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            If MsgBox("ã€Œ" & C_NAME & "ã€ã‚·ãƒ¼ãƒˆãŒæ—¢ã«å­˜åœ¨ã—ã¾ã™ã€‚å‰Šé™¤ã—ã¦ã„ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
                 Exit Sub
             Else
-                '‘¶İ‚·‚éê‡‚Ííœ
+                'å­˜åœ¨ã™ã‚‹å ´åˆã¯å‰Šé™¤
                 Application.DisplayAlerts = False
                 s.Delete
                 Application.DisplayAlerts = True
@@ -2478,13 +2478,13 @@ Sub createContentsEx()
     Set WS = WB.Worksheets.Add(WB.Worksheets(1))
     WS.Name = C_NAME
     
-    WS.Cells(1, 1).value = "ƒuƒbƒN–¼:" & WB.Name
+    WS.Cells(1, 1).value = "ãƒ–ãƒƒã‚¯å:" & WB.Name
     
     lngCount = C_START_ROW
     WS.Cells(lngCount, C_NO).value = "No."
-    WS.Cells(lngCount, C_SHEET_NAME).value = "ƒV[ƒg–¼"
-    WS.Cells(lngCount, C_PAPER_SIZE).value = "—p†"
-    WS.Cells(lngCount, C_PAGES).value = "ƒy[ƒW”"
+    WS.Cells(lngCount, C_SHEET_NAME).value = "ã‚·ãƒ¼ãƒˆå"
+    WS.Cells(lngCount, C_PAPER_SIZE).value = "ç”¨ç´™"
+    WS.Cells(lngCount, C_PAGES).value = "ãƒšãƒ¼ã‚¸æ•°"
     
     lngCount = lngCount + 1
     
@@ -2515,7 +2515,7 @@ Sub createContentsEx()
                     Case xlPaperB5
                         WS.Cells(lngCount, C_PAPER_SIZE).value = "B5"
                     Case Else
-                        WS.Cells(lngCount, C_PAPER_SIZE).value = "‚»‚Ì‘¼"
+                        WS.Cells(lngCount, C_PAPER_SIZE).value = "ãã®ä»–"
                 End Select
                 WS.Cells(lngCount, C_PAGES).value = s.PageSetup.Pages.count
             
@@ -2534,7 +2534,7 @@ Sub createContentsEx()
     
     execSelectionRowDrawGrid
     
-    WS.Cells(lngCount, C_PAPER_SIZE).value = "‡Œv"
+    WS.Cells(lngCount, C_PAPER_SIZE).value = "åˆè¨ˆ"
     WS.Cells(lngCount, C_PAGES).value = "=SUM(D" & C_START_ROW + 1 & ":D" & lngCount - 1 & ")"
 
 e:
@@ -2546,7 +2546,7 @@ e:
 
 End Sub
 '--------------------------------------------------------------
-'@ŠO•”ƒGƒfƒBƒ^•ÒW
+'ã€€å¤–éƒ¨ã‚¨ãƒ‡ã‚£ã‚¿ç·¨é›†
 '--------------------------------------------------------------
 Sub cellEditExt()
 
@@ -2575,11 +2575,11 @@ Sub cellEditExt()
     
 '    If selection.count > 1 And selection.count <> selection(1, 1).MergeArea.count Then
     If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.count Then
-        MsgBox "•¡”ƒZƒ‹‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚·BƒZƒ‹‚Í‚P‚Â‚Ì‚İ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "è¤‡æ•°ã‚»ãƒ«é¸æŠã•ã‚Œã¦ã„ã¾ã™ã€‚ã‚»ãƒ«ã¯ï¼‘ã¤ã®ã¿é¸æŠã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If
     
-    frmInformation.Message = "ŠO•”ƒGƒfƒBƒ^‹N“®’†‚Å‚·Bì‹Æ‚ğŒp‘±‚·‚éê‡‚É‚ÍŠO•”ƒGƒfƒBƒ^‚ğI—¹‚µ‚Ä‚­‚¾‚³‚¢B"
+    frmInformation.Message = "å¤–éƒ¨ã‚¨ãƒ‡ã‚£ã‚¿èµ·å‹•ä¸­ã§ã™ã€‚ä½œæ¥­ã‚’ç¶™ç¶šã™ã‚‹å ´åˆã«ã¯å¤–éƒ¨ã‚¨ãƒ‡ã‚£ã‚¿ã‚’çµ‚äº†ã—ã¦ãã ã•ã„ã€‚"
     frmInformation.Show
     
     Set r = ActiveCell
@@ -2630,7 +2630,7 @@ Sub cellEditExt()
     On Error Resume Next
     Call WSH.Run("""" & strEditor & """ " & """" & strFileName & """", 1, True)
     If err.Number <> 0 Then
-        MsgBox "ƒGƒfƒBƒ^‚Ì‹N“®‚É¸”s‚µ‚Ü‚µ‚½Bİ’è‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ã‚¨ãƒ‡ã‚£ã‚¿ã®èµ·å‹•ã«å¤±æ•—ã—ã¾ã—ãŸã€‚è¨­å®šã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
         GoTo e
     End If
     
@@ -2640,7 +2640,7 @@ Sub cellEditExt()
 
     strAfter = FS.GetFile(strFileName).DateLastModified
 
-    '•ÏX‚³‚ê‚Ä‚¢‚éê‡
+    'å¤‰æ›´ã•ã‚Œã¦ã„ã‚‹å ´åˆ
     If strBefore <> strAfter Then
 
         fp = FreeFile()
@@ -2654,7 +2654,7 @@ Sub cellEditExt()
             Get fp, , bytBuf
             
             If UBound(bytBuf) - LBound(bytBuf) + 1 >= 2 Then
-                'BOM‚ªŠÜ‚Ü‚ê‚Ä‚¢‚éê‡íœ
+                'BOMãŒå«ã¾ã‚Œã¦ã„ã‚‹å ´åˆå‰Šé™¤
                 If bytBuf(0) = C_FF And bytBuf(1) = C_FE Then
                     bytBuf = MidB(bytBuf, 3)
                 End If
@@ -2673,7 +2673,7 @@ Sub cellEditExt()
             err.Clear
             r.Formula = Replace(strBuf, vbCrLf, vbLf)
             If err.Number <> 0 Then
-                MsgBox "®‚Ìİ’è‚É¸”s‚µ‚Ü‚µ‚½B®‚ª³‚µ‚­‚È‚¢‰Â”\«‚ª‚ ‚è‚Ü‚·B", vbOKOnly + vbExclamation, C_TITLE
+                MsgBox "å¼ã®è¨­å®šã«å¤±æ•—ã—ã¾ã—ãŸã€‚å¼ãŒæ­£ã—ããªã„å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚", vbOKOnly + vbExclamation, C_TITLE
             End If
         Else
             r.Formula = ""
@@ -2695,7 +2695,7 @@ e:
     
 End Sub
 '--------------------------------------------------------------
-'@‘I‘ğ‰æ‘œ‚Ì•Û‘¶
+'ã€€é¸æŠç”»åƒã®ä¿å­˜
 '--------------------------------------------------------------
 Public Sub saveImage()
 
@@ -2707,11 +2707,11 @@ Public Sub saveImage()
     On Error GoTo ErrHandle
     
     If LCase(TypeName(Selection)) <> "picture" Then
-        MsgBox "‰æ‘œ‚ğ‚P‚Â‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ç”»åƒã‚’ï¼‘ã¤é¸æŠã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
-    argSavePath = Application.GetSaveAsFilename(, "PNGƒtƒ@ƒCƒ‹(*.png), *.png,JPEGƒtƒ@ƒCƒ‹(*.jpg), *.jpg,GIFƒtƒ@ƒCƒ‹(*.gif), *.gif")
+    argSavePath = Application.GetSaveAsFilename(, "PNGãƒ•ã‚¡ã‚¤ãƒ«(*.png), *.png,JPEGãƒ•ã‚¡ã‚¤ãƒ«(*.jpg), *.jpg,GIFãƒ•ã‚¡ã‚¤ãƒ«(*.gif), *.gif")
     If argSavePath = "False" Then
         Exit Sub
     End If
@@ -2741,14 +2741,14 @@ Public Sub saveImage()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@‘I‘ğ”ÍˆÍ‚ÌŒğŠ·
+'ã€€é¸æŠç¯„å›²ã®äº¤æ›
 '--------------------------------------------------------------
 Sub swapAreas()
 
-    '•Ï”éŒ¾
+    'å¤‰æ•°å®£è¨€
     Dim r As Range
     Dim blnRange As Boolean
     
@@ -2763,23 +2763,23 @@ Sub swapAreas()
     End Select
     If blnRange Then
     Else
-        MsgBox "‘I‘ğ”ÍˆÍ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "é¸æŠç¯„å›²ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
 
     If Selection.CountLarge > C_MAX_CELLS Then
-        MsgBox "‘å—Ê‚ÌƒZƒ‹‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚·B " & C_MAX_CELLS & "ˆÈ‰º‚É‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "å¤§é‡ã®ã‚»ãƒ«ãŒé¸æŠã•ã‚Œã¦ã„ã¾ã™ã€‚ " & C_MAX_CELLS & "ä»¥ä¸‹ã«ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If
     
     If Selection.Areas.count <> 2 Then
-        MsgBox "‚Q‚Â‚Ì”ÍˆÍ‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "ï¼’ã¤ã®ç¯„å›²ã‚’é¸æŠã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If
     
     If Selection.Areas(1).Rows.count <> Selection.Areas(2).Rows.count Or _
        Selection.Areas(1).Columns.count <> Selection.Areas(2).Columns.count Then
-        MsgBox "‚Q‚Â‚Ì”ÍˆÍ‚Ìc‰¡ƒTƒCƒY‚Í“¯‚¶‚É‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "ï¼’ã¤ã®ç¯„å›²ã®ç¸¦æ¨ªã‚µã‚¤ã‚ºã¯åŒã˜ã«ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If
     
@@ -2802,7 +2802,7 @@ Sub swapAreas()
     
     Application.ScreenUpdating = False
     
-    'ƒGƒŠƒA‚ğŒğŠ·‚·‚éB
+    'ã‚¨ãƒªã‚¢ã‚’äº¤æ›ã™ã‚‹ã€‚
     mUndo.destRange.Worksheet.Range(mUndo.sourceRange.Areas(2).Address).Copy mUndo.sourceRange.Areas(1)
     mUndo.destRange.Worksheet.Range(mUndo.sourceRange.Areas(1).Address).Copy mUndo.sourceRange.Areas(2)
     
@@ -2815,16 +2815,16 @@ Sub swapAreas()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'  ‰½‚à‚µ‚È‚¢ŠÖ”(ƒL[–³Œø—p)
+'  ä½•ã‚‚ã—ãªã„é–¢æ•°(ã‚­ãƒ¼ç„¡åŠ¹ç”¨)
 '--------------------------------------------------------------
 Sub nop()
 
 End Sub
 '--------------------------------------------------------------
-'@ƒVƒ‡[ƒgƒJƒbƒgƒL[‰Šúİ’è
+'ã€€ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼åˆæœŸè¨­å®š
 '--------------------------------------------------------------
 Sub setShortCutKey()
     
@@ -2856,10 +2856,10 @@ Sub setShortCutKey()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 End Sub
 '--------------------------------------------------------------
-'@ƒVƒ‡[ƒgƒJƒbƒgƒL[‚Ìíœ
+'ã€€ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã®å‰Šé™¤
 '--------------------------------------------------------------
 Sub removeShortCutKey()
 
@@ -2871,7 +2871,7 @@ Sub removeShortCutKey()
     
     On Error Resume Next
 
-'    'ƒL[î•ñ‚Ìíœ
+'    'ã‚­ãƒ¼æƒ…å ±ã®å‰Šé™¤
     strResult = GetSetting(C_TITLE, "ShortCut", "KeyList", "")
     strList = Split(strResult, vbVerticalTab)
 
@@ -2884,7 +2884,7 @@ Sub removeShortCutKey()
 
 End Sub
 '--------------------------------------------------------------
-'@‰üƒy[ƒW‚Ì’Ç‰Á
+'ã€€æ”¹ãƒšãƒ¼ã‚¸ã®è¿½åŠ 
 '--------------------------------------------------------------
 Sub addPageBreak()
 
@@ -2894,7 +2894,7 @@ Sub addPageBreak()
 
 End Sub
 '--------------------------------------------------------------
-'@‰üƒy[ƒW‚Ì‘Síœ
+'ã€€æ”¹ãƒšãƒ¼ã‚¸ã®å…¨å‰Šé™¤
 '--------------------------------------------------------------
 Sub resetPageBreak()
 
@@ -2904,7 +2904,7 @@ Sub resetPageBreak()
 
 End Sub
 '--------------------------------------------------------------
-'@‰üƒy[ƒW‚Ìíœ
+'ã€€æ”¹ãƒšãƒ¼ã‚¸ã®å‰Šé™¤
 '--------------------------------------------------------------
 Sub removePageBreak()
 
@@ -2921,7 +2921,7 @@ Sub removePageBreak()
     
 End Sub
 '--------------------------------------------------------------
-'@ƒNƒŠƒbƒvƒ{[ƒh‚©‚çƒtƒ@ƒCƒ‹–¼‚Ì“\‚è•t‚¯
+'ã€€ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«åã®è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub getFileNameFromClipboard()
 
@@ -2949,11 +2949,11 @@ Sub getFileNameFromClipboard()
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@ƒNƒŠƒbƒvƒ{[ƒh‚ÌExcelƒtƒ@ƒCƒ‹‚ğŠJ‚­
+'ã€€ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®Excelãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 '--------------------------------------------------------------
 Sub openFileNameFromClipboard()
 
@@ -2984,7 +2984,7 @@ Sub openFileNameFromClipboard()
     End If
     
     If UBound(files) + 1 > 10 Then
-        If MsgBox(UBound(files) + 1 & "ƒtƒ@ƒCƒ‹w’è‚³‚ê‚Ä‚¢‚Ü‚·B‘±s‚µ‚Ü‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        If MsgBox(UBound(files) + 1 & "ãƒ•ã‚¡ã‚¤ãƒ«æŒ‡å®šã•ã‚Œã¦ã„ã¾ã™ã€‚ç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
             Exit Sub
         End If
     End If
@@ -3026,11 +3026,11 @@ pass:
     
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-'@Œ»İ‚ÌExcelƒtƒ@ƒCƒ‹‚ğƒNƒŠƒbƒvƒ{[ƒh‚É“\‚è•t‚¯
+'ã€€ç¾åœ¨ã®Excelãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub copyCurrentExcel()
 
@@ -3040,12 +3040,12 @@ Sub copyCurrentExcel()
     strFile = ActiveWorkbook.FullName
 
     If (Not rlxIsFileExists(strFile)) Then
-        MsgBox "ƒuƒbƒN‚ª•Û‘¶‚³‚ê‚Ä‚¢‚È‚¢‚æ‚¤‚Å‚·B" & vbCrLf & "ƒNƒŠƒbƒvƒ{[ƒh‚Ö‚ÌƒRƒs[‚ğ’†’f‚µ‚Ü‚µ‚½B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "ãƒ–ãƒƒã‚¯ãŒä¿å­˜ã•ã‚Œã¦ã„ãªã„ã‚ˆã†ã§ã™ã€‚" & vbCrLf & "ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã¸ã®ã‚³ãƒ”ãƒ¼ã‚’ä¸­æ–­ã—ã¾ã—ãŸã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
     If ActiveWorkbook.Saved = False Then
-        If MsgBox("ƒuƒbƒN‚É•ÏX‚ª‚ ‚è‚Ü‚·B•Û‘¶‚µ‚Ü‚·‚©H", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
+        If MsgBox("ãƒ–ãƒƒã‚¯ã«å¤‰æ›´ãŒã‚ã‚Šã¾ã™ã€‚ä¿å­˜ã—ã¾ã™ã‹ï¼Ÿ", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
             ActiveWorkbook.Save
         End If
     End If
@@ -3053,11 +3053,11 @@ Sub copyCurrentExcel()
     strFiles = Split(strFile, vbTab)
     SetCopyClipText strFiles
     
-    MsgBox ActiveWorkbook.Name & "‚ğƒNƒŠƒbƒvƒ{[ƒh‚ÉƒRƒs[‚µ‚Ü‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+    MsgBox ActiveWorkbook.Name & "ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-' ‘Š‘ÎÌâ‘ÎQÆ”»’è
+' ç›¸å¯¾â‡”çµ¶å¯¾å‚ç…§åˆ¤å®š
 '--------------------------------------------------------------
 Function rlxGetFomuraRefType() As XlReferenceType
 
@@ -3067,7 +3067,7 @@ Function rlxGetFomuraRefType() As XlReferenceType
     Dim strForm As String
     Dim i As Long
     
-    '•s–¾‚Ìê‡‚Æ‚è‚ ‚¦‚¸A‘Š‘ÎQÆ
+    'ä¸æ˜ã®å ´åˆã¨ã‚Šã‚ãˆãšã€ç›¸å¯¾å‚ç…§
     rlxGetFomuraRefType = xlRelative
     
     On Error Resume Next
@@ -3077,7 +3077,7 @@ Function rlxGetFomuraRefType() As XlReferenceType
         If r.Rows.Hidden = False And r.Columns.Hidden = False Then
 
             Select Case Left(r.FormulaLocal, 1)
-                '®‚Ìê‡
+                'å¼ã®å ´åˆ
                 Case "=", "+"
                     strForm = r.FormulaLocal
                     
@@ -3137,7 +3137,7 @@ Function rlxGetFomuraRefType() As XlReferenceType
                     
 End Function
 '--------------------------------------------------------------
-' ‘Š‘ÎÌâ‘ÎƒgƒOƒ‹
+' ç›¸å¯¾â‡”çµ¶å¯¾ãƒˆã‚°ãƒ«
 '--------------------------------------------------------------
 Sub toggleAbsoluteFomura()
 
@@ -3160,7 +3160,7 @@ Sub toggleAbsoluteFomura()
 
 End Sub
 '--------------------------------------------------------------
-' A1ÌR1C1ƒgƒOƒ‹
+' A1â‡”R1C1ãƒˆã‚°ãƒ«
 '--------------------------------------------------------------
 Sub toggleReferenceStyle()
 
@@ -3174,7 +3174,7 @@ Sub toggleReferenceStyle()
 
 End Sub
 '--------------------------------------------------------------
-' –¼‘O‚Ì•\¦
+' åå‰ã®è¡¨ç¤º
 '--------------------------------------------------------------
 Public Sub VisibleNames()
 
@@ -3186,11 +3186,11 @@ Public Sub VisibleNames()
         End If
     Next
     
-    MsgBox "‚·‚×‚Ä‚Ì–¼‘O‚Ì’è‹`‚ğ•\¦‚µ‚Ü‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+    MsgBox "ã™ã¹ã¦ã®åå‰ã®å®šç¾©ã‚’è¡¨ç¤ºã—ã¾ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
 
 End Sub
 '--------------------------------------------------------------
-' ‚Ü‚Æ‚ßÀs‚P
+' ã¾ã¨ã‚å®Ÿè¡Œï¼‘
 '--------------------------------------------------------------
 Sub execMatome01()
 
@@ -3198,7 +3198,7 @@ Sub execMatome01()
 
 End Sub
 '--------------------------------------------------------------
-' ‚Ü‚Æ‚ßÀs‚Q
+' ã¾ã¨ã‚å®Ÿè¡Œï¼’
 '--------------------------------------------------------------
 Sub execMatome02()
 
@@ -3206,7 +3206,7 @@ Sub execMatome02()
 
 End Sub
 '--------------------------------------------------------------
-' ‚Ü‚Æ‚ßÀs‚R
+' ã¾ã¨ã‚å®Ÿè¡Œï¼“
 '--------------------------------------------------------------
 Sub execMatome03()
 
@@ -3214,7 +3214,7 @@ Sub execMatome03()
 
 End Sub
 '--------------------------------------------------------------
-' ‚Ü‚Æ‚ßÀs‚S
+' ã¾ã¨ã‚å®Ÿè¡Œï¼”
 '--------------------------------------------------------------
 Sub execMatome04()
 
@@ -3222,7 +3222,7 @@ Sub execMatome04()
 
 End Sub
 '--------------------------------------------------------------
-' ‚Ü‚Æ‚ßÀs‚T
+' ã¾ã¨ã‚å®Ÿè¡Œï¼•
 '--------------------------------------------------------------
 Sub execMatome05()
 
@@ -3230,7 +3230,7 @@ Sub execMatome05()
 
 End Sub
 '--------------------------------------------------------------
-' ‚Ü‚Æ‚ßÀs–{‘Ì
+' ã¾ã¨ã‚å®Ÿè¡Œæœ¬ä½“
 '--------------------------------------------------------------
 Private Sub execMatome(ByVal strNo As String)
     
@@ -3250,7 +3250,7 @@ Private Sub execMatome(ByVal strNo As String)
 
 End Sub
 '--------------------------------------------------------------
-' Excel‹@”\Às
+' Excelæ©Ÿèƒ½å®Ÿè¡Œ
 '--------------------------------------------------------------
 Sub RunMso(ByVal strMso As String)
 
@@ -3260,7 +3260,7 @@ Sub RunMso(ByVal strMso As String)
 
 End Sub
 '--------------------------------------------------------------
-' ƒŒƒWƒXƒgƒŠ‚ÌExport
+' ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã®Export
 '--------------------------------------------------------------
 Sub RegExport()
 
@@ -3277,7 +3277,7 @@ Sub RegExport()
     
     SetMyDocument
     
-    FileName = Application.GetSaveAsFilename(InitialFileName:="RelaxTools-Addin.reg", FileFilter:="“o˜^ƒtƒ@ƒCƒ‹,*.reg")
+    FileName = Application.GetSaveAsFilename(InitialFileName:="RelaxTools-Addin.reg", FileFilter:="ç™»éŒ²ãƒ•ã‚¡ã‚¤ãƒ«,*.reg")
     If FileName = False Then
         Exit Sub
     End If
@@ -3288,7 +3288,7 @@ Sub RegExport()
 
     Set Locator = CreateObject("WbemScripting.SWbemLocator")
     Set Service = Locator.ConnectServer(vbNullString, "root\default")
-    Set Reg = Service.Get("StdRegProv")
+    Set Reg = Service.get("StdRegProv")
     
     Const HKEY_CURRENT_USER = &H80000001
     
@@ -3349,10 +3349,10 @@ Sub RegExport()
     Set Service = Nothing
     Set Locator = Nothing
     
-    MsgBox "“o˜^ƒtƒ@ƒCƒ‹‚ğ•Û‘¶‚µ‚Ü‚µ‚½B" & vbCrLf & "ˆÚsæ‚Å“o˜^ƒtƒ@ƒCƒ‹‚ğÀs‚·‚é‚ÆƒŒƒWƒXƒgƒŠ‚É”½‰f‚³‚ê‚Ü‚·B", vbOKOnly + vbInformation, C_TITLE
+    MsgBox "ç™»éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã—ã¾ã—ãŸã€‚" & vbCrLf & "ç§»è¡Œå…ˆã§ç™»éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å®Ÿè¡Œã™ã‚‹ã¨ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã«åæ˜ ã•ã‚Œã¾ã™ã€‚", vbOKOnly + vbInformation, C_TITLE
     Exit Sub
 err_Handle:
-    MsgBox "“o˜^ƒtƒ@ƒCƒ‹‚Ì•Û‘¶‚É¸”s‚µ‚Ü‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+    MsgBox "ç™»éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜ã«å¤±æ•—ã—ã¾ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
     
 End Sub
 

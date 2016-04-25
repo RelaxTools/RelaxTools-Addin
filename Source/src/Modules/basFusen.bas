@@ -34,7 +34,7 @@ Option Private Module
 Public Const C_FUSEN_DATE_SYSTEM As String = "1"
 Public Const C_FUSEN_DATE_USER As String = "2"
 '--------------------------------------------------------------
-'@‰æ‘œ’£•tİ’è‰æ–Ê
+'ã€€ç”»åƒå¼µä»˜è¨­å®šç”»é¢
 '--------------------------------------------------------------
 Sub showFusenSetting()
 
@@ -42,7 +42,7 @@ Sub showFusenSetting()
     
 End Sub
 '--------------------------------------------------------------
-'@•tâ³ŠÇ—‰æ–Ê
+'ã€€ä»˜ç®‹ç®¡ç†ç”»é¢
 '--------------------------------------------------------------
 Sub searchFusen()
 
@@ -50,12 +50,12 @@ Sub searchFusen()
     
 End Sub
 '--------------------------------------------------------------
-'@•tâ³İ’è’læ“¾
+'ã€€ä»˜ç®‹è¨­å®šå€¤å–å¾—
 '--------------------------------------------------------------
 Sub getSettingFusen(ByRef strText As String, ByRef strTag As String, ByRef varPrint As Variant, ByRef strWidth As String, ByRef strHeight As String, ByRef strFormat As String, ByRef strUserDate As String, ByRef strFusenDate As String, ByRef strFont As String, ByRef strSize As String, ByRef varHorizontalAnchor As Variant, ByRef varVerticalAnchor As Variant, ByRef varAutoSize As Variant, ByRef varOverFlow As Variant, ByRef varWordWrap As Variant)
 
-    strTag = GetSetting(C_TITLE, "Fusen", "Tag", "•tâ³ŒŸõ—p•¶š—ñ")
-    strText = GetSetting(C_TITLE, "Fusen", "Text", "$d" & " " & "$u" & vbCrLf & "yƒƒ‚‚ğ‚±‚±‚É“ü—Í‚µ‚Ä‚­‚¾‚³‚¢z")
+    strTag = GetSetting(C_TITLE, "Fusen", "Tag", "ä»˜ç®‹æ¤œç´¢ç”¨æ–‡å­—åˆ—")
+    strText = GetSetting(C_TITLE, "Fusen", "Text", "$d" & " " & "$u" & vbCrLf & "ã€ãƒ¡ãƒ¢ã‚’ã“ã“ã«å…¥åŠ›ã—ã¦ãã ã•ã„ã€‘")
     varPrint = GetSetting(C_TITLE, "Fusen", "PrintObject", True)
 
     strWidth = GetSetting(C_TITLE, "Fusen", "Width", "7.5")
@@ -77,14 +77,14 @@ Sub getSettingFusen(ByRef strText As String, ByRef strTag As String, ByRef varPr
 
 End Sub
 '--------------------------------------------------------------
-'@•tâ³“\‚è•t‚¯
+'ã€€ä»˜ç®‹è²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub pasteFusen(ByVal strId As String, ByVal Index As Long)
 
     Dim r As Shape
     
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -193,7 +193,7 @@ Sub pasteFusen(ByVal strId As String, ByVal Index As Long)
 
 End Sub
 '--------------------------------------------------------------
-'@“ú•t‘®İ’è
+'ã€€æ—¥ä»˜æ›¸å¼è¨­å®š
 '--------------------------------------------------------------
 Private Function getFormatDate(ByVal strFormat As String, _
                         ByVal strType As String, _
@@ -220,7 +220,7 @@ Private Function getFormatDate(ByVal strFormat As String, _
 
 End Function
 '--------------------------------------------------------------
-'@ƒCƒ[ƒWƒtƒ@ƒCƒ‹ì¬
+'ã€€ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 '--------------------------------------------------------------
 Function getImageFusen(ByVal strId As String, ByVal Index As Long) As StdPicture
     
@@ -235,7 +235,7 @@ Function getImageFusen(ByVal strId As String, ByVal Index As Long) As StdPicture
     
 End Function
 '--------------------------------------------------------------
-'@•tâ³“\‚è•t‚¯‚ÌƒVƒ‡[ƒgƒJƒbƒg—p
+'ã€€ä»˜ç®‹è²¼ã‚Šä»˜ã‘ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆç”¨
 '--------------------------------------------------------------
 Sub pasteSquareW()
     pasteFusen "fsGallery01", 1

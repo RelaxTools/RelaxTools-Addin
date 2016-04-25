@@ -38,13 +38,13 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionRowFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' ƒƒ“ƒo•Ï”éŒ¾•”(UOC)
+' ãƒ¡ãƒ³ãƒå¤‰æ•°å®£è¨€éƒ¨(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private mlngRowSel As Long
 Private mlngRowGap As Long
@@ -54,13 +54,13 @@ Private mlngColGap As Long
 Private mSel As Range
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionRowFrameWork
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -73,7 +73,7 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘Oˆ—(UOC)
+' å‰å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(rArea As Areas, Cancel As Boolean, Undo As Boolean)
 
@@ -81,7 +81,7 @@ Private Sub SFWork_SelectionInit(rArea As Areas, Cancel As Boolean, Undo As Bool
 
     On Error GoTo e
     
-    'ƒƒ“ƒo•Ï”‚Ì‰Šú‰»
+    'ãƒ¡ãƒ³ãƒå¤‰æ•°ã®åˆæœŸåŒ–
     mlngRowSel = 1
     mlngRowGap = 1
     mlngColSel = 1
@@ -100,7 +100,7 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' åˆ—(UOC)
+' ä¸»å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolean)
         
@@ -116,7 +116,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolea
     
     For Each c In r
     
-        '‘I‘ğs”»’è
+        'é¸æŠè¡Œåˆ¤å®š
         If isSelect(lngRow, lngCol) Then
             If mSel Is Nothing Then
                 Set mSel = c
@@ -134,7 +134,7 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' I—¹ˆ—(UOC)
+' çµ‚äº†å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionTerm()
     
@@ -186,7 +186,7 @@ Private Function isSelect(ByVal lngRow As Long, ByVal lngCol As Long) As Boolean
                 blnColSel = False
         End Select
     End If
-    'sA—ñ‹¤‚É‘I‘ğ‚Ìê‡‚É‚Ì‚İ‘I‘ğ‚Æ‚È‚éB
+    'è¡Œã€åˆ—å…±ã«é¸æŠã®å ´åˆã«ã®ã¿é¸æŠã¨ãªã‚‹ã€‚
     If blnRowSel And blnColSel Then
         isSelect = True
     End If

@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSelect 
-   Caption         =   "ƒZƒ‹‚ÌÄ‘I‘ğ"
+   Caption         =   "ã‚»ãƒ«ã®å†é¸æŠ"
    ClientHeight    =   2025
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   4920
    OleObjectBlob   =   "frmSelect.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmSelect"
 Attribute VB_GlobalNameSpace = False

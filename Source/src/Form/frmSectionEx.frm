@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSectionEx 
-   Caption         =   "’i—”Ô†‚Ìİ’è"
+   Caption         =   "æ®µè½ç•ªå·ã®è¨­å®š"
    ClientHeight    =   9825
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   10620
    OleObjectBlob   =   "frmSectionEx.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmSectionEx"
 Attribute VB_GlobalNameSpace = False
@@ -60,8 +60,8 @@ Private Const C_CLASS As Long = 8
 Private Const C_UP As Long = 1
 Private Const C_DOWN As Long = 2
 
-Private Const C_TRUE As String = "›"
-Private Const C_FALSE As String = "|"
+Private Const C_TRUE As String = "â—‹"
+Private Const C_FALSE As String = "ï¼"
 
 Private mRet As VbMsgBoxResult
 Private WithEvents MW As MouseWheel
@@ -104,7 +104,7 @@ Private Sub cmdDel_Click()
     Dim lngLast As Long
     
     If lstSetting.ListCount <= 1 Then
-        MsgBox "‚·‚×‚Ä‚Ì’i—”Ô†‚ğíœ‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "ã™ã¹ã¦ã®æ®µè½ç•ªå·ã‚’å‰Šé™¤ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If
     
@@ -114,7 +114,7 @@ Private Sub cmdDel_Click()
         lstSetting.RemoveItem lngLast
     End If
     
-    '”Ô†‚ğU‚è‚È‚¨‚·
+    'ç•ªå·ã‚’æŒ¯ã‚ŠãªãŠã™
     For i = 0 To lstSetting.ListCount - 1
         lstSetting.List(i, C_LEVEL) = i + 1
     Next
@@ -204,19 +204,19 @@ Private Sub cmdOk_Click()
     Unload Me
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğã‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸Šã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdUp_Click()
      Call moveList(C_UP)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğ‰º‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸‹ã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdDown_Click()
      Call moveList(C_DOWN)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ˆÚ“®ˆ—
+' ç§»å‹•å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub moveList(ByVal lngMode As Long)
 
@@ -229,7 +229,7 @@ Private Sub moveList(ByVal lngMode As Long)
     Dim lngEnd As Long
     Dim lngInc As Long
 
-    '‚P‚Â‚È‚ç•s—v
+    'ï¼‘ã¤ãªã‚‰ä¸è¦
     If lstSetting.ListCount <= 1 Then
         Exit Sub
     End If
@@ -248,7 +248,7 @@ Private Sub moveList(ByVal lngMode As Long)
     For lngCnt = lngStart To lngEnd Step lngInc
     
         If lstSetting.Selected(lngCnt) Then
-            '‘I‘ğ‚³‚ê‚½s‚ª‚·‚Å‚ÉŠJns‚Ìê‡ˆÚ“®•s‰Â
+            'é¸æŠã•ã‚ŒãŸè¡ŒãŒã™ã§ã«é–‹å§‹è¡Œã®å ´åˆç§»å‹•ä¸å¯
             If lngCnt = lngStart Then
                 Exit For
             End If

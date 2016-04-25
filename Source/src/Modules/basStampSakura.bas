@@ -31,7 +31,7 @@ Attribute VB_Name = "basStampSakura"
 Option Explicit
 Option Private Module
 '--------------------------------------------------------------
-'　付箋貼り付け
+'縲莉倡ｮ玖ｲｼ繧贋ｻ倥￠
 '--------------------------------------------------------------
 Sub pasteSakura(ByVal strId As String, ByVal Index As Long)
 
@@ -54,7 +54,7 @@ Sub pasteSakura(ByVal strId As String, ByVal Index As Long)
 
 End Sub
 '--------------------------------------------------------------
-'　イメージファイル作成
+'縲繧､繝｡繝ｼ繧ｸ繝輔ぃ繧､繝ｫ菴懈��
 '--------------------------------------------------------------
 Function getImageSakura(ByVal strId As String, ByVal Index As Long) As StdPicture
     

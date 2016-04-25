@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFavCategory 
-   Caption         =   "�J�e�S���[�ҏW"
+   Caption         =   "カテゴリー編集"
    ClientHeight    =   1605
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4470
    OleObjectBlob   =   "frmFavCategory.frx":0000
-   StartUpPosition =   1  '�I�[�i�[ �t�H�[���̒���
+   StartUpPosition =   1  'オーナー フォームの中央
 End
 Attribute VB_Name = "frmFavCategory"
 Attribute VB_GlobalNameSpace = False
@@ -63,7 +63,7 @@ Private Sub cmdOk_Click()
             Case C_FAVORITE_ADD
                 For i = 0 To .ListCount - 1
                     If txtCat.Text = .List(i) Then
-                        MsgBox "���łɓo�^����Ă��܂��B", vbExclamation + vbOKOnly, C_TITLE
+                        MsgBox "すでに登録されています。", vbExclamation + vbOKOnly, C_TITLE
                         Exit Sub
                     End If
                 Next
@@ -71,7 +71,7 @@ Private Sub cmdOk_Click()
             Case C_FAVORITE_MOD
                 For i = 0 To .ListCount - 1
                     If txtCat.Text = .List(i) And i <> .ListIndex Then
-                        MsgBox "���łɓo�^����Ă��܂��B", vbExclamation + vbOKOnly, C_TITLE
+                        MsgBox "すでに登録されています。", vbExclamation + vbOKOnly, C_TITLE
                         Exit Sub
                     End If
                 Next
@@ -101,9 +101,9 @@ Sub Start(ByVal lngMode As Long)
     
     Select Case lngMode
         Case C_FAVORITE_ADD
-            lblCat.Caption = "�J�e�S���̒ǉ�"
+            lblCat.Caption = "カテゴリの追加"
         Case C_FAVORITE_MOD
-            lblCat.Caption = "�J�e�S���̕ҏW"
+            lblCat.Caption = "カテゴリの編集"
             Me.txtCat.Text = frmFavorite.lstCategory.Text
     End Select
     

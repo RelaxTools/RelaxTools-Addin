@@ -37,7 +37,7 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 '--------------------------------------------------------------
-' Selection ‚Ìˆ—‚ğs‚¤Û‚É•\¦‚·‚éƒXƒe[ƒ^ƒXƒo[‚Ì•\¦ƒNƒ‰ƒX
+' Selection ã®å‡¦ç†ã‚’è¡Œã†éš›ã«è¡¨ç¤ºã™ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã®è¡¨ç¤ºã‚¯ãƒ©ã‚¹
 '--------------------------------------------------------------
 Option Explicit
 Private mblnStatusBar As Boolean
@@ -54,50 +54,50 @@ Private Sub Class_Initialize()
 
     On Error Resume Next
     
-    'ƒXƒe[ƒ^ƒXƒo[‚Ìó‘Ô‚ğ‹L‰¯
+    'ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã®çŠ¶æ…‹ã‚’è¨˜æ†¶
     mblnStatusBar = Application.DisplayStatusBar
     
-    'ƒXƒe[ƒ^ƒXƒo[‚ğ•\¦
+    'ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã‚’è¡¨ç¤º
     Application.DisplayStatusBar = True
 
-    'ƒƒ“ƒo•Ï”‚Ì‰Šú‰»
+    'ãƒ¡ãƒ³ãƒå¤‰æ•°ã®åˆæœŸåŒ–
     mlngIndexStatusBar = 0
     mblnNotCallDispose = True
 
-    'Selection‚æ‚è‘I‘ğƒZƒ‹”‚ğæ“¾‚·‚éB
+    'Selectionã‚ˆã‚Šé¸æŠã‚»ãƒ«æ•°ã‚’å–å¾—ã™ã‚‹ã€‚
     If Selection Is Nothing Then
         mlngMaxItem = 0
     Else
         mlngMaxItem = Selection.CountLarge
     End If
 
-    'ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ğ»Œv‚É‚·‚éB
+    'ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã‚’ç ‚æ™‚è¨ˆã«ã™ã‚‹ã€‚
     mobjPointer = Application.Cursor
     
 End Sub
 '-------------------------------------
 ' Refresh
-'    Selection‚ÌForEachƒ‹[ƒv’†‚É‚P“xŒÄ‚Ño‚·‚±‚ÆB
+'    Selectionã®ForEachãƒ«ãƒ¼ãƒ—ä¸­ã«ï¼‘åº¦å‘¼ã³å‡ºã™ã“ã¨ã€‚
 '-------------------------------------
 Public Sub Refresh()
     
     On Error Resume Next
     
-    'ƒXƒe[ƒ^ƒXƒo[‚ÉƒƒbƒZ[ƒW‚ğ•\¦
-    mlngIndexStatusBar = mlngIndexStatusBar + 1   ''ƒJƒEƒ“ƒgƒAƒbƒv
+    'ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
+    mlngIndexStatusBar = mlngIndexStatusBar + 1   ''ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
     
-    '‚T“‚¸‚Â•\¦B
+    'ï¼•ï¼…ãšã¤è¡¨ç¤ºã€‚
     If Int(mlngMaxItem * 0.05) <> 0 Then
         If mlngIndexStatusBar Mod Int(mlngMaxItem * 0.05) = 0 Then
-            Application.StatusBar = mlngIndexStatusBar & " / " & mlngMaxItem & " Œ ˆ—’†‚Å‚·..."
+            Application.StatusBar = mlngIndexStatusBar & " / " & mlngMaxItem & " ä»¶ å‡¦ç†ä¸­ã§ã™..."
         End If
     Else
-        Application.StatusBar = mlngIndexStatusBar & " / " & mlngMaxItem & " Œ ˆ—’†‚Å‚·..."
+        Application.StatusBar = mlngIndexStatusBar & " / " & mlngMaxItem & " ä»¶ å‡¦ç†ä¸­ã§ã™..."
     End If
     
 End Sub
 '-------------------------------------
-' Dispose •K‚¸ÅŒã‚ÉŒÄ‚Ño‚·‚±‚ÆB
+' Dispose å¿…ãšæœ€å¾Œã«å‘¼ã³å‡ºã™ã“ã¨ã€‚
 '-------------------------------------
 Public Sub Dispose()
 
@@ -105,10 +105,10 @@ Public Sub Dispose()
     
     mblnNotCallDispose = False
     
-    'ƒXƒe[ƒ^ƒXƒo[‚Ì•\¦“à—e‚ğExcel‚ÌŠù’è’l‚É–ß‚·
+    'ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã®è¡¨ç¤ºå†…å®¹ã‚’Excelã®æ—¢å®šå€¤ã«æˆ»ã™
     Application.StatusBar = False
     
-    'ƒXƒe[ƒ^ƒXƒo[‚ğƒ}ƒNƒ‚ÌÀs‘O‚Ìó‘Ô‚É–ß‚·
+    'ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã‚’ãƒã‚¯ãƒ­ã®å®Ÿè¡Œå‰ã®çŠ¶æ…‹ã«æˆ»ã™
     Application.DisplayStatusBar = mblnStatusBar
 
 End Sub
@@ -119,14 +119,14 @@ Private Sub Class_Terminate()
 
     On Error Resume Next
     
-    ''Dispose ‚ªŒÄ‚Î‚ê‚È‚©‚Á‚½ê‡‚Ì‘Îô
+    ''Dispose ãŒå‘¼ã°ã‚Œãªã‹ã£ãŸå ´åˆã®å¯¾ç­–
     If mblnNotCallDispose Then
         Call Dispose
     End If
     
 End Sub
 '-------------------------------------
-' ƒJƒXƒ^ƒ€ƒvƒƒpƒeƒB
+' ã‚«ã‚¹ã‚¿ãƒ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 '-------------------------------------
 Public Property Let MaxItems(ByVal m As Long)
     mlngMaxItem = m

@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmInputLength 
-   Caption         =   "“ü—ÍƒEƒBƒ“ƒhƒE"
+   Caption         =   "å…¥åŠ›ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦"
    ClientHeight    =   1680
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   3000
    OleObjectBlob   =   "frmInputLength.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmInputLength"
 Attribute VB_GlobalNameSpace = False
@@ -66,7 +66,7 @@ Private Sub cmdOk_Click()
         mResult = vbOK
         Unload Me
     Else
-        MsgBox "”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
     End If
 End Sub
 

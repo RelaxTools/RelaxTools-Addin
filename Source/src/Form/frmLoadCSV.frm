@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmLoadCSV 
-   Caption         =   "CSVƒtƒ@ƒCƒ‹æ"
+   Caption         =   "CSVãƒ•ã‚¡ã‚¤ãƒ«å–è¾¼"
    ClientHeight    =   2055
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   7230
    OleObjectBlob   =   "frmLoadCSV.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmLoadCSV"
 Attribute VB_GlobalNameSpace = False
@@ -57,9 +57,9 @@ Private Sub cmdFolder_Click()
     Dim strFile As String
 
 
-    strFile = Application.GetOpenFilename("ƒJƒ“ƒ}‹æØ‚èƒtƒ@ƒCƒ‹(*.csv;*.txt),(*.csv;*.txt)", , "‚b‚r‚uƒtƒ@ƒCƒ‹“Ç", , False)
+    strFile = Application.GetOpenFilename("ã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šãƒ•ã‚¡ã‚¤ãƒ«(*.csv;*.txt),(*.csv;*.txt)", , "ï¼£ï¼³ï¼¶ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼", , False)
     If strFile = "False" Then
-        'ƒtƒ@ƒCƒ‹–¼‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+        'ãƒ•ã‚¡ã‚¤ãƒ«åãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
         Exit Sub
     End If
     
@@ -90,10 +90,10 @@ Private Sub cmdRun_Click()
     
     strFile = txtFolder.Text
     
-    'ƒtƒ@ƒCƒ‹‚Ì‘¶İƒ`ƒFƒbƒN
+    'ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
     If rlxIsFileExists(strFile) Then
     Else
-        MsgBox "ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+        MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
     
@@ -118,12 +118,12 @@ Private Sub cmdRun_Click()
     Set mm = New MacroManager
     Set mm.Form = Me
     mm.Disable
-    mm.DispGuidance "‚b‚r‚uƒtƒ@ƒCƒ‹‚Ìs”‚ğƒJƒEƒ“ƒg‚µ‚Ä‚¢‚Ü‚·..."
+    mm.DispGuidance "ï¼£ï¼³ï¼¶ãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦ã„ã¾ã™..."
     
     Set WS = ActiveWorkbook.Worksheets.Add(after:=ActiveWorkbook.Worksheets(ActiveWorkbook.Worksheets.count))
     
     If chkUTF8.value Then
-        'UTF8‚©‚çUNICODE
+        'UTF8ã‹ã‚‰UNICODE
         Dim utf8 As UTF8Encoding
         Set utf8 = New UTF8Encoding
         strBuf = utf8.GetString(bytBuf())
@@ -151,15 +151,15 @@ Private Sub cmdRun_Click()
         End If
     End If
     
-'    'CRLF or CR ‚Ìê‡ LF ‚É•ÏŠ·
+'    'CRLF or CR ã®å ´åˆ LF ã«å¤‰æ›
 '    strBuf = Replace(strBuf, vbCrLf, vbLf)
 '    strBuf = Replace(strBuf, vbCr, vbLf)
 '    strLine = Split(strBuf, vbLf)
     
-    'ƒJƒ“ƒ}‹æØ‚è‚Å•ªŠ„‚ğs‚¤iƒ_ƒuƒ‹ƒR[ƒe[ƒVƒ‡ƒ““àƒJƒ“ƒ}‘Î‰j
+    'ã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šã§åˆ†å‰²ã‚’è¡Œã†ï¼ˆãƒ€ãƒ–ãƒ«ã‚³ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³å†…ã‚«ãƒ³ãƒå¯¾å¿œï¼‰
     varRow = rlxCsvPart(strLine(1))
     
-    '€–Ú”‚Ì•ªA—ñ‚Ì‘I‘ğ‚ğ‚µA•¶š—ñŒ`®‚É‚·‚éB
+    'é …ç›®æ•°ã®åˆ†ã€åˆ—ã®é¸æŠã‚’ã—ã€æ–‡å­—åˆ—å½¢å¼ã«ã™ã‚‹ã€‚
     Set r = Range(WS.Columns(lngCol), WS.Columns(lngCol + UBound(varRow) - 1))
     r.NumberFormatLocal = "@"
 
@@ -184,13 +184,13 @@ Private Sub cmdRun_Click()
         ReDim arPaste(1 To lngRead, LBound(varRow) To UBound(varRow))
         
         For k = 1 To lngRead
-            'ƒJƒ“ƒ}‹æØ‚è‚Å•ªŠ„‚ğs‚¤iƒ_ƒuƒ‹ƒR[ƒe[ƒVƒ‡ƒ““àƒJƒ“ƒ}‘Î‰j
+            'ã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šã§åˆ†å‰²ã‚’è¡Œã†ï¼ˆãƒ€ãƒ–ãƒ«ã‚³ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³å†…ã‚«ãƒ³ãƒå¯¾å¿œï¼‰
             varRow = rlxCsvPart(strLine(i))
             For j = LBound(varRow) To UBound(varRow)
                 arPaste(k, j) = varRow(j)
             Next
             i = i + 1
-            'ƒQ[ƒW‚Ì•\¦
+            'ã‚²ãƒ¼ã‚¸ã®è¡¨ç¤º
             mm.DisplayGauge i
             If mblnCancel Then
                 Exit Do
@@ -206,7 +206,7 @@ Private Sub cmdRun_Click()
     
 '    WS.Name = rlxGetFullpathFromFileName(strFile)
        
-    '‚·‚×‚Ä“\‚è•t‚¯‚½‚ç—ñŠÔŠu‚ğ’²®
+    'ã™ã¹ã¦è²¼ã‚Šä»˜ã‘ãŸã‚‰åˆ—é–“éš”ã‚’èª¿æ•´
     If r Is Nothing Then
     Else
         r.AutoFit
@@ -215,7 +215,7 @@ Private Sub cmdRun_Click()
     
     Set mm = Nothing
     Unload Me
-    MsgBox "ˆ—‚ªŠ®—¹‚µ‚Ü‚µ‚½B", vbInformation, C_TITLE
+    MsgBox "å‡¦ç†ãŒå®Œäº†ã—ã¾ã—ãŸã€‚", vbInformation, C_TITLE
 
 End Sub
 

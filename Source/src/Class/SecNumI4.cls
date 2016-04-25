@@ -37,9 +37,9 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private Const C_SECTION_REGEXP As String = "^[‡T-‡]]+[ ]"
+Private Const C_SECTION_REGEXP As String = "^[â… -â…©]+[ ]"
 Private Const C_SECTION_SEPARATER As String = " "
-Private Const C_SECTION_NAME As String = "‡T, ‡U, ‡V ¥¥¥ ‡]"
+Private Const C_SECTION_NAME As String = "â… , â…¡, â…¢ ï½¥ï½¥ï½¥ â…©"
 Private Const C_SECTION_CLASS As String = "SecNumI4"
 Public Property Get Class() As String
     Class = C_SECTION_CLASS
@@ -47,7 +47,7 @@ End Property
 
 Public Function SectionLevelName(ByVal lngLevel As Long) As String
     
-    SectionLevelName = " ‡T „Ÿ„Ÿ„Ÿ„Ÿ"
+    SectionLevelName = " â…  â”€â”€â”€â”€"
 
 End Function
 Public Property Get SectionName() As String
@@ -92,11 +92,11 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngFromLevel As Long, By
     strNumber = Trim(SectionNumber(v))
     
     If strNumber = "" Or lngFromLevel <> lngIndentLevel Then
-        strNewNum = "‡T" & C_SECTION_SEPARATER
+        strNewNum = "â… " & C_SECTION_SEPARATER
     Else
         lngAsc = Asc(strNumber) + 1
-        If lngAsc > Asc("‡]") Then
-            lngAsc = Asc("‡T")
+        If lngAsc > Asc("â…©") Then
+            lngAsc = Asc("â… ")
         End If
         strNewNum = Chr(lngAsc) & C_SECTION_SEPARATER
     End If

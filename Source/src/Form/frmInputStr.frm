@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmInputStr 
-   Caption         =   "•¶š—ñ‚Ì’Ç‰Á"
+   Caption         =   "æ–‡å­—åˆ—ã®è¿½åŠ "
    ClientHeight    =   1035
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   6150
    OleObjectBlob   =   "frmInputStr.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmInputStr"
 Attribute VB_GlobalNameSpace = False
@@ -58,7 +58,7 @@ Private Sub cmdOk_Click()
         If txtInput.List(i) <> txtInput.Text Then
             strBuf = strBuf & vbTab & txtInput.List(i)
             lngCount = lngCount + 1
-            'ƒŠƒXƒg‚ÍÅ‘å‚P‚O
+            'ãƒªã‚¹ãƒˆã¯æœ€å¤§ï¼‘ï¼
             If lngCount >= 10 Then
                 Exit For
             End If

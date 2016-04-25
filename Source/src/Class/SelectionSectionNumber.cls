@@ -41,20 +41,20 @@ Private mlngIndent As Long
 
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -68,7 +68,7 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‰Šúˆ—(UOC)
+' åˆæœŸå‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
 
@@ -109,7 +109,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     setIndent r, mlngIndent
     
-    'Œ»İ‚ÌƒZƒ‹‚Ì’i—”Ô†‚Å‚ ‚éê‡
+    'ç¾åœ¨ã®ã‚»ãƒ«ã®æ®µè½ç•ªå·ã§ã‚ã‚‹å ´åˆ
     If Not rlxIsSectionNo(r.value) Then
         Exit Sub
     End If
@@ -120,7 +120,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     j = 0
     For i = r.Parent.Index To 1 Step -1
     
-        '•\¦‚³‚ê‚Ä‚¢‚éƒV[ƒg‚Ì‚İ‚Å”»’è
+        'è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‚·ãƒ¼ãƒˆã®ã¿ã§åˆ¤å®š
         Set WS = WB.Worksheets(i)
         
         If WS.visible = xlSheetVisible Then
@@ -136,7 +136,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
                 strBuf = WS.Cells(lngCnt, lngCol).value
                 lngLevel = WS.Cells(lngCnt, lngCol).IndentLevel
         
-                '’i—”Ô†‚ª‘¶İ‚µ‚È‚¢s‚Ìê‡
+                'æ®µè½ç•ªå·ãŒå­˜åœ¨ã—ãªã„è¡Œã®å ´åˆ
                 If (rlxHasSectionNo(strBuf, lngLevel) And lngLevel <= r.IndentLevel) Then
                     blnFind = True
                     GoTo pass
@@ -162,12 +162,12 @@ pass:
         Dim strMsg As String
     
         strMsg = ""
-        strMsg = strMsg & "‚P‚Â‘O‚ÌƒV[ƒg‚©‚ç’i—”Ô†‚ğˆø‚«Œp‚¬‚Ü‚·‚©H" & vbCrLf
-        strMsg = strMsg & "ˆø‚«Œp‚ª‚È‚¢ê‡‚ÍÅ‰‚©‚çÌ”Ô‚µ‚Ü‚·B" & vbCrLf & vbCrLf
-        strMsg = strMsg & "™§ŒÀ™" & vbCrLf
-        strMsg = strMsg & "@ˆø‚«Œp‚®‚½‚ß‚É‚Í“¯‚¶—ñ‚É’i—”Ô†‚ª‹Lq‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B"
+        strMsg = strMsg & "ï¼‘ã¤å‰ã®ã‚·ãƒ¼ãƒˆã‹ã‚‰æ®µè½ç•ªå·ã‚’å¼•ãç¶™ãã¾ã™ã‹ï¼Ÿ" & vbCrLf
+        strMsg = strMsg & "å¼•ãç¶™ãŒãªã„å ´åˆã¯æœ€åˆã‹ã‚‰æ¡ç•ªã—ã¾ã™ã€‚" & vbCrLf & vbCrLf
+        strMsg = strMsg & "â˜†åˆ¶é™â˜†" & vbCrLf
+        strMsg = strMsg & "ã€€å¼•ãç¶™ããŸã‚ã«ã¯åŒã˜åˆ—ã«æ®µè½ç•ªå·ãŒè¨˜è¿°ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚"
         
-        'ƒƒbƒZ[ƒW
+        'ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         If MsgBox(strMsg, vbQuestion + vbYesNo, C_TITLE) <> vbYes Then
             strBuf = ""
         End If
@@ -176,13 +176,13 @@ pass:
 
     Dim strNewNum As String
         
-    'Ÿ‚Ì”Ô†‚ğU‚é
+    'æ¬¡ã®ç•ªå·ã‚’æŒ¯ã‚‹
     strNewNum = rlxGetSectionNext(strBuf, lngLevel, r.IndentLevel)
     
-    '’i—”Ô†‚Ìíœ
+    'æ®µè½ç•ªå·ã®å‰Šé™¤
     delSectionNo r
     
-    '’i—”Ô†‚ğİ’è‚·‚é
+    'æ®µè½ç•ªå·ã‚’è¨­å®šã™ã‚‹
     setSectionNo r, strNewNum
     
 '    Application.ScreenUpdating = True

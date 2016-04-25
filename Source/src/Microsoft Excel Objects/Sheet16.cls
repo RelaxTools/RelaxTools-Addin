@@ -38,7 +38,7 @@ Attribute VB_Exposed = True
 '-----------------------------------------------------------------------------------------------------
 
 Option Explicit
-'Private Const C_TITLE As String = "Grepíuä∑"
+'Private Const C_TITLE As String = "GrepÁΩÆÊèõ"
 Private Const C_SEARCH_NO As Long = 1
 Private Const C_SEARCH_BOOK As Long = 2
 

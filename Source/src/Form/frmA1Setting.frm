@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmA1Setting 
-   Caption         =   "ƒz[ƒ€ƒ|ƒWƒVƒ‡ƒ“iA1)İ’è"
+   Caption         =   "ãƒ›ãƒ¼ãƒ ãƒã‚¸ã‚·ãƒ§ãƒ³ï¼ˆA1)è¨­å®š"
    ClientHeight    =   1980
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   4710
    OleObjectBlob   =   "frmA1Setting.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmA1Setting"
 Attribute VB_GlobalNameSpace = False
@@ -60,7 +60,7 @@ Private Sub cmdOk_Click()
     Select Case Val(cboPercent.Text)
         Case 10 To 400
         Case Else
-            MsgBox "”{—¦‚Í‚P‚O`‚S‚O‚O“‚ÌŠÔ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "å€ç‡ã¯ï¼‘ï¼ï½ï¼”ï¼ï¼ï¼…ã®é–“ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
             cboPercent.SetFocus
             Exit Sub
     End Select

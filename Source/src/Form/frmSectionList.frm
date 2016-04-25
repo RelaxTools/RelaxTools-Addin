@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSectionList 
-   Caption         =   "’i—”Ô†ƒŠƒXƒg"
+   Caption         =   "æ®µè½ç•ªå·ãƒªã‚¹ãƒˆ"
    ClientHeight    =   5940
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   9090
    OleObjectBlob   =   "frmSectionList.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmSectionList"
 Attribute VB_GlobalNameSpace = False
@@ -264,7 +264,7 @@ Private Sub UserForm_Initialize()
     
     
     
-    'ƒJƒXƒ^ƒ€i‚Pj
+    'ã‚«ã‚¹ã‚¿ãƒ ï¼ˆï¼‘ï¼‰
     Set mColSection1 = rlxGetSectionSetting("01")
     For i = 1 To 6
         If mColSection1.count < i Then
@@ -278,7 +278,7 @@ Private Sub UserForm_Initialize()
         End If
     Next
     
-    'ƒJƒXƒ^ƒ€i‚Qj
+    'ã‚«ã‚¹ã‚¿ãƒ ï¼ˆï¼’ï¼‰
     Set mColSection2 = rlxGetSectionSetting("02")
     For i = 1 To 6
         If mColSection2.count < i Then
@@ -292,7 +292,7 @@ Private Sub UserForm_Initialize()
         End If
     Next
     
-    'ƒJƒXƒ^ƒ€i‚Rj
+    'ã‚«ã‚¹ã‚¿ãƒ ï¼ˆï¼“ï¼‰
     Set mColSection3 = rlxGetSectionSetting("03")
     For i = 1 To 6
         If mColSection3.count < i Then
@@ -306,7 +306,7 @@ Private Sub UserForm_Initialize()
         End If
     Next
     
-    'ƒJƒXƒ^ƒ€i‚Sj
+    'ã‚«ã‚¹ã‚¿ãƒ ï¼ˆï¼”ï¼‰
     Set mColSection4 = rlxGetSectionSetting("04")
     For i = 1 To 6
         If mColSection4.count < i Then
@@ -320,7 +320,7 @@ Private Sub UserForm_Initialize()
         End If
     Next
     
-    'ƒJƒXƒ^ƒ€i‚Tj
+    'ã‚«ã‚¹ã‚¿ãƒ ï¼ˆï¼•ï¼‰
     Set mColSection5 = rlxGetSectionSetting("05")
     For i = 1 To 6
         If mColSection5.count < i Then
@@ -334,7 +334,7 @@ Private Sub UserForm_Initialize()
         End If
     Next
     
-    'ƒJƒXƒ^ƒ€i‚Uj
+    'ã‚«ã‚¹ã‚¿ãƒ ï¼ˆï¼–ï¼‰
     Set mColSection6 = rlxGetSectionSetting("06")
     For i = 1 To 6
         If mColSection6.count < i Then

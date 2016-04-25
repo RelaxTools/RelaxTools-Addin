@@ -38,20 +38,20 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -64,13 +64,13 @@ Public Sub Run()
     SFWork.Run
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ‰Šúˆ—(UOC)
+' åˆæœŸå‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
     Undo = True
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' åˆ—(UOC)
+' ä¸»å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
 
@@ -95,7 +95,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
                 r.Characters(r.Characters.count + 1, 0).Insert vbLf
         End Select
     Else
-        'ÅŒã‚Ì•¶š‚ª‰üs‚©A‚»‚êˆÈŠO‚©H
+        'æœ€å¾Œã®æ–‡å­—ãŒæ”¹è¡Œã‹ã€ãã‚Œä»¥å¤–ã‹ï¼Ÿ
         Select Case Right$(s, 1)
             Case vbCr, vbLf, vbCrLf
             Case Else

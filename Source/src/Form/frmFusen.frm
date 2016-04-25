@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFusen 
-   Caption         =   "•tâ³‚Ìİ’è"
+   Caption         =   "ä»˜ç®‹ã®è¨­å®š"
    ClientHeight    =   8370
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   12390
    OleObjectBlob   =   "frmFusen.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmFusen"
 Attribute VB_GlobalNameSpace = False
@@ -51,7 +51,7 @@ End Sub
 
 Private Sub cmdHelp_Click()
     
-    If MsgBox("ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+    If MsgBox("ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
     
@@ -119,7 +119,7 @@ Private Sub cmdOk_Click()
     If strFusenDate = C_FUSEN_DATE_USER Then
         If IsDate(strUserDate) Then
         Else
-            MsgBox "w’è“ú•t‚É‚Í—LŒø‚È“ú•t‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+            MsgBox "æŒ‡å®šæ—¥ä»˜ã«ã¯æœ‰åŠ¹ãªæ—¥ä»˜ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
             txtUserDate.SetFocus
             Exit Sub
         End If
@@ -127,26 +127,26 @@ Private Sub cmdOk_Click()
     
     If IsNumeric(strHeight) Then
     Else
-        MsgBox "‚‚³‚É‚Í”’l‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "é«˜ã•ã«ã¯æ•°å€¤ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
         txtHeight.SetFocus
         Exit Sub
     End If
     
     If CDbl(strHeight) < 0 Then
-        MsgBox "‚‚³‚Í‚OˆÈã‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "é«˜ã•ã¯ï¼ä»¥ä¸Šã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
         txtHeight.SetFocus
         Exit Sub
     End If
     
     If IsNumeric(strWidth) Then
     Else
-        MsgBox "•‚É‚Í”’l‚ğ‚Å“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "å¹…ã«ã¯æ•°å€¤ã‚’ã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
         txtWidth.SetFocus
         Exit Sub
     End If
     
     If CDbl(strWidth) < 0 Then
-        MsgBox "•‚Í‚OˆÈã‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation + vbOKOnly, C_TITLE
+        MsgBox "å¹…ã¯ï¼ä»¥ä¸Šã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation + vbOKOnly, C_TITLE
         txtWidth.SetFocus
         Exit Sub
     End If
@@ -299,19 +299,19 @@ Private Sub UserForm_Initialize()
     cboFont.Text = strFont
     txtSize.Text = strSize
     
-    cboHorizontalAnchor.AddItem "¶"
-    cboHorizontalAnchor.AddItem "’†"
-    cboHorizontalAnchor.AddItem "‰E"
+    cboHorizontalAnchor.AddItem "å·¦"
+    cboHorizontalAnchor.AddItem "ä¸­"
+    cboHorizontalAnchor.AddItem "å³"
     cboHorizontalAnchor.ListIndex = varHorizontalAnchor
     
-    cboVerticalAnchor.AddItem "ã"
-    cboVerticalAnchor.AddItem "’†"
-    cboVerticalAnchor.AddItem "‰º"
+    cboVerticalAnchor.AddItem "ä¸Š"
+    cboVerticalAnchor.AddItem "ä¸­"
+    cboVerticalAnchor.AddItem "ä¸‹"
     cboVerticalAnchor.ListIndex = varVerticalAnchor
     
     chkAutoSize.value = varAutoSize
     
-    lblUser.Caption = "ƒ†[ƒU–¼:" & Application.UserName
+    lblUser.Caption = "ãƒ¦ãƒ¼ã‚¶å:" & Application.UserName
     
     chkOverflow.value = varOverFlow
     chkWordWrap.value = varWordWrap
@@ -322,7 +322,7 @@ Private Sub UserForm_Initialize()
     txtFormat.AddItem "'yy.mm.dd"
     txtFormat.AddItem "ge.m.d"
     txtFormat.AddItem "gge.m.d"
-    txtFormat.AddItem "ggge”NmŒd“ú"
+    txtFormat.AddItem "gggeå¹´mæœˆdæ—¥"
     
 #If VBA7 Then
 #Else

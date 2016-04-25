@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmTreeList 
-   Caption         =   "ƒtƒHƒ‹ƒ_ƒcƒŠ[\‘¢æ“¾"
+   Caption         =   "ãƒ•ã‚©ãƒ«ãƒ€ãƒ„ãƒªãƒ¼æ§‹é€ å–å¾—"
    ClientHeight    =   2775
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   7230
    OleObjectBlob   =   "frmTreeList.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmTreeList"
 Attribute VB_GlobalNameSpace = False
@@ -57,7 +57,7 @@ Private Sub cmdFolder_Click()
 
     Dim strFile As String
 
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFile = rlxSelectFolder()
     
     If Trim(strFile) <> "" Then
@@ -78,21 +78,21 @@ Private Sub cmdRun_Click()
     Dim lngFolderCnt As Long
     
     If ActiveCell Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒZƒ‹‚ª‚İ‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚»ãƒ«ãŒã¿ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFolder = txtFolder.Text
     If strFolder = "" Then
-        MsgBox "ƒcƒŠ[\‘¢‚ğæ“¾‚·‚éƒtƒHƒ‹ƒ_‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, "ƒcƒŠ[\‘¢æ“¾"
+        MsgBox "ãƒ„ãƒªãƒ¼æ§‹é€ ã‚’å–å¾—ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation, "ãƒ„ãƒªãƒ¼æ§‹é€ å–å¾—"
         txtFolder.SetFocus
         Exit Sub
     End If
     
     
     If Val(txtLineWidth.Text) < 0.5 Then
-        MsgBox "0.5ˆÈã‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, "ƒcƒŠ[\‘¢æ“¾"
+        MsgBox "0.5ä»¥ä¸Šã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbExclamation, "ãƒ„ãƒªãƒ¼æ§‹é€ å–å¾—"
         txtLineWidth.SetFocus
         Exit Sub
     End If
@@ -111,7 +111,7 @@ Private Sub cmdRun_Click()
     Set mMm.Form = Me
     
     mMm.Disable
-    mMm.DispGuidance "ƒtƒ@ƒCƒ‹‚Ì”‚ğƒJƒEƒ“ƒg‚µ‚Ä‚¢‚Ü‚·..."
+    mMm.DispGuidance "ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦ã„ã¾ã™..."
     
     rlxGetFilesCount objFs, strFolder, lngFCnt, chkFileName.value, True, True
     
@@ -119,16 +119,16 @@ Private Sub cmdRun_Click()
     
     Dim strPath As String
     If Mid$(strFolder, 2, 1) = ":" Then
-        'ƒhƒ‰ƒCƒu–¼‚ğUNC‚É•ÏŠ·
+        'ãƒ‰ãƒ©ã‚¤ãƒ–åã‚’UNCã«å¤‰æ›
         strPath = rlxDriveToUNC(strFolder)
     Else
         strPath = strFolder
     End If
     
-    'ƒtƒHƒ‹ƒ_Œ©o‚µiŠJnj
+    'ãƒ•ã‚©ãƒ«ãƒ€è¦‹å‡ºã—ï¼ˆé–‹å§‹æ™‚ï¼‰
     Cells(lngRow, lngCol).value = strPath
     
-    'ƒtƒHƒ‹ƒ_w’è‚Ìê‡
+    'ãƒ•ã‚©ãƒ«ãƒ€æŒ‡å®šã®å ´åˆ
     If chkFolder.value Then
         ActiveSheet.Hyperlinks.Add _
             Anchor:=Cells(lngRow, lngCol), _
@@ -146,13 +146,13 @@ Private Sub cmdRun_Click()
     
     Select Case err.Number
     Case 75, 76
-        MsgBox "ƒtƒHƒ‹ƒ_‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, "ƒcƒŠ[\‘¢æ“¾"
+        MsgBox "ãƒ•ã‚©ãƒ«ãƒ€ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, "ãƒ„ãƒªãƒ¼æ§‹é€ å–å¾—"
         txtFolder.SetFocus
         Exit Sub
     End Select
        
     Unload Me
-    MsgBox "ˆ—‚ªŠ®—¹‚µ‚Ü‚µ‚½B", vbInformation, C_TITLE
+    MsgBox "å‡¦ç†ãŒå®Œäº†ã—ã¾ã—ãŸã€‚", vbInformation, C_TITLE
 
 End Sub
 Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol As Long, ByVal strLineParent As String, ByRef lngFolderCnt As Long)
@@ -169,7 +169,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     Dim colFolders As Collection
     Dim colFiles As Collection
     
-    'Œrü‚Ì—ñ•‚ğ‚Q‚Æ‚·‚éB
+    'ç½«ç·šã®åˆ—å¹…ã‚’ï¼’ã¨ã™ã‚‹ã€‚
     Columns(lngCol).ColumnWidth = mdblLineWidth
     Columns(lngCol + 1).ColumnWidth = mdblLineWidth
     
@@ -182,9 +182,9 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     
     Select Case lngFolderCount > 0
         Case 0
-            strLine = strLineParent & "@@"
+            strLine = strLineParent & "ã€€ã€€"
         Case Else
-            strLine = strLineParent & "„ @"
+            strLine = strLineParent & "â”‚ã€€"
     End Select
     
     If chkFileName.value Then
@@ -197,24 +197,24 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         
         rlxSortCollection colFiles
         
-        'ƒtƒ@ƒCƒ‹‚Ìˆê——‚ğì¬‚·‚éB
+        'ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸€è¦§ã‚’ä½œæˆã™ã‚‹ã€‚
         For Each objfl In colFiles
             DoEvents
             If mblnCancel Then
                 Exit Sub
             End If
-            'Œrü
+            'ç½«ç·š
             SetTree strLine, lngRow, lngHCol
             
-            'ƒtƒ@ƒCƒ‹–¼
+            'ãƒ•ã‚¡ã‚¤ãƒ«å
             Cells(lngRow, lngCol2).NumberFormatLocal = "@"
             Cells(lngRow, lngCol2).value = objfl.Name
     
             
-            'ƒnƒCƒp[ƒŠƒ“ƒN
-            'Office ƒvƒƒOƒ‰ƒ€“à‚ÌƒnƒCƒp[ƒŠƒ“ƒN‚Ìƒtƒ@ƒCƒ‹–¼‚Åƒ|ƒ“ƒh•¶š‚ğg—p‚Å‚«‚Ü‚¹‚ñB(KB202261)
+            'ãƒã‚¤ãƒ‘ãƒ¼ãƒªãƒ³ã‚¯
+            'Office ãƒ—ãƒ­ã‚°ãƒ©ãƒ å†…ã®ãƒã‚¤ãƒ‘ãƒ¼ãƒªãƒ³ã‚¯ã®ãƒ•ã‚¡ã‚¤ãƒ«åã§ãƒãƒ³ãƒ‰æ–‡å­—ã‚’ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚(KB202261)
             'http://support.microsoft.com/kb/202261/ja
-            'ƒtƒ@ƒCƒ‹w’è‚Ìê‡
+            'ãƒ•ã‚¡ã‚¤ãƒ«æŒ‡å®šã®å ´åˆ
             If chkFile.value Then
                 ActiveSheet.Hyperlinks.Add _
                     Anchor:=Cells(lngRow, lngCol2), _
@@ -229,11 +229,11 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         Set colFiles = Nothing
     End If
     
-    'Œrü
+    'ç½«ç·š
     SetTree strLine, lngRow, lngHCol
     lngRow = lngRow + 1
     
-    'ƒTƒuƒtƒHƒ‹ƒ_ŒŸõ‚ ‚è
+    'ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€æ¤œç´¢ã‚ã‚Š
     i = 1
     
     Set colFolders = New Collection
@@ -249,22 +249,22 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         If mblnCancel Then
             Exit Sub
         End If
-        'Œrü
+        'ç½«ç·š
         Select Case lngFolderCount
             Case i
-                SetTree strLineParent & "„¤„Ÿ", lngRow, lngHCol
-                strLine = strLineParent & "@@"
+                SetTree strLineParent & "â””â”€", lngRow, lngHCol
+                strLine = strLineParent & "ã€€ã€€"
         
             Case Else
-                SetTree strLineParent & "„¥„Ÿ", lngRow, lngHCol
-                strLine = strLineParent & "„ @"
+                SetTree strLineParent & "â”œâ”€", lngRow, lngHCol
+                strLine = strLineParent & "â”‚ã€€"
         End Select
         
-        'ƒtƒHƒ‹ƒ_Œ©o‚µ
+        'ãƒ•ã‚©ãƒ«ãƒ€è¦‹å‡ºã—
         Cells(lngRow, lngCol2).NumberFormatLocal = "@"
         Cells(lngRow, lngCol2).value = rlxGetFullpathFromFileName(objSub.Path)
         
-        'ƒtƒHƒ‹ƒ_w’è‚Ìê‡
+        'ãƒ•ã‚©ãƒ«ãƒ€æŒ‡å®šã®å ´åˆ
         If chkFolder.value Then
             ActiveSheet.Hyperlinks.Add _
                 Anchor:=Cells(lngRow, lngCol2), _
@@ -272,7 +272,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
                 TextToDisplay:=rlxGetFullpathFromFileName(objSub.Path)
         End If
                 
-        '©•ª©g‚ğŒÄ‚Ño‚·iÄ‹Aj
+        'è‡ªåˆ†è‡ªèº«ã‚’å‘¼ã³å‡ºã™ï¼ˆå†å¸°ï¼‰
         FileDisp objFs, objSub.Path, lngRow, lngCol2, lngHCol, strLine, lngFolderCnt
         
         i = i + 1
@@ -283,7 +283,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     Set colFolders = Nothing
     
 End Sub
-'Tree•`‰æ
+'Treeæç”»
 Private Sub SetTree(ByVal strLine As String, ByVal lngRow As Long, ByVal lngCol As Long)
 
     Dim lngLen As Long

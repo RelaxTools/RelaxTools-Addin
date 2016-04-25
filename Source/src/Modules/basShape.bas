@@ -32,16 +32,16 @@ Option Explicit
 Option Private Module
 
 
-'‚Pƒ}ƒX‚ÌƒTƒCƒYi9.75~12j
+'ï¼‘ãƒã‚¹ã®ã‚µã‚¤ã‚ºï¼ˆ9.75Ã—12ï¼‰
 Public Const C_RECT_X  As Single = 9.75
 Public Const C_RECT_Y  As Single = 12
 
-'‚»‚Ì‘¼‚Ì\¬i‚S~‚Rƒ}ƒXj
+'ãã®ä»–ã®æ§‹æˆï¼ˆï¼”Ã—ï¼“ãƒã‚¹ï¼‰
 Public Const C_NORMAL_WIDTH As Long = 7
 Public Const C_NORMAL_HEIGHT As Long = 3
 
 '
-' ü‚ğ^‚Á’¼‚®‚É‚·‚é
+' ç·šã‚’çœŸã£ç›´ãã«ã™ã‚‹
 '
 Sub straightLine()
 
@@ -88,7 +88,7 @@ Sub smallShape()
     Selection.ShapeRange.ScaleWidth 0.9, msoFalse, msoScaleFromTopLeft
 End Sub
 '
-' ‹L‰¯ƒf[ƒ^iƒVƒFƒCƒvj•`‰æ
+' è¨˜æ†¶ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawFlowchartStoredData()
 
@@ -97,7 +97,7 @@ Sub drawFlowchartStoredData()
 
     For Each r In Selection
         
-        'ƒf[ƒ^‹L‰¯ƒVƒFƒCƒv‚Ìì¬
+        'ãƒ‡ãƒ¼ã‚¿è¨˜æ†¶ã‚·ã‚§ã‚¤ãƒ—ã®ä½œæˆ
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeFlowchartStoredData, r.Left + r.Width, r.Top, C_RECT_X * C_NORMAL_WIDTH, C_RECT_Y * C_NORMAL_HEIGHT)
     
         With objDataSet.TextFrame
@@ -111,7 +111,7 @@ Sub drawFlowchartStoredData()
 
 End Sub
 '
-' ƒeƒLƒXƒgƒ{ƒbƒNƒXiƒVƒFƒCƒvj•`‰æ
+' ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawTextbox1()
 
@@ -127,7 +127,7 @@ Sub drawTextbox1()
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
-        'ƒf[ƒ^‹L‰¯ƒVƒFƒCƒv‚Ìì¬
+        'ãƒ‡ãƒ¼ã‚¿è¨˜æ†¶ã‚·ã‚§ã‚¤ãƒ—ã®ä½œæˆ
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
@@ -140,7 +140,7 @@ Sub drawTextbox1()
 
 End Sub
 '
-' ƒeƒLƒXƒgƒ{ƒbƒNƒXiƒVƒFƒCƒvj•`‰æ
+' ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawTextbox2()
 
@@ -156,14 +156,14 @@ Sub drawTextbox2()
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
-        'ƒf[ƒ^‹L‰¯ƒVƒFƒCƒv‚Ìì¬
+        'ãƒ‡ãƒ¼ã‚¿è¨˜æ†¶ã‚·ã‚§ã‚¤ãƒ—ã®ä½œæˆ
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
             .Characters.Text = r.value
         End With
             
-        '˜g‚È‚µ‚Ìê‡
+        'æ ãªã—ã®å ´åˆ
         objDataSet.Line.visible = msoFalse
             
         Set objDataSet = Nothing
@@ -171,7 +171,7 @@ Sub drawTextbox2()
 
 End Sub
 '
-' lŠpŒ`‚«o‚µiƒVƒFƒCƒvj•`‰æ
+' å››è§’å½¢å¹ãå‡ºã—ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawShapeRectangularCallout()
 
@@ -187,7 +187,7 @@ Sub drawShapeRectangularCallout()
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
-        'ƒf[ƒ^‹L‰¯ƒVƒFƒCƒv‚Ìì¬
+        'ãƒ‡ãƒ¼ã‚¿è¨˜æ†¶ã‚·ã‚§ã‚¤ãƒ—ã®ä½œæˆ
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
@@ -199,7 +199,7 @@ Sub drawShapeRectangularCallout()
 
 End Sub
 '
-' ŠpŠÛlŠpŒ`‚«o‚µiƒVƒFƒCƒvj•`‰æ
+' è§’ä¸¸å››è§’å½¢å¹ãå‡ºã—ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawShapeRoundedRectangularCallout()
 
@@ -215,7 +215,7 @@ Sub drawShapeRoundedRectangularCallout()
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
-        'ƒf[ƒ^‹L‰¯ƒVƒFƒCƒv‚Ìì¬
+        'ãƒ‡ãƒ¼ã‚¿è¨˜æ†¶ã‚·ã‚§ã‚¤ãƒ—ã®ä½œæˆ
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRoundedRectangularCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
@@ -227,7 +227,7 @@ Sub drawShapeRoundedRectangularCallout()
 
 End Sub
 '
-' ŠÛŒ`‚«o‚µiƒVƒFƒCƒvj•`‰æ
+' ä¸¸å½¢å¹ãå‡ºã—ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawShapeOvalCallout()
 
@@ -243,7 +243,7 @@ Sub drawShapeOvalCallout()
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
-        'ƒf[ƒ^‹L‰¯ƒVƒFƒCƒv‚Ìì¬
+        'ãƒ‡ãƒ¼ã‚¿è¨˜æ†¶ã‚·ã‚§ã‚¤ãƒ—ã®ä½œæˆ
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOvalCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
@@ -255,7 +255,7 @@ Sub drawShapeOvalCallout()
 
 End Sub
 '
-' ‰_Œ`‚«o‚µiƒVƒFƒCƒvj•`‰æ
+' é›²å½¢å¹ãå‡ºã—ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawShapeCloudCallout()
 
@@ -271,7 +271,7 @@ Sub drawShapeCloudCallout()
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
-        'ƒf[ƒ^‹L‰¯ƒVƒFƒCƒv‚Ìì¬
+        'ãƒ‡ãƒ¼ã‚¿è¨˜æ†¶ã‚·ã‚§ã‚¤ãƒ—ã®ä½œæˆ
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeCloudCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
@@ -283,7 +283,7 @@ Sub drawShapeCloudCallout()
 
 End Sub
 '
-' ŠÛŒ`iƒVƒFƒCƒvj•ÏŠ·
+' ä¸¸å½¢ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeOval()
 
@@ -295,7 +295,7 @@ Sub convShapeOval()
 
 End Sub
 '
-' lŠpŒ`iƒVƒFƒCƒvj•ÏŠ·
+' å››è§’å½¢ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeRectangle()
 
@@ -307,7 +307,7 @@ Sub convShapeRectangle()
 
 End Sub
 '
-' lŠpŒ`‚«o‚µiƒVƒFƒCƒvj•ÏŠ·
+' å››è§’å½¢å¹ãå‡ºã—ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeRectangularCallout()
 
@@ -319,7 +319,7 @@ Sub convShapeRectangularCallout()
 
 End Sub
 '
-' ŠpŠÛlŠpŒ`‚«o‚µiƒVƒFƒCƒvj•ÏŠ·
+' è§’ä¸¸å››è§’å½¢å¹ãå‡ºã—ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeRoundedRectangularCallout()
 
@@ -331,7 +331,7 @@ Sub convShapeRoundedRectangularCallout()
 
 End Sub
 '
-' ŠÛŒ`‚«o‚µiƒVƒFƒCƒvj•ÏŠ·
+' ä¸¸å½¢å¹ãå‡ºã—ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeOvalCallout()
 
@@ -343,7 +343,7 @@ Sub convShapeOvalCallout()
 
 End Sub
 '
-' ‰_Œ`‚«o‚µiƒVƒFƒCƒvj•ÏŠ·
+' é›²å½¢å¹ãå‡ºã—ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeCloudCallout()
 
@@ -355,7 +355,7 @@ Sub convShapeCloudCallout()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgFˆ—iƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šå‡¦ç†ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartProcess()
 
@@ -367,7 +367,7 @@ Sub convShapeFlowchartProcess()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF‘ã‘Öˆ—iƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šä»£æ›¿å‡¦ç†ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartAlternateProcess()
 
@@ -379,7 +379,7 @@ Sub convShapeFlowchartAlternateProcess()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF”»’fiƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šåˆ¤æ–­ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartDecision()
 
@@ -391,7 +391,7 @@ Sub convShapeFlowchartDecision()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgFƒf[ƒ^iƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šãƒ‡ãƒ¼ã‚¿ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartData()
 
@@ -403,7 +403,7 @@ Sub convShapeFlowchartData()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF’è‹`Ï‚İˆ—iƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šå®šç¾©æ¸ˆã¿å‡¦ç†ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartPredefinedProcess()
 
@@ -415,7 +415,7 @@ Sub convShapeFlowchartPredefinedProcess()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF“à•”‹L‰¯iƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šå†…éƒ¨è¨˜æ†¶ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartInternalStorage()
 
@@ -427,7 +427,7 @@ Sub convShapeFlowchartInternalStorage()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF‘—ŞiƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šæ›¸é¡ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartDocument()
 
@@ -439,7 +439,7 @@ Sub convShapeFlowchartDocument()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF•¡”‘—ŞiƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šè¤‡æ•°æ›¸é¡ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartMultidocument()
 
@@ -451,7 +451,7 @@ Sub convShapeFlowchartMultidocument()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF’[qiƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šç«¯å­ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartTerminator()
 
@@ -463,7 +463,7 @@ Sub convShapeFlowchartTerminator()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF€”õiƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šæº–å‚™ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartPreparation()
 
@@ -475,7 +475,7 @@ Sub convShapeFlowchartPreparation()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgFè‘€ì“ü—ÍiƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šæ‰‹æ“ä½œå…¥åŠ›ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartManualInput()
 
@@ -487,7 +487,7 @@ Sub convShapeFlowchartManualInput()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgFèì‹ÆiƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šæ‰‹ä½œæ¥­ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartManualOperation()
 
@@ -499,7 +499,7 @@ Sub convShapeFlowchartManualOperation()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgFƒJ[ƒhiƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šã‚«ãƒ¼ãƒ‰ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartCard()
 
@@ -511,7 +511,7 @@ Sub convShapeFlowchartCard()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF‚¹‚ñEƒe[ƒviƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šã›ã‚“å­”ãƒ†ãƒ¼ãƒ—ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartPunchedTape()
 
@@ -523,7 +523,7 @@ Sub convShapeFlowchartPunchedTape()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF‹L‰¯ƒf[ƒ^iƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šè¨˜æ†¶ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartStoredData()
 
@@ -535,7 +535,7 @@ Sub convShapeFlowchartStoredData()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF‡ŸƒAƒNƒZƒX‹L‰¯iƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šé †æ¬¡ã‚¢ã‚¯ã‚»ã‚¹è¨˜æ†¶ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartSequentialAccessStorage()
 
@@ -547,7 +547,7 @@ Sub convShapeFlowchartSequentialAccessStorage()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF’¼ÚƒAƒNƒZƒX‹L‰¯iƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šç›´æ¥ã‚¢ã‚¯ã‚»ã‚¹è¨˜æ†¶ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartDirectAccessStorage()
 
@@ -559,7 +559,7 @@ Sub convShapeFlowchartDirectAccessStorage()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF¥‹CƒfƒBƒXƒNiƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šç£æ°—ãƒ‡ã‚£ã‚¹ã‚¯ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartMagneticDisk()
 
@@ -571,7 +571,7 @@ Sub convShapeFlowchartMagneticDisk()
 
 End Sub
 '
-' ƒtƒ[ƒ`ƒƒ[ƒgF•\¦iƒVƒFƒCƒvj•ÏŠ·
+' ãƒ•ãƒ­ãƒ¼ãƒãƒ£ãƒ¼ãƒˆï¼šè¡¨ç¤ºï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰å¤‰æ›
 '
 Sub convShapeFlowchartDisplay()
 
@@ -584,7 +584,7 @@ Sub convShapeFlowchartDisplay()
 End Sub
 
 '
-' ƒGƒrƒfƒ“ƒX—plŠpiƒVƒFƒCƒvj•`‰æ
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨å››è§’ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawEvidenceTextbox()
 
@@ -595,7 +595,7 @@ Sub drawEvidenceTextbox()
     Dim a As Boolean
     
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -609,7 +609,7 @@ Sub drawEvidenceTextbox()
         
     Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
     
-    'Šî–{‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg
+    'åŸºæœ¬ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆ
     objDataSet.ShapeStyle = msoShapeStylePreset1
     
     With objDataSet.Fill
@@ -641,7 +641,7 @@ Sub drawEvidenceTextbox()
         
 End Sub
 '
-' ƒGƒrƒfƒ“ƒX—p‘È‰~iƒVƒFƒCƒvj•`‰æ
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨æ¥•å††ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawEvidenceOval()
 
@@ -652,7 +652,7 @@ Sub drawEvidenceOval()
     Dim a As Boolean
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -667,7 +667,7 @@ Sub drawEvidenceOval()
         
     Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOval, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 1.5) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 1.5, C_RECT_Y * C_NORMAL_HEIGHT)
     
-    'Šî–{‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg
+    'åŸºæœ¬ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆ
     objDataSet.ShapeStyle = msoShapeStylePreset1
     
     With objDataSet.Fill
@@ -698,7 +698,7 @@ Sub drawEvidenceOval()
         
 End Sub
 '
-' ƒGƒrƒfƒ“ƒX—p‚Ó‚«‚¾‚µ•`‰æ
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨ãµãã ã—æç”»
 '
 Sub drawEvidenceCallout()
 
@@ -709,7 +709,7 @@ Sub drawEvidenceCallout()
     Dim a As Boolean
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -724,7 +724,7 @@ Sub drawEvidenceCallout()
         
     Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
     
-    'Šî–{‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg
+    'åŸºæœ¬ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆ
     objDataSet.ShapeStyle = msoShapeStylePreset1
     
     With objDataSet.Fill
@@ -758,7 +758,7 @@ Sub drawEvidenceCallout()
 
 End Sub
 '
-' ƒGƒrƒfƒ“ƒX—pü‚Ó‚«‚¾‚µ•`‰æ
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨ç·šãµãã ã—æç”»
 '
 Sub drawEvidenceLineCallout()
 
@@ -769,7 +769,7 @@ Sub drawEvidenceLineCallout()
     Dim a As Boolean
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -784,7 +784,7 @@ Sub drawEvidenceLineCallout()
         
     Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeLineCallout1, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
     
-    'Šî–{‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg
+    'åŸºæœ¬ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆ
     objDataSet.ShapeStyle = msoShapeStylePreset1
     
     With objDataSet.Fill
@@ -818,7 +818,7 @@ Sub drawEvidenceLineCallout()
 
 End Sub
 '
-' ƒGƒrƒfƒ“ƒX—p–îˆó•`‰æ
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨çŸ¢å°æç”»
 '
 Sub drawEvidenceArrow()
 
@@ -829,7 +829,7 @@ Sub drawEvidenceArrow()
     Dim a As Boolean
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -870,7 +870,7 @@ Sub drawEvidenceArrow()
 
 End Sub
 '
-' ƒGƒrƒfƒ“ƒX—plŠpiƒVƒFƒCƒvj•`‰æ
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨å››è§’ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawEvidenceTextbox2()
 
@@ -881,7 +881,7 @@ Sub drawEvidenceTextbox2()
     Dim a As Boolean
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -896,7 +896,7 @@ Sub drawEvidenceTextbox2()
 
     Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
     
-    'Šî–{‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg
+    'åŸºæœ¬ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆ
     objDataSet.ShapeStyle = msoShapeStylePreset1
     
     With objDataSet.Fill
@@ -927,7 +927,7 @@ Sub drawEvidenceTextbox2()
 
 End Sub
 '
-' ƒGƒrƒfƒ“ƒX—p‘È‰~iƒVƒFƒCƒvj•`‰æ
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨æ¥•å††ï¼ˆã‚·ã‚§ã‚¤ãƒ—ï¼‰æç”»
 '
 Sub drawEvidenceOval2()
 
@@ -938,7 +938,7 @@ Sub drawEvidenceOval2()
     Dim a As Boolean
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -953,7 +953,7 @@ Sub drawEvidenceOval2()
         
     Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOval, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 1.5) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 1.5, C_RECT_Y * C_NORMAL_HEIGHT)
     
-    'Šî–{‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg
+    'åŸºæœ¬ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆ
     objDataSet.ShapeStyle = msoShapeStylePreset1
     
     With objDataSet.Fill
@@ -984,7 +984,7 @@ Sub drawEvidenceOval2()
 
 End Sub
 '
-' ƒGƒrƒfƒ“ƒX—p‚Ó‚«‚¾‚µ•`‰æ2
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨ãµãã ã—æç”»2
 '
 Sub drawEvidenceCallout2()
 
@@ -995,7 +995,7 @@ Sub drawEvidenceCallout2()
     Dim a As Boolean
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -1010,7 +1010,7 @@ Sub drawEvidenceCallout2()
         
     Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
     
-    'Šî–{‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg
+    'åŸºæœ¬ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆ
     objDataSet.ShapeStyle = msoShapeStylePreset1
     
     With objDataSet.Fill
@@ -1045,7 +1045,7 @@ Sub drawEvidenceCallout2()
 
 End Sub
 '
-' ƒGƒrƒfƒ“ƒX—pü‚Ó‚«‚¾‚µ•`‰æ2
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨ç·šãµãã ã—æç”»2
 '
 Sub drawEvidenceLineCallout2()
 
@@ -1056,7 +1056,7 @@ Sub drawEvidenceLineCallout2()
     Dim a As Boolean
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -1071,7 +1071,7 @@ Sub drawEvidenceLineCallout2()
         
     Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeLineCallout1, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
     
-    'Šî–{‚ÌƒXƒ^ƒCƒ‹‚ğƒZƒbƒg
+    'åŸºæœ¬ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’ã‚»ãƒƒãƒˆ
     objDataSet.ShapeStyle = msoShapeStylePreset1
     
     With objDataSet.Fill
@@ -1106,7 +1106,7 @@ Sub drawEvidenceLineCallout2()
 
 End Sub
 '
-' ƒGƒrƒfƒ“ƒX—p–îˆó•`‰æ
+' ã‚¨ãƒ“ãƒ‡ãƒ³ã‚¹ç”¨çŸ¢å°æç”»
 '
 Sub drawEvidenceArrow2()
 
@@ -1117,7 +1117,7 @@ Sub drawEvidenceArrow2()
     Dim a As Boolean
 
     If ActiveWorkbook Is Nothing Then
-        MsgBox "ƒAƒNƒeƒBƒu‚ÈƒuƒbƒN‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ–ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
@@ -1167,7 +1167,7 @@ Sub shapeAllDelete()
     Dim WS As Worksheet
     
     Set WS = ActiveSheet
-    If MsgBox("ƒAƒNƒeƒBƒuƒV[ƒg‚ÌƒVƒFƒCƒv^‰æ‘œ‚ğ‚·‚×‚Äíœ‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbYesNo + vbQuestion, C_TITLE) <> vbYes Then
+    If MsgBox("ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚·ãƒ¼ãƒˆã®ã‚·ã‚§ã‚¤ãƒ—ï¼ç”»åƒã‚’ã™ã¹ã¦å‰Šé™¤ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbYesNo + vbQuestion, C_TITLE) <> vbYes Then
         Exit Sub
     End If
     WS.Shapes.SelectAll

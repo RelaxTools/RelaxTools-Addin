@@ -41,20 +41,20 @@ Option Explicit
 Dim lngAsc As Long
 Dim c As Range
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -68,7 +68,7 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘Oˆ—(UOC)
+' å‰å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
 
@@ -117,9 +117,9 @@ Private Sub SFWork_SelectionTerm()
     
     
     If lngAsc > 0 Then
-        MsgBox "”¼Šp•¶Žš—ñ‚Ì‚ ‚éƒZƒ‹‚ª" & lngAsc & "ŒÂŒ©‚Â‚©‚è‚Ü‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+        MsgBox "åŠè§’æ–‡å­—åˆ—ã®ã‚ã‚‹ã‚»ãƒ«ãŒ" & lngAsc & "å€‹è¦‹ã¤ã‹ã‚Šã¾ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
     Else
-        MsgBox "”¼Šp•¶Žš‚ÍŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+        MsgBox "åŠè§’æ–‡å­—ã¯è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
     End If
 
     Exit Sub

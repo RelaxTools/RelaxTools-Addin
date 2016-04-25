@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmColor 
-   Caption         =   "F‚Ì‘I‘ğ(2003ŒİŠ·)"
+   Caption         =   "è‰²ã®é¸æŠ(2003äº’æ›)"
    ClientHeight    =   2385
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   3030
    OleObjectBlob   =   "frmColor.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmColor"
 Attribute VB_GlobalNameSpace = False
@@ -56,7 +56,7 @@ Public Function Start(ByRef lngColor As Long) As VbMsgBoxResult
     
         If TypeName(c) = "Image" Then
     
-            'F‚Ì‰Šúİ’è
+            'è‰²ã®åˆæœŸè¨­å®š
             c.BackColor = ActiveWorkbook.Colors(Val(Right(c.Name, 2)))
         
             If c.BackColor = lngColor Then

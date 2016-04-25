@@ -42,20 +42,20 @@ Option Explicit
 Private mRange As Range
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionAllFrameWork êÈåæ
+' SelectionAllFrameWork ÂÆ£Ë®Ä
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionAllFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionAllFrameWork çÏê¨
+' SelectionAllFrameWork ‰ΩúÊàê
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionAllFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionAllFrameWork äJï˙
+' SelectionAllFrameWork ÈñãÊîæ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -94,7 +94,7 @@ Private Sub SFWork_SelectionTerm()
     On Error GoTo e
     
     If mRange Is Nothing Then
-        MsgBox "ëIëëŒè€ÇÃÉZÉãÇ™Ç†ÇËÇ‹ÇπÇÒÇ≈ÇµÇΩÅB", vbInformation, C_TITLE
+        MsgBox "ÈÅ∏ÊäûÂØæË±°„ÅÆ„Çª„É´„Åå„ÅÇ„Çä„Åæ„Åõ„Çì„Åß„Åó„Åü„ÄÇ", vbInformation, C_TITLE
     Else
         mRange.Select
     End If

@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmPageList 
-   Caption         =   "ƒy[ƒW”‚Ìæ“¾"
+   Caption         =   "ãƒšãƒ¼ã‚¸æ•°ã®å–å¾—"
    ClientHeight    =   2760
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   8040
    OleObjectBlob   =   "frmPageList.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   2  '‰æ–Ê‚Ì’†‰›
+   StartUpPosition =   2  'ç”»é¢ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmPageList"
 Attribute VB_GlobalNameSpace = False
@@ -63,11 +63,11 @@ Private Const C_SEARCH_PAGE As Long = 3
 'Private Const C_SEARCH_STR As Long = 5
 'Private Const C_SEARCH_ID As Long = 6
 
-'Private Const C_SEARCH_OBJECT_CELL = "ƒZƒ‹‚Ì‚İ"
-'Private Const C_SEARCH_OBJECT_SHAPE = "ƒVƒFƒCƒv‚Ì‚İ"
-'Private Const C_SEARCH_OBJECT_CELL_AND_SHAPE = "ƒZƒ‹•ƒVƒFƒCƒv"
-'Private Const C_SEARCH_VALUE_VALUE = "’l"
-'Private Const C_SEARCH_VALUE_FORMULA = "®"
+'Private Const C_SEARCH_OBJECT_CELL = "ã‚»ãƒ«ã®ã¿"
+'Private Const C_SEARCH_OBJECT_SHAPE = "ã‚·ã‚§ã‚¤ãƒ—ã®ã¿"
+'Private Const C_SEARCH_OBJECT_CELL_AND_SHAPE = "ã‚»ãƒ«ï¼†ã‚·ã‚§ã‚¤ãƒ—"
+'Private Const C_SEARCH_VALUE_VALUE = "å€¤"
+'Private Const C_SEARCH_VALUE_FORMULA = "å¼"
 
 
 
@@ -81,7 +81,7 @@ Private mMm As MacroManager
 
 
 Private Sub cmdCancel_Click()
-    If cmdCancel.Caption = "•Â‚¶‚é" Then
+    If cmdCancel.Caption = "é–‰ã˜ã‚‹" Then
         Unload Me
     Else
         mblnCancel = True
@@ -92,7 +92,7 @@ Private Sub cmdFolder_Click()
 
     Dim strFile As String
 
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFile = rlxSelectFolder()
     
     If Trim(strFile) <> "" Then
@@ -125,7 +125,7 @@ Private Sub cmdOk_Click()
     Dim lngPage As Long
    
     If Len(Trim(cboFolder.Text)) = 0 Then
-        MsgBox "ƒtƒHƒ‹ƒ_‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢...", vbExclamation, C_TITLE
+        MsgBox "ãƒ•ã‚©ãƒ«ãƒ€ã‚’æŒ‡å®šã—ã¦ãã ã•ã„...", vbExclamation, C_TITLE
         cboFolder.SetFocus
         Exit Sub
     End If
@@ -166,14 +166,14 @@ Private Sub cmdOk_Click()
     Set mMm = New MacroManager
     Set mMm.Form = Me
     mMm.Disable
-    mMm.DispGuidance "ƒtƒ@ƒCƒ‹‚Ì”‚ğƒJƒEƒ“ƒg‚µ‚Ä‚¢‚Ü‚·..."
+    mMm.DispGuidance "ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦ã„ã¾ã™..."
     
     FileSearch objFs, strPath, strPatterns(), colBook
     Select Case err.Number
     Case 75, 76
         mMm.Enable
         Set mMm = Nothing
-        MsgBox "ƒtƒHƒ‹ƒ_‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, "ExcelGrep"
+        MsgBox "ãƒ•ã‚©ãƒ«ãƒ€ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, "ExcelGrep"
         cboFolder.SetFocus
         Exit Sub
     End Select
@@ -181,19 +181,19 @@ Private Sub cmdOk_Click()
     
     Set objFs = Nothing
     
-    ThisWorkbook.Worksheets("ƒy[ƒW”ƒJƒEƒ“ƒgŒ‹‰Ê").Copy
+    ThisWorkbook.Worksheets("ãƒšãƒ¼ã‚¸æ•°ã‚«ã‚¦ãƒ³ãƒˆçµæœ").Copy
     Set ResultWS = ActiveSheet
     
     ResultWS.Cells(1, C_SEARCH_NO).value = "No."
-    ResultWS.Cells(1, C_SEARCH_BOOK).value = "ƒtƒ@ƒCƒ‹–¼"
+    ResultWS.Cells(1, C_SEARCH_BOOK).value = "ãƒ•ã‚¡ã‚¤ãƒ«å"
     ResultWS.Cells(1, C_SEARCH_BOOK).ColumnWidth = 60
-    ResultWS.Cells(1, C_SEARCH_PAGE).value = "ƒy[ƒW”"
+    ResultWS.Cells(1, C_SEARCH_PAGE).value = "ãƒšãƒ¼ã‚¸æ•°"
 
     lngCount = C_START_ROW
 
     AppActivate Me.Caption
     
-    cmdCancel.Caption = "ƒLƒƒƒ“ƒZƒ‹"
+    cmdCancel.Caption = "ã‚­ãƒ£ãƒ³ã‚»ãƒ«"
     
     If chkExcel.value Then
         Set XL = New Excel.Application
@@ -304,7 +304,7 @@ Private Sub cmdOk_Click()
         If cboFolder.List(i) <> cboFolder.Text Then
             strBuf = strBuf & vbTab & cboFolder.List(i)
             lngCount = lngCount + 1
-            'ƒŠƒXƒg‚ÍÅ‘å‚P‚O
+            'ãƒªã‚¹ãƒˆã¯æœ€å¤§ï¼‘ï¼
             If lngCount >= 10 Then
                 Exit For
             End If
@@ -336,7 +336,7 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
 
     Set objfld = objFs.GetFolder(strPath)
     
-    'ƒtƒ@ƒCƒ‹–¼æ“¾
+    'ãƒ•ã‚¡ã‚¤ãƒ«åå–å¾—
     For Each objfl In objfld.files
     
         Dim blnFind As Boolean
@@ -356,7 +356,7 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
         End If
     Next
     
-    'ƒTƒuƒtƒHƒ‹ƒ_ŒŸõ‚ ‚è
+    'ã‚µãƒ–ãƒ•ã‚©ãƒ«ãƒ€æ¤œç´¢ã‚ã‚Š
     If chkSubFolder.value Then
         For Each objSub In objfld.SubFolders
             DoEvents

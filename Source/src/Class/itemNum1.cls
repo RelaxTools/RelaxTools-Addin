@@ -39,14 +39,14 @@ Attribute VB_Exposed = False
 Option Explicit
 Private Const C_SECTION_REGEXP As String = "^[0-9]+\)"
 Private Const C_SECTION_SEPARATER As String = ""
-Private Const C_SECTION_NAME As String = "1), 2), 3) ••• Åá"
+Private Const C_SECTION_NAME As String = "1), 2), 3) ÔΩ•ÔΩ•ÔΩ• ‚àû"
 Private Const C_SECTION_CLASS As String = "itemNum1"
 Public Property Get Class() As String
     Class = C_SECTION_CLASS
 End Property
 Public Function SectionLevelName(ByVal lngLevel As Long) As String
     
-    SectionLevelName = " 1) ÑüÑüÑüÑü"
+    SectionLevelName = " 1) ‚îÄ‚îÄ‚îÄ‚îÄ"
 
 End Function
 Public Property Get SectionName() As String

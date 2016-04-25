@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmComp 
-   Caption         =   "ƒV[ƒg”äŠr"
+   Caption         =   "ã‚·ãƒ¼ãƒˆæ¯”è¼ƒ"
    ClientHeight    =   2085
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   7590
    OleObjectBlob   =   "frmComp.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   2  '‰æ–Ê‚Ì’†‰›
+   StartUpPosition =   2  'ç”»é¢ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmComp"
 Attribute VB_GlobalNameSpace = False
@@ -80,7 +80,7 @@ Private Sub cboSrcBook_Change()
 End Sub
 
 Private Sub cmdCancel_Click()
-    If cmdCancel.Caption = "•Â‚¶‚é" Then
+    If cmdCancel.Caption = "é–‰ã˜ã‚‹" Then
         Unload Me
     Else
         mblnCancel = True
@@ -95,11 +95,11 @@ End Sub
 '    Dim dstSheet As Worksheet
 '
 '    If cboSrcSheet.ListIndex = -1 Then
-'        MsgBox "”äŠrŒ³‚ÌƒV[ƒg‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+'        MsgBox "æ¯”è¼ƒå…ƒã®ã‚·ãƒ¼ãƒˆã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
 '        Exit Sub
 '    End If
 '    If cboDstSheet.ListIndex = -1 Then
-'        MsgBox "”äŠræ‚ÌƒV[ƒg‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+'        MsgBox "æ¯”è¼ƒå…ˆã®ã‚·ãƒ¼ãƒˆã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
 '        Exit Sub
 '    End If
 '
@@ -136,24 +136,24 @@ End Sub
 '
 '
 '    Dim ResultWS As Worksheet
-'    ThisWorkbook.Worksheets("”äŠrŒ‹‰Ê").Copy
+'    ThisWorkbook.Worksheets("æ¯”è¼ƒçµæœ").Copy
 '    Set ResultWS = ActiveSheet
 '
-'    ResultWS.Name = "”äŠrŒ‹‰Ê"
+'    ResultWS.Name = "æ¯”è¼ƒçµæœ"
 '
-'    ResultWS.Cells(1, C_COMP_NO).Value = "ƒV[ƒg‚Ì”äŠr"
-'    ResultWS.Cells(2, C_COMP_NO).Value = "”äŠrŒ³F" & cboSrcBook.Text & "!" & cboSrcSheet.Text
-'    ResultWS.Cells(3, C_COMP_NO).Value = "”äŠræF" & cboDstBook.Text & "!" & cboDstSheet.Text
-'    ResultWS.Cells(4, C_COMP_NO).Value = "•sˆê’v‚Ì”äŠrŒ³‚Ì”wŒiF‚ğ•ÏX‚·‚éi‰©jF" & chkSrcColor.Value
-'    ResultWS.Cells(5, C_COMP_NO).Value = "•sˆê’v‚Ì”äŠræ‚Ì”wŒiF‚ğ•ÏX‚·‚éiÔjF" & chkDstColor.Value
+'    ResultWS.Cells(1, C_COMP_NO).Value = "ã‚·ãƒ¼ãƒˆã®æ¯”è¼ƒ"
+'    ResultWS.Cells(2, C_COMP_NO).Value = "æ¯”è¼ƒå…ƒï¼š" & cboSrcBook.Text & "!" & cboSrcSheet.Text
+'    ResultWS.Cells(3, C_COMP_NO).Value = "æ¯”è¼ƒå…ˆï¼š" & cboDstBook.Text & "!" & cboDstSheet.Text
+'    ResultWS.Cells(4, C_COMP_NO).Value = "ä¸ä¸€è‡´ã®æ¯”è¼ƒå…ƒã®èƒŒæ™¯è‰²ã‚’å¤‰æ›´ã™ã‚‹ï¼ˆé»„ï¼‰ï¼š" & chkSrcColor.Value
+'    ResultWS.Cells(5, C_COMP_NO).Value = "ä¸ä¸€è‡´ã®æ¯”è¼ƒå…ˆã®èƒŒæ™¯è‰²ã‚’å¤‰æ›´ã™ã‚‹ï¼ˆèµ¤ï¼‰ï¼š" & chkDstColor.Value
 '
 '    ResultWS.Cells(7, C_COMP_NO).Value = "No."
-'    ResultWS.Cells(7, C_COMP_RESULT).Value = "Œ‹‰Ê"
-'    ResultWS.Cells(7, C_COMP_SRCSTR).Value = "”äŠrŒ³•¶š—ñ"
-'    ResultWS.Cells(7, C_COMP_DSTSTR).Value = "”äŠræ•¶š—ñ"
-'    ResultWS.Cells(7, C_COMP_BOOK).Value = "”äŠræƒuƒbƒN"
-'    ResultWS.Cells(7, C_COMP_SHEET).Value = "”äŠræƒV[ƒg"
-'    ResultWS.Cells(7, C_COMP_ADDRESS).Value = "ƒAƒhƒŒƒX"
+'    ResultWS.Cells(7, C_COMP_RESULT).Value = "çµæœ"
+'    ResultWS.Cells(7, C_COMP_SRCSTR).Value = "æ¯”è¼ƒå…ƒæ–‡å­—åˆ—"
+'    ResultWS.Cells(7, C_COMP_DSTSTR).Value = "æ¯”è¼ƒå…ˆæ–‡å­—åˆ—"
+'    ResultWS.Cells(7, C_COMP_BOOK).Value = "æ¯”è¼ƒå…ˆãƒ–ãƒƒã‚¯"
+'    ResultWS.Cells(7, C_COMP_SHEET).Value = "æ¯”è¼ƒå…ˆã‚·ãƒ¼ãƒˆ"
+'    ResultWS.Cells(7, C_COMP_ADDRESS).Value = "ã‚¢ãƒ‰ãƒ¬ã‚¹"
 '    lngCount = C_START_ROW
 '
 '    If IsEmpty(d1) Or IsEmpty(d2) Then
@@ -164,7 +164,7 @@ End Sub
 '    Set mm = New MacroManager
 '    Set mm.Form = Me
 '    mm.Disable
-'    mm.DispGuidance "ƒZƒ‹”‚ğƒJƒEƒ“ƒg‚µ‚Ä‚¢‚Ü‚·..."
+'    mm.DispGuidance "ã‚»ãƒ«æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦ã„ã¾ã™..."
 '
 '    mm.StartGauge (UBound(d1, 1) - LBound(d1, 1) + 1) * (UBound(d1, 2) - LBound(d1, 2) + 1)
 '    Dim lngCnt As Long
@@ -179,7 +179,7 @@ End Sub
 '                makeResult ResultWS, srcSheet, dstSheet, lngCount, i, j
 '
 '            Else
-'                '‹óƒZƒ‹‘Îô
+'                'ç©ºã‚»ãƒ«å¯¾ç­–
 '                If IsEmpty(d1(i, j)) <> IsEmpty(d2(i, j)) Then
 '                    makeResult ResultWS, srcSheet, dstSheet, lngCount, i, j
 '                End If
@@ -206,7 +206,7 @@ End Sub
 'Sub makeResult(ByRef ResultWS As Worksheet, ByRef srcSheet As Worksheet, ByRef dstSheet As Worksheet, ByRef lngCount As Long, ByVal i As Long, ByVal j As Long)
 '
 '    ResultWS.Cells(lngCount, C_COMP_NO).Value = lngCount - C_START_ROW + 1
-'    ResultWS.Cells(lngCount, C_COMP_RESULT).Value = "•sˆê’v"
+'    ResultWS.Cells(lngCount, C_COMP_RESULT).Value = "ä¸ä¸€è‡´"
 '    ResultWS.Cells(lngCount, C_COMP_BOOK).Value = dstSheet.Parent.Name
 '    ResultWS.Cells(lngCount, C_COMP_SHEET).Value = dstSheet.Name
 '    ResultWS.Cells(lngCount, C_COMP_ADDRESS).Value = dstSheet.Cells(i, j).Address
@@ -257,11 +257,11 @@ Private Sub cmdOk_Click()
     Dim dstSheet As Worksheet
 
     If cboSrcSheet.ListIndex = -1 Then
-        MsgBox "”äŠrŒ³‚ÌƒV[ƒg‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "æ¯”è¼ƒå…ƒã®ã‚·ãƒ¼ãƒˆã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     If cboDstSheet.ListIndex = -1 Then
-        MsgBox "”äŠræ‚ÌƒV[ƒg‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "æ¯”è¼ƒå…ˆã®ã‚·ãƒ¼ãƒˆã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
 
@@ -293,24 +293,24 @@ Private Sub cmdOk_Click()
     Set r2 = Union(dstSheet.Range(strSrcAddress), dstSheet.Range(strDstAddress))
     
     Dim ResultWS As Worksheet
-    ThisWorkbook.Worksheets("”äŠrŒ‹‰Ê").Copy
+    ThisWorkbook.Worksheets("æ¯”è¼ƒçµæœ").Copy
     Set ResultWS = ActiveSheet
     
-    ResultWS.Name = "”äŠrŒ‹‰Ê"
+    ResultWS.Name = "æ¯”è¼ƒçµæœ"
     
-    ResultWS.Cells(1, C_COMP_NO).value = "ƒV[ƒg‚Ì”äŠr"
-    ResultWS.Cells(2, C_COMP_NO).value = "”äŠrŒ³F" & cboSrcBook.Text & "!" & cboSrcSheet.Text
-    ResultWS.Cells(3, C_COMP_NO).value = "”äŠræF" & cboDstBook.Text & "!" & cboDstSheet.Text
-    ResultWS.Cells(4, C_COMP_NO).value = "•sˆê’v‚Ì”äŠrŒ³‚Ì”wŒiF‚ğ•ÏX‚·‚éi‰©jF" & chkSrcColor.value
-    ResultWS.Cells(5, C_COMP_NO).value = "•sˆê’v‚Ì”äŠræ‚Ì”wŒiF‚ğ•ÏX‚·‚éiÔjF" & chkDstColor.value
+    ResultWS.Cells(1, C_COMP_NO).value = "ã‚·ãƒ¼ãƒˆã®æ¯”è¼ƒ"
+    ResultWS.Cells(2, C_COMP_NO).value = "æ¯”è¼ƒå…ƒï¼š" & cboSrcBook.Text & "!" & cboSrcSheet.Text
+    ResultWS.Cells(3, C_COMP_NO).value = "æ¯”è¼ƒå…ˆï¼š" & cboDstBook.Text & "!" & cboDstSheet.Text
+    ResultWS.Cells(4, C_COMP_NO).value = "ä¸ä¸€è‡´ã®æ¯”è¼ƒå…ƒã®èƒŒæ™¯è‰²ã‚’å¤‰æ›´ã™ã‚‹ï¼ˆé»„ï¼‰ï¼š" & chkSrcColor.value
+    ResultWS.Cells(5, C_COMP_NO).value = "ä¸ä¸€è‡´ã®æ¯”è¼ƒå…ˆã®èƒŒæ™¯è‰²ã‚’å¤‰æ›´ã™ã‚‹ï¼ˆèµ¤ï¼‰ï¼š" & chkDstColor.value
     
     ResultWS.Cells(7, C_COMP_NO).value = "No."
-    ResultWS.Cells(7, C_COMP_RESULT).value = "Œ‹‰Ê"
-    ResultWS.Cells(7, C_COMP_SRCSTR).value = "”äŠrŒ³•¶š—ñ"
-    ResultWS.Cells(7, C_COMP_DSTSTR).value = "”äŠræ•¶š—ñ"
-    ResultWS.Cells(7, C_COMP_BOOK).value = "”äŠræƒuƒbƒN"
-    ResultWS.Cells(7, C_COMP_SHEET).value = "”äŠræƒV[ƒg"
-    ResultWS.Cells(7, C_COMP_ADDRESS).value = "ƒAƒhƒŒƒX"
+    ResultWS.Cells(7, C_COMP_RESULT).value = "çµæœ"
+    ResultWS.Cells(7, C_COMP_SRCSTR).value = "æ¯”è¼ƒå…ƒæ–‡å­—åˆ—"
+    ResultWS.Cells(7, C_COMP_DSTSTR).value = "æ¯”è¼ƒå…ˆæ–‡å­—åˆ—"
+    ResultWS.Cells(7, C_COMP_BOOK).value = "æ¯”è¼ƒå…ˆãƒ–ãƒƒã‚¯"
+    ResultWS.Cells(7, C_COMP_SHEET).value = "æ¯”è¼ƒå…ˆã‚·ãƒ¼ãƒˆ"
+    ResultWS.Cells(7, C_COMP_ADDRESS).value = "ã‚¢ãƒ‰ãƒ¬ã‚¹"
     lngCount = C_START_ROW
     
     If r1 Is Nothing Or r2 Is Nothing Then
@@ -322,7 +322,7 @@ Private Sub cmdOk_Click()
     Set mm.Form = Me
     
     mm.Disable
-    mm.DispGuidance "ƒZƒ‹”‚ğƒJƒEƒ“ƒg‚µ‚Ä‚¢‚Ü‚·..."
+    mm.DispGuidance "ã‚»ãƒ«æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦ã„ã¾ã™..."
     
     mm.StartGauge r1.count
     
@@ -335,7 +335,7 @@ Private Sub cmdOk_Click()
         If IsError(r1(i).value) Or IsError(r2(i).value) Then
             makeResult ResultWS, srcSheet, dstSheet, lngCount, r1(i), r2(i)
         Else
-            '‹óƒZƒ‹‘Îô
+            'ç©ºã‚»ãƒ«å¯¾ç­–
             If IsEmpty(r1(i).value) And IsEmpty(r2(i).value) Then
             Else
                 If r1(i).value <> r2(i).value Then
@@ -368,7 +368,7 @@ End Sub
 Sub makeResult(ByRef ResultWS As Worksheet, ByRef srcSheet As Worksheet, ByRef dstSheet As Worksheet, ByRef lngCount As Long, ByRef r1 As Range, ByRef r2 As Range)
                 
     ResultWS.Cells(lngCount, C_COMP_NO).value = lngCount - C_START_ROW + 1
-    ResultWS.Cells(lngCount, C_COMP_RESULT).value = "•sˆê’v"
+    ResultWS.Cells(lngCount, C_COMP_RESULT).value = "ä¸ä¸€è‡´"
     ResultWS.Cells(lngCount, C_COMP_BOOK).value = dstSheet.Parent.Name
     ResultWS.Cells(lngCount, C_COMP_SHEET).value = dstSheet.Name
     ResultWS.Cells(lngCount, C_COMP_ADDRESS).value = r1.Address

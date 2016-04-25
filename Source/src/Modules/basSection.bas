@@ -33,7 +33,7 @@ Option Private Module
 
 Public mColSection As New Collection
 Public mColAllSection As Collection
-Public Const C_FONT_DEFAULT As String = "‚l‚r ƒSƒVƒbƒN"
+Public Const C_FONT_DEFAULT As String = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
 
 Public Sub createAllSectionObject()
 
@@ -44,7 +44,7 @@ Public Sub createAllSectionObject()
 '        mColAllSection.Remove i
 '    Next
 
-    '‚·‚×‚Ä‚ÌƒZƒNƒVƒ‡ƒ“
+    'ã™ã¹ã¦ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³
     mColAllSection.Add New SecNumOne
     mColAllSection.Add New SecNumOneP
     mColAllSection.Add New SecNumPoint
@@ -72,7 +72,7 @@ Public Sub createAllSectionObject()
 
 End Sub
 Function rlxIsSectionNo(ByVal strBuf As String) As Boolean
-Attribute rlxIsSectionNo.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxIsSectionNo.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxIsSectionNo.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim i As Long
@@ -105,7 +105,7 @@ Attribute rlxIsSectionNo.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 Function rlxGetSectionNoAny(ByVal strBuf As String) As String
-Attribute rlxGetSectionNoAny.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetSectionNoAny.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetSectionNoAny.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim i As Long
@@ -139,7 +139,7 @@ Attribute rlxGetSectionNoAny.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 Function rlxGetSectionNo(ByVal strBuf As String, ByVal lngIndentLevel As Long) As String
-Attribute rlxGetSectionNo.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetSectionNo.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetSectionNo.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim obj As Object
@@ -153,7 +153,7 @@ Attribute rlxGetSectionNo.VB_ProcData.VB_Invoke_Func = " \n19"
 End Function
 
 Function rlxHasSectionNo(ByVal strBuf As String, ByVal lngIndentLevel As Long) As Boolean
-Attribute rlxHasSectionNo.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxHasSectionNo.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxHasSectionNo.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim i As Long
@@ -173,14 +173,14 @@ Attribute rlxHasSectionNo.VB_ProcData.VB_Invoke_Func = " \n19"
 End Function
 
 Function rlxGetSectionNext(ByVal strBuf As String, ByVal lngFromLevel As Long, ByVal lngIndentLevel As Long) As String
-Attribute rlxGetSectionNext.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetSectionNext.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetSectionNext.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim obj As Object
 
     Set obj = rlxGetSectionObject(lngIndentLevel).classObj
 
-    'Ÿ”Ô†‚Ìæ“¾
+    'æ¬¡ç•ªå·ã®å–å¾—
     rlxGetSectionNext = obj.NextNumber(strBuf, lngFromLevel, lngIndentLevel)
     
     Set obj = Nothing
@@ -201,7 +201,7 @@ Sub setSectionNo(ByRef r As Range, ByVal strNewNo As String)
 
     Set obj = rlxGetSectionObject(r.IndentLevel)
 
-    'ƒtƒHƒ“ƒg—LŒø‚Ìê‡
+    'ãƒ•ã‚©ãƒ³ãƒˆæœ‰åŠ¹ã®å ´åˆ
     If obj.useFormat Then
         r.Font.Name = obj.fontName
         r.Font.Size = obj.fontSize
@@ -220,7 +220,7 @@ Sub delSectionNo(ByRef r As Range)
     Dim lngPos As Long
     Dim obj As Object
 
-    'Œ»İ‚Ì’i—”Ô†‚ğæ“¾iƒŒƒxƒ‹‚É‚©‚©‚í‚ç‚È‚¢j
+    'ç¾åœ¨ã®æ®µè½ç•ªå·ã‚’å–å¾—ï¼ˆãƒ¬ãƒ™ãƒ«ã«ã‹ã‹ã‚ã‚‰ãªã„ï¼‰
     strSecNo = rlxGetSectionNoAny(r.value)
     If VarType(r.value) = vbString Then
         If Len(strSecNo) > 0 Then
@@ -234,7 +234,7 @@ Sub delSectionNo(ByRef r As Range)
 
     Set obj = rlxGetSectionObject(r.IndentLevel)
 
-    'ƒtƒHƒ“ƒg—LŒø‚Ìê‡
+    'ãƒ•ã‚©ãƒ³ãƒˆæœ‰åŠ¹ã®å ´åˆ
     If obj.useFormat2 Then
         r.Font.Name = obj.fontName2
         r.Font.Size = obj.fontSize2
@@ -248,7 +248,7 @@ Sub delSectionNo(ByRef r As Range)
 End Sub
 
 Function rlxGetSectionObject(ByVal lngLevel As Long) As Object
-Attribute rlxGetSectionObject.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetSectionObject.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetSectionObject.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim o As Object
@@ -266,7 +266,7 @@ Attribute rlxGetSectionObject.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 Function rlxInitSectionSetting() As Collection
-Attribute rlxInitSectionSetting.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxInitSectionSetting.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxInitSectionSetting.VB_ProcData.VB_Invoke_Func = " \n19"
 
     On Error Resume Next
@@ -328,7 +328,7 @@ Attribute rlxInitSectionSetting.VB_ProcData.VB_Invoke_Func = " \n19"
     
 End Function
 Function rlxGetSectionSetting(ByVal strNo As String) As Collection
-Attribute rlxGetSectionSetting.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetSectionSetting.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetSectionSetting.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim strClass As String
@@ -457,7 +457,7 @@ Private Function getDefault(ByVal strBuf As String, ByVal lngCol As Long) As Var
 
 End Function
 Function rlxCreateSectionObject(ByVal className As String) As Object
-Attribute rlxCreateSectionObject.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxCreateSectionObject.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxCreateSectionObject.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim ret As Object
@@ -481,7 +481,7 @@ Attribute rlxCreateSectionObject.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@–ÚŸì¬(’i—”Ô†)
+'ã€€ç›®æ¬¡ä½œæˆ(æ®µè½ç•ªå·)
 '--------------------------------------------------------------
 Sub createContents()
     
@@ -491,6 +491,6 @@ Sub createContents()
 
     Exit Sub
 ErrHandle:
-    MsgBox "ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B", vbOKOnly, C_TITLE
+    MsgBox "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", vbOKOnly, C_TITLE
 
 End Sub

@@ -38,7 +38,7 @@ Public Const C_STAMP_BZ_CIRCLE As String = "3"
 Public Const C_STAMP_ROTATE_HOLIZONTAL As String = "1"
 Public Const C_STAMP_ROTATE_VERTICAL As String = "2"
 '--------------------------------------------------------------
-'@ƒŒƒWƒXƒgƒŠİ’è’læ“¾
+'ã€€ãƒ¬ã‚¸ã‚¹ãƒˆãƒªè¨­å®šå€¤å–å¾—
 '--------------------------------------------------------------
 Public Function getPropertyBz() As Collection
 
@@ -57,12 +57,12 @@ Public Function getPropertyBz() As Collection
         Set s = New StampBzDTO
         
         s.StampType = C_STAMP_BZ_RECTANGLE
-        s.Text = "Š‹}"
+        s.Text = "è‡³æ€¥"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = "2014/4/1"
         s.Color = "&H000000FF"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Round = "0.15"
         s.Size = "42"
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
@@ -75,12 +75,12 @@ Public Function getPropertyBz() As Collection
         Set s = New StampBzDTO
         
         s.StampType = C_STAMP_BZ_RECTANGLE
-        s.Text = "‰ñ——"
+        s.Text = "å›è¦§"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = "2014/4/1"
         s.Color = "&H000000FF"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Round = "0.15"
         s.Size = "42"
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
@@ -93,12 +93,12 @@ Public Function getPropertyBz() As Collection
         Set s = New StampBzDTO
         
         s.StampType = C_STAMP_BZ_RECTANGLE
-        s.Text = "Œ©–{"
+        s.Text = "è¦‹æœ¬"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = "2014/4/1"
         s.Color = "&H000000FF"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Round = "0.15"
         s.Size = "42"
         s.Rotate = C_STAMP_ROTATE_VERTICAL
@@ -111,12 +111,12 @@ Public Function getPropertyBz() As Collection
         Set s = New StampBzDTO
         
         s.StampType = C_STAMP_BZ_RECTANGLE
-        s.Text = "ĞŠO”é"
+        s.Text = "ç¤¾å¤–ç§˜"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = "2014/4/1"
         s.Color = "&H000000FF"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Round = "0.15"
         s.Size = "42"
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
@@ -129,12 +129,12 @@ Public Function getPropertyBz() As Collection
         Set s = New StampBzDTO
         
         s.StampType = C_STAMP_BZ_RECTANGLE
-        s.Text = "d—v"
+        s.Text = "é‡è¦"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = "2014/4/1"
         s.Color = "&H000000FF"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Round = "0.15"
         s.Size = "42"
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
@@ -147,12 +147,12 @@ Public Function getPropertyBz() As Collection
         Set s = New StampBzDTO
         
         s.StampType = C_STAMP_BZ_SQUARE
-        s.Text = "æˆµ" & vbCrLf & "’ˆÓ"
+        s.Text = "å–æ‰±" & vbCrLf & "æ³¨æ„"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = "2014/4/1"
         s.Color = "&H000000FF"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Round = "0.15"
         s.Size = "42"
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
@@ -165,12 +165,12 @@ Public Function getPropertyBz() As Collection
         Set s = New StampBzDTO
         
         s.StampType = C_STAMP_BZ_RECTANGLE
-        s.Text = "”é–§î•ñ" & vbCrLf & "—p“rŒã‚Í•K‚¸”jŠü‚Ì–" & vbCrLf & "ŠJ¦“úF$d" & vbCrLf & "ŠJ¦”ÍˆÍFĞ“à‚¨‚æ‚ÑƒvƒƒWƒFƒNƒgQ‰ÁŠeĞ"
+        s.Text = "ç§˜å¯†æƒ…å ±" & vbCrLf & "ç”¨é€”å¾Œã¯å¿…ãšç ´æ£„ã®äº‹" & vbCrLf & "é–‹ç¤ºæ—¥ï¼š$d" & vbCrLf & "é–‹ç¤ºç¯„å›²ï¼šç¤¾å†…ãŠã‚ˆã³ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆå‚åŠ å„ç¤¾"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = "2014/4/1"
         s.Color = "&H000000FF"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Round = "0.15"
         s.Size = "100"
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
@@ -183,12 +183,12 @@ Public Function getPropertyBz() As Collection
         Set s = New StampBzDTO
         
         s.StampType = C_STAMP_BZ_CIRCLE
-        s.Text = "”é"
+        s.Text = "ç§˜"
         s.DateType = C_STAMP_DATE_SYSTEM
         s.DateFormat = "yyyy.m.d"
         s.UserDate = "2014/4/1"
         s.Color = "&H000000FF"
-        s.Font = "‚l‚r ƒSƒVƒbƒN"
+        s.Font = "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯"
         s.Round = "0.15"
         s.Size = "42"
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
@@ -204,12 +204,12 @@ Public Function getPropertyBz() As Collection
             Set s = New StampBzDTO
             
             s.StampType = GetSetting(C_TITLE, "StampBz", "StampType" & Format$(i, "000"), C_STAMP_BZ_RECTANGLE)
-            s.Text = Replace(GetSetting(C_TITLE, "StampBz", "Text" & Format$(i, "000"), "Š‹}"), vbVerticalTab, vbCrLf)
+            s.Text = Replace(GetSetting(C_TITLE, "StampBz", "Text" & Format$(i, "000"), "è‡³æ€¥"), vbVerticalTab, vbCrLf)
             s.DateType = GetSetting(C_TITLE, "StampBz", "DateType" & Format$(i, "000"), C_STAMP_DATE_SYSTEM)
             s.DateFormat = GetSetting(C_TITLE, "StampBz", "DateFormat" & Format$(i, "000"), "yyyy.m.d")
             s.UserDate = GetSetting(C_TITLE, "StampBz", "UserDate" & Format$(i, "000"), "2014/4/1")
             s.Color = GetSetting(C_TITLE, "StampBz", "Color" & Format$(i, "000"), "&H000000FF")
-            s.Font = GetSetting(C_TITLE, "StampBz", "Font" & Format$(i, "000"), "‚l‚r ƒSƒVƒbƒN")
+            s.Font = GetSetting(C_TITLE, "StampBz", "Font" & Format$(i, "000"), "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯")
             s.Round = GetSetting(C_TITLE, "StampBz", "Round" & Format$(i, "000"), "0.15")
             s.Size = GetSetting(C_TITLE, "StampBz", "Size" & Format$(i, "000"), "42")
             s.Rotate = GetSetting(C_TITLE, "StampBz", "Rotate" & Format$(i, "000"), C_STAMP_ROTATE_HOLIZONTAL)
@@ -225,7 +225,7 @@ Public Function getPropertyBz() As Collection
     
 End Function
 '--------------------------------------------------------------
-'@ƒŒƒWƒXƒgƒŠİ’è’læ“¾
+'ã€€ãƒ¬ã‚¸ã‚¹ãƒˆãƒªè¨­å®šå€¤å–å¾—
 '--------------------------------------------------------------
 Public Sub setPropertyBz(ByRef col As Collection)
 
@@ -270,7 +270,7 @@ Public Sub setPropertyBz(ByRef col As Collection)
     
 End Sub
 '--------------------------------------------------------------
-'@“ú•t‘®İ’è
+'ã€€æ—¥ä»˜æ›¸å¼è¨­å®š
 '--------------------------------------------------------------
 Private Function getFormatDate(ByVal strFormat As String, _
                         ByVal strType As String, _
@@ -307,11 +307,11 @@ Public Sub pasteStampBz()
 
 End Sub
 '--------------------------------------------------------------
-'@bz“\‚è•t‚¯
+'ã€€bzè²¼ã‚Šä»˜ã‘
 '--------------------------------------------------------------
 Sub pasteStampBz2(Optional ByVal Index As Variant)
 
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
     Dim col As Collection
     Dim datStampBz As StampBzDTO
     Dim r As Worksheet
@@ -328,7 +328,7 @@ Sub pasteStampBz2(Optional ByVal Index As Variant)
         Case Else
     End Select
 
-    'Index‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+    'IndexãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
     If IsMissing(Index) Then
         Index = 1
     End If
@@ -370,7 +370,7 @@ Sub pasteStampBz2(Optional ByVal Index As Variant)
 
 End Sub
 '--------------------------------------------------------------
-'@bzƒCƒ[ƒWƒtƒ@ƒCƒ‹ì¬
+'ã€€bzã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 '--------------------------------------------------------------
 Function getImageStampBz(ByVal Index As Long) As StdPicture
 

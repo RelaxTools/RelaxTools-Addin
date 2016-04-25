@@ -33,13 +33,13 @@ Option Private Module
 
 Public mColAllItem As Collection
 '--------------------------------------------------------------
-'@’i—”Ô†—pƒIƒuƒWƒFƒNƒg¶¬
+'ã€€æ®µè½ç•ªå·ç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 '--------------------------------------------------------------
 Public Sub createAllItemObject()
 
     Set mColAllItem = New Collection
 
-    '‚·‚×‚Ä‚ÌƒZƒNƒVƒ‡ƒ“
+    'ã™ã¹ã¦ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³
     mColAllItem.Add New itemPoint
     mColAllItem.Add New itemCircleB
     mColAllItem.Add New itemCircleW
@@ -62,10 +62,10 @@ Public Sub createAllItemObject()
 
 End Sub
 '--------------------------------------------------------------
-'@’i—”Ô†æ“¾
+'ã€€æ®µè½ç•ªå·å–å¾—
 '--------------------------------------------------------------
 Function rlxGetItemNoAny(ByVal strBuf As String) As String
-Attribute rlxGetItemNoAny.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetItemNoAny.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetItemNoAny.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim i As Long
@@ -99,7 +99,7 @@ Attribute rlxGetItemNoAny.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'@’i—”Ô†æ“¾
+'ã€€æ®µè½ç•ªå·å–å¾—
 '--------------------------------------------------------------
 Private Function getItemNo(ByVal strBuf As String, ByVal strItemName As String) As String
 
@@ -113,10 +113,10 @@ Private Function getItemNo(ByVal strBuf As String, ByVal strItemName As String) 
     
 End Function
 '--------------------------------------------------------------
-'@’i—”Ô†‚ª‚ ‚é‚©‚Ç‚¤‚©”»’è
+'ã€€æ®µè½ç•ªå·ãŒã‚ã‚‹ã‹ã©ã†ã‹åˆ¤å®š
 '--------------------------------------------------------------
 Function rlxHasItemNo(ByVal strBuf As String, ByVal strItemName As String) As Boolean
-Attribute rlxHasItemNo.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxHasItemNo.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxHasItemNo.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim i As Long
@@ -135,10 +135,10 @@ Attribute rlxHasItemNo.VB_ProcData.VB_Invoke_Func = " \n19"
     
 End Function
 '--------------------------------------------------------------
-'@Ÿ”Ô†‚Ìæ“¾
+'ã€€æ¬¡ç•ªå·ã®å–å¾—
 '--------------------------------------------------------------
 Function rlxGetItemNext(ByVal strBuf As String, ByVal strItemName As String) As String
-Attribute rlxGetItemNext.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetItemNext.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetItemNext.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim obj As Object
@@ -146,14 +146,14 @@ Attribute rlxGetItemNext.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Set obj = rlxGetItemObject(strItemName)
 
-    'Ÿ”Ô†‚Ìæ“¾
+    'æ¬¡ç•ªå·ã®å–å¾—
     rlxGetItemNext = obj.NextNumber(strBuf, lngIndentLevel)
     
     Set obj = Nothing
 
 End Function
 '--------------------------------------------------------------
-'@’i—”Ô†‚Ìİ’è
+'ã€€æ®µè½ç•ªå·ã®è¨­å®š
 '--------------------------------------------------------------
 Sub setItemNo(ByRef r As Range, ByVal strNewNo As String)
 
@@ -168,7 +168,7 @@ Sub setItemNo(ByRef r As Range, ByVal strNewNo As String)
     
 End Sub
 '--------------------------------------------------------------
-'@’i—”Ô†‚Ìíœ
+'ã€€æ®µè½ç•ªå·ã®å‰Šé™¤
 '--------------------------------------------------------------
 Sub delItemNo(ByRef r As Range)
 
@@ -176,7 +176,7 @@ Sub delItemNo(ByRef r As Range)
     Dim lngPos As Long
     Dim obj As Object
 
-    'Œ»İ‚Ì’i—”Ô†‚ğæ“¾iƒŒƒxƒ‹‚É‚©‚©‚í‚ç‚È‚¢j
+    'ç¾åœ¨ã®æ®µè½ç•ªå·ã‚’å–å¾—ï¼ˆãƒ¬ãƒ™ãƒ«ã«ã‹ã‹ã‚ã‚‰ãªã„ï¼‰
     strSecNo = rlxGetItemNoAny(r.value)
     If VarType(r.value) = vbString Then
         If Len(strSecNo) > 0 Then
@@ -190,10 +190,10 @@ Sub delItemNo(ByRef r As Range)
 
 End Sub
 '--------------------------------------------------------------
-'@ƒNƒ‰ƒX–¼‚©‚çƒIƒuƒWƒFƒNƒg‚ğæ“¾
+'ã€€ã‚¯ãƒ©ã‚¹åã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 '--------------------------------------------------------------
 Function rlxGetItemObject(ByVal className As String) As Object
-Attribute rlxGetItemObject.VB_Description = "ƒ[ƒNƒV[ƒgŠÖ”‚Æ‚µ‚Äg—p‚Å‚«‚Ü‚¹‚ñB"
+Attribute rlxGetItemObject.VB_Description = "ãƒ¯ãƒ¼ã‚¯ã‚·ãƒ¼ãƒˆé–¢æ•°ã¨ã—ã¦ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚"
 Attribute rlxGetItemObject.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim ret As Object

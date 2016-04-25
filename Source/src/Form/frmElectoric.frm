@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmElectoric 
-   Caption         =   "“dq”[•i•ÏŠ·İ’è"
+   Caption         =   "é›»å­ç´å“å¤‰æ›è¨­å®š"
    ClientHeight    =   1800
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   4710
    OleObjectBlob   =   "frmElectoric.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmElectoric"
 Attribute VB_GlobalNameSpace = False

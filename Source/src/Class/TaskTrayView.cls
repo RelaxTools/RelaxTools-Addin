@@ -104,7 +104,7 @@ Private Const NIF_STATE = &H8
 Private Const NIF_INFO = &H10
 Private Const NIF_GUID = &H20
 
-Private typ_Icon As NOTIFYICONDATA '©ƒNƒ‰ƒX‚ÅŠÇ—‚·‚éƒAƒCƒRƒ“‚Ìƒf[ƒ^(\‘¢‘Ì)
+Private typ_Icon As NOTIFYICONDATA 'è‡ªã‚¯ãƒ©ã‚¹ã§ç®¡ç†ã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‡ãƒ¼ã‚¿(æ§‹é€ ä½“)
 #If VBA7 And Win64 Then
     Public Function AddIcon(ByVal hwnd As LongPtr, ByVal ToolTip As String) As Long
      
@@ -168,7 +168,7 @@ Public Function ShowBalloon(ByVal Message As String, Optional ByVal BalloonTimeO
         .cbsize = Len(typ_Icon)
         .uFlags = NIF_INFO
         .szInfo = Message & vbNullChar
-        .uTimeoutOrVersion = BalloonTimeOutSecond * 1000 'ƒ^ƒCƒ€ƒAƒEƒgŠÔ(ms)
+        .uTimeoutOrVersion = BalloonTimeOutSecond * 1000 'ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“(ms)
     End With
  
     ShowBalloon = Shell_NotifyIcon(NIM_MODIFY, typ_Icon)
@@ -182,7 +182,7 @@ Public Sub DeleteIcon()
         .uID = 0
     End With
      
-    Call Shell_NotifyIcon(NIM_DELETE, typ_Icon) 'APIÀs
+    Call Shell_NotifyIcon(NIM_DELETE, typ_Icon) 'APIå®Ÿè¡Œ
      
 End Sub
 Private Sub Class_Terminate()

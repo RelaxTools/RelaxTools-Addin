@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmMessageDigest 
-   Caption         =   "ƒƒbƒZ[ƒWƒ_ƒCƒWƒFƒXƒg¶¬"
+   Caption         =   "ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆç”Ÿæˆ"
    ClientHeight    =   4095
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   6075
    OleObjectBlob   =   "frmMessageDigest.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmMessageDigest"
 Attribute VB_GlobalNameSpace = False
@@ -54,9 +54,9 @@ Private Sub cmdFolder_Click()
     Dim strFile As String
 
 
-    strFile = Application.GetOpenFilename("ƒtƒ@ƒCƒ‹(*.*),(*.*)", , "ƒtƒ@ƒCƒ‹“Ç", , False)
+    strFile = Application.GetOpenFilename("ãƒ•ã‚¡ã‚¤ãƒ«(*.*),(*.*)", , "ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼", , False)
     If strFile = "False" Then
-        'ƒtƒ@ƒCƒ‹–¼‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+        'ãƒ•ã‚¡ã‚¤ãƒ«åãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
         Exit Sub
     End If
     
@@ -77,10 +77,10 @@ Private Sub cmdRun_Click()
     
     strFile = txtFolder.Text
     
-    'ƒtƒ@ƒCƒ‹‚Ì‘¶İƒ`ƒFƒbƒN
+    'ãƒ•ã‚¡ã‚¤ãƒ«ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
     If rlxIsFileExists(strFile) Then
     Else
-        MsgBox "ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB", vbExclamation, C_TITLE
+        MsgBox "ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚", vbExclamation, C_TITLE
         Exit Sub
     End If
     

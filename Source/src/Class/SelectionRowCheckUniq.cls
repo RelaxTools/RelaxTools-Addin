@@ -38,27 +38,27 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork �錾
+' SelectionFrameWork 宣言
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionRowFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' �����o�ϐ��錾��(UOC)
+' メンバ変数宣言部(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private mlngMatch As Long
 'Private mobjCol As Collection
 Private mobjCol As Object
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork �쐬
+' SelectionFrameWork 作成
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionRowFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork �J��
+' SelectionFrameWork 開放
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -72,14 +72,14 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' �O����(UOC)
+' 前処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(ByRef rAreas As Excel.Areas, Cancel As Boolean, Undo As Boolean)
     
     On Error GoTo e
     
     If rAreas.count > 1 Then
-        MsgBox "�����̃G���A�ɂ͑Ή����Ă��܂���B", vbExclamation, C_TITLE
+        MsgBox "複数のエリアには対応していません。", vbExclamation, C_TITLE
         Cancel = True
         Exit Sub
     End If
@@ -95,7 +95,7 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' �又��(UOC)
+' 主処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boolean)
 
@@ -106,7 +106,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
 
     On Error GoTo e
     
-    '�L�[�̍쐬
+    'キーの作成
     strkey = ""
     For Each v In r
         If IsError(v.value) Then
@@ -119,7 +119,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
         Exit Sub
     End If
 
-    '�R���N�V�������Ɉ�v������̂����邩�ǂ����`�F�b�N
+    'コレクション内に一致するものがあるかどうかチェック
     blnMatch = False
     
     If mobjCol.exists(strkey) Then
@@ -131,7 +131,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
         End With
     End If
     
-    '��v������̂��P�ł����݂����ꍇ
+    '一致するものが１つでも存在した場合
     If blnMatch Then
         mlngMatch = mlngMatch + 1
         With r.Interior
@@ -139,7 +139,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
             .Pattern = xlSolid
         End With
     Else
-        '���݂��Ȃ��ꍇ�R���N�V�����ɒǉ�
+        '存在しない場合コレクションに追加
         Call mobjCol.Add(strkey, r)
     End If
 
@@ -150,19 +150,19 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' �I������(UOC)
+' 終了処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionTerm()
     
     On Error GoTo e
     
     If mlngMatch > 0 Then
-        MsgBox mlngMatch & " �� ��v���܂����B�m�F���Ă��������B", vbExclamation, C_TITLE
+        MsgBox mlngMatch & " 個 一致しました。確認してください。", vbExclamation, C_TITLE
     Else
-        MsgBox "��v������̂͂���܂���ł����B", vbInformation, C_TITLE
+        MsgBox "一致するものはありませんでした。", vbInformation, C_TITLE
     End If
     
-    'Collection�̊J��
+    'Collectionの開放
     Set mobjCol = Nothing
 
     Exit Sub

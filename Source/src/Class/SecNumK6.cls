@@ -37,16 +37,16 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private Const C_SECTION_REGEXP As String = "^\([ƒA-ƒ“]+\)[ ]"
+Private Const C_SECTION_REGEXP As String = "^\([ã‚¢-ãƒ³]+\)[ ]"
 Private Const C_SECTION_SEPARATER As String = " "
-Private Const C_SECTION_NAME As String = "(ƒC), (ƒ), (ƒn) ¥¥¥ (ƒX)"
+Private Const C_SECTION_NAME As String = "(ã‚¤), (ãƒ­), (ãƒ) ï½¥ï½¥ï½¥ (ã‚¹)"
 Private Const C_SECTION_CLASS As String = "SecNumK6"
 Public Property Get Class() As String
     Class = C_SECTION_CLASS
 End Property
 Public Function SectionLevelName(ByVal lngLevel As Long) As String
     
-    SectionLevelName = " (ƒC) „Ÿ„Ÿ„Ÿ„Ÿ"
+    SectionLevelName = " (ã‚¤) â”€â”€â”€â”€"
 
 End Function
 Public Property Get SectionName() As String
@@ -87,12 +87,12 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngFromLevel As Long, By
     Dim strNewNum As String
     Dim strNumber As String
     Dim lngPos As Long
-    Const STR As String = "ƒCƒƒnƒjƒzƒwƒgƒ`ƒŠƒkƒ‹ƒ’ƒƒJƒˆƒ^ƒŒƒ\ƒcƒlƒiƒ‰ƒ€ƒEƒ‘ƒmƒIƒNƒ„ƒ}ƒPƒtƒRƒGƒeƒAƒTƒLƒ†ƒƒ~ƒV‚ïƒqƒ‚ƒZƒX"
+    Const STR As String = "ã‚¤ãƒ­ãƒãƒ‹ãƒ›ãƒ˜ãƒˆãƒãƒªãƒŒãƒ«ãƒ²ãƒ¯ã‚«ãƒ¨ã‚¿ãƒ¬ã‚½ãƒ„ãƒãƒŠãƒ©ãƒ ã‚¦ãƒ±ãƒã‚ªã‚¯ãƒ¤ãƒã‚±ãƒ•ã‚³ã‚¨ãƒ†ã‚¢ã‚µã‚­ãƒ¦ãƒ¡ãƒŸã‚·ã‚‘ãƒ’ãƒ¢ã‚»ã‚¹"
     
     strNumber = Trim(SectionNumber(v))
     
     If strNumber = "" Or lngFromLevel <> lngIndentLevel Then
-        strNewNum = "(ƒC)" & C_SECTION_SEPARATER
+        strNewNum = "(ã‚¤)" & C_SECTION_SEPARATER
     Else
         lngPos = InStr(STR, Replace(Replace(strNumber, "(", ""), ")", "")) + 1
         If lngPos > Len(STR) Then

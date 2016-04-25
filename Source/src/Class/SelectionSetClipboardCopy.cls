@@ -38,7 +38,7 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
@@ -46,14 +46,14 @@ Private mstrBuf As String
 Private mlngErr As Long
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -67,7 +67,7 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‰Šúˆ—(UOC)
+' åˆæœŸå‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
 
@@ -78,7 +78,7 @@ Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boo
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ƒƒCƒ“ˆ—(UOC)
+' ãƒ¡ã‚¤ãƒ³å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
 
@@ -107,12 +107,12 @@ Private Sub SFWork_SelectionTerm()
     On Error GoTo e
     
     If mlngErr > 0 Then
-        MsgBox "‘¶Ý‚µ‚È‚¢ƒtƒ@ƒCƒ‹/ƒtƒHƒ‹ƒ_‚ª" & mlngErr & "Œ‚Ì‘¶Ý‚µ‚Ü‚·B" & vbCrLf & "ƒNƒŠƒbƒvƒ{[ƒh‚Ö‚ÌƒRƒs[‚ð’†’f‚µ‚Ü‚µ‚½B", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "å­˜åœ¨ã—ãªã„ãƒ•ã‚¡ã‚¤ãƒ«/ãƒ•ã‚©ãƒ«ãƒ€ãŒ" & mlngErr & "ä»¶ã®å­˜åœ¨ã—ã¾ã™ã€‚" & vbCrLf & "ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã¸ã®ã‚³ãƒ”ãƒ¼ã‚’ä¸­æ–­ã—ã¾ã—ãŸã€‚", vbOKOnly + vbExclamation, C_TITLE
     Else
         If mstrBuf <> "" Then
             strFiles = Split(mstrBuf, vbTab)
             SetCopyClipText strFiles
-            MsgBox UBound(strFiles) + 1 & "Œ‚Ìƒtƒ@ƒCƒ‹/ƒtƒHƒ‹ƒ_‚ðƒNƒŠƒbƒvƒ{[ƒh‚ÉƒRƒs[‚µ‚Ü‚µ‚½B", vbOKOnly + vbInformation, C_TITLE
+            MsgBox UBound(strFiles) + 1 & "ä»¶ã®ãƒ•ã‚¡ã‚¤ãƒ«/ãƒ•ã‚©ãƒ«ãƒ€ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸã€‚", vbOKOnly + vbInformation, C_TITLE
         End If
      End If
 

@@ -38,24 +38,24 @@ Attribute VB_Exposed = True
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 
-'’è‹`ƒtƒ@ƒCƒ‹‘®
+'å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«æ›¸å¼
 Const C_NO As Long = 1
 Const C_COLUMN As Long = 2
 Const C_POS_COL As Long = 3
 Const C_POS_LEN As Long = 4
 
-'’è‹`ƒXƒ^[ƒgs
+'å®šç¾©ã‚¹ã‚¿ãƒ¼ãƒˆè¡Œ
 Const C_DEF_START_ROW = 7
 
-'u“Ç‚ğs‚¤ƒeƒLƒXƒgƒtƒ@ƒCƒ‹v‚ÌêŠ
+'ã€Œèª­è¾¼ã‚’è¡Œã†ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã€ã®å ´æ‰€
 Const C_FILE_ROW As Long = 3
 Const C_FILE_COL As Long = 3
 
-'u‚PŒ‚Ìƒf[ƒ^‚ğ¯•Ê‚·‚é•¶š—ñv‚ÌêŠ
+'ã€Œï¼‘ä»¶ã®ãƒ‡ãƒ¼ã‚¿ã‚’è­˜åˆ¥ã™ã‚‹æ–‡å­—åˆ—ã€ã®å ´æ‰€
 Const C_START_ROW As Long = 4
 Const C_START_COL As Long = 3
 
-'ì¬ƒV[ƒg
+'ä½œæˆã‚·ãƒ¼ãƒˆ
 Const C_CRE_HEADER_ROW As Long = 1
 Const C_CRE_START_ROW As Long = 2
 
@@ -90,7 +90,7 @@ Private Sub cmdRun_Click()
 
     strFile = defSheet.Cells(C_FILE_ROW, C_FILE_COL).value
     If strFile = "" Then
-        'ƒtƒ@ƒCƒ‹–¼‚ªw’è‚³‚ê‚È‚©‚Á‚½ê‡
+        'ãƒ•ã‚¡ã‚¤ãƒ«åãŒæŒ‡å®šã•ã‚Œãªã‹ã£ãŸå ´åˆ
         Exit Sub
     End If
 
@@ -106,11 +106,11 @@ Private Sub cmdRun_Click()
 
     Open strFile For Input As fp
 
-    '’è‹`ƒV[ƒg‚ÌƒJƒEƒ“ƒ^
+    'å®šç¾©ã‚·ãƒ¼ãƒˆã®ã‚«ã‚¦ãƒ³ã‚¿
     defCount = C_DEF_START_ROW
     creCol = 1
 
-    '’è‹`ƒV[ƒg‚ğ“Ç‚İƒwƒbƒ_‚ğì¬‚·‚éB
+    'å®šç¾©ã‚·ãƒ¼ãƒˆã‚’èª­ã¿ãƒ˜ãƒƒãƒ€ã‚’ä½œæˆã™ã‚‹ã€‚
     Do Until defSheet.Cells(defCount, C_NO).value = ""
 
         strColumn = defSheet.Cells(defCount, C_COLUMN).value
@@ -120,13 +120,13 @@ Private Sub cmdRun_Click()
         creCol = creCol + 1
     Loop
 
-    'Œ‹‰ÊƒV[ƒg‚ÌƒJƒEƒ“ƒ^
+    'çµæœã‚·ãƒ¼ãƒˆã®ã‚«ã‚¦ãƒ³ã‚¿
     creRow = C_CRE_START_ROW
 
     Do Until EOF(fp)
 
         '--------------------------------------------------
-        ' ‚PƒŒƒR[ƒh•ª‚Ìƒf[ƒ^‚ğƒRƒŒƒNƒVƒ‡ƒ“‚Éİ’è‚·‚éB
+        ' ï¼‘ãƒ¬ã‚³ãƒ¼ãƒ‰åˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¨­å®šã™ã‚‹ã€‚
         '--------------------------------------------------
         Set ColLine = New Collection
         Dim blnStart As Boolean
@@ -146,51 +146,51 @@ Private Sub cmdRun_Click()
         Loop
         
         '--------------------------------------------------
-        ' ‚PƒŒƒR[ƒh•ª‚Ìƒf[ƒ^‚æ‚è’è‹`ƒV[ƒg‚Ì“à—e‚ğŒŸõ‚·‚éB
+        ' ï¼‘ãƒ¬ã‚³ãƒ¼ãƒ‰åˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚ˆã‚Šå®šç¾©ã‚·ãƒ¼ãƒˆã®å†…å®¹ã‚’æ¤œç´¢ã™ã‚‹ã€‚
         '--------------------------------------------------
-        'Œ‹‰ÊƒV[ƒg‚ÌƒJƒEƒ“ƒ^
+        'çµæœã‚·ãƒ¼ãƒˆã®ã‚«ã‚¦ãƒ³ã‚¿
         creCol = 1
 
         For i = 1 To ColLine.count
         
             strBuf = ColLine.Item(i)
-            '’è‹`ƒV[ƒg‚ÌƒJƒEƒ“ƒ^
+            'å®šç¾©ã‚·ãƒ¼ãƒˆã®ã‚«ã‚¦ãƒ³ã‚¿
             defCount = C_DEF_START_ROW
 
-            '’è‹`ƒV[ƒg‚ğ“Ç‚Ş
+            'å®šç¾©ã‚·ãƒ¼ãƒˆã‚’èª­ã‚€
             Do Until defSheet.Cells(defCount, C_NO).value = ""
     
-                '€–Ú–¼
+                'é …ç›®å
                 strColumn = defSheet.Cells(defCount, C_COLUMN).value
-                'Œ…
+                'æ¡
                 lngCol = defSheet.Cells(defCount, C_POS_COL).value
-                '’·‚³
+                'é•·ã•
                 lngLen = defSheet.Cells(defCount, C_POS_LEN).value
     
-                'ƒL[‚ªŒ©‚Â‚©‚Á‚½ê‡
+                'ã‚­ãƒ¼ãŒè¦‹ã¤ã‹ã£ãŸå ´åˆ
                 If InStr(strBuf, strColumn) > 0 Then
                 
-                    '•¶š—ñ’·‚É‚O‚ªw’è‚³‚ê‚Ä‚¢‚½‚çAs––‚Ü‚Åæ“¾
+                    'æ–‡å­—åˆ—é•·ã«ï¼ãŒæŒ‡å®šã•ã‚Œã¦ã„ãŸã‚‰ã€è¡Œæœ«ã¾ã§å–å¾—
                     If lngLen = 0 Then
                         strValue = Trim(Mid(strBuf, lngCol))
                     Else
                         strValue = Trim(Mid(strBuf, lngCol, lngLen))
                     End If
         
-                    'ƒZƒ‹‚É’l‚ğİ’è
+                    'ã‚»ãƒ«ã«å€¤ã‚’è¨­å®š
                     newSheet.Cells(creRow, creCol).value = strValue
                 
-                    'ì¬ƒV[ƒg‚Ì—ñ{‚P
+                    'ä½œæˆã‚·ãƒ¼ãƒˆã®åˆ—ï¼‹ï¼‘
                     creCol = creCol + 1
     
                 End If
     
-                'Ÿ‚Ì’è‹`‚ÉˆÚ“®
+                'æ¬¡ã®å®šç¾©ã«ç§»å‹•
                 defCount = defCount + 1
             Loop
         Next
 
-        'Œ‹‰ÊƒV[ƒg‚ğŸ‚Ìs‚ÉˆÚ“®‚·‚éB
+        'çµæœã‚·ãƒ¼ãƒˆã‚’æ¬¡ã®è¡Œã«ç§»å‹•ã™ã‚‹ã€‚
         creRow = creRow + 1
         Set ColLine = Nothing
 

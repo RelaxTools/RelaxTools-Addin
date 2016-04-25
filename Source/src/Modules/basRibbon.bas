@@ -51,7 +51,7 @@ Private mSecTog04 As Boolean
 Private mSecTog05 As Boolean
 Private mSecTog06 As Boolean
 
-'‚`‚P•Û‘¶‚ÌƒpƒuƒŠƒbƒN•Ï”
+'ï¼¡ï¼‘ä¿å­˜ã®ãƒ‘ãƒ–ãƒªãƒƒã‚¯å¤‰æ•°
 Public pblnA1SaveCheck As Boolean
 
 Public mLineEnable As Boolean
@@ -59,13 +59,13 @@ Public mScrollEnable As Boolean
 Public mScreenEnable As Boolean
 
 '--------------------------------------------------------------------
-' ƒ}ƒNƒ–¼æ“¾
+' ãƒã‚¯ãƒ­åå–å¾—
 '--------------------------------------------------------------------
 Private Function getMacroName(control As IRibbonControl) As String
     
     Dim lngPos As Long
     
-    '“¯‚¶ƒ}ƒNƒ‚ğ•¡”“o˜^‰Â”\‚Æ‚·‚é‚½‚ß‚ÉƒhƒbƒgˆÈ~‚Ì•¶š‚ğíœ
+    'åŒã˜ãƒã‚¯ãƒ­ã‚’è¤‡æ•°ç™»éŒ²å¯èƒ½ã¨ã™ã‚‹ãŸã‚ã«ãƒ‰ãƒƒãƒˆä»¥é™ã®æ–‡å­—ã‚’å‰Šé™¤
     lngPos = InStr(control.id, ".")
 
     If lngPos = 0 Then
@@ -76,7 +76,7 @@ Private Function getMacroName(control As IRibbonControl) As String
 
 End Function
 '--------------------------------------------------------------------
-' ƒV[ƒg‚©‚çw’è€–Ú‚ğæ“¾‚·‚é
+' ã‚·ãƒ¼ãƒˆã‹ã‚‰æŒ‡å®šé …ç›®ã‚’å–å¾—ã™ã‚‹
 '--------------------------------------------------------------------
 Private Function getSheetItem(control As IRibbonControl, lngItem As Long) As String
 
@@ -100,7 +100,7 @@ Private Function getSheetItem(control As IRibbonControl, lngItem As Long) As Str
 
 End Function
 '--------------------------------------------------------------------
-' ƒŠƒ{ƒ“•\¦İ’èæ“¾
+' ãƒªãƒœãƒ³è¡¨ç¤ºè¨­å®šå–å¾—
 '--------------------------------------------------------------------
 Sub tabGetVisible(control As IRibbonControl, ByRef visible)
 
@@ -108,7 +108,7 @@ Sub tabGetVisible(control As IRibbonControl, ByRef visible)
 
 End Sub
 '--------------------------------------------------------------------
-' ƒŠƒ{ƒ“‰Ÿ‰ºó‘Ôæ“¾
+' ãƒªãƒœãƒ³æŠ¼ä¸‹çŠ¶æ…‹å–å¾—
 '--------------------------------------------------------------------
 Sub tabGetPressed(control As IRibbonControl, ByRef returnValue)
     
@@ -116,7 +116,7 @@ Sub tabGetPressed(control As IRibbonControl, ByRef returnValue)
 
 End Sub
 '--------------------------------------------------------------------
-' ƒŠƒ{ƒ“•\¦İ’è
+' ãƒªãƒœãƒ³è¡¨ç¤ºè¨­å®š
 '--------------------------------------------------------------------
 Sub tabOnAction(control As IRibbonControl, pressed As Boolean)
     
@@ -126,7 +126,7 @@ Sub tabOnAction(control As IRibbonControl, pressed As Boolean)
     
 End Sub
 '--------------------------------------------------------------------
-'ƒŠƒ{ƒ“‚æ‚èó‚¯æ‚Á‚½ID‚ğ‚»‚Ì‚Ü‚Üƒ}ƒNƒ–¼‚Æ‚µ‚ÄÀs‚·‚éƒ‰ƒbƒp[ŠÖ”
+'ãƒªãƒœãƒ³ã‚ˆã‚Šå—ã‘å–ã£ãŸIDã‚’ãã®ã¾ã¾ãƒã‚¯ãƒ­åã¨ã—ã¦å®Ÿè¡Œã™ã‚‹ãƒ©ãƒƒãƒ‘ãƒ¼é–¢æ•°
 '--------------------------------------------------------------------
 Public Sub RibbonOnAction(control As IRibbonControl)
 
@@ -137,23 +137,23 @@ Public Sub RibbonOnAction(control As IRibbonControl)
     
     strBuf = getMacroName(control)
     
-    'ŠJnƒƒO
+    'é–‹å§‹ãƒ­ã‚°
     Logger.LogBegin strBuf
     
-    '•¶š—ñ‚Ìƒ}ƒNƒ–¼‚ğÀs‚·‚éB
+    'æ–‡å­—åˆ—ã®ãƒã‚¯ãƒ­åã‚’å®Ÿè¡Œã™ã‚‹ã€‚
     Application.Run strBuf
     
     
     Call RefreshRibbon(control)
 
-    'ŒJ‚è•Ô‚µ‚ª—LŒø‚Ìê‡
+    'ç¹°ã‚Šè¿”ã—ãŒæœ‰åŠ¹ã®å ´åˆ
     If CBool(GetSetting(C_TITLE, "Option", "OnRepeat", True)) Then
         Dim strLabel As String
         strLabel = getSheetItem(control, C_COL_LABEL)
         Application.OnRepeat strLabel, strBuf
     End If
     
-    'I—¹ƒƒO
+    'çµ‚äº†ãƒ­ã‚°
     Logger.LogFinish strBuf
     
     Exit Sub
@@ -161,7 +161,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'ƒ`ƒFƒbƒNƒ{ƒbƒNƒXİ’èæ“¾
+'ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹è¨­å®šå–å¾—
 '--------------------------------------------------------------------
 Public Sub CheckGetPressed(control As IRibbonControl, ByRef returnValue)
     
@@ -174,7 +174,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'ƒ`ƒFƒbƒNƒ{ƒbƒNƒXİ’è
+'ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹è¨­å®š
 '--------------------------------------------------------------------
 Public Sub CheckOnAction(control As IRibbonControl, pressed As Boolean)
     
@@ -189,7 +189,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'ƒ`ƒFƒbƒNƒ{ƒbƒNƒXEnable/Disable
+'ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹Enable/Disable
 '--------------------------------------------------------------------
 Sub CheckSetEnabled(control As IRibbonControl, ByRef enabled)
 
@@ -209,7 +209,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-' ƒwƒ‹ƒv“à—e‚ğ•\¦‚·‚éBcustomUI‚©‚çg—p
+' ãƒ˜ãƒ«ãƒ—å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹ã€‚customUIã‹ã‚‰ä½¿ç”¨
 '--------------------------------------------------------------------
 Public Sub GetSupertip(control As IRibbonControl, ByRef Screentip)
 
@@ -224,7 +224,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-' ƒƒjƒ…[•\¦“à—e‚ğ•\¦‚·‚éBcustomUI‚©‚çg—p
+' ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºå†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹ã€‚customUIã‹ã‚‰ä½¿ç”¨
 '--------------------------------------------------------------------
 Public Sub GetDescription(control As IRibbonControl, ByRef Screentip)
 
@@ -237,7 +237,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-' ƒ‰ƒxƒ‹‚ğ•\¦‚·‚éBcustomUI‚©‚çg—p
+' ãƒ©ãƒ™ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹ã€‚customUIã‹ã‚‰ä½¿ç”¨
 '--------------------------------------------------------------------
 Public Sub GetLabel(control As IRibbonControl, ByRef Screentip)
 
@@ -250,7 +250,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-' 2003ŒİŠ·F@”wŒiF©“®
+' 2003äº’æ›è‰²ã€€èƒŒæ™¯è‰²è‡ªå‹•
 '--------------------------------------------------------------------
 Sub legacyBackDefault()
 
@@ -263,7 +263,7 @@ Sub legacyBackDefault()
 
 End Sub
 '--------------------------------------------------------------------
-' 2003ŒİŠ·F@•¶šF©“®
+' 2003äº’æ›è‰²ã€€æ–‡å­—è‰²è‡ªå‹•
 '--------------------------------------------------------------------
 Sub legacyFontDefault()
 
@@ -275,7 +275,7 @@ Sub legacyFontDefault()
 
 End Sub
 '--------------------------------------------------------------------
-' 2003ŒİŠ·F@üF©“®
+' 2003äº’æ›è‰²ã€€ç·šè‰²è‡ªå‹•
 '--------------------------------------------------------------------
 Sub legacyLineDefault()
 
@@ -288,7 +288,7 @@ Sub legacyLineDefault()
     
 End Sub
 '--------------------------------------------------------------------
-' 2003ŒİŠ·F‘I‘ğƒCƒxƒ“ƒg
+' 2003äº’æ›è‰²é¸æŠæ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Public Sub colorOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
@@ -307,29 +307,29 @@ Public Sub colorOnAction(control As IRibbonControl, selectedId As String, select
             strBuf = "execSelectionFormatLineColor"
     End Select
     
-    'ŠJnƒƒO
+    'é–‹å§‹ãƒ­ã‚°
     Logger.LogBegin strBuf
     
-    '•¶š—ñ‚Ìƒ}ƒNƒ–¼‚ğÀs‚·‚éB
+    'æ–‡å­—åˆ—ã®ãƒã‚¯ãƒ­åã‚’å®Ÿè¡Œã™ã‚‹ã€‚
     Application.Run strBuf
     
     Call RefreshRibbon(control)
 
-    'ŒJ‚è•Ô‚µ‚ª—LŒø‚Ìê‡
+    'ç¹°ã‚Šè¿”ã—ãŒæœ‰åŠ¹ã®å ´åˆ
     If CBool(GetSetting(C_TITLE, "Option", "OnRepeat", True)) Then
         Dim strLabel As String
         strLabel = getSheetItem(control, C_COL_LABEL)
         Application.OnRepeat strLabel, strBuf
     End If
     
-    'I—¹ƒƒO
+    'çµ‚äº†ãƒ­ã‚°
     Logger.LogFinish strBuf
     
     Call RefreshRibbon
 
 End Sub
 '--------------------------------------------------------------------
-' Dynamicƒƒjƒ…[
+' Dynamicãƒ¡ãƒ‹ãƒ¥ãƒ¼
 '--------------------------------------------------------------------
 Private Function ribbonDinamicMenu(control As IRibbonControl, ByRef content)
 
@@ -364,7 +364,7 @@ Private Function ribbonDinamicMenu(control As IRibbonControl, ByRef content)
     Dim strXML As String
     Dim lngNo As Long
     
-    'ƒRƒ“ƒgƒ[ƒ‹ID‚©‚çƒƒjƒ…[–¼‚ğæ“¾
+    'ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«IDã‹ã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼åã‚’å–å¾—
     Set WS = ThisWorkbook.Worksheets(control.id)
     
     
@@ -384,23 +384,23 @@ Private Function ribbonDinamicMenu(control As IRibbonControl, ByRef content)
     strNo = WS.Cells(lngRow, C_COL_NO)
     Do Until strNo = ""
     
-        'ƒƒjƒ…[–¼
+        'ãƒ¡ãƒ‹ãƒ¥ãƒ¼å
         strMenu = WS.Cells(lngRow, C_COL_MENU)
         
-        'ƒTƒuƒƒjƒ…[–¼
+        'ã‚µãƒ–ãƒ¡ãƒ‹ãƒ¥ãƒ¼å
         strSubMenu = WS.Cells(lngRow, C_COL_SUB_MENU)
             
-        'ƒ}ƒNƒ–¼
+        'ãƒã‚¯ãƒ­å
         strMacro = WS.Cells(lngRow, C_COL_MACRO)
         
-        '”õl
+        'å‚™è€ƒ
         strBikou = WS.Cells(lngRow, C_COL_BIKOU)
         
         Select Case strMenu
             Case ""
-                'ƒƒjƒ…[‚ª‹ó‚Ìê‡ˆÈ‘Oì¬‚µ‚½ƒƒjƒ…[‚Ì‰º
+                'ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒç©ºã®å ´åˆä»¥å‰ä½œæˆã—ãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä¸‹
             Case "-"
-                'Ÿ‰ñì¬‚·‚éƒƒjƒ…[‚Ì‘O‚ÉƒZƒpƒŒ[ƒ^‚ğì¬
+                'æ¬¡å›ä½œæˆã™ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å‰ã«ã‚»ãƒ‘ãƒ¬ãƒ¼ã‚¿ã‚’ä½œæˆ
                 blnBeginGroup = True
             Case Else
                 If blnBeginSubMenu Then
@@ -456,12 +456,12 @@ Private Function ribbonDinamicMenu(control As IRibbonControl, ByRef content)
     
     Set WS = Nothing
 
-    'ì¬‚µ‚½XML‚ğ–ß‚·
+    'ä½œæˆã—ãŸXMLã‚’æˆ»ã™
     content = strXML
 
 End Function
 '--------------------------------------------------------------------
-' ƒŠƒ{ƒ“ó‘Ôæ“¾
+' ãƒªãƒœãƒ³çŠ¶æ…‹å–å¾—
 '--------------------------------------------------------------------
 Sub getRibbonEnabled(control As IRibbonControl, ByRef enabled)
 
@@ -469,7 +469,7 @@ Sub getRibbonEnabled(control As IRibbonControl, ByRef enabled)
     
 End Sub
 '--------------------------------------------------------------------
-' ƒŠƒ{ƒ“ƒ[ƒhƒCƒxƒ“ƒg
+' ãƒªãƒœãƒ³ãƒ­ãƒ¼ãƒ‰æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Sub ribbonLoaded(ByRef IR As IRibbonUI)
     
@@ -478,12 +478,12 @@ Sub ribbonLoaded(ByRef IR As IRibbonUI)
     Set mIR = IR
     Call ThisWorkbook.setIRibbon(IR)
     
-    'ƒŠƒ{ƒ“ƒnƒ“ƒhƒ‹‚ÌƒAƒhƒŒƒX‚ğƒŒƒWƒXƒgƒŠ‚É•Û‘¶AÀsƒGƒ‰[‚Ìê‡‚É•œŒ³‚·‚éB
+    'ãƒªãƒœãƒ³ãƒãƒ³ãƒ‰ãƒ«ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã«ä¿å­˜ã€å®Ÿè¡Œæ™‚ã‚¨ãƒ©ãƒ¼ã®å ´åˆã«å¾©å…ƒã™ã‚‹ã€‚
     SaveSetting C_TITLE, "Ribbon", "Address", CStr(ObjPtr(IR))
         
     Dim strPos As String
     
-    '’i—”Ô†‚Ì‹K’è‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‰ºÏ‚İ‚É‚·‚é
+    'æ®µè½ç•ªå·ã®è¦å®šã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ä¸‹æ¸ˆã¿ã«ã™ã‚‹
     strPos = GetSetting(C_TITLE, "Section", "pos", "1")
     Select Case strPos
         Case "1"
@@ -505,7 +505,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-' ƒŠƒ{ƒ“‚ÌƒŠƒtƒŒƒbƒVƒ…
+' ãƒªãƒœãƒ³ã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥
 '--------------------------------------------------------------------
 Public Sub RefreshRibbon(Optional control As IRibbonControl)
 
@@ -513,7 +513,7 @@ Public Sub RefreshRibbon(Optional control As IRibbonControl)
     
     On Error GoTo e
     
-    'ƒOƒ[ƒoƒ‹•Ï”‚ªƒNƒŠƒA‚³‚ê‚½‚µ‚Ü‚Á‚½ê‡AƒŒƒWƒXƒgƒŠ‚©‚ç•œ‹A
+    'ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ãŒã‚¯ãƒªã‚¢ã•ã‚ŒãŸã—ã¾ã£ãŸå ´åˆã€ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‹ã‚‰å¾©å¸°
     If mIR Is Nothing Then
         
         strBuf = GetSetting(C_TITLE, "Ribbon", "Address", 0)
@@ -534,7 +534,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'  ’i—”Ô†ƒgƒOƒ‹ƒ{ƒ^ƒ“
+'  æ®µè½ç•ªå·ãƒˆã‚°ãƒ«ãƒœã‚¿ãƒ³
 '--------------------------------------------------------------------
 Sub sectionPressed(control As IRibbonControl, ByRef returnValue)
     
@@ -565,7 +565,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'  Œ»İ‚Ì’i—”Ô†‚Ìİ’è
+'  ç¾åœ¨ã®æ®µè½ç•ªå·ã®è¨­å®š
 '--------------------------------------------------------------------
 Sub sectionOnAction(control As IRibbonControl, pressed As Boolean)
   
@@ -613,7 +613,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'  \šƒJ[ƒ\ƒ‹‚Ì‰Ÿ‰ºó‘Ô‚Ìæ“¾
+'  åå­—ã‚«ãƒ¼ã‚½ãƒ«ã®æŠ¼ä¸‹çŠ¶æ…‹ã®å–å¾—
 '--------------------------------------------------------------------
 Sub linePressed(control As IRibbonControl, ByRef returnValue)
     
@@ -621,7 +621,7 @@ Sub linePressed(control As IRibbonControl, ByRef returnValue)
     
 End Sub
 '--------------------------------------------------------------------
-'  \šƒJ[ƒ\ƒ‹‚Ì‰Ÿ‰ºƒCƒxƒ“ƒg
+'  åå­—ã‚«ãƒ¼ã‚½ãƒ«ã®æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Sub lineOnAction(control As IRibbonControl, pressed As Boolean)
   
@@ -642,7 +642,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'  ƒzƒC[ƒ‹—Ê(¬)‚Ì‰Ÿ‰ºó‘Ôæ“¾
+'  ãƒ›ã‚¤ãƒ¼ãƒ«é‡(å°)ã®æŠ¼ä¸‹çŠ¶æ…‹å–å¾—
 '--------------------------------------------------------------------
 Sub scrollPressed(control As IRibbonControl, ByRef returnValue)
     
@@ -650,7 +650,7 @@ Sub scrollPressed(control As IRibbonControl, ByRef returnValue)
     
 End Sub
 '--------------------------------------------------------------------
-'  ƒzƒC[ƒ‹—Ê(¬)‚Ì‰Ÿ‰ºƒCƒxƒ“ƒg
+'  ãƒ›ã‚¤ãƒ¼ãƒ«é‡(å°)ã®æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Sub scrollOnAction(control As IRibbonControl, pressed As Boolean)
 
@@ -671,7 +671,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'  ƒXƒNƒVƒ‡ƒ‚[ƒh‚Ì‰Ÿ‰ºó‘Ôæ“¾
+'  ã‚¹ã‚¯ã‚·ãƒ§ãƒ¢ãƒ¼ãƒ‰ã®æŠ¼ä¸‹çŠ¶æ…‹å–å¾—
 '--------------------------------------------------------------------
 Sub screenPressed(control As IRibbonControl, ByRef returnValue)
     
@@ -679,7 +679,7 @@ Sub screenPressed(control As IRibbonControl, ByRef returnValue)
     
 End Sub
 '--------------------------------------------------------------------
-'  ƒXƒNƒVƒ‡ƒ‚[ƒh‚Ì‰Ÿ‰ºƒCƒxƒ“ƒg
+'  ã‚¹ã‚¯ã‚·ãƒ§ãƒ¢ãƒ¼ãƒ‰ã®æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Sub screenOnAction(control As IRibbonControl, pressed As Boolean)
   
@@ -701,7 +701,7 @@ e:
 End Sub
 
 '--------------------------------------------------------------------
-'  ƒŠƒ{ƒ“ƒTƒCƒYæ“¾(–¢“®ì)
+'  ãƒªãƒœãƒ³ã‚µã‚¤ã‚ºå–å¾—(æœªå‹•ä½œ)
 '--------------------------------------------------------------------
  Sub GetSize(control As IRibbonControl, ByRef Size)
  
@@ -715,37 +715,37 @@ End Sub
  
  End Sub
 '--------------------------------------------------------------------
-'  ƒŠƒ{ƒ“ƒTƒCƒYæ“¾(–¢“®ì)
+'  ãƒªãƒœãƒ³ã‚µã‚¤ã‚ºå–å¾—(æœªå‹•ä½œ)
 '--------------------------------------------------------------------
 Public Sub GetSizeLabel(control As IRibbonControl, ByRef lbl)
 
     If Application.UsableWidth / 0.75 < 1420 Then
         Select Case control.id
             Case "MitomePaste.1"
-                lbl = "”F‚ßˆó"
+                lbl = "èªã‚å°"
             Case "FilePaste.1"
-                lbl = "‰æ‘œw’è"
+                lbl = "ç”»åƒæŒ‡å®š"
             Case "bzGallery"
-                lbl = "ƒrƒWƒlƒXˆó"
+                lbl = "ãƒ“ã‚¸ãƒã‚¹å°"
         End Select
     Else
         Select Case control.id
             Case "MitomePaste.1"
-                lbl = "”F‚ßˆó" & vbCrLf
+                lbl = "èªã‚å°" & vbCrLf
             Case "FilePaste.1"
-                lbl = "‰æ‘œw’è" & vbCrLf
+                lbl = "ç”»åƒæŒ‡å®š" & vbCrLf
             Case "bzGallery"
-                lbl = "ƒrƒWƒlƒXˆó" & vbCrLf
+                lbl = "ãƒ“ã‚¸ãƒã‚¹å°" & vbCrLf
         End Select
     End If
  
  End Sub
 '--------------------------------------------------------------------
-' ƒf[ƒ^ˆó‚Ì”‚ğæ“¾
+' ãƒ‡ãƒ¼ã‚¿å°ã®æ•°ã‚’å–å¾—
 '--------------------------------------------------------------------
  Sub stampGetItemCount(control As IRibbonControl, ByRef count)
 
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
     Dim col As Collection
     
     Set col = getProperty()
@@ -754,7 +754,7 @@ Public Sub GetSizeLabel(control As IRibbonControl, ByRef lbl)
 
 End Sub
 '--------------------------------------------------------------------
-' ƒf[ƒ^ˆó‚ÌID‚ğæ“¾
+' ãƒ‡ãƒ¼ã‚¿å°ã®IDã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub stampGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
@@ -762,7 +762,7 @@ Sub stampGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
 End Sub
 '--------------------------------------------------------------------
-' ƒf[ƒ^ˆó‚ÌƒCƒ[ƒW‚ğæ“¾
+' ãƒ‡ãƒ¼ã‚¿å°ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub stampGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
 
@@ -770,7 +770,7 @@ Sub stampGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
     
 End Sub
 '--------------------------------------------------------------------
-' ƒf[ƒ^ˆó‰Ÿ‰ºƒCƒxƒ“ƒg
+' ãƒ‡ãƒ¼ã‚¿å°æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Public Sub stampOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
@@ -779,11 +779,11 @@ Public Sub stampOnAction(control As IRibbonControl, selectedId As String, select
 
 End Sub
 '--------------------------------------------------------------------
-' ”Fˆó‚Ì”‚ğæ“¾
+' èªå°ã®æ•°ã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub stampMitomeGetItemCount(control As IRibbonControl, ByRef count)
 
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
     Dim col As Collection
     
     Set col = getPropertyMitome()
@@ -792,7 +792,7 @@ Sub stampMitomeGetItemCount(control As IRibbonControl, ByRef count)
 
 End Sub
 '--------------------------------------------------------------------
-' ”Fˆó‚ÌID‚ğæ“¾
+' èªå°ã®IDã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub stampMitomeGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
@@ -800,7 +800,7 @@ Sub stampMitomeGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
 End Sub
 '--------------------------------------------------------------------
-' ”FˆóƒCƒ[ƒWæ“¾
+' èªå°ã‚¤ãƒ¡ãƒ¼ã‚¸å–å¾—
 '--------------------------------------------------------------------
 Sub stampMitomeGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
     
@@ -808,7 +808,7 @@ Sub stampMitomeGetItemImage(control As IRibbonControl, Index As Integer, ByRef i
     
 End Sub
 '--------------------------------------------------------------------
-' ”Fˆó‰Ÿ‰ºƒCƒxƒ“ƒg
+' èªå°æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Public Sub stampMitomeOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
@@ -817,11 +817,11 @@ Public Sub stampMitomeOnAction(control As IRibbonControl, selectedId As String, 
 
 End Sub
 '--------------------------------------------------------------------
-'ƒrƒWƒlƒXˆó‚Ì”‚ğæ“¾
+'ãƒ“ã‚¸ãƒã‚¹å°ã®æ•°ã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub stampBzGetItemCount(control As IRibbonControl, ByRef count)
 
-    'İ’èî•ñæ“¾
+    'è¨­å®šæƒ…å ±å–å¾—
     Dim col As Collection
     
     Set col = getPropertyBz()
@@ -830,7 +830,7 @@ Sub stampBzGetItemCount(control As IRibbonControl, ByRef count)
 
 End Sub
 '--------------------------------------------------------------------
-' ƒrƒWƒlƒXˆó‚ÌID‚ğæ“¾
+' ãƒ“ã‚¸ãƒã‚¹å°ã®IDã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub stampBzGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
@@ -838,7 +838,7 @@ Sub stampBzGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
 End Sub
 '--------------------------------------------------------------------
-' ƒrƒWƒlƒXˆóƒCƒ[ƒWæ“¾
+' ãƒ“ã‚¸ãƒã‚¹å°ã‚¤ãƒ¡ãƒ¼ã‚¸å–å¾—
 '--------------------------------------------------------------------
 Sub stampBzGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
 
@@ -846,7 +846,7 @@ Sub stampBzGetItemImage(control As IRibbonControl, Index As Integer, ByRef image
     
 End Sub
 '--------------------------------------------------------------------
-' ƒrƒWƒlƒXˆó‰Ÿ‰ºƒCƒxƒ“ƒg
+' ãƒ“ã‚¸ãƒã‚¹å°æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Public Sub stampBzOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
@@ -859,7 +859,7 @@ Sub GetItemSuperTip(control As IRibbonControl, Index As Integer, ByRef screen)
 
 End Sub
 '--------------------------------------------------------------------
-'  ‚³‚­‚çˆó‚Ì”‚ğæ“¾
+'  ã•ãã‚‰å°ã®æ•°ã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub sakuraGetItemCount(control As IRibbonControl, ByRef count)
 
@@ -867,7 +867,7 @@ Sub sakuraGetItemCount(control As IRibbonControl, ByRef count)
 
 End Sub
 '--------------------------------------------------------------------
-'  ‚³‚­‚çˆó‚ÌID‚ğæ“¾
+'  ã•ãã‚‰å°ã®IDã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub sakuraGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
@@ -875,7 +875,7 @@ Sub sakuraGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
 End Sub
 '--------------------------------------------------------------------
-'  ‚³‚­‚çˆóƒCƒ[ƒWæ“¾
+'  ã•ãã‚‰å°ã‚¤ãƒ¡ãƒ¼ã‚¸å–å¾—
 '--------------------------------------------------------------------
 Sub sakuraGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
 
@@ -883,7 +883,7 @@ Sub sakuraGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
     
 End Sub
 '--------------------------------------------------------------------
-'  ‚³‚­‚çˆó‰Ÿ‰ºƒCƒxƒ“ƒg
+'  ã•ãã‚‰å°æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Public Sub sakuraOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
@@ -892,7 +892,7 @@ Public Sub sakuraOnAction(control As IRibbonControl, selectedId As String, selec
 End Sub
 
 '--------------------------------------------------------------------
-'  •tâ³‚Ì”‚ğæ“¾
+'  ä»˜ç®‹ã®æ•°ã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub fusenGetItemCount(control As IRibbonControl, ByRef count)
 
@@ -900,7 +900,7 @@ Sub fusenGetItemCount(control As IRibbonControl, ByRef count)
 
 End Sub
 '--------------------------------------------------------------------
-'  •tâ³‚ÌID‚ğæ“¾
+'  ä»˜ç®‹ã®IDã‚’å–å¾—
 '--------------------------------------------------------------------
 Sub fusenGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
@@ -908,7 +908,7 @@ Sub fusenGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
 End Sub
 '--------------------------------------------------------------------
-'  •tâ³ƒCƒ[ƒWæ“¾
+'  ä»˜ç®‹ã‚¤ãƒ¡ãƒ¼ã‚¸å–å¾—
 '--------------------------------------------------------------------
 Sub fusenGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
 
@@ -916,7 +916,7 @@ Sub fusenGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
     
 End Sub
 '--------------------------------------------------------------------
-'  •tâ³‰Ÿ‰ºƒCƒxƒ“ƒg
+'  ä»˜ç®‹æŠ¼ä¸‹æ™‚ã‚¤ãƒ™ãƒ³ãƒˆ
 '--------------------------------------------------------------------
 Public Sub fusenOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
@@ -924,7 +924,7 @@ Public Sub fusenOnAction(control As IRibbonControl, selectedId As String, select
 
 End Sub
 '--------------------------------------------------------------------
-'  ƒXƒNƒVƒ‡ƒ‚[ƒhİ’è‚ÌEnabled/Disabled
+'  ã‚¹ã‚¯ã‚·ãƒ§ãƒ¢ãƒ¼ãƒ‰è¨­å®šã®Enabled/Disabled
 '--------------------------------------------------------------------
 Sub getScreenShotEnabled(control As IRibbonControl, ByRef enabled)
 
@@ -937,7 +937,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'  \šƒJ[ƒ\ƒ‹İ’è‚ÌEnabled/Disabled
+'  åå­—ã‚«ãƒ¼ã‚½ãƒ«è¨­å®šã®Enabled/Disabled
 '--------------------------------------------------------------------
 Sub getCrossEnabled(control As IRibbonControl, ByRef enabled)
 
@@ -950,7 +950,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
-'  ƒzƒC[ƒ‹—Êİ’è‚ÌEnabled/Disabled
+'  ãƒ›ã‚¤ãƒ¼ãƒ«é‡è¨­å®šã®Enabled/Disabled
 '--------------------------------------------------------------------
 Sub getScrollEnabled(control As IRibbonControl, ByRef enabled)
 

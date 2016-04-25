@@ -38,13 +38,13 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' ƒƒ“ƒo•Ï”éŒ¾•”(UOC)
+' ãƒ¡ãƒ³ãƒå¤‰æ•°å®£è¨€éƒ¨(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private mlngMax As Long
 Private mlngMatch As Long
@@ -53,13 +53,13 @@ Private mobjCol As Collection
 Private mobjDel As Range
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -72,13 +72,13 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘Oˆ—(UOC)
+' å‰å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
 
     On Error GoTo e
     
-    'ƒƒ“ƒo•Ï”‚Ì‰Šú‰»
+    'ãƒ¡ãƒ³ãƒå¤‰æ•°ã®åˆæœŸåŒ–
     Set mobjCol = New Collection
     mlngMax = 0
     mlngMatch = 0
@@ -90,7 +90,7 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' Žåˆ—(UOC)
+' ä¸»å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
         
@@ -106,7 +106,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         Exit Sub
     End If
 
-    'ƒRƒŒƒNƒVƒ‡ƒ““à‚Éˆê’v‚·‚é‚à‚Ì‚ª‚ ‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+    'ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³å†…ã«ä¸€è‡´ã™ã‚‹ã‚‚ã®ãŒã‚ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
     blnMatch = False
     
     err.Clear
@@ -120,7 +120,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         blnMatch = True
     End If
     
-    'ˆê’v‚·‚é‚à‚Ì‚ª‚P‚Â‚Å‚à‘¶Ý‚µ‚½ê‡
+    'ä¸€è‡´ã™ã‚‹ã‚‚ã®ãŒï¼‘ã¤ã§ã‚‚å­˜åœ¨ã—ãŸå ´åˆ
     If blnMatch Then
         mlngMatch = mlngMatch + 1
         If mobjDel Is Nothing Then
@@ -129,7 +129,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
             Set mobjDel = Union(mobjDel, r)
         End If
     Else
-        '‘¶Ý‚µ‚È‚¢ê‡ƒRƒŒƒNƒVƒ‡ƒ“‚É’Ç‰Á
+        'å­˜åœ¨ã—ãªã„å ´åˆã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ 
         mlngMax = mlngMax + 1
         Call mobjCol.Add(r, CStr(r.value))
     End If
@@ -140,22 +140,22 @@ e:
     Cancel = True
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' I—¹ˆ—(UOC)
+' çµ‚äº†å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionTerm()
     
     On Error GoTo e
     
-    'd•¡‚µ‚½ƒZƒ‹‚ðíœ
+    'é‡è¤‡ã—ãŸã‚»ãƒ«ã‚’å‰Šé™¤
     If mobjDel Is Nothing Then
     Else
         mobjDel.Delete xlUp
     End If
 
     If mlngMatch > 0 Then
-        MsgBox mlngMatch & " ŒÂ íœ‚µ‚Ü‚µ‚½BŠm”F‚µ‚Ä‚­‚¾‚³‚¢B", vbExclamation, C_TITLE
+        MsgBox mlngMatch & " å€‹ å‰Šé™¤ã—ã¾ã—ãŸã€‚ç¢ºèªã—ã¦ãã ã•ã„ã€‚", vbExclamation, C_TITLE
     Else
-        MsgBox "ˆê’v‚·‚é‚à‚Ì‚Í‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½B", vbInformation, C_TITLE
+        MsgBox "ä¸€è‡´ã™ã‚‹ã‚‚ã®ã¯ã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚", vbInformation, C_TITLE
     End If
     
     Exit Sub

@@ -30,7 +30,7 @@ Attribute VB_Name = "basResize"
 '-----------------------------------------------------------------------------------------------------
 Option Private Module
 
-'Windows APIéŒ¾
+'Windows APIå®£è¨€
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hwnd As LongPtr, ByVal nIndex As Long) As LongPtr
     Private Declare PtrSafe Function SetWindowLong Lib "user32" Alias "SetWindowLongPtrA" (ByVal hwnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As LongPtr) As LongPtr
@@ -60,11 +60,11 @@ Private Const SWP_NOSIZE As Long = &H1&
 Private Const SWP_NOMOVE As Long = &H2&
 Private Const GWL_STYLE As Long = (-16)
 Private Const WS_THICKFRAME As Long = &H40000
-Private Const WS_SYSMENU = &H80000      'Å‘å‰»^Å¬‰»^Á‹ƒ{ƒ^ƒ“‚È‚Ç‘S‚Ä
-Private Const WS_MINIMIZEBOX = &H20000  'Å¬‰»ƒ{ƒ^ƒ“
-Private Const WS_MAXIMIZEBOX = &H10000  'Å‘å‰»ƒ{ƒ^ƒ“
+Private Const WS_SYSMENU = &H80000      'æœ€å¤§åŒ–ï¼æœ€å°åŒ–ï¼æ¶ˆå»ãƒœã‚¿ãƒ³ãªã©å…¨ã¦
+Private Const WS_MINIMIZEBOX = &H20000  'æœ€å°åŒ–ãƒœã‚¿ãƒ³
+Private Const WS_MAXIMIZEBOX = &H10000  'æœ€å¤§åŒ–ãƒœã‚¿ãƒ³
 '--------------------------------------------------------------
-' ƒtƒH[ƒ€‚ğƒŠƒTƒCƒY‰Â”\‚É‚·‚é‚½‚ß‚Ìİ’è
+' ãƒ•ã‚©ãƒ¼ãƒ ã‚’ãƒªã‚µã‚¤ã‚ºå¯èƒ½ã«ã™ã‚‹ãŸã‚ã®è¨­å®š
 '--------------------------------------------------------------
 Public Sub FormResize()
 #If VBA7 And Win64 Then

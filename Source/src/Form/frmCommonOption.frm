@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCommonOption 
-   Caption         =   "RelaxTools‹¤’Êİ’è"
+   Caption         =   "RelaxToolså…±é€šè¨­å®š"
    ClientHeight    =   7410
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   6525
    OleObjectBlob   =   "frmCommonOption.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmCommonOption"
 Attribute VB_GlobalNameSpace = False
@@ -70,20 +70,20 @@ Private Sub UserForm_Initialize()
     chkNotHoldFormat.value = CBool(GetSetting(C_TITLE, "Option", "NotHoldFormat", False))
     
     strBuf = ""
-    strBuf = strBuf & "EƒZƒ‹‚ÌÅŒã‚É•¶š—ñ‘}“ü" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚Ìæ“ª‚É•¶š—ñ‘}“ü" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚Ìn•¶š–Ú‚É•¶š—ñ‘}“ü" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚Ìæ“ª‚©‚çn•¶šíœ" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚ÌÅŒã‚©‚çn•¶šíœ" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚Ìw’è•¶š‚©‚ç¶‘¤‚ğíœ" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚Ìw’è•¶š‚©‚ç‰E‘¤‚ğíœ" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚Ìn•¶š–ÚˆÈ‘Oíœ" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚Ìn•¶š–ÚˆÈ~íœ" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚Ì‚·‚×‚Ä‚Ì‰üs‚ğíœ" & vbCrLf
-    strBuf = strBuf & "E‰E1Œ…íœ" & vbCrLf
-    strBuf = strBuf & "E¶1Œ…íœ" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚ÌÅŒã‚É‰üs‚ğ’Ç‰Á" & vbCrLf
-    strBuf = strBuf & "EƒZƒ‹‚ÌÅŒã‚Ì‰üs‚ğíœ" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®æœ€å¾Œã«æ–‡å­—åˆ—æŒ¿å…¥" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®å…ˆé ­ã«æ–‡å­—åˆ—æŒ¿å…¥" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®næ–‡å­—ç›®ã«æ–‡å­—åˆ—æŒ¿å…¥" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®å…ˆé ­ã‹ã‚‰næ–‡å­—å‰Šé™¤" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®æœ€å¾Œã‹ã‚‰næ–‡å­—å‰Šé™¤" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®æŒ‡å®šæ–‡å­—ã‹ã‚‰å·¦å´ã‚’å‰Šé™¤" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®æŒ‡å®šæ–‡å­—ã‹ã‚‰å³å´ã‚’å‰Šé™¤" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®næ–‡å­—ç›®ä»¥å‰å‰Šé™¤" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®næ–‡å­—ç›®ä»¥é™å‰Šé™¤" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®ã™ã¹ã¦ã®æ”¹è¡Œã‚’å‰Šé™¤" & vbCrLf
+    strBuf = strBuf & "ãƒ»å³1æ¡å‰Šé™¤" & vbCrLf
+    strBuf = strBuf & "ãƒ»å·¦1æ¡å‰Šé™¤" & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®æœ€å¾Œã«æ”¹è¡Œã‚’è¿½åŠ " & vbCrLf
+    strBuf = strBuf & "ãƒ»ã‚»ãƒ«ã®æœ€å¾Œã®æ”¹è¡Œã‚’å‰Šé™¤" & vbCrLf
     
     lblTaisho.Caption = strBuf
     

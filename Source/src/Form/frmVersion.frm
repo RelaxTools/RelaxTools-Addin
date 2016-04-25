@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmVersion 
-   Caption         =   "ƒo[ƒWƒ‡ƒ“î•ñ"
+   Caption         =   "ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±"
    ClientHeight    =   6180
    ClientLeft      =   45
    ClientTop       =   375
    ClientWidth     =   10245
    OleObjectBlob   =   "frmVersion.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmVersion"
 Attribute VB_GlobalNameSpace = False
@@ -134,9 +134,9 @@ Private Sub UserForm_Initialize()
 '
 '    Select Case Val(Application.Version)
 '        Case Is = 0
-'            strBuf = strBuf & "•s–¾"
+'            strBuf = strBuf & "ä¸æ˜"
 '        Case Is <= 11
-'            strBuf = strBuf & "2003ˆÈ‘O"
+'            strBuf = strBuf & "2003ä»¥å‰"
 '        Case 12
 '            strBuf = strBuf & "2007"
 '        Case 14
@@ -146,7 +146,7 @@ Private Sub UserForm_Initialize()
 '        Case 16
 '            strBuf = strBuf & "2016"
 '        Case Else
-'            strBuf = strBuf & "2013‚æ‚è–¢—ˆ‚Ìƒo[ƒWƒ‡ƒ“"
+'            strBuf = strBuf & "2013ã‚ˆã‚Šæœªæ¥ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³"
 '    End Select
 '    strBuf = strBuf & " Build " & Application.Build
 '#If Win64 Then
@@ -218,7 +218,7 @@ Private Function Isx64() As Boolean
     Dim itm As Object
     Dim ret As Boolean
 
-    ret = False '‰Šú‰»
+    ret = False 'åˆæœŸåŒ–
 
     Set colItems = CreateObject("WbemScripting.SWbemLocator").ConnectServer.ExecQuery("Select * From Win32_OperatingSystem")
 

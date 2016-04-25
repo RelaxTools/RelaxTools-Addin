@@ -93,7 +93,7 @@ Public Function ComputeHash(ByRef bytBuf() As Byte) As String
     
     Exit Function
 e:
-    ComputeHash = "*¶¬•s‰Â*"
+    ComputeHash = "*ç”Ÿæˆä¸å¯*"
     
 End Function
 

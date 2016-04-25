@@ -1,12 +1,12 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCombo 
-   Caption         =   "‚Ü‚Æ‚ßÀs"
+   Caption         =   "ã¾ã¨ã‚å®Ÿè¡Œ"
    ClientHeight    =   6840
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   9090
    OleObjectBlob   =   "frmCombo.frx":0000
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmCombo"
 Attribute VB_GlobalNameSpace = False
@@ -150,19 +150,19 @@ End Sub
 
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğã‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸Šã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdUp_Click()
      Call moveList(C_UP)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ‘I‘ğs‚ğ‰º‚ÉˆÚ“®
+' é¸æŠè¡Œã‚’ä¸‹ã«ç§»å‹•
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdDown_Click()
      Call moveList(C_DOWN)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' ˆÚ“®ˆ—
+' ç§»å‹•å‡¦ç†
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub moveList(ByVal lngMode As Long)
 
@@ -175,7 +175,7 @@ Private Sub moveList(ByVal lngMode As Long)
     Dim lngEnd As Long
     Dim lngInc As Long
 
-    '‚P‚Â‚È‚ç•s—v
+    'ï¼‘ã¤ãªã‚‰ä¸è¦
     If lstCombo.ListCount <= 1 Then
         Exit Sub
     End If
@@ -194,7 +194,7 @@ Private Sub moveList(ByVal lngMode As Long)
     For lngCnt = lngStart To lngEnd Step lngInc
     
         If lstCombo.Selected(lngCnt) Then
-            '‘I‘ğ‚³‚ê‚½s‚ª‚·‚Å‚ÉŠJns‚Ìê‡ˆÚ“®•s‰Â
+            'é¸æŠã•ã‚ŒãŸè¡ŒãŒã™ã§ã«é–‹å§‹è¡Œã®å ´åˆç§»å‹•ä¸å¯
             If lngCnt = lngStart Then
                 Exit For
             End If
@@ -333,7 +333,7 @@ Private Sub cmdSave_Click()
     Next
 
 
-    'ƒVƒ‡[ƒgƒJƒbƒgƒL[‚Ì“o˜^
+    'ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã®ç™»éŒ²
     Call setShortCutKey
 
     Unload Me
@@ -358,11 +358,11 @@ Private Sub UserForm_Initialize()
     Dim strBefore As String
     strBefore = ""
     
-    cboCategory.AddItem "‚·‚×‚Ä"
-    'ƒ}ƒNƒƒV[ƒg‚Ìƒ[ƒh
+    cboCategory.AddItem "ã™ã¹ã¦"
+    'ãƒã‚¯ãƒ­ã‚·ãƒ¼ãƒˆã®ãƒ­ãƒ¼ãƒ‰
     Do Until WS.Cells(i, C_COM_NO).value = ""
 
-        If WS.Cells(i, C_COM_USE).value <> "|" And WS.Cells(i, C_COM_CATEGORY).value <> "‚Ü‚Æ‚ßÀs" Then
+        If WS.Cells(i, C_COM_USE).value <> "ï¼" And WS.Cells(i, C_COM_CATEGORY).value <> "ã¾ã¨ã‚å®Ÿè¡Œ" Then
             If WS.Cells(i, C_COM_CATEGORY).value <> strBefore Then
                 cboCategory.AddItem WS.Cells(i, C_COM_CATEGORY).value
                 strBefore = WS.Cells(i, C_COM_CATEGORY).value
@@ -383,7 +383,7 @@ Private Sub UserForm_Initialize()
         strResult = GetSetting(C_TITLE, "Combo", "ComboList" & (i + 1), "")
         
         lstSetting.AddItem
-        lstSetting.List(i, C_LST_NAME) = "‚Ü‚Æ‚ßÀs" & StrConv(i + 1, vbWide)
+        lstSetting.List(i, C_LST_NAME) = "ã¾ã¨ã‚å®Ÿè¡Œ" & StrConv(i + 1, vbWide)
         lstSetting.List(i, C_LST_DATA) = strResult
         
     Next
@@ -414,10 +414,10 @@ Sub dispCommand()
     
     lstCommand.Clear
 
-    'ƒ}ƒNƒƒV[ƒg‚Ìƒ[ƒh
+    'ãƒã‚¯ãƒ­ã‚·ãƒ¼ãƒˆã®ãƒ­ãƒ¼ãƒ‰
     Do Until WS.Cells(i, C_COM_NO).value = ""
         
-        If WS.Cells(i, C_COM_USE).value <> "|" And WS.Cells(i, C_COM_CATEGORY).value <> "‚Ü‚Æ‚ßÀs" Then
+        If WS.Cells(i, C_COM_USE).value <> "ï¼" And WS.Cells(i, C_COM_CATEGORY).value <> "ã¾ã¨ã‚å®Ÿè¡Œ" Then
             If (cboCategory.ListIndex = 0 Or cboCategory.Text = WS.Cells(i, C_COM_CATEGORY).value) And (txtKinou.Text = "" Or InStr(WS.Cells(i, C_COM_DISP_NAME).value, txtKinou.Text) > 0) Then
                 lstCommand.AddItem ""
                 lstCommand.List(j, C_SET_NO) = j + 1

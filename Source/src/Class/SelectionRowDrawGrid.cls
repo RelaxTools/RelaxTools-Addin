@@ -38,13 +38,13 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionRowFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' ƒƒ“ƒo•Ï”éŒ¾•”(UOC)
+' ãƒ¡ãƒ³ãƒå¤‰æ•°å®£è¨€éƒ¨(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private mrngEven As Range
 Private mrngOdd As Range
@@ -61,16 +61,16 @@ Private mblnHogan As Boolean
 
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
-    'ƒfƒtƒHƒ‹ƒg‚Ps
+    'ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼‘è¡Œ
     mlngHead = 1
     mlngCol = 0
     Set SFWork = New SelectionRowFrameWork
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -83,7 +83,7 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‰Šúˆ—(UOC)
+' åˆæœŸå‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(rArea As Areas, Cancel As Boolean, Undo As Boolean)
     
@@ -125,7 +125,7 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‘Oˆ—(UOC)
+' å‰å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionBegin(rArea As Range, Cancel As Boolean)
 
@@ -136,7 +136,7 @@ Private Sub SFWork_SelectionBegin(rArea As Range, Cancel As Boolean)
     
     rArea.Interior.Color = xlNone
 
-    ''ŠOŽü‚Ìü‚ðˆø‚­
+    ''å¤–å‘¨ã®ç·šã‚’å¼•ã
     With rArea.Borders(xlEdgeLeft)
         .LineStyle = xlContinuous
         .Weight = xlThin
@@ -161,7 +161,7 @@ Private Sub SFWork_SelectionBegin(rArea As Range, Cancel As Boolean)
     lngRows = rArea.Rows.count
     lngCols = rArea.Columns.count
         
-    ''“à•”cü
+    ''å†…éƒ¨ç¸¦ç·š
     If lngCols > 1 Then
         If mblnHogan Then
         
@@ -198,7 +198,7 @@ Private Sub SFWork_SelectionBegin(rArea As Range, Cancel As Boolean)
             End With
         End If
     End If
-    ''“à•”‰¡ü
+    ''å†…éƒ¨æ¨ªç·š
     If lngRows > 1 Then
         With rArea.Borders(xlInsideHorizontal)
             .LineStyle = xlContinuous
@@ -207,7 +207,7 @@ Private Sub SFWork_SelectionBegin(rArea As Range, Cancel As Boolean)
         End With
     End If
     
-    ''“à•”‰¡ü
+    ''å†…éƒ¨æ¨ªç·š
     If lngRows > mlngHead + 1 Then
 
         Dim r As Range
@@ -220,7 +220,7 @@ Private Sub SFWork_SelectionBegin(rArea As Range, Cancel As Boolean)
         End With
     End If
     
-    'ƒwƒbƒ_
+    'ãƒ˜ãƒƒãƒ€
     If mlngHead = 0 Then
     Else
         If lngRows < mlngHead Then
@@ -259,7 +259,7 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' Žåˆ—(UOC)
+' ä¸»å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolean)
         
@@ -295,13 +295,13 @@ e:
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' Œãˆ—(UOC)
+' å¾Œå‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionFinal(rArea As Range)
     
     On Error GoTo e
     
-    '‹ô”ƒ‰ƒCƒ“
+    'å¶æ•°ãƒ©ã‚¤ãƒ³
     If mrngEven Is Nothing Then
     Else
         With mrngEven.Interior
@@ -315,7 +315,7 @@ Private Sub SFWork_SelectionFinal(rArea As Range)
     End If
     Set mrngEven = Nothing
     
-    'Šï”ƒ‰ƒCƒ“
+    'å¥‡æ•°ãƒ©ã‚¤ãƒ³
     If mrngOdd Is Nothing Then
     Else
         With mrngOdd.Interior
@@ -333,7 +333,7 @@ Private Sub SFWork_SelectionFinal(rArea As Range)
     
     Dim r As Range
     
-    '—ñƒwƒbƒ_
+    'åˆ—ãƒ˜ãƒƒãƒ€
     If mlngCol = 0 Then
     Else
         If lngCols < mlngCol Then

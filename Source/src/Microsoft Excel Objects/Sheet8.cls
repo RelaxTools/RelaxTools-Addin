@@ -46,7 +46,7 @@ Sub reboot()
     err.Clear
     On Error Resume Next
     
-    If MsgBox("RelaxTools‚ğÄ‹N“®‚µ‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
+    If MsgBox("RelaxToolsã‚’å†èµ·å‹•ã—ã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
         Exit Sub
     End If
 
@@ -61,7 +61,7 @@ Sub reboot()
     Next
 
     If err.Number <> 0 Then
-        MsgBox "Ä‹N“®’†‚ÉƒGƒ‰[‚ª‚ ‚è‚Ü‚µ‚½BExcel©‘Ì‚ÌÄ‹N“®‚ª•K—v‚Èê‡‚ª‚ ‚è‚Ü‚·B", vbExclamation + vbOKOnly, "RelaxTools-Addin"
+        MsgBox "å†èµ·å‹•ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒã‚ã‚Šã¾ã—ãŸã€‚Excelè‡ªä½“ã®å†èµ·å‹•ãŒå¿…è¦ãªå ´åˆãŒã‚ã‚Šã¾ã™ã€‚", vbExclamation + vbOKOnly, "RelaxTools-Addin"
     End If
 
 End Sub
@@ -72,7 +72,7 @@ Sub RelaxInit()
     err.Clear
     On Error Resume Next
 
-    If MsgBox("RelaxTools‚Ìİ’è‚ğ‰Šú‰»‚µ‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
+    If MsgBox("RelaxToolsã®è¨­å®šã‚’åˆæœŸåŒ–ã—ã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
         Exit Sub
     End If
     
@@ -91,7 +91,7 @@ Sub RelaxInit()
     Next
 
     If err.Number <> 0 Then
-        MsgBox "‰Šú‰»’†‚ÉƒGƒ‰[‚ª‚ ‚è‚Ü‚µ‚½BExcel©‘Ì‚ÌÄ‹N“®‚ª•K—v‚Èê‡‚ª‚ ‚è‚Ü‚·B", vbExclamation + vbOKOnly, "RelaxTools-Addin"
+        MsgBox "åˆæœŸåŒ–ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒã‚ã‚Šã¾ã—ãŸã€‚Excelè‡ªä½“ã®å†èµ·å‹•ãŒå¿…è¦ãªå ´åˆãŒã‚ã‚Šã¾ã™ã€‚", vbExclamation + vbOKOnly, "RelaxTools-Addin"
     End If
 
 End Sub
@@ -101,7 +101,7 @@ Sub RelaxUninstall()
     
     On Error GoTo e
     
-    If MsgBox("RelaxTools‚ğƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚µ‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©H", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
+    If MsgBox("RelaxToolsã‚’ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
         Exit Sub
     End If
 
@@ -116,9 +116,9 @@ Sub RelaxUninstall()
     Next
 
     DeleteSetting "RelaxTools"
-    MsgBox "³í‚ÉƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ü‚µ‚½B", vbInformation + vbOKOnly, "RelaxTools-Addin"
+    MsgBox "æ­£å¸¸ã«ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¾ã—ãŸã€‚", vbInformation + vbOKOnly, "RelaxTools-Addin"
     Exit Sub
 e:
-    MsgBox "ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ª³í‚És‚í‚ê‚Ü‚¹‚ñ‚Å‚µ‚½B", vbCritical + vbOKOnly, "RelaxTools-Addin"
+    MsgBox "ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãŒæ­£å¸¸ã«è¡Œã‚ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚", vbCritical + vbOKOnly, "RelaxTools-Addin"
     
 End Sub

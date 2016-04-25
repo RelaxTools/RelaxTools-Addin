@@ -37,16 +37,16 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private Const C_SECTION_REGEXP As String = "^ëÊ[0-9]+êﬂ[ ]"
+Private Const C_SECTION_REGEXP As String = "^Á¨¨[0-9]+ÁØÄ[ ]"
 Private Const C_SECTION_SEPARATER As String = " "
-Private Const C_SECTION_NAME As String = "ëÊ1êﬂ, ëÊ2êﬂ, ëÊ3êﬂ ••• Åá"
+Private Const C_SECTION_NAME As String = "Á¨¨1ÁØÄ, Á¨¨2ÁØÄ, Á¨¨3ÁØÄ ÔΩ•ÔΩ•ÔΩ• ‚àû"
 Private Const C_SECTION_CLASS As String = "SecNum1E"
 Public Property Get Class() As String
     Class = C_SECTION_CLASS
 End Property
 Public Function SectionLevelName(ByVal lngLevel As Long) As String
     
-    SectionLevelName = " ëÊ1êﬂ ÑüÑüÑüÑü"
+    SectionLevelName = " Á¨¨1ÁØÄ ‚îÄ‚îÄ‚îÄ‚îÄ"
 
 End Function
 Public Property Get SectionName() As String
@@ -90,9 +90,9 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngFromLevel As Long, By
     strNumber = Trim(SectionNumber(v))
     
     If strNumber = "" Or lngFromLevel <> lngIndentLevel Then
-        strNewNum = "ëÊ1êﬂ" & C_SECTION_SEPARATER
+        strNewNum = "Á¨¨1ÁØÄ" & C_SECTION_SEPARATER
     Else
-        strNewNum = "ëÊ" & CStr(Val(Replace(Replace(strNumber, "ëÊ", ""), "êﬂ", "")) + 1) & "êﬂ" & C_SECTION_SEPARATER
+        strNewNum = "Á¨¨" & CStr(Val(Replace(Replace(strNumber, "Á¨¨", ""), "ÁØÄ", "")) + 1) & "ÁØÄ" & C_SECTION_SEPARATER
     End If
     
     NextNumber = strNewNum

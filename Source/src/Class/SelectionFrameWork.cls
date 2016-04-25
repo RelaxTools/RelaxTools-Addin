@@ -39,17 +39,17 @@ Attribute VB_Exposed = False
 '--------------------------------------------------------------
 ' SelectionFrameWork 1.00 2011/07/22 Y.Watanabe
 '--------------------------------------------------------------
-' Selection‚ÉŠÜ‚Ü‚ê‚éCell‚Ì”‚¾‚¯ˆ—‚ğs‚¤ƒtƒŒ[ƒ€ƒ[ƒN
+' Selectionã«å«ã¾ã‚Œã‚‹Cellã®æ•°ã ã‘å‡¦ç†ã‚’è¡Œã†ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
 '--------------------------------------------------------------
 Option Explicit
 
-'‰Šú‰»ƒCƒxƒ“ƒg
+'åˆæœŸåŒ–ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionInit(ByRef Cancel As Boolean, ByRef Undo As Boolean, ByRef Func As Boolean)
-'ƒƒCƒ“ƒCƒxƒ“ƒg
+'ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionMain(ByRef r As Range, ByVal NotHoldFormat As Boolean, ByRef Cancel As Boolean)
-'ƒƒCƒ“ƒCƒxƒ“ƒg(Shape)
+'ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ(Shape)
 Public Event SelectionMainShape(ByRef r As Shape, ByVal NotHoldFormat As Boolean, ByRef Cancel As Boolean)
-'I—¹ƒCƒxƒ“ƒg
+'çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆ
 Public Event SelectionTerm()
 
 Private mblnNotHoldFormat As Boolean
@@ -57,7 +57,7 @@ Private mblnNotHoldFormat As Boolean
 Public Sub Run()
     Logger.LogTrace TypeName(Me) & ".Run"
 
-    '•Ï”éŒ¾
+    'å¤‰æ•°å®£è¨€
     Dim r As Range
     Dim Cancel As Boolean
     Dim Undo As Boolean
@@ -69,19 +69,19 @@ Public Sub Run()
     
     On Error GoTo ErrHandle
     
-    'ƒLƒƒƒ“ƒZƒ‹‚Ì‰Šú‰»
+    'ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®åˆæœŸåŒ–
     Cancel = False
     
-    'Undo‚Ì‰Šú‰»
+    'Undoã®åˆæœŸåŒ–
     Undo = False
     
-    '®‚É‘Î‚µ‚Ä‚àˆ—‚ğs‚¤‚©H
+    'å¼ã«å¯¾ã—ã¦ã‚‚å‡¦ç†ã‚’è¡Œã†ã‹ï¼Ÿ
     Func = False
     
     '
     mblnNotHoldFormat = CBool(GetSetting(C_TITLE, "Option", "NotHoldFormat", False))
     
-    'Selectioni’»ƒo[
+    'Selectioné€²æ—ãƒãƒ¼
     Dim objStatus As SelectionStatusBar
     
     Dim blnRange As Boolean
@@ -101,11 +101,11 @@ Public Sub Run()
     End Select
     If blnRange Or blnObject Then
     Else
-        MsgBox "‘I‘ğ”ÍˆÍ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB", vbCritical, C_TITLE
+        MsgBox "é¸æŠç¯„å›²ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚", vbCritical, C_TITLE
         Exit Sub
     End If
     
-    'Shepe‚Ìê‡‚ÌÀsˆ—
+    'Shepeã®å ´åˆã®å®Ÿè¡Œå‡¦ç†
     If blnObject Then
         If Selection.ShapeRange.count > 0 Then
         
@@ -136,38 +136,38 @@ Public Sub Run()
         End If
     End If
     
-    'g‚í‚ê‚Ä‚¢‚éƒZƒ‹‚ÆŒ»İ‘I‘ğƒZƒ‹‚ÌAND•”•ª‚Ì‚İˆ—‚·‚éB
+    'ä½¿ã‚ã‚Œã¦ã„ã‚‹ã‚»ãƒ«ã¨ç¾åœ¨é¸æŠã‚»ãƒ«ã®ANDéƒ¨åˆ†ã®ã¿å‡¦ç†ã™ã‚‹ã€‚
     Set a = Intersect(ActiveSheet.UsedRange, Selection)
     
-    'd•¡‚·‚é‘I‘ğ‚ª–³‚¢ê‡I—¹B
+    'é‡è¤‡ã™ã‚‹é¸æŠãŒç„¡ã„å ´åˆçµ‚äº†ã€‚
     If a Is Nothing Then
         Exit Sub
     End If
     
     Dim ret As VbMsgBoxResult
     If a.CountLarge > C_MAX_CELLS Then
-        ret = MsgBox("‘å—Ê‚ÌƒZƒ‹‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚·Bˆ—‚ÉŠÔ‚ª‚©‚©‚é•Œ³‚É–ß‚¹‚Ü‚¹‚ñ‚ª‘±s‚µ‚Ü‚·‚©H", vbInformation + vbOKCancel + vbDefaultButton2, C_TITLE)
+        ret = MsgBox("å¤§é‡ã®ã‚»ãƒ«ãŒé¸æŠã•ã‚Œã¦ã„ã¾ã™ã€‚å‡¦ç†ã«æ™‚é–“ãŒã‹ã‹ã‚‹ï¼†å…ƒã«æˆ»ã›ã¾ã›ã‚“ãŒç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ", vbInformation + vbOKCancel + vbDefaultButton2, C_TITLE)
         If ret = vbCancel Then
             Exit Sub
         End If
     End If
 
     '---------------------------
-    '‰Šú‰»ƒCƒxƒ“ƒg
+    'åˆæœŸåŒ–ã‚¤ãƒ™ãƒ³ãƒˆ
     '---------------------------
     RaiseEvent SelectionInit(Cancel, Undo, Func)
     
-    'ƒLƒƒƒ“ƒZƒ‹‚Ìê‡
+    'ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®å ´åˆ
     If Cancel Then
         Exit Sub
     End If
     
-    '‘å—ÊƒZƒ‹‚Ìê‡UNDO•s‰Â
+    'å¤§é‡ã‚»ãƒ«ã®å ´åˆUNDOä¸å¯
     If ret = vbOK Then
         Undo = False
     End If
 
-    'Undo‚Ìê‡
+    'Undoã®å ´åˆ
     If Undo Then
     
         ThisWorkbook.Worksheets("Undo").Cells.Clear
@@ -182,7 +182,7 @@ Public Sub Run()
     
     End If
 
-    'Selectioni’»ƒo[Instance‰»
+    'Selectioné€²æ—ãƒãƒ¼InstanceåŒ–
     Set objStatus = New SelectionStatusBar
     
     objStatus.MaxItems = a.count
@@ -193,12 +193,12 @@ Public Sub Run()
     Application.ScreenUpdating = False
     For Each r In a
     
-        ''ƒtƒBƒ‹ƒ^‚¨‚æ‚Ñ”ñ•\¦‘ÎôB
+        ''ãƒ•ã‚£ãƒ«ã‚¿ãŠã‚ˆã³éè¡¨ç¤ºå¯¾ç­–ã€‚
         If r.Rows.Hidden Or r.Columns.Hidden Then
-            'ƒtƒBƒ‹ƒ^‚Ü‚½‚Í”ñ•\¦‚ÌsE—ñ‚Ìˆ—‚Ís‚í‚È‚¢B
+            'ãƒ•ã‚£ãƒ«ã‚¿ã¾ãŸã¯éè¡¨ç¤ºã®è¡Œãƒ»åˆ—ã®å‡¦ç†ã¯è¡Œã‚ãªã„ã€‚
         Else
             
-            'ƒ}[ƒWƒZƒ‹‘Îô
+            'ãƒãƒ¼ã‚¸ã‚»ãƒ«å¯¾ç­–
             strAddress = r.MergeArea(1, 1).Address
             Dim e As Range
             
@@ -208,11 +208,11 @@ Public Sub Run()
             
             On Error GoTo 0
             
-            'ƒAƒhƒŒƒX‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢ê‡ƒCƒxƒ“ƒg‚ğ‹N‚±‚·
+            'ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„å ´åˆã‚¤ãƒ™ãƒ³ãƒˆã‚’èµ·ã“ã™
             If err.Number = 0 And Not (e Is Nothing) Then
             Else
                 '---------------------------
-                'ƒƒCƒ“ƒCƒxƒ“ƒg
+                'ãƒ¡ã‚¤ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
                 '---------------------------
                 If IsEmpty(r.value) Or IsError(r.value) Or (Not Func And r.HasFormula) Then
                 Else
@@ -227,18 +227,18 @@ Public Sub Run()
             
         End If
         
-        'Selectioni’»ƒo[‚ÌXV
+        'Selectioné€²æ—ãƒãƒ¼ã®æ›´æ–°
         objStatus.Refresh
     Next
     Application.ScreenUpdating = True
     
-    'Selectioni’»ƒo[‚ÌDispose
+    'Selectioné€²æ—ãƒãƒ¼ã®Dispose
     objStatus.Dispose
     
     Set objStatus = Nothing
 
     '---------------------------
-    'I—¹ƒCƒxƒ“ƒg
+    'çµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆ
     '---------------------------
     Application.ScreenUpdating = False
     
@@ -257,7 +257,7 @@ ErrHandle:
     
 End Sub
 
-'Ä‹A‚É‚ÄƒOƒ‹[ƒvˆÈ‰º‚ÌƒVƒFƒCƒv‚ğŒŸõ
+'å†å¸°ã«ã¦ã‚°ãƒ«ãƒ¼ãƒ—ä»¥ä¸‹ã®ã‚·ã‚§ã‚¤ãƒ—ã‚’æ¤œç´¢
 Private Sub grouprc(ByRef objShape As Shape, ByRef Cancel As Boolean)
     
     Dim c As Shape

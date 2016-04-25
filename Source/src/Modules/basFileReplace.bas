@@ -32,7 +32,7 @@ Option Explicit
 Option Private Module
 
 '--------------------------------------------------------------
-'@ƒtƒ@ƒCƒ‹’uŠ·
+'ã€€ãƒ•ã‚¡ã‚¤ãƒ«ç½®æ›
 '--------------------------------------------------------------
 Sub replaceFiles()
 
@@ -62,22 +62,22 @@ Sub replaceFiles()
     
     Dim colResult As New Collection
    
-    Dim blnStatusBar As Boolean ''i’»ƒo[ó‘Ô‚ğ‹L‰¯
+    Dim blnStatusBar As Boolean ''é€²æ—ãƒãƒ¼çŠ¶æ…‹ã‚’è¨˜æ†¶
    
     Dim WS As Worksheet
     Set WS = ThisWorkbook.Worksheets("ReplaceFormat")
     
-    '©ƒuƒbƒN‚ÌƒtƒH[ƒ}ƒbƒg‚ÆƒAƒNƒeƒBƒu‚ÈƒV[ƒg‚ÌƒtƒH[ƒ}ƒbƒg‚ğ”äŠr
+    'è‡ªãƒ–ãƒƒã‚¯ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚·ãƒ¼ãƒˆã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æ¯”è¼ƒ
     If WS.Cells(C_ROW_VERSION, C_COL_NUM).value <> _
         ActiveSheet.Cells(C_ROW_VERSION, C_COL_NUM).value Then
-        If MsgBox("’è‹`ƒV[ƒg‚ªˆÙ‚È‚é‰Â”\«‚ª‚ ‚è‚Ü‚·‚ªA‘±s‚µ‚Ü‚·‚©H", vbOKCancel, "ƒtƒ@ƒCƒ‹“à•”’uŠ·") = vbCancel Then
+        If MsgBox("å®šç¾©ã‚·ãƒ¼ãƒˆãŒç•°ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ãŒã€ç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ", vbOKCancel, "ãƒ•ã‚¡ã‚¤ãƒ«å†…éƒ¨ç½®æ›") = vbCancel Then
             Exit Sub
         End If
     End If
     
     lngCnt = 0
 
-    ''İ’èƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+    ''è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
     Do Until Cells(lngCnt + C_ROW_DETAIL, C_COL_NUM).value = ""
         
         strkey = Cells(lngCnt + C_ROW_DETAIL, C_COL_SEARCH).value
@@ -97,32 +97,32 @@ Sub replaceFiles()
     Loop
         
         
-    'ƒtƒHƒ‹ƒ_–¼æ“¾
+    'ãƒ•ã‚©ãƒ«ãƒ€åå–å¾—
     strFolder = rlxSelectFolder()
     If strFolder = "" Then
-        'ƒLƒƒƒ“ƒZƒ‹
+        'ã‚­ãƒ£ãƒ³ã‚»ãƒ«
         Exit Sub
     End If
     
-    '''ƒXƒe[ƒ^ƒXƒo[‚Ìó‘Ô‚ğ‹L‰¯
+    '''ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã®çŠ¶æ…‹ã‚’è¨˜æ†¶
     blnStatusBar = Application.DisplayStatusBar
-    ''ƒXƒe[ƒ^ƒXƒo[‚ğ•\¦
+    ''ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã‚’è¡¨ç¤º
     Application.DisplayStatusBar = True
     
     Call reDir(strFolder, colParam, colResult)
 
     '''==================================================
-    '''ƒXƒe[ƒ^ƒXƒo[‚Ì•\¦“à—e‚ğExcel‚ÌŠù’è’l‚É–ß‚·
+    '''ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã®è¡¨ç¤ºå†…å®¹ã‚’Excelã®æ—¢å®šå€¤ã«æˆ»ã™
     Application.StatusBar = False
-    '''ƒXƒe[ƒ^ƒXƒo[‚ğƒ}ƒNƒ‚ÌÀs‘O‚Ìó‘Ô‚É–ß‚·
+    '''ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã‚’ãƒã‚¯ãƒ­ã®å®Ÿè¡Œå‰ã®çŠ¶æ…‹ã«æˆ»ã™
     Application.DisplayStatusBar = blnStatusBar
     '''==================================================
 
-    MsgBox colResult.count & "ƒtƒ@ƒCƒ‹’uŠ·‚µ‚Ü‚µ‚½B", vbInformation, C_TITLE
+    MsgBox colResult.count & "ãƒ•ã‚¡ã‚¤ãƒ«ç½®æ›ã—ã¾ã—ãŸã€‚", vbInformation, C_TITLE
     
 End Sub
 '--------------------------------------------------------------
-'@ƒtƒHƒ‹ƒ_‚ÌÄ‹AŒŸõ
+'ã€€ãƒ•ã‚©ãƒ«ãƒ€ã®å†å¸°æ¤œç´¢
 '--------------------------------------------------------------
 Private Sub reDir(ByVal strDir As String, colParam As Collection, colResult As Collection)
 
@@ -133,7 +133,7 @@ Private Sub reDir(ByVal strDir As String, colParam As Collection, colResult As C
     
     strParent = rlxAddFileSeparator(strDir)
 
-    ''ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İˆ—
+    ''ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿å‡¦ç†
     strFile = Dir(strParent & "*.*", vbNormal + vbDirectory)
 
     Do Until strFile = ""
@@ -150,14 +150,14 @@ Private Sub reDir(ByVal strDir As String, colParam As Collection, colResult As C
                 fc.Add FS
         End Select
     
-        ''Ÿ‚Ìƒtƒ@ƒCƒ‹‚ğæ“¾
+        ''æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—
         strFile = Dir()
     Loop
 
     For Each FS In fc
     
         If (FS.Attrib And vbDirectory) <> 0 Then
-            ''Ä‹AŒÄ‚Ño‚µ
+            ''å†å¸°å‘¼ã³å‡ºã—
             Call reDir(rlxAddFileSeparator(FS.Directory) & FS.FileName, colParam, colResult)
         Else
             Call repFiles(FS, colParam, colResult)
@@ -166,7 +166,7 @@ Private Sub reDir(ByVal strDir As String, colParam As Collection, colResult As C
 
 End Sub
 '--------------------------------------------------------------
-'@ƒtƒ@ƒCƒ‹‚ÌÄ‹AŒŸõ
+'ã€€ãƒ•ã‚¡ã‚¤ãƒ«ã®å†å¸°æ¤œç´¢
 '--------------------------------------------------------------
 Private Sub repFiles(FS As FileParamDTO, colParam As Collection, colResult As Collection)
 
@@ -193,14 +193,14 @@ Private Sub repFiles(FS As FileParamDTO, colParam As Collection, colResult As Co
     
     
     ''''==================================================
-    ''''ƒXƒe[ƒ^ƒXƒo[‚ÉƒƒbƒZ[ƒW‚ğ•\¦
-    Application.StatusBar = FS.FileName & "‚ğˆ—’†‚Å‚·"
+    ''''ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
+    Application.StatusBar = FS.FileName & "ã‚’å‡¦ç†ä¸­ã§ã™"
     ''''==================================================
 
-    'ƒtƒ@ƒCƒ‹–¼‚Ìì¬
+    'ãƒ•ã‚¡ã‚¤ãƒ«åã®ä½œæˆ
     strSourceFile = rlxAddFileSeparator(FS.Directory) & FS.FileName
 
-    'ƒtƒ@ƒCƒ‹‚ğ‘S•”“Ç‚ŞB
+    'ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å…¨éƒ¨èª­ã‚€ã€‚
     intfp = FreeFile()
     Open strSourceFile For Binary As intfp
     lngSize = LOF(intfp)
@@ -211,7 +211,7 @@ Private Sub repFiles(FS As FileParamDTO, colParam As Collection, colResult As Co
 
     Close intfp
 
-    ''Unicode‚É•ÏŠ·
+    ''Unicodeã«å¤‰æ›
     strBody = StrConv(bytBuf, vbUnicode)
     lngSearchCount = 0
 
@@ -219,14 +219,14 @@ Private Sub repFiles(FS As FileParamDTO, colParam As Collection, colResult As Co
     
         lngSearchChar = 0
         
-        '”­Œ©‚³‚ê‚½•¶š—ñ‚Ì”‚ğæ“¾
+        'ç™ºè¦‹ã•ã‚ŒãŸæ–‡å­—åˆ—ã®æ•°ã‚’å–å¾—
         lngFind = InStr(1, strBody, rp.SearchString, rp.CompareMode)
         Do Until lngFind = 0
             lngSearchChar = lngSearchChar + 1
             lngFind = InStr(lngFind + 1, strBody, rp.SearchString, rp.CompareMode)
         Loop
         
-        ''‚PŒ‚Å‚àŒŸõŒ‹‰Ê‚ª‚ ‚ê‚Îƒtƒ@ƒCƒ‹“à‚ğ’uŠ·
+        ''ï¼‘ä»¶ã§ã‚‚æ¤œç´¢çµæœãŒã‚ã‚Œã°ãƒ•ã‚¡ã‚¤ãƒ«å†…ã‚’ç½®æ›
         If lngSearchChar > 0 Then
             strBody = Replace(strBody, rp.SearchString, rp.ReplaceString, 1, -1, rp.CompareMode)
             lngSearchCount = lngSearchCount + lngSearchChar
@@ -246,18 +246,18 @@ Private Sub repFiles(FS As FileParamDTO, colParam As Collection, colResult As Co
     If lngSearchCount > 0 Then
     
    
-        'ƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚éê‡Aˆê“xƒNƒŠƒA‚·‚éB
+        'ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹å ´åˆã€ä¸€åº¦ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
         intfp = FreeFile()
         Open strSourceFile For Output As intfp
         Close intfp
         
-        ''‚PŒ‚Å‚à’uŠ·‚ª‚ ‚ê‚Îo—Í
+        ''ï¼‘ä»¶ã§ã‚‚ç½®æ›ãŒã‚ã‚Œã°å‡ºåŠ›
         intfp = FreeFile()
         Open strSourceFile For Binary As intfp
         Put intfp, , strBody
         Close intfp
         
-        'C³‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ì”‚ğƒJƒEƒ“ƒg
+        'ä¿®æ­£ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
         lngFileCount = lngFileCount + 1
         
     End If

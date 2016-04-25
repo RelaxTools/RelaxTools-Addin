@@ -41,20 +41,20 @@ Private mstrItemName As String
 Private mlngPos As Long
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -68,7 +68,7 @@ Public Sub Run()
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' ‰Šúˆ—(UOC)
+' åˆæœŸå‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
 
@@ -109,7 +109,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 '        End If
 
 '        If lngLevel >= r.IndentLevel Then
-            '‰Óğ‘‚«‚ª‘¶İ‚·‚és‚Ìê‡
+            'ç®‡æ¡æ›¸ããŒå­˜åœ¨ã™ã‚‹è¡Œã®å ´åˆ
             If rlxHasItemNo(strBuf, mstrItemName) Then
                 blnFind = True
                 Exit For
@@ -120,20 +120,20 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
    
     Dim strNewNum As String
     If blnFind Then
-        'Ÿ‚Ì”Ô†‚ğU‚é
+        'æ¬¡ã®ç•ªå·ã‚’æŒ¯ã‚‹
         strNewNum = rlxGetItemNext(strBuf, mstrItemName)
     Else
-        'Œ©‚Â‚©‚ç‚È‚¢ê‡©•ª‚ÌƒŒƒxƒ‹‚ÅÅ‰‚Ì”Ô†‚É‚·‚é
+        'è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆè‡ªåˆ†ã®ãƒ¬ãƒ™ãƒ«ã§æœ€åˆã®ç•ªå·ã«ã™ã‚‹
         strNewNum = rlxGetItemNext("", mstrItemName)
     End If
 
-    '•¶š—ñ‚É•ÏŠ·
+    'æ–‡å­—åˆ—ã«å¤‰æ›
     r.NumberFormatLocal = "@"
 
-    '’i—”Ô†‚Ìíœ
+    'æ®µè½ç•ªå·ã®å‰Šé™¤
     delItemNo r
 
-    '’i—”Ô†‚ğİ’è‚·‚é
+    'æ®µè½ç•ªå·ã‚’è¨­å®šã™ã‚‹
     setItemNo r, strNewNum
     
     Exit Sub

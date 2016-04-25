@@ -1,13 +1,13 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmMaxCount 
-   Caption         =   "‘I‘ğ’†‚ÌƒZƒ‹‚ÌÅ‘å•¶š”/ƒoƒCƒg"
+   Caption         =   "é¸æŠä¸­ã®ã‚»ãƒ«ã®æœ€å¤§æ–‡å­—æ•°/ãƒã‚¤ãƒˆ"
    ClientHeight    =   1920
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   3915
    OleObjectBlob   =   "frmMaxCount.frx":0000
    ShowModal       =   0   'False
-   StartUpPosition =   1  'ƒI[ƒi[ ƒtƒH[ƒ€‚Ì’†‰›
+   StartUpPosition =   1  'ã‚ªãƒ¼ãƒŠãƒ¼ ãƒ•ã‚©ãƒ¼ãƒ ã®ä¸­å¤®
 End
 Attribute VB_Name = "frmMaxCount"
 Attribute VB_GlobalNameSpace = False

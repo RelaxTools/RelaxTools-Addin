@@ -38,20 +38,20 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork éŒ¾
+' SelectionFrameWork å®£è¨€
 '------------------------------------------------------------------------------------------------------------------------
 Private WithEvents SFWork As SelectionFrameWork
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ì¬
+' SelectionFrameWork ä½œæˆ
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
     Set SFWork = New SelectionFrameWork
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' SelectionFrameWork ŠJ•ú
+' SelectionFrameWork é–‹æ”¾
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Terminate()
     Set SFWork = Nothing
@@ -69,7 +69,7 @@ Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boo
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' åˆ—(UOC)
+' ä¸»å‡¦ç†(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
         
@@ -77,15 +77,15 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     Dim strBuf As String
     
-    '•@‘÷‰¹‘Î‰
+    'é¼»æ¿éŸ³å¯¾å¿œ
     r.value = StrConvU(r.value, vbWide)
     
-'    strbuf = Replace(r.Value, "Êß", "ƒp")
-'    strbuf = Replace(strbuf, "Ëß", "ƒs")
-'    strbuf = Replace(strbuf, "Ìß", "ƒv")
-'    strbuf = Replace(strbuf, "Íßß", "ƒy")
-'    strbuf = Replace(strbuf, "Îß", "ƒ|")
-'    r.Value = Replace(strbuf, "ß", "K")
+'    strbuf = Replace(r.Value, "ï¾Šï¾Ÿ", "ãƒ‘")
+'    strbuf = Replace(strbuf, "ï¾‹ï¾Ÿ", "ãƒ”")
+'    strbuf = Replace(strbuf, "ï¾Œï¾Ÿ", "ãƒ—")
+'    strbuf = Replace(strbuf, "ï¾ï¾Ÿï¾Ÿ", "ãƒš")
+'    strbuf = Replace(strbuf, "ï¾ï¾Ÿ", "ãƒ")
+'    r.Value = Replace(strbuf, "ï¾Ÿ", "ã‚œ")
 
     Exit Sub
 e:
@@ -100,7 +100,7 @@ Private Sub SFWork_SelectionMainShape(r As Shape, ByVal NotHoldFormat As Boolean
     
     Dim strBuf As String
     
-    '•@‘÷‰¹‘Î‰
+    'é¼»æ¿éŸ³å¯¾å¿œ
     If r.TextFrame2.HasText Then
         r.TextFrame2.TextRange.Characters.Text = StrConvU(r.TextFrame2.TextRange.Characters.Text, vbWide)
     End If
