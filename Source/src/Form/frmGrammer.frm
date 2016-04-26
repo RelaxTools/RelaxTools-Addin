@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmGrammer 
-   Caption         =   "スペルチェックと文法校正"
+   Caption         =   "文法校正"
    ClientHeight    =   6150
    ClientLeft      =   45
    ClientTop       =   435

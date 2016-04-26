@@ -93,8 +93,6 @@
               <button id="replaceEx"   image="searchShape" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <menuSeparator id="searchSep02" title="指定フォルダ以下のExcelファイルをGrepする"/>
               <button id="excelGrep"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              <menuSeparator id="searchSep03" title="文書の校正をする"/>
-              <button id="showGrammer"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
           </splitButton>
 
@@ -294,15 +292,7 @@
             </menu>
           </menu>
           <button id="cellEdit" label="拡大" image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-<!--
-          <separator id="shapelineSep"/>
 
-          <box id="formatBox2" boxStyle="vertical">
-            <button id="straightLine" getLabel="getLabel"  image="lineModify" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="largeShape"   getLabel="getLabel"  image="lshape"     getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="smallShape"   getLabel="getLabel"  image="sshape"     getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-          </box>
--->
           <separator id="filSep"/>
 
           <box id="formatBox1" boxStyle="vertical">
@@ -604,87 +594,34 @@
           <separator id="ShortCurSep"/>
           <button id="hotkey" image="keyboard" label="ショートカット割当" size="large" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
 
-          <separator id="benriSep"/>
-<!--
-          <menu id="omakeMenu" label="便利機能" getSupertip="getSupertip" getDescription="getDescription" image="tool32">
-            <menuSeparator id="toolSep01" title="フォルダの作成" />
-            <button id="createFolderShow" image="folder" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep02" title="ファイル一覧作成" />
-            <button id="createFileListIn" image="filelist16" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-            <button id="createLinkTreeIn" image="tree16" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep03" title="コマンドの出力結果を表にする"/>
-            <button id="callTanpyo" image="import" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep04" title="暗号化／ハッシュ" />
-            <button id="encryptionFileEx" image="key16"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="getMessageDigest" image="pkey16"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep05" title="プログラミング関連" />
-            <button id="setJavaPackage"   image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="execSelectionRowMakeSQLInsert" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <button id="VBAStepCountShow" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <button id="execSourceExport" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep06" title="美しすぎるSQL整形" />
-            <button id="execSelectionFormatSql"   image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep07"/>
-            <button id="FormatSqlSetting"   image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep08" title="外部エディタ"/>
-            <button id="cellEditExt" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep09"/>
-            <button id="cellEditExtSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep10" title="ページ数取得"/>
-            <button id="excelPage" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <menuSeparator id="toolSep11" title="まとめ実行"/>
-            <menu id="matomeMenu" label="まとめ実行" getSupertip="getSupertip" getDescription="getDescription" image="tool32">
-              <button id="execMatome01" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <button id="execMatome02" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <button id="execMatome03" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <button id="execMatome04" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <button id="execMatome05" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            </menu>
-            <menuSeparator id="toolSep12"/>
+          <separator id="matomeSep"/>
+          <menu id="matomeMenu" label="まとめ実行&#xD;&#xA;" size="large" getSupertip="getSupertip" getDescription="getDescription" image="tool32">
+            <button id="execMatome01" image="No1" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="execMatome02" image="No2" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="execMatome03" image="No3" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="execMatome04" image="No4" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="execMatome05" image="No5" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <menuSeparator id="matomeSettingSep" title="まとめ設定"/>
             <button id="execComboSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           </menu>
--->
-<!--
-          <separator id="hotSep"/>
-          <box id="box172" boxStyle="vertical">
-          </box>
--->
-            <menu id="matomeMenu" label="まとめ実行" getSupertip="getSupertip" getDescription="getDescription" image="tool32">
-              <button id="execMatome01" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <button id="execMatome02" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <button id="execMatome03" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <button id="execMatome04" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <button id="execMatome05" image="tool" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <menuSeparator id="matomeSep" title="まとめ設定"/>
-              <button id="execComboSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            </menu>
+
+          <separator id="benriSep"/>
+
           <menu id="SettingMenu" label="共通設定"  getSupertip="getSupertip" getDescription="getDescription" image="gear32">
             <menuSeparator id="GearSep01" title="共通設定"/>
             <button id="execOptionSetting" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
             <button id="RegExport" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
           </menu>
           <menu id="helpMenu" label="ヘルプ"  getSupertip="getSupertip" getDescription="getDescription" image="help32">
-<!--            <button id="RegExport" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" image="tool" onAction="ribbonOnAction" />-->
             <menuSeparator id="helpSep04" title="Webサイト"/>
             <button id="GotoOfficialWeb" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" image="web" onAction="ribbonOnAction" />
             <button id="GotoGitHub" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" image="web" onAction="ribbonOnAction" />
             <button id="GotoCampaign" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" image="web" onAction="ribbonOnAction" />
             <menuSeparator id="helpSep02" title="ヘルプ"/>
             <button id="callHelp" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" image="help" onAction="ribbonOnAction" />
-            <menuSeparator id="helpSep05" title="バージョン"/>
-            <button id="dispVer" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="information" onAction="ribbonOnAction" />
           </menu>
+          <button id="dispVer" label="バージョン情報" getSupertip="getSupertip" getDescription="getDescription"  image="information" onAction="ribbonOnAction" />
         </group>
-
-<!--
-        <group id="dispGroup" label="リボン表示" image="help32">
-          <checkBox id="RelaxShapes" label="RelaxShapes" getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
-          <checkBox id="RelaxWord"   label="RelaxWord"   getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
-        </group>
-
-          <separator id="helpSep"/>
--->
-
 
       </tab>
       <tab id="RelaxShapesTab" label="RelaxShapes" getVisible="tabGetVisible">
@@ -836,6 +773,7 @@
             
         </group>
         <group id="documentGroup.2" label="文書作成支援" image="editing32">
+            <button id="showGrammer"  image="grep32" label="文章校正&#xD;&#xA;" size="large" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <menu id="documentMenu.2" label="ドキュメント&#xD;&#xA;支援" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" size="large" image="editing32" getEnabled="getRibbonEnabled" >
               <menuSeparator id="docuSep01.2" title="ドキュメント支援"/>
               <button id="createContentsEx.2" image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
@@ -929,7 +867,7 @@
           <button id="convertMarkdown.2"  size="large"   image="markdown" label="markdown&#xD;&#xA;変換" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
 
-        <group id="InformationGroup" label="情報" image="countpage">
+        <group id="InformationGroup" label="その他" image="countpage">
           <button id="encryptionFileEx" size="large" image="Encrypt"  label="ファイルの&#xD;&#xA;難読化" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           <button id="getMessageDigest" size="large" image="Keys"  label="ファイルの&#xD;&#xA;ハッシュ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           <button id="excelPage" image="countpage" size="large" label="Word/Excel/PP&#xD;&#xA;ページ数取得" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
