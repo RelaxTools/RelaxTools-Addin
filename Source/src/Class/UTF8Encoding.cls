@@ -47,7 +47,72 @@ Public Function GetString(ByRef bytBuf() As Byte) As String
 End Function
 Public Function getBytes(ByRef strBuf As String) As Byte()
 
-    getBytes = utf8.GetBytes_4(strBuf)
+    Dim bytBuf() As Byte
+    Dim lngBuf As Long
+    Dim bytRet() As Byte
+    
+    Dim i As Long
+    Dim lngPos As Long
+
+    bytBuf = strBuf
+    bytRet = String(Len(strBuf) * 2, vbNullChar)
+    lngPos = 0
+
+    For i = LBound(bytBuf) To UBound(bytBuf) Step 2
+    
+        lngBuf = bytBuf(i + 1) * &H100& + bytBuf(i)
+    
+        Select Case lngBuf
+
+            Case Is < &H80&
+            
+                bytRet(lngPos) = lngBuf
+                lngPos = lngPos + 1
+            
+            Case Is < &H800&
+            
+                bytRet(lngPos) = &HC0& Or Fix(lngBuf / (2 ^ 6))
+                lngPos = lngPos + 1
+                
+                bytRet(lngPos) = &H80& Or (lngBuf And &H3F&)
+                lngPos = lngPos + 1
+      
+            Case &HD800& To &HDBFF&
+
+                Dim lngHigh As Long
+                Dim lngLow As Long
+
+                lngHigh = lngBuf
+                lngLow = bytBuf(i + 3) * &H100& + bytBuf(i + 2)
+
+                bytRet(lngPos) = &HF0& Or (Fix((lngHigh + &H40&) / (2 ^ 8)) And &HF0&)
+                lngPos = lngPos + 1
+                
+                bytRet(lngPos) = &H80& Or (Fix((lngHigh + &H40&) / (2 ^ 2)) And &H3F&)
+                lngPos = lngPos + 1
+                
+                bytRet(lngPos) = &H80& Or ((Fix(lngLow / (2 ^ 6)) And &HF&) + ((lngHigh * (2 ^ 4)) And &H30&))
+                lngPos = lngPos + 1
+                
+                bytRet(lngPos) = &H80& Or (lngLow And &H3F&)
+                lngPos = lngPos + 1
+          
+            Case Else
+                
+                bytRet(lngPos) = &HE0& Or Fix(lngBuf / (2 ^ 12))
+                lngPos = lngPos + 1
+                
+                bytRet(lngPos) = &H80& Or (Fix(lngBuf / (2 ^ 6)) And &H3F&)
+                lngPos = lngPos + 1
+                
+                bytRet(lngPos) = &H80& Or (lngBuf And &H3F&)
+                lngPos = lngPos + 1
+      
+        End Select
+    
+    Next
+    
+    getBytes = LeftB(bytRet, lngPos)
 
 End Function
 
