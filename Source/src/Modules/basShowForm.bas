@@ -229,14 +229,14 @@ Sub excelPage()
     frmPageList.Show
     
 End Sub
-'--------------------------------------------------------------
-'　ファイルのMessageDigestを求める
-'--------------------------------------------------------------
-Sub getMessageDigest()
-
-    frmMessageDigest.Show
-    
-End Sub
+''--------------------------------------------------------------
+''　ファイルのMessageDigestを求める
+''--------------------------------------------------------------
+'Sub getMessageDigest()
+'
+'    frmMessageDigest.Show
+'
+'End Sub
 Sub reSelect()
     frmReSelect.Show
 End Sub

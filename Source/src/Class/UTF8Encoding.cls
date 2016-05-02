@@ -37,20 +37,9 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-
-'Private utf8 As Object
-
-Private Sub Class_Initialize()
-
-'    Set utf8 = CreateObject("System.Text.UTF8Encoding")
-
-End Sub
-
-Private Sub Class_Terminate()
-
-'    Set utf8 = Nothing
-
-End Sub
+'------------------------------------------------------------------------------------------------------------------------
+' UTF-8 → UTF-16(LE)
+'------------------------------------------------------------------------------------------------------------------------
 Public Function GetString(ByRef bytBuf() As Byte) As String
 
     Dim bytRet() As Byte
@@ -61,26 +50,28 @@ Public Function GetString(ByRef bytBuf() As Byte) As String
     Dim b2 As Long
     Dim b3 As Long
     
+    GetString = ""
+    
+    On Error GoTo e
+    
     i = LBound(bytBuf)
     ReDim bytRet(0 To UBound(bytBuf) * 2 - 1)
     
-    
-    Do Until i >= UBound(bytBuf)
+    Do Until i > UBound(bytBuf)
     
         b0 = bytBuf(i): i = i + 1
     
         Select Case True
 
-'            // UTF-8:   [&hxx xxxx]
-'            // Unicode: [0000 0000] [&hxx xxxx]
+'            // UTF-8:   [0xxx xxxx]
+'            // Unicode: [0000 0000] [0xxx xxxx]
             Case (b0 < &H80&)
                 bytRet(lngPos) = b0: lngPos = lngPos + 1
                 bytRet(lngPos) = 0:  lngPos = lngPos + 1
 
-'            // UTF-8:   [110y yyyy] [1&hx xxxx]
+'            // UTF-8:   [110y yyyy] [10xx xxxx]
 '            // Unicode: [0000 0yyy] [yyxx xxxx]
-'            Case ((b0 And &HE0&) = &HC0 And (b0 And &H1E&) <> 0)
-            Case ((b0 And &HF0&) = &HC0)
+            Case ((b0 And &HE0&) = &HC0 And (b0 And &H1E&) <> 0)
             
                 b1 = bytBuf(i): i = i + 1
                 Dim c As Long
@@ -88,11 +79,8 @@ Public Function GetString(ByRef bytBuf() As Byte) As String
                 
                 bytRet(lngPos) = LByte(c): lngPos = lngPos + 1
                 bytRet(lngPos) = UByte(c): lngPos = lngPos + 1
-                
-'                count -= 1;
-'                continue;
 
-'            // UTF-8:   [1110 zzzz] [10yy yyyy] [1&hx xxxx]
+'            // UTF-8:   [1110 zzzz] [10yy yyyy] [10xx xxxx]
 '            // Unicode: [zzzz yyyy] [yyxx xxxx]
             Case ((b0 And &HF0&) = &HE0&)
             
@@ -106,11 +94,11 @@ Public Function GetString(ByRef bytBuf() As Byte) As String
                 bytRet(lngPos) = UByte(c)
                 lngPos = lngPos + 1
 
-'            // UTF-8:   [1111 0uuu] [10uu zzzz] [10yy yyyy] [1&hx xxxx]*
+'            // UTF-8:   [1111 0uuu] [10uu zzzz] [10yy yyyy] [10xx xxxx]*
 '            // Unicode: [1101 10ww] [wwzz zzyy] (high surrogate)
 '            //          [1101 11yy] [yyxx xxxx] (low surrogate)
 '            //          * uuuuu = wwww + 1
-            Case ((b0 And &HF0) = &HF0&)
+            Case ((b0 And &HF8) = &HF0&)
                 
                 b1 = bytBuf(i): i = i + 1
                 b2 = bytBuf(i): i = i + 1
@@ -146,21 +134,19 @@ Public Function GetString(ByRef bytBuf() As Byte) As String
                 lngPos = lngPos + 1
                 bytRet(lngPos) = UByte(ls)
                 lngPos = lngPos + 1
-
         
         End Select
             
     Loop
     
     GetString = LeftB(bytRet, lngPos)
-        
-
-'    GetString = utf8.GetString(bytBuf)
+    Exit Function
+e:
 
 End Function
-
-
-
+'------------------------------------------------------------------------------------------------------------------------
+' UTF-16(LE) → UTF-8
+'------------------------------------------------------------------------------------------------------------------------
 Public Function getBytes(ByVal strBuf As String) As Byte()
 
     Dim bytBuf() As Byte
@@ -169,6 +155,8 @@ Public Function getBytes(ByVal strBuf As String) As Byte()
     
     Dim i As Long
     Dim lngPos As Long
+    
+    On Error GoTo e
     
     If strBuf = "" Then
         Exit Function
@@ -245,17 +233,31 @@ Public Function getBytes(ByVal strBuf As String) As Byte()
     Next
     
     getBytes = LeftB(bytRet, lngPos)
+    Exit Function
+e:
 
 End Function
+'------------------------------------------------------------------------------------------------------------------------
+' 下位バイト取得
+'------------------------------------------------------------------------------------------------------------------------
 Private Function LByte(ByVal lngValue As Long) As Long
     LByte = lngValue And &HFF&
 End Function
+'------------------------------------------------------------------------------------------------------------------------
+' 上位バイト取得
+'------------------------------------------------------------------------------------------------------------------------
 Private Function UByte(ByVal lngValue As Long) As Long
     UByte = RShift((lngValue And &HFF00&), 8)
 End Function
+'------------------------------------------------------------------------------------------------------------------------
+' 右シフト
+'------------------------------------------------------------------------------------------------------------------------
 Private Function RShift(ByVal lngValue As Long, ByVal lngKeta As Long) As Long
     RShift = lngValue \ (2 ^ lngKeta)
 End Function
+'------------------------------------------------------------------------------------------------------------------------
+' 左シフト
+'------------------------------------------------------------------------------------------------------------------------
 Private Function LShift(ByVal lngValue As Long, ByVal lngKeta As Long) As Long
     LShift = lngValue * (2 ^ lngKeta)
 End Function

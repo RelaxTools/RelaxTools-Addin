@@ -869,7 +869,9 @@
 
         <group id="InformationGroup" label="その他" image="countpage">
           <button id="encryptionFileEx" size="large" image="Encrypt"  label="ファイルの&#xD;&#xA;難読化" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+<!--
           <button id="getMessageDigest" size="large" image="Keys"  label="ファイルの&#xD;&#xA;ハッシュ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+-->
           <button id="excelPage" image="countpage" size="large" label="Word/Excel/PP&#xD;&#xA;ページ数取得" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
         </group>
 
