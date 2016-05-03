@@ -75,7 +75,7 @@ Private Sub cmdOk_Click()
                         Exit Sub
                     End If
                 Next
-                If frmFavorite.mobjCategory.exists(.List(.ListIndex)) Then
+                If frmFavorite.mobjCategory.Exists(.List(.ListIndex)) Then
                     frmFavorite.mobjCategory.KEY(.List(.ListIndex)) = Me.txtCat.Text
                     Dim cat As Variant
                     Set cat = frmFavorite.mobjCategory.Item(Me.txtCat.Text)

@@ -113,7 +113,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     Set c = Nothing
     
-    If mobjCol.exists(CStr(r.value)) Then
+    If mobjCol.Exists(CStr(r.value)) Then
         blnMatch = True
         Set c = mobjCol.Item(CStr(r.value))
         With c.Interior

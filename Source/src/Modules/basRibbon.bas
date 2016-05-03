@@ -642,6 +642,151 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
+'  フック固定の押下状態の取得
+'--------------------------------------------------------------------
+Sub holdPressed(control As IRibbonControl, ByRef returnValue)
+    
+    Dim obj As Object
+    
+    Set obj = GetHoldList()
+    
+    returnValue = obj.Exists(ActiveWorkbook.FullName)
+    
+    Set obj = Nothing
+    
+End Sub
+'--------------------------------------------------------------------
+'  フック固定の押下時イベント
+'--------------------------------------------------------------------
+Sub holdOnAction(control As IRibbonControl, pressed As Boolean)
+  
+    On Error GoTo e
+    
+    Dim obj As Object
+    Dim hold As HoldDto
+    
+    If ActiveWorkbook Is Nothing Then
+        Exit Sub
+    End If
+    
+    Set hold = New HoldDto
+    
+    hold.FullName = ActiveWorkbook.FullName
+    hold.ReadOnly = ActiveWorkbook.ReadOnly
+    
+    Set obj = GetHoldList()
+    
+    If pressed Then
+    
+        If Not rlxIsFileExists(hold.FullName) Then
+            MsgBox "ブックが存在しません。保存してから処理を行ってください。", vbOKOnly + vbExclamation, C_TITLE
+            pressed = False
+            Call RefreshRibbon(control)
+            Exit Sub
+        End If
+    
+        If Not obj.Exists(hold.FullName) Then
+            obj.Add hold.FullName, hold
+        End If
+    Else
+        If obj.Exists(hold.FullName) Then
+            obj.Remove hold.FullName
+        End If
+    End If
+    
+    SaveHoldList obj
+    
+    Set obj = Nothing
+    
+    Call RefreshRibbon(control)
+    
+    Exit Sub
+e:
+    Call rlxErrMsg(err)
+End Sub
+'--------------------------------------------------------------------
+'  フック固定のオープン
+'--------------------------------------------------------------------
+Sub Auto_Open()
+
+    On Error Resume Next
+
+    Dim obj As Object
+    Dim o As Variant
+    Dim hold As HoldDto
+    
+    Set obj = GetHoldList()
+    
+    For Each o In obj.Keys
+    
+        Set hold = obj.Item(o)
+        Workbooks.Open hold.FullName, , hold.ReadOnly
+    
+    Next
+    
+    Set obj = Nothing
+    
+End Sub
+'--------------------------------------------------------------------
+'  フック固定の設定内容取得
+'--------------------------------------------------------------------
+Private Function GetHoldList() As Object
+
+    Dim strFile As String
+    Dim varFile As Variant
+    Dim varATTB As Variant
+    Dim i As Long
+    Dim obj As Object
+    Dim hold As HoldDto
+    
+    Set obj = CreateObject("Scripting.Dictionary")
+    
+    strFile = GetSetting(C_TITLE, "HoldFile", "HoldFile", "")
+    
+    Const C_FULLNAME As Long = 0
+    Const C_READONLY As Long = 1
+    
+    If Len(strFile) <> 0 Then
+    
+        varFile = Split(strFile, vbVerticalTab)
+        For i = LBound(varFile) To UBound(varFile)
+            
+            varATTB = Split(varFile(i), vbTab)
+            
+            Set hold = New HoldDto
+            hold.FullName = varATTB(C_FULLNAME)
+            hold.ReadOnly = varATTB(C_READONLY)
+            
+            obj.Add hold.FullName, hold
+        
+        Next
+    End If
+    
+    Set GetHoldList = obj
+
+End Function
+'--------------------------------------------------------------------
+'  フック固定の設定内容保存
+'--------------------------------------------------------------------
+Private Sub SaveHoldList(ByRef obj As Object)
+
+    Dim o As Variant
+    Dim strFile As String
+    Dim hold As HoldDto
+    
+    For Each o In obj.Keys
+        Set hold = obj.Item(o)
+        If strFile = "" Then
+            strFile = hold.FullName & vbTab & hold.ReadOnly
+        Else
+            strFile = strFile & vbVerticalTab & hold.FullName & vbTab & hold.ReadOnly
+        End If
+    Next
+
+    SaveSetting C_TITLE, "HoldFile", "HoldFile", strFile
+
+End Sub
+'--------------------------------------------------------------------
 '  ホイール量(小)の押下状態取得
 '--------------------------------------------------------------------
 Sub scrollPressed(control As IRibbonControl, ByRef returnValue)

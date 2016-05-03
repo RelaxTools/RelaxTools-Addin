@@ -257,7 +257,7 @@ Private Sub lstCategory_Change()
         
         KEY = .lstCategory.List(.lstCategory.ListIndex)
         
-        If Not mobjCategory.exists(KEY) Then
+        If Not mobjCategory.Exists(KEY) Then
             Exit Sub
         End If
         
@@ -476,12 +476,12 @@ Private Sub UserForm_Initialize()
 '                fav.Text = strDat(2)
         End Select
          
-        If Not mobjCategory.exists(fav.Category) Then
+        If Not mobjCategory.Exists(fav.Category) Then
             Set objfav = CreateObject("Scripting.Dictionary")
             mobjCategory.Add fav.Category, objfav
        End If
        
-       If objfav.exists(fav.FileName) Then
+       If objfav.Exists(fav.FileName) Then
        Else
            objfav.Add fav.FileName, fav
         End If
@@ -489,7 +489,7 @@ Private Sub UserForm_Initialize()
 
     
     Dim cat As Variant
-    For Each cat In mobjCategory.keys
+    For Each cat In mobjCategory.Keys
         lstCategory.AddItem cat
     Next
     
@@ -691,7 +691,7 @@ Sub favCurrentUpdate()
     
     
     KEY = lstCategory.List(lstCategory.ListIndex)
-    If mobjCategory.exists(KEY) Then
+    If mobjCategory.Exists(KEY) Then
         mobjCategory.Remove KEY
     End If
     
@@ -1098,7 +1098,7 @@ Private Sub UserForm_Terminate()
     
         key1 = lstCategory.List(i)
         
-        If mobjCategory.exists(key1) Then
+        If mobjCategory.Exists(key1) Then
         
             Set cat = mobjCategory.Item(key1)
             
@@ -1269,7 +1269,7 @@ Sub moveCategory(ByVal strCategory As String)
             Set cat = mobjCategory.Item(lstFavorite.List(i, C_CATEGORY))
             cat.Remove lstFavorite.List(i, C_ORIGINAL)
         
-            If mobjCategory.exists(strCategory) Then
+            If mobjCategory.Exists(strCategory) Then
                 Set cat = mobjCategory.Item(strCategory)
             Else
                 Set cat = CreateObject("Scripting.Dictionary")
@@ -1282,7 +1282,7 @@ Sub moveCategory(ByVal strCategory As String)
 '            d.Text = lstFavorite.List(i, C_FILE_NAME)
             
             cat.Add D.FileName, D
-            If mobjCategory.exists(strCategory) Then
+            If mobjCategory.Exists(strCategory) Then
                 mobjCategory.Remove strCategory
             End If
             mobjCategory.Add strCategory, cat
@@ -1397,7 +1397,7 @@ Sub delCategory()
         
         KEY = lstCategory.List(lstCategory.ListIndex)
         
-        If mobjCategory.exists(KEY) Then
+        If mobjCategory.Exists(KEY) Then
             mobjCategory.Remove KEY
         End If
         

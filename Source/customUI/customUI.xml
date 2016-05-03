@@ -21,7 +21,10 @@
             </menu>
           </splitButton>
           <separator id="favSep"/>
+          <toggleButton id="holdFile" label="ブックを&#xD;&#xA;固定" size="large" image="pushpin" getSupertip="getSupertip" getDescription="getDescription" getPressed="holdPressed" onAction="holdOnAction"/> 
+          <separator id="holdSep"/>
           <box id="box1" boxStyle="vertical">
+
             <menu id="open1" label="開く" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="open16"  getEnabled="getRibbonEnabled">
               <menuSeparator id="openSep01" title="読み取り専用で開く"/>
               <button id="OpenReferenceBook"   image="openReadonly"   getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -35,6 +38,7 @@
               <menuSeparator id="openSep05" title="フォルダを開く"/>
               <button id="openDocumentPath" image="folder" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
+
             <splitButton id="setAllA1Split" getEnabled="getRibbonEnabled">
               <button id="setAllA1save.1"  image="saveA1" label="Ａ１" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <menu id="a1"  itemSize="large" >
@@ -498,6 +502,8 @@
             </menu>
           </splitButton>
 
+
+
           <separator id="crossSep"/>
 
           <box id="box72" boxStyle="vertical">
@@ -593,13 +599,13 @@
             <menuSeparator id="matomeSettingSep" title="まとめ設定"/>
             <button id="execComboSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           </menu>
+          
           <button id="hotkey" image="keyboard" label="ショートカット割当" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-          <menu id="SettingMenu" label="共通設定"  getSupertip="getSupertip" getDescription="getDescription" image="gear32">
-            <menuSeparator id="GearSep01" title="共通設定"/>
-            <button id="execOptionSetting" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
-            <button id="RegExport" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
-          </menu>
-
+            <menu id="SettingMenu" label="共通設定"  getSupertip="getSupertip" getDescription="getDescription" image="gear32">
+              <menuSeparator id="GearSep01" title="共通設定"/>
+              <button id="execOptionSetting" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
+              <button id="RegExport" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
+            </menu>
           <separator id="benriSep"/>
 
           <menu id="helpMenu" label="ヘルプ&#xD;&#xA;"  size="large" getSupertip="getSupertip" getDescription="getDescription" image="help32">

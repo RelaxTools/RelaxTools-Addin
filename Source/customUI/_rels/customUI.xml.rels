@@ -234,4 +234,5 @@
 <Relationship Id="No3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/No3.png"/>
 <Relationship Id="No4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/No4.png"/>
 <Relationship Id="No5" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/No5.png"/>
+<Relationship Id="pushpin" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/pushpin.png"/>
 </Relationships>

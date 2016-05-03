@@ -122,7 +122,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
     'コレクション内に一致するものがあるかどうかチェック
     blnMatch = False
     
-    If mobjCol.exists(strkey) Then
+    If mobjCol.Exists(strkey) Then
         Set c = mobjCol.Item(strkey)
         blnMatch = True
         With c.Interior
