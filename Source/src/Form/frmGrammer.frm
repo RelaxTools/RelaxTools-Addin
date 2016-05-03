@@ -165,7 +165,14 @@ Private Sub searchStart()
 
     Set colSheet = New Collection
 
+    On Error Resume Next
+    err.Clear
     Set WD = CreateObject("Word.Application")
+    If err.Number <> 0 Then
+        MsgBox "Wordがインストールされていないか、使用できません。", vbOKOnly + vbExclamation, C_TITLE
+        Exit Sub
+    End If
+    
     Set DC = WD.Documents.Add
 '    WD.visible = True
 

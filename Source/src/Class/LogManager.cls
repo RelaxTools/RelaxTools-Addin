@@ -42,8 +42,8 @@ Private fp As Integer
 
 Public Enum LogLevel
     Trace = 0
-    Warn = 1
-    Info = 2
+    Info = 1
+    Warn = 2
     Fatal = 3
     None = 4
 End Enum
@@ -60,7 +60,7 @@ End Property
 Private Sub Class_Initialize()
     
     mLevel = GetSetting(C_TITLE, "Logger", "LogLevel", LogLevel.Info)
-    mLevelStr = Array("Trace", "Warn", "Info", "Fatal", "None")
+    mLevelStr = Array("Trace", "Info", "Warn", "Fatal", "None")
 
 '    fp = FreeFile()
 '    Dim strFile As String

@@ -55,7 +55,9 @@ Public Function GetString(ByRef bytBuf() As Byte) As String
     On Error GoTo e
     
     i = LBound(bytBuf)
-    ReDim bytRet(0 To UBound(bytBuf) * 2 - 1)
+    ReDim bytRet(0 To (UBound(bytBuf) + 1) * 2)
+    i = 0
+    lngPos = 0
     
     Do Until i > UBound(bytBuf)
     
@@ -165,7 +167,7 @@ Public Function getBytes(ByVal strBuf As String) As Byte()
     bytBuf = strBuf
     
     'バッファを最大 1文字×4バイト分確保
-    ReDim bytRet(0 To (Len(strBuf) * 4) - 1)
+    ReDim bytRet(0 To (Len(strBuf) * 4))
     
     lngPos = 0
 

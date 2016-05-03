@@ -88,8 +88,8 @@ Private Sub UserForm_Initialize()
     lblTaisho.Caption = strBuf
     
     cboLogLevel.AddItem "Trace"
-    cboLogLevel.AddItem "Warn"
     cboLogLevel.AddItem "Info"
+    cboLogLevel.AddItem "Warn"
     cboLogLevel.AddItem "Fatal"
     cboLogLevel.AddItem "None"
     
