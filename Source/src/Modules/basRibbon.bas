@@ -709,6 +709,11 @@ End Sub
 '--------------------------------------------------------------------
 Sub Auto_Open()
 
+    Application.OnTime Now, "holdOpen"
+    
+End Sub
+Sub holdOpen()
+
     On Error Resume Next
 
     Dim obj As Object
@@ -717,16 +722,21 @@ Sub Auto_Open()
     
     Set obj = GetHoldList()
     
+    Application.DisplayAlerts = False
     For Each o In obj.Keys
     
         Set hold = obj.Item(o)
-        Workbooks.Open hold.FullName, , hold.ReadOnly
+        DoEvents
+        Workbooks.Open FileName:=hold.FullName, ReadOnly:=hold.ReadOnly, IgnoreReadOnlyRecommended:=True, Notify:=False, Local:=True
+        DoEvents
     
     Next
+    Application.DisplayAlerts = True
     
     Set obj = Nothing
     
 End Sub
+
 '--------------------------------------------------------------------
 '  フック固定の設定内容取得
 '--------------------------------------------------------------------
