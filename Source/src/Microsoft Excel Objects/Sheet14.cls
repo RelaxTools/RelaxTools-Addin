@@ -48,7 +48,7 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
     Const C_COMP_SHEET As Long = 6
     Const C_COMP_ADDRESS As Long = 7
 
-    Dim WB As Workbook
+    Dim Wb As Workbook
     Dim WS As Worksheet
     Dim strBook As String
     Dim strSheet As String
@@ -73,10 +73,10 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
 
     On Error Resume Next
 
-    Set WB = Workbooks(strBook)
-    WB.Activate
+    Set Wb = Workbooks(strBook)
+    Wb.Activate
 
-    Set WS = WB.Worksheets(strSheet)
+    Set WS = Wb.Worksheets(strSheet)
     WS.Select
     
     WS.Range(strAddress).Select

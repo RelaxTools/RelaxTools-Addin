@@ -83,7 +83,7 @@ Private Sub cmdOk_Click()
     Dim C_CONTENT_PAGE As Long
     Dim C_ROW As Long
 
-    Dim WB As Workbook
+    Dim Wb As Workbook
     Dim WS As Worksheet
     Dim s As Worksheet
     Dim lngCount As Long
@@ -164,12 +164,12 @@ Private Sub cmdOk_Click()
 
     C_PERIOD = " " & String$(300, ".") & " "
 
-    Set WB = ActiveWorkbook
+    Set Wb = ActiveWorkbook
     
     If optNew.value Then
         
         'シートの存在チェック
-        For Each s In WB.Worksheets
+        For Each s In Wb.Worksheets
             If s.Name = C_NAME Then
                 If MsgBox("「" & C_NAME & "」シートが既に存在します。削除していいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
                     Exit Sub
@@ -186,7 +186,7 @@ Private Sub cmdOk_Click()
         C_CONTENT_PAGE = C_COLUMN_PAGE
         C_ROW = C_START_ROW
     
-        Set WS = WB.Worksheets.Add(WB.Worksheets(1))
+        Set WS = Wb.Worksheets.Add(Wb.Worksheets(1))
         WS.Name = C_NAME
         WS.Cells(C_HEAD_ROW, C_CONTENT_LIST).value = C_NAME
         WS.Cells(C_HEAD_ROW, C_CONTENT_PAGE).value = "ページ"
@@ -194,7 +194,7 @@ Private Sub cmdOk_Click()
         C_CONTENT_LIST = getAto1(txtDanrakuCell.Text)
         C_CONTENT_PAGE = getAto1(txtPageCell.Text)
         C_ROW = txtRow.Text
-        Set WS = WB.Worksheets(cboSheet.Text)
+        Set WS = Wb.Worksheets(cboSheet.Text)
     End If
     
     Application.ScreenUpdating = False

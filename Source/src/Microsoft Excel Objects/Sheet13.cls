@@ -47,7 +47,7 @@ Private Const C_START_ROW As Long = 11
 
 Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
 
-    Dim WB As Workbook
+    Dim Wb As Workbook
     Dim WS As Worksheet
     Dim strBook As String
     Dim strSheet As String
@@ -87,11 +87,11 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
     On Error Resume Next
     
     If strBuf = "" Then
-        Set WB = Workbooks.Open(FileName:=strBook)
+        Set Wb = Workbooks.Open(FileName:=strBook)
     Else
         For Each varPass In varPassword
             err.Clear
-            Set WB = Workbooks.Open(FileName:=strBook, Password:=varPass)
+            Set Wb = Workbooks.Open(FileName:=strBook, Password:=varPass)
             If err.Number = 0 Then
                 Exit For
             End If
@@ -104,7 +104,7 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
 
     AppActivate Application.Caption
 
-    Set WS = WB.Worksheets(strSheet)
+    Set WS = Wb.Worksheets(strSheet)
     WS.Select
     
     WS.Range(strId).Select
@@ -164,7 +164,7 @@ End Function
 
 Sub ReplaceStr()
 
-    Dim WB As Workbook
+    Dim Wb As Workbook
     Dim WS As Worksheet
     Dim strBook As String
     Dim strSheet As String
@@ -215,11 +215,11 @@ Sub ReplaceStr()
         FS.CopyFile strBook, strBook & "." & Format$(Now(), "yyyymmddhhnnss")
         
         If strBuf = "" Then
-            Set WB = Workbooks.Open(FileName:=strBook, Local:=True)
+            Set Wb = Workbooks.Open(FileName:=strBook, Local:=True)
         Else
             For Each varPass In varPassword
                 err.Clear
-                Set WB = Workbooks.Open(FileName:=strBook, Password:=varPass, Local:=True)
+                Set Wb = Workbooks.Open(FileName:=strBook, Password:=varPass, Local:=True)
                 If err.Number = 0 Then
                     Exit For
                 End If
@@ -237,7 +237,7 @@ Sub ReplaceStr()
         
             strSheet = Cells(lngRow, C_SEARCH_SHEET).value
             
-            Set WS = WB.Worksheets(strSheet)
+            Set WS = Wb.Worksheets(strSheet)
             WS.Select
             
             Do Until strBook <> Cells(lngRow, C_SEARCH_BOOK).value Or strSheet <> Cells(lngRow, C_SEARCH_SHEET).value Or Cells(lngRow, C_SEARCH_NO).value = ""
@@ -259,20 +259,20 @@ Sub ReplaceStr()
         Loop
         
         
-        If WB.ReadOnly Then
-            MsgBox "読み取り専用のブック(" & WB.Name & ")です。" & vbCrLf & "Grep置換をスキップします。", vbOKOnly + vbCritical, C_TITLE
-            WB.Saved = True
+        If Wb.ReadOnly Then
+            MsgBox "読み取り専用のブック(" & Wb.Name & ")です。" & vbCrLf & "Grep置換をスキップします。", vbOKOnly + vbCritical, C_TITLE
+            Wb.Saved = True
         Else
             On Error GoTo e
             Application.DisplayAlerts = False
-            WB.Save
+            Wb.Save
             Application.DisplayAlerts = True
             On Error Resume Next
         End If
         
-        WB.Close
+        Wb.Close
 pass:
-        Set WB = Nothing
+        Set Wb = Nothing
                 
     Loop
     
