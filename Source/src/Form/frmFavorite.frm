@@ -489,7 +489,7 @@ Private Sub UserForm_Initialize()
 
     
     Dim cat As Variant
-    For Each cat In mobjCategory.Keys
+    For Each cat In mobjCategory.keys
         lstCategory.AddItem cat
     Next
     

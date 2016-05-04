@@ -709,7 +709,7 @@ End Sub
 '--------------------------------------------------------------------
 Sub Auto_Open()
 
-    Application.OnTime Now, "holdOpen"
+    UnSyncRun "holdOpen"
     
 End Sub
 Sub holdOpen()
@@ -723,7 +723,7 @@ Sub holdOpen()
     Set obj = GetHoldList()
     
     Application.DisplayAlerts = False
-    For Each o In obj.Keys
+    For Each o In obj.keys
     
         Set hold = obj.Item(o)
         DoEvents
@@ -740,7 +740,7 @@ End Sub
 '--------------------------------------------------------------------
 '  フック固定の設定内容取得
 '--------------------------------------------------------------------
-Private Function GetHoldList() As Object
+Function GetHoldList() As Object
 
     Dim strFile As String
     Dim varFile As Variant
@@ -778,13 +778,13 @@ End Function
 '--------------------------------------------------------------------
 '  フック固定の設定内容保存
 '--------------------------------------------------------------------
-Private Sub SaveHoldList(ByRef obj As Object)
+Sub SaveHoldList(ByRef obj As Object)
 
     Dim o As Variant
     Dim strFile As String
     Dim hold As HoldDto
     
-    For Each o In obj.Keys
+    For Each o In obj.keys
         Set hold = obj.Item(o)
         If strFile = "" Then
             strFile = hold.FullName & vbTab & hold.ReadOnly

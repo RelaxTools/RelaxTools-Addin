@@ -45,6 +45,7 @@ Dim rCol As Range
 Public Enum SelectionCheckSizeConstants
     CountTypeSJIS
     CountTypeUTF8
+    CountTypeUTF16
 End Enum
 Dim mCountType As SelectionCheckSizeConstants
 '------------------------------------------------------------------------------------------------------------------------
@@ -102,20 +103,20 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     Select Case mCountType
         Case CountTypeSJIS
-'            lngByte = LenB(StrConv(r.Value, vbFromUnicode))
             lngByte = LenB(StrConv(r.Text, vbFromUnicode))
             
         Case CountTypeUTF8
             Dim U8 As UTF8Encoding
             Set U8 = New UTF8Encoding
-'            bytBuf = U8.getBytes(r.Value)
             bytBuf = U8.getBytes(r.Text)
             lngByte = UBound(bytBuf()) - LBound(bytBuf()) + 1
             Set U8 = Nothing
             
+        Case CountTypeUTF16
+            lngByte = LenB(r.Text)
     End Select
-'    lngCol = Len(r.Value)
-    lngCol = Len(r.Text)
+'    lngCol = Len(r.Text)
+    lngCol = LenEx(r.Text)
     
     If lngByte > lngSizeByte Then
         lngSizeByte = lngByte

@@ -912,6 +912,22 @@ Sub execSelectionCheckSizeUTF8()
 
 End Sub
 '--------------------------------------------------------------
+' 選択しているセルの文字数(SelectionFrameWork使用)UTF16
+'--------------------------------------------------------------
+Sub execSelectionCheckSizeUTF16()
+
+    Dim obj As SelectionCheckSize
+    
+    Set obj = New SelectionCheckSize
+    
+    obj.CountType = SelectionCheckSizeConstants.CountTypeUTF16
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
 ' 選択範囲で値のあるセルを選択(SelectionFrameWork使用)
 '--------------------------------------------------------------
 Sub execSelectionSelectValueCell()

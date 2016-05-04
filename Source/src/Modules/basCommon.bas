@@ -206,7 +206,7 @@ Public Const C_MAX_CELLS As Long = 100000
 Public pvarSelectionBuffer As Variant
 Public pobjSelection As Object
 
-Public Const C_UTF16 As String = "UTF-16(UNICODE)"
+Public Const C_UTF16 As String = "UTF-16(LE)"
 Public Const C_UTF8 As String = "UTF-8"
 Public Const C_SJIS As String = "MS932(ShiftJIS)"
 Public Const C_SJIS_OLD As String = "Shift-JIS"
@@ -2273,3 +2273,72 @@ Sub SetMyDocument()
     ChDir CreateObject("Wscript.Shell").SpecialFolders("MyDocuments")
 End Sub
 
+'--------------------------------------------------------------
+'  サロゲートペア対応Len
+'--------------------------------------------------------------
+Function LenEx(ByVal strBuf As String) As Long
+
+    Dim bytBuf() As Byte
+    Dim lngBuf As Long
+    Dim i As Long
+    Dim lngLen As Long
+    
+    lngLen = 0
+    
+    If Len(strBuf) = 0 Then
+        LenEx = 0
+        Exit Function
+    End If
+    
+    bytBuf = strBuf
+    
+    For i = LBound(bytBuf) To UBound(bytBuf) Step 2
+    
+        lngBuf = LShift(bytBuf(i + 1), 8) + bytBuf(i)
+    
+        Select Case lngBuf
+            '上位サロゲート
+            Case &HD800& To &HDBFF&
+                lngLen = lngLen + 1
+            '下位サロゲート
+            Case &HDC00& To &HDFFF&
+                'カウントしない
+            Case Else
+                lngLen = lngLen + 1
+        End Select
+    
+    Next
+    
+    LenEx = lngLen
+
+End Function
+'------------------------------------------------------------------------------------------------------------------------
+' 下位バイト取得
+'------------------------------------------------------------------------------------------------------------------------
+Function LByte(ByVal lngValue As Long) As Long
+    LByte = lngValue And &HFF&
+End Function
+'------------------------------------------------------------------------------------------------------------------------
+' 上位バイト取得
+'------------------------------------------------------------------------------------------------------------------------
+Function UByte(ByVal lngValue As Long) As Long
+    UByte = RShift((lngValue And &HFF00&), 8)
+End Function
+'------------------------------------------------------------------------------------------------------------------------
+' 右シフト
+'------------------------------------------------------------------------------------------------------------------------
+Function RShift(ByVal lngValue As Long, ByVal lngKeta As Long) As Long
+    RShift = lngValue \ (2 ^ lngKeta)
+End Function
+'------------------------------------------------------------------------------------------------------------------------
+' 左シフト
+'------------------------------------------------------------------------------------------------------------------------
+Function LShift(ByVal lngValue As Long, ByVal lngKeta As Long) As Long
+    LShift = lngValue * (2 ^ lngKeta)
+End Function
+'------------------------------------------------------------------------------------------------------------------------
+' 非同期実行
+'------------------------------------------------------------------------------------------------------------------------
+Function UnSyncRun(ByVal strMacro As String, Optional ByVal lngSec As Long = 0) As Long
+    Application.OnTime DateAdd("s", lngSec, Now), strMacro
+End Function

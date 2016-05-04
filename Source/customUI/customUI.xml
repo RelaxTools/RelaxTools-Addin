@@ -21,7 +21,15 @@
             </menu>
           </splitButton>
           <separator id="favSep"/>
-          <toggleButton id="holdFile" label="ブックを&#xD;&#xA;固定" size="large" image="pushpin" getSupertip="getSupertip" getDescription="getDescription" getPressed="holdPressed" onAction="holdOnAction"/> 
+          
+          <splitButton id="holdSplit" size="large" getEnabled="getRibbonEnabled">
+            <toggleButton id="holdFile" label="ブックを&#xD;&#xA;ピン留め" image="pushpin" getSupertip="getSupertip" getDescription="getDescription" getPressed="holdPressed" onAction="holdOnAction"/> 
+            <menu id="holdMenu" itemSize="large" >
+              <menuSeparator id="holdSep01" title="ピン留めの管理"/>
+              <button id="showHoldBook"   image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            </menu>
+          </splitButton>
+
           <separator id="holdSep"/>
           <box id="box1" boxStyle="vertical">
 
@@ -123,6 +131,7 @@
             <button id="execSelectionCheckCount"          image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="execSelectionCheckSize"           image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="execSelectionCheckSizeUTF8"       image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="execSelectionCheckSizeUTF16"       image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <menuSeparator id="checkSep02" title="比較" />
             <button id="compWorkSheets" image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <menuSeparator id="checkSep03" title="ユニーク（一意）チェック（比較元：青／比較先：黄）"/>
