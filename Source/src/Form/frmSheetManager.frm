@@ -13,6 +13,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 '-----------------------------------------------------------------------------------------------------
 '
 ' [RelaxTools-Addin] v4
@@ -66,6 +67,7 @@ Private Const C_DEL As String = "削除"
 
 Private mBook As Workbook
 
+Private mSainyu As Boolean
 
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
@@ -172,6 +174,10 @@ End Sub
 
 Private Sub txtSheetName_Change()
 
+    If mSainyu Then
+        Exit Sub
+    End If
+    
 '    Dim strBuf As String
 '    Dim lngLen As Long
 '    Dim i As Long
@@ -315,7 +321,9 @@ Private Sub lstSheet_Change()
     
         If lstSheet.Selected(lngCnt) Then
             
+            mSainyu = True
             txtSheetName.Text = lstSheet.List(lngCnt, C_SHEET_NEW_NAME)
+            mSainyu = False
             Exit For
         
         End If

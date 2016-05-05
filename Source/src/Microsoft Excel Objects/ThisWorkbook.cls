@@ -125,18 +125,18 @@ Private Sub DeleteTemporaryFile()
 End Sub
 
 
-Private Sub XL_WindowResize(ByVal Wb As Workbook, ByVal Wn As Window)
+Private Sub XL_WindowResize(ByVal WB As Workbook, ByVal Wn As Window)
     Call RefreshRibbon
 End Sub
 
-Private Sub XL_WorkbookActivate(ByVal Wb As Workbook)
+Private Sub XL_WorkbookActivate(ByVal WB As Workbook)
     Call RefreshRibbon
 End Sub
 
 '--------------------------------------------------------------
 '　ブック保存前イベント
 '--------------------------------------------------------------
-Private Sub XL_WorkbookBeforeSave(ByVal Wb As Workbook, ByVal SaveAsUI As Boolean, Cancel As Boolean)
+Private Sub XL_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolean, Cancel As Boolean)
 
     Dim strName As String
     Dim strFolder As String
@@ -166,7 +166,7 @@ Private Sub XL_WorkbookBeforeSave(ByVal Wb As Workbook, ByVal SaveAsUI As Boolea
     ' 簡易世代管理
     '-------------------------------------------------
     exec = CBool(GetSetting(C_TITLE, "Backup", "Check", False))
-    If rlxIsExcelFile(Wb.FullName) And exec Then
+    If rlxIsExcelFile(WB.FullName) And exec Then
     Else
         Exit Sub
     End If
@@ -184,7 +184,7 @@ Private Sub XL_WorkbookBeforeSave(ByVal Wb As Workbook, ByVal SaveAsUI As Boolea
     blnFind = False
     For i = 0 To UBound(strList)
 '        If InStr(LCase(Application.ActiveWorkbook.FullName), LCase(strList(i))) > 0 Then
-        If InStr(LCase(Wb.FullName), LCase(strList(i))) > 0 Then
+        If InStr(LCase(WB.FullName), LCase(strList(i))) > 0 Then
              blnFind = True
             Exit For
         End If
@@ -194,7 +194,7 @@ Private Sub XL_WorkbookBeforeSave(ByVal Wb As Workbook, ByVal SaveAsUI As Boolea
     End If
     
     
-    strName = Wb.FullName
+    strName = WB.FullName
     
     'パス存在チェック
     strFolder = rlxGetFullpathFromPathName(strName)
@@ -216,9 +216,9 @@ Private Sub XL_WorkbookBeforeSave(ByVal Wb As Workbook, ByVal SaveAsUI As Boolea
     For i = lngGen To 0 Step -1
     
         If Len(Trim(strFolder)) = 0 Then
-            strFullname = Wb.FullName
+            strFullname = WB.FullName
         Else
-            strFullname = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(Wb.FullName)
+            strFullname = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(WB.FullName)
         End If
     
         strSourceFile = strFullname & "." & Format$(i, "000")
@@ -243,7 +243,7 @@ End Sub
 '--------------------------------------------------------------
 '　ブック保存後イベント
 '--------------------------------------------------------------
-Private Sub XL_WorkbookAfterSave(ByVal Wb As Workbook, ByVal Success As Boolean)
+Private Sub XL_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
 
     Dim a1exec As Boolean
     Dim backexec As Boolean
@@ -266,7 +266,7 @@ Private Sub XL_WorkbookAfterSave(ByVal Wb As Workbook, ByVal Success As Boolean)
     '-------------------------------------------------
     ' 簡易世代管理
     '-------------------------------------------------
-    If rlxIsExcelFile(Wb.FullName) And backexec Then
+    If rlxIsExcelFile(WB.FullName) And backexec Then
     
         blnDisplayAlerts = Application.DisplayAlerts
         blnScreenUpdating = Application.ScreenUpdating
@@ -289,12 +289,12 @@ Private Sub XL_WorkbookAfterSave(ByVal Wb As Workbook, ByVal Success As Boolean)
             Dim strFullname As String
             strFolder = GetSetting(C_TITLE, "Backup", "Folder", "")
             If Len(Trim(strFolder)) = 0 Then
-                strFullname = Wb.FullName
+                strFullname = WB.FullName
             Else
-                strFullname = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(Wb.FullName)
+                strFullname = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(WB.FullName)
             End If
             mblnEventCancel = True
-            Wb.SaveCopyAs strFullname & ".000"
+            WB.SaveCopyAs strFullname & ".000"
             mblnEventCancel = False
         
         End If
@@ -641,7 +641,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     sh.Parent.Saved = s
 
 End Sub
-Private Sub XL_LINE_WorkbookBeforeSave(ByVal Wb As Workbook, ByVal SaveAsUI As Boolean, Cancel As Boolean)
+Private Sub XL_LINE_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolean, Cancel As Boolean)
 #If VBA7 Then
     On Error Resume Next
     Call deleteCrossLine
@@ -651,7 +651,7 @@ Private Sub XL_LINE_WorkbookBeforeSave(ByVal Wb As Workbook, ByVal SaveAsUI As B
     Call lineOnAction(obj, False)
 #End If
 End Sub
-Private Sub XL_LINE_WorkbookAfterSave(ByVal Wb As Workbook, ByVal Success As Boolean)
+Private Sub XL_LINE_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
     On Error Resume Next
     If mLineEnable Then
         Call addCrossLine
@@ -661,7 +661,7 @@ Private Sub XL_LINE_SheetDeactivate(ByVal sh As Object)
     On Error Resume Next
     Call deleteCrossLine
 End Sub
-Private Sub XL_LINE_WorkbookDeactivate(ByVal Wb As Workbook)
+Private Sub XL_LINE_WorkbookDeactivate(ByVal WB As Workbook)
     On Error Resume Next
     Call deleteCrossLine
 End Sub
@@ -672,7 +672,7 @@ Private Sub XL_LINE_SheetActivate(ByVal sh As Object)
     End If
 
 End Sub
-Private Sub XL_LINE_WorkbookActivate(ByVal Wb As Workbook)
+Private Sub XL_LINE_WorkbookActivate(ByVal WB As Workbook)
     On Error Resume Next
     If mLineEnable Then
         Call addCrossLine
@@ -682,7 +682,7 @@ End Sub
 
 
 
-Private Sub XL_LINE_WorkbookBeforeClose(ByVal Wb As Workbook, Cancel As Boolean)
+Private Sub XL_LINE_WorkbookBeforeClose(ByVal WB As Workbook, Cancel As Boolean)
     On Error Resume Next
     Dim obj As Object
     

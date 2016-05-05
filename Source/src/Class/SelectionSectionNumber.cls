@@ -91,7 +91,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     Dim strBuf As String
     Dim lngLevel As Long
 
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim WS As Worksheet
     Dim i As Long
     Dim j As Long
@@ -115,13 +115,13 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     End If
 '    Application.ScreenUpdating = False
     
-    Set Wb = r.Parent.Parent
+    Set WB = r.Parent.Parent
     
     j = 0
     For i = r.Parent.Index To 1 Step -1
     
         '表示されているシートのみで判定
-        Set WS = Wb.Worksheets(i)
+        Set WS = WB.Worksheets(i)
         
         If WS.visible = xlSheetVisible Then
         
@@ -154,7 +154,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         Set WS = Nothing
         
     Next
-    Set Wb = Nothing
+    Set WB = Nothing
 pass:
     
     If blnSearch And blnFind Then

@@ -421,7 +421,7 @@ Sub setAllA1()
     Dim WS As Worksheet
     Dim WD As Window
     Dim sw As Boolean
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim blnRatio As Boolean
     Dim lngPercent As Long
  
@@ -445,30 +445,30 @@ Sub setAllA1()
         Application.ScreenUpdating = False
     End If
   
-    Set Wb = ActiveWorkbook
+    Set WB = ActiveWorkbook
   
-    For Each WS In Wb.Worksheets
+    For Each WS In WB.Worksheets
         If WS.visible = xlSheetVisible Then
             WS.Activate
             WS.Range("A1").Activate
-            Wb.Windows(1).ScrollRow = 1
-            Wb.Windows(1).ScrollColumn = 1
+            WB.Windows(1).ScrollRow = 1
+            WB.Windows(1).ScrollColumn = 1
             If blnRatio Then
-                Wb.Windows(1).Zoom = lngPercent
+                WB.Windows(1).Zoom = lngPercent
             End If
         End If
     Next
 
     '非表示の１枚目を選択して「はぁ？」状態だったので表示中の１枚目にする。
     'ActiveWorkbook.Worksheets(1).Select
-    For Each WS In Wb.Worksheets
+    For Each WS In WB.Worksheets
         If WS.visible = xlSheetVisible Then
             WS.Select
             Exit For
         End If
     Next
     
-    Set Wb = Nothing
+    Set WB = Nothing
     
     If sw Then
         Application.ScreenUpdating = True
@@ -565,7 +565,7 @@ End Sub
 '------------------------------------------------------------------------
 Sub getBookName()
 
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim strBuf As String
     
     On Error GoTo ErrHandle
@@ -576,8 +576,8 @@ Sub getBookName()
     End If
     
     strBuf = ""
-    For Each Wb In Workbooks
-        strBuf = strBuf & Wb.Name & vbCrLf
+    For Each WB In Workbooks
+        strBuf = strBuf & WB.Name & vbCrLf
     Next
     
     'クリップボード貼り付け
@@ -594,7 +594,7 @@ End Sub
 '------------------------------------------------------------------
 Sub getBookFullName()
 
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim strBuf As String
     
     On Error GoTo ErrHandle
@@ -605,8 +605,8 @@ Sub getBookFullName()
     End If
     
     strBuf = ""
-    For Each Wb In Workbooks
-        strBuf = strBuf & rlxDriveToUNC(Wb.FullName) & vbCrLf
+    For Each WB In Workbooks
+        strBuf = strBuf & rlxDriveToUNC(WB.FullName) & vbCrLf
     Next
     
     'クリップボード貼り付け
@@ -692,7 +692,7 @@ Sub divideWorkBook()
     Dim WS As Worksheet
     Dim W2 As Worksheet
     Dim motoWB As Workbook
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim WSH As Object
     
     On Error GoTo ErrHandle
@@ -726,15 +726,15 @@ Sub divideWorkBook()
             '現在のシートをコピーして新規のワークブックを作成する。
             WS.Copy
             
-            Set Wb = ActiveWorkbook
+            Set WB = ActiveWorkbook
             
             '新規作成したワークブックを保存する。フォーマットは親と同じ
             Application.DisplayAlerts = False
-            Wb.SaveAs FileName:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name, FileFormat:=motoWB.FileFormat, Local:=True
+            WB.SaveAs FileName:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name, FileFormat:=motoWB.FileFormat, Local:=True
             Application.DisplayAlerts = True
-            Wb.Close
+            WB.Close
     
-            Set Wb = Nothing
+            Set WB = Nothing
             
         End If
     Next
@@ -762,7 +762,7 @@ Sub mergeWorkBook()
     Dim WS As Worksheet
     Dim W2 As Worksheet
     Dim motoWB As Workbook
-    Dim Wb As Workbook
+    Dim WB As Workbook
     
     Dim blnFirst As Boolean
     
@@ -776,9 +776,9 @@ Sub mergeWorkBook()
     
     blnFirst = True
     
-    For Each Wb In Workbooks
+    For Each WB In Workbooks
 
-        For Each WS In Wb.Worksheets
+        For Each WS In WB.Worksheets
             If blnFirst Then
                 WS.Copy
                 Set motoWB = ActiveWorkbook
@@ -1227,7 +1227,7 @@ Public Sub createReferenceBook()
     Dim strTmpBook As String
 
     Dim FS As Object
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim XL As Excel.Application
 
     On Error GoTo ErrHandle
@@ -1260,10 +1260,10 @@ Public Sub createReferenceBook()
         
         XL.visible = True
         
-        Set Wb = XL.Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
+        Set WB = XL.Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
         AppActivate XL.Caption
     Else
-        Set Wb = Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
+        Set WB = Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
         AppActivate Application.Caption
     
     End If
@@ -1283,7 +1283,7 @@ Public Sub changeReferenceBook()
     Dim strTmpBook As String
 
     Dim FS As Object
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim XL As Excel.Application
 
     On Error GoTo ErrHandle
@@ -1304,20 +1304,20 @@ Public Sub changeReferenceBook()
         Exit Sub
     End If
     
-    Set Wb = ActiveWorkbook
+    Set WB = ActiveWorkbook
 
     strActBook = ActiveWorkbook.FullName
     strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(ActiveWorkbook.Name)
 
     FS.CopyFile strActBook, strTmpBook
 
-    Wb.Close
+    WB.Close
 
     Workbooks.Open FileName:=strTmpBook, ReadOnly:=True
     AppActivate Application.Caption
     
     Set FS = Nothing
-    Set Wb = Nothing
+    Set WB = Nothing
     
     Exit Sub
 ErrHandle:
@@ -1355,7 +1355,7 @@ Public Sub OpenReferenceBook()
 
 
     Dim FS As Object
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim XL As Excel.Application
 
     Set FS = CreateObject("Scripting.FileSystemObject")
@@ -1370,10 +1370,10 @@ Public Sub OpenReferenceBook()
         
         XL.visible = True
         
-        Set Wb = XL.Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
+        Set WB = XL.Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
         AppActivate XL.Caption
     Else
-        Set Wb = Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
+        Set WB = Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
         AppActivate Application.Caption
     End If
     
@@ -2206,7 +2206,7 @@ Sub tagJump()
     Const C_SEARCH_ADDRESS As Long = 4
     Const C_SEARCH_STR As Long = 5
 
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim WS As Worksheet
     Dim strBook As String
     Dim strSheet As String
@@ -2232,10 +2232,10 @@ Sub tagJump()
     End If
 
     On Error Resume Next
-    Set Wb = Workbooks.Open(FileName:=strBook)
+    Set WB = Workbooks.Open(FileName:=strBook)
     AppActivate Application.Caption
 
-    Set WS = Wb.Worksheets(strSheet)
+    Set WS = WB.Worksheets(strSheet)
     WS.Select
     
     WS.Range(strAddress).Select
@@ -2451,15 +2451,15 @@ Sub createContentsEx()
     Const C_HEAD_ROW = 2
     Const C_START_ROW = 3
 
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim WS As Worksheet
     Dim s As Worksheet
     Dim lngCount As Long
 
-    Set Wb = ActiveWorkbook
+    Set WB = ActiveWorkbook
     
     'シートの存在チェック
-    For Each s In Wb.Worksheets
+    For Each s In WB.Worksheets
         If s.Name = C_NAME Then
             If MsgBox("「" & C_NAME & "」シートが既に存在します。削除していいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
                 Exit Sub
@@ -2475,10 +2475,10 @@ Sub createContentsEx()
     On Error GoTo e
     
     Application.ScreenUpdating = False
-    Set WS = Wb.Worksheets.Add(Wb.Worksheets(1))
+    Set WS = WB.Worksheets.Add(WB.Worksheets(1))
     WS.Name = C_NAME
     
-    WS.Cells(1, 1).value = "ブック名:" & Wb.Name
+    WS.Cells(1, 1).value = "ブック名:" & WB.Name
     
     lngCount = C_START_ROW
     WS.Cells(lngCount, C_NO).value = "No."
@@ -2488,7 +2488,7 @@ Sub createContentsEx()
     
     lngCount = lngCount + 1
     
-    For Each s In Wb.Worksheets
+    For Each s In WB.Worksheets
     
         If s.Name <> C_NAME Then
         
@@ -2542,7 +2542,7 @@ e:
     Set r = Nothing
 
     Set WS = Nothing
-    Set Wb = Nothing
+    Set WB = Nothing
 
 End Sub
 '--------------------------------------------------------------
@@ -2961,7 +2961,7 @@ Sub openFileNameFromClipboard()
     Dim strTmpBook As String
 
     Dim FS As Object
-    Dim Wb As Workbooks
+    Dim WB As Workbooks
     Dim XL As Excel.Application
 
     On Error GoTo ErrHandle
@@ -2997,9 +2997,9 @@ Sub openFileNameFromClipboard()
     If blnResult Then
         Set XL = New Excel.Application
         XL.visible = True
-        Set Wb = XL.Workbooks
+        Set WB = XL.Workbooks
     Else
-        Set Wb = Workbooks
+        Set WB = Workbooks
     End If
     
     Set FS = CreateObject("Scripting.FileSystemObject")
@@ -3018,7 +3018,7 @@ Sub openFileNameFromClipboard()
     
         FS.CopyFile f, strTmpBook
     
-        Wb.Open FileName:=strTmpBook, ReadOnly:=True
+        WB.Open FileName:=strTmpBook, ReadOnly:=True
 pass:
     Next
     
@@ -3288,7 +3288,7 @@ Sub RegExport()
 
     Set Locator = CreateObject("WbemScripting.SWbemLocator")
     Set Service = Locator.ConnectServer(vbNullString, "root\default")
-    Set Reg = Service.get("StdRegProv")
+    Set Reg = Service.Get("StdRegProv")
     
     Const HKEY_CURRENT_USER = &H80000001
     

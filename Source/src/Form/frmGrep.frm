@@ -119,7 +119,7 @@ End Sub
 Private Sub cmdOk_Click()
 
     Dim XL As Excel.Application
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim WS As Worksheet
     Dim colBook As Collection
     Dim varBook As Variant
@@ -242,7 +242,7 @@ Private Sub cmdOk_Click()
 '        If Len(txtPassword.Text) <> 0 Then
             For Each pass In varPassword
                 err.Clear
-                Set Wb = XL.Workbooks.Open(FileName:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, Notify:=False, Password:=pass, Local:=True)
+                Set WB = XL.Workbooks.Open(FileName:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, Notify:=False, Password:=pass, Local:=True)
                 If err.Number = 0 Then
                     Exit For
                 End If
@@ -252,7 +252,7 @@ Private Sub cmdOk_Click()
 '            Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, Notify:=False, Password:="", Local:=True)
 '        End If
         If err.Number = 0 Then
-            For Each WS In Wb.Worksheets
+            For Each WS In WB.Worksheets
                 If WS.visible = xlSheetVisible Then
                     Select Case cboObj.Text
                         Case C_SEARCH_OBJECT_CELL
@@ -278,8 +278,8 @@ Private Sub cmdOk_Click()
             ResultWS.Cells(mlngCount, C_SEARCH_STR).value = err.Description
             mlngCount = mlngCount + 1
         End If
-        Wb.Close SaveChanges:=False
-        Set Wb = Nothing
+        WB.Close SaveChanges:=False
+        Set WB = Nothing
         lngBookCount = lngBookCount + 1
         mMm.DisplayGauge lngBookCount
     Next

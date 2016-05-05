@@ -49,7 +49,7 @@ Private Const C_SEARCH_BOOK As Long = 2
 
 Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
 
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim WS As Worksheet
     Dim strBook As String
 

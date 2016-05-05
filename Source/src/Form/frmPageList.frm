@@ -106,7 +106,7 @@ End Sub
 Private Sub cmdOk_Click()
 
     Dim XL As Excel.Application
-    Dim Wb As Workbook
+    Dim WB As Workbook
     Dim WS As Worksheet
     
     Dim colBook As Collection
@@ -233,18 +233,18 @@ Private Sub cmdOk_Click()
         Select Case True
             Case InStr(UCase(varBook), C_EXCEL_FILE) > 0
             
-                Set Wb = XL.Workbooks.Open(FileName:=varBook, ReadOnly:=True)
+                Set WB = XL.Workbooks.Open(FileName:=varBook, ReadOnly:=True)
                 
                 lngPage = 0
-                For Each WS In Wb.Worksheets
+                For Each WS In WB.Worksheets
                     If WS.visible = xlSheetVisible Then
                         lngPage = lngPage + (WS.VPageBreaks.count + 1) * (WS.HPageBreaks.count + 1)
                     End If
                 Next
                 
                 ResultWS.Cells(lngCount, C_SEARCH_PAGE).value = lngPage
-                Wb.Close SaveChanges:=False
-                Set Wb = Nothing
+                WB.Close SaveChanges:=False
+                Set WB = Nothing
         
             Case InStr(UCase(varBook), C_WORD_FILE) > 0
             
