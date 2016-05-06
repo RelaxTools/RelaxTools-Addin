@@ -144,7 +144,7 @@ Private Sub cmdOk_Click()
 '    SaveSetting C_TITLE, "Search", "chkSmartArt", chkSmartArt.value
     
     If lstResult.ListCount = 0 Then
-        MsgBox "検索対象が見つかりませんでした。", vbInformation + vbOKOnly, C_TITLE
+        MsgBox "校正対象が見つかりませんでした。", vbInformation + vbOKOnly, C_TITLE
     End If
     
 End Sub

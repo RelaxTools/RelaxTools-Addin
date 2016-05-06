@@ -49,6 +49,8 @@ Public Enum LogLevel
 End Enum
 
 Private mLevel As LogLevel
+Private mLogType As Long
+Private mOpen As Boolean
 
 Private mLevelStr As Variant
 
@@ -59,20 +61,22 @@ End Property
 
 Private Sub Class_Initialize()
     
-    mLevel = GetSetting(C_TITLE, "Logger", "LogLevel", LogLevel.Info)
+    mLevel = GetSetting(C_TITLE, "Log", "Level", LogLevel.Info)
     mLevelStr = Array("Trace", "Info", "Warn", "Fatal", "None")
-
-'    fp = FreeFile()
-'    Dim strFile As String
-'
-'    strFile = GetSetting(C_TITLE, "Logger", "LogFile", rlxGetAppDataFolder & C_TITLE & ".log")
-'    Open strFile For Append As fp
+    mLogType = CLng(GetSetting(C_TITLE, "Log", "LogType", C_LOG_ALL))
+    
+    If mLogType And C_LOG_LOGFILE Then
+        Call OpenLog
+    End If
 
 End Sub
 
 Private Sub Class_Terminate()
     
-'    Close fp
+    If mOpen Then
+        On Error Resume Next
+        Close fp
+    End If
     
 End Sub
 
@@ -82,8 +86,19 @@ Public Sub Log(ByVal l As LogLevel, ByVal strMsg As String)
     
     If l >= mLevel Then
         strLog = C_TITLE & "," & Format$(Now, "yyyy-mm-dd,hh:nn:ss") & "." & getMSec & "," & mLevelStr(l) & "," & strMsg
-        Debug.Print strLog
-'        Print #fp, strLog
+        If mLogType And C_LOG_DEBUGWINDOW Then
+            Debug.Print strLog
+        End If
+        If mLogType And C_LOG_LOGFILE Then
+            If mOpen Then
+                On Error Resume Next
+                Print #fp, strLog
+            Else
+                Call OpenLog
+                On Error Resume Next
+                Print #fp, strLog
+            End If
+        End If
     End If
     
 End Sub
@@ -96,4 +111,18 @@ Private Function getMSec() As String
     
 End Function
 
+Private Sub OpenLog()
 
+    Dim strFile As String
+    
+    On Error GoTo e
+    
+    strFile = GetSetting(C_TITLE, "Logger", "LogFile", rlxGetAppDataFolder & C_TITLE & ".log")
+    fp = FreeFile()
+    Open strFile For Append As fp
+    mOpen = True
+    Exit Sub
+e:
+    mOpen = False
+    
+End Sub

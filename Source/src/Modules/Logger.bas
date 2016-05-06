@@ -38,6 +38,10 @@ Attribute VB_Name = "Logger"
 Private mLog As New LogManager
 Private colStack As New Collection
 
+Public Const C_LOG_DEBUGWINDOW As Long = 1
+Public Const C_LOG_LOGFILE As Long = 2
+Public Const C_LOG_ALL As Long = 3
+
 'インスタンスの取得
 Private Function GetInstance() As LogManager
 

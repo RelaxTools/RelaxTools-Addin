@@ -62,7 +62,7 @@ Copyright(C) Yasuhiro Watanabe 2009
 * relaxtools.png                 ・・・・・・・・ アイコンファイルご自由にお使いください。
 * ExcelReadOnly.vbs              ・・・・・・・・ エクスプローラの右クリックメニューに「読み取り専用で開く」を追加するスクリプト
 * ExcelSetHomePosition.vbs       ・・・・・・・・ ホームポジション設定スクリプト
-* keyConfig                      ・・・・・・・・ ショートカットキー設定ファイルフォルダ
+* keyConfig                      ・・・・・・・・ おすすめショートカットキー設定ファイルフォルダ
 
 * Source                         ・・・・・・・・ ソースフォルダ
 

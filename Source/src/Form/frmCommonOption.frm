@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCommonOption 
    Caption         =   "RelaxTools共通設定"
-   ClientHeight    =   7410
+   ClientHeight    =   8475
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   6525
@@ -52,6 +52,18 @@ End Sub
 
 Private Sub cmdOk_Click()
 
+    Dim lngType As Long
+    
+    Select Case True
+        Case optDebugWindow.value
+            lngType = C_LOG_DEBUGWINDOW
+        Case optLogfile.value
+            lngType = C_LOG_LOGFILE
+        Case optAll.value
+            lngType = C_LOG_ALL
+    End Select
+    Call SaveSetting(C_TITLE, "Log", "LogType", lngType)
+
     Call SaveSetting(C_TITLE, "Option", "OnRepeat", chkOnRepeat.value)
     Call SaveSetting(C_TITLE, "Option", "NotHoldFormat", chkNotHoldFormat.value)
     Call SaveSetting(C_TITLE, "Log", "Level", cboLogLevel.ListIndex)
@@ -59,6 +71,23 @@ Private Sub cmdOk_Click()
     Logger.Level = cboLogLevel.ListIndex
     
     Unload Me
+
+End Sub
+
+Private Sub cmdOpen_Click()
+
+    On Error GoTo e
+
+    Dim strFile As String
+    strFile = GetSetting(C_TITLE, "Logger", "LogFile", rlxGetAppDataFolder & C_TITLE & ".log")
+
+    With CreateObject("WScript.Shell")
+        .Run (strFile)
+    End With
+    
+    Exit Sub
+e:
+    MsgBox "ログファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
 
 End Sub
 
@@ -94,5 +123,17 @@ Private Sub UserForm_Initialize()
     cboLogLevel.AddItem "None"
     
     cboLogLevel.ListIndex = CLng(GetSetting(C_TITLE, "Log", "Level", LogLevel.None))
+    
+    Dim lngType As Long
+    lngType = CLng(GetSetting(C_TITLE, "Log", "LogType", C_LOG_ALL))
+    
+    Select Case lngType
+        Case C_LOG_DEBUGWINDOW
+            optDebugWindow.value = True
+        Case C_LOG_LOGFILE
+            optLogfile.value = True
+        Case C_LOG_ALL
+            optAll.value = True
+    End Select
     
 End Sub
