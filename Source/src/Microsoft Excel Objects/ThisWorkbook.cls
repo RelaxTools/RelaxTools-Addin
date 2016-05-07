@@ -68,6 +68,9 @@ Private Sub Workbook_Open()
     
     Logger.LogBegin "Workbook_Open"
     
+    '情報ログの出力
+    Call DispInformation
+    
     'ショートカットキー設定
     Call setShortCutKey
     
@@ -76,13 +79,104 @@ Private Sub Workbook_Open()
     
     Set mColSection = rlxInitSectionSetting()
     
-'    If GetSetting(C_TITLE, "Info", "Show", "") <> ThisWorkbook.Worksheets("Info").Cells(1, 1).value Then
-'        Application.OnTime Now, "showInfo"
-'    End If
-    
     Logger.LogFinish "Workbook_Open"
 
 End Sub
+Private Sub DispInformation()
+
+    Dim strVer As String
+    Dim strTitle As String
+
+    strTitle = ThisWorkbook.BuiltinDocumentProperties("Title").value
+    strVer = ThisWorkbook.BuiltinDocumentProperties("Comments").value
+    
+    
+    Dim strBuf As String
+    Dim i As Long
+    Dim obj As Object
+
+    strBuf = strTitle
+    Dim s() As String
+    s = Split(strVer, vbLf)
+    strBuf = strBuf & " " & s(0)
+    
+    Logger.LogInfo strBuf
+
+    strBuf = "Microsoft "
+    Select Case True
+        Case InStr(Application.OperatingSystem, "5.00") > 0
+            strBuf = strBuf & "Windows 2000"
+        Case InStr(Application.OperatingSystem, "5.01") > 0
+            strBuf = strBuf & "Windows XP"
+        Case InStr(Application.OperatingSystem, "6.00") > 0
+            strBuf = strBuf & "Windows Vista"
+        Case InStr(Application.OperatingSystem, "6.01") > 0
+            strBuf = strBuf & "Windows 7"
+        Case InStr(Application.OperatingSystem, "6.02") > 0
+            strBuf = strBuf & "Windows 8 or 8.1"
+        Case Else
+            strBuf = strBuf & "Windows 10 or Later"
+    End Select
+    If Isx64 Then
+        strBuf = strBuf & " (64bit)"
+    Else
+        strBuf = strBuf & " (32bit)"
+    End If
+    Logger.LogInfo strBuf
+
+    strBuf = "Microsoft Excel "
+
+    Select Case Val(Application.Version)
+        Case Is = 0
+            strBuf = strBuf & "不明"
+        Case Is <= 11
+            strBuf = strBuf & "2003以前"
+        Case 12
+            strBuf = strBuf & "2007"
+        Case 14
+            strBuf = strBuf & "2010"
+        Case 15
+            strBuf = strBuf & "2013"
+        Case 16
+            strBuf = strBuf & "2016"
+        Case Else
+            strBuf = strBuf & "2016より未来のバージョン"
+    End Select
+    strBuf = strBuf & " Build " & Application.Build
+#If Win64 Then
+    strBuf = strBuf & " (64bit)"
+#Else
+    strBuf = strBuf & " (32bit)"
+#End If
+    Logger.LogInfo strBuf
+
+End Sub
+Private Function Isx64() As Boolean
+
+    On Error GoTo xp
+
+    Dim colItems As Object
+    Dim itm As Object
+    Dim ret As Boolean
+
+    ret = False '初期化
+
+    Set colItems = CreateObject("WbemScripting.SWbemLocator").ConnectServer.ExecQuery("Select * From Win32_OperatingSystem")
+
+    For Each itm In colItems
+        If InStr(itm.OSArchitecture, "64") Then
+            ret = True
+            Exit For
+        End If
+    Next
+
+    Isx64 = ret
+
+    Exit Function
+xp:
+    Isx64 = False
+
+End Function
 '--------------------------------------------------------------
 '　ブッククローズ前イベント
 '--------------------------------------------------------------

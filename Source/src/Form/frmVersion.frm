@@ -210,32 +210,7 @@ Private Sub UserForm_Initialize()
     MW.Install
     
 End Sub
-Private Function Isx64() As Boolean
 
-    On Error GoTo xp
-
-    Dim colItems As Object
-    Dim itm As Object
-    Dim ret As Boolean
-
-    ret = False '初期化
-
-    Set colItems = CreateObject("WbemScripting.SWbemLocator").ConnectServer.ExecQuery("Select * From Win32_OperatingSystem")
-
-    For Each itm In colItems
-        If InStr(itm.OSArchitecture, "64") Then
-            ret = True
-            Exit For
-        End If
-    Next
-
-    Isx64 = ret
-
-    Exit Function
-xp:
-    Isx64 = False
-
-End Function
 
 Private Sub MW_WheelDown(obj As Object)
     

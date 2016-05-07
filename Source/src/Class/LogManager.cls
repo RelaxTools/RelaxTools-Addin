@@ -63,7 +63,7 @@ Private Sub Class_Initialize()
     
     mLevel = GetSetting(C_TITLE, "Log", "Level", LogLevel.Info)
     mLevelStr = Array("Trace", "Info", "Warn", "Fatal", "None")
-    mLogType = CLng(GetSetting(C_TITLE, "Log", "LogType", C_LOG_ALL))
+    mLogType = CLng(GetSetting(C_TITLE, "Log", "LogType", C_LOG_LOGFILE))
     
     If mLogType And C_LOG_LOGFILE Then
         Call OpenLog
@@ -114,11 +114,52 @@ End Function
 Private Sub OpenLog()
 
     Dim strFile As String
+    Dim strLogFolder As String
+    Dim lngHistory As Long
     
     On Error GoTo e
     
-    strFile = GetSetting(C_TITLE, "Logger", "LogFile", rlxGetAppDataFolder & C_TITLE & ".log")
+    'ログフォルダ作成
+    strLogFolder = rlxGetAppDataFolder & "Log"
+    rlxCreateFolder strLogFolder
+    
+    '保存件数を取得(最新５ファイルを残す)
+    lngHistory = CLng(GetSetting(C_TITLE, "Log", "History", 5))
+    
+    Dim objFs As Object
+    Dim objDic As Object
+    Dim objFolder As Object
+    Dim objFile As Object
+    
+    Set objFs = CreateObject("Scripting.FileSystemObject")
+    Set objDic = CreateObject("Scripting.Dictionary")
+    
+    'ログフォルダを Dictionaryに追加
+    Set objFolder = objFs.GetFolder(strLogFolder)
+    For Each objFile In objFolder.files
+        objDic.Add objFile.Name, objFile.Name
+    Next
+    
+    Dim i As Long
+    Dim v As Variant
+    
+    'フォルダ名の昇順に処理する
+    i = objDic.count
+    For Each v In objDic
+    
+        If i > lngHistory Then
+            Kill strLogFolder & "\" & v
+        End If
+        i = i - 1
+    Next
+   
+    Set objDic = Nothing
+    Set objFolder = Nothing
+    Set objFs = Nothing
+    
+    
     fp = FreeFile()
+    strFile = GetSetting(C_TITLE, "Log", "Folder", strLogFolder & "\" & Format(Now, "yyyymmdd") & ".log")
     Open strFile For Append As fp
     mOpen = True
     Exit Sub

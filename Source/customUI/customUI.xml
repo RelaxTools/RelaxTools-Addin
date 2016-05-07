@@ -14,23 +14,14 @@
         <group id="file" label="開く・検索・プレビュー" image="A1">
           <splitButton id="favSplit" size="large" getEnabled="getRibbonEnabled">
             <button id="showFavorite"  image="favorite32"  label="お気に&#xD;&#xA;入り" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-            <menu id="favorite">
+            <menu id="favorite" itemSize="large" >
               <menuSeparator id="favoriteSep" title="お気に入り機能"/>
               <button id="addFavorite"   image="FavStarPlus"   getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              <button id="showFavorite.2"  image="favorite16"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+              <button id="showFavorite.2"  image="favorite32"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
             </menu>
           </splitButton>
           <separator id="favSep"/>
           
-          <splitButton id="holdSplit" size="large" getEnabled="getRibbonEnabled">
-            <toggleButton id="holdFile" label="ブックを&#xD;&#xA;ピン留め" image="pushpin" getSupertip="getSupertip" getDescription="getDescription" getPressed="holdPressed" onAction="holdOnAction"/> 
-            <menu id="holdMenu" itemSize="large" >
-              <menuSeparator id="holdSep01" title="ピン留めの管理"/>
-              <button id="showHoldBook"   image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            </menu>
-          </splitButton>
-
-          <separator id="holdSep"/>
           <box id="box1" boxStyle="vertical">
 
             <menu id="open1" label="開く" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="open16"  getEnabled="getRibbonEnabled">
@@ -140,7 +131,7 @@
             <button id="execSelectionRowCheckFromTo"      image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
 
             <menuSeparator id="checkSep06" title="その他"/>
-            <menu id="checkMenu2" label="文字属性チェック/チェックデジット" image="check32" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled">
+            <menu id="checkMenu2" label="文字属性チェック" image="check32" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled">
               <menuSeparator id="checkSep04" title="文字属性チェック（エラー：黄）"/>
               <button id="execSelectionCheckAsc"            image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionCheckSJIS"           image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -149,6 +140,8 @@
               <button id="execSelectionCheckAlphaAndNum"    image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionCheckNumeric"        image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionCheckDate"           image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            </menu>
+            <menu id="checkMenu3" label="チェックデジット" image="check32" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled">
               <menuSeparator id="checkSep05" title="チェックデジット（エラー：黄）"/>
               <button id="execSelectionCheckMyNumber"       image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionCheckCorpNumber"     image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -176,7 +169,7 @@
             <button id="swapAreas"        image="swapcell" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
 
             <menuSeparator id="editSep11" title="その他"/>
-            <menu id="editMenu2" label="列のマージ・分割/重複の削除"  getSupertip="getSupertip" getDescription="getDescription" image="edit32" getEnabled="getRibbonEnabled">
+            <menu id="editMenu2" label="列のマージ・分割/重複の削除"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="edit32" getEnabled="getRibbonEnabled">
               <menuSeparator id="editSep10" title="重複の削除"/>
               <button id="execSelectionSetUniq"    image="edit32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               <button idMso="RemoveDuplicates" label="重複の削除(行単位)"/>
@@ -203,7 +196,7 @@
           <separator id="cellEditSep"/>
           <splitButton id="cellEditSplit" size="large" getEnabled="getRibbonEnabled">
             <button id="cellEditExt" image="editor" label="外部エディタ&#xD;&#xA;編集" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <menu id="cellEditMenu" >
+            <menu id="cellEditMenu" itemSize="large">
               <menuSeparator id="cellEditSep01" title="外部エディタ設定" />
               <button id="cellEditExtSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
             </menu>
@@ -220,7 +213,7 @@
               <button id="execSelectionToHiragana"        image="hiragana" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToKatakana"        image="katakana" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToPropercase"      image="firstUpper" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              <menu id="convMenu02" label="日付変換" getSupertip="getSupertip" getDescription="getDescription" image="calendar" getEnabled="getRibbonEnabled" >
+              <menu id="convMenu02" label="日付変換"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="calendar" getEnabled="getRibbonEnabled" >
                 <menuSeparator id="convSep02" title="日付"/>
                 <button id="execSelectionToDate8"           image="calendar" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <button id="execSelectionToDate6"           image="calendar" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -272,7 +265,7 @@
             <button id="delnamae"                     image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="execDelStyle"                 image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <menuSeparator id="formatSep07" title="その他"/>
-            <menu id="formatMenu2" label="文字の配置" getSupertip="getSupertip" getDescription="getDescription" image="format" getEnabled="getRibbonEnabled" >
+            <menu id="formatMenu2" label="文字の配置" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="format" getEnabled="getRibbonEnabled" >
               <button id="execSelectionAlignTopLeft"      image="format"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionAlignTopCenter"    image="format"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionAlignTopRight"     image="format"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -333,15 +326,15 @@
             <button id="execSelectionMergeLine"  image="mergeWhite" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <button id="execSelectionNoMerge"  image="unMerge" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
 
-          <menuSeparator id="docSep08" title="その他"/>
-          <menu id="documentMenu2" label="シート名を左上のセル（Ａ１）にセット/セルにハイフンを設定する" getSupertip="getSupertip" getDescription="getDescription"  image="editing32" getEnabled="getRibbonEnabled" >
-            <menuSeparator id="docSep05" title="シート名を左上のセル（Ａ１）にセット"/>
-            <button id="setA1SheetName" image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
-            <button id="setA1SheetAll"  image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
-            <menuSeparator id="docSep06" title="セルにハイフンを設定する"/>
-            <button id="execSelectionInsertHyphen" image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
-            <button id="execSelectionInsertHyphenZen" image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
-          </menu>
+            <menuSeparator id="docSep08" title="その他"/>
+            <menu id="documentMenu2" label="シート名を左上のセル（Ａ１）にセット/セルにハイフンを設定する"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  image="editing32" getEnabled="getRibbonEnabled" >
+              <menuSeparator id="docSep05" title="シート名を左上のセル（Ａ１）にセット"/>
+              <button id="setA1SheetName" image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+              <button id="setA1SheetAll"  image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+              <menuSeparator id="docSep06" title="セルにハイフンを設定する"/>
+              <button id="execSelectionInsertHyphen" image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+              <button id="execSelectionInsertHyphenZen" image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+            </menu>
 
           </menu>
           <menu id="hoganMenu" label="Excel方眼紙" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="grid32"  getEnabled="getRibbonEnabled" >
@@ -505,13 +498,11 @@
         <group id="RelaxSelection" label="選択範囲" image="selValue">
           <splitButton id="crossSplit" size="large" getEnabled="getRibbonEnabled">
             <toggleButton id="crossLine" image="cross" label="十字&#xD;&#xA;カーソル" getSupertip="getSupertip" getDescription="getDescription" getPressed="linePressed" onAction="lineOnAction"/> 
-            <menu id="crossMenu" >
+            <menu id="crossMenu"  itemSize="large" >
               <menuSeparator id="crossSep01" title="十字カーソル設定" />
               <button id="crossSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getCrossEnabled" onAction="ribbonOnAction"/>
             </menu>
           </splitButton>
-
-
 
           <separator id="crossSep"/>
 
@@ -523,7 +514,7 @@
               <menuSeparator id="selectSep02" title="便利な選択"/>
               <button id="currentRegionSelect"             image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="usedRangeSelect"                 image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              <menu id="select2" label="その他" image="selValue" getSupertip="getSupertip" getDescription="getDescription"  getEnabled="getRibbonEnabled" >
+              <menu id="select2" label="その他" image="selValue"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  getEnabled="getRibbonEnabled" >
                 <button id="selectionRight"                  image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <button id="selectionDown"                   image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <button id="selectionTop"                    image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -532,19 +523,18 @@
                 <button id="selectionRightDown"              image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <button id="selectionLeftTop"                image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               </menu>
-              <menuSeparator id="selectSep09" title="その他"/>
-              <menu id="select3" label="選択範囲を変更" image="selValue" getSupertip="getSupertip" getDescription="getDescription"  getEnabled="getRibbonEnabled" >
-                <menuSeparator id="selectSep05" title="条件で選択範囲を変更"/>
-                <button id="execSelectionSelectValueCell"    image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-                <button id="execSelectionAllSelectEmptyCell" image="selNotValue" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-                <menuSeparator id="selectSep06"/>
-                <button id="execSelectionRowSelectCell"      image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-                <menuSeparator id="selectSep07" title="ｎ行毎に選択範囲を変更"/>
-                <button id="execSelectionRowSelectOdd"       image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-                <button id="execSelectionColSelectOdd"       image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-                <menuSeparator id="selectSep08"/>
-                <button id="execSelectionRowSelect"          image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              </menu>
+
+              <menuSeparator id="selectSep05" title="条件で選択範囲を変更"/>
+              <button id="execSelectionSelectValueCell"    image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+              <button id="execSelectionAllSelectEmptyCell" image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+              <menuSeparator id="selectSep06"/>
+              <button id="execSelectionRowSelectCell"      image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <menuSeparator id="selectSep07" title="ｎ行毎に選択範囲を変更"/>
+              <button id="execSelectionRowSelectOdd"       image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionColSelectOdd"       image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <menuSeparator id="selectSep08"/>
+              <button id="execSelectionRowSelect"          image="selValue"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+
             </menu>
             <box id="box42" boxStyle="horizontal">
               <button id="ShiftLeft"  image="blueLeft" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -586,20 +576,11 @@
               <button id="execSelectionRowDrawGridHogan"  image="kantan_L" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <menuSeparator id="kantanSep02"/>
               <button id="execSelectionRowDrawGridCustom" image="gear32"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-<!--
-              <menuSeparator id="kantanSep02"/>
-              <button id="execSelectionRowDrawGridCustom" image="gear32"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-              <menuSeparator id="kantanSep03" title="表をメールや掲示板に張り付ける" />
-              <button id="kantanLine"                   image="grid32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-              <button id="convertHtml"                  image="html32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-              <button id="convertTextile"               image="redmine" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-              <button id="convertMarkdown"              image="github" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
--->
             </menu>
           </splitButton>
 
           <separator id="ShortCurSep"/>
-          <menu id="matomeMenu" label="まとめ実行" getSupertip="getSupertip" getDescription="getDescription" image="tool32">
+          <menu id="matomeMenu" label="まとめ実行" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="tool32">
             <button id="execMatome01" image="No1" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
             <button id="execMatome02" image="No2" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
             <button id="execMatome03" image="No3" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
@@ -609,16 +590,17 @@
             <button id="execComboSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           </menu>
           
-          <button id="hotkey" image="keyboard" label="ショートカット割当" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-          <menu id="SettingMenu" label="共通設定"   itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="gear32">
-            <menuSeparator id="GearSep01" title="共通設定"/>
-            <button id="execOptionSetting" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
-            <button id="RegExport" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
-          </menu>
-          <separator id="scrollSep"/>
-         <splitButton id="scrollSplit" size="large" getEnabled="getRibbonEnabled">
-            <toggleButton id="scrollMenu" image="mouse" label="ホイール&#xD;&#xA;量(小)" getSupertip="getSupertip" getDescription="getDescription" getPressed="scrollPressed" onAction="scrollOnAction"/> 
-            <menu id="scrolMenu2" >
+          <splitButton id="holdSplit" getEnabled="getRibbonEnabled">
+            <toggleButton id="holdFile" label="ブックをピン留め" image="pushpin" getSupertip="getSupertip" getDescription="getDescription" getPressed="holdPressed" onAction="holdOnAction"/> 
+            <menu id="holdMenu" itemSize="large" >
+              <menuSeparator id="holdSep01" title="ピン留めの管理"/>
+              <button id="showHoldBook"   image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            </menu>
+          </splitButton>
+
+         <splitButton id="scrollSplit"  getEnabled="getRibbonEnabled">
+            <toggleButton id="scrollMenu" image="mouse" label="ホイール量(小)" getSupertip="getSupertip" getDescription="getDescription" getPressed="scrollPressed" onAction="scrollOnAction"/> 
+            <menu id="scrolMenu2"  itemSize="large" >
               <menuSeparator id="scrollSep01" title="ホイール量設定" />
               <button id="scrollSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getScrollEnabled" onAction="ribbonOnAction"/>
             </menu>
@@ -626,7 +608,14 @@
  
           <separator id="benriSep"/>
 
-          <menu id="helpMenu" label="ヘルプ&#xD;&#xA;"   itemSize="large" size="large" getSupertip="getSupertip" getDescription="getDescription" image="help32">
+          <button id="hotkey" image="keyboard" label="ショートカット割当" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+          <menu id="SettingMenu" label="共通設定"   itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="gear32">
+            <menuSeparator id="GearSep01" title="共通設定"/>
+            <button id="execOptionSetting" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
+            <button id="RegExport" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
+          </menu>
+
+          <menu id="helpMenu" label="ヘルプ"   itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="help32">
             <menuSeparator id="helpSep04" title="Webサイト"/>
             <button id="GotoOfficialWeb" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" image="web" onAction="ribbonOnAction" />
             <button id="GotoGitHub" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" image="web" onAction="ribbonOnAction" />
@@ -644,7 +633,7 @@
 
           <splitButton id="screenSplit" size="large" getEnabled="getRibbonEnabled">
             <toggleButton id="screenShot" image="picture32" label="Excelスクショ&#xD;&#xA;モード(α版)" getSupertip="getSupertip" getDescription="getDescription" getPressed="screenPressed" onAction="screenOnAction"/> 
-            <menu id="screenMenu" >
+            <menu id="screenMenu"  itemSize="large" >
               <menuSeparator id="screenSep01" title="Excelスクショ設定" />
               <button id="execScreenShotSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  getEnabled="getScreenShotEnabled" onAction="ribbonOnAction"/>
             </menu>
@@ -691,31 +680,6 @@
           <separator id="fusenSep02"/>
           <button id="showFusenSetting" size="large" label="付箋の&#xD;&#xA;設定" getSupertip="getSupertip" getDescription="getDescription" image="gear32" onAction="ribbonOnAction" />
         </group>
-<!--
-        <group id="stampGroup" label="電子職印" image="stamp_data">
-          <box id="boxStamp1" boxStyle="horizontal">
-            <button id="MitomePaste" image="stamp_mitome" getLabel="getLabel" showLabel="false" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction"  />
-            <gallery id="mitomeGallery" label=" 印鑑" image="stamp_mitome" showImage="false" columns="4" rows="5" itemWidth="80" itemHeight="80" getSupertip="getSupertip" getDescription="getDescription" getItemCount="stampMitomeGetItemCount" getItemID="stampMitomeGetItemId" getItemImage="stampMitomeGetItemImage" onAction="stampMitomeOnAction" getEnabled="getRibbonEnabled">
-              <button id="showMitome"    image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
-            </gallery>
-          </box>
-          <box id="boxStamp2" boxStyle="horizontal">
-            <button id="StampPaste" image="stamp_data" getLabel="getLabel" showLabel="false" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction"  />
-            <gallery id="dataGallery" label="データ印" image="stamp_data" showImage="false" columns="4" rows="5" itemWidth="80" itemHeight="80" getSupertip="getSupertip" getDescription="getDescription" getItemCount="stampGetItemCount" getItemID="stampGetItemId" getItemImage="stampGetItemImage" onAction="stampOnAction" getEnabled="getRibbonEnabled">
-              <button id="showStamp"    image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
-            </gallery>
-          </box>
-          <box id="boxStamp3" boxStyle="horizontal">
-            <button id="pasteStampBz" image="bzStamp" getLabel="getLabel" showLabel="false" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction"  />
-            <gallery id="bzGallery" label="ビジネス印" image="bzStamp" showImage="false" columns="4" rows="5" itemWidth="80" itemHeight="80" getSupertip="getSupertip" getDescription="getDescription" getItemCount="stampBzGetItemCount" getItemID="stampBzGetItemId" getItemImage="stampBzGetItemImage" onAction="stampBzOnAction" getEnabled="getRibbonEnabled">
-              <button id="showBz" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
-            </gallery>
-          </box>
-          <separator id="stampSep03"/>
-          <gallery id="sakuraStamp" size="large" label="よくでき&#xD;&#xA;ました" image="sakura"  columns="3" rows="1" itemWidth="75" itemHeight="75"  getItemCount="sakuraGetItemCount" getItemID="sakuraGetItemId" getItemImage="sakuraGetItemImage" onAction="sakuraOnAction" />
-        </group>
-        <group id="stampOtherGroup" label="その他" image="gear32">
--->
         <group id="stampGroup" label="電子職印" image="stamp_data">
           <box id="boxStamp1" boxStyle="vertical">
             <button id="MitomePaste" image="stamp_mitome" getLabel="getLabel" showLabel="false" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction"  />
@@ -738,7 +702,7 @@
         <group id="stampOtherGroup" label="その他" image="gear32">
           <splitButton id="PictureCopySplit" size="large" getEnabled="getRibbonEnabled">
             <button id="execSelectionPictureCopy" label="選択範囲の&#xD;&#xA;ピクチャ化" getSupertip="getSupertip" getDescription="getDescription" image="picture32" onAction="ribbonOnAction" />
-            <menu id="PictureCopyMenu" >
+            <menu id="PictureCopyMenu" itemSize="large" >
               <menuSeparator id="PictureCopySep" title="選択範囲のピクチャ化設定" />
               <button id="execCopyScreenSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  getEnabled="getScreenShotEnabled" onAction="ribbonOnAction"/>
             </menu>
@@ -755,9 +719,6 @@
           <button id="execSelectionDelSectionNo" size="large" image="minusOrange" label="段落番号&#xD;&#xA;削除" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           <button id="execSelectionSectionNumberIndentL" size="large" image="leftOrange" label="左イン&#xD;&#xA;デント" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           <button id="execSelectionSectionNumberIndentR" size="large" image="rightOrange" label="右イン&#xD;&#xA;デント" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-<!--          
-          <button id="execSelectionSectionIndentClear" size="large" image="eraser" label="インデント&#xD;&#xA;クリア" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
--->
           <button id="execSelectionSectionNumber" size="large" image="refreshG" label="段落番号&#xD;&#xA;更新" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           <button id="execSelectionCopySectionNo" size="large" image="clipboard" label="段落番号&#xD;&#xA;コピー" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           <separator id="SectionSep1"/>
@@ -824,7 +785,7 @@
               <button id="execSelectionMergeLine.2"  image="mergeWhite" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               <button id="execSelectionNoMerge.2"  image="unMerge" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               <menuSeparator id="docSep08.2" title="その他"/>
-              <menu id="documentMenu2.2" label="シート名を左上のセル（Ａ１）にセット/セルにハイフンを設定する" getSupertip="getSupertip" getDescription="getDescription"  image="editing32" getEnabled="getRibbonEnabled" >
+              <menu id="documentMenu2.2" label="シート名を左上のセル（Ａ１）にセット/セルにハイフンを設定する"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  image="editing32" getEnabled="getRibbonEnabled" >
                 <menuSeparator id="docuSep05.2" title="シート名を左上のセル（Ａ１）にセット"/>
                 <button id="setA1SheetName.2" image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
                 <button id="setA1SheetAll.2"  image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
@@ -855,11 +816,6 @@
           <separator id="hoganSep"/>
           <button id="execSelectionRowDrawGridHogan.2" image="kantan_L" size="large" label="かんたん表&#xD;&#xA;(方眼紙用)" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
         </group>
-<!--
-        <group id="coraboGroup" label="コラボレーション" image="cafe">
-          <button id="cafe" image="cafe" size="large" label="ITカフェ&#xD;&#xA;FCS" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-        </group>
--->
       </tab>
       <tab id="RelaxAppsTab" label="RelaxApps" getVisible="tabGetVisible">
         <group id="FolderGroup" label="フォルダ・ファイル" image="FolderList">
@@ -907,8 +863,6 @@
           <button id="excelPage" image="countpage" size="large" label="Word/Excel/PP&#xD;&#xA;ページ数取得" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
         </group>
 
-        
-        
       </tab>
 
     </tabs>

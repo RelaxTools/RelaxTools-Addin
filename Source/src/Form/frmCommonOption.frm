@@ -63,10 +63,10 @@ Private Sub cmdOk_Click()
             lngType = C_LOG_ALL
     End Select
     Call SaveSetting(C_TITLE, "Log", "LogType", lngType)
+    Call SaveSetting(C_TITLE, "Log", "Level", cboLogLevel.ListIndex)
 
     Call SaveSetting(C_TITLE, "Option", "OnRepeat", chkOnRepeat.value)
     Call SaveSetting(C_TITLE, "Option", "NotHoldFormat", chkNotHoldFormat.value)
-    Call SaveSetting(C_TITLE, "Log", "Level", cboLogLevel.ListIndex)
     
     Logger.Level = cboLogLevel.ListIndex
     
@@ -78,16 +78,13 @@ Private Sub cmdOpen_Click()
 
     On Error GoTo e
 
-    Dim strFile As String
-    strFile = GetSetting(C_TITLE, "Logger", "LogFile", rlxGetAppDataFolder & C_TITLE & ".log")
-
     With CreateObject("WScript.Shell")
-        .Run (strFile)
+        .Run (rlxGetAppDataFolder & "Log")
     End With
     
     Exit Sub
 e:
-    MsgBox "ログファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
+    MsgBox "ログフォルダを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
 
 End Sub
 
@@ -122,10 +119,10 @@ Private Sub UserForm_Initialize()
     cboLogLevel.AddItem "Fatal"
     cboLogLevel.AddItem "None"
     
-    cboLogLevel.ListIndex = CLng(GetSetting(C_TITLE, "Log", "Level", LogLevel.None))
+    cboLogLevel.ListIndex = CLng(GetSetting(C_TITLE, "Log", "Level", LogLevel.Info))
     
     Dim lngType As Long
-    lngType = CLng(GetSetting(C_TITLE, "Log", "LogType", C_LOG_ALL))
+    lngType = CLng(GetSetting(C_TITLE, "Log", "LogType", C_LOG_LOGFILE))
     
     Select Case lngType
         Case C_LOG_DEBUGWINDOW
