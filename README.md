@@ -95,6 +95,8 @@ Copyright(C) Yasuhiro Watanabe 2009
  ソースを利用する場合にはMITライセンスです。
 
 * 作者：Yasuhiro Watanabe
-* メールアドレス：relaxtools(a)opensquare.net
+* メールアドレス：relaxtools※opensquare.net
 * サポートホームページ：http://software.opensquare.net/relaxtools/
+
+※は@マークに置き換えてください。
 
