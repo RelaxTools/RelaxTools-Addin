@@ -87,7 +87,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionInit(rArea As Areas, Cancel As Boolean, Undo As Boolean)
     
-    Dim result As VbMsgBoxResult
+    Dim Result As VbMsgBoxResult
     Dim lngHead As Long
     Dim lngHeadColor As Long
     Dim lngEvenColor As Long
@@ -106,9 +106,9 @@ Private Sub SFWork_SelectionInit(rArea As Areas, Cancel As Boolean, Undo As Bool
     lngEvenColor = mlngEvenColor
     blnHoganMode = False
     
-    result = frmGrid.Start(mlngHead, mlngCol, lngHeadColor, lngEvenColor, blnHoganMode)
+    Result = frmGrid.Start(mlngHead, mlngCol, lngHeadColor, lngEvenColor, blnHoganMode)
     
-    If result = vbOK Then
+    If Result = vbOK Then
         
         mlngHeadColor = lngHeadColor
         mlngEvenColor = lngEvenColor

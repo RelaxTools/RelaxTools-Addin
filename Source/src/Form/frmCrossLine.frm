@@ -156,15 +156,15 @@ End Sub
 Private Sub lblFont_Click()
 
     Dim lngColor As Long
-    Dim result As VbMsgBoxResult
+    Dim Result As VbMsgBoxResult
 
 
     lngColor = lblFont.BackColor
 
 '    result = rlxGetColorDlg(lngColor)
-    result = frmColor.Start(lngColor)
+    Result = frmColor.Start(lngColor)
 
-    If result = vbOK Then
+    If Result = vbOK Then
 '    If result > 0 Then
         lblFont.BackColor = lngColor
     End If
@@ -174,15 +174,15 @@ End Sub
 Private Sub lblHead_Click()
 
     Dim lngColor As Long
-    Dim result As VbMsgBoxResult
+    Dim Result As VbMsgBoxResult
 
 
     lngColor = lblHead.BackColor
 
 '    result = rlxGetColorDlg(lngColor)
-    result = frmColor.Start(lngColor)
+    Result = frmColor.Start(lngColor)
 
-    If result = vbOK Then
+    If Result = vbOK Then
 '    If result > 0 Then
         lblHead.BackColor = lngColor
     End If
@@ -193,15 +193,15 @@ End Sub
 Private Sub lblEven_Click()
 
     Dim lngColor As Long
-    Dim result As VbMsgBoxResult
+    Dim Result As VbMsgBoxResult
 
 
     lngColor = lblEven.BackColor
 
 '    result = rlxGetColorDlg(lngColor)
-    result = frmColor.Start(lngColor)
+    Result = frmColor.Start(lngColor)
 
-    If result = vbOK Then
+    If Result = vbOK Then
 '    If result > 0 Then
         lblEven.BackColor = lngColor
     End If

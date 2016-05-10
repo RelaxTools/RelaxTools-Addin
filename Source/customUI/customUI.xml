@@ -840,7 +840,7 @@
             <button id="execSourceExport" size="large" image="vbaexport"  label="VBA&#xD;&#xA;エクスポート" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
 
           <splitButton id="sqlSplit" size="large" getEnabled="getRibbonEnabled">
-            <toggleButton id="execSelectionFormatSql" image="sql" label="美しすぎる&#xD;&#xA;SQL整形" getSupertip="getSupertip" getDescription="getDescription" getPressed="screenPressed" onAction="screenOnAction"/> 
+            <button id="execSelectionFormatSql" image="sql" label="美しすぎる&#xD;&#xA;SQL整形" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/> 
             <menu id="sqlMenu" >
               <menuSeparator id="sqlSep01" title="美しすぎるSQL整形設定" />
             <button id="FormatSqlSetting"  image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />

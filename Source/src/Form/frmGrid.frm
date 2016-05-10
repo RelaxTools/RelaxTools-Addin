@@ -103,14 +103,14 @@ End Sub
 Private Sub lblHead_Click()
 
     Dim lngColor As Long
-    Dim result As VbMsgBoxResult
+    Dim Result As VbMsgBoxResult
     
     
     lngColor = lblHead.BackColor
     
-    result = frmColor.Start(lngColor)
+    Result = frmColor.Start(lngColor)
     
-    If result = vbOK Then
+    If Result = vbOK Then
         lblHead.BackColor = lngColor
     End If
     
@@ -120,14 +120,14 @@ End Sub
 Private Sub lblEven_Click()
 
     Dim lngColor As Long
-    Dim result As VbMsgBoxResult
+    Dim Result As VbMsgBoxResult
     
     
     lngColor = lblEven.BackColor
     
-    result = frmColor.Start(lngColor)
+    Result = frmColor.Start(lngColor)
     
-    If result = vbOK Then
+    If Result = vbOK Then
         lblEven.BackColor = lngColor
     End If
     

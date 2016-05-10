@@ -674,6 +674,13 @@ Sub holdOnAction(control As IRibbonControl, pressed As Boolean)
     hold.FullName = ActiveWorkbook.FullName
     hold.ReadOnly = ActiveWorkbook.ReadOnly
     
+    hold.Top = Application.Top
+    hold.Left = Application.Left
+    hold.Height = Application.Height
+    hold.Width = Application.Width
+    
+    hold.WindowState = Application.WindowState
+    
     Set obj = GetHoldList()
     
     If pressed Then
@@ -705,6 +712,49 @@ e:
     Call rlxErrMsg(err)
 End Sub
 '--------------------------------------------------------------------
+'  フック終了時イベント
+'--------------------------------------------------------------------
+Sub holdBookClose(ByRef WB As Workbook)
+  
+    On Error GoTo e
+    
+    Dim obj As Object
+    Dim hold As HoldDto
+    
+    If WB Is Nothing Then
+        Exit Sub
+    End If
+    
+    If Not rlxIsFileExists(WB.FullName) Then
+        Exit Sub
+    End If
+    
+    Set obj = GetHoldList()
+    
+    If obj.Exists(WB.FullName) Then
+        
+        Set hold = New HoldDto
+        hold.FullName = WB.FullName
+        hold.ReadOnly = WB.ReadOnly
+        hold.Top = WB.Application.Top
+        hold.Left = WB.Application.Left
+        hold.Height = WB.Application.Height
+        hold.Width = WB.Application.Width
+        hold.WindowState = WB.Application.WindowState
+    
+        obj.Remove hold.FullName
+        obj.Add hold.FullName, hold
+        
+        SaveHoldList obj
+    End If
+    
+    Set obj = Nothing
+    
+    Exit Sub
+e:
+    Call rlxErrMsg(err)
+End Sub
+'--------------------------------------------------------------------
 '  フック固定のオープン
 '--------------------------------------------------------------------
 Sub Auto_Open()
@@ -719,17 +769,43 @@ Sub holdOpen()
     Dim obj As Object
     Dim o As Variant
     Dim hold As HoldDto
+    Dim WB As Workbook
     
     Set obj = GetHoldList()
+    
+    If obj.count > 0 Then
+        If MsgBox("ピン留めされたブックがあります。復元しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            Exit Sub
+        End If
+    End If
     
     Application.DisplayAlerts = False
     For Each o In obj.keys
     
         Set hold = obj.Item(o)
         DoEvents
-        Workbooks.Open FileName:=hold.FullName, ReadOnly:=hold.ReadOnly, IgnoreReadOnlyRecommended:=True, Notify:=False, Local:=True
+        Set WB = Workbooks.Open(FileName:=hold.FullName, ReadOnly:=hold.ReadOnly, IgnoreReadOnlyRecommended:=True, Notify:=False, Local:=True)
         DoEvents
     
+        Select Case hold.WindowState
+            Case xlMaximized
+                
+                WB.Application.Top = hold.Top
+                WB.Application.Left = hold.Left
+                WB.Application.WindowState = xlMaximized
+                
+            Case Else
+                
+                WB.Application.WindowState = xlNormal
+                WB.Application.Top = hold.Top
+                WB.Application.Left = hold.Left
+                If hold.Height = 0 Or hold.Width = 0 Then
+                Else
+                    WB.Application.Height = hold.Height
+                    WB.Application.Width = hold.Width
+                End If
+        
+        End Select
     Next
     Application.DisplayAlerts = True
     
@@ -755,6 +831,11 @@ Function GetHoldList() As Object
     
     Const C_FULLNAME As Long = 0
     Const C_READONLY As Long = 1
+    Const C_TOP As Long = 2
+    Const C_LEFT As Long = 3
+    Const C_HEIGHT As Long = 4
+    Const C_WIDTH As Long = 5
+    Const C_WINDOWSTATE As Long = 5
     
     If Len(strFile) <> 0 Then
     
@@ -763,12 +844,30 @@ Function GetHoldList() As Object
             
             varATTB = Split(varFile(i), vbTab)
             
-            Set hold = New HoldDto
-            hold.FullName = varATTB(C_FULLNAME)
-            hold.ReadOnly = varATTB(C_READONLY)
+            Dim j As Long
             
+            Set hold = New HoldDto
+            
+            For j = LBound(varATTB) To UBound(varATTB)
+            
+                Select Case j
+                    Case C_FULLNAME
+                        hold.FullName = varATTB(j)
+                    Case C_READONLY
+                        hold.ReadOnly = varATTB(j)
+                    Case C_TOP
+                        hold.Top = varATTB(j)
+                    Case C_LEFT
+                        hold.Left = varATTB(j)
+                    Case C_HEIGHT
+                        hold.Height = varATTB(j)
+                    Case C_WIDTH
+                        hold.Width = varATTB(j)
+                    Case C_WINDOWSTATE
+                        hold.WindowState = varATTB(j)
+                End Select
+            Next
             obj.Add hold.FullName, hold
-        
         Next
     End If
     
@@ -787,9 +886,9 @@ Sub SaveHoldList(ByRef obj As Object)
     For Each o In obj.keys
         Set hold = obj.Item(o)
         If strFile = "" Then
-            strFile = hold.FullName & vbTab & hold.ReadOnly
+            strFile = hold.FullName & vbTab & hold.ReadOnly & vbTab & hold.Top & vbTab & hold.Left & vbTab & hold.Height & vbTab & hold.Width & vbTab & hold.WindowState
         Else
-            strFile = strFile & vbVerticalTab & hold.FullName & vbTab & hold.ReadOnly
+            strFile = strFile & vbVerticalTab & hold.FullName & vbTab & hold.ReadOnly & vbTab & hold.Top & vbTab & hold.Left & vbTab & hold.Height & vbTab & hold.Width & vbTab & hold.WindowState
         End If
     Next
 

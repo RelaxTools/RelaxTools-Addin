@@ -1016,7 +1016,7 @@ Attribute rlxCsvPart.VB_ProcData.VB_Invoke_Func = " \n19"
     Const C_QUAT As String = """"
     Const C_COMA As String = ","
     
-    Dim result() As Variant
+    Dim Result() As Variant
     
     On Error GoTo ErrHandle
     
@@ -1042,8 +1042,8 @@ Attribute rlxCsvPart.VB_ProcData.VB_Invoke_Func = " \n19"
                     strCol = strCol & strChar
                 Else
                     lngCnt = lngCnt + 1
-                    ReDim Preserve result(1 To lngCnt)
-                    result(lngCnt) = strCol
+                    ReDim Preserve Result(1 To lngCnt)
+                    Result(lngCnt) = strCol
                     strCol = ""
                 End If
             Case Else
@@ -1053,10 +1053,10 @@ Attribute rlxCsvPart.VB_ProcData.VB_Invoke_Func = " \n19"
     Next
     
     lngCnt = lngCnt + 1
-    ReDim Preserve result(1 To lngCnt)
-    result(lngCnt) = strCol
+    ReDim Preserve Result(1 To lngCnt)
+    Result(lngCnt) = strCol
 
-    rlxCsvPart = result
+    rlxCsvPart = Result
     
     Exit Function
 ErrHandle:

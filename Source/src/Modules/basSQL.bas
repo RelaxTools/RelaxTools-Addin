@@ -684,7 +684,7 @@ End Function
 
 Private Function isFunction(ByRef strJiku() As String, ByVal i As Long) As Long
 
-    Dim result As Boolean
+    Dim Result As Boolean
     Dim lngComma As Long
     Dim lngOther As Long
     Dim lngNest As Long
@@ -693,7 +693,7 @@ Private Function isFunction(ByRef strJiku() As String, ByVal i As Long) As Long
     lngComma = 0
     lngOther = 0
     lngNest = 0
-    result = False
+    Result = False
     
     For j = i To UBound(strJiku())
     
@@ -744,7 +744,7 @@ Private Function isFunction(ByRef strJiku() As String, ByVal i As Long) As Long
         isFunction = False
     End If
 
-    isFunction = result
+    isFunction = Result
 
 End Function
 

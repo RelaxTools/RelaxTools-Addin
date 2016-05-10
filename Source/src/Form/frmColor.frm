@@ -83,18 +83,18 @@ End Function
 Private Sub cmdColorDlg_Click()
 
     Dim lngColor As Long
-    Dim result As VbMsgBoxResult
+    Dim Result As VbMsgBoxResult
 
 
     lngColor = mColor
 
-    result = rlxGetColorDlg(lngColor)
+    Result = rlxGetColorDlg(lngColor)
 '    result = frmColor.Start(lngColor)
 
-    If result > 0 Then
+    If Result > 0 Then
     
         mResult = vbOK
-        mColor = result
+        mColor = Result
         Unload Me
     
     End If

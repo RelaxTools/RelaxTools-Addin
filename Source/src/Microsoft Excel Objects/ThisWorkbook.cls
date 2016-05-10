@@ -227,6 +227,10 @@ Private Sub XL_WorkbookActivate(ByVal WB As Workbook)
     Call RefreshRibbon
 End Sub
 
+Private Sub XL_WorkbookBeforeClose(ByVal WB As Workbook, Cancel As Boolean)
+    Call holdBookClose(WB)
+End Sub
+
 '--------------------------------------------------------------
 '　ブック保存前イベント
 '--------------------------------------------------------------

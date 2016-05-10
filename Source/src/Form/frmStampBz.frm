@@ -668,13 +668,13 @@ End Sub
 Private Sub lblColor_Click()
 
     Dim lngColor As Long
-    Dim result As VbMsgBoxResult
+    Dim Result As VbMsgBoxResult
     
     lngColor = lblColor.BackColor
     
-    result = frmColor.Start(lngColor)
+    Result = frmColor.Start(lngColor)
     
-    If result = vbOK Then
+    If Result = vbOK Then
         lblColor.BackColor = lngColor
         dispPreview
     End If

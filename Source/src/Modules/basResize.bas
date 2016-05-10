@@ -68,11 +68,11 @@ Private Const WS_MAXIMIZEBOX = &H10000  '最大化ボタン
 '--------------------------------------------------------------
 Public Sub FormResize()
 #If VBA7 And Win64 Then
-    Dim result As LongPtr
+    Dim Result As LongPtr
     Dim hwnd As LongPtr
     Dim Wnd_STYLE As LongPtr
 #Else
-    Dim result As Long
+    Dim Result As Long
     Dim hwnd As Long
     Dim Wnd_STYLE As Long
 #End If
@@ -81,7 +81,7 @@ Public Sub FormResize()
     Wnd_STYLE = GetWindowLong(hwnd, GWL_STYLE)
     Wnd_STYLE = (Wnd_STYLE Or WS_THICKFRAME Or &H30000) - WS_MINIMIZEBOX
  
-    result = SetWindowLong(hwnd, GWL_STYLE, Wnd_STYLE)
-    result = DrawMenuBar(hwnd)
+    Result = SetWindowLong(hwnd, GWL_STYLE, Wnd_STYLE)
+    Result = DrawMenuBar(hwnd)
     
 End Sub
