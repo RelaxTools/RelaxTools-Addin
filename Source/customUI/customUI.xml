@@ -21,6 +21,15 @@
             </menu>
           </splitButton>
           <separator id="favSep"/>
+
+          <splitButton id="holdSplit" size="large" getEnabled="getRibbonEnabled">
+            <toggleButton id="holdFile" label="ブックを&#xD;&#xA;ピン留め" image="pushpin" getSupertip="getSupertip" getDescription="getDescription" getPressed="holdPressed" onAction="holdOnAction"/> 
+            <menu id="holdMenu" itemSize="large" >
+              <menuSeparator id="holdSep01" title="ピン留めの管理"/>
+              <button id="showHoldBook"   image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            </menu>
+          </splitButton>
+          <separator id="pinSep"/>
           
           <box id="box1" boxStyle="vertical">
 
@@ -590,14 +599,6 @@
             <button id="execComboSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           </menu>
           
-          <splitButton id="holdSplit" getEnabled="getRibbonEnabled">
-            <toggleButton id="holdFile" label="ブックをピン留め" image="pushpin" getSupertip="getSupertip" getDescription="getDescription" getPressed="holdPressed" onAction="holdOnAction"/> 
-            <menu id="holdMenu" itemSize="large" >
-              <menuSeparator id="holdSep01" title="ピン留めの管理"/>
-              <button id="showHoldBook"   image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            </menu>
-          </splitButton>
-
          <splitButton id="scrollSplit"  getEnabled="getRibbonEnabled">
             <toggleButton id="scrollMenu" image="mouse" label="ホイール量(小)" getSupertip="getSupertip" getDescription="getDescription" getPressed="scrollPressed" onAction="scrollOnAction"/> 
             <menu id="scrolMenu2"  itemSize="large" >
@@ -605,10 +606,10 @@
               <button id="scrollSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getScrollEnabled" onAction="ribbonOnAction"/>
             </menu>
           </splitButton>
- 
-          <separator id="benriSep"/>
-
           <button id="hotkey" image="keyboard" label="ショートカット割当" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+
+        </group>
+        <group id="helpGroup" label="ヘルプ" image="help32">
           <menu id="SettingMenu" label="共通設定"   itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="gear32">
             <menuSeparator id="GearSep01" title="共通設定"/>
             <button id="execOptionSetting" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="gear32" onAction="ribbonOnAction" />
@@ -622,9 +623,12 @@
             <button id="GotoCampaign" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" image="web" onAction="ribbonOnAction" />
             <menuSeparator id="helpSep02" title="ヘルプ"/>
             <button id="callHelp" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" image="help32" onAction="ribbonOnAction" />
+<!--
             <menuSeparator id="helpSep03" title="バージョン"/>
             <button id="dispVer" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="information" onAction="ribbonOnAction" />
+-->
           </menu>
+          <button id="dispVer" label="バージョン" getSupertip="getSupertip" getDescription="getDescription"  image="information" onAction="ribbonOnAction" />
         </group>
 
       </tab>

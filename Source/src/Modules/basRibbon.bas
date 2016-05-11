@@ -650,8 +650,10 @@ Sub holdPressed(control As IRibbonControl, ByRef returnValue)
     
     Set obj = GetHoldList()
     
-    returnValue = obj.Exists(ActiveWorkbook.FullName)
-    
+    If ActiveWorkbook Is Nothing Then
+    Else
+        returnValue = obj.Exists(ActiveWorkbook.FullName)
+    End If
     Set obj = Nothing
     
 End Sub
@@ -736,12 +738,22 @@ Sub holdBookClose(ByRef WB As Workbook)
         Set hold = New HoldDto
         hold.FullName = WB.FullName
         hold.ReadOnly = WB.ReadOnly
+        
+        hold.WindowState = WB.Application.WindowState
         hold.Top = WB.Application.Top
         hold.Left = WB.Application.Left
         hold.Height = WB.Application.Height
         hold.Width = WB.Application.Width
-        hold.WindowState = WB.Application.WindowState
-    
+        
+        Logger.LogTrace "---------------------------------------------"
+        Logger.LogTrace "hold.FullName = " & WB.FullName
+        Logger.LogTrace "hold.WindowState = " & hold.WindowState
+        Logger.LogTrace "hold.Top = " & hold.Top
+        Logger.LogTrace "hold.Left = " & hold.Left
+        Logger.LogTrace "hold.Height = " & hold.Height
+        Logger.LogTrace "hold.Width = " & hold.Width
+        Logger.LogTrace "---------------------------------------------"
+        
         obj.Remove hold.FullName
         obj.Add hold.FullName, hold
         
@@ -773,6 +785,8 @@ Sub holdOpen()
     
     Set obj = GetHoldList()
     
+    Application.WindowState = xlNormal
+    
     If obj.count > 0 Then
         If MsgBox("ピン留めされたブックがあります。復元しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
             Exit Sub
@@ -780,6 +794,7 @@ Sub holdOpen()
     End If
     
     Application.DisplayAlerts = False
+    
     For Each o In obj.keys
     
         Set hold = obj.Item(o)
@@ -787,19 +802,25 @@ Sub holdOpen()
         Set WB = Workbooks.Open(FileName:=hold.FullName, ReadOnly:=hold.ReadOnly, IgnoreReadOnlyRecommended:=True, Notify:=False, Local:=True)
         DoEvents
     
+        Logger.LogTrace "hold.WindowState = " & hold.WindowState
+        Logger.LogTrace "xlMaximized = " & xlMaximized
         Select Case hold.WindowState
             Case xlMaximized
+
+                WB.Application.Top = hold.Top + 5
+                WB.Application.Left = hold.Left + 5
+
+                WB.Application.Height = hold.Height - 10
+                WB.Application.Width = hold.Width - 10
                 
-                WB.Application.Top = hold.Top
-                WB.Application.Left = hold.Left
-                WB.Application.WindowState = xlMaximized
-                
+'                WB.Application.WindowState = xlMaximized
+
             Case Else
-                
+
                 WB.Application.WindowState = xlNormal
                 WB.Application.Top = hold.Top
                 WB.Application.Left = hold.Left
-                If hold.Height = 0 Or hold.Width = 0 Then
+                If hold.Height < 150 Or hold.Width < 150 Then
                 Else
                     WB.Application.Height = hold.Height
                     WB.Application.Width = hold.Width
@@ -835,7 +856,7 @@ Function GetHoldList() As Object
     Const C_LEFT As Long = 3
     Const C_HEIGHT As Long = 4
     Const C_WIDTH As Long = 5
-    Const C_WINDOWSTATE As Long = 5
+    Const C_WINDOWSTATE As Long = 6
     
     If Len(strFile) <> 0 Then
     
@@ -856,15 +877,15 @@ Function GetHoldList() As Object
                     Case C_READONLY
                         hold.ReadOnly = varATTB(j)
                     Case C_TOP
-                        hold.Top = varATTB(j)
+                        hold.Top = Val(varATTB(j))
                     Case C_LEFT
-                        hold.Left = varATTB(j)
+                        hold.Left = Val(varATTB(j))
                     Case C_HEIGHT
-                        hold.Height = varATTB(j)
+                        hold.Height = Val(varATTB(j))
                     Case C_WIDTH
-                        hold.Width = varATTB(j)
+                        hold.Width = Val(varATTB(j))
                     Case C_WINDOWSTATE
-                        hold.WindowState = varATTB(j)
+                        hold.WindowState = Val(varATTB(j))
                 End Select
             Next
             obj.Add hold.FullName, hold
