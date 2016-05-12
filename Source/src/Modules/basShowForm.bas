@@ -315,6 +315,6 @@ End Sub
 Sub showInfo()
     frmInfo.Show
 End Sub
-Sub showHoldBook()
-    frmHoldBook.Show
-End Sub
+'Sub showHoldBook()
+'    frmHoldBook.Show
+'End Sub

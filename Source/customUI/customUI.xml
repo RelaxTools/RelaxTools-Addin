@@ -21,7 +21,7 @@
             </menu>
           </splitButton>
           <separator id="favSep"/>
-
+<!--
           <splitButton id="holdSplit" size="large" getEnabled="getRibbonEnabled">
             <toggleButton id="holdFile" label="ブックを&#xD;&#xA;ピン留め" image="pushpin" getSupertip="getSupertip" getDescription="getDescription" getPressed="holdPressed" onAction="holdOnAction"/> 
             <menu id="holdMenu" itemSize="large" >
@@ -30,7 +30,7 @@
             </menu>
           </splitButton>
           <separator id="pinSep"/>
-          
+-->
           <box id="box1" boxStyle="vertical">
 
             <menu id="open1" label="開く" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="open16"  getEnabled="getRibbonEnabled">
