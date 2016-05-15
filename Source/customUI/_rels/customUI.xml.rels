@@ -235,4 +235,8 @@
 <Relationship Id="No4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/No4.png"/>
 <Relationship Id="No5" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/No5.png"/>
 <Relationship Id="pushpin" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/pushpin.png"/>
+<Relationship Id="commit" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/commit.png"/>
+<Relationship Id="reset" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/reset.png"/>
+<Relationship Id="log" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/log.png"/>
+<Relationship Id="git" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/git.png"/>
 </Relationships>
