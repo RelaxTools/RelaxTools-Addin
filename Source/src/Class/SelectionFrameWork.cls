@@ -209,7 +209,7 @@ Public Sub Run()
             On Error GoTo 0
             
             'アドレスが登録されていない場合イベントを起こす
-            If err.Number = 0 And Not (e Is Nothing) Then
+            If Err.Number = 0 And Not (e Is Nothing) Then
             Else
                 '---------------------------
                 'メインイベント
@@ -253,7 +253,7 @@ Public Sub Run()
     
     Exit Sub
 ErrHandle:
-    Logger.LogFatal TypeName(Me) & ".Run" & "(" & err.Description & ")"
+    Logger.LogFatal TypeName(Me) & ".Run" & "(" & Err.Description & ")"
     
 End Sub
 

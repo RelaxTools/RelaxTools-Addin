@@ -382,10 +382,10 @@ Sub setSectionSetting(ByVal strNo As String, ByRef col As Collection)
     Dim i As Long
     On Error Resume Next
     For i = 1 To 99
-        err.Clear
+        Err.Clear
         Call DeleteSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "class")
-        If err.Number <> 0 Then
-            err.Clear
+        If Err.Number <> 0 Then
+            Err.Clear
             On Error GoTo 0
             Exit For
         End If

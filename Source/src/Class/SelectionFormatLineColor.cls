@@ -99,7 +99,7 @@ Private Sub SFWork_SelectionMain(r As Range)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
@@ -125,7 +125,7 @@ Private Sub SFWork_SelectionMainShape(r As Shape, Cancel As Boolean)
     End If
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 
 

@@ -117,7 +117,7 @@ Private Sub cmdRun_Click()
     FileDisp objFs, FileName, lngRow, lngCol, lngCount, lngFCnt
     
     Set mMm = Nothing
-    Select Case err.Number
+    Select Case Err.Number
     Case 75, 76
         MsgBox "フォルダが存在しません。", vbExclamation, "ファイル一覧取得"
         txtFolder.SetFocus

@@ -208,7 +208,7 @@ Public Sub pasteScreenShot()
         '画像を張付
         WS.Paste
     
-        If err.Number <> 0 Then
+        If Err.Number <> 0 Then
             tray.ShowBalloon "コピー失敗しました"
         Else
     

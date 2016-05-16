@@ -509,7 +509,7 @@ Sub setAllA1save()
     End If
     
     varRet = getAttr(ActiveWorkbook.FullName)
-    If err.Number > 0 Then
+    If Err.Number > 0 Then
         MsgBox "現在のファイルにアクセスできませんでした。保存できませんでした。", vbOKOnly + vbExclamation, C_TITLE
         GoTo pass
     End If
@@ -921,7 +921,7 @@ End Sub
 '--------------------------------------------------------------
 Sub pasteCSV()
 
-    Dim CB As New DataObject
+    Dim cb As New DataObject
     Dim strBuf As String
     Dim varRow As Variant
     Const STANDARD_DATA As Long = 1
@@ -932,7 +932,7 @@ Sub pasteCSV()
         Exit Sub
     End If
     
-    With CB
+    With cb
         .GetFromClipboard
         If .GetFormat(STANDARD_DATA) = False Then
             Exit Sub
@@ -1198,7 +1198,7 @@ Private Sub SelectionShiftCell(ByVal lngRow As Long, ByVal lngCol As Long)
     
     For Each r In Selection.Areas
     
-        err.Clear
+        Err.Clear
         On Error Resume Next
         If c Is Nothing Then
             Set c = r.Offset(lngRow, lngCol)
@@ -2629,7 +2629,7 @@ Sub cellEditExt()
     
     On Error Resume Next
     Call WSH.Run("""" & strEditor & """ " & """" & strFileName & """", 1, True)
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         MsgBox "エディタの起動に失敗しました。設定を確認してください。", vbOKOnly + vbExclamation, C_TITLE
         GoTo e
     End If
@@ -2670,9 +2670,9 @@ Sub cellEditExt()
             End Select
             
             On Error Resume Next
-            err.Clear
+            Err.Clear
             r.Formula = Replace(strBuf, vbCrLf, vbLf)
-            If err.Number <> 0 Then
+            If Err.Number <> 0 Then
                 MsgBox "式の設定に失敗しました。式が正しくない可能性があります。", vbOKOnly + vbExclamation, C_TITLE
             End If
         Else
@@ -3288,7 +3288,7 @@ Sub RegExport()
 
     Set Locator = CreateObject("WbemScripting.SWbemLocator")
     Set Service = Locator.ConnectServer(vbNullString, "root\default")
-    Set Reg = Service.Get("StdRegProv")
+    Set Reg = Service.get("StdRegProv")
     
     Const HKEY_CURRENT_USER = &H80000001
     

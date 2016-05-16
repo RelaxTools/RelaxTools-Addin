@@ -169,7 +169,7 @@ Private Sub cmdOk_Click()
     mMm.DispGuidance "ファイルの数をカウントしています..."
     
     FileSearch objFs, strPath, strPatterns(), colBook
-    Select Case err.Number
+    Select Case Err.Number
     Case 75, 76
         mMm.Enable
         Set mMm = Nothing
@@ -219,7 +219,7 @@ Private Sub cmdOk_Click()
             Exit For
         End If
     
-        err.Clear
+        Err.Clear
         
         ResultWS.Cells(lngCount, C_SEARCH_NO).value = lngCount - C_START_ROW + 1
         ResultWS.Cells(lngCount, C_SEARCH_BOOK).value = varBook

@@ -90,14 +90,14 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
         Set WB = Workbooks.Open(FileName:=strBook)
     Else
         For Each varPass In varPassword
-            err.Clear
+            Err.Clear
             Set WB = Workbooks.Open(FileName:=strBook, Password:=varPass)
-            If err.Number = 0 Then
+            If Err.Number = 0 Then
                 Exit For
             End If
         Next
     End If
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         MsgBox "ブックを開けませんでした。", vbExclamation, "Grep"
         Exit Sub
     End If
@@ -111,7 +111,7 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
     
     Dim s As Shape
     Set s = getObjFromID(WS, Mid$(strId, InStrRev(strId, ":") + 1))
-    Application.GoTo Reference:=setCellPos(s.TopLeftCell), Scroll:=True
+    Application.Goto Reference:=setCellPos(s.TopLeftCell), Scroll:=True
     s.Select
     
 End Sub
@@ -218,14 +218,14 @@ Sub ReplaceStr()
             Set WB = Workbooks.Open(FileName:=strBook, Local:=True)
         Else
             For Each varPass In varPassword
-                err.Clear
+                Err.Clear
                 Set WB = Workbooks.Open(FileName:=strBook, Password:=varPass, Local:=True)
-                If err.Number = 0 Then
+                If Err.Number = 0 Then
                     Exit For
                 End If
             Next
         End If
-        If err.Number <> 0 Then
+        If Err.Number <> 0 Then
             MsgBox "ブックが開けません(" & FS.getFileName(strBook) & ")です。" & vbCrLf & "Grep置換をスキップします。", vbOKOnly + vbCritical, C_TITLE
             lngRow = lngRow + 1
             GoTo pass
@@ -281,7 +281,7 @@ pass:
     MsgBox "Grep置換完了しました。", vbOKOnly + vbInformation, C_TITLE
     Exit Sub
 e:
-    If MsgBox("ブック保存時にエラーになりました。(" & err.Description & ")" & vbCrLf & "再試行しますか？", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
+    If MsgBox("ブック保存時にエラーになりました。(" & Err.Description & ")" & vbCrLf & "再試行しますか？", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
         Resume
     Else
         MsgBox "Grep置換を中断しました。", vbOKOnly + vbCritical, C_TITLE

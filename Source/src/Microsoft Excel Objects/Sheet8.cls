@@ -43,7 +43,7 @@ Sub reboot()
 
     Dim a As AddIn
 
-    err.Clear
+    Err.Clear
     On Error Resume Next
     
     If MsgBox("RelaxToolsを再起動しますがよろしいですか？", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
@@ -60,7 +60,7 @@ Sub reboot()
 
     Next
 
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         MsgBox "再起動中にエラーがありました。Excel自体の再起動が必要な場合があります。", vbExclamation + vbOKOnly, "RelaxTools-Addin"
     End If
 
@@ -69,7 +69,7 @@ Sub RelaxInit()
 
     Dim a As AddIn
 
-    err.Clear
+    Err.Clear
     On Error Resume Next
 
     If MsgBox("RelaxToolsの設定を初期化しますがよろしいですか？", vbYesNo + vbQuestion, "RelaxTools-Addin") <> vbYes Then
@@ -90,7 +90,7 @@ Sub RelaxInit()
 
     Next
 
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         MsgBox "初期化中にエラーがありました。Excel自体の再起動が必要な場合があります。", vbExclamation + vbOKOnly, "RelaxTools-Addin"
     End If
 

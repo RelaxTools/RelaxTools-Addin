@@ -158,7 +158,7 @@ Public Sub RibbonOnAction(control As IRibbonControl)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 'チェックボックス設定取得
@@ -171,7 +171,7 @@ Public Sub CheckGetPressed(control As IRibbonControl, ByRef returnValue)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 'チェックボックス設定
@@ -186,7 +186,7 @@ Public Sub CheckOnAction(control As IRibbonControl, pressed As Boolean)
         
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 'チェックボックスEnable/Disable
@@ -206,7 +206,7 @@ Sub CheckSetEnabled(control As IRibbonControl, ByRef enabled)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' ヘルプ内容を表示する。customUIから使用
@@ -221,7 +221,7 @@ Public Sub GetSupertip(control As IRibbonControl, ByRef Screentip)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' メニュー表示内容を表示する。customUIから使用
@@ -234,7 +234,7 @@ Public Sub GetDescription(control As IRibbonControl, ByRef Screentip)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' ラベルを表示する。customUIから使用
@@ -247,7 +247,7 @@ Public Sub GetLabel(control As IRibbonControl, ByRef Screentip)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' 2003互換色　背景色自動
@@ -502,7 +502,7 @@ Sub ribbonLoaded(ByRef IR As IRibbonUI)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' リボンのリフレッシュ
@@ -531,7 +531,7 @@ Public Sub RefreshRibbon(Optional control As IRibbonControl)
     End If
 
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  段落番号トグルボタン
@@ -562,7 +562,7 @@ Sub sectionPressed(control As IRibbonControl, ByRef returnValue)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  現在の段落番号の設定
@@ -610,7 +610,7 @@ Sub sectionOnAction(control As IRibbonControl, pressed As Boolean)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  十字カーソルの押下状態の取得
@@ -639,7 +639,7 @@ Sub lineOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 ''--------------------------------------------------------------------
 ''  フック固定の押下状態の取得
@@ -943,7 +943,7 @@ Sub scrollOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  スクショモードの押下状態取得
@@ -972,7 +972,7 @@ Sub screenOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 
 '--------------------------------------------------------------------
@@ -1209,7 +1209,7 @@ Sub getScreenShotEnabled(control As IRibbonControl, ByRef enabled)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  十字カーソル設定のEnabled/Disabled
@@ -1222,7 +1222,7 @@ Sub getCrossEnabled(control As IRibbonControl, ByRef enabled)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  ホイール量設定のEnabled/Disabled
@@ -1235,5 +1235,5 @@ Sub getScrollEnabled(control As IRibbonControl, ByRef enabled)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub

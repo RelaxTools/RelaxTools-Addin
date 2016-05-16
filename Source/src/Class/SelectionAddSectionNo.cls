@@ -186,7 +186,7 @@ pass:
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
     Cancel = True
     
 End Sub

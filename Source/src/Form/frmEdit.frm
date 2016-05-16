@@ -73,10 +73,10 @@ End Sub
 Private Sub cmdOk_Click()
     
     On Error Resume Next
-    err.Clear
+    Err.Clear
     ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
     
-    If err.Number = 0 Then
+    If Err.Number = 0 Then
         Unload Me
     Else
         MsgBox "式の設定に失敗しました。式が正しくない可能性があります。", vbOKOnly + vbExclamation, C_TITLE
@@ -87,7 +87,7 @@ End Sub
 Private Sub cmdReload_Click()
 
     On Error GoTo e
-    err.Clear
+    Err.Clear
     ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
     
     txtEdit.Text = Replace(Replace(ActiveCell.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
@@ -193,10 +193,10 @@ Private Sub UserForm_Initialize()
     
     txtFormura.Text = Replace(Replace(ActiveCell.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
     
-    err.Clear
+    Err.Clear
     On Error Resume Next
     txtValue.Text = Replace(Replace(ActiveCell.value, vbCrLf, vbLf), vbLf, vbCrLf)
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         txtValue.Text = C_ERROR
     End If
     
@@ -232,14 +232,14 @@ Private Sub changeValue()
 '        txtEdit.Locked = True
 '        cmdFormatSql.enabled = False
         cmdReload.enabled = False
-        cmdOK.enabled = False
+        cmdOk.enabled = False
     Else
         txtEdit.BackColor = vbWhite
         txtEdit.Text = txtFormura.Text
 '        txtEdit.Locked = False
 '        cmdFormatSql.enabled = True
         cmdReload.enabled = True
-        cmdOK.enabled = True
+        cmdOk.enabled = True
     End If
     
 '    txtEdit.SetFocus

@@ -228,7 +228,7 @@ Private Sub setJavaPackage()
                     
                     
                     On Error GoTo 0
-                    err.Clear
+                    Err.Clear
                     
                     strSource = BASE_FOLDER & strDir
                     strDest = DEST_FOLDER & strDest & "\" & strDir
@@ -236,13 +236,13 @@ Private Sub setJavaPackage()
                     On Error Resume Next
                     blnCopySuccess = False
                     FileCopy strSource, strDest
-                    If err.Number = 0 Then
+                    If Err.Number = 0 Then
                         blnCopySuccess = True
                     End If
                     
                     
                     On Error GoTo 0
-                    err.Clear
+                    Err.Clear
                     
                     'チェックボックスが選択されている場合
                     lngDeleteSuccess = C_DELETE_NONE
@@ -251,13 +251,13 @@ Private Sub setJavaPackage()
                             '元ファイルを削除する。
                             On Error Resume Next
                             Kill strSource
-                            If err.Number = 0 Then
+                            If Err.Number = 0 Then
                                 lngDeleteSuccess = C_DELETE_SUCCESS
                             Else
                                 lngDeleteSuccess = C_DELETE_FAIL
                             End If
                             On Error GoTo 0
-                            err.Clear
+                            Err.Clear
                         End If
                     End If
                     
