@@ -92,7 +92,7 @@ Private Sub cmdAdd_Click()
     Dim j As Long
     Dim i As Long
     Dim blnFind As Boolean
-    Dim strkey As String
+    Dim strKey As String
      
     blnFind = False
     
@@ -100,8 +100,8 @@ Private Sub cmdAdd_Click()
         Exit Sub
     End If
     
-    strkey = cmbShift.List(cmbShift.ListIndex, 1) & lstKey.List(lstKey.ListIndex, 2)
-    Select Case strkey
+    strKey = cmbShift.List(cmbShift.ListIndex, 1) & lstKey.List(lstKey.ListIndex, 2)
+    Select Case strKey
         Case "^%{DELETE}", "^+{ESCAPE}"
             MsgBox "システムで使用されているキーは登録できません。", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
@@ -110,8 +110,8 @@ Private Sub cmdAdd_Click()
     
     If lstSetting.ListCount > 0 Then
         For i = 0 To lstSetting.ListCount - 1
-            strkey = cmbShift.List(cmbShift.ListIndex, 1) & lstKey.List(lstKey.ListIndex, 2)
-            If lstSetting.List(i, C_SETLIST_KEY) = strkey Then
+            strKey = cmbShift.List(cmbShift.ListIndex, 1) & lstKey.List(lstKey.ListIndex, 2)
+            If lstSetting.List(i, C_SETLIST_KEY) = strKey Then
                 blnFind = True
                 j = i
                 Exit For
@@ -410,7 +410,7 @@ Private Function existMacro(ByVal strMacro As String) As Boolean
     Loop
 
 End Function
-Private Function existHotKey(ByVal strkey As String) As Boolean
+Private Function existHotKey(ByVal strKey As String) As Boolean
     
     Dim i As Long
     Dim WS As Worksheet
@@ -420,13 +420,13 @@ Private Function existHotKey(ByVal strkey As String) As Boolean
     'シフトキーを削除
     Dim lngPos As Long
     
-    lngPos = InStr(strkey, "{^}")
+    lngPos = InStr(strKey, "{^}")
     If lngPos > 0 Then
-        strkey = "{^}"
+        strKey = "{^}"
     Else
-        strkey = Replace(strkey, "^", "", 1, 1)
-        strkey = Replace(strkey, "+", "", 1, 1)
-        strkey = Replace(strkey, "%", "", 1, 1)
+        strKey = Replace(strKey, "^", "", 1, 1)
+        strKey = Replace(strKey, "+", "", 1, 1)
+        strKey = Replace(strKey, "%", "", 1, 1)
     End If
     
     Set WS = ThisWorkbook.Worksheets("key")
@@ -435,7 +435,7 @@ Private Function existHotKey(ByVal strkey As String) As Boolean
     'マクロシートのロード
     Do Until WS.Cells(i, C_KEY_NO).value = ""
         
-        If WS.Cells(i, C_KEY_KEY).value = strkey Then
+        If WS.Cells(i, C_KEY_KEY).value = strKey Then
             existHotKey = True
             Exit Do
         End If
@@ -506,7 +506,7 @@ Private Sub CommandButton1_Click()
 
 End Sub
 
-Private Sub lstCommand_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstCommand_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
 '    MW.Name = "lstCommand"
     Set MW.obj = lstCommand
 End Sub
@@ -515,7 +515,7 @@ Private Sub lstKey_Click()
     Call getGuidence
 End Sub
 
-Private Sub lstKey_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstKey_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
 '    MW.Name = "lstKey"
     Set MW.obj = lstKey
 
@@ -525,7 +525,7 @@ Private Sub lstSetting_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
 
     Dim i As Long
     Dim strShift As String
-    Dim strkey As String
+    Dim strKey As String
     
     Dim strBuf As String
     If lstSetting.ListCount = 0 Then
@@ -539,13 +539,13 @@ Private Sub lstSetting_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
             Case "^", "%", "+"
             Case Else
                 strShift = Mid$(strBuf, 1, i - 1)
-                strkey = Mid$(strBuf, i)
+                strKey = Mid$(strBuf, i)
                 Exit For
         End Select
     Next
     
     For i = 0 To lstKey.ListCount - 1
-        If lstKey.List(i, 2) = strkey Then
+        If lstKey.List(i, 2) = strKey Then
             lstKey.ListIndex = i
             lstKey.TopIndex = i
             Exit For
@@ -572,7 +572,7 @@ Private Sub lstSetting_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
 End Sub
 
 
-Private Sub lstSetting_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstSetting_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
 '    MW.Name = "lstSetting"
     Set MW.obj = lstSetting
 
@@ -657,7 +657,7 @@ Private Sub UserForm_Initialize()
     
     
     Dim strList() As String
-    Dim strkey() As String
+    Dim strKey() As String
     Dim strResult As String
     Dim lngMax As Long
     
@@ -667,16 +667,16 @@ Private Sub UserForm_Initialize()
     lngMax = UBound(strList)
 
     For i = 0 To lngMax
-        strkey = Split(strList(i) & vbTab & "1", vbTab)
+        strKey = Split(strList(i) & vbTab & "1", vbTab)
         
         lstSetting.AddItem ""
         lstSetting.List(i, C_SETLIST_NO) = i + 1
-        lstSetting.List(i, C_SETLIST_KEY_NAME) = strkey(1)
-        lstSetting.List(i, C_SETLIST_KEY) = strkey(2)
-        lstSetting.List(i, C_SETLIST_CATEGORY) = strkey(3)
-        lstSetting.List(i, C_SETLIST_MACRO_NAME) = strkey(4)
-        lstSetting.List(i, C_SETLIST_MACRO) = strkey(5)
-        lstSetting.List(i, C_SETLIST_ENABLE) = getEnable(strkey(6))
+        lstSetting.List(i, C_SETLIST_KEY_NAME) = strKey(1)
+        lstSetting.List(i, C_SETLIST_KEY) = strKey(2)
+        lstSetting.List(i, C_SETLIST_CATEGORY) = strKey(3)
+        lstSetting.List(i, C_SETLIST_MACRO_NAME) = strKey(4)
+        lstSetting.List(i, C_SETLIST_MACRO) = strKey(5)
+        lstSetting.List(i, C_SETLIST_ENABLE) = getEnable(strKey(6))
     Next
     
     If lstSetting.ListCount > 0 Then
@@ -760,7 +760,7 @@ Sub getGuidence()
     Loop
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
 '    MW.Name = "lstSetting"
     Set MW.obj = Nothing
     

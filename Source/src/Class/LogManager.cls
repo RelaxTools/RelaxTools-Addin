@@ -110,7 +110,12 @@ Private Function getMSec() As String
     getMSec = Format$((dblTimer - Fix(dblTimer)) * 1000, "000")
     
 End Function
-
+Public Sub Flash()
+    If mOpen Then
+        Close fp
+        Call OpenLog
+    End If
+End Sub
 Private Sub OpenLog()
 
     Dim strFile As String

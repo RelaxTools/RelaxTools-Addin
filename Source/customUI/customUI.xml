@@ -861,13 +861,13 @@
           <button id="convertTextile.2"   size="large"   image="redmine" label="textile&#xD;&#xA;変換" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="convertMarkdown.2"  size="large"   image="markdown" label="markdown&#xD;&#xA;変換" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
-
+<!--
         <group id="GitGroup" label="Git" image="git">
           <button id="GitCommit" size="large"   image="commit" label="コミット&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-          <button id="GitReset"  size="large"   image="reset"  label="変更を&#xD;&#xA;元に戻す" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="GitReset"  size="large"   image="reset"  label="変更の&#xD;&#xA;取り消し" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="GitLog"    size="large"   image="log"    label="ログ表示&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
-
+-->
         <group id="InformationGroup" label="その他" image="countpage">
           <button id="encryptionFileEx" size="large" image="Encrypt"  label="ファイルの&#xD;&#xA;難読化" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           <button id="excelPage" image="countpage" size="large" label="Word/Excel/PP&#xD;&#xA;ページ数取得" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />

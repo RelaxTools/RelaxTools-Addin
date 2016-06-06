@@ -97,18 +97,18 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
         
     Dim c As Range
     Dim v As Range
-    Dim strkey As String
+    Dim strKey As String
     Dim blnMatch As Boolean
     
     On Error GoTo e
     
     'キーの作成
-    strkey = ""
+    strKey = ""
     For Each v In r
-        strkey = strkey & vbTab & v
+        strKey = strKey & vbTab & v
     Next
     
-    If Replace(strkey, vbTab, "") = "" Then
+    If Replace(strKey, vbTab, "") = "" Then
         Exit Sub
     End If
 
@@ -117,7 +117,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
     
     Err.Clear
     On Error Resume Next
-    Set c = mobjCol(strkey)
+    Set c = mobjCol(strKey)
     
     On Error GoTo 0
             
@@ -137,7 +137,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
         End If
     Else
         '存在しない場合コレクションに追加
-        Call mobjCol.Add(r, strkey)
+        Call mobjCol.Add(r, strKey)
     End If
 
     Exit Sub

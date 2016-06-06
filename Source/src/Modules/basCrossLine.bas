@@ -60,8 +60,8 @@ End Type
 #End If
 
 Private Type POINTAPI
-    X As Long
-    Y As Long
+    x As Long
+    y As Long
 End Type
 
 Private Type INPUT_TYPE
@@ -91,7 +91,7 @@ Sub rlxCrossClick()
     
     GetCursorPos a
 
-    Set r = ActiveWindow.RangeFromPoint(a.X, a.Y)
+    Set r = ActiveWindow.RangeFromPoint(a.x, a.y)
     If r Is Nothing Then
     Else
     

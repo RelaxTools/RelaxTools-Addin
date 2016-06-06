@@ -71,7 +71,7 @@ Private Sub cmdAdd_Click()
     Dim j As Long
     Dim i As Long
     Dim blnFind As Boolean
-    Dim strkey As String
+    Dim strKey As String
      
     blnFind = False
     
@@ -309,7 +309,7 @@ Sub previewLabel()
 
 End Sub
 
-Private Sub lstSelect_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstSelect_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = lstSelect
 End Sub
 
@@ -349,7 +349,7 @@ Private Sub lstSetting_Click()
             
 End Sub
 
-Private Sub lstSetting_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstSetting_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = lstSetting
 End Sub
 
@@ -542,7 +542,7 @@ Private Sub MW_WheelUp(obj As Object)
 
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = Nothing
 End Sub
 

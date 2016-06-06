@@ -357,7 +357,7 @@ Private Sub lstResult_Change()
                     objShape.Select False
                 Else
                     blnFlg = True
-                    Application.Goto setCellPos(objShape.TopLeftCell), True
+                    Application.GoTo setCellPos(objShape.TopLeftCell), True
                     objShape.Select
                 End If
                 On Error GoTo 0
@@ -465,7 +465,7 @@ Private Function setCellPos(ByRef r As Range) As Range
 
 End Function
 
-Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = lstResult
 End Sub
 
@@ -522,7 +522,7 @@ Sub dispList()
     Next
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = Nothing
 End Sub
 

@@ -99,7 +99,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boolean)
 
-    Dim strkey As String
+    Dim strKey As String
     Dim v As Range
     Dim blnMatch As Boolean
     Dim c As Object
@@ -107,23 +107,23 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
     On Error GoTo e
     
     'キーの作成
-    strkey = ""
+    strKey = ""
     For Each v In r
         If IsError(v.value) Then
         Else
-            strkey = strkey & vbTab & v.value
+            strKey = strKey & vbTab & v.value
         End If
     Next
 
-    If Replace(strkey, vbTab, "") = "" Then
+    If Replace(strKey, vbTab, "") = "" Then
         Exit Sub
     End If
 
     'コレクション内に一致するものがあるかどうかチェック
     blnMatch = False
     
-    If mobjCol.Exists(strkey) Then
-        Set c = mobjCol.Item(strkey)
+    If mobjCol.Exists(strKey) Then
+        Set c = mobjCol.Item(strKey)
         blnMatch = True
         With c.Interior
             .Color = vbCyan
@@ -140,7 +140,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
         End With
     Else
         '存在しない場合コレクションに追加
-        Call mobjCol.Add(strkey, r)
+        Call mobjCol.Add(strKey, r)
     End If
 
     Exit Sub

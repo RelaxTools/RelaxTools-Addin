@@ -80,7 +80,7 @@ Private Sub cmdAdd_Click()
     Dim j As Long
     Dim i As Long
     Dim blnFind As Boolean
-    Dim strkey As String
+    Dim strKey As String
 
     blnFind = False
 
@@ -88,7 +88,7 @@ Private Sub cmdAdd_Click()
         Exit Sub
     End If
 
-    strkey = lstCommand.List(lstCommand.ListIndex, C_SET_MACRO)
+    strKey = lstCommand.List(lstCommand.ListIndex, C_SET_MACRO)
 
     j = lstCombo.ListCount
     lstCombo.AddItem ""
@@ -261,12 +261,12 @@ Private Sub lstCombo_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
     
 End Sub
 
-Private Sub lstCombo_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstCombo_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = lstCombo
 
 End Sub
 
-Private Sub lstCommand_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstCommand_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = lstCommand
 End Sub
 
@@ -460,7 +460,7 @@ Private Sub MW_WheelUp(obj As Object)
 
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = Nothing
 End Sub
 

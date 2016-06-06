@@ -31,7 +31,6 @@ Attribute VB_Name = "basShape"
 Option Explicit
 Option Private Module
 
-
 '１マスのサイズ（9.75×12）
 Public Const C_RECT_X  As Single = 9.75
 Public Const C_RECT_Y  As Single = 12
@@ -601,13 +600,16 @@ Sub drawEvidenceTextbox()
     
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
-        
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-    Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, ActiveWindow.ActivePane.VisibleRange.Left + 100, ActiveWindow.ActivePane.VisibleRange.Top + 100, C_RECT_X * C_NORMAL_WIDTH * 2, C_RECT_Y * C_NORMAL_HEIGHT)
+    End If
     
     '基本のスタイルをセット
     objDataSet.ShapeStyle = msoShapeStylePreset1
@@ -630,12 +632,17 @@ Sub drawEvidenceTextbox()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
+
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
     
     Set objDataSet = Nothing
-
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
     
     Application.ScreenUpdating = a
         
@@ -659,13 +666,15 @@ Sub drawEvidenceOval()
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
         
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-        
-    Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOval, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 1.5) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 1.5, C_RECT_Y * C_NORMAL_HEIGHT)
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOval, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 1.5) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 1.5, C_RECT_Y * C_NORMAL_HEIGHT)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOval, ActiveWindow.ActivePane.VisibleRange.Left + 100, ActiveWindow.ActivePane.VisibleRange.Top + 100, C_RECT_X * C_NORMAL_WIDTH * 1.5, C_RECT_Y * C_NORMAL_HEIGHT)
+    End If
     
     '基本のスタイルをセット
     objDataSet.ShapeStyle = msoShapeStylePreset1
@@ -688,11 +697,17 @@ Sub drawEvidenceOval()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
+    
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
+    
     Set objDataSet = Nothing
-
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
     
     Application.ScreenUpdating = a
         
@@ -716,13 +731,15 @@ Sub drawEvidenceCallout()
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
         
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-        
-    Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, ActiveWindow.ActivePane.VisibleRange.Left + 100, ActiveWindow.ActivePane.VisibleRange.Top + 100, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    End If
     
     '基本のスタイルをセット
     objDataSet.ShapeStyle = msoShapeStylePreset1
@@ -748,11 +765,20 @@ Sub drawEvidenceCallout()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
+    
+    'シェイプをつまむ
+    PickShape objDataSet
+    
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
+    
     Set objDataSet = Nothing
-
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
     
     Application.ScreenUpdating = a
 
@@ -776,13 +802,15 @@ Sub drawEvidenceLineCallout()
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
         
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-        
-    Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeLineCallout1, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeLineCallout1, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeLineCallout1, ActiveWindow.ActivePane.VisibleRange.Left + 100, ActiveWindow.ActivePane.VisibleRange.Top + 100, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    End If
     
     '基本のスタイルをセット
     objDataSet.ShapeStyle = msoShapeStylePreset1
@@ -808,11 +836,17 @@ Sub drawEvidenceLineCallout()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
+    
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
+    
     Set objDataSet = Nothing
-
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
     
     Application.ScreenUpdating = a
 
@@ -836,13 +870,15 @@ Sub drawEvidenceArrow()
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
         
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-        
-    Set objDataSet = ActiveSheet.Shapes.AddConnector(msoConnectorStraight, Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height - (C_NORMAL_HEIGHT * 25), Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height)
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddConnector(msoConnectorStraight, Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height - (C_NORMAL_HEIGHT * 25), Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddConnector(msoConnectorStraight, ActiveWindow.ActivePane.VisibleRange.Left + 100, Selection.Top + Selection.Height - (C_NORMAL_HEIGHT * 25), ActiveWindow.ActivePane.VisibleRange.Left + 100, Selection.Top + Selection.Height)
+    End If
     
     With objDataSet.Line
         .Weight = 2.25
@@ -859,18 +895,24 @@ Sub drawEvidenceArrow()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
+    
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
+    
     Set objDataSet = Nothing
-
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
     
     Application.ScreenUpdating = a
     
 
 End Sub
 '
-' エビデンス用四角（シェイプ）描画
+' エビデンス用四角（シェイプ）描画2
 '
 Sub drawEvidenceTextbox2()
 
@@ -888,13 +930,15 @@ Sub drawEvidenceTextbox2()
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
         
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-
-    Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, ActiveWindow.ActivePane.VisibleRange.Left + 100, ActiveWindow.ActivePane.VisibleRange.Top + 100, C_RECT_X * C_NORMAL_WIDTH * 2, C_RECT_Y * C_NORMAL_HEIGHT)
+    End If
     
     '基本のスタイルをセット
     objDataSet.ShapeStyle = msoShapeStylePreset1
@@ -917,17 +961,23 @@ Sub drawEvidenceTextbox2()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
+    
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
+    
     Set objDataSet = Nothing
-
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
     
     Application.ScreenUpdating = a
 
 End Sub
 '
-' エビデンス用楕円（シェイプ）描画
+' エビデンス用楕円（シェイプ）描画2
 '
 Sub drawEvidenceOval2()
 
@@ -945,13 +995,15 @@ Sub drawEvidenceOval2()
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
         
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-        
-    Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOval, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 1.5) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 1.5, C_RECT_Y * C_NORMAL_HEIGHT)
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOval, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 1.5) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 1.5, C_RECT_Y * C_NORMAL_HEIGHT)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOval, ActiveWindow.ActivePane.VisibleRange.Left + 100, ActiveWindow.ActivePane.VisibleRange.Top + 100, C_RECT_X * C_NORMAL_WIDTH * 1.5, C_RECT_Y * C_NORMAL_HEIGHT)
+    End If
     
     '基本のスタイルをセット
     objDataSet.ShapeStyle = msoShapeStylePreset1
@@ -974,11 +1026,17 @@ Sub drawEvidenceOval2()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
+    
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
+    
     Set objDataSet = Nothing
-
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
     
     Application.ScreenUpdating = a
 
@@ -1002,13 +1060,15 @@ Sub drawEvidenceCallout2()
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
         
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-        
-    Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, ActiveWindow.ActivePane.VisibleRange.Left + 100, ActiveWindow.ActivePane.VisibleRange.Top + 100, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    End If
     
     '基本のスタイルをセット
     objDataSet.ShapeStyle = msoShapeStylePreset1
@@ -1035,11 +1095,17 @@ Sub drawEvidenceCallout2()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
-    Set objDataSet = Nothing
     
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
+    
+    Set objDataSet = Nothing
     
     Application.ScreenUpdating = a
 
@@ -1063,13 +1129,15 @@ Sub drawEvidenceLineCallout2()
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
         
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-        
-    Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeLineCallout1, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeLineCallout1, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeLineCallout1, ActiveWindow.ActivePane.VisibleRange.Left + 100, ActiveWindow.ActivePane.VisibleRange.Top + 100, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    End If
     
     '基本のスタイルをセット
     objDataSet.ShapeStyle = msoShapeStylePreset1
@@ -1096,11 +1164,17 @@ Sub drawEvidenceLineCallout2()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
-    Set objDataSet = Nothing
     
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
+    
+    Set objDataSet = Nothing
     
     Application.ScreenUpdating = a
 
@@ -1124,13 +1198,15 @@ Sub drawEvidenceArrow2()
     a = Application.ScreenUpdating
     Application.ScreenUpdating = False
         
-    z = ActiveWindow.Zoom
-    c = ActiveWindow.ScrollColumn
-    r = ActiveWindow.ScrollRow
-    ActiveWindow.Zoom = 100
-        
-        
-    Set objDataSet = ActiveSheet.Shapes.AddConnector(msoConnectorStraight, Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height - (C_NORMAL_HEIGHT * 25), Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height)
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        z = ActiveWindow.Zoom
+        c = ActiveWindow.ScrollColumn
+        r = ActiveWindow.ScrollRow
+        ActiveWindow.Zoom = 100
+        Set objDataSet = ActiveSheet.Shapes.AddConnector(msoConnectorStraight, Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height - (C_NORMAL_HEIGHT * 25), Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height)
+    Else
+        Set objDataSet = ActiveSheet.Shapes.AddConnector(msoConnectorStraight, ActiveWindow.ActivePane.VisibleRange.Left + 100, Selection.Top + Selection.Height - (C_NORMAL_HEIGHT * 25), ActiveWindow.ActivePane.VisibleRange.Left + 100, Selection.Top + Selection.Height)
+    End If
     
     With objDataSet.Line
         .Weight = 2.25
@@ -1147,11 +1223,17 @@ Sub drawEvidenceArrow2()
         
     objDataSet.Select
     objDataSet.Placement = xlMove
-    Set objDataSet = Nothing
     
-    ActiveWindow.Zoom = z
-    ActiveWindow.ScrollColumn = c
-    ActiveWindow.ScrollRow = r
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+        ActiveWindow.Zoom = z
+        ActiveWindow.ScrollColumn = c
+        ActiveWindow.ScrollRow = r
+    Else
+        'シェイプをつまむ
+        PickShape objDataSet
+    End If
+    
+    Set objDataSet = Nothing
     
     Application.ScreenUpdating = a
 

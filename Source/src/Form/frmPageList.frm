@@ -205,7 +205,7 @@ Private Sub cmdOk_Click()
     End If
     If chkPoint.value Then
         Dim PP As Object
-        Dim PT As Object
+        Dim pt As Object
         Set PP = CreateObject("PowerPoint.Application")
     End If
     
@@ -259,12 +259,12 @@ Private Sub cmdOk_Click()
                 
             Case InStr(UCase(varBook), C_PPT_FILE) > 0
             
-                Set PT = PP.Presentations.Open(FileName:=varBook, ReadOnly:=True, withwindow:=False)
+                Set pt = PP.Presentations.Open(FileName:=varBook, ReadOnly:=True, withwindow:=False)
                     
-                ResultWS.Cells(lngCount, C_SEARCH_PAGE).value = PT.Slides.count
+                ResultWS.Cells(lngCount, C_SEARCH_PAGE).value = pt.Slides.count
                 
-                PT.Close
-                Set PT = Nothing
+                pt.Close
+                Set pt = Nothing
                 
         End Select
         

@@ -72,6 +72,8 @@ Option Explicit
         dwThreadId As Long
     End Type
     
+    Private Declare PtrSafe Function GetEnvironmentVariable Lib "kernel32" Alias "GetEnvironmentVariableA" (ByVal lpName As String, ByVal lpBuffer As String, ByVal nSize As Long) As Long
+
 #Else
 
     Private Declare Function WaitForSingleObject Lib "KERNEL32.DLL" (ByVal hHandle As Long, ByVal dwMilliseconds As Long) As Long
@@ -135,6 +137,8 @@ Option Explicit
         dwThreadId As Long
     End Type
 
+    Private Declare Function GetEnvironmentVariable Lib "kernel32" Alias "GetEnvironmentVariableA" (ByVal lpName As String, ByVal lpBuffer As String, ByVal nSize As Long) As Long
+
 #End If
 
 Private Const HANDLE_FLAG_INHERIT = &H1
@@ -161,7 +165,7 @@ Private Const INFINITE = &HFFFFFFFF
 '    NoSysout = 3
 'End Enum
 
-Public Function Run(ByVal strPath As String, ByVal strCommand As String, ByRef strSysout As String) As Long
+Public Function Run(ByVal strPath As String, ByVal strCommand As String, ByVal strEnv As String, ByRef strSysout As String, Optional ByVal IsUTF8 As Variant = False) As Long
 
     Dim sa As SECURITY_ATTRIBUTES
     Dim pi As PROCESS_INFORMATION
@@ -204,9 +208,8 @@ Public Function Run(ByVal strPath As String, ByVal strCommand As String, ByRef s
     si.dwFlags = STARTF_USESTDHANDLES
     si.wShowWindow = SW_HIDE
 
-
-    Dim strEnv As String
-    strEnv = "HOME=C:\Users\yas" & vbNullChar & vbNullChar
+    ' 環境変数をセット
+    strEnv = strEnv & vbNullChar & vbNullChar
 
     If CreateProcess(vbNullString, strCommand, sa, sa, 1&, CREATE_NO_WINDOW, strEnv, strPath, si, pi) = 0 Then
         Call CloseHandle(hOutWrite)
@@ -216,7 +219,6 @@ Public Function Run(ByVal strPath As String, ByVal strCommand As String, ByRef s
 
     '終了するまで待機
     WaitForSingleObject pi.hProcess, INFINITE
-    
     
     '終了ステータスコードの取得
     If GetExitCodeProcess(pi.hProcess, exitcode) = 0 Then
@@ -233,7 +235,6 @@ Public Function Run(ByVal strPath As String, ByVal strCommand As String, ByRef s
     Dim lngSize As Long
     Dim bytBuf() As Byte
     
-    
     fp = FreeFile()
     Open strFileName For Binary As fp
 
@@ -249,18 +250,24 @@ Public Function Run(ByVal strPath As String, ByVal strCommand As String, ByRef s
 
     Close fp
     
+    If IsUTF8 Then
+        ' UTF8に変換
+        Dim utf8 As UTF8Encoding
+        
+        Set utf8 = New UTF8Encoding
+        
+        strSysout = utf8.GetString(bytBuf)
+        
+        Set utf8 = Nothing
+    Else
+        'SJISに変換
+        strSysout = StrConv(bytBuf, vbUnicode)
+    End If
     
-    Dim utf8 As UTF8Encoding
-    
-    Set utf8 = New UTF8Encoding
-    
-    strSysout = utf8.GetString(bytBuf)
-    
-    Set utf8 = Nothing
+    On Error Resume Next
+    Kill strFileName
     
     Exit Function
 Error:
 
 End Function
-
-

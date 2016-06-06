@@ -49,7 +49,7 @@ Copyright(C) Yasuhiro Watanabe 2009
 * 付箋作成機能。
 * Excel/Word/PowerPointのページ数カウント
 * VBAのステップカウント
-・・・などなど250を超える機能を搭載しております！！
+・・・などなど250を超える機能を搭載
 
 ---
 

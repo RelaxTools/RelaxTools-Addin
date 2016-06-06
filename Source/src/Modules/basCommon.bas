@@ -36,7 +36,7 @@ Option Private Module
 #If VBA7 And Win64 Then
     'VBA7 = Excel2010以降。赤くコンパイルエラーになって見えますが問題ありません。
     Private Declare PtrSafe Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
-    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hwnd As LongPtr) As Long
+    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hWnd As LongPtr) As Long
     Private Declare PtrSafe Function CloseClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function EmptyClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As LongPtr
@@ -70,20 +70,20 @@ Option Private Module
     End Type
     
     Private Type POINTAPI
-        X As Long
-        Y As Long
+        x As Long
+        y As Long
     End Type
     
     Private Type DROPFILES
         pFiles As Long
-        PT As POINTAPI
+        pt As POINTAPI
         fNC As Long
         fWide As Long
     End Type
     
     Private Type FLASHWINFO
         cbsize As LongPtr
-        hwnd As LongPtr
+        hWnd As LongPtr
         dwFlags As Long
         uCount As Long
         dwTimeout As LongPtr
@@ -104,7 +104,7 @@ Option Private Module
     End Type
 #Else
     Private Declare Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
-    Declare Function OpenClipboard Lib "user32" (ByVal hwnd As Long) As Long
+    Declare Function OpenClipboard Lib "user32" (ByVal hWnd As Long) As Long
     Declare Function CloseClipboard Lib "user32" () As Long
     Declare Function EmptyClipboard Lib "user32" () As Long
     Declare Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As Long
@@ -138,20 +138,20 @@ Option Private Module
     End Type
     
     Private Type POINTAPI
-        X As Long
-        Y As Long
+        x As Long
+        y As Long
     End Type
     
     Private Type DROPFILES
         pFiles As Long
-        PT As POINTAPI
+        pt As POINTAPI
         fNC As Long
         fWide As Long
     End Type
     
     Private Type FLASHWINFO
         cbsize As Long
-        hwnd As Long
+        hWnd As Long
         dwFlags As Long
         uCount As Long
         dwTimeout As Long
@@ -1355,7 +1355,7 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     Dim key1 As String
     Dim key2 As String
     Dim col2 As Collection
-    Dim strkey() As String
+    Dim strKey() As String
     Dim wk As String
 
     'Collectionが空ならなにもしない
@@ -1369,24 +1369,24 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     End If
 
     n = col.count
-    ReDim strkey(1 To n)
+    ReDim strKey(1 To n)
 
     For i = 1 To n
-        strkey(i) = col.Item(i).Name
+        strKey(i) = col.Item(i).Name
     Next
 
     '挿入ソート
     For i = 2 To n
 
-        wk = strkey(i)
+        wk = strKey(i)
 
-        If strkey(i - 1) > wk Then
+        If strKey(i - 1) > wk Then
 
             j = i
 
             Do
 
-                strkey(j) = strkey(j - 1)
+                strKey(j) = strKey(j - 1)
 
                 j = j - 1
 
@@ -1394,8 +1394,8 @@ Public Sub rlxSortCollection(ByRef col As Collection)
                     Exit Do
                 End If
 
-            Loop While strkey(j - 1) > wk
-            strkey(j) = wk
+            Loop While strKey(j - 1) > wk
+            strKey(j) = wk
 
         End If
     Next
@@ -1403,7 +1403,7 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     Set col2 = New Collection
 
     For i = 1 To n
-        col2.Add col.Item(strkey(i)), col.Item(strkey(i)).Name
+        col2.Add col.Item(strKey(i)), col.Item(strKey(i)).Name
     Next
 
     Set col = col2
@@ -1821,9 +1821,9 @@ End Function
 Sub rlxFlashWindow()
 
 #If VBA7 And Win64 Then
-    Dim hwnd As LongPtr
+    Dim hWnd As LongPtr
 #Else
-    Dim hwnd As Long
+    Dim hWnd As Long
 #End If
     Dim udtFLASHWINFO As FLASHWINFO
     
@@ -1834,12 +1834,12 @@ Sub rlxFlashWindow()
     Const FLASH_TIMER = &H4
     Const FLASH_TIMERNOFG = &HC
 
-    hwnd = FindWindow("XLMAIN", Application.Caption)
+    hWnd = FindWindow("XLMAIN", Application.Caption)
     
     '点滅の設定
     With udtFLASHWINFO
         .cbsize = Len(udtFLASHWINFO)
-        .hwnd = hwnd
+        .hWnd = hWnd
         .dwFlags = FLASH_ALL
         .uCount = 5
         .dwTimeout = 100

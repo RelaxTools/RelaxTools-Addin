@@ -30,7 +30,7 @@ Attribute VB_Name = "Logger"
 '-----------------------------------------------------------------------------------------------------
 
 #If Win64 And VBA7 Then
-    Declare PtrSafe Function GetTickCount Lib "kernel32" Alias "GetTickCount64" () As Longlong
+    Declare PtrSafe Function GetTickCount Lib "kernel32" Alias "GetTickCount64" () As LongLong
 #Else
     Private Declare Function GetTickCount Lib "kernel32" () As Long
 #End If
@@ -64,7 +64,9 @@ End Sub
 Public Sub LogWarn(Message As String)
     GetInstance.Log LogLevel.Warn, Message
 End Sub
-
+Public Sub LogFlash()
+    GetInstance.Flash
+End Sub
 Public Sub LogBegin(Message As String)
     
     If colStack Is Nothing Then
@@ -78,7 +80,7 @@ End Sub
 Public Sub LogFinish(Message As String)
     
 #If Win64 And VBA7 Then
-    Dim t As Longlong
+    Dim t As LongLong
 #Else
     Dim t As Long
 #End If
@@ -100,9 +102,11 @@ Public Sub LogFinish(Message As String)
         t = GetTickCount - t
         GetInstance.Log LogLevel.Info, Message & ",FINISH,[" & t & "]ms"
     End If
+    GetInstance.Flash
 End Sub
 Public Sub LogFatal(Message As String)
     GetInstance.Log LogLevel.Fatal, "エラーが発生しました。(" & Message & ")"
+    GetInstance.Flash
 End Sub
 Public Property Let Level(ByVal l As LogLevel)
     GetInstance.Level = l

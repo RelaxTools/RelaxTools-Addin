@@ -131,7 +131,7 @@ Sub lineCopy()
     Rows(f & ":" & t).Insert Shift:=xlDown
     Application.CutCopyMode = False
     
-    Call ShiftDown
+    SelectionShiftCell Selection.Rows.count, 0
     
     Application.ScreenUpdating = True
     
@@ -168,7 +168,7 @@ Sub lineInsert()
     
     Set mUndo.sourceRange = Rows(f & ":" & t)
     
-   ' Call ShiftUp
+    SelectionShiftCell Selection.Rows.count, 0
     
     Application.ScreenUpdating = True
     
@@ -2829,7 +2829,7 @@ End Sub
 Sub setShortCutKey()
     
     Dim strList() As String
-    Dim strkey() As String
+    Dim strKey() As String
     Dim strResult As String
     Dim lngMax As Long
     Dim i As Long
@@ -2844,12 +2844,12 @@ Sub setShortCutKey()
     lngMax = UBound(strList)
 
     For i = 0 To lngMax
-        strkey = Split(strList(i) & vbTab & C_ON, vbTab)
-        If strkey(6) = C_ON Then
-            If InStr(strkey(5), "RunMso") > 0 Then
-                Application.OnKey strkey(2), strkey(5)
+        strKey = Split(strList(i) & vbTab & C_ON, vbTab)
+        If strKey(6) = C_ON Then
+            If InStr(strKey(5), "RunMso") > 0 Then
+                Application.OnKey strKey(2), strKey(5)
             Else
-                Application.OnKey strkey(2), "'execOnKey """ & strkey(5) & """,""" & strkey(4) & """'"
+                Application.OnKey strKey(2), "'execOnKey """ & strKey(5) & """,""" & strKey(4) & """'"
             End If
         End If
     Next
@@ -2864,7 +2864,7 @@ End Sub
 Sub removeShortCutKey()
 
     Dim strList() As String
-    Dim strkey() As String
+    Dim strKey() As String
     Dim strResult As String
     Dim lngMax As Long
     Dim i As Long
@@ -2878,8 +2878,8 @@ Sub removeShortCutKey()
     lngMax = UBound(strList)
 
     For i = 0 To lngMax
-        strkey = Split(strList(i), vbTab)
-        Application.OnKey strkey(2)
+        strKey = Split(strList(i), vbTab)
+        Application.OnKey strKey(2)
     Next
 
 End Sub

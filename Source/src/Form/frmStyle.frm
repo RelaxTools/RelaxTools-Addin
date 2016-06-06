@@ -153,7 +153,7 @@ Private Sub cmdSearch_Click()
     
 End Sub
 
-Private Sub lstStyle_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstStyle_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = lstStyle
 End Sub
 
@@ -184,7 +184,7 @@ Function SearchStyle(ByVal strBuf As String) As Boolean
 
 End Function
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = Nothing
 End Sub
 Private Sub MW_WheelDown(obj As Object)

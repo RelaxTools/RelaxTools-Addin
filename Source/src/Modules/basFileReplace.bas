@@ -38,7 +38,7 @@ Sub replaceFiles()
 
     Dim strFolder As String
     
-    Dim strkey As String
+    Dim strKey As String
     
     Dim strBackup As String
     
@@ -80,11 +80,11 @@ Sub replaceFiles()
     ''設定ファイルの読み込み
     Do Until Cells(lngCnt + C_ROW_DETAIL, C_COL_NUM).value = ""
         
-        strkey = Cells(lngCnt + C_ROW_DETAIL, C_COL_SEARCH).value
-        If strkey <> "" Then
+        strKey = Cells(lngCnt + C_ROW_DETAIL, C_COL_SEARCH).value
+        If strKey <> "" Then
             Set rp = New ReplaceParamDTO
             
-            rp.SearchString = strkey
+            rp.SearchString = strKey
             rp.ReplaceString = Cells(lngCnt + C_ROW_DETAIL, C_COL_REPLACE).value
             rp.CompareMode = Cells(lngCnt + C_ROW_DETAIL, C_COL_COMPARE).value
 

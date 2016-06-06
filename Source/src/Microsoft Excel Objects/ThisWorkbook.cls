@@ -219,7 +219,7 @@ Private Sub DeleteTemporaryFile()
 End Sub
 
 
-Private Sub XL_WindowResize(ByVal WB As Workbook, ByVal Wn As Window)
+Private Sub XL_WindowResize(ByVal WB As Workbook, ByVal wn As Window)
     Call RefreshRibbon
 End Sub
 

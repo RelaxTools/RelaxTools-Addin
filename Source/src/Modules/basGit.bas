@@ -1,6 +1,12 @@
 Attribute VB_Name = "basGit"
 Option Explicit
 
+#If VBA7 And Win64 Then
+    Private Declare PtrSafe Function GetEnvironmentVariable Lib "kernel32" Alias "GetEnvironmentVariableA" (ByVal lpName As String, ByVal lpBuffer As String, ByVal nSize As Long) As Long
+#Else
+    Private Declare Function GetEnvironmentVariable Lib "kernel32" Alias "GetEnvironmentVariableA" (ByVal lpName As String, ByVal lpBuffer As String, ByVal nSize As Long) As Long
+#End If
+
 Sub GitLog()
 
     Dim strCommand As String
@@ -23,7 +29,7 @@ Sub GitLog()
     
     Set cmd = New CommandLine
     
-    exitcode = cmd.Run(strPath, strCommand, strSysout)
+    exitcode = cmd.Run(strPath, strCommand, GetEnv, strSysout, True)
     
     If exitcode <> 0 Then
         strSysout = "処理中にエラーが発生しました。ExitCode : " & exitcode & vbLf & vbLf & strSysout
@@ -55,7 +61,7 @@ Sub GitReset()
     
     If rlxIsFileExists(strBook) Then
     
-        If MsgBox("変更を取り消して前回コミットの状態に戻します。" & vbCrLf & "よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        If MsgBox("変更を取り消します。" & vbCrLf & "よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
             Exit Sub
         End If
     
@@ -73,7 +79,7 @@ Sub GitReset()
         
         Set cmd = New CommandLine
         
-        exitcode = cmd.Run(strPath, strCommand, strSysout)
+        exitcode = cmd.Run(strPath, strCommand, GetEnv, strSysout, True)
     
         Workbooks.Open strBook, ReadOnly:=blnReadOnly
         Application.ScreenUpdating = True
@@ -81,7 +87,7 @@ Sub GitReset()
             strSysout = "処理中にエラーが発生しました。ExitCode : " & exitcode & vbLf & vbLf & strSysout
             frmGitResult.Start strSysout
         Else
-            MsgBox "前回のコミットの状態に戻しました。", vbOKOnly + vbInformation, C_TITLE
+            MsgBox "変更を取り消しました。", vbOKOnly + vbInformation, C_TITLE
         End If
         
         Set cmd = Nothing
@@ -126,14 +132,14 @@ Sub GitCommit()
         
         Set cmd = New CommandLine
         
-        exitcode = cmd.Run(strPath, strCommand, strSysout)
+        exitcode = cmd.Run(strPath, strCommand, GetEnv, strSysout, True)
     
         Application.ScreenUpdating = True
         If exitcode <> 0 Then
             strSysout = "処理中にエラーが発生しました。ExitCode : " & exitcode & vbLf & vbLf & strSysout
             frmGitResult.Start strSysout
         Else
-            strSysout = "コミットが正常に行われました。ExitCode : " & exitcode & vbLf & vbLf & strSysout
+            strSysout = "処理を実行しました。ExitCode : " & exitcode & vbLf & vbLf & strSysout
             frmGitResult.Start strSysout
         End If
         
@@ -142,3 +148,31 @@ Sub GitCommit()
     End If
 
 End Sub
+Private Function GetEnv() As String
+
+    Dim strKey As String
+    Dim strBuffer As String
+    Dim strHome As String
+    Dim lngPos As Long
+
+    ' 環境変数HOME を取得、無い場合には USERPROFILE をセット
+    strKey = "HOME"
+    strBuffer = String(1024, vbNullChar)
+    
+    GetEnvironmentVariable strKey, strBuffer, 1024
+    
+    lngPos = InStr(strBuffer, vbNullChar)
+    strHome = Left(strBuffer, lngPos - 1)
+
+    If strHome = "" Then
+        strKey = "USERPROFILE"
+        strBuffer = String(1024, vbNullChar)
+        
+        GetEnvironmentVariable strKey, strBuffer, 1024
+        lngPos = InStr(strBuffer, vbNullChar)
+        strHome = Left(strBuffer, lngPos - 1)
+    End If
+    
+    GetEnv = "HOME=" & strHome & vbNullChar & vbNullChar
+
+End Function

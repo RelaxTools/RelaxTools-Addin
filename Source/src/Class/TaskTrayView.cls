@@ -42,7 +42,7 @@ Option Explicit
 
     Private Declare PtrSafe Function Shell_NotifyIcon Lib "shell32" Alias "Shell_NotifyIconA" (ByVal dwMessage As Long, pnid As NOTIFYICONDATA) As Boolean
     Private Declare PtrSafe Function ExtractIconEx Lib "shell32.dll" Alias "ExtractIconExA" (ByVal lpszFile As String, ByVal nIconIndex As Long, phiconLarge As LongPtr, phiconSmall As LongPtr, ByVal nIcons As Long) As Long
-    Private Declare PtrSafe Function DrawMenuBar Lib "user32" (ByVal hwnd As LongPtr) As Long
+    Private Declare PtrSafe Function DrawMenuBar Lib "user32" (ByVal hWnd As LongPtr) As Long
     
     Private Type GUID
         Data1 As Long
@@ -53,7 +53,7 @@ Option Explicit
 
     Private Type NOTIFYICONDATA
         cbsize As Long
-        hwnd As LongPtr
+        hWnd As LongPtr
         uID As Long
         uFlags As Long
         uCallbackMessage As Long
@@ -69,15 +69,18 @@ Option Explicit
         hBalloonIcon As LongPtr
     End Type
     
+
+
+
 #Else
 
     Private Declare Function Shell_NotifyIcon Lib "shell32" Alias "Shell_NotifyIconA" (ByVal dwMessage As Long, pnid As NOTIFYICONDATA) As Boolean
     Private Declare Function ExtractIconEx Lib "shell32.dll" Alias "ExtractIconExA" (ByVal lpszFile As String, ByVal nIconIndex As Long, phiconLarge As Long, phiconSmall As Long, ByVal nIcons As Long) As Long
-    Private Declare Function DrawMenuBar Lib "user32" (ByVal hwnd As Long) As Long
+    Private Declare Function DrawMenuBar Lib "user32" (ByVal hWnd As Long) As Long
     
     Private Type NOTIFYICONDATA
         cbsize As Long
-        hwnd As Long
+        hWnd As Long
         uID As Long
         uFlags As Long
         uCallbackMessage As Long
@@ -106,7 +109,7 @@ Private Const NIF_GUID = &H20
 
 Private typ_Icon As NOTIFYICONDATA '自クラスで管理するアイコンのデータ(構造体)
 #If VBA7 And Win64 Then
-    Public Function AddIcon(ByVal hwnd As LongPtr, ByVal ToolTip As String) As Long
+    Public Function AddIcon(ByVal hWnd As LongPtr, ByVal ToolTip As String) As Long
      
         Dim IconLarge As LongPtr
         Dim IconSmall As LongPtr
@@ -121,20 +124,20 @@ Private typ_Icon As NOTIFYICONDATA '自クラスで管理するアイコンの�
     
         With typ_Icon
             .cbsize = Len(typ_Icon)
-            .hwnd = hwnd
+            .hWnd = hWnd
             .uID = 0
             .uFlags = NIF_ICON Or NIF_TIP Or NIF_MESSAGE Or NIF_INFO
             .hIcon = IconSmall
             .szTip = ToolTip & vbNullChar
         End With
          
-        DrawMenuBar hwnd
+        DrawMenuBar hWnd
          
         AddIcon = Shell_NotifyIcon(NIM_ADD, typ_Icon)
      
     End Function
 #Else
-    Public Function AddIcon(ByVal hwnd As Long, ByVal ToolTip As String) As Long
+    Public Function AddIcon(ByVal hWnd As Long, ByVal ToolTip As String) As Long
      
         Dim IconLarge As Long
         Dim IconSmall As Long
@@ -149,14 +152,14 @@ Private typ_Icon As NOTIFYICONDATA '自クラスで管理するアイコンの�
     
         With typ_Icon
             .cbsize = Len(typ_Icon)
-            .hwnd = hwnd
+            .hWnd = hWnd
             .uID = 0
             .uFlags = NIF_ICON Or NIF_TIP Or NIF_MESSAGE Or NIF_INFO
             .hIcon = IconSmall
             .szTip = ToolTip & vbNullChar
         End With
          
-        DrawMenuBar hwnd
+        DrawMenuBar hWnd
      
         AddIcon = Shell_NotifyIcon(NIM_ADD, typ_Icon)
         
