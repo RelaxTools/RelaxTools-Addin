@@ -54,7 +54,7 @@ Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
     
     If Not IsNumeric(txtFont.value) Then
         MsgBox "フォントサイズに数値を入力してください。", vbOKOnly + vbExclamation, C_TITLE

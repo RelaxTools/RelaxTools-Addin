@@ -70,7 +70,7 @@ Private Sub cmdFile_Click()
     txtEditor.Text = strFile
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
 
     Dim strEditor As String
     Dim strEncode As String

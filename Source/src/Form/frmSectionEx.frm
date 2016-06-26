@@ -199,7 +199,7 @@ End Sub
 
 
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
     mRet = vbOK
     Unload Me
 End Sub

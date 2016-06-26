@@ -55,7 +55,7 @@ Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
 
     Select Case Val(cboPercent.Text)
         Case 10 To 400

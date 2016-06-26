@@ -2264,4 +2264,47 @@ Sub execSelectionFormatLineColor()
     Set obj = Nothing
 
 End Sub
+'--------------------------------------------------------------
+' チェックリスト罫線
+'--------------------------------------------------------------
+Sub execSelectionFormatCheckList()
+    
+    Dim obj As SelectionFormatCheckList
+    
+    Set obj = New SelectionFormatCheckList
+    
+    obj.Run
+    
+    Set obj = Nothing
 
+End Sub
+
+'--------------------------------------------------------------
+' チェックリスト作成(○)
+'--------------------------------------------------------------
+Sub execSelectionFormatCL()
+    
+    Dim obj As SelectionFormatCL
+    
+    Set obj = New SelectionFormatCL
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+
+'--------------------------------------------------------------
+' チェックリスト作成(YN)
+'--------------------------------------------------------------
+Sub execSelectionFormatDec()
+    
+    Dim obj As SelectionFormatDec
+    
+    Set obj = New SelectionFormatDec
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub

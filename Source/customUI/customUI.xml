@@ -798,7 +798,7 @@
                 <button id="execSelectionInsertHyphenZen.2" image="editing32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               </menu>
             </menu>
-            
+
             <menu id="hoganMenu.2" label="Excel&#xD;&#xA;方眼紙" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="grid32" size="large" getEnabled="getRibbonEnabled" >
               <menuSeparator id="hoganSep01.2" title="Excel方眼紙"/>
               <button id="documentSheetHogan2.2"            image="grid32"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -853,6 +853,18 @@
 
             <button id="execSelectionRowMakeSQLInsert" size="large" image="INSERT" label="INSERT&#xD;&#xA;文生成" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
             <button id="callTanpyo" size="large" image="import" label="コマンド結果&#xD;&#xA;単票取込" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+        </group>
+
+        <group id="DecisionGroup" label="デシジョン表" image="grid32">
+          <button id="execSelectionFormatCL" size="large"   image="decisionCL" label="デシジョン&#xD;&#xA;(○)" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="execSelectionFormatDec" size="large"   image="decisionYN" label="デシジョン&#xD;&#xA;(YN)" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+           <splitButton id="CheckListSplit" size="large" getEnabled="getRibbonEnabled">
+             <button id="execSelectionFormatCheckList"  image="checklist" label="逆Ｌ&#xD;&#xA;罫線" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+             <menu id="CheckListMenu" itemSize="large" >
+               <menuSeparator id="CheckListSep" title="逆Ｌ罫線の設定" />
+               <button id="showCheckList" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  getEnabled="getScreenShotEnabled" onAction="ribbonOnAction"/>
+             </menu>
+           </splitButton>
         </group>
 
         <group id="ConvTableGroup" label="Excel表の変換" image="grid32">

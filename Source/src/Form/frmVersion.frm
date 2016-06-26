@@ -46,7 +46,7 @@ Option Explicit
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
     Unload Me
 End Sub
 

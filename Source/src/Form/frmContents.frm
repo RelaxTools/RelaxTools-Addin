@@ -61,7 +61,7 @@ Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
 
 
     Dim i As Long

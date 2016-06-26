@@ -68,7 +68,7 @@ Private Sub cmdClear_Click()
     Unload Me
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
     m = vbYes
     Unload Me
 End Sub

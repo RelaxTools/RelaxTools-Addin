@@ -109,7 +109,7 @@ Private Sub cmdHelp_Click()
 
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
 
     If Len(Trim(txtSearch.Text)) = 0 Then
         MsgBox "検索文字列を指定してください。", vbExclamation, C_TITLE

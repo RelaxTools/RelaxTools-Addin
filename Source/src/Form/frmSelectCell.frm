@@ -49,7 +49,7 @@ Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
     mResult = vbOK
     Unload Me
 End Sub

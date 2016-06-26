@@ -167,8 +167,10 @@ Private Function getAttr(ByRef r As Range) As String
             
     If VarType(r.value) = vbString Then
     
-        strValue = CharacterStyle(r)
-    
+        If r.HasFormula Then
+        Else
+            strValue = CharacterStyle(r)
+        End If
     Else
         Select Case True
             Case r.Font.Strikethrough

@@ -318,3 +318,7 @@ End Sub
 'Sub showHoldBook()
 '    frmHoldBook.Show
 'End Sub
+Sub showCheckList()
+    frmCheckList.Show
+End Sub
+

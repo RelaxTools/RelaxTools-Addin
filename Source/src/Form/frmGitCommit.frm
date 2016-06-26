@@ -15,6 +15,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
     GitCommit
 End Sub

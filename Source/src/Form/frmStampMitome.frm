@@ -365,7 +365,7 @@ Private Sub cmdFile_Click()
 '    Call dispPicture
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
     
 '    Dim strSize As String
 '    Dim strColor As String

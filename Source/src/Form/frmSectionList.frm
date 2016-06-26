@@ -59,7 +59,7 @@ Private mColLevel06 As New Collection
 
 
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
 
 
     

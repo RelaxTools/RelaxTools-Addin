@@ -239,4 +239,7 @@
 <Relationship Id="reset" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/reset.png"/>
 <Relationship Id="log" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/log.png"/>
 <Relationship Id="git" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/git.png"/>
+<Relationship Id="checklist" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/checklist.png"/>
+<Relationship Id="decisionCL" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/DecisionCL.png"/>
+<Relationship Id="decisionYN" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/DecisionYN.png"/>
 </Relationships>

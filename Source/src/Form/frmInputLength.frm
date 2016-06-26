@@ -61,7 +61,7 @@ Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
     If rlxIsNumber(txtHead.Text) Then
         mResult = vbOK
         Unload Me

@@ -116,7 +116,7 @@ Private Sub cmdHelp_Click()
     
 End Sub
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
 
     Dim XL As Excel.Application
     Dim WB As Workbook

@@ -349,7 +349,7 @@ Sub dispPreview()
     mblnRefresh = False
     
 End Sub
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
         
     Dim s As StampDatDTO
     Dim col As Collection

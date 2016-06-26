@@ -97,7 +97,7 @@ Private Sub UserForm_Initialize()
 End Sub
 
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
 
     Dim strFile As String
     

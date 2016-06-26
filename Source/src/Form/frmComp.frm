@@ -251,7 +251,7 @@ Private Sub UserForm_Initialize()
 End Sub
 
 
-Private Sub cmdOk_Click()
+Private Sub cmdOK_Click()
 
     Dim srcSheet As Worksheet
     Dim dstSheet As Worksheet
