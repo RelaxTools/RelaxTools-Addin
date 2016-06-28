@@ -70,8 +70,24 @@ Public Sub Run()
 End Sub
 
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean)
+
     Undo = True
    
+    Dim lngCol As Long
+    Dim lngMax As Long
+    
+    lngMax = (2 ^ Selection.Rows.count)
+    
+    If Selection(1).Column + lngMax - 1 > Application.Columns.count Then
+    Else
+        If Selection.Columns.count < lngMax Then
+            If MsgBox("デシジョンを表現する列が足りません。拡張しますか？", vbOKCancel + vbQuestion, C_TITLE) = vbOK Then
+                lngCol = (2 ^ Selection.Rows.count) - Selection.Columns.count
+                Range(Selection, Selection.Offset(0, lngCol)).Select
+            End If
+        End If
+    End If
+    
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
