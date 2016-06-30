@@ -1,5 +1,6 @@
 Attribute VB_Name = "basGit"
 Option Explicit
+Option Private Module
 
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function GetEnvironmentVariable Lib "kernel32" Alias "GetEnvironmentVariableA" (ByVal lpName As String, ByVal lpBuffer As String, ByVal nSize As Long) As Long

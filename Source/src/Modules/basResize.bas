@@ -28,6 +28,7 @@ Attribute VB_Name = "basResize"
 ' SOFTWARE.
 '
 '-----------------------------------------------------------------------------------------------------
+Option Explicit
 Option Private Module
 
 'Windows API宣言

@@ -29,6 +29,7 @@ Attribute VB_Name = "basCrossLine"
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
+Option Private Module
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
     Private Declare PtrSafe Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long

@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmEdit 
    Caption         =   "セルの拡大表示＋編集"
-   ClientHeight    =   9330
+   ClientHeight    =   9435
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   13365
@@ -69,6 +69,15 @@ Private Sub cmdFormatSql_Click()
 End Sub
 
 
+
+Private Sub cmdFormatXML_Click()
+
+    txtEdit.Text = FormatXML(txtEdit.Text)
+    txtEdit.SelStart = Len(frmEdit.txtEdit.Text)
+    txtEdit.SetFocus
+    txtEdit.SelStart = 0
+    
+End Sub
 
 Private Sub cmdOK_Click()
     

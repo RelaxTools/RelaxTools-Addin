@@ -66,6 +66,20 @@ Sub execSelectionFormatSql()
 
 End Sub
 '--------------------------------------------------------------
+' XML整形(SelectionFrameWork使用)
+'--------------------------------------------------------------
+Sub execSelectionFormatXML()
+    
+    Dim obj As SelectionFormatXML
+    
+    Set obj = New SelectionFormatXML
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
 ' 式の再設定(SelectionFrameWork使用)
 '--------------------------------------------------------------
 Sub execSelectionToFormula()

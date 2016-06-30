@@ -29,6 +29,7 @@ Attribute VB_Name = "basWeb"
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
+Option Private Module
 
 Public Sub GotoGitHub()
     Call GoURL(C_GITHUB_URL)
