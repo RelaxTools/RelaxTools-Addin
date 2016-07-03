@@ -82,32 +82,27 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     Else
         If VarType(r.value) = vbString Then
             
-            i = 1
-            Do
+            For i = 1 To r.Characters.count
                 Select Case r.Characters(i, 1).Text
                     Case Is <= Space$(1)
-'                    Case vbTab
                     Case "　"
                     Case Else
-                        Exit Do
+                        Exit For
                 End Select
-                i = i + 1
-            Loop
+            Next
             r.Characters(1, i - 1).Delete
-            
-            i = r.Characters.count
-            Do
+
+            For i = r.Characters.count To 1 Step -1
                 Select Case r.Characters(i, 1).Text
                     Case Is <= Space$(1)
-'                    Case vbTab
                     Case "　"
                     Case Else
-                        Exit Do
+                        Exit For
                 End Select
-                i = i - 1
-            Loop
-            r.Characters(i + 1, r.Characters.count - i).Delete
             
+            Next
+            r.Characters(i + 1, r.Characters.count - i).Delete
+        
         Else
            r.value = Trim(r.value)
         End If
