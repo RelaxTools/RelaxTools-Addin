@@ -2,7 +2,7 @@ VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
-Attribute VB_Name = "SelectionFormatXML"
+Attribute VB_Name = "SelectionFormatStd"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
@@ -40,19 +40,14 @@ Option Explicit
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 宣言
 '------------------------------------------------------------------------------------------------------------------------
-Private WithEvents SFWork As SelectionFrameWork
+Private WithEvents SFWork As SelectionFormatFramework
 Attribute SFWork.VB_VarHelpID = -1
-Private Enum Indent
-    IndentTab
-    IndentSpace
-End Enum
-Private mBlnIndent As Indent
 
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 作成
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
-    Set SFWork = New SelectionFrameWork
+    Set SFWork = New SelectionFormatFramework
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
@@ -69,35 +64,28 @@ Public Sub Run()
     SFWork.Run
 End Sub
 
-'------------------------------------------------------------------------------------------------------------------------
-' 初期処理(UOC)
-'------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
-
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean)
     Undo = True
-    
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
-' メイン処理(UOC)
+' 主処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
-
-    Dim strBuf As String
-    
+Private Sub SFWork_SelectionMain(r As Range)
+        
+    Dim s As String
+  
     On Error GoTo e
     
-    strBuf = FormatXML(r.value)
+    r.NumberFormatLocal = "G/標準"
+    r.Formula = r.Formula
     
-    If Len(strBuf) <> 0 Then
-        r.value = strBuf
-    End If
-
     Exit Sub
 e:
     Call rlxErrMsg(Err)
-    Cancel = True
 End Sub
+
+
 
 
 

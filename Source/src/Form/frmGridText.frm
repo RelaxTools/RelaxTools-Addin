@@ -1929,7 +1929,7 @@ Private Sub spnKeta_SpinUp()
     txtKeta.Text = spinUp(txtKeta.Text)
 End Sub
 
-Private Sub txtPreview_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub txtPreview_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = txtPreview
 End Sub
 
@@ -1985,7 +1985,7 @@ Private Function spinDown(ByVal vntValue As Variant) As Variant
 
 End Function
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = Nothing
 End Sub
 

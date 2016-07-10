@@ -1,19 +1,18 @@
 VERSION 5.00
-Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFormatSql 
-   Caption         =   "美しすぎるSQL整形"
-   ClientHeight    =   2400
+Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFormatXml 
+   Caption         =   "美しすぎるXML整形"
+   ClientHeight    =   2190
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   4710
-   OleObjectBlob   =   "frmFormatSql.frx":0000
+   ClientWidth     =   3120
+   OleObjectBlob   =   "frmFormatXml.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
-Attribute VB_Name = "frmFormatSql"
+Attribute VB_Name = "frmFormatXml"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
 '-----------------------------------------------------------------------------------------------------
 '
 ' [RelaxTools-Addin] v4
@@ -52,15 +51,38 @@ End Sub
 
 Private Sub cmdOK_Click()
 
-    SaveSetting C_TITLE, "FormatSql", "RightComma", chkRightComma.value
-    SaveSetting C_TITLE, "FormatSql", "UpperCase", chkUpperCase.value
+    If Len(Trim(txtSpace.Text)) = 0 Or Not rlxIsNumber(txtSpace.Text) Then
+        Call MsgBox("SPACEの数は数字を入力してください。", vbOKOnly + vbExclamation, C_TITLE)
+        Exit Sub
+    End If
+    
+    SaveSetting C_TITLE, "XML", "Tab", optTab.value
+    SaveSetting C_TITLE, "XML", "Seed", txtSpace.Text
+    
     Unload Me
     
 End Sub
 
+
+Private Sub optSpace_Change()
+    txtSpace.enabled = optSpace.value
+End Sub
+
+Private Sub optTab_Change()
+    txtSpace.enabled = optSpace.value
+End Sub
+
+
 Private Sub UserForm_Initialize()
 
-    chkRightComma.value = GetSetting(C_TITLE, "FormatSql", "RightComma", False)
-    chkUpperCase.value = GetSetting(C_TITLE, "FormatSql", "UpperCase", False)
+    If CBool(GetSetting(C_TITLE, "XML", "Tab", False)) Then
+        optTab.value = True
+        optSpace.value = False
+    Else
+        optTab.value = False
+        optSpace.value = True
+    End If
+
+    txtSpace.Text = GetSetting(C_TITLE, "XML", "Seed", 2)
     
 End Sub

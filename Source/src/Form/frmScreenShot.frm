@@ -94,7 +94,7 @@ Private Sub UserForm_Initialize()
     blnCancel = False
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 '    Select Case X \ screen.TwipsPerPixelX
 '            Case WM_MOUSEMOVE
 '            Case WM_LBUTTONDOWN

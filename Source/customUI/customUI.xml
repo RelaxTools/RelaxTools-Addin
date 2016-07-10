@@ -238,11 +238,13 @@
           <separator id="formatSep"/>
           <menu id="formatMenu" label="書式" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="format" getEnabled="getRibbonEnabled" >
             <menuSeparator id="formatSep01" title="書式"/>
-            <button id="selTranspose"                 image="format"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="selTranspose"                 image="swap"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <menuSeparator id="formatSep02" />
             <button idMso="MergeCellsAcross" />
             <button id="execSelectionColMerge"        image="tateMerge" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="VisibleNames"                 image="format"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="execSelectionFormatStd"       image="std"       getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="execSelectionFormatStr"       image="str"       getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <menuSeparator id="formatSep03" title="クリア"/>
             <button id="execSelectionClearPhonetic"   image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="execSelectionRemoveHyperlink" image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -281,7 +283,7 @@
               <button id="HorizontalLineToggle" image="hLine32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
           </menu>
-          <button id="cellEdit" label="拡大" image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+          <button id="cellEdit" label="編集" image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           <separator id="filSep"/>
           <box id="formatBox1" boxStyle="vertical">
             <menu id="relaxFill" label="Relaxフィル" itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  image="RelaxFillNext" getEnabled="getRibbonEnabled" >
@@ -793,7 +795,13 @@
               <button id="FormatSqlSetting"  image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
           </splitButton>
-          <button id="execSelectionFormatXML" size="large" image="xml" label="美しすぎる&#xD;&#xA;XML整形" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+          <splitButton id="xmlSplit" size="large" getEnabled="getRibbonEnabled">
+            <button id="execSelectionFormatXML" image="xml" label="美しすぎる&#xD;&#xA;XML整形" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+            <menu id="xmlMenu" >
+              <menuSeparator id="xmlSep01" title="美しすぎるXML整形設定" />
+              <button id="FormatXMLSetting"  image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            </menu>
+          </splitButton>
           <button id="execSelectionRowMakeSQLInsert" size="large" image="INSERT" label="INSERT&#xD;&#xA;文生成" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           <button id="callTanpyo" size="large" image="import" label="コマンド結果&#xD;&#xA;単票取込" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
         </group>
@@ -815,7 +823,7 @@
           <button id="convertMarkdown.2"  size="large"   image="markdown" label="markdown&#xD;&#xA;変換" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
 <!--
-        <group id="GitGroup" label="Git" image="git">
+        <group id="GitGroup" label="Git(α版)" image="git">
           <button id="GitCommit" size="large"   image="commit" label="コミット&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="GitReset"  size="large"   image="reset"  label="変更の&#xD;&#xA;取り消し" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="GitLog"    size="large"   image="log"    label="ログ表示&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />

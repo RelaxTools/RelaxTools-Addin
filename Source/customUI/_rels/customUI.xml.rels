@@ -243,4 +243,7 @@
 <Relationship Id="decisionCL" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/DecisionCL.png"/>
 <Relationship Id="decisionYN" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/DecisionYN.png"/>
 <Relationship Id="xml" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/xml.png"/>
+<Relationship Id="std" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/std.png"/>
+<Relationship Id="str" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/str.png"/>
+<Relationship Id="swap" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/swap.png"/>
 </Relationships>

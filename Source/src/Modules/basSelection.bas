@@ -2322,3 +2322,32 @@ Sub execSelectionFormatDec()
     Set obj = Nothing
 
 End Sub
+'--------------------------------------------------------------
+' 書式（標準）
+'--------------------------------------------------------------
+Sub execSelectionFormatStd()
+    
+    Dim obj As SelectionFormatStd
+    
+    Set obj = New SelectionFormatStd
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
+' 書式（文字列）
+'--------------------------------------------------------------
+Sub execSelectionFormatStr()
+    
+    Dim obj As SelectionFormatStr
+    
+    Set obj = New SelectionFormatStr
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+

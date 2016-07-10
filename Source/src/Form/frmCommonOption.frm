@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCommonOption 
    Caption         =   "RelaxTools共通設定"
-   ClientHeight    =   8475
+   ClientHeight    =   8775
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   6525
@@ -110,6 +110,7 @@ Private Sub UserForm_Initialize()
     strBuf = strBuf & "・左1桁削除" & vbCrLf
     strBuf = strBuf & "・セルの最後に改行を追加" & vbCrLf
     strBuf = strBuf & "・セルの最後の改行を削除" & vbCrLf
+    strBuf = strBuf & "・セルの前後のスペース削除" & vbCrLf
     
     lblTaisho.Caption = strBuf
     

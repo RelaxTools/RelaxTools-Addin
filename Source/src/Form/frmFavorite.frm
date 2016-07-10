@@ -91,13 +91,13 @@ Public mobjCategory As Object
 
 
     
-Private Sub lstCategory_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstCategory_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 
     Set MW.obj = lstCategory
 
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 
     Set MW.obj = Nothing
 
@@ -206,11 +206,11 @@ Private Sub chkDetail_Change()
     Call SaveSetting(C_TITLE, "Favirite", "Detail", chkDetail.value)
 End Sub
 
-Private Sub lstCategory_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal x As Single, ByVal y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+Private Sub lstCategory_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
 'Cancel = True
 End Sub
 
-Private Sub lstCategory_BeforeDropOrPaste(ByVal Cancel As MSForms.ReturnBoolean, ByVal Action As MSForms.fmAction, ByVal Data As MSForms.DataObject, ByVal x As Single, ByVal y As Single, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+Private Sub lstCategory_BeforeDropOrPaste(ByVal Cancel As MSForms.ReturnBoolean, ByVal Action As MSForms.fmAction, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
         
 '        Set mBarFavDrop = CommandBars.Add(Position:=msoBarPopup, Temporary:=True)
 '        With mBarFavDrop
@@ -326,7 +326,7 @@ End Sub
 
 
 
-Private Sub lstFavorite_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstFavorite_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 ''マウス左ボタンのドラッグ時に対応
 'If Button <> 1 Then Exit Sub
 ''データオブジェクトに現在の選択地を格納
@@ -927,7 +927,7 @@ Private Sub lstFavorite_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
     Call cmdSelect_Click
 End Sub
 
-Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     If Button = 2 Then
     
         Set mBarFav = CommandBars.Add(Position:=msoBarPopup, Temporary:=True)
@@ -1032,7 +1032,7 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
     
     End If
 End Sub
-Private Sub lstCategory_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstCategory_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     If Button = 2 Then mBarCat.ShowPopup
 End Sub
 

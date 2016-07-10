@@ -40,14 +40,14 @@ Option Private Module
     Private Declare PtrSafe Function SetWindowPos Lib "user32" _
                                           (ByVal hWnd As LongPtr, _
                                            ByVal hWndInsertAfter As LongPtr, _
-                                           ByVal x As Long, ByVal y As Long, _
+                                           ByVal X As Long, ByVal Y As Long, _
                                            ByVal cx As Long, ByVal cy As Long, _
                                            ByVal wFlags As Long) As Long
 #Else
     Private Declare Function SetWindowPos Lib "user32" _
                                       (ByVal hWnd As Long, _
                                        ByVal hWndInsertAfter As Long, _
-                                       ByVal x As Long, ByVal y As Long, _
+                                       ByVal X As Long, ByVal Y As Long, _
                                        ByVal cx As Long, ByVal cy As Long, _
                                        ByVal wFlags As Long) As Long
     Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long) As Long

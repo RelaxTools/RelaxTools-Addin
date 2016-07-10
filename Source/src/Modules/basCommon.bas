@@ -70,8 +70,8 @@ Option Private Module
     End Type
     
     Private Type POINTAPI
-        x As Long
-        y As Long
+        X As Long
+        Y As Long
     End Type
     
     Private Type DROPFILES
@@ -138,8 +138,8 @@ Option Private Module
     End Type
     
     Private Type POINTAPI
-        x As Long
-        y As Long
+        X As Long
+        Y As Long
     End Type
     
     Private Type DROPFILES

@@ -74,8 +74,8 @@ Private Const GWL_HINSTANCE As Long = -6
 Private Const WH_MOUSE_LL As Long = 14
 
 Private Type Point
-    x As Long
-    y As Long
+    X As Long
+    Y As Long
 End Type
 
 Private Type MouseLLHookStruct
@@ -132,7 +132,7 @@ End Sub
         
         Select Case wParam
             Case 522
-                CopyMemory m_MouseLLHookStruct.Point.x, ByVal lParam, LenB(m_MouseLLHookStruct)
+                CopyMemory m_MouseLLHookStruct.Point.X, ByVal lParam, LenB(m_MouseLLHookStruct)
                 With m_MouseLLHookStruct
                     Select Case .mouseData
                         Case Is > 0
@@ -172,7 +172,7 @@ ErrorHandler:
         
         Select Case wParam
             Case 522
-                CopyMemory m_MouseLLHookStruct.Point.x, ByVal lParam, LenB(m_MouseLLHookStruct)
+                CopyMemory m_MouseLLHookStruct.Point.X, ByVal lParam, LenB(m_MouseLLHookStruct)
                 With m_MouseLLHookStruct
                     Select Case .mouseData
                         Case Is > 0

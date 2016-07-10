@@ -36,7 +36,7 @@ Public Function FormatXML(ByVal strBuf As String) As String
     Dim lngMax As Long
     Dim strChar As String
     Dim i As Long
-    
+
     lngMax = Len(strBuf)
 
     Dim c As Collection
@@ -45,7 +45,7 @@ Public Function FormatXML(ByVal strBuf As String) As String
     Dim blnQuat As Boolean
     Dim s As XMLElement
     Dim strElement As String
-    
+
     blnQuat = False
     blnComment = False
     blnCData = False
@@ -53,26 +53,26 @@ Public Function FormatXML(ByVal strBuf As String) As String
     Set c = New Collection
 
     strElement = ""
-    
-    
+
+
     '字句解析
     For i = 1 To lngMax
 
         strChar = Mid(strBuf, i, 1)
-        
+
         Select Case True
             Case Mid(strBuf, i, 3) = "-->"
                 blnComment = False
                 strElement = strElement & strChar
-                
+
             Case Mid(strBuf, i, 3) = "]]>"
                 blnCData = False
                 strElement = strElement & strChar
-                
+
             Case strChar = """"
                 blnQuat = Not (blnQuat)
                 strElement = strElement & strChar
-                
+
             Case Else
                 If blnQuat Or blnComment Or blnCData Then
                     strElement = strElement & strChar
@@ -86,52 +86,52 @@ Public Function FormatXML(ByVal strBuf As String) As String
                                 s.ElementType = Data
                                 s.ElementName = ""
                                 c.Add s
-                                
+
                             End If
-                            
+
                             Select Case True
                                 Case Mid(strBuf, i, 4) = "<!--"
                                     blnComment = True
-                                    
+
                                 Case Mid(strBuf, i, 9) = "<![CDATA["
                                     blnCData = True
-                                    
+
                             End Select
                             strElement = strChar
                         Case ">"
                             strElement = strElement & strChar
                             Set s = New XMLElement
-                            
+
                             s.Element = strElement
                             Select Case True
                                 Case Right(strElement, 3) = "-->"
                                     s.ElementType = Comment
                                     s.ElementName = TrimTag(strElement)
-                                    
+
                                 Case Right(strElement, 3) = "]]>"
                                     s.ElementType = CData
                                     s.ElementName = TrimTag(strElement)
-                                    
+
                                 Case Left(strElement, 2) = "<?"
                                     s.ElementType = Header
                                     s.ElementName = TrimTag(strElement)
-                                    
+
                                 Case Left(strElement, 2) = "</"
                                     s.ElementType = EndTag
                                     s.ElementName = TrimTag(strElement)
-                                    
+
                                 Case Right(strElement, 2) = "/>"
                                     s.ElementType = StandAlone
                                     s.ElementName = TrimTag(strElement)
-                                    
+
                                 Case Left(strElement, 1) = "<"
                                     s.ElementType = StartTag
                                     s.ElementName = TrimTag(strElement)
-                                    
+
                                 Case Else
                                     s.ElementType = Data
                                     s.ElementName = ""
-                                    
+
                             End Select
                             c.Add s
                             strElement = ""
@@ -145,26 +145,24 @@ Public Function FormatXML(ByVal strBuf As String) As String
     Dim strResult As String
 
     '構文解析
-    
+
     lngMax = c.count
-    
+
     Dim curElement As XMLElement
     Dim nextElement As XMLElement
     Dim strIndent As String
     Dim lngIndent As Long
-    
-    Const C_SEED As Long = 2
-    
+
     lngIndent = 0
     strResult = ""
-    
+
     For i = 1 To lngMax
 
         Set curElement = c(i)
 '        Cells(i, 1).Value = curElement.Element
 '        Cells(i, 2).Value = curElement.ElementType
 '        Cells(i, 3).Value = curElement.ElementName
-        
+
         If i = lngMax Then
             Set nextElement = New XMLElement
         Else
@@ -174,36 +172,36 @@ Public Function FormatXML(ByVal strBuf As String) As String
         Select Case curElement.ElementType
             Case EnumElementType.Comment, EnumElementType.CData, EnumElementType.Header
                 strResult = strResult & curElement.Element & vbCrLf
-                
+
             Case EnumElementType.StandAlone
-                strResult = strResult & Space(lngIndent * C_SEED) & curElement.Element & vbCrLf
-                
+                strResult = strResult & GetIndentStr(lngIndent) & curElement.Element & vbCrLf
+
             Case EnumElementType.StartTag
                 Select Case nextElement.ElementType
                     Case Data
-                        strResult = strResult & Space(lngIndent * C_SEED) & curElement.Element
+                        strResult = strResult & GetIndentStr(lngIndent) & curElement.Element
                     Case EndTag
                         If curElement.ElementName <> nextElement.ElementName Then
-                            strResult = strResult & Space(lngIndent * C_SEED) & curElement.Element & vbCrLf
+                            strResult = strResult & GetIndentStr(lngIndent) & curElement.Element & vbCrLf
                             lngIndent = lngIndent + 1
                         Else
-                            strResult = strResult & Space(lngIndent * C_SEED) & curElement.Element & nextElement.Element & vbCrLf
+                            strResult = strResult & GetIndentStr(lngIndent) & curElement.Element & nextElement.Element & vbCrLf
                             i = i + 1
                         End If
                     Case Else
-                        strResult = strResult & Space(lngIndent * C_SEED) & curElement.Element & vbCrLf
+                        strResult = strResult & GetIndentStr(lngIndent) & curElement.Element & vbCrLf
                         lngIndent = lngIndent + 1
                 End Select
-            
+
             Case EnumElementType.EndTag
                 lngIndent = lngIndent - 1
-                
+
                 'XMLのミスなどでインデントがマイナスになるのを防ぐ
                 If lngIndent < 0 Then
                     lngIndent = 0
                 End If
-                strResult = strResult & Space(lngIndent * C_SEED) & curElement.Element & vbCrLf
-                
+                strResult = strResult & GetIndentStr(lngIndent) & curElement.Element & vbCrLf
+
             Case EnumElementType.Data
                 strResult = strResult & curElement.Element
                 Select Case nextElement.ElementType
@@ -214,20 +212,34 @@ Public Function FormatXML(ByVal strBuf As String) As String
         End Select
 
     Next
-    
+
     FormatXML = strResult
 
 End Function
+Private Function GetIndentStr(ByVal lngIndent As Long) As String
+
+    Dim blnTab As Boolean
+    Dim lngSeed As Long
+
+    If CBool(GetSetting(C_TITLE, "XML", "Tab", False)) Then
+        GetIndentStr = String$(lngIndent, vbTab)
+    Else
+        lngSeed = GetSetting(C_TITLE, "XML", "Seed", 2)
+        GetIndentStr = Space(lngIndent * lngSeed)
+    End If
+End Function
+
 Private Function IsDataEmpty(ByVal strBuf As String) As Boolean
 
     Dim i As Long
     Dim lngCnt As Long
-    
+
     lngCnt = 0
 
     For i = 1 To Len(strBuf)
         Select Case Mid(strBuf, i, 1)
             Case " "
+            Case vbTab
             Case vbCr
             Case vbLf
             Case Else
@@ -243,9 +255,9 @@ Private Function TrimTag(ByVal strBuf As String) As String
     Dim i As Long
     Dim strResult As String
     Dim strChar As String
-    
+
     strResult = ""
-    
+
     Select Case True
         Case Left(strBuf, 2) = "<?"
             strBuf = Mid(strBuf, 3)
@@ -254,7 +266,7 @@ Private Function TrimTag(ByVal strBuf As String) As String
         Case Left(strBuf, 1) = "<"
             strBuf = Mid(strBuf, 2)
     End Select
-            
+
     Select Case True
         Case Right(strBuf, 2) = "?>"
             strBuf = Mid(strBuf, 1, Len(strBuf) - 2)
@@ -263,7 +275,7 @@ Private Function TrimTag(ByVal strBuf As String) As String
         Case Right(strBuf, 1) = ">"
             strBuf = Mid(strBuf, 1, Len(strBuf) - 1)
     End Select
-            
+
     Dim lngPos As Long
     lngPos = InStr(strBuf, " ")
     If lngPos > 0 Then
@@ -271,9 +283,9 @@ Private Function TrimTag(ByVal strBuf As String) As String
     Else
         strResult = strBuf
     End If
-    
+
     TrimTag = strResult
-    
+
 End Function
 
 

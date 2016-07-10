@@ -1012,7 +1012,7 @@ Private Sub lstResult_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shif
 
 End Sub
 
-Private Sub lstResult_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstResult_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 
     If lstResult.ListCount = 0 Then
         Exit Sub
@@ -1032,7 +1032,7 @@ Private Sub lstResult_MouseDown(ByVal Button As Integer, ByVal Shift As Integer,
     End If
 End Sub
 
-Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 #If VBA7 And Win64 Then
 #Else
     Set MW.obj = lstResult
@@ -1064,7 +1064,7 @@ End Sub
 
 
 
-Private Sub schTab_MouseMove(ByVal Index As Long, ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub schTab_MouseMove(ByVal Index As Long, ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 #If VBA7 And Win64 Then
 #Else
     Set MW.obj = Nothing
@@ -1342,7 +1342,7 @@ Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal id As Strin
     
 End Function
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 #If VBA7 And Win64 Then
 #Else
     Set MW.obj = Nothing

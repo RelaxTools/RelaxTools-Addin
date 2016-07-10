@@ -506,7 +506,7 @@ Private Sub CommandButton1_Click()
 
 End Sub
 
-Private Sub lstCommand_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstCommand_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 '    MW.Name = "lstCommand"
     Set MW.obj = lstCommand
 End Sub
@@ -515,7 +515,7 @@ Private Sub lstKey_Click()
     Call getGuidence
 End Sub
 
-Private Sub lstKey_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstKey_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 '    MW.Name = "lstKey"
     Set MW.obj = lstKey
 
@@ -572,7 +572,7 @@ Private Sub lstSetting_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
 End Sub
 
 
-Private Sub lstSetting_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstSetting_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 '    MW.Name = "lstSetting"
     Set MW.obj = lstSetting
 
@@ -760,7 +760,7 @@ Sub getGuidence()
     Loop
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 '    MW.Name = "lstSetting"
     Set MW.obj = Nothing
     

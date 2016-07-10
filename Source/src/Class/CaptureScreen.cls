@@ -45,7 +45,7 @@ Option Explicit
     
     Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hWnd As LongPtr) As LongPtr
     Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hWnd As LongPtr, ByVal hdc As LongPtr) As Long
-    Private Declare PtrSafe Function BitBlt Lib "gdi32" (ByVal hDestDC As LongPtr, ByVal x As Long, ByVal y As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal hSrcDC As LongPtr, ByVal XSrc As Long, ByVal YSrc As Long, ByVal dwRop As Long) As Long
+    Private Declare PtrSafe Function BitBlt Lib "gdi32" (ByVal hDestDC As LongPtr, ByVal X As Long, ByVal Y As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal hSrcDC As LongPtr, ByVal XSrc As Long, ByVal YSrc As Long, ByVal dwRop As Long) As Long
     
     Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hWnd As LongPtr) As Long
     Private Declare PtrSafe Function CloseClipboard Lib "user32" () As Long
@@ -84,7 +84,7 @@ Option Explicit
     Private Declare Function GetForegroundWindow Lib "user32" () As Long
     Private Declare Function GetDC Lib "user32" (ByVal hWnd As Long) As Long
     Private Declare Function ReleaseDC Lib "user32" (ByVal hWnd As Long, ByVal hdc As Long) As Long
-    Private Declare Function BitBlt Lib "gdi32" (ByVal hdc As Long, ByVal x As Long, ByVal y As Long, ByVal w As Long, ByVal h As Long, ByVal hdcS As Long, ByVal xS As Long, ByVal yS As Long, ByVal dwRop As Long) As Long
+    Private Declare Function BitBlt Lib "gdi32" (ByVal hdc As Long, ByVal X As Long, ByVal Y As Long, ByVal w As Long, ByVal h As Long, ByVal hdcS As Long, ByVal xS As Long, ByVal yS As Long, ByVal dwRop As Long) As Long
     
     Private Declare Function OpenClipboard Lib "user32" (ByVal hWndNewOwner As Long) As Long
     Private Declare Function CloseClipboard Lib "user32" () As Long

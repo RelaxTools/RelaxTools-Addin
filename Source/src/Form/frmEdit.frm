@@ -44,7 +44,8 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 Private mblnArrowKeyFlg As Boolean
-'Private mblnValue  As Boolean
+Private WithEvents MW As MouseWheel
+Attribute MW.VB_VarHelpID = -1
 Private Sub cmbFont_Change()
 
     txtEdit.Font.Name = cmbFont.Text
@@ -152,6 +153,10 @@ Private Sub txtEdit_KeyUp(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As
     mblnArrowKeyFlg = False
 End Sub
 
+Private Sub txtEdit_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Set MW.obj = txtEdit
+End Sub
+
 Private Sub UserForm_Initialize()
 
     mblnArrowKeyFlg = False
@@ -214,6 +219,9 @@ Private Sub UserForm_Initialize()
     
     optFormura.value = True
     
+    Set MW = basMouseWheel.GetInstance
+    MW.Install
+    
 End Sub
 
 Private Sub UserForm_Terminate()
@@ -229,7 +237,10 @@ Private Sub UserForm_Terminate()
         txtEdit.Font.Size = Val(strSize)
     End If
     SaveSetting C_TITLE, "Edit", "Size", strSize
-
+    
+    MW.UnInstall
+    Set MW = Nothing
+    
 End Sub
 Private Sub changeValue()
     Dim r As Range
@@ -259,3 +270,36 @@ Private Sub changeValue()
 '    txtEdit.SelLength = Len(frmEdit.txtEdit.Text)
 
 End Sub
+Private Sub MW_WheelDown(obj As Object)
+    
+    Dim lngPos As Long
+    
+    On Error GoTo e
+    lngPos = obj.CurLine + 3
+    If lngPos >= obj.LineCount Then
+        lngPos = obj.LineCount - 1
+    End If
+    obj.CurLine = lngPos
+e:
+End Sub
+
+Private Sub MW_WheelUp(obj As Object)
+
+    Dim lngPos As Long
+    
+    On Error GoTo e
+    lngPos = obj.CurLine - 3
+    If lngPos < 0 Then
+        lngPos = 0
+    End If
+    obj.CurLine = lngPos
+e:
+End Sub
+
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Set MW.obj = Nothing
+End Sub
+
+
+
+
