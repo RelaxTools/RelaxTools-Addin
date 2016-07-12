@@ -1,4 +1,8 @@
-﻿2016/07/11(Mon) RelaxTools-Addin Version 4.3.2(RustRemover) 
+﻿2016/07/13(Wed) RelaxTools-Addin Version 4.3.3(RustRemover) 
+◇バグ修正
+　・「セルの拡大表示＋編集」や「外部エディタ編集」で大きいデータの際にエラーになっていた不具合を修正。
+
+2016/07/11(Mon) RelaxTools-Addin Version 4.3.2(RustRemover) 
 ◇新規機能
 　・書式に「表示形式：標準(リフレッシュ有)」「表示形式：文字列(リフレッシュ有)」を追加。
 　　選択範囲を標準または文字列にします。ついでに書式のリフレッシュもします。

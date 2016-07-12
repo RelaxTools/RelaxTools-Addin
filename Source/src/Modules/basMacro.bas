@@ -2567,6 +2567,8 @@ Sub cellEditExt()
     
     Dim strEncode As String
     
+    Dim blnFormura As Boolean
+    
     On Error GoTo e
     
     If ActiveCell Is Nothing Then
@@ -2595,7 +2597,12 @@ Sub cellEditExt()
     
     Dim utf8 As UTF8Encoding
     
-    strBuf = Replace(Replace(r.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
+    blnFormura = r.HasFormula
+    If blnFormura Then
+        strBuf = Replace(Replace(r.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
+    Else
+        strBuf = Replace(Replace(r.value, vbCrLf, vbLf), vbLf, vbCrLf)
+    End If
     
     Select Case strEncode
         Case C_UTF16
@@ -2671,12 +2678,22 @@ Sub cellEditExt()
             
             On Error Resume Next
             Err.Clear
-            r.Formula = Replace(strBuf, vbCrLf, vbLf)
+            
+            If blnFormura Then
+                r.Formula = Replace(strBuf, vbCrLf, vbLf)
+            Else
+                r.value = Replace(strBuf, vbCrLf, vbLf)
+            End If
+            
             If Err.Number <> 0 Then
                 MsgBox "式の設定に失敗しました。式が正しくない可能性があります。", vbOKOnly + vbExclamation, C_TITLE
             End If
         Else
-            r.Formula = ""
+            If blnFormura Then
+                r.Formula = ""
+            Else
+                r.value = ""
+            End If
         End If
         Close fp
     

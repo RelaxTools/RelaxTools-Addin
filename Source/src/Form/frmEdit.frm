@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmEdit 
    Caption         =   "セルの拡大表示＋編集"
-   ClientHeight    =   9435
+   ClientHeight    =   9390
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   13365
+   ClientWidth     =   13350
    OleObjectBlob   =   "frmEdit.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
@@ -44,6 +44,7 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 Private mblnArrowKeyFlg As Boolean
+Private mBlnFormura As Boolean
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
 Private Sub cmbFont_Change()
@@ -84,7 +85,12 @@ Private Sub cmdOK_Click()
     
     On Error Resume Next
     Err.Clear
-    ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
+    
+    If mBlnFormura Then
+        ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
+    Else
+        ActiveCell.value = Replace(txtEdit.Text, vbCrLf, vbLf)
+    End If
     
     If Err.Number = 0 Then
         Unload Me
@@ -98,10 +104,14 @@ Private Sub cmdReload_Click()
 
     On Error GoTo e
     Err.Clear
-    ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
     
-    txtEdit.Text = Replace(Replace(ActiveCell.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
-    txtValue.Text = Replace(Replace(ActiveCell.value, vbCrLf, vbLf), vbLf, vbCrLf)
+'    If mBlnFormura Then
+'        ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
+'        txtEdit.Text = Replace(Replace(ActiveCell.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
+'    Else
+        ActiveCell.value = Replace(txtEdit.Text, vbCrLf, vbLf)
+        txtValue.Text = Replace(Replace(ActiveCell.value, vbCrLf, vbLf), vbLf, vbCrLf)
+'    End If
     
 '    optValue.Value = True
     
@@ -205,7 +215,13 @@ Private Sub UserForm_Initialize()
     txtEdit.Text = String$(100, vbCrLf)
     txtEdit.SelStart = Len(frmEdit.txtEdit.Text)
     
-    txtFormura.Text = Replace(Replace(ActiveCell.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
+    mBlnFormura = ActiveCell.HasFormula
+    
+    If mBlnFormura Then
+        txtFormura.Text = Replace(Replace(ActiveCell.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
+    Else
+        txtFormura.Text = Replace(Replace(ActiveCell.value, vbCrLf, vbLf), vbLf, vbCrLf)
+    End If
     
     Err.Clear
     On Error Resume Next
