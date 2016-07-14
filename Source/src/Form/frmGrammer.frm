@@ -779,7 +779,7 @@ Private Sub UserForm_Activate()
     
     
 '    Call UserForm_Resize
-    
+    MW.Activate
 End Sub
 
 Private Sub UserForm_Initialize()

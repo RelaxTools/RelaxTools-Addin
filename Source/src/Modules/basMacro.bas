@@ -2679,21 +2679,13 @@ Sub cellEditExt()
             On Error Resume Next
             Err.Clear
             
-            If blnFormura Then
-                r.Formula = Replace(strBuf, vbCrLf, vbLf)
-            Else
-                r.value = Replace(strBuf, vbCrLf, vbLf)
-            End If
+            r.value = Replace(strBuf, vbCrLf, vbLf)
             
             If Err.Number <> 0 Then
                 MsgBox "式の設定に失敗しました。式が正しくない可能性があります。", vbOKOnly + vbExclamation, C_TITLE
             End If
         Else
-            If blnFormura Then
-                r.Formula = ""
-            Else
-                r.value = ""
-            End If
+            r.value = ""
         End If
         Close fp
     

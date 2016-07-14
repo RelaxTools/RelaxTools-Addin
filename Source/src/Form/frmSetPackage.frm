@@ -339,7 +339,9 @@ Private Sub MW_WheelDown(obj As Object)
     obj.TopIndex = obj.TopIndex + 3
     
 End Sub
-
+Private Sub UserForm_Activate()
+    MW.Activate
+End Sub
 Private Sub MW_WheelUp(obj As Object)
 
     Dim lngPos As Long

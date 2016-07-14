@@ -384,7 +384,9 @@ Private Sub UserForm_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift
         
     End Select
 End Sub
-
+Private Sub UserForm_Activate()
+    MW.Activate
+End Sub
 Private Sub UserForm_Initialize()
 
     Dim strList() As String

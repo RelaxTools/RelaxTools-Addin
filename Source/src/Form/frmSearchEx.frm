@@ -1083,7 +1083,10 @@ Private Sub UserForm_Activate()
     
     
 '    Call UserForm_Resize
-    
+#If VBA7 And Win64 Then
+#Else
+    MW.Activate
+#End If
 End Sub
 
 Private Sub UserForm_Initialize()

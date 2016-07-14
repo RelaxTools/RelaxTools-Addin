@@ -413,7 +413,9 @@ Private Function chgBoolToStr(ByVal blnFlg As Boolean) As String
         chgBoolToStr = C_FALSE
     End If
 End Function
-
+Private Sub UserForm_Activate()
+    MW.Activate
+End Sub
 Public Function Start(ByRef col As Collection) As Collection
     
     Dim i As Long

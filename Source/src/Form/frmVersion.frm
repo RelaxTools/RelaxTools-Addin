@@ -70,7 +70,9 @@ End Sub
 Private Sub txtDebug_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = txtDebug
 End Sub
-
+Private Sub UserForm_Activate()
+    MW.Activate
+End Sub
 Private Sub UserForm_Initialize()
 
     Dim strVer As String

@@ -91,14 +91,20 @@ Private mIsRunning As Boolean
 #If VBA7 And Win64 Then
     Private mHandle As LongPtr
     Private mHWnd As LongPtr
+    Private mActWnd As LongPtr
 #Else
     Private mHandle As Long
     Private mHWnd As Long
+    Private mActWnd As Long
 #End If
 
 
 'Private mstrName As String
 Private mobj As Object
+Public Sub Activate()
+    mActWnd = GetActiveWindow
+    Debug.Print "Activate" & mActWnd
+End Sub
     
 Public Property Set obj(s As Object)
     Set mobj = s
@@ -111,6 +117,7 @@ Public Sub Install()
     If mIsRunning = False Then
     
         mHWnd = Application.hWnd
+
         mHandle = SetWindowsHookEx(WH_MOUSE_LL, AddressOf basMouseWheel.MouseEventHookHandler, GetWindowLong(mHWnd, GWL_HINSTANCE), 0)
         
         If mHandle = 0 Then
@@ -126,7 +133,7 @@ End Sub
         Dim m_MouseLLHookStruct As MouseLLHookStruct
     
         On Error GoTo ErrorHandler
-        If ncode < 0 Or mobj Is Nothing Then
+        If ncode < 0 Or mobj Is Nothing Or GetActiveWindow <> mActWnd Then
             GoTo ErrorHandler
         End If
         
@@ -166,7 +173,9 @@ ErrorHandler:
         Dim m_MouseLLHookStruct As MouseLLHookStruct
     
         On Error GoTo ErrorHandler
-        If ncode < 0 Or mobj Is Nothing Then
+            Debug.Print "MouseLLHookProc" & GetActiveWindow
+
+        If ncode < 0 Or mobj Is Nothing Or GetActiveWindow <> mActWnd Then
             GoTo ErrorHandler
         End If
         

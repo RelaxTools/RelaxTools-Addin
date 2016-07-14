@@ -400,7 +400,9 @@ Private Sub UserForm_Initialize()
     Set MW = basMouseWheel.GetInstance
     MW.Install
 End Sub
-
+Private Sub UserForm_Activate()
+    MW.Activate
+End Sub
 
 Sub dispCommand()
 

@@ -521,7 +521,9 @@ Sub dispList()
         
     Next
 End Sub
-
+Private Sub UserForm_Activate()
+    MW.Activate
+End Sub
 Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = Nothing
 End Sub

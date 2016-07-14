@@ -584,7 +584,9 @@ Private Sub txtKinou_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift
         Call dispCommand
     End If
 End Sub
-
+Private Sub UserForm_Activate()
+    MW.Activate
+End Sub
 Private Sub UserForm_Initialize()
     
     Dim WS As Worksheet
