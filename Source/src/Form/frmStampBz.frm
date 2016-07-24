@@ -47,7 +47,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 
-Private Const C_Text As Long = 0
+Private Const C_TEXT As Long = 0
 Private Const C_StampType As Long = 1
 Private Const C_DateType As Long = 2
 Private Const C_DateFormat As Long = 3
@@ -118,7 +118,7 @@ Private Sub cmdAdd_Click()
 
     Dim varBuf() As Variant
     Dim strBuf As String
-    ReDim varBuf(C_Text To C_LineSize)
+    ReDim varBuf(C_TEXT To C_LineSize)
     
     Select Case True
         Case optRectangle.value
@@ -129,7 +129,7 @@ Private Sub cmdAdd_Click()
             varBuf(C_StampType) = "3"
     End Select
     
-    varBuf(C_Text) = txtText.Text
+    varBuf(C_TEXT) = txtText.Text
     
     Select Case True
         Case optSystemDate.value
@@ -155,7 +155,7 @@ Private Sub cmdAdd_Click()
 
     strBuf = Join(varBuf, vbTab)
     
-    lstStampBz.List(i, C_Text) = txtText.Text
+    lstStampBz.List(i, C_TEXT) = txtText.Text
     lstStampBz.List(i, C_DATA) = strBuf
         
     
@@ -238,7 +238,7 @@ Private Sub moveList(ByVal lngMode As Long)
             lngCmp = lngCnt + lngInc * -1
             
             Dim i As Long
-            For i = C_Text To C_DATA
+            For i = C_TEXT To C_DATA
                 varTmp = lstStampBz.List(lngCnt, i)
                 lstStampBz.List(lngCnt, i) = lstStampBz.List(lngCmp, i)
                 lstStampBz.List(lngCmp, i) = varTmp
@@ -494,7 +494,7 @@ Sub dispPreview()
     
     Dim varBuf() As Variant
     Dim strBuf As String
-    ReDim varBuf(C_Text To C_LineSize)
+    ReDim varBuf(C_TEXT To C_LineSize)
     
     Select Case True
         Case optRectangle.value
@@ -512,7 +512,7 @@ Sub dispPreview()
             varBuf(C_Rotate) = C_STAMP_ROTATE_VERTICAL
     End Select
     
-   varBuf(C_Text) = txtText.Text
+   varBuf(C_TEXT) = txtText.Text
     
     Select Case True
         Case optSystemDate.value
@@ -536,7 +536,7 @@ Sub dispPreview()
     varBuf(C_LineSize) = txtLineSize.Text
     
     strBuf = Join(varBuf, vbTab)
-    lstStampBz.List(i, C_Text) = txtText.Text
+    lstStampBz.List(i, C_TEXT) = txtText.Text
     lstStampBz.List(i, C_DATA) = strBuf
     
     mblnRefresh = False
@@ -564,7 +564,7 @@ Private Sub cmdOK_Click()
         varBuf = Split(lstStampBz.List(i, C_DATA), vbTab)
         
         datStampBz.StampType = varBuf(C_StampType)
-        datStampBz.Text = varBuf(C_Text)
+        datStampBz.Text = varBuf(C_TEXT)
         datStampBz.DateType = varBuf(C_DateType)
         datStampBz.DateFormat = varBuf(C_DateFormat)
         datStampBz.UserDate = varBuf(C_UserDate)
@@ -736,7 +736,7 @@ Private Sub lstStampBz_Click()
             optVertical.value = True
     End Select
     
-    txtText.Text = varBuf(C_Text)
+    txtText.Text = varBuf(C_TEXT)
     
     Dim strType As String
     strType = varBuf(C_DateType)
@@ -918,7 +918,7 @@ Private Sub UserForm_Initialize()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_Text To C_LineSize)
+    ReDim varBuf(C_TEXT To C_LineSize)
 
     '設定情報取得
     Set col = getPropertyBz()
@@ -928,7 +928,7 @@ Private Sub UserForm_Initialize()
         Set datStampBz = col(i)
         
         varBuf(C_StampType) = datStampBz.StampType
-        varBuf(C_Text) = datStampBz.Text
+        varBuf(C_TEXT) = datStampBz.Text
         varBuf(C_DateType) = datStampBz.DateType
         varBuf(C_DateFormat) = datStampBz.DateFormat
         varBuf(C_UserDate) = datStampBz.UserDate
@@ -942,7 +942,7 @@ Private Sub UserForm_Initialize()
         strBuf = Join(varBuf, vbTab)
         
         lstStampBz.AddItem ""
-        lstStampBz.List(i - 1, C_Text) = datStampBz.Text
+        lstStampBz.List(i - 1, C_TEXT) = datStampBz.Text
         lstStampBz.List(i - 1, C_DATA) = strBuf
     Next
 

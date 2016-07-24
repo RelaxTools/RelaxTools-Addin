@@ -114,7 +114,7 @@ Sub Disable()
     
     For Each c In mFrm.Controls
     
-        If c.Tag <> "e" Then
+        If c.tag <> "e" Then
             c.enabled = False
         End If
     
@@ -131,7 +131,7 @@ Sub Enable()
     
     For Each c In mFrm.Controls
     
-        If c.Tag <> "e" Then
+        If c.tag <> "e" Then
             c.enabled = True
         End If
     

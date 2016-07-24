@@ -46,7 +46,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Private Const C_Text As String = 0
+Private Const C_TEXT As String = 0
 Private Const C_Font As String = 1
 Private Const C_Color As String = 2
 Private Const C_SIZE As String = 3
@@ -106,7 +106,7 @@ Sub dispPreview()
             s.Text = txtName.Text
             Dim c As control
             For Each c In Controls
-                Select Case c.Tag
+                Select Case c.tag
                     Case "N"
                         c.enabled = True
                     Case "F"
@@ -118,7 +118,7 @@ Sub dispPreview()
             s.Text = rlxGetFullpathFromFileName(txtFile.Text)
 '            Dim c As control
             For Each c In Controls
-                Select Case c.Tag
+                Select Case c.tag
                     Case "N"
                         c.enabled = False
                     Case "F"
@@ -192,10 +192,10 @@ Sub dispPreview()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_Text To C_Rect)
+    ReDim varBuf(C_TEXT To C_Rect)
 
     varBuf(C_StampType) = s.StampType
-    varBuf(C_Text) = s.Text
+    varBuf(C_TEXT) = s.Text
     varBuf(C_File) = s.FilePath
     varBuf(C_Color) = s.Color
     varBuf(C_SIZE) = s.Size
@@ -209,7 +209,7 @@ Sub dispPreview()
     
     strBuf = Join(varBuf, vbTab)
 
-    lstStamp.List(i, C_Text) = s.Text
+    lstStamp.List(i, C_TEXT) = s.Text
     lstStamp.List(i, C_DATA) = strBuf
 
     mblnRefresh = False
@@ -336,7 +336,7 @@ Private Sub moveList(ByVal lngMode As Long)
             lngCmp = lngCnt + lngInc * -1
             
             Dim i As Long
-            For i = C_Text To C_DATA
+            For i = C_TEXT To C_DATA
                 varTmp = lstStamp.List(lngCnt, i)
                 lstStamp.List(lngCnt, i) = lstStamp.List(lngCmp, i)
                 lstStamp.List(lngCmp, i) = varTmp
@@ -438,7 +438,7 @@ Private Sub cmdOK_Click()
         varBuf = Split(lstStamp.List(i, C_DATA), vbTab)
         
         s.StampType = varBuf(C_StampType)
-        s.Text = varBuf(C_Text)
+        s.Text = varBuf(C_TEXT)
         s.Font = varBuf(C_Font)
         s.Color = varBuf(C_Color)
         s.Size = varBuf(C_SIZE)
@@ -590,7 +590,7 @@ Private Sub lstStamp_Change()
     Select Case varBuf(C_StampType)
         Case C_STAMP_MITOME_NORMAL
             optNormal.value = True
-            txtName.Text = varBuf(C_Text)
+            txtName.Text = varBuf(C_TEXT)
         Case Else
             optFile.value = True
             txtName.Text = ""
@@ -823,7 +823,7 @@ Private Sub UserForm_Initialize()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_Text To C_Rect)
+    ReDim varBuf(C_TEXT To C_Rect)
     
     '設定情報取得
     Set col = getPropertyMitome()
@@ -833,7 +833,7 @@ Private Sub UserForm_Initialize()
         Set s = col(i)
         
         varBuf(C_StampType) = s.StampType
-        varBuf(C_Text) = s.Text
+        varBuf(C_TEXT) = s.Text
         varBuf(C_Font) = s.Font
         varBuf(C_Color) = s.Color
         varBuf(C_SIZE) = s.Size
@@ -848,7 +848,7 @@ Private Sub UserForm_Initialize()
         strBuf = Join(varBuf, vbTab)
         
         lstStamp.AddItem ""
-        lstStamp.List(i - 1, C_Text) = s.Text
+        lstStamp.List(i - 1, C_TEXT) = s.Text
         lstStamp.List(i - 1, C_DATA) = strBuf
         
     Next
@@ -1012,7 +1012,7 @@ Private Sub cmdAdd_Click()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_Text To C_Rect)
+    ReDim varBuf(C_TEXT To C_Rect)
     
     i = lstStamp.ListCount
 
@@ -1024,7 +1024,7 @@ Private Sub cmdAdd_Click()
             varBuf(C_StampType) = C_STAMP_MITOME_FILE
     End Select
     
-    varBuf(C_Text) = txtName.Text
+    varBuf(C_TEXT) = txtName.Text
     
     varBuf(C_Color) = getHexColor(lblColor.BackColor)
     
@@ -1055,7 +1055,7 @@ Private Sub cmdAdd_Click()
     strBuf = Join(varBuf, vbTab)
     
     lstStamp.AddItem ""
-    lstStamp.List(i, C_Text) = txtName.Text
+    lstStamp.List(i, C_TEXT) = txtName.Text
     lstStamp.List(i, C_DATA) = strBuf
     
     lstStamp.Selected(i) = True

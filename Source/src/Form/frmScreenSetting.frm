@@ -49,7 +49,7 @@ Private Sub chkPageBreakEnable_Change()
     Dim c As control
 
     For Each c In Controls
-        If c.Tag = "P" Then
+        If c.tag = "P" Then
         
             c.enabled = chkPageBreakEnable.value
         
@@ -63,7 +63,7 @@ Private Sub chkZoomEnable_Change()
     Dim c As control
 
     For Each c In Controls
-        If c.Tag = "Z" Then
+        If c.tag = "Z" Then
         
             c.enabled = chkZoomEnable.value
         

@@ -1237,3 +1237,42 @@ Sub getScrollEnabled(control As IRibbonControl, ByRef enabled)
 e:
     Call rlxErrMsg(Err)
 End Sub
+'--------------------------------------------------------------------
+' かんたん表の数を取得
+'--------------------------------------------------------------------
+ Sub kantanGetItemCount(control As IRibbonControl, ByRef count)
+
+    '設定情報取得
+    Dim col As Collection
+    
+    Set col = getPropertyKantan()
+
+    count = col.count
+
+End Sub
+'--------------------------------------------------------------------
+' かんたん表のIDを取得
+'--------------------------------------------------------------------
+Sub kantanGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
+
+    id = "kantan" & Format$(Index + 1, "000")
+
+End Sub
+'--------------------------------------------------------------------
+' かんたん表のイメージを取得
+'--------------------------------------------------------------------
+Sub kantanGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
+
+    Set image = getImageKantan(Index + 1)
+    
+End Sub
+'--------------------------------------------------------------------
+' かんたん表押下時イベント
+'--------------------------------------------------------------------
+Public Sub KantanOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
+
+    Call kantanPaste2(selectedIndex + 1)
+    Call SaveSetting(C_TITLE, "KantanDx", "kantanNo", selectedIndex + 1)
+
+End Sub
+

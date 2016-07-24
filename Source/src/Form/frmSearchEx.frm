@@ -186,7 +186,7 @@ End Sub
 
 Private Sub cmdReplace_Click()
 
-    Dim lngret As Long
+    Dim lngRet As Long
 
     If Len(Trim(txtSearch.Text)) = 0 Then
         MsgBox "検索文字列を指定してください。", vbExclamation, C_TITLE
@@ -218,12 +218,12 @@ Private Sub cmdReplace_Click()
         Exit Sub
     End If
     
-    lngret = replaceStart(True)
-    If lngret < 0 Then
+    lngRet = replaceStart(True)
+    If lngRet < 0 Then
         Exit Sub
     End If
         
-    MsgBox lngret & " 個の文字列を置換しました。", vbInformation + vbOKOnly, C_TITLE
+    MsgBox lngRet & " 個の文字列を置換しました。", vbInformation + vbOKOnly, C_TITLE
     
     Dim strBuf As String
     Dim i As Long
@@ -288,7 +288,7 @@ Private Function replaceStart(ByVal blnAsk As Boolean) As Long
     Dim i As Long
     Dim j As Long
     Dim ret As Long
-    Dim lngret As Long
+    Dim lngRet As Long
     Dim strAddress As String
     Dim strSheet As String
     Dim objRegx As Object
@@ -330,7 +330,7 @@ Private Function replaceStart(ByVal blnAsk As Boolean) As Long
                 Case 4
                     GoTo pass
                 Case 8
-                    lngret = -1
+                    lngRet = -1
                     Exit For
             End Select
         End If
@@ -436,12 +436,12 @@ Private Function replaceStart(ByVal blnAsk As Boolean) As Long
             Set s = Nothing
         
         End If
-        lngret = lngret + 1
+        lngRet = lngRet + 1
 pass:
     Next
     
     Me.Show
-    replaceStart = lngret
+    replaceStart = lngRet
 
 End Function
 Private Sub searchStart()
@@ -933,7 +933,7 @@ Private Sub lstResult_Change()
         Next
         If r Is Nothing Then
         Else
-            Application.GoTo setCellPos(r(1)), True
+            Application.Goto setCellPos(r(1)), True
             r.Select
         End If
     Else
@@ -962,7 +962,7 @@ Private Sub lstResult_Change()
                         objShape.Shapes(1).Select False
                     Else
                         blnFlg = True
-                        Application.GoTo setCellPos(objArt.TopLeftCell), True
+                        Application.Goto setCellPos(objArt.TopLeftCell), True
                         objShape.Shapes(1).Select
                     End If
                     On Error GoTo 0
@@ -972,7 +972,7 @@ Private Sub lstResult_Change()
                         objShape.Select False
                     Else
                         blnFlg = True
-                        Application.GoTo setCellPos(objShape.TopLeftCell), True
+                        Application.Goto setCellPos(objShape.TopLeftCell), True
                         objShape.Select
                     End If
                     On Error GoTo 0
@@ -1044,14 +1044,14 @@ Private Sub schTab_Change()
         Case 0
             Dim c As Object
             For Each c In Controls
-                If c.Tag = "v" Then
+                If c.tag = "v" Then
                     c.visible = False
                 End If
             Next
             cboValue.enabled = True
         Case 1
             For Each c In Controls
-                If c.Tag = "v" Then
+                If c.tag = "v" Then
                     c.visible = True
                 End If
             Next

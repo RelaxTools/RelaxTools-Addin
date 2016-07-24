@@ -471,19 +471,19 @@ Private Function getAto1(ByVal strCol As String) As Long
 
     Dim lngCnt As Long
     Dim strBuf As String
-    Dim lngret As Long
+    Dim lngRet As Long
     Dim i As Long
     
     strCol = UCase(strCol)
     lngCnt = Len(strCol)
-    lngret = 0
+    lngRet = 0
     
     For i = 0 To lngCnt - 1
         strBuf = Mid$(strCol, lngCnt - i, 1)
-        lngret = lngret + (Asc(strBuf) - Asc("A") + 1) * (26 ^ i)
+        lngRet = lngRet + (Asc(strBuf) - Asc("A") + 1) * (26 ^ i)
     Next
 
-    getAto1 = lngret
+    getAto1 = lngRet
 
 End Function
 Private Function get1toA(ByVal lngCol As Long) As String

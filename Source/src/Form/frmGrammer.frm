@@ -685,7 +685,7 @@ Private Sub lstResult_Change()
                         objShape.Shapes(1).Select False
                     Else
                         blnFlg = True
-                        Application.GoTo setCellPos(objArt.TopLeftCell), True
+                        Application.Goto setCellPos(objArt.TopLeftCell), True
                         objShape.Shapes(1).Select
                     End If
                     On Error GoTo 0
@@ -695,7 +695,7 @@ Private Sub lstResult_Change()
                         objShape.Select False
                     Else
                         blnFlg = True
-                        Application.GoTo setCellPos(objShape.TopLeftCell), True
+                        Application.Goto setCellPos(objShape.TopLeftCell), True
                         objShape.Select
                     End If
                     On Error GoTo 0

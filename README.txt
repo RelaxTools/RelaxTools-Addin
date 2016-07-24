@@ -1,4 +1,4 @@
-#RelaxTools Addin For Excel 2007/2010/2013/2016 
+﻿#RelaxTools Addin For Excel 2007/2010/2013/2016 
 *対応OS: Windows Vista, Windws 7, Windows 8, Windows 8.1, Windows 10(macには対応していません)
 *対応Excel: 2007, 2010, 2013, 2016
 
@@ -69,6 +69,7 @@ Copyright(C) Yasuhiro Watanabe 2009
 ## インストール／バージョンアップ方法
 * Excelが起動していないことを確認する。起動している場合は終了する。
 * install.vbs を実行する。
+(途中、ファイルのプロパティが表示されるので「ブロックの解除」を行う)
 * Excelを起動し「RelaxTools」タブが表示されることを確認する。
 
 ## 設定のリセット(調子が悪い、エラーがでる場合におためしを)

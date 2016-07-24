@@ -246,4 +246,5 @@
 <Relationship Id="std" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/std.png"/>
 <Relationship Id="str" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/str.png"/>
 <Relationship Id="swap" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/swap.png"/>
+<Relationship Id="kantanDx" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/kantanDx.png"/>
 </Relationships>

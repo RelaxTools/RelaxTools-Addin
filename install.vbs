@@ -1,10 +1,13 @@
 ' -------------------------------------------------------------------------------
-' RelaxTools-Addin インストールスクリプト Ver.1.0.1
+' RelaxTools-Addin インストールスクリプト Ver.1.0.2
 ' -------------------------------------------------------------------------------
 ' 参考サイト
 ' ある SE のつぶやき
 ' VBScript で Excel にアドインを自動でインストール/アンインストールする方法
 ' http://fnya.cocolog-nifty.com/blog/2014/03/vbscript-excel-.html
+' 修正
+'   1.0.2 Windows Update にて インターネットより取得したアドインファイルが Excel にて読み込まれない場合に対応。
+'         警告とプロパティウィンドウを表示して「ブロック解除」をお願いするようにした。
 ' -------------------------------------------------------------------------------
 On Error Resume Next
 
@@ -20,20 +23,21 @@ addInFileName = "Relaxtools.xlam"
 
 Set objWshShell = CreateObject("WScript.Shell") 
 Set objFileSys = CreateObject("Scripting.FileSystemObject")
+Set objShell = CreateObject("Shell.Application")
 
 IF Not objFileSys.FileExists(addInFileName) THEN
-   MsgBox "Zipファイルを解凍してから実行してください。", vbExclamation, addInName 
+   MsgBox "Zipファイルを展開してから実行してください。", vbExclamation, addInName 
    WScript.Quit 
 END IF
+
+'インストール先パスの作成 
+'(ex)C:\Users\[User]\AppData\Roaming\Microsoft\AddIns\[addInFileName] 
+strPath = objWshShell.SpecialFolders("Appdata") & "\Microsoft\Addins\"
+installPath = strPath  & addInFileName
 
 IF MsgBox(addInName & " をインストールしますか？" & vbCrLf &  "Version 4.0.0 以降とそれ以前では設定が引き継がれませんのでご了承ください。", vbYesNo + vbQuestion, addInName) = vbNo Then 
   WScript.Quit 
 End IF
-
-
-'インストール先パスの作成 
-'(ex)C:\Users\[User]\AppData\Roaming\Microsoft\AddIns\[addInFileName] 
-installPath = objWshShell.SpecialFolders("Appdata") & "\Microsoft\Addins\" & addInFileName
 
 'ファイルコピー(上書き) 
 objFileSys.CopyFile  addInFileName ,installPath , True
@@ -55,6 +59,12 @@ Set objExcel = Nothing
 
 IF Err.Number = 0 THEN 
    MsgBox "アドインのインストールが終了しました。", vbInformation, addInName 
+
+  Set objFolder = objShell.NameSpace(strPath)
+  Set objFile = objFolder.ParseName(addInFileName)
+  objFile.InvokeVerb("properties")
+  MsgBox "インターネットから取得したファイルはExcelよりブロックされる場合があります。" & vbCrlf & "プロパティウィンドウを開きますので「ブロックの解除」を行ってください。" & vbCrLf & vbCrLf & "プロパティに「ブロックの解除」が表示されない場合は特に操作の必要はありません。", vbExclamation, addInName 
+
 ELSE 
    MsgBox "エラーが発生しました。" & vbCrLF & "Excelが起動している場合は終了してください。", vbExclamation, addInName 
     WScript.Quit 

@@ -96,14 +96,14 @@ End Sub
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
         
     Dim s As String
-    Dim lngret As Long
+    Dim lngRet As Long
     
     On Error GoTo e
     
     s = r.value
     
-    lngret = createFolder(rlxAddFileSeparator(Folder) & s)
-    If lngret <> 0 Then
+    lngRet = createFolder(rlxAddFileSeparator(Folder) & s)
+    If lngRet <> 0 Then
         mlngCount = mlngCount + 1
         With r.Interior
             .Color = vbYellow

@@ -1417,11 +1417,11 @@ Public Sub SetClipText(strData As String)
 #If VBA7 And Win64 Then
   Dim lngHwnd As LongPtr, lngMEM As LongPtr
   Dim lngDataLen As LongPtr
-  Dim lngret As LongPtr
+  Dim lngRet As LongPtr
 #Else
   Dim lngHwnd As Long, lngMEM As Long
   Dim lngDataLen As Long
-  Dim lngret As Long
+  Dim lngRet As Long
 #End If
   Dim blnErrflg As Boolean
   Const GMEM_MOVEABLE = 2
@@ -1449,17 +1449,17 @@ Public Sub SetClipText(strData As String)
                 '書き込むテキストをグローバルメモリにコピー
                 If lstrcpy(lngMEM, strData) <> 0 Then
                     'クリップボードにメモリブロックのデータを書き込み
-                    lngret = SetClipboardData(CF_TEXT, lngHwnd)
+                    lngRet = SetClipboardData(CF_TEXT, lngHwnd)
                     blnErrflg = False
                 End If
                 'グローバルメモリブロックのロックを解除
-                lngret = GlobalUnlock(lngHwnd)
+                lngRet = GlobalUnlock(lngHwnd)
             End If
         End If
     End If
     'クリップボードをクローズ(これはWindowsに制御が
     '戻らないうちにできる限り速やかに行う)
-    lngret = CloseClipboard()
+    lngRet = CloseClipboard()
   End If
 
   If blnErrflg Then MsgBox "クリップボードに情報が書き込めません", vbOKOnly, C_TITLE
@@ -1472,11 +1472,11 @@ Public Sub SetCopyClipText(strBuf() As String)
 #If VBA7 And Win64 Then
     Dim lngHwnd As LongPtr, lngMEM As LongPtr
     Dim lngDataLen As LongPtr
-    Dim lngret As LongPtr
+    Dim lngRet As LongPtr
 #Else
     Dim lngHwnd As Long, lngMEM As Long
     Dim lngDataLen As Long
-    Dim lngret As Long
+    Dim lngRet As Long
 #End If
 
     Dim blnErrflg As Boolean
@@ -1521,11 +1521,11 @@ Public Sub SetCopyClipText(strBuf() As String)
                     CopyMemory ByVal (lngMEM + LenB(df)), ByVal strData, LenB(strData)
                     
                     'クリップボードにメモリブロックのデータを書き込み
-                    lngret = SetClipboardData(CF_HDROP, lngHwnd)
+                    lngRet = SetClipboardData(CF_HDROP, lngHwnd)
                     blnErrflg = False
                 
                     'グローバルメモリブロックのロックを解除
-                    lngret = GlobalUnlock(lngHwnd)
+                    lngRet = GlobalUnlock(lngHwnd)
                     
                 End If
                 
@@ -1535,7 +1535,7 @@ Public Sub SetCopyClipText(strBuf() As String)
         
         'クリップボードをクローズ(これはWindowsに制御が
         '戻らないうちにできる限り速やかに行う)
-        lngret = CloseClipboard()
+        lngRet = CloseClipboard()
     End If
     
     If blnErrflg Then MsgBox "クリップボードに情報が書き込めません", vbOKOnly, C_TITLE
@@ -1575,52 +1575,52 @@ Public Function rlxArabic(ByVal strRoman As String) As Long
 Attribute rlxArabic.VB_Description = "ワークシート関数として使用できません。"
 Attribute rlxArabic.VB_ProcData.VB_Invoke_Func = " \n19"
 
-    Dim lngret As Long
+    Dim lngRet As Long
 
     Select Case LCase(strRoman)
         Case "i"
-            lngret = 1
+            lngRet = 1
         Case "ii"
-            lngret = 2
+            lngRet = 2
         Case "iii"
-            lngret = 3
+            lngRet = 3
         Case "iv"
-            lngret = 4
+            lngRet = 4
         Case "v"
-            lngret = 5
+            lngRet = 5
         Case "vi"
-            lngret = 6
+            lngRet = 6
         Case "vii"
-            lngret = 7
+            lngRet = 7
         Case "viii"
-            lngret = 8
+            lngRet = 8
         Case "ix"
-            lngret = 9
+            lngRet = 9
         Case "x"
-            lngret = 10
+            lngRet = 10
         Case "xi"
-            lngret = 11
+            lngRet = 11
         Case "xii"
-            lngret = 12
+            lngRet = 12
         Case "xiii"
-            lngret = 13
+            lngRet = 13
         Case "xiv"
-            lngret = 14
+            lngRet = 14
         Case "xv"
-            lngret = 15
+            lngRet = 15
         Case "xvi"
-            lngret = 16
+            lngRet = 16
         Case "xvii"
-            lngret = 17
+            lngRet = 17
         Case "xviii"
-            lngret = 18
+            lngRet = 18
         Case "xix"
-            lngret = 19
+            lngRet = 19
         Case "xx"
-            lngret = 20
+            lngRet = 20
     End Select
 
-    rlxArabic = lngret
+    rlxArabic = lngRet
 
 End Function
 '--------------------------------------------------------------
@@ -1941,14 +1941,14 @@ Public Sub SaveClipData(c As Collection)
     Dim lngDst As LongPtr
     Dim lngSrc As LongPtr
     Dim lngDataLen As LongPtr
-    Dim lngret As LongPtr
+    Dim lngRet As LongPtr
 #Else
     Dim lngHwnd As Long
     Dim lngMEM As Long
     Dim lngDst As Long
     Dim lngSrc As Long
     Dim lngDataLen As Long
-    Dim lngret As Long
+    Dim lngRet As Long
 #End If
     Const GMEM_MOVEABLE = 2
     Dim lngFormatID As Long
@@ -2011,7 +2011,7 @@ Public Sub SaveClipData(c As Collection)
 
         'クリップボードをクローズ(これはWindowsに制御が
         '戻らないうちにできる限り速やかに行う)
-        lngret = CloseClipboard()
+        lngRet = CloseClipboard()
         
     End If
 
@@ -2023,10 +2023,10 @@ Public Sub RestoreClipData(c As Collection)
 
 #If VBA7 And Win64 Then
     Dim lngMEM As LongPtr
-    Dim lngret As LongPtr
+    Dim lngRet As LongPtr
 #Else
     Dim lngMEM As Long
-    Dim lngret As Long
+    Dim lngRet As Long
 #End If
 
     Const GMEM_MOVEABLE = 2
@@ -2053,10 +2053,10 @@ Public Sub RestoreClipData(c As Collection)
                     If lngMEM <> 0 Then
                     
                         'クリップボードにメモリブロックのデータを書き込み
-                        lngret = SetClipboardData(s.lngFormat, s.lngHandle)
+                        lngRet = SetClipboardData(s.lngFormat, s.lngHandle)
                     
                         'グローバルメモリブロックのロックを解除
-                        lngret = GlobalUnlock(s.lngHandle)
+                        lngRet = GlobalUnlock(s.lngHandle)
                         
                         'lngRet = GlobalFree(s.lngHandle)
                     
@@ -2069,7 +2069,7 @@ Public Sub RestoreClipData(c As Collection)
     
     End If
     
-    lngret = CloseClipboard()
+    lngRet = CloseClipboard()
 
 End Sub
 '--------------------------------------------------------------

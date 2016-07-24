@@ -14,6 +14,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 '-----------------------------------------------------------------------------------------------------
 '
 ' [RelaxTools-Addin] v4
@@ -45,7 +46,7 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 
-Private Const C_Text As Long = 0
+Private Const C_TEXT As Long = 0
 Private Const C_Upper As Long = 1
 Private Const C_DateType As Long = 2
 Private Const C_DateFormat As Long = 3
@@ -92,7 +93,7 @@ Private Sub cmdAdd_Click()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_Text To C_Fill)
+    ReDim varBuf(C_TEXT To C_Fill)
 
     
     
@@ -141,7 +142,7 @@ Private Sub cmdAdd_Click()
     
     lstStamp.AddItem ""
     
-    lstStamp.List(i, C_Text) = txtUpper.Text & " + " & txtLower.Text
+    lstStamp.List(i, C_TEXT) = txtUpper.Text & " + " & txtLower.Text
     lstStamp.List(i, C_DATA) = strBuf
     
     lstStamp.Selected(i) = True
@@ -222,7 +223,7 @@ Private Sub moveList(ByVal lngMode As Long)
             lngCmp = lngCnt + lngInc * -1
             
             Dim i As Long
-            For i = C_Text To C_DATA
+            For i = C_TEXT To C_DATA
                 varTmp = lstStamp.List(lngCnt, i)
                 lstStamp.List(lngCnt, i) = lstStamp.List(lngCmp, i)
                 lstStamp.List(lngCmp, i) = varTmp
@@ -326,7 +327,7 @@ Sub dispPreview()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_Text To C_Fill)
+    ReDim varBuf(C_TEXT To C_Fill)
     
     mblnRefresh = True
             
@@ -343,7 +344,7 @@ Sub dispPreview()
     varBuf(C_Fill) = s.Fill
     strBuf = Join(varBuf, vbTab)
 
-    lstStamp.List(i, C_Text) = s.Upper & " + " & s.Lower
+    lstStamp.List(i, C_TEXT) = s.Upper & " + " & s.Lower
     lstStamp.List(i, C_DATA) = strBuf
     
     mblnRefresh = False
@@ -582,7 +583,7 @@ Private Sub UserForm_Initialize()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_Text To C_Fill)
+    ReDim varBuf(C_TEXT To C_Fill)
     
     '設定情報取得
     Set col = getProperty()
@@ -607,7 +608,7 @@ Private Sub UserForm_Initialize()
         
         strBuf = Join(varBuf, vbTab)
         
-        lstStamp.List(i - 1, C_Text) = s.Upper & " + " & s.Lower
+        lstStamp.List(i - 1, C_TEXT) = s.Upper & " + " & s.Lower
         lstStamp.List(i - 1, C_DATA) = strBuf
         
     Next
