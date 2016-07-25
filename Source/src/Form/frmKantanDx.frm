@@ -1,12 +1,11 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmKantanDx 
-   Caption         =   "かんたん表DX"
-   ClientHeight    =   8625
-   ClientLeft      =   45
-   ClientTop       =   435
-   ClientWidth     =   9210
+   Caption         =   "かんたん表Dx"
+   ClientHeight    =   8760
+   ClientLeft      =   120
+   ClientTop       =   465
+   ClientWidth     =   9330
    OleObjectBlob   =   "frmKantanDx.frx":0000
-   ShowModal       =   0   'False
    StartUpPosition =   1  'オーナー フォームの中央
 End
 Attribute VB_Name = "frmKantanDx"
@@ -655,3 +654,4 @@ Private Function setPicture(ByRef obj As image, ByVal lngPos As Long)
     dispPreview
     
 End Function
+

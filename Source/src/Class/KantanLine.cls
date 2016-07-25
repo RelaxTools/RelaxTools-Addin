@@ -62,3 +62,4 @@ Public AuthoHogan As Boolean
 '方眼紙判定行
 Public HoganJudgeLineCount As Long
 
+

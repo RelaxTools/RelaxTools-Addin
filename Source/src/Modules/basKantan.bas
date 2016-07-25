@@ -153,7 +153,12 @@ Public Sub KantanPaste()
     On Error GoTo e
 
     lngNo = GetSetting(C_TITLE, "KantanDx", "kantanNo", 1)
+    
+    Application.ScreenUpdating = False
+    
     Call kantanPaste2(lngNo)
+    
+    Application.ScreenUpdating = True
     
     Exit Sub
 e:
@@ -1003,3 +1008,4 @@ Private Function getLineNo(ByRef b As Border) As Long
     lngRet = getLineNo
 
 End Function
+

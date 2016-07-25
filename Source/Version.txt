@@ -1,10 +1,15 @@
-﻿2016/07/25(Mon) RelaxTools-Addin Version 4.4.0(RustRemover) 
+﻿2016/07/26(Tue) RelaxTools-Addin Version 4.4.1(RustRemover) 
 ◇新規機能
 　・かんたん表DXを新規追加。自分の好きなデザインのかんたん表を保存して呼び出せるようになりました。
 ◇機能改善
 　・install.vbs に手動で「ブロック解除」を行えるようにプロパティ表示機能を追加した(暫定)。
 　　（2016年7月のWindows Update以降、インターネットより取得したアドインが起動しなくなる事象があり、
 　　　対策としてアドインのファイルの「ブロック解除」をファイルのプロパティで行う必要がある）
+◇バグ修正
+　・Excel2010などで起動不可になっていたのを修正。
+
+2016/07/25(Mon) RelaxTools-Addin Version 4.4.0(RustRemover) 
+・Excel2010などが起動不可であったため公開中止。
  
 2016/07/15(Fri) RelaxTools-Addin Version 4.3.4(RustRemover) 
 ◇バグ修正
