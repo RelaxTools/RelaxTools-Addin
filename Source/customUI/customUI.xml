@@ -552,7 +552,7 @@
           </splitButton>
           
 <!--          <gallery id="kantanGallery" label="かんたん表&#xD;&#xA;DX" size="large" image="kantan_L" showImage="false" columns="4" rows="5" itemWidth="89" itemHeight="85" getSupertip="getSupertip" getDescription="getDescription" getItemCount="kantanGetItemCount" getItemID="kantanGetItemId" getItemImage="kantanGetItemImage" onAction="KantanOnAction" getEnabled="getRibbonEnabled">-->
-          <gallery id="kantanGallery" label="かんたん表&#xD;&#xA;DX" size="large" image="kantanDx" showImage="false" columns="4" rows="5" itemWidth="50" itemHeight="50" getSupertip="getSupertip" getDescription="getDescription" getItemCount="kantanGetItemCount" getItemID="kantanGetItemId" getItemImage="kantanGetItemImage" onAction="KantanOnAction" getEnabled="getRibbonEnabled">
+          <gallery id="kantanGallery" label="かんたん表&#xD;&#xA;DX" size="large" image="kantanDx" showImage="false" columns="4" rows="5" itemWidth="64" itemHeight="64" getSupertip="getSupertip" getDescription="getDescription" getItemCount="kantanGetItemCount" getItemID="kantanGetItemId" getItemImage="kantanGetItemImage" onAction="KantanOnAction" getEnabled="getRibbonEnabled">
             <button id="showKantanDx"   image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <button id="kantanPaste"    image="kantanDx" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
           </gallery>

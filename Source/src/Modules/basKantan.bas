@@ -91,8 +91,18 @@ Public Function editKantan(ByRef s As KantanLine, ByVal lngFormat As Long) As St
         Else
             r.Columns(i).Borders(xlEdgeRight).LineStyle = xlLineStyleNone
         End If
-        r.Columns(i).Borders(xlInsideHorizontal).Weight = getBorderWeight(s.HHeadBorderLine)
-        r.Columns(i).Borders(xlInsideHorizontal).LineStyle = getLineStyle(s.HHeadBorderLine)
+        
+        Dim j As Long
+        Dim t As Range
+        For j = s.HHeadLineCount To r.Rows.count
+            If t Is Nothing Then
+                Set t = r(j, i)
+            Else
+                Set t = Union(t, r(j, i))
+            End If
+        Next
+        t.Borders(xlInsideHorizontal).Weight = getBorderWeight(s.HHeadBorderLine)
+        t.Borders(xlInsideHorizontal).LineStyle = getLineStyle(s.HHeadBorderLine)
         r.Columns(i).Interior.Color = s.HeadColor
     Next
     
@@ -297,8 +307,18 @@ Sub kantanPaste2(ByVal Index As Long)
             Else
                 r.Columns(i).Borders(xlEdgeRight).LineStyle = xlLineStyleNone
             End If
-            r.Columns(i).Borders(xlInsideHorizontal).Weight = getBorderWeight(s.HHeadBorderLine)
-            r.Columns(i).Borders(xlInsideHorizontal).LineStyle = getLineStyle(s.HHeadBorderLine)
+            
+            Dim k As Long
+            Dim t As Range
+            For k = s.HHeadLineCount To r.Rows.count
+                If t Is Nothing Then
+                    Set t = r(k, i)
+                Else
+                    Set t = Union(t, r(k, i))
+                End If
+            Next
+            t.Borders(xlInsideHorizontal).Weight = getBorderWeight(s.HHeadBorderLine)
+            t.Borders(xlInsideHorizontal).LineStyle = getLineStyle(s.HHeadBorderLine)
             r.Columns(i).Interior.Color = s.HeadColor
         Next
         

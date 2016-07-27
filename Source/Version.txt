@@ -1,4 +1,9 @@
-﻿2016/07/26(Tue) RelaxTools-Addin Version 4.4.1(RustRemover) 
+﻿2016/07/28(Thu) RelaxTools-Addin Version 4.4.2(RustRemover) 
+◇機能改善
+　・かんたん表DXでヘッダ行と列を２以上にして中間線を指定しない場合、左上の列側の線の抑制ができていなかったのを修正。
+　・かんたん表DXのリボンギャラリー表示で縦線が省略されてしまうため大き目に変更(50px→64px)
+
+2016/07/26(Tue) RelaxTools-Addin Version 4.4.1(RustRemover) 
 ◇新規機能
 　・かんたん表DXを新規追加。自分の好きなデザインのかんたん表を保存して呼び出せるようになりました。
 ◇機能改善
