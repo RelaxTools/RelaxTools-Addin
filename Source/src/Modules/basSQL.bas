@@ -568,10 +568,10 @@ Private Function existStr(ByVal strBuf As String, ByVal lngCol As Long) As Boole
 
     i = C_ROW_DATA
 
-    Do Until ThisWorkbook.Worksheets("SQL").Cells(i, lngCol).value = "" Or _
-        UCase(strBuf) < ThisWorkbook.Worksheets("SQL").Cells(i, lngCol).value
+    Do Until ThisWorkbook.Worksheets("SQL").Cells(i, lngCol).Value = "" Or _
+        UCase(strBuf) < ThisWorkbook.Worksheets("SQL").Cells(i, lngCol).Value
 
-        If UCase(strBuf) = ThisWorkbook.Worksheets("SQL").Cells(i, lngCol).value Then
+        If UCase(strBuf) = ThisWorkbook.Worksheets("SQL").Cells(i, lngCol).Value Then
             existStr = True
             Exit Function
         End If

@@ -84,8 +84,8 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    lngByte = LenB(StrConv(r.value, vbFromUnicode))
-    lngCol = Len(r.value)
+    lngByte = LenB(StrConv(r.Value, vbFromUnicode))
+    lngCol = Len(r.Value)
     
     If lngByte = lngCol Then
     Else

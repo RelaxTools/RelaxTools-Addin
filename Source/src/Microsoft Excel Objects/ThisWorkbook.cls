@@ -87,8 +87,8 @@ Private Sub DispInformation()
     Dim strVer As String
     Dim strTitle As String
 
-    strTitle = ThisWorkbook.BuiltinDocumentProperties("Title").value
-    strVer = ThisWorkbook.BuiltinDocumentProperties("Comments").value
+    strTitle = ThisWorkbook.BuiltinDocumentProperties("Title").Value
+    strVer = ThisWorkbook.BuiltinDocumentProperties("Comments").Value
     
     
     Dim strBuf As String

@@ -150,10 +150,10 @@ Private Sub UserForm_Initialize()
 
     blnReCall = True
 
-    optLine1.value = True
-    optTag1.value = True
-    optWidth1.value = True
-    optColor1.value = True
+    optLine1.Value = True
+    optTag1.Value = True
+    optWidth1.Value = True
+    optColor1.Value = True
 
     blnReCall = False
 
@@ -208,10 +208,10 @@ Private Sub htmlConv(ByVal flg As Variant)
     ReDim lngPoint(1 To Selection.Columns.count)
     ReDim lngWidth(1 To Selection.Columns.count)
     
-    blnExLine = optLine1.value
-    blnExTag = optTag1.value
-    blnExWidth = optWidth2.value
-    blnExColor = optColor2.value
+    blnExLine = optLine1.Value
+    blnExTag = optTag1.Value
+    blnExWidth = optWidth2.Value
+    blnExColor = optColor2.Value
     
     lngTotal = 0
     For lngCol = 1 To Selection.Columns.count
@@ -307,9 +307,9 @@ Private Sub htmlConv(ByVal flg As Variant)
                     strBuf = strBuf & " style="""
                     If blnExColor Then
 #If VBA7 Then
-                            strBuf = strBuf & "background-color:" & getRGB(r.DisplayFormat.Interior.Color) & ";"
+                            strBuf = strBuf & "background-color:" & getHtmlRGB(r.DisplayFormat.Interior.Color) & ";"
 #Else
-                            strBuf = strBuf & "background-color:" & getRGB(r.Interior.Color) & ";"
+                            strBuf = strBuf & "background-color:" & getHtmlRGB(r.Interior.Color) & ";"
 #End If
                     End If
                     
@@ -343,9 +343,9 @@ Private Sub htmlConv(ByVal flg As Variant)
                     strBuf = strBuf & " style="""
                     If blnExColor Then
 #If VBA7 Then
-                            strBuf = strBuf & "background-color:" & getRGB(r.DisplayFormat.Interior.Color) & ";"
+                            strBuf = strBuf & "background-color:" & getHtmlRGB(r.DisplayFormat.Interior.Color) & ";"
 #Else
-                            strBuf = strBuf & "background-color:" & getRGB(r.Interior.Color) & ";"
+                            strBuf = strBuf & "background-color:" & getHtmlRGB(r.Interior.Color) & ";"
 #End If
                     End If
                     
@@ -359,9 +359,9 @@ Private Sub htmlConv(ByVal flg As Variant)
                     strBuf = strBuf & " style="""
                     If blnExColor Then
 #If VBA7 Then
-                            strBuf = strBuf & "background-color:" & getRGB(r.DisplayFormat.Interior.Color) & ";"
+                            strBuf = strBuf & "background-color:" & getHtmlRGB(r.DisplayFormat.Interior.Color) & ";"
 #Else
-                            strBuf = strBuf & "background-color:" & getRGB(r.Interior.Color) & ";"
+                            strBuf = strBuf & "background-color:" & getHtmlRGB(r.Interior.Color) & ";"
 #End If
                     End If
                     
@@ -451,9 +451,9 @@ Private Function getText(ByVal blnExColor As Boolean, ByRef r As Range) As Strin
 '            Next
 '        Else
 #If VBA7 Then
-                strBuf = "<span style=""color:" & getRGB(r.DisplayFormat.Font.Color) & """>" & rlxHtmlSanitizing(r.Text) & "</span>"
+                strBuf = "<span style=""color:" & getHtmlRGB(r.DisplayFormat.Font.Color) & """>" & rlxHtmlSanitizing(r.Text) & "</span>"
 #Else
-                strBuf = "<span style=""color:" & getRGB(r.Font.Color) & """>" & rlxHtmlSanitizing(r.Text) & "</span>"
+                strBuf = "<span style=""color:" & getHtmlRGB(r.Font.Color) & """>" & rlxHtmlSanitizing(r.Text) & "</span>"
 #End If
 '        End If
     Else
@@ -472,18 +472,7 @@ Private Function replaceNl(ByVal strBuf As String) As String
     replaceNl = strBuf
     
 End Function
-Private Function getRGB(ByVal lngColor As Variant) As String
 
-    Dim strBuf As String
-    If IsNull(lngColor) Then
-        getRGB = "#000000"
-    Else
-    
-        strBuf = Right$("000000" & Hex$(lngColor), 6)
-    
-        getRGB = "#" & Mid$(strBuf, 5, 2) & Mid$(strBuf, 3, 2) & Mid$(strBuf, 1, 2)
-    End If
-End Function
 Private Function getAlign(ByRef r As Range) As String
 
     Dim strBuf As String
@@ -499,7 +488,7 @@ Private Function getAlign(ByRef r As Range) As String
             Select Case True
                 Case r.NumberFormatLocal = "@"
                     strBuf = "left"
-                Case IsNumeric(r.value)
+                Case IsNumeric(r.Value)
                     strBuf = "right"
                 Case Else
                     strBuf = "left"

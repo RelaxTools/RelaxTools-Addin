@@ -82,12 +82,12 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    strResult = rlxToJavaFieldNm(r.value)
+    strResult = rlxToJavaFieldNm(r.Value)
     
     If mstrType = "" Then
-        r.value = setLow(strResult)
+        r.Value = setLow(strResult)
     Else
-        r.value = addSetStr(mstrType, strResult)
+        r.Value = addSetStr(mstrType, strResult)
     End If
 
     Exit Sub

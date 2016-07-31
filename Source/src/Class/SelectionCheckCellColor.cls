@@ -76,7 +76,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    r.value = "&H" & Right("00000000" & Hex(r.Interior.Color), 8)
+    r.Value = "&H" & Right("00000000" & Hex(r.Interior.Color), 8)
 
     Exit Sub
 e:

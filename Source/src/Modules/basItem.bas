@@ -160,10 +160,10 @@ Sub setItemNo(ByRef r As Range, ByVal strNewNo As String)
     Dim lngPos As Long
     Dim obj As Object
 
-    If VarType(r.value) = vbString Then
+    If VarType(r.Value) = vbString Then
         r.Characters(0, 0).Insert strNewNo
     Else
-        r.value = strNewNo & r.value
+        r.Value = strNewNo & r.Value
     End If
     
 End Sub
@@ -177,14 +177,14 @@ Sub delItemNo(ByRef r As Range)
     Dim obj As Object
 
     '現在の段落番号を取得（レベルにかかわらない）
-    strSecNo = rlxGetItemNoAny(r.value)
-    If VarType(r.value) = vbString Then
+    strSecNo = rlxGetItemNoAny(r.Value)
+    If VarType(r.Value) = vbString Then
         If Len(strSecNo) > 0 Then
             r.Characters(1, Len(strSecNo)).Delete
         End If
     Else
         If Len(strSecNo) > 0 Then
-            r.value = Mid$(r.value, Len(strSecNo) + 1)
+            r.Value = Mid$(r.Value, Len(strSecNo) + 1)
         End If
     End If
 

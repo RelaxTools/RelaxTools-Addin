@@ -48,7 +48,7 @@ Private Sub cboEncode_Change()
     If cboEncode.Text = C_UTF16 Then
         chkBOM.enabled = True
     Else
-        chkBOM.value = False
+        chkBOM.Value = False
         chkBOM.enabled = False
     End If
 End Sub
@@ -79,7 +79,7 @@ Private Sub cmdOK_Click()
     strEditor = txtEditor.Text
     strEncode = cboEncode.Text
     If strEncode = C_UTF16 Then
-        blnBOM = chkBOM.value
+        blnBOM = chkBOM.Value
     Else
         blnBOM = False
     End If
@@ -118,7 +118,7 @@ Private Sub UserForm_Initialize()
     
     txtEditor.Text = strEditor
     cboEncode.Text = strEncode
-    chkBOM.value = blnBOM
+    chkBOM.Value = blnBOM
     
     Call cboEncode_Change
     

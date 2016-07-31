@@ -242,8 +242,8 @@ Private Sub UserForm_Initialize()
     cboSrcSheet.Clear
     cboDstSheet.Clear
     
-    chkSrcColor.value = True
-    chkDstColor.value = True
+    chkSrcColor.Value = True
+    chkDstColor.Value = True
 
     lblGauge.visible = False
     mblnCancel = False
@@ -298,19 +298,19 @@ Private Sub cmdOK_Click()
     
     ResultWS.Name = "比較結果"
     
-    ResultWS.Cells(1, C_COMP_NO).value = "シートの比較"
-    ResultWS.Cells(2, C_COMP_NO).value = "比較元：" & cboSrcBook.Text & "!" & cboSrcSheet.Text
-    ResultWS.Cells(3, C_COMP_NO).value = "比較先：" & cboDstBook.Text & "!" & cboDstSheet.Text
-    ResultWS.Cells(4, C_COMP_NO).value = "不一致の比較元の背景色を変更する（黄）：" & chkSrcColor.value
-    ResultWS.Cells(5, C_COMP_NO).value = "不一致の比較先の背景色を変更する（赤）：" & chkDstColor.value
+    ResultWS.Cells(1, C_COMP_NO).Value = "シートの比較"
+    ResultWS.Cells(2, C_COMP_NO).Value = "比較元：" & cboSrcBook.Text & "!" & cboSrcSheet.Text
+    ResultWS.Cells(3, C_COMP_NO).Value = "比較先：" & cboDstBook.Text & "!" & cboDstSheet.Text
+    ResultWS.Cells(4, C_COMP_NO).Value = "不一致の比較元の背景色を変更する（黄）：" & chkSrcColor.Value
+    ResultWS.Cells(5, C_COMP_NO).Value = "不一致の比較先の背景色を変更する（赤）：" & chkDstColor.Value
     
-    ResultWS.Cells(7, C_COMP_NO).value = "No."
-    ResultWS.Cells(7, C_COMP_RESULT).value = "結果"
-    ResultWS.Cells(7, C_COMP_SRCSTR).value = "比較元文字列"
-    ResultWS.Cells(7, C_COMP_DSTSTR).value = "比較先文字列"
-    ResultWS.Cells(7, C_COMP_BOOK).value = "比較先ブック"
-    ResultWS.Cells(7, C_COMP_SHEET).value = "比較先シート"
-    ResultWS.Cells(7, C_COMP_ADDRESS).value = "アドレス"
+    ResultWS.Cells(7, C_COMP_NO).Value = "No."
+    ResultWS.Cells(7, C_COMP_RESULT).Value = "結果"
+    ResultWS.Cells(7, C_COMP_SRCSTR).Value = "比較元文字列"
+    ResultWS.Cells(7, C_COMP_DSTSTR).Value = "比較先文字列"
+    ResultWS.Cells(7, C_COMP_BOOK).Value = "比較先ブック"
+    ResultWS.Cells(7, C_COMP_SHEET).Value = "比較先シート"
+    ResultWS.Cells(7, C_COMP_ADDRESS).Value = "アドレス"
     lngCount = C_START_ROW
     
     If r1 Is Nothing Or r2 Is Nothing Then
@@ -332,13 +332,13 @@ Private Sub cmdOK_Click()
             GoTo e
         End If
         
-        If IsError(r1(i).value) Or IsError(r2(i).value) Then
+        If IsError(r1(i).Value) Or IsError(r2(i).Value) Then
             makeResult ResultWS, srcSheet, dstSheet, lngCount, r1(i), r2(i)
         Else
             '空セル対策
-            If IsEmpty(r1(i).value) And IsEmpty(r2(i).value) Then
+            If IsEmpty(r1(i).Value) And IsEmpty(r2(i).Value) Then
             Else
-                If r1(i).value <> r2(i).value Then
+                If r1(i).Value <> r2(i).Value Then
                     makeResult ResultWS, srcSheet, dstSheet, lngCount, r1(i), r2(i)
                 End If
             End If
@@ -367,13 +367,13 @@ e:
 End Sub
 Sub makeResult(ByRef ResultWS As Worksheet, ByRef srcSheet As Worksheet, ByRef dstSheet As Worksheet, ByRef lngCount As Long, ByRef r1 As Range, ByRef r2 As Range)
                 
-    ResultWS.Cells(lngCount, C_COMP_NO).value = lngCount - C_START_ROW + 1
-    ResultWS.Cells(lngCount, C_COMP_RESULT).value = "不一致"
-    ResultWS.Cells(lngCount, C_COMP_BOOK).value = dstSheet.Parent.Name
-    ResultWS.Cells(lngCount, C_COMP_SHEET).value = dstSheet.Name
-    ResultWS.Cells(lngCount, C_COMP_ADDRESS).value = r1.Address
-    ResultWS.Cells(lngCount, C_COMP_SRCSTR).value = r1.value
-    ResultWS.Cells(lngCount, C_COMP_DSTSTR).value = r2.value
+    ResultWS.Cells(lngCount, C_COMP_NO).Value = lngCount - C_START_ROW + 1
+    ResultWS.Cells(lngCount, C_COMP_RESULT).Value = "不一致"
+    ResultWS.Cells(lngCount, C_COMP_BOOK).Value = dstSheet.Parent.Name
+    ResultWS.Cells(lngCount, C_COMP_SHEET).Value = dstSheet.Name
+    ResultWS.Cells(lngCount, C_COMP_ADDRESS).Value = r1.Address
+    ResultWS.Cells(lngCount, C_COMP_SRCSTR).Value = r1.Value
+    ResultWS.Cells(lngCount, C_COMP_DSTSTR).Value = r2.Value
 
     ResultWS.Hyperlinks.Add _
         Anchor:=ResultWS.Cells(lngCount, C_COMP_ADDRESS), _

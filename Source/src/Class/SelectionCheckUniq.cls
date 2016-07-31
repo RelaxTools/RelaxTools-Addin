@@ -104,7 +104,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    If r.value = "" Then
+    If r.Value = "" Then
         Exit Sub
     End If
     
@@ -113,9 +113,9 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     Set c = Nothing
     
-    If mobjCol.Exists(CStr(r.value)) Then
+    If mobjCol.Exists(CStr(r.Value)) Then
         blnMatch = True
-        Set c = mobjCol.Item(CStr(r.value))
+        Set c = mobjCol.Item(CStr(r.Value))
         With c.Interior
             .Color = vbCyan
             .Pattern = xlSolid
@@ -132,7 +132,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     Else
         '存在しない場合コレクションに追加
         mlngMax = mlngMax + 1
-        Call mobjCol.Add(CStr(r.value), r)
+        Call mobjCol.Add(CStr(r.Value), r)
     End If
 
     Exit Sub

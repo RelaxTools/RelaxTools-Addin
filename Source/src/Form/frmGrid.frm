@@ -57,13 +57,13 @@ Public Function Start(ByRef lngHead As Long, ByRef lngCol As Long, ByRef lngHead
     
     txtHead.Text = lngHead
     txtCol.Text = lngCol
-    chkHoganMode.value = blnHoganMode
+    chkHoganMode.Value = blnHoganMode
 
     Me.Show vbModal
     
     lngHead = Val(txtHead.Text)
     lngCol = Val(txtCol.Text)
-    blnHoganMode = chkHoganMode.value
+    blnHoganMode = chkHoganMode.Value
     
     Select Case True
         Case OptionButton4

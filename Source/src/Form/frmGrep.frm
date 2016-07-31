@@ -144,11 +144,11 @@ Private Sub cmdOK_Click()
     
     
     '正規表現の場合
-    If chkRegEx.value Then
+    If chkRegEx.Value Then
         Dim o As Object
         Set o = CreateObject("VBScript.RegExp")
         o.Pattern = cboSearch.Text
-        o.IgnoreCase = Not (chkCase.value)
+        o.IgnoreCase = Not (chkCase.Value)
         o.Global = True
         Err.Clear
         On Error Resume Next
@@ -193,21 +193,21 @@ Private Sub cmdOK_Click()
     'Set ResultWS = Workbooks.Add.Worksheets(1)
     ResultWS.Name = "Grep結果"
     
-    ResultWS.Cells(1, C_SEARCH_NO).value = "ExcelファイルのGrep"
-    ResultWS.Cells(2, C_SEARCH_NO).value = "条件：" & cboSearch.Text
-    ResultWS.Cells(3, C_SEARCH_NO).value = "ファイル：" & txtPattern.Text
-    ResultWS.Cells(4, C_SEARCH_NO).value = "フォルダ：" & cboFolder.Text
-    ResultWS.Cells(5, C_SEARCH_NO).value = "検索オブジェクト：" & cboObj.Text
-    ResultWS.Cells(6, C_SEARCH_NO).value = "検索対象：" & cboValue.Text
-    ResultWS.Cells(7, C_SEARCH_NO).value = "正規表現：" & chkRegEx.value
-    ResultWS.Cells(8, C_SEARCH_NO).value = "読取パスワード：" & txtPassword.Text
+    ResultWS.Cells(1, C_SEARCH_NO).Value = "ExcelファイルのGrep"
+    ResultWS.Cells(2, C_SEARCH_NO).Value = "条件：" & cboSearch.Text
+    ResultWS.Cells(3, C_SEARCH_NO).Value = "ファイル：" & txtPattern.Text
+    ResultWS.Cells(4, C_SEARCH_NO).Value = "フォルダ：" & cboFolder.Text
+    ResultWS.Cells(5, C_SEARCH_NO).Value = "検索オブジェクト：" & cboObj.Text
+    ResultWS.Cells(6, C_SEARCH_NO).Value = "検索対象：" & cboValue.Text
+    ResultWS.Cells(7, C_SEARCH_NO).Value = "正規表現：" & chkRegEx.Value
+    ResultWS.Cells(8, C_SEARCH_NO).Value = "読取パスワード：" & txtPassword.Text
     
-    ResultWS.Cells(10, C_SEARCH_NO).value = "No."
-    ResultWS.Cells(10, C_SEARCH_BOOK).value = "ブック名"
+    ResultWS.Cells(10, C_SEARCH_NO).Value = "No."
+    ResultWS.Cells(10, C_SEARCH_BOOK).Value = "ブック名"
     ResultWS.Cells(10, C_SEARCH_BOOK).ColumnWidth = 60
-    ResultWS.Cells(10, C_SEARCH_SHEET).value = "シート名"
-    ResultWS.Cells(10, C_SEARCH_ADDRESS).value = "セル/シェイプ"
-    ResultWS.Cells(10, C_SEARCH_STR).value = "検索文字列"
+    ResultWS.Cells(10, C_SEARCH_SHEET).Value = "シート名"
+    ResultWS.Cells(10, C_SEARCH_ADDRESS).Value = "セル/シェイプ"
+    ResultWS.Cells(10, C_SEARCH_STR).Value = "検索文字列"
 '    ResultWS.Cells(9, C_SEARCH_ID).Value = "ID"
     mlngCount = C_START_ROW
 
@@ -269,13 +269,13 @@ Private Sub cmdOK_Click()
                 Set WS = Nothing
             Next
         Else
-            ResultWS.Cells(mlngCount, C_SEARCH_NO).value = mlngCount - C_START_ROW + 1
-            ResultWS.Cells(mlngCount, C_SEARCH_BOOK).value = varBook
-            ResultWS.Cells(mlngCount, C_SEARCH_SHEET).value = "ブックを開けませんでした"
-            ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).value = ""
+            ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
+            ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = varBook
+            ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = "ブックを開けませんでした"
+            ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = ""
     
             ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
-            ResultWS.Cells(mlngCount, C_SEARCH_STR).value = Err.Description
+            ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = Err.Description
             mlngCount = mlngCount + 1
         End If
         WB.Close SaveChanges:=False
@@ -335,11 +335,11 @@ Private Sub cmdOK_Click()
     SaveSetting C_TITLE, "ExcelGrep", "FolderStr", strBuf
     
     SaveSetting C_TITLE, "ExcelGrep", "cboObj", cboObj.ListIndex
-    SaveSetting C_TITLE, "ExcelGrep", "chkRegEx", chkRegEx.value
-    SaveSetting C_TITLE, "ExcelGrep", "chkCase", chkCase.value
-    SaveSetting C_TITLE, "ExcelGrep", "chkSubFolder", chkSubFolder.value
+    SaveSetting C_TITLE, "ExcelGrep", "chkRegEx", chkRegEx.Value
+    SaveSetting C_TITLE, "ExcelGrep", "chkCase", chkCase.Value
+    SaveSetting C_TITLE, "ExcelGrep", "chkSubFolder", chkSubFolder.Value
     SaveSetting C_TITLE, "ExcelGrep", "cboValue", cboValue.ListIndex
-    SaveSetting C_TITLE, "ExcelGrep", "chkZenHan", chkZenHan.value
+    SaveSetting C_TITLE, "ExcelGrep", "chkZenHan", chkZenHan.Value
     SaveSetting C_TITLE, "ExcelGrep", "Password", txtPassword.Text
     
     Set mMm = Nothing
@@ -390,7 +390,7 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
     Next
     
     'サブフォルダ検索あり
-    If chkSubFolder.value Then
+    If chkSubFolder.Value Then
         For Each objSub In objfld.SubFolders
             DoEvents
             DoEvents
@@ -541,7 +541,7 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
         Set objRegx = CreateObject("VBScript.RegExp")
         
         objRegx.Pattern = strPattern
-        objRegx.IgnoreCase = Not (chkCase.value)
+        objRegx.IgnoreCase = Not (chkCase.Value)
         objRegx.Global = True
     
         Dim c As Range
@@ -549,8 +549,8 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
     
             Dim schStr As Variant
             
-            If cboValue.value = C_SEARCH_VALUE_VALUE Then
-                schStr = c.value
+            If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+                schStr = c.Value
             Else
                 schStr = c.FormulaLocal
             End If
@@ -559,10 +559,10 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
             Set objMatch = objRegx.Execute(schStr)
 
             If objMatch.count > 0 Then
-                ResultWS.Cells(mlngCount, C_SEARCH_NO).value = mlngCount - C_START_ROW + 1
-                ResultWS.Cells(mlngCount, C_SEARCH_BOOK).value = objSheet.Parent.FullName
-                ResultWS.Cells(mlngCount, C_SEARCH_SHEET).value = objSheet.Name
-                ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).value = c.Address
+                ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
+                ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
+                ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
+                ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Address
 '                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = c.Address
         
                 ResultWS.Hyperlinks.Add _
@@ -572,7 +572,7 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                     TextToDisplay:=c.Address
         
                 ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
-                ResultWS.Cells(mlngCount, C_SEARCH_STR).value = schStr
+                ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = schStr
                 mlngCount = mlngCount + 1
             End If
             
@@ -585,10 +585,10 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
         Dim objFind As Range
         Dim strFirstAddress As String
         
-        If cboValue.value = C_SEARCH_VALUE_VALUE Then
-            Set objFind = objSheet.UsedRange.Find(strPattern, , xlValues, xlPart, xlByColumns, xlNext, chkCase.value, chkZenHan.value)
+        If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+            Set objFind = objSheet.UsedRange.Find(strPattern, , xlValues, xlPart, xlByColumns, xlNext, chkCase.Value, chkZenHan.Value)
         Else
-            Set objFind = objSheet.UsedRange.Find(strPattern, , xlFormulas, xlPart, xlByColumns, xlNext, chkCase.value, chkZenHan.value)
+            Set objFind = objSheet.UsedRange.Find(strPattern, , xlFormulas, xlPart, xlByColumns, xlNext, chkCase.Value, chkZenHan.Value)
         End If
         
         If Not objFind Is Nothing Then
@@ -597,11 +597,11 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
     
             Do
             
-                ResultWS.Cells(mlngCount, C_SEARCH_NO).value = mlngCount - C_START_ROW + 1
-                ResultWS.Cells(mlngCount, C_SEARCH_BOOK).value = objSheet.Parent.FullName
-                ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).value = objFind.Address
+                ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
+                ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
+                ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = objFind.Address
 '                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = objFind.Address
-                ResultWS.Cells(mlngCount, C_SEARCH_SHEET).value = objSheet.Name
+                ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
                 
                 ResultWS.Hyperlinks.Add _
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
@@ -611,10 +611,10 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
         
                 ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                 
-                If cboValue.value = C_SEARCH_VALUE_VALUE Then
-                    ResultWS.Cells(mlngCount, C_SEARCH_STR).value = objFind.value
+                If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+                    ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = objFind.Value
                 Else
-                    ResultWS.Cells(mlngCount, C_SEARCH_STR).value = objFind.FormulaLocal
+                    ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = objFind.FormulaLocal
                 End If
 
                 mlngCount = mlngCount + 1
@@ -654,7 +654,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
     If chkRegEx Then
         Set mobjRegx = CreateObject("VBScript.RegExp")
         mobjRegx.Pattern = strPattern
-        mobjRegx.IgnoreCase = Not (chkCase.value)
+        mobjRegx.IgnoreCase = Not (chkCase.Value)
         mobjRegx.Global = True
     End If
     
@@ -681,7 +681,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                         matchCount = objMatch.count
                     Else
 '                        matchCount = InStr(strBuf, strPattern)
-                        If chkCase.value Then
+                        If chkCase.Value Then
                             matchCount = InStr(strBuf, strPattern)
                         Else
                             matchCount = InStr(UCase(strBuf), UCase(strPattern))
@@ -690,9 +690,9 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     
                     If matchCount > 0 Then
                     
-                        ResultWS.Cells(mlngCount, C_SEARCH_NO).value = mlngCount - C_START_ROW + 1
-                        ResultWS.Cells(mlngCount, C_SEARCH_BOOK).value = objSheet.Parent.FullName
-                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).value = c.Name & ":" & c.id
+                        ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
+                        ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
+                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.id
 '                        ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = "Shape:" & c.ID
                         
 '                        ResultWS.Hyperlinks.Add _
@@ -711,9 +711,9 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
                     TextToDisplay:=c.Name & ":" & c.id
                     
-                        ResultWS.Cells(mlngCount, C_SEARCH_SHEET).value = objSheet.Name
+                        ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
-                        ResultWS.Cells(mlngCount, C_SEARCH_STR).value = strBuf
+                        ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = strBuf
                         mlngCount = mlngCount + 1
                         
                     End If
@@ -765,10 +765,10 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     
                     If matchCount > 0 Then
                     
-                        ResultWS.Cells(mlngCount, C_SEARCH_NO).value = mlngCount - C_START_ROW + 1
-                        ResultWS.Cells(mlngCount, C_SEARCH_BOOK).value = objShape.Parent.Parent.FullName
-                        ResultWS.Cells(mlngCount, C_SEARCH_SHEET).value = objShape.Parent.Name
-                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).value = c.Name & ":" & c.id
+                        ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
+                        ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objShape.Parent.Parent.FullName
+                        ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objShape.Parent.Name
+                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.id
 '                        ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = "Shape:" & c.ID
                         
 '                        ResultWS.Hyperlinks.Add _
@@ -788,7 +788,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     TextToDisplay:=c.Name & ":" & c.id
                         
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
-                        ResultWS.Cells(mlngCount, C_SEARCH_STR).value = strBuf
+                        ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = strBuf
                         mlngCount = mlngCount + 1
                     
                     End If
@@ -830,12 +830,12 @@ Private Sub UserForm_Initialize()
     cboValue.AddItem C_SEARCH_VALUE_VALUE
     cboValue.ListIndex = GetSetting(C_TITLE, "ExcelGrep", "cboValue", 0)
     
-    chkSubFolder.value = GetSetting(C_TITLE, "ExcelGrep", "chkSubFolder", False)
+    chkSubFolder.Value = GetSetting(C_TITLE, "ExcelGrep", "chkSubFolder", False)
     
-    chkRegEx.value = GetSetting(C_TITLE, "ExcelGrep", "chkRegEx", False)
+    chkRegEx.Value = GetSetting(C_TITLE, "ExcelGrep", "chkRegEx", False)
 '    chkRegEx_Change
-    chkCase.value = GetSetting(C_TITLE, "ExcelGrep", "chkCase", False)
-    chkZenHan.value = GetSetting(C_TITLE, "ExcelGrep", "chkZenHan", False)
+    chkCase.Value = GetSetting(C_TITLE, "ExcelGrep", "chkCase", False)
+    chkZenHan.Value = GetSetting(C_TITLE, "ExcelGrep", "chkZenHan", False)
     
 '    chkCase.Value = False
 '    chkCase.enabled = False

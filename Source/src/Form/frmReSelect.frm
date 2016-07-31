@@ -53,7 +53,7 @@ Private Sub cboRange_Change()
     Dim lngLeft As Long
     Dim lngTop As Long
     
-    If chkOffset.value Then
+    If chkOffset.Value Then
         lngLeft = getLeft(Range(cboRange.Text))
         lngTop = getTop(Range(cboRange.Text))
         
@@ -100,7 +100,7 @@ Private Sub cmdOK_Click()
         End If
     Next
     SaveSetting C_TITLE, "ReSelect", "Range", strBuf
-    SaveSetting C_TITLE, "ReSelect", "Offset", chkOffset.value
+    SaveSetting C_TITLE, "ReSelect", "Offset", chkOffset.Value
     
     Unload Me
 End Sub
@@ -128,7 +128,7 @@ Private Sub UserForm_Initialize()
         cboRange.ListIndex = 0
     End If
     
-    chkOffset.value = GetSetting(C_TITLE, "ReSelect", "Offset", False)
+    chkOffset.Value = GetSetting(C_TITLE, "ReSelect", "Offset", False)
     
 End Sub
 Private Function getLeft(ByVal s As Range) As Long

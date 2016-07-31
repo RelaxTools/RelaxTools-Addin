@@ -203,7 +203,7 @@ Private Sub cmdDel_Click()
 End Sub
 
 Private Sub chkDetail_Change()
-    Call SaveSetting(C_TITLE, "Favirite", "Detail", chkDetail.value)
+    Call SaveSetting(C_TITLE, "Favirite", "Detail", chkDetail.Value)
 End Sub
 
 Private Sub lstCategory_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
@@ -539,7 +539,7 @@ Private Sub UserForm_Initialize()
     
     lblMsg.Caption = " 操作はリストを右クリック。一覧への追加はエクスプローラからのコピペ(CTRL+V)で可能です。Excelファイル以外のファイル、フォルダも追加可能です。"
     
-    chkDetail.value = GetSetting(C_TITLE, "Favirite", "Detail", False)
+    chkDetail.Value = GetSetting(C_TITLE, "Favirite", "Detail", False)
     
     Set MW = basMouseWheel.GetInstance
     MW.Install

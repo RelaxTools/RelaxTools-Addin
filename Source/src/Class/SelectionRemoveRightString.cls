@@ -98,18 +98,18 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    lngPos = rlxSetLimit(0, Len(r.value), mlngIns)
+    lngPos = rlxSetLimit(0, Len(r.Value), mlngIns)
         
-    If Not (NotHoldFormat) And VarType(r.value) = vbString Then
+    If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
         r.Characters(r.Characters.count - lngPos + 1, lngPos).Delete
     Else
-        lngPos = Len(r.value) - lngPos
+        lngPos = Len(r.Value) - lngPos
         
         If lngPos <= 0 Then
             lngPos = 0
         End If
     
-        r.value = Left(r.value, lngPos)
+        r.Value = Left(r.Value, lngPos)
     End If
 
     Exit Sub

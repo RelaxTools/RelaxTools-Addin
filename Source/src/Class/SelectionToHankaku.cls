@@ -75,7 +75,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    r.value = StrConvU(r.value, vbNarrow)
+    r.Value = StrConvU(r.Value, vbNarrow)
     
     Exit Sub
 e:

@@ -76,7 +76,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    r.value = r.value
+    r.Value = r.Value
 
     Exit Sub
 e:

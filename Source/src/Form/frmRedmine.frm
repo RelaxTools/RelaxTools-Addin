@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmRedmine 
    Caption         =   "表のTextile変換"
-   ClientHeight    =   6825
+   ClientHeight    =   7200
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   11565
@@ -59,6 +59,9 @@ Const C_COLSPAN As String = "\0"
 Const C_ROWSPAN As String = "/0"
 
 Private blnReCall As Boolean
+Private Sub chkColor_Click()
+    Call TextileConv
+End Sub
 
 Private Sub chkHead_Change()
     Call TextileConv
@@ -68,6 +71,8 @@ Private Sub cmdCancel_Click()
 End Sub
 Private Sub UserForm_Initialize()
     Call TextileConv
+    chkHead.Value = GetSetting(C_TITLE, "Textile", "Head", False)
+    chkColor.Value = GetSetting(C_TITLE, "Textile", "Color", False)
 End Sub
 Private Sub UserForm_Activate()
     txtText.SelStart = 0
@@ -93,7 +98,7 @@ Private Sub TextileConv()
             
                 If r.MergeArea(1, 1).Address = r.Address Then
 
-                    If lngRow = 1 And chkHead.value Then
+                    If lngRow = 1 And chkHead.Value Then
                         strBuf = strBuf & C_HEAD
                     End If
                     
@@ -111,7 +116,7 @@ Private Sub TextileConv()
             
             Else
                 
-                If lngRow = 1 And chkHead.value Then
+                If lngRow = 1 And chkHead.Value Then
                     strBuf = strBuf & C_HEAD
                 End If
                     
@@ -134,6 +139,9 @@ Private Function getAttr(ByRef r As Range) As String
     Dim strH As String
     Dim strV As String
     Dim strValue As String
+    Dim strColor As String
+    
+    strColor = ""
 
     Select Case r.HorizontalAlignment
         Case xlLeft
@@ -146,7 +154,7 @@ Private Function getAttr(ByRef r As Range) As String
             Select Case True
                 Case r.NumberFormatLocal = "@"
                     strH = "" 'C_LEFT
-                Case IsNumeric(r.value)
+                Case IsNumeric(r.Value)
                     strH = C_RIGHT
                 Case Else
                     strH = "" 'C_LEFT
@@ -163,30 +171,43 @@ Private Function getAttr(ByRef r As Range) As String
         Case Else
     End Select
     
-    strValue = r.value
-            
-    If VarType(r.value) = vbString Then
+    If chkColor.Value Then
+        #If VBA7 Then
+            strColor = "{background-color: " & getHtmlRGB(r.DisplayFormat.Interior.Color) & "}"
+        #Else
+            strColor = "{background-color: " & getHtmlRGB(r.Interior.Color) & "}"
+        #End If
+    End If
     
-        If r.HasFormula Then
-        Else
-            strValue = CharacterStyle(r)
-        End If
-    Else
+    strValue = r.Value
+            
+    If r.HasFormula Then
         Select Case True
             Case r.Font.Strikethrough
                 strValue = "-" & strValue & "-"
-            Case r.Font.Italic
-                strValue = "_" & strValue & "_"
             Case r.Font.Underline <> xlUnderlineStyleNone
                 strValue = "+" & strValue & "+"
+            Case r.Font.Italic
+                strValue = "_" & strValue & "_"
             Case Else
         End Select
+        If chkColor.Value Then
+            #If VBA7 Then
+                strValue = "%{color:" & getHtmlRGB(r.DisplayFormat.Font.Color) & "}" & strValue & "%"
+            #Else
+                strValue = "%{color:" & getHtmlRGB(r.Font.Color) & "}" & strValue & "%"
+            #End If
+        End If
         If r.Font.Bold Then
             strValue = "*" & strValue & "*"
         End If
+    Else
+        If VarType(r.Value) = vbString Then
+            strValue = CharacterStyle(r)
+        End If
     End If
 
-    getAttr = strH & strV & ". " & strValue
+    getAttr = strH & strV & strColor & ". " & strValue
 
 End Function
 Function CharacterStyle(ByRef r As Range) As String
@@ -196,14 +217,14 @@ Function CharacterStyle(ByRef r As Range) As String
     Dim blnStrike As Boolean
     Dim blnItalic As Boolean
     Dim blnUnder As Boolean
-    
+
     Dim strBuf As String
     Dim strTag As String
     Dim blnStart As Boolean
     Dim blnEnd As Boolean
-    
+
     For i = 1 To r.Characters.count
-    
+
         blnStart = False
         blnEnd = False
         strTag = ""
@@ -221,7 +242,7 @@ Function CharacterStyle(ByRef r As Range) As String
                 blnEnd = True
             End If
         End If
-            
+
         If r.Characters(i, 1).Font.Italic Then
             If blnItalic Then
             Else
@@ -236,7 +257,7 @@ Function CharacterStyle(ByRef r As Range) As String
                 blnEnd = True
             End If
         End If
-            
+
         If r.Characters(i, 1).Font.Underline <> xlUnderlineStyleNone Then
             If blnUnder Then
             Else
@@ -251,7 +272,7 @@ Function CharacterStyle(ByRef r As Range) As String
                 blnEnd = True
             End If
         End If
-            
+
         If r.Characters(i, 1).Font.Bold Then
             If blnBold Then
             Else
@@ -266,7 +287,7 @@ Function CharacterStyle(ByRef r As Range) As String
                 blnEnd = True
             End If
         End If
-        
+
         Select Case True
             Case blnStart
                 strBuf = strBuf & " " & strTag & r.Characters(i, 1).Text
@@ -275,29 +296,34 @@ Function CharacterStyle(ByRef r As Range) As String
             Case Else
                 strBuf = strBuf & r.Characters(i, 1).Text
         End Select
-    
+
     Next
-    
+
     If blnStrike Then
         strBuf = strBuf & "-"
         blnStrike = False
     End If
-    
+
     If blnItalic Then
         strBuf = strBuf & "_"
         blnItalic = False
     End If
-    
+
     If blnUnder Then
         strBuf = strBuf & "+"
         blnUnder = False
     End If
-    
+
     If blnBold Then
         strBuf = strBuf & "*"
         blnBold = False
     End If
-    
+
     CharacterStyle = strBuf
 
 End Function
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+    Call SaveSetting(C_TITLE, "Textile", "Head", chkHead.Value)
+    Call SaveSetting(C_TITLE, "Textile", "Color", chkColor.Value)
+End Sub

@@ -227,7 +227,7 @@ Private Sub cmdExport_Click()
     
     Print #fp, "# RelaxTools Addin ショートカットキー定義"
     Dim strVer As String
-    strVer = Split(ThisWorkbook.BuiltinDocumentProperties("Comments").value, vbLf)(0)
+    strVer = Split(ThisWorkbook.BuiltinDocumentProperties("Comments").Value, vbLf)(0)
     Print #fp, "# Export " & strVer
     Print #fp, "#"
     For i = 0 To lstSetting.ListCount - 1
@@ -289,7 +289,7 @@ Private Sub cmdImport_Click()
     
     Open strFile For Input As fp
     
-    Do Until EOF(fp)
+    Do Until Eof(fp)
         
         Line Input #fp, strBuf
         
@@ -322,7 +322,7 @@ Private Sub cmdImport_Click()
     
     l = 0
     i = lstSetting.ListCount
-    Do Until EOF(fp)
+    Do Until Eof(fp)
 pass:
         Line Input #fp, strBuf
         l = l + 1
@@ -396,11 +396,11 @@ Private Function existMacro(ByVal strMacro As String) As Boolean
     i = C_COM_DATA
 
     'マクロシートのロード
-    Do Until WS.Cells(i, C_COM_NO).value = ""
+    Do Until WS.Cells(i, C_COM_NO).Value = ""
 
-        If WS.Cells(i, C_COM_USE).value <> "－" Then
+        If WS.Cells(i, C_COM_USE).Value <> "－" Then
         
-            If WS.Cells(i, C_COM_MACRO).value = strMacro Then
+            If WS.Cells(i, C_COM_MACRO).Value = strMacro Then
                 existMacro = True
                 Exit Do
             End If
@@ -433,9 +433,9 @@ Private Function existHotKey(ByVal strKey As String) As Boolean
     i = C_KEY_DATA
 
     'マクロシートのロード
-    Do Until WS.Cells(i, C_KEY_NO).value = ""
+    Do Until WS.Cells(i, C_KEY_NO).Value = ""
         
-        If WS.Cells(i, C_KEY_KEY).value = strKey Then
+        If WS.Cells(i, C_KEY_KEY).Value = strKey Then
             existHotKey = True
             Exit Do
         End If
@@ -624,12 +624,12 @@ Private Sub UserForm_Initialize()
     
     cboCategory.AddItem "すべて"
     'マクロシートのロード
-    Do Until WS.Cells(i, C_COM_NO).value = ""
+    Do Until WS.Cells(i, C_COM_NO).Value = ""
 
-        If WS.Cells(i, C_COM_USE).value <> "－" Then
-            If WS.Cells(i, C_COM_CATEGORY).value <> strBefore Then
-                cboCategory.AddItem WS.Cells(i, C_COM_CATEGORY).value
-                strBefore = WS.Cells(i, C_COM_CATEGORY).value
+        If WS.Cells(i, C_COM_USE).Value <> "－" Then
+            If WS.Cells(i, C_COM_CATEGORY).Value <> strBefore Then
+                cboCategory.AddItem WS.Cells(i, C_COM_CATEGORY).Value
+                strBefore = WS.Cells(i, C_COM_CATEGORY).Value
             End If
         End If
         i = i + 1
@@ -645,12 +645,12 @@ Private Sub UserForm_Initialize()
     j = 0
 
     'マクロシートのロード
-    Do Until WS.Cells(i, C_KEY_NO).value = ""
+    Do Until WS.Cells(i, C_KEY_NO).Value = ""
         
         lstKey.AddItem ""
         lstKey.List(j, 0) = j + 1
-        lstKey.List(j, 1) = WS.Cells(i, C_KEY_NAME).value
-        lstKey.List(j, 2) = WS.Cells(i, C_KEY_KEY).value
+        lstKey.List(j, 1) = WS.Cells(i, C_KEY_NAME).Value
+        lstKey.List(j, 2) = WS.Cells(i, C_KEY_KEY).Value
         j = j + 1
         i = i + 1
 
@@ -719,15 +719,15 @@ Sub dispCommand()
     lstCommand.Clear
 
     'マクロシートのロード
-    Do Until WS.Cells(i, C_COM_NO).value = ""
+    Do Until WS.Cells(i, C_COM_NO).Value = ""
         
-        If WS.Cells(i, C_COM_USE).value <> "－" Then
-            If (cboCategory.ListIndex = 0 Or cboCategory.Text = WS.Cells(i, C_COM_CATEGORY).value) And (txtKinou.Text = "" Or InStr(WS.Cells(i, C_COM_DISP_NAME).value, txtKinou.Text) > 0) Then
+        If WS.Cells(i, C_COM_USE).Value <> "－" Then
+            If (cboCategory.ListIndex = 0 Or cboCategory.Text = WS.Cells(i, C_COM_CATEGORY).Value) And (txtKinou.Text = "" Or InStr(WS.Cells(i, C_COM_DISP_NAME).Value, txtKinou.Text) > 0) Then
                 lstCommand.AddItem ""
                 lstCommand.List(j, 0) = j + 1
-                lstCommand.List(j, 1) = WS.Cells(i, C_COM_CATEGORY).value
-                lstCommand.List(j, 2) = WS.Cells(i, C_COM_DISP_NAME).value
-                lstCommand.List(j, 3) = WS.Cells(i, C_COM_MACRO).value
+                lstCommand.List(j, 1) = WS.Cells(i, C_COM_CATEGORY).Value
+                lstCommand.List(j, 2) = WS.Cells(i, C_COM_DISP_NAME).Value
+                lstCommand.List(j, 3) = WS.Cells(i, C_COM_MACRO).Value
                 j = j + 1
             End If
         End If
@@ -752,10 +752,10 @@ Sub getGuidence()
     txtGuidence.Text = ""
 
     'マクロシートのロード
-    Do Until WS.Cells(i, 1).value = ""
+    Do Until WS.Cells(i, 1).Value = ""
         
-        If WS.Cells(i, 3).value = cmbShift.List(cmbShift.ListIndex, 1) & lstKey.List(lstKey.ListIndex, 2) Then
-            txtGuidence.Text = "【" & WS.Cells(i, 2).value & "】" & WS.Cells(i, 4).value
+        If WS.Cells(i, 3).Value = cmbShift.List(cmbShift.ListIndex, 1) & lstKey.List(lstKey.ListIndex, 2) Then
+            txtGuidence.Text = "【" & WS.Cells(i, 2).Value & "】" & WS.Cells(i, 4).Value
             Exit Do
         End If
         i = i + 1

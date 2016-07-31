@@ -80,7 +80,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     On Error GoTo e
     
-    If rlxIsAlphabet(r.value) Then
+    If rlxIsAlphabet(r.Value) Then
     Else
         lngEr = lngEr + 1
         If c Is Nothing Then

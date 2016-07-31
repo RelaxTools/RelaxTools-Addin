@@ -52,7 +52,7 @@ End Sub
 
 Private Sub cmdOK_Click()
 
-    SaveSetting C_TITLE, "electoric", "String", txtString.value
+    SaveSetting C_TITLE, "electoric", "String", txtString.Value
     Unload Me
     
 End Sub
@@ -60,6 +60,6 @@ End Sub
 
 Private Sub UserForm_Initialize()
 
-    txtString.value = GetSetting(C_TITLE, "electoric", "String", "")
+    txtString.Value = GetSetting(C_TITLE, "electoric", "String", "")
 
 End Sub

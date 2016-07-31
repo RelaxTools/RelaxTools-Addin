@@ -214,7 +214,7 @@ Public Sub Run()
                 '---------------------------
                 'メインイベント
                 '---------------------------
-                If IsEmpty(r.value) Or IsError(r.value) Or (Not Func And r.HasFormula) Then
+                If IsEmpty(r.Value) Or IsError(r.Value) Or (Not Func And r.HasFormula) Then
                 Else
                     RaiseEvent SelectionMain(r, mblnNotHoldFormat, Cancel)
                     If Cancel Then

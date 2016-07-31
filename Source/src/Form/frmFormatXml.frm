@@ -56,7 +56,7 @@ Private Sub cmdOK_Click()
         Exit Sub
     End If
     
-    SaveSetting C_TITLE, "XML", "Tab", optTab.value
+    SaveSetting C_TITLE, "XML", "Tab", optTab.Value
     SaveSetting C_TITLE, "XML", "Seed", txtSpace.Text
     
     Unload Me
@@ -65,22 +65,22 @@ End Sub
 
 
 Private Sub optSpace_Change()
-    txtSpace.enabled = optSpace.value
+    txtSpace.enabled = optSpace.Value
 End Sub
 
 Private Sub optTab_Change()
-    txtSpace.enabled = optSpace.value
+    txtSpace.enabled = optSpace.Value
 End Sub
 
 
 Private Sub UserForm_Initialize()
 
     If CBool(GetSetting(C_TITLE, "XML", "Tab", False)) Then
-        optTab.value = True
-        optSpace.value = False
+        optTab.Value = True
+        optSpace.Value = False
     Else
-        optTab.value = False
-        optSpace.value = True
+        optTab.Value = False
+        optSpace.Value = True
     End If
 
     txtSpace.Text = GetSetting(C_TITLE, "XML", "Seed", 2)

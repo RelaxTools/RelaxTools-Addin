@@ -90,9 +90,9 @@ Private Function getSheetItem(control As IRibbonControl, lngItem As Long) As Str
     
     i = C_START_ROW
     
-    Do Until ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_NO).value = ""
-        If strBuf = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_MACRO).value Then
-            getSheetItem = ThisWorkbook.Worksheets("HELP").Cells(i, lngItem).value
+    Do Until ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_NO).Value = ""
+        If strBuf = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_MACRO).Value Then
+            getSheetItem = ThisWorkbook.Worksheets("HELP").Cells(i, lngItem).Value
             Exit Do
         End If
         i = i + 1

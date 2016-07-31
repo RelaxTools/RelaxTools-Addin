@@ -125,7 +125,7 @@ Private Sub cmdSearch_Click()
     
         If s.BuiltIn Then
         Else
-            If chkStyle.value Then
+            If chkStyle.Value Then
                 If Not SearchStyle(s.NameLocal) Then
                     lstStyle.AddItem s.NameLocal
                 End If

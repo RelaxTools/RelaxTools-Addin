@@ -71,11 +71,11 @@ Private Sub SFWork_SelectionMain(r As Range, Cancel As Boolean)
 
     On Error GoTo e
     
-    If IsError(r.value) Then
+    If IsError(r.Value) Then
         Exit Sub
     End If
     
-    If r.value = "" Or IsEmpty(r.value) Then
+    If r.Value = "" Or IsEmpty(r.Value) Then
         If mRange Is Nothing Then
             Set mRange = r
         Else

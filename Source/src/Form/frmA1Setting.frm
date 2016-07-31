@@ -47,7 +47,7 @@ Option Explicit
 
 Private Sub chkRatio_Click()
         
-    cboPercent.enabled = chkRatio.value
+    cboPercent.enabled = chkRatio.Value
 
 End Sub
 
@@ -65,8 +65,8 @@ Private Sub cmdOK_Click()
             Exit Sub
     End Select
 
-    SaveSetting C_TITLE, "A1Setting", "ratio", chkRatio.value
-    SaveSetting C_TITLE, "A1Setting", "percent", cboPercent.value
+    SaveSetting C_TITLE, "A1Setting", "ratio", chkRatio.Value
+    SaveSetting C_TITLE, "A1Setting", "percent", cboPercent.Value
     Unload Me
     
 End Sub
@@ -74,7 +74,7 @@ End Sub
 
 Private Sub UserForm_Initialize()
 
-    chkRatio.value = GetSetting(C_TITLE, "A1Setting", "ratio", False)
+    chkRatio.Value = GetSetting(C_TITLE, "A1Setting", "ratio", False)
     
     cboPercent.Clear
     cboPercent.AddItem "25"
@@ -84,8 +84,8 @@ Private Sub UserForm_Initialize()
     cboPercent.AddItem "200"
     cboPercent.AddItem "400"
     
-    cboPercent.value = GetSetting(C_TITLE, "A1Setting", "percent", "100")
+    cboPercent.Value = GetSetting(C_TITLE, "A1Setting", "percent", "100")
     
-    cboPercent.enabled = chkRatio.value
+    cboPercent.enabled = chkRatio.Value
 
 End Sub

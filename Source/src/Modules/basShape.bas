@@ -100,7 +100,7 @@ Sub drawFlowchartStoredData()
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeFlowchartStoredData, r.Left + r.Width, r.Top, C_RECT_X * C_NORMAL_WIDTH, C_RECT_Y * C_NORMAL_HEIGHT)
     
         With objDataSet.TextFrame
-            .Characters.Text = r.value
+            .Characters.Text = r.Value
             .HorizontalAlignment = xlCenter
             .VerticalAlignment = xlCenter
         End With
@@ -122,7 +122,7 @@ Sub drawTextbox1()
 
     For Each r In Selection
         
-        strBuf = r.value
+        strBuf = r.Value
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
@@ -130,7 +130,7 @@ Sub drawTextbox1()
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
-            .Characters.Text = r.value
+            .Characters.Text = r.Value
         End With
             
 
@@ -151,7 +151,7 @@ Sub drawTextbox2()
 
     For Each r In Selection
         
-        strBuf = r.value
+        strBuf = r.Value
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
@@ -159,7 +159,7 @@ Sub drawTextbox2()
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
-            .Characters.Text = r.value
+            .Characters.Text = r.Value
         End With
             
         '枠なしの場合
@@ -182,7 +182,7 @@ Sub drawShapeRectangularCallout()
 
     For Each r In Selection
         
-        strBuf = r.value
+        strBuf = r.Value
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
@@ -190,7 +190,7 @@ Sub drawShapeRectangularCallout()
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
-            .Characters.Text = r.value
+            .Characters.Text = r.Value
         End With
         
         Set objDataSet = Nothing
@@ -210,7 +210,7 @@ Sub drawShapeRoundedRectangularCallout()
 
     For Each r In Selection
         
-        strBuf = r.value
+        strBuf = r.Value
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
@@ -218,7 +218,7 @@ Sub drawShapeRoundedRectangularCallout()
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRoundedRectangularCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
-            .Characters.Text = r.value
+            .Characters.Text = r.Value
         End With
         
         Set objDataSet = Nothing
@@ -238,7 +238,7 @@ Sub drawShapeOvalCallout()
 
     For Each r In Selection
         
-        strBuf = r.value
+        strBuf = r.Value
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
@@ -246,7 +246,7 @@ Sub drawShapeOvalCallout()
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOvalCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
-            .Characters.Text = r.value
+            .Characters.Text = r.Value
         End With
         
         Set objDataSet = Nothing
@@ -266,7 +266,7 @@ Sub drawShapeCloudCallout()
 
     For Each r In Selection
         
-        strBuf = r.value
+        strBuf = r.Value
         
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
@@ -274,7 +274,7 @@ Sub drawShapeCloudCallout()
         Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeCloudCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
-            .Characters.Text = r.value
+            .Characters.Text = r.Value
         End With
         
         Set objDataSet = Nothing

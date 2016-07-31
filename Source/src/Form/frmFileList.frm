@@ -86,7 +86,7 @@ Private Sub cmdRun_Click()
     End If
     
     'チェックがどれか１つでも入力されていない場合
-    If chkFile.value Or chkFolder.value Or chkFileSize.value Or chkDate.value Then
+    If chkFile.Value Or chkFolder.Value Or chkFileSize.Value Or chkDate.Value Then
     Else
         MsgBox "出力項目を１つ以上選択してください。", vbExclamation, "ファイル一覧取得"
         chkFile.SetFocus
@@ -103,7 +103,7 @@ Private Sub cmdRun_Click()
     mMm.Disable
     mMm.DispGuidance "ファイルの数をカウントしています..."
     
-    rlxGetFilesCount objFs, FileName, lngFCnt, True, chkFolder.value, chkSubFolder.value
+    rlxGetFilesCount objFs, FileName, lngFCnt, True, chkFolder.Value, chkSubFolder.Value
     
     mMm.StartGauge lngFCnt
     
@@ -160,21 +160,21 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
             Exit Sub
         End If
         lngCol2 = lngCol
-        If chkFile.value Then
+        If chkFile.Value Then
             Cells(lngRow, lngCol2).NumberFormatLocal = "@"
             Cells(lngRow, lngCol2) = objfl.Name
             lngCol2 = lngCol2 + 1
         End If
-        If chkFolder.value Then
+        If chkFolder.Value Then
             Cells(lngRow, lngCol2).NumberFormatLocal = "@"
             Cells(lngRow, lngCol2) = objfl.ParentFolder.Path
             lngCol2 = lngCol2 + 1
         End If
-        If chkFileSize.value Then
+        If chkFileSize.Value Then
             Cells(lngRow, lngCol2) = Format(objfl.Size, "#,##0")
             lngCol2 = lngCol2 + 1
         End If
-        If chkDate.value Then
+        If chkDate.Value Then
             Cells(lngRow, lngCol2).NumberFormatLocal = "@"
             Cells(lngRow, lngCol2) = Format(objfl.DateLastModified, "yyyy/mm/dd hh:mm:ss")
             lngCol2 = lngCol2 + 1
@@ -204,23 +204,23 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
             Exit Sub
         End If
         'フォルダ取得あり
-        If chkFolders.value Then
+        If chkFolders.Value Then
             lngCol2 = lngCol
-            If chkFile.value Then
+            If chkFile.Value Then
                 Cells(lngRow, lngCol2).NumberFormatLocal = "@"
                 Cells(lngRow, lngCol2) = objSub.Name
                 lngCol2 = lngCol2 + 1
             End If
-            If chkFolder.value Then
+            If chkFolder.Value Then
                 Cells(lngRow, lngCol2).NumberFormatLocal = "@"
                 Cells(lngRow, lngCol2) = objSub.ParentFolder.Path
                 lngCol2 = lngCol2 + 1
             End If
-            If chkFileSize.value Then
+            If chkFileSize.Value Then
                 Cells(lngRow, lngCol2) = Format(objSub.Size, "#,##0")
                 lngCol2 = lngCol2 + 1
             End If
-            If chkDate.value Then
+            If chkDate.Value Then
                 Cells(lngRow, lngCol2).NumberFormatLocal = "@"
                 Cells(lngRow, lngCol2) = Format(objSub.DateLastModified, "yyyy/mm/dd hh:mm:ss")
                 lngCol2 = lngCol2 + 1
@@ -229,7 +229,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
             lngCount = lngCount + 1
         End If
         'サブフォルダ検索あり
-        If chkSubFolder.value Then
+        If chkSubFolder.Value Then
             FileDisp objFs, objSub.Path, lngRow, lngCol, lngCount, lngMax
         End If
     Next

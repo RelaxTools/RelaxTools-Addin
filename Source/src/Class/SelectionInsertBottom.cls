@@ -88,14 +88,14 @@ End Sub
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
     On Error GoTo e
 
-    If IsError(r.value) Then
+    If IsError(r.Value) Then
         Exit Sub
     End If
 
-    If Not (NotHoldFormat) And VarType(r.value) = vbString Then
+    If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
         r.Characters(r.Characters.count + 1, 0).Insert mstrIns
     Else
-        r.value = r.value & mstrIns
+        r.Value = r.Value & mstrIns
     End If
 
     Exit Sub

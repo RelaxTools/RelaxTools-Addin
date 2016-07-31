@@ -101,7 +101,7 @@ Sub dispPreview()
     Set s = New StampMitomeDTO
     
     Select Case True
-        Case optNormal.value
+        Case optNormal.Value
             s.StampType = C_STAMP_MITOME_NORMAL
             s.Text = txtName.Text
             Dim c As control
@@ -130,12 +130,12 @@ Sub dispPreview()
     s.Font = cmbFont.Text
     
     Select Case True
-        Case optLineSingle.value
+        Case optLineSingle.Value
 '            fraRotate.enabled = True
 '            optVertical.enabled = True
 '            optHolizontal.enabled = True
             s.Line = C_STAMP_LINE_SINGLE
-        Case optLineDouble.value
+        Case optLineDouble.Value
 '            fraRotate.enabled = False
 '            optVertical.enabled = False
 '            optHolizontal.enabled = False
@@ -150,10 +150,10 @@ Sub dispPreview()
     
     Dim lngSize As Double
     Select Case True
-        Case optLineSingle.value, optLineBold.value
+        Case optLineSingle.Value, optLineBold.Value
             lngSize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Width
 
-        Case optLineDouble.value
+        Case optLineDouble.Value
             lngSize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Width * 0.8
 
     End Select
@@ -167,13 +167,13 @@ Sub dispPreview()
     s.rect = txtRect.Text
     
     Select Case True
-        Case optVertical.value
+        Case optVertical.Value
             s.Rotate = C_STAMP_ROTATE_VERTICAL
-        Case optHolizontal.value
+        Case optHolizontal.Value
             s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
     End Select
 
-    If chkFill.value Then
+    If chkFill.Value Then
         s.Fill = C_STAMP_FILL_ON
     Else
         s.Fill = C_STAMP_FILL_OFF
@@ -522,7 +522,7 @@ Private Sub cmdOK_Click()
     'プロパティ保存
     setPropertyMitome col
     
-    Call SaveSetting(C_TITLE, "StampMitome", "Confirm", chkConfirm.value)
+    Call SaveSetting(C_TITLE, "StampMitome", "Confirm", chkConfirm.Value)
     
     Set col = Nothing
     
@@ -589,20 +589,20 @@ Private Sub lstStamp_Change()
     
     Select Case varBuf(C_StampType)
         Case C_STAMP_MITOME_NORMAL
-            optNormal.value = True
+            optNormal.Value = True
             txtName.Text = varBuf(C_TEXT)
         Case Else
-            optFile.value = True
+            optFile.Value = True
             txtName.Text = ""
     End Select
     
     Select Case varBuf(C_Line)
         Case C_STAMP_LINE_SINGLE
-            optLineSingle.value = True
+            optLineSingle.Value = True
         Case C_STAMP_LINE_DOUBLE
-            optLineDouble.value = True
+            optLineDouble.Value = True
         Case Else
-            optLineBold.value = True
+            optLineBold.Value = True
     End Select
     
     
@@ -618,15 +618,15 @@ Private Sub lstStamp_Change()
 
     Select Case varBuf(C_Rotate)
         Case C_STAMP_ROTATE_HOLIZONTAL
-            optHolizontal.value = True
+            optHolizontal.Value = True
         Case C_STAMP_ROTATE_VERTICAL
-            optVertical.value = True
+            optVertical.Value = True
     End Select
     
     If varBuf(C_Fill) = C_STAMP_FILL_ON Then
-        chkFill.value = True
+        chkFill.Value = True
     Else
-        chkFill.value = False
+        chkFill.Value = False
     End If
     
     Dim strFont As String
@@ -870,20 +870,20 @@ Private Sub UserForm_Initialize()
         txtName.Text = ""
         txtFile.Text = ""
         cmbFont.Text = "ＭＳ ゴシック"
-        optLineSingle.value = True
-        optNormal.value = True
+        optLineSingle.Value = True
+        optNormal.Value = True
         txtSize.Text = "10.5"
         lblColor.BackColor = vbRed
         txtLineSize.Text = "10"
         txtRound.Text = "0.50"
-        optVertical.value = True
+        optVertical.Value = True
     
         mblnRefresh = False
 '        dispPreview
         
     End If
 
-    chkConfirm.value = GetSetting(C_TITLE, "StampMitome", "Confirm", False)
+    chkConfirm.Value = GetSetting(C_TITLE, "StampMitome", "Confirm", False)
     
 End Sub
 Private Function spinUp(ByVal vntValue As Variant) As Variant
@@ -1018,7 +1018,7 @@ Private Sub cmdAdd_Click()
 
     
     Select Case True
-        Case optNormal.value
+        Case optNormal.Value
            varBuf(C_StampType) = C_STAMP_MITOME_NORMAL
         Case Else
             varBuf(C_StampType) = C_STAMP_MITOME_FILE
@@ -1031,9 +1031,9 @@ Private Sub cmdAdd_Click()
     varBuf(C_SIZE) = txtSize.Text
     
     Select Case True
-        Case optLineSingle.value
+        Case optLineSingle.Value
             varBuf(C_Line) = C_STAMP_LINE_SINGLE
-        Case optLineDouble.value
+        Case optLineDouble.Value
             varBuf(C_Line) = C_STAMP_LINE_DOUBLE
         Case Else
             varBuf(C_Line) = C_STAMP_LINE_BOLD
@@ -1046,7 +1046,7 @@ Private Sub cmdAdd_Click()
     varBuf(C_Round) = txtRound.Text
     varBuf(C_Rect) = txtRect.Text
     
-    If chkFill.value Then
+    If chkFill.Value Then
         varBuf(C_Fill) = C_STAMP_FILL_ON
     Else
         varBuf(C_Fill) = C_STAMP_FILL_OFF

@@ -81,7 +81,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     On Error GoTo e
     
-    If rlxIsModulus11_10_2(r.value) Then
+    If rlxIsModulus11_10_2(r.Value) Then
     Else
         lngEr = lngEr + 1
         If c Is Nothing Then

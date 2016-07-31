@@ -104,20 +104,20 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     On Error GoTo e
 
-    If IsError(r.value) Then
+    If IsError(r.Value) Then
         Exit Sub
     End If
 
-    lngPos = rlxSetLimit(1, Len(r.value) + 1, mlngIns)
+    lngPos = rlxSetLimit(1, Len(r.Value) + 1, mlngIns)
 
-    If Not (NotHoldFormat) And VarType(r.value) = vbString Then
+    If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
         r.Characters(lngPos, 0).Insert mstrIns
     Else
 
-        f = Mid$(r.value, 1, lngPos - 1)
-        b = Mid$(r.value, lngPos)
+        f = Mid$(r.Value, 1, lngPos - 1)
+        b = Mid$(r.Value, lngPos)
 
-        r.value = f & mstrIns & b
+        r.Value = f & mstrIns & b
     End If
 
     Exit Sub

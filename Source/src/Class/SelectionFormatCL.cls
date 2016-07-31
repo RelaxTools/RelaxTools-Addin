@@ -99,7 +99,7 @@ Private Sub SFWork_SelectionMain(r As Range)
     lngRow = 1
     For lngCol = 1 To r.Columns.count
 
-        r(lngRow, lngCol).value = "○"
+        r(lngRow, lngCol).Value = "○"
             
         If (lngCol Mod lngSeed) = 0 Then
             lngRow = lngRow + 1

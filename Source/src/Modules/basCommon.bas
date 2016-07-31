@@ -2342,3 +2342,15 @@ End Function
 Function UnSyncRun(ByVal strMacro As String, Optional ByVal lngSec As Long = 0) As Long
     Application.OnTime DateAdd("s", lngSec, Now), strMacro
 End Function
+Function getHtmlRGB(ByVal lngColor As Variant) As String
+
+    Dim strBuf As String
+    If IsNull(lngColor) Then
+        getHtmlRGB = "#000000"
+    Else
+    
+        strBuf = Right$("000000" & Hex$(lngColor), 6)
+    
+        getHtmlRGB = "#" & Mid$(strBuf, 5, 2) & Mid$(strBuf, 3, 2) & Mid$(strBuf, 1, 2)
+    End If
+End Function

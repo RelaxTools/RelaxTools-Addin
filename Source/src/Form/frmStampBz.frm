@@ -121,20 +121,20 @@ Private Sub cmdAdd_Click()
     ReDim varBuf(C_TEXT To C_LineSize)
     
     Select Case True
-        Case optRectangle.value
+        Case optRectangle.Value
             varBuf(C_StampType) = "1"
-        Case optSquare.value
+        Case optSquare.Value
             varBuf(C_StampType) = "2"
-        Case optCircle.value
+        Case optCircle.Value
             varBuf(C_StampType) = "3"
     End Select
     
     varBuf(C_TEXT) = txtText.Text
     
     Select Case True
-        Case optSystemDate.value
+        Case optSystemDate.Value
             varBuf(C_DateType) = C_STAMP_DATE_SYSTEM
-        Case optUserDate.value
+        Case optUserDate.Value
             varBuf(C_DateType) = C_STAMP_DATE_USER
     End Select
     
@@ -439,18 +439,18 @@ Sub dispPreview()
     Set bz = New StampBzDTO
     
     Select Case True
-        Case optRectangle.value
+        Case optRectangle.Value
             bz.StampType = C_STAMP_BZ_RECTANGLE
-        Case optSquare.value
+        Case optSquare.Value
             bz.StampType = C_STAMP_BZ_SQUARE
-        Case optCircle.value
+        Case optCircle.Value
             bz.StampType = C_STAMP_BZ_CIRCLE
     End Select
     
     Select Case True
-        Case optHolizontal.value
+        Case optHolizontal.Value
             bz.Rotate = C_STAMP_ROTATE_HOLIZONTAL
-        Case optVertical.value
+        Case optVertical.Value
             bz.Rotate = C_STAMP_ROTATE_VERTICAL
     End Select
     
@@ -458,9 +458,9 @@ Sub dispPreview()
     
     bz.DateFormat = txtFormat.Text
     Select Case True
-        Case optSystemDate.value
+        Case optSystemDate.Value
             bz.DateType = C_STAMP_DATE_SYSTEM
-        Case optUserDate.value
+        Case optUserDate.Value
             bz.DateType = C_STAMP_DATE_USER
     End Select
     bz.UserDate = txtUserDate.Text
@@ -497,27 +497,27 @@ Sub dispPreview()
     ReDim varBuf(C_TEXT To C_LineSize)
     
     Select Case True
-        Case optRectangle.value
+        Case optRectangle.Value
             varBuf(C_StampType) = C_STAMP_BZ_RECTANGLE
-        Case optSquare.value
+        Case optSquare.Value
             varBuf(C_StampType) = C_STAMP_BZ_SQUARE
-        Case optCircle.value
+        Case optCircle.Value
             varBuf(C_StampType) = C_STAMP_BZ_CIRCLE
     End Select
     
     Select Case True
-        Case optHolizontal.value
+        Case optHolizontal.Value
             varBuf(C_Rotate) = C_STAMP_ROTATE_HOLIZONTAL
-        Case optVertical.value
+        Case optVertical.Value
             varBuf(C_Rotate) = C_STAMP_ROTATE_VERTICAL
     End Select
     
    varBuf(C_TEXT) = txtText.Text
     
     Select Case True
-        Case optSystemDate.value
+        Case optSystemDate.Value
            varBuf(C_DateType) = C_STAMP_DATE_SYSTEM
-        Case optUserDate.value
+        Case optUserDate.Value
             varBuf(C_DateType) = C_STAMP_DATE_USER
     End Select
     
@@ -720,20 +720,20 @@ Private Sub lstStampBz_Click()
 
     Select Case varBuf(C_StampType)
         Case C_STAMP_BZ_RECTANGLE
-            optRectangle.value = True
+            optRectangle.Value = True
         Case C_STAMP_BZ_SQUARE
-            optSquare.value = True
+            optSquare.Value = True
         Case C_STAMP_BZ_CIRCLE
-            optCircle.value = True
+            optCircle.Value = True
 '        Case C_STAMP_BZ_SAKURA
 '            optSakura.Value = True
     End Select
     
     Select Case varBuf(C_Rotate)
         Case C_STAMP_ROTATE_HOLIZONTAL
-            optHolizontal.value = True
+            optHolizontal.Value = True
         Case C_STAMP_ROTATE_VERTICAL
-            optVertical.value = True
+            optVertical.Value = True
     End Select
     
     txtText.Text = varBuf(C_TEXT)
@@ -742,9 +742,9 @@ Private Sub lstStampBz_Click()
     strType = varBuf(C_DateType)
     Select Case strType
         Case C_STAMP_DATE_SYSTEM
-            optSystemDate.value = True
+            optSystemDate.Value = True
         Case C_STAMP_DATE_USER
-            optUserDate.value = True
+            optUserDate.Value = True
     End Select
     
     Dim strFormat As String
@@ -960,7 +960,7 @@ Private Sub UserForm_Initialize()
         
         cmbFont.Text = "ＭＳ ゴシック"
         txtUserDate.Text = Format$(Now, "yyyy/m/d")
-        optRectangle.value = True
+        optRectangle.Value = True
         optSystemDate = True
         txtFormat.Text = "yyyy.m.d"
         txtRound.Text = "0.15"

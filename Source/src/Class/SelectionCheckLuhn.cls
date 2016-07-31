@@ -82,7 +82,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    If rlxIsLuhn(r.value) Then
+    If rlxIsLuhn(r.Value) Then
     Else
         lngEr = lngEr + 1
         If c Is Nothing Then

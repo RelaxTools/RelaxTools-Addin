@@ -52,15 +52,15 @@ End Sub
 
 Private Sub cmdOK_Click()
 
-    SaveSetting C_TITLE, "FormatSql", "RightComma", chkRightComma.value
-    SaveSetting C_TITLE, "FormatSql", "UpperCase", chkUpperCase.value
+    SaveSetting C_TITLE, "FormatSql", "RightComma", chkRightComma.Value
+    SaveSetting C_TITLE, "FormatSql", "UpperCase", chkUpperCase.Value
     Unload Me
     
 End Sub
 
 Private Sub UserForm_Initialize()
 
-    chkRightComma.value = GetSetting(C_TITLE, "FormatSql", "RightComma", False)
-    chkUpperCase.value = GetSetting(C_TITLE, "FormatSql", "UpperCase", False)
+    chkRightComma.Value = GetSetting(C_TITLE, "FormatSql", "RightComma", False)
+    chkUpperCase.Value = GetSetting(C_TITLE, "FormatSql", "UpperCase", False)
     
 End Sub

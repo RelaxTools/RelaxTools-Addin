@@ -114,7 +114,7 @@ Private Sub UserForm_Initialize()
     
     Set col = basKantan.getPropertyKantan()
 
-    Dim k As KantanLine
+    Dim k As KantanLineDTO
 
     For i = 0 To col.count - 1
     
@@ -151,10 +151,10 @@ End Sub
 Private Sub cmdAdd_Click()
 
     Dim i As Long
-    Dim k As KantanLine
+    Dim k As KantanLineDTO
     Dim strBuf As String
 
-    Set k = New KantanLine
+    Set k = New KantanLineDTO
     
     k.Text = txtName.Text
     k.HHeadLineCount = txtHead.Text
@@ -169,14 +169,14 @@ Private Sub cmdAdd_Click()
     k.HeadColor = lblHead.BackColor
     k.EvenColor = lblEven.BackColor
     
-    k.EnableHogan = chkHoganMode.value
-    k.EnableEvenColor = chkLineColor.value
+    k.EnableHogan = chkHoganMode.Value
+    k.EnableEvenColor = chkLineColor.Value
     
-    k.AuthoHogan = chkAutoHogan.value
+    k.AuthoHogan = chkAutoHogan.Value
     k.HoganJudgeLineCount = Val(txtHoganJudgeLine.Text)
     
-    k.EnableHRepeat = chkHRepeat.value
-    k.EnableVRepeat = chkVRepeat.value
+    k.EnableHRepeat = chkHRepeat.Value
+    k.EnableVRepeat = chkVRepeat.Value
 
     i = lstStamp.ListCount
     
@@ -277,7 +277,7 @@ End Sub
 
 Private Sub cmdOK_Click()
 
-    Dim s As KantanLine
+    Dim s As KantanLineDTO
     Dim col As Collection
     Dim i As Long
     Dim varBuf As Variant
@@ -330,7 +330,7 @@ Private Sub lstStamp_Click()
 
     strBuf = lstStamp.List(i, C_DATA)
 
-    Dim k As KantanLine
+    Dim k As KantanLineDTO
 
     Set k = basKantan.deserialize(strBuf)
 
@@ -346,12 +346,12 @@ Private Sub lstStamp_Click()
 
     lblHead.BackColor = k.HeadColor
     lblEven.BackColor = k.EvenColor
-    chkLineColor.value = k.EnableEvenColor
-    chkHRepeat.value = k.EnableHRepeat
-    chkVRepeat.value = k.EnableVRepeat
+    chkLineColor.Value = k.EnableEvenColor
+    chkHRepeat.Value = k.EnableHRepeat
+    chkVRepeat.Value = k.EnableVRepeat
     txtHoganJudgeLine.Text = k.HoganJudgeLineCount
-    chkAutoHogan.value = k.AuthoHogan
-    chkHoganMode.value = k.EnableHogan
+    chkAutoHogan.Value = k.AuthoHogan
+    chkHoganMode.Value = k.EnableHogan
 
     mblnRefresh = False
 
@@ -516,9 +516,9 @@ Sub dispPreview()
         Exit Sub
     End If
     
-    Dim s As KantanLine
+    Dim s As KantanLineDTO
     
-    Set s = New KantanLine
+    Set s = New KantanLineDTO
     
     s.Text = txtName.Text
     s.OutSideLine = Val(imgOutSide.tag)
@@ -533,12 +533,12 @@ Sub dispPreview()
     s.HeadColor = lblHead.BackColor
     s.EvenColor = lblEven.BackColor
     
-    s.EnableEvenColor = chkLineColor.value
-    s.EnableHogan = chkHoganMode.value
+    s.EnableEvenColor = chkLineColor.Value
+    s.EnableHogan = chkHoganMode.Value
     
-    s.EnableHRepeat = chkHRepeat.value
-    s.EnableVRepeat = chkVRepeat.value
-    s.AuthoHogan = chkAutoHogan.value
+    s.EnableHRepeat = chkHRepeat.Value
+    s.EnableVRepeat = chkVRepeat.Value
+    s.AuthoHogan = chkAutoHogan.Value
     
     If Val(txtHoganJudgeLine.Text) = 0 Then
         s.HoganJudgeLineCount = 1
@@ -561,14 +561,14 @@ Sub dispPreview()
     strBuf = serialize(s)
     lstStamp.List(i, C_DATA) = strBuf
     
-    lblEvenLabel.enabled = chkLineColor.value
-    lblEven.enabled = chkLineColor.value
+    lblEvenLabel.enabled = chkLineColor.Value
+    lblEven.enabled = chkLineColor.Value
     
-    chkAutoHogan.enabled = chkHoganMode.value
+    chkAutoHogan.enabled = chkHoganMode.Value
     
-    txtHoganJudgeLine.enabled = Not (chkAutoHogan.value)
-    spnHoganJudgeLine.enabled = Not (chkAutoHogan.value)
-    lblJudge.enabled = Not (chkAutoHogan.value)
+    txtHoganJudgeLine.enabled = Not (chkAutoHogan.Value)
+    spnHoganJudgeLine.enabled = Not (chkAutoHogan.Value)
+    lblJudge.enabled = Not (chkAutoHogan.Value)
 
     chkHRepeat.enabled = (Val(txtHead.Text) > 1)
     chkVRepeat.enabled = (Val(txtCol.Text) > 1)

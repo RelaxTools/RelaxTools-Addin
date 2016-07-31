@@ -100,9 +100,9 @@ Private Sub cmdAdd_Click()
     varBuf(C_Lower) = txtLower.Text
     
     Select Case True
-        Case optSystemDate.value
+        Case optSystemDate.Value
             varBuf(C_DateType) = C_STAMP_DATE_SYSTEM
-        Case optUserDate.value
+        Case optUserDate.Value
             varBuf(C_DateType) = C_STAMP_DATE_USER
     End Select
     
@@ -115,23 +115,23 @@ Private Sub cmdAdd_Click()
     varBuf(C_SIZE) = txtSize.Text
     
     Select Case True
-        Case optLineSingle.value
+        Case optLineSingle.Value
             varBuf(C_Line) = C_STAMP_LINE_SINGLE
-        Case optLineDouble.value
+        Case optLineDouble.Value
             varBuf(C_Line) = C_STAMP_LINE_DOUBLE
-        Case optLineBold.value
+        Case optLineBold.Value
             varBuf(C_Line) = C_STAMP_LINE_BOLD
     End Select
     
     varBuf(C_Font) = cmbFont.Text
     
-    If chkWordArt.value = True Then
+    If chkWordArt.Value = True Then
         varBuf(c_WordArt) = C_STAMP_WORDART_ON
     Else
         varBuf(c_WordArt) = C_STAMP_WORDART_OFF
     End If
     
-    If chkFill.value = True Then
+    If chkFill.Value = True Then
         varBuf(C_Fill) = C_STAMP_FILL_ON
     Else
         varBuf(C_Fill) = C_STAMP_FILL_OFF
@@ -273,9 +273,9 @@ Sub dispPreview()
     s.Upper = txtUpper.Text
     
     Select Case True
-        Case optSystemDate.value
+        Case optSystemDate.Value
             s.DateType = C_STAMP_DATE_SYSTEM
-        Case optUserDate.value
+        Case optUserDate.Value
             s.DateType = C_STAMP_DATE_USER
     End Select
     
@@ -284,13 +284,13 @@ Sub dispPreview()
     s.Font = cmbFont.Text
     
     Select Case True
-        Case optLineSingle.value
+        Case optLineSingle.Value
              s.Line = C_STAMP_LINE_SINGLE
 
-        Case optLineDouble.value
+        Case optLineDouble.Value
              s.Line = C_STAMP_LINE_DOUBLE
 
-        Case optLineBold.value
+        Case optLineBold.Value
              s.Line = C_STAMP_LINE_BOLD
 
     End Select
@@ -298,13 +298,13 @@ Sub dispPreview()
     s.Size = txtSize.Text
     s.UserDate = txtUserDate.Text
     
-    If chkWordArt.value = True Then
+    If chkWordArt.Value = True Then
         s.WordArt = C_STAMP_WORDART_ON
     Else
         s.WordArt = C_STAMP_WORDART_OFF
     End If
     
-    If chkFill.value = True Then
+    If chkFill.Value = True Then
         s.Fill = C_STAMP_FILL_ON
     Else
         s.Fill = C_STAMP_FILL_OFF
@@ -411,7 +411,7 @@ Private Sub cmdOK_Click()
 
     'プロパティ保存
     setProperty col
-    Call SaveSetting(C_TITLE, "Stamp", "Confirm", chkConfirm.value)
+    Call SaveSetting(C_TITLE, "Stamp", "Confirm", chkConfirm.Value)
 
     
     Set col = Nothing
@@ -476,11 +476,11 @@ Private Sub lstStamp_Click()
     
     Select Case varBuf(C_Line)
         Case C_STAMP_LINE_SINGLE
-            optLineSingle.value = True
+            optLineSingle.Value = True
         Case C_STAMP_LINE_DOUBLE
-            optLineDouble.value = True
+            optLineDouble.Value = True
         Case C_STAMP_LINE_BOLD
-            optLineBold.value = True
+            optLineBold.Value = True
     End Select
     
     txtUpper.Text = varBuf(C_Upper)
@@ -490,9 +490,9 @@ Private Sub lstStamp_Click()
     strType = varBuf(C_DateType)
     Select Case strType
         Case C_STAMP_DATE_SYSTEM
-            optSystemDate.value = True
+            optSystemDate.Value = True
         Case C_STAMP_DATE_USER
-            optUserDate.value = True
+            optUserDate.Value = True
     End Select
     
     Dim strFormat As String
@@ -510,15 +510,15 @@ Private Sub lstStamp_Click()
     txtSize.Text = varBuf(C_SIZE)
 
     If varBuf(c_WordArt) = C_STAMP_WORDART_ON Then
-        chkWordArt.value = True
+        chkWordArt.Value = True
     Else
-        chkWordArt.value = False
+        chkWordArt.Value = False
     End If
 
     If varBuf(C_Fill) = C_STAMP_FILL_ON Then
-        chkFill.value = True
+        chkFill.Value = True
     Else
-        chkFill.value = False
+        chkFill.Value = False
     End If
     
     Dim strFont As String
@@ -628,7 +628,7 @@ Private Sub UserForm_Initialize()
         txtLower.Text = ""
         cmbFont.Text = "ＭＳ ゴシック"
         txtUserDate.Text = Format$(Now, "yyyy/m/d")
-        optLineSingle.value = True
+        optLineSingle.Value = True
         optSystemDate = True
         txtFormat.Text = "yyyy.m.d"
         txtSize.Text = "15"
@@ -637,7 +637,7 @@ Private Sub UserForm_Initialize()
         mblnRefresh = False
     End If
     
-    chkConfirm.value = GetSetting(C_TITLE, "Stamp", "Confirm", False)
+    chkConfirm.Value = GetSetting(C_TITLE, "Stamp", "Confirm", False)
 
     mblnRefresh = False
     

@@ -78,9 +78,9 @@ Private Sub SFWork_SelectionMain(r As Range, Cancel As Boolean)
     
     On Error GoTo e
     
-    s = r.value
+    s = r.Value
     
-    r.value = InsertStr
+    r.Value = InsertStr
 
     Exit Sub
 e:

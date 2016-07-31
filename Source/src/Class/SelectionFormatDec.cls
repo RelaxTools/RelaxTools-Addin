@@ -109,9 +109,9 @@ Private Sub SFWork_SelectionMain(r As Range)
         For lngCol = 1 To r.Columns.count
     
             If sw Mod 2 = 1 Then
-                r(lngRow, lngCol).value = "Y"
+                r(lngRow, lngCol).Value = "Y"
             Else
-                r(lngRow, lngCol).value = "N"
+                r(lngRow, lngCol).Value = "N"
             End If
             
             If (lngCol Mod lngSeed) = 0 Then

@@ -87,10 +87,10 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    strBuf = FormatXML(r.value)
+    strBuf = FormatXML(r.Value)
     
     If Len(strBuf) <> 0 Then
-        r.value = strBuf
+        r.Value = strBuf
     End If
 
     Exit Sub

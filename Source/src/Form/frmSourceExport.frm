@@ -91,8 +91,8 @@ Private Sub UserForm_Initialize()
     End If
     lblGauge.visible = False
     txtFolder.Text = GetSetting(C_TITLE, "VBAExport", "Path")
-    chkCategory.value = GetSetting(C_TITLE, "VBAExport", "Category", False)
-    chkUTF8.value = GetSetting(C_TITLE, "VBAExport", "UTF8", False)
+    chkCategory.Value = GetSetting(C_TITLE, "VBAExport", "Category", False)
+    chkUTF8.Value = GetSetting(C_TITLE, "VBAExport", "UTF8", False)
     
 End Sub
 
@@ -166,7 +166,7 @@ Private Sub cmdOK_Click()
         Dim strBuf As String
         Dim bytBuf() As Byte
         
-        If chkCategory.value Then
+        If chkCategory.Value Then
             rlxCreateFolder rlxAddFileSeparator(strFile) & strFolder
             strTo = rlxAddFileSeparator(strFile) & strFolder & "\" & vb_component.Name & extention
             strFrom = rlxGetTempFolder & vb_component.Name & extention
@@ -175,7 +175,7 @@ Private Sub cmdOK_Click()
             strFrom = rlxGetTempFolder & vb_component.Name & extention
         End If
         
-        If chkUTF8.value Then
+        If chkUTF8.Value Then
             
             vb_component.Export strFrom
                
@@ -192,7 +192,7 @@ Private Sub cmdOK_Click()
             fp1 = FreeFile
             Open strFrom For Input As fp1
             
-            Do Until EOF(fp1)
+            Do Until Eof(fp1)
                 Line Input #fp1, strBuf
             
                 bytBuf = U8.getBytes(strBuf & vbCrLf)
@@ -214,8 +214,8 @@ Private Sub cmdOK_Click()
     Set mMm = Nothing
     
     SaveSetting C_TITLE, "VBAExport", "Path", strFile
-    SaveSetting C_TITLE, "VBAExport", "Category", chkCategory.value
-    SaveSetting C_TITLE, "VBAExport", "UTF8", chkUTF8.value
+    SaveSetting C_TITLE, "VBAExport", "Category", chkCategory.Value
+    SaveSetting C_TITLE, "VBAExport", "UTF8", chkUTF8.Value
     
     Application.ScreenUpdating = True
     

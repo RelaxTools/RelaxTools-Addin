@@ -30,10 +30,10 @@ Private Sub cmdOK_Click()
 
     Call SaveSetting(C_TITLE, "CheckList", "LineNo", lngPos)
 
-    Call SaveSetting(C_TITLE, "CheckList", "Head", chkHead.value)
-    Call SaveSetting(C_TITLE, "CheckList", "Bottom", chkBottom.value)
-    Call SaveSetting(C_TITLE, "CheckList", "Left", chkLeft.value)
-    Call SaveSetting(C_TITLE, "CheckList", "Right", chkRight.value)
+    Call SaveSetting(C_TITLE, "CheckList", "Head", chkHead.Value)
+    Call SaveSetting(C_TITLE, "CheckList", "Bottom", chkBottom.Value)
+    Call SaveSetting(C_TITLE, "CheckList", "Left", chkLeft.Value)
+    Call SaveSetting(C_TITLE, "CheckList", "Right", chkRight.Value)
     
     Unload Me
 
@@ -136,10 +136,10 @@ Private Sub UserForm_Initialize()
     
     lngPos = Val(GetSetting(C_TITLE, "CheckList", "LineNo", 2))
 
-    chkHead.value = CBool(GetSetting(C_TITLE, "CheckList", "Head", True))
-    chkBottom.value = CBool(GetSetting(C_TITLE, "CheckList", "Bottom", True))
-    chkLeft.value = CBool(GetSetting(C_TITLE, "CheckList", "Left", True))
-    chkRight.value = CBool(GetSetting(C_TITLE, "CheckList", "Right", True))
+    chkHead.Value = CBool(GetSetting(C_TITLE, "CheckList", "Head", True))
+    chkBottom.Value = CBool(GetSetting(C_TITLE, "CheckList", "Bottom", True))
+    chkLeft.Value = CBool(GetSetting(C_TITLE, "CheckList", "Left", True))
+    chkRight.Value = CBool(GetSetting(C_TITLE, "CheckList", "Right", True))
     
     setBorder lngPos
 

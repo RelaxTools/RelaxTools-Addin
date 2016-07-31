@@ -100,7 +100,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    s = r.value
+    s = r.Value
     
     lngRet = createFolder(rlxAddFileSeparator(Folder) & s)
     If lngRet <> 0 Then

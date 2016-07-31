@@ -246,7 +246,7 @@ Private Sub setJavaPackage()
                     
                     'チェックボックスが選択されている場合
                     lngDeleteSuccess = C_DELETE_NONE
-                    If chkDelete.value Then
+                    If chkDelete.Value Then
                         If Dir$(strDest) <> "" Then
                             '元ファイルを削除する。
                             On Error Resume Next

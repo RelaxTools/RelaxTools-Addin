@@ -46,7 +46,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub chkSize_Click()
-    txtCol.enabled = chkSize.value
+    txtCol.enabled = chkSize.Value
 '    txtRow.enabled = chkSize.Value
 End Sub
 
@@ -56,13 +56,13 @@ End Sub
 
 Private Sub cmdOK_Click()
     
-    If Not IsNumeric(txtFont.value) Then
+    If Not IsNumeric(txtFont.Value) Then
         MsgBox "フォントサイズに数値を入力してください。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
-    If chkSize.value Then
-        If Not IsNumeric(txtCol.value) Then
+    If chkSize.Value Then
+        If Not IsNumeric(txtCol.Value) Then
             MsgBox "列の幅に数値を入力してください。", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
         End If
@@ -72,11 +72,11 @@ Private Sub cmdOK_Click()
 '        End If
     End If
 
-    SaveSetting C_TITLE, "FormatCell", "Size", chkSize.value
-    SaveSetting C_TITLE, "FormatCell", "Bunrui", optBunrui1.value
+    SaveSetting C_TITLE, "FormatCell", "Size", chkSize.Value
+    SaveSetting C_TITLE, "FormatCell", "Bunrui", optBunrui1.Value
     SaveSetting C_TITLE, "FormatCell", "Font", cmbFont.Text
-    SaveSetting C_TITLE, "FormatCell", "Point", txtFont.value
-    SaveSetting C_TITLE, "FormatCell", "Col", txtCol.value
+    SaveSetting C_TITLE, "FormatCell", "Point", txtFont.Value
+    SaveSetting C_TITLE, "FormatCell", "Col", txtCol.Value
 '    SaveSetting C_TITLE, "FormatCell", "Row", txtRow.Value
     Unload Me
 
@@ -116,18 +116,18 @@ Private Sub UserForm_Initialize()
     Dim blnNormal As Boolean
     
     If GetSetting(C_TITLE, "FormatCell", "Bunrui", True) Then
-        optBunrui1.value = True
-        optBunrui2.value = False
+        optBunrui1.Value = True
+        optBunrui2.Value = False
     Else
-        optBunrui1.value = False
-        optBunrui2.value = True
+        optBunrui1.Value = False
+        optBunrui2.Value = True
     End If
     strFont = GetSetting(C_TITLE, "FormatCell", "Font", "ＭＳ ゴシック")
-    txtFont.value = GetSetting(C_TITLE, "FormatCell", "Point", "9")
-    txtCol.value = GetSetting(C_TITLE, "FormatCell", "Col", "8.5")
+    txtFont.Value = GetSetting(C_TITLE, "FormatCell", "Point", "9")
+    txtCol.Value = GetSetting(C_TITLE, "FormatCell", "Col", "8.5")
 '    txtRow.Value = GetSetting(C_TITLE, "FormatCell", "Row", "11.25")
-    chkSize.value = GetSetting(C_TITLE, "FormatCell", "Size", False)
-    txtCol.enabled = chkSize.value
+    chkSize.Value = GetSetting(C_TITLE, "FormatCell", "Size", False)
+    txtCol.enabled = chkSize.Value
 '    txtRow.enabled = chkSize.Value
 
     With Application.CommandBars("Formatting").Controls(1)

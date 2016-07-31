@@ -34,7 +34,7 @@ Option Private Module
 
 Sub SelectionUndo()
 
-    Selection.value = pvarSelectionBuffer
+    Selection.Value = pvarSelectionBuffer
 
 End Sub
 '--------------------------------------------------------------

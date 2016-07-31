@@ -88,7 +88,7 @@ Private Sub cmdRun_Click()
 
     Set defSheet = ActiveSheet
 
-    strFile = defSheet.Cells(C_FILE_ROW, C_FILE_COL).value
+    strFile = defSheet.Cells(C_FILE_ROW, C_FILE_COL).Value
     If strFile = "" Then
         'ファイル名が指定されなかった場合
         Exit Sub
@@ -101,7 +101,7 @@ Private Sub cmdRun_Click()
 
     fp = FreeFile()
 
-    strStart = defSheet.Cells(C_START_ROW, C_START_COL).value
+    strStart = defSheet.Cells(C_START_ROW, C_START_COL).Value
 
 
     Open strFile For Input As fp
@@ -111,10 +111,10 @@ Private Sub cmdRun_Click()
     creCol = 1
 
     '定義シートを読みヘッダを作成する。
-    Do Until defSheet.Cells(defCount, C_NO).value = ""
+    Do Until defSheet.Cells(defCount, C_NO).Value = ""
 
-        strColumn = defSheet.Cells(defCount, C_COLUMN).value
-        newSheet.Cells(C_CRE_HEADER_ROW, creCol).value = strColumn
+        strColumn = defSheet.Cells(defCount, C_COLUMN).Value
+        newSheet.Cells(C_CRE_HEADER_ROW, creCol).Value = strColumn
 
         defCount = defCount + 1
         creCol = creCol + 1
@@ -123,7 +123,7 @@ Private Sub cmdRun_Click()
     '結果シートのカウンタ
     creRow = C_CRE_START_ROW
 
-    Do Until EOF(fp)
+    Do Until Eof(fp)
 
         '--------------------------------------------------
         ' １レコード分のデータをコレクションに設定する。
@@ -131,7 +131,7 @@ Private Sub cmdRun_Click()
         Set ColLine = New Collection
         Dim blnStart As Boolean
         
-        Do Until EOF(fp)
+        Do Until Eof(fp)
             
             Line Input #fp, strBuf
             If InStr(strBuf, strStart) > 0 Then
@@ -158,14 +158,14 @@ Private Sub cmdRun_Click()
             defCount = C_DEF_START_ROW
 
             '定義シートを読む
-            Do Until defSheet.Cells(defCount, C_NO).value = ""
+            Do Until defSheet.Cells(defCount, C_NO).Value = ""
     
                 '項目名
-                strColumn = defSheet.Cells(defCount, C_COLUMN).value
+                strColumn = defSheet.Cells(defCount, C_COLUMN).Value
                 '桁
-                lngCol = defSheet.Cells(defCount, C_POS_COL).value
+                lngCol = defSheet.Cells(defCount, C_POS_COL).Value
                 '長さ
-                lngLen = defSheet.Cells(defCount, C_POS_LEN).value
+                lngLen = defSheet.Cells(defCount, C_POS_LEN).Value
     
                 'キーが見つかった場合
                 If InStr(strBuf, strColumn) > 0 Then
@@ -178,7 +178,7 @@ Private Sub cmdRun_Click()
                     End If
         
                     'セルに値を設定
-                    newSheet.Cells(creRow, creCol).value = strValue
+                    newSheet.Cells(creRow, creCol).Value = strValue
                 
                     '作成シートの列＋１
                     creCol = creCol + 1

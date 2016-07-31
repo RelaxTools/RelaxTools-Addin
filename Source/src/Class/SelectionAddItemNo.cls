@@ -101,7 +101,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     For lngCnt = lngRow To mlngPos Step -1
     
-        strBuf = Cells(lngCnt, lngCol).value
+        strBuf = Cells(lngCnt, lngCol).Value
         lngLevel = Cells(lngCnt, lngCol).IndentLevel
 
 '        If lngLevel < r.IndentLevel Then

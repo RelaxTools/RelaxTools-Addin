@@ -78,17 +78,17 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     On Error GoTo e
 
-    If IsError(r.value) Then
+    If IsError(r.Value) Then
         Exit Sub
     End If
 
-    s = r.value
+    s = r.Value
 
     If Len(s) = 0 Then
         Exit Sub
     End If
 
-    If Not (NotHoldFormat) And VarType(r.value) = vbString Then
+    If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
         Select Case r.Characters(r.Characters.count, 1).Text
             Case vbCr, vbLf, vbCrLf
             Case Else
@@ -99,7 +99,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         Select Case Right$(s, 1)
             Case vbCr, vbLf, vbCrLf
             Case Else
-                r.value = s & vbLf
+                r.Value = s & vbLf
         End Select
     End If
 

@@ -180,7 +180,7 @@ Private Sub SFWork_SelectionBegin(rArea As Range, Cancel As Boolean)
             
             For lngCol = 2 To rArea.Columns.count
             
-                If rArea.Cells(lngRow, lngCol).value <> "" Then
+                If rArea.Cells(lngRow, lngCol).Value <> "" Then
                     With rArea.Columns(lngCol).Borders(xlLeft)
                         .LineStyle = xlContinuous
                         .Weight = xlThin

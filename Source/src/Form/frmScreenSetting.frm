@@ -51,7 +51,7 @@ Private Sub chkPageBreakEnable_Change()
     For Each c In Controls
         If c.tag = "P" Then
         
-            c.enabled = chkPageBreakEnable.value
+            c.enabled = chkPageBreakEnable.Value
         
         End If
     
@@ -65,7 +65,7 @@ Private Sub chkZoomEnable_Change()
     For Each c In Controls
         If c.tag = "Z" Then
         
-            c.enabled = chkZoomEnable.value
+            c.enabled = chkZoomEnable.Value
         
         End If
     
@@ -88,7 +88,7 @@ Private Sub cmdOK_Click()
     Dim blnPageBreakEnable As Boolean
     Dim lngPageBreakNun As Long
     
-    If chkZoomEnable.value Then
+    If chkZoomEnable.Value Then
         If IsNumeric(txtZoomNum.Text) Then
         Else
             MsgBox "画像の縮小率には数値を入力してください", vbOKOnly + vbExclamation, C_TITLE
@@ -120,7 +120,7 @@ Private Sub cmdOK_Click()
             Exit Sub
     End Select
     
-    If chkPageBreakEnable.value Then
+    If chkPageBreakEnable.Value Then
         If IsNumeric(txtPageBreakNum.Text) Then
         Else
             MsgBox "改ページの間隔には数値を入力してください", vbOKOnly + vbExclamation, C_TITLE
@@ -138,12 +138,12 @@ Private Sub cmdOK_Click()
         txtPageBreakNum.Text = "1"
     End If
     
-    blnZoomEnable = chkZoomEnable.value
-    lngZoomNum = Val(txtZoomNum.value)
-    blnSave = chkSave.value
-    lngBlankNum = Val(txtBlankNum.value)
-    blnPageBreakEnable = chkPageBreakEnable.value
-    lngPageBreakNun = Val(txtPageBreakNum.value)
+    blnZoomEnable = chkZoomEnable.Value
+    lngZoomNum = Val(txtZoomNum.Value)
+    blnSave = chkSave.Value
+    lngBlankNum = Val(txtBlankNum.Value)
+    blnPageBreakEnable = chkPageBreakEnable.Value
+    lngPageBreakNun = Val(txtPageBreakNum.Value)
     
     SetScreenSetting blnZoomEnable, lngZoomNum, blnSave, lngBlankNum, blnPageBreakEnable, lngPageBreakNun
     
@@ -189,9 +189,9 @@ Private Sub UserForm_Initialize()
     txtBlankNum.Text = lngBlankNum
     txtPageBreakNum.Text = lngPageBreakNun
     
-    chkZoomEnable.value = blnZoomEnable
-    chkSave.value = blnSave
-    chkPageBreakEnable.value = blnPageBreakEnable
+    chkZoomEnable.Value = blnZoomEnable
+    chkSave.Value = blnSave
+    chkPageBreakEnable.Value = blnPageBreakEnable
     
     Call chkZoomEnable_Change
     Call chkPageBreakEnable_Change

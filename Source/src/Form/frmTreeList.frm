@@ -113,7 +113,7 @@ Private Sub cmdRun_Click()
     mMm.Disable
     mMm.DispGuidance "ファイルの数をカウントしています..."
     
-    rlxGetFilesCount objFs, strFolder, lngFCnt, chkFileName.value, True, True
+    rlxGetFilesCount objFs, strFolder, lngFCnt, chkFileName.Value, True, True
     
     mMm.StartGauge lngFCnt
     
@@ -126,10 +126,10 @@ Private Sub cmdRun_Click()
     End If
     
     'フォルダ見出し（開始時）
-    Cells(lngRow, lngCol).value = strPath
+    Cells(lngRow, lngCol).Value = strPath
     
     'フォルダ指定の場合
-    If chkFolder.value Then
+    If chkFolder.Value Then
         ActiveSheet.Hyperlinks.Add _
             Anchor:=Cells(lngRow, lngCol), _
             Address:=strPath, _
@@ -187,7 +187,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
             strLine = strLineParent & "│　"
     End Select
     
-    If chkFileName.value Then
+    If chkFileName.Value Then
         
         Set colFiles = New Collection
         
@@ -208,14 +208,14 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
             
             'ファイル名
             Cells(lngRow, lngCol2).NumberFormatLocal = "@"
-            Cells(lngRow, lngCol2).value = objfl.Name
+            Cells(lngRow, lngCol2).Value = objfl.Name
     
             
             'ハイパーリンク
             'Office プログラム内のハイパーリンクのファイル名でポンド文字を使用できません。(KB202261)
             'http://support.microsoft.com/kb/202261/ja
             'ファイル指定の場合
-            If chkFile.value Then
+            If chkFile.Value Then
                 ActiveSheet.Hyperlinks.Add _
                     Anchor:=Cells(lngRow, lngCol2), _
                     Address:=rlxAddFileSeparator(strPath) & objfl.Name, _
@@ -262,10 +262,10 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         
         'フォルダ見出し
         Cells(lngRow, lngCol2).NumberFormatLocal = "@"
-        Cells(lngRow, lngCol2).value = rlxGetFullpathFromFileName(objSub.Path)
+        Cells(lngRow, lngCol2).Value = rlxGetFullpathFromFileName(objSub.Path)
         
         'フォルダ指定の場合
-        If chkFolder.value Then
+        If chkFolder.Value Then
             ActiveSheet.Hyperlinks.Add _
                 Anchor:=Cells(lngRow, lngCol2), _
                 Address:=objSub.Path, _
@@ -294,7 +294,7 @@ Private Sub SetTree(ByVal strLine As String, ByVal lngRow As Long, ByVal lngCol 
     
     For i = 1 To lngLen
 
-        Cells(lngRow, lngCol + i - 1).value = Mid$(strLine, i, 1)
+        Cells(lngRow, lngCol + i - 1).Value = Mid$(strLine, i, 1)
     Next
 
 

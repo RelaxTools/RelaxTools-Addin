@@ -68,8 +68,8 @@ Sub replaceFiles()
     Set WS = ThisWorkbook.Worksheets("ReplaceFormat")
     
     '自ブックのフォーマットとアクティブなシートのフォーマットを比較
-    If WS.Cells(C_ROW_VERSION, C_COL_NUM).value <> _
-        ActiveSheet.Cells(C_ROW_VERSION, C_COL_NUM).value Then
+    If WS.Cells(C_ROW_VERSION, C_COL_NUM).Value <> _
+        ActiveSheet.Cells(C_ROW_VERSION, C_COL_NUM).Value Then
         If MsgBox("定義シートが異なる可能性がありますが、続行しますか？", vbOKCancel, "ファイル内部置換") = vbCancel Then
             Exit Sub
         End If
@@ -78,15 +78,15 @@ Sub replaceFiles()
     lngCnt = 0
 
     ''設定ファイルの読み込み
-    Do Until Cells(lngCnt + C_ROW_DETAIL, C_COL_NUM).value = ""
+    Do Until Cells(lngCnt + C_ROW_DETAIL, C_COL_NUM).Value = ""
         
-        strKey = Cells(lngCnt + C_ROW_DETAIL, C_COL_SEARCH).value
+        strKey = Cells(lngCnt + C_ROW_DETAIL, C_COL_SEARCH).Value
         If strKey <> "" Then
             Set rp = New ReplaceParamDTO
             
             rp.SearchString = strKey
-            rp.ReplaceString = Cells(lngCnt + C_ROW_DETAIL, C_COL_REPLACE).value
-            rp.CompareMode = Cells(lngCnt + C_ROW_DETAIL, C_COL_COMPARE).value
+            rp.ReplaceString = Cells(lngCnt + C_ROW_DETAIL, C_COL_REPLACE).Value
+            rp.CompareMode = Cells(lngCnt + C_ROW_DETAIL, C_COL_COMPARE).Value
 
             colParam.Add rp
         

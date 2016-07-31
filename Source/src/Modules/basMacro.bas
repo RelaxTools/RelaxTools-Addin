@@ -981,7 +981,7 @@ Sub pasteCSV()
         End If
         
         '行単位に貼り付け
-        Range(Cells(lngRow, lngCol), Cells(lngRow, lngCol + UBound(varRow) - 1)).value = varRow
+        Range(Cells(lngRow, lngCol), Cells(lngRow, lngCol + UBound(varRow) - 1)).Value = varRow
     
         lngRow = lngRow + 1
     Next
@@ -2098,7 +2098,7 @@ Sub setA1SheetName()
         Exit Sub
     End If
     
-    ActiveSheet.Cells(1, 1).value = ActiveSheet.Name
+    ActiveSheet.Cells(1, 1).Value = ActiveSheet.Name
 
     Exit Sub
 ErrHandle:
@@ -2124,7 +2124,7 @@ Sub setA1SheetAll()
     For Each WS In Worksheets
             
         If WS.visible = xlSheetVisible Then
-            WS.Cells(1, 1).value = WS.Name
+            WS.Cells(1, 1).Value = WS.Name
         End If
     Next
 
@@ -2218,15 +2218,15 @@ Sub tagJump()
         Exit Sub
     End If
 
-    strBook = Cells(ActiveCell.row, C_SEARCH_BOOK).value
+    strBook = Cells(ActiveCell.row, C_SEARCH_BOOK).Value
     If Len(strBook) = 0 Then
         Exit Sub
     End If
-    strSheet = Cells(ActiveCell.row, C_SEARCH_SHEET).value
+    strSheet = Cells(ActiveCell.row, C_SEARCH_SHEET).Value
     If Len(strSheet) = 0 Then
         Exit Sub
     End If
-    strAddress = Cells(ActiveCell.row, C_SEARCH_ADDRESS).value
+    strAddress = Cells(ActiveCell.row, C_SEARCH_ADDRESS).Value
     If Len(strAddress) = 0 Then
         Exit Sub
     End If
@@ -2478,13 +2478,13 @@ Sub createContentsEx()
     Set WS = WB.Worksheets.Add(WB.Worksheets(1))
     WS.Name = C_NAME
     
-    WS.Cells(1, 1).value = "ブック名:" & WB.Name
+    WS.Cells(1, 1).Value = "ブック名:" & WB.Name
     
     lngCount = C_START_ROW
-    WS.Cells(lngCount, C_NO).value = "No."
-    WS.Cells(lngCount, C_SHEET_NAME).value = "シート名"
-    WS.Cells(lngCount, C_PAPER_SIZE).value = "用紙"
-    WS.Cells(lngCount, C_PAGES).value = "ページ数"
+    WS.Cells(lngCount, C_NO).Value = "No."
+    WS.Cells(lngCount, C_SHEET_NAME).Value = "シート名"
+    WS.Cells(lngCount, C_PAPER_SIZE).Value = "用紙"
+    WS.Cells(lngCount, C_PAGES).Value = "ページ数"
     
     lngCount = lngCount + 1
     
@@ -2494,8 +2494,8 @@ Sub createContentsEx()
         
             If s.visible = xlSheetVisible Then
         
-                WS.Cells(lngCount, C_NO).value = lngCount - C_START_ROW
-                WS.Cells(lngCount, C_SHEET_NAME).value = s.Name
+                WS.Cells(lngCount, C_NO).Value = lngCount - C_START_ROW
+                WS.Cells(lngCount, C_SHEET_NAME).Value = s.Name
                 
                 WS.Hyperlinks.Add _
                     Anchor:=WS.Cells(lngCount, C_SHEET_NAME), _
@@ -2505,19 +2505,19 @@ Sub createContentsEx()
                 
                 Select Case s.PageSetup.PaperSize
                     Case xlPaperA3
-                        WS.Cells(lngCount, C_PAPER_SIZE).value = "A3"
+                        WS.Cells(lngCount, C_PAPER_SIZE).Value = "A3"
                     Case xlPaperA4
-                        WS.Cells(lngCount, C_PAPER_SIZE).value = "A4"
+                        WS.Cells(lngCount, C_PAPER_SIZE).Value = "A4"
                     Case xlPaperA5
-                        WS.Cells(lngCount, C_PAPER_SIZE).value = "A5"
+                        WS.Cells(lngCount, C_PAPER_SIZE).Value = "A5"
                     Case xlPaperB4
-                        WS.Cells(lngCount, C_PAPER_SIZE).value = "B4"
+                        WS.Cells(lngCount, C_PAPER_SIZE).Value = "B4"
                     Case xlPaperB5
-                        WS.Cells(lngCount, C_PAPER_SIZE).value = "B5"
+                        WS.Cells(lngCount, C_PAPER_SIZE).Value = "B5"
                     Case Else
-                        WS.Cells(lngCount, C_PAPER_SIZE).value = "その他"
+                        WS.Cells(lngCount, C_PAPER_SIZE).Value = "その他"
                 End Select
-                WS.Cells(lngCount, C_PAGES).value = s.PageSetup.Pages.count
+                WS.Cells(lngCount, C_PAGES).Value = s.PageSetup.Pages.count
             
                 lngCount = lngCount + 1
             End If
@@ -2534,8 +2534,8 @@ Sub createContentsEx()
     
     execSelectionRowDrawGrid
     
-    WS.Cells(lngCount, C_PAPER_SIZE).value = "合計"
-    WS.Cells(lngCount, C_PAGES).value = "=SUM(D" & C_START_ROW + 1 & ":D" & lngCount - 1 & ")"
+    WS.Cells(lngCount, C_PAPER_SIZE).Value = "合計"
+    WS.Cells(lngCount, C_PAGES).Value = "=SUM(D" & C_START_ROW + 1 & ":D" & lngCount - 1 & ")"
 
 e:
     Application.ScreenUpdating = True
@@ -2601,7 +2601,7 @@ Sub cellEditExt()
     If blnFormura Then
         strBuf = Replace(Replace(r.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
     Else
-        strBuf = Replace(Replace(r.value, vbCrLf, vbLf), vbLf, vbCrLf)
+        strBuf = Replace(Replace(r.Value, vbCrLf, vbLf), vbLf, vbCrLf)
     End If
     
     Select Case strEncode
@@ -2679,13 +2679,13 @@ Sub cellEditExt()
             On Error Resume Next
             Err.Clear
             
-            r.value = Replace(strBuf, vbCrLf, vbLf)
+            r.Value = Replace(strBuf, vbCrLf, vbLf)
             
             If Err.Number <> 0 Then
                 MsgBox "式の設定に失敗しました。式が正しくない可能性があります。", vbOKOnly + vbExclamation, C_TITLE
             End If
         Else
-            r.value = ""
+            r.Value = ""
         End If
         Close fp
     
@@ -2953,7 +2953,7 @@ Sub getFileNameFromClipboard()
     
     Dim i As Long
     For i = LBound(files) To UBound(files) Step 1
-        ActiveCell.Offset(i, 0).value = files(i)
+        ActiveCell.Offset(i, 0).Value = files(i)
     Next
     
     Exit Sub

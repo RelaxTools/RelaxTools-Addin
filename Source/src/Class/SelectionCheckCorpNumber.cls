@@ -82,7 +82,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    If rlxIsCorpNumber(r.value) Then
+    If rlxIsCorpNumber(r.Value) Then
     Else
         lngEr = lngEr + 1
         If c Is Nothing Then

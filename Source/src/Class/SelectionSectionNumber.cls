@@ -110,7 +110,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     setIndent r, mlngIndent
     
     '現在のセルの段落番号である場合
-    If Not rlxIsSectionNo(r.value) Then
+    If Not rlxIsSectionNo(r.Value) Then
         Exit Sub
     End If
 '    Application.ScreenUpdating = False
@@ -133,7 +133,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
             
             For lngCnt = lngRow To 1 Step -1
             
-                strBuf = WS.Cells(lngCnt, lngCol).value
+                strBuf = WS.Cells(lngCnt, lngCol).Value
                 lngLevel = WS.Cells(lngCnt, lngCol).IndentLevel
         
                 '段落番号が存在しない行の場合

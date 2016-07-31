@@ -89,14 +89,14 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolea
     strBuf = ""
     
     For Each rr In r
-        If IsError(rr.value) Then
+        If IsError(rr.Value) Then
         Else
             If strBuf = "" Then
-                strBuf = rr.value
+                strBuf = rr.Value
             Else
-                strBuf = strBuf & mstrSep & rr.value
+                strBuf = strBuf & mstrSep & rr.Value
             End If
-            rr.value = Empty
+            rr.Value = Empty
         End If
     Next
 

@@ -14,6 +14,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 '-----------------------------------------------------------------------------------------------------
 '
 ' [RelaxTools-Addin] v4
@@ -131,7 +132,7 @@ Private Function getHead(ByRef r As Range) As String
                 Case r.NumberFormatLocal = "@"
                     strLeft = ""
                     strRight = ""
-                Case IsNumeric(r.value)
+                Case IsNumeric(r.Value)
                     strLeft = ""
                     strRight = C_COLON
                 Case Else
@@ -146,9 +147,9 @@ Private Function getAttr(ByRef r As Range) As String
 
     Dim strValue As String
     
-    strValue = r.value
+    strValue = r.Value
             
-    If VarType(r.value) = vbString Then
+    If VarType(r.Value) = vbString Then
     
         strValue = CharacterStyle(r)
     

@@ -48,7 +48,7 @@ Option Explicit
 Private mResult As VBA.VbMsgBoxResult
 
 Private Sub chkBackColor_Change()
-    lblHead.enabled = Not (chkBackColor.value)
+    lblHead.enabled = Not (chkBackColor.Value)
 End Sub
 
 Private Sub cmdCancel_Click()
@@ -60,11 +60,11 @@ Private Sub cmdOK_Click()
     Dim strFillColor As String
     Dim blnLine As Boolean
 
-    blnFillVisible = chkBackColor.value
+    blnFillVisible = chkBackColor.Value
     
     strFillColor = "&H" & Right$("00000000" & Hex(lblHead.BackColor), 8)
     
-    blnLine = chkLine.value
+    blnLine = chkLine.Value
     
     Call setCopyScreenSetting(blnFillVisible, strFillColor, blnLine)
 
@@ -92,10 +92,10 @@ Private Sub UserForm_Initialize()
 
     Call getCopyScreenSetting(blnFillVisible, lngFillColor, blnLine)
     
-    chkBackColor.value = blnFillVisible
+    chkBackColor.Value = blnFillVisible
     
     lblHead.BackColor = lngFillColor
     
-    chkLine.value = blnLine
+    chkLine.Value = blnLine
     
 End Sub

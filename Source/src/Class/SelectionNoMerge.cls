@@ -85,9 +85,9 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         r.UnMerge
         For i = 1 To p.count
             If i = 1 Then
-               s = p(i).value
+               s = p(i).Value
             Else
-                p(i).value = s
+                p(i).Value = s
             End If
         Next
     End If

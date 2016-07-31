@@ -84,11 +84,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     On Error GoTo e
     
-    If rlxIsFileExists(r.value) Or rlxIsFolderExists(r.value) Then
+    If rlxIsFileExists(r.Value) Or rlxIsFolderExists(r.Value) Then
         If mstrBuf = "" Then
-            mstrBuf = r.value
+            mstrBuf = r.Value
         Else
-            mstrBuf = mstrBuf & vbTab & r.value
+            mstrBuf = mstrBuf & vbTab & r.Value
         End If
     Else
         r.Interior.Color = vbYellow

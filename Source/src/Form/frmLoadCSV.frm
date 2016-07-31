@@ -122,7 +122,7 @@ Private Sub cmdRun_Click()
     
     Set WS = ActiveWorkbook.Worksheets.Add(after:=ActiveWorkbook.Worksheets(ActiveWorkbook.Worksheets.count))
     
-    If chkUTF8.value Then
+    If chkUTF8.Value Then
         'UTF8からUNICODE
         Dim utf8 As UTF8Encoding
         Set utf8 = New UTF8Encoding
@@ -197,7 +197,7 @@ Private Sub cmdRun_Click()
             End If
         Next
            
-        Range(WS.Cells(lngRow, 1), WS.Cells(lngRow + UBound(arPaste, 1) - 1, UBound(arPaste, 2))).value = arPaste
+        Range(WS.Cells(lngRow, 1), WS.Cells(lngRow + UBound(arPaste, 1) - 1, UBound(arPaste, 2))).Value = arPaste
        lngSize = lngSize - lngRead
        lngRow = lngRow + lngRead
        

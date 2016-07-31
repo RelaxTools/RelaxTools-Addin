@@ -58,7 +58,7 @@ Public Function Start(ByRef strSearch As String, _
                       ByRef lngType As Long) As VBA.VbMsgBoxResult
                       
 
-    optEqual.value = True
+    optEqual.Value = True
     mResult = vbCancel
     
 
@@ -67,9 +67,9 @@ Public Function Start(ByRef strSearch As String, _
     strSearch = txtSearch.Text
 
     Select Case True
-        Case optEqual.value
+        Case optEqual.Value
             lngType = 0
-        Case optNot.value
+        Case optNot.Value
             lngType = 1
         Case Else
             lngType = 2

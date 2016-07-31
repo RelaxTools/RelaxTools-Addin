@@ -78,9 +78,9 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     On Error GoTo e
         
     If NotHoldFormat Then
-        r.value = TrimZen(r.value)
+        r.Value = TrimZen(r.Value)
     Else
-        If VarType(r.value) = vbString Then
+        If VarType(r.Value) = vbString Then
             
             For i = 1 To r.Characters.count
                 Select Case r.Characters(i, 1).Text
@@ -104,7 +104,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
             r.Characters(i + 1, r.Characters.count - i).Delete
         
         Else
-           r.value = Trim(r.value)
+           r.Value = Trim(r.Value)
         End If
     End If
     

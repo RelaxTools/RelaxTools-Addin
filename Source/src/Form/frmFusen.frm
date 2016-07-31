@@ -91,7 +91,7 @@ Private Sub cmdOK_Click()
     
     strText = txtText.Text
     strTag = txtTag.Text
-    blnPrint = chkPrint.value
+    blnPrint = chkPrint.Value
     
     strWidth = txtWidth.Text
     strHeight = txtHeight.Text
@@ -100,7 +100,7 @@ Private Sub cmdOK_Click()
     strUserDate = txtUserDate.Text
     
     Select Case True
-        Case optSystemDate.value
+        Case optSystemDate.Value
             strFusenDate = C_FUSEN_DATE_SYSTEM
         Case Else
             strFusenDate = C_FUSEN_DATE_USER
@@ -112,9 +112,9 @@ Private Sub cmdOK_Click()
     strHorizontalAnchor = cboHorizontalAnchor.ListIndex
     strVerticalAnchor = cboVerticalAnchor.ListIndex
     
-    blnAutoSize = chkAutoSize.value
-    blnOverFlow = chkOverflow.value
-    blnWordWrap = chkWordWrap.value
+    blnAutoSize = chkAutoSize.Value
+    blnOverFlow = chkOverflow.Value
+    blnWordWrap = chkWordWrap.Value
     
     If strFusenDate = C_FUSEN_DATE_USER Then
         If IsDate(strUserDate) Then
@@ -274,7 +274,7 @@ Private Sub UserForm_Initialize()
     
     txtText.Text = strText
     txtTag.Text = strTag
-    chkPrint.value = varPrint
+    chkPrint.Value = varPrint
     
     txtWidth.Text = strWidth
     txtHeight.Text = strHeight
@@ -283,9 +283,9 @@ Private Sub UserForm_Initialize()
     
     Select Case strFusenDate
         Case C_FUSEN_DATE_SYSTEM
-            optSystemDate.value = True
+            optSystemDate.Value = True
         Case Else
-            optUserDate.value = True
+            optUserDate.Value = True
     End Select
     
     txtUserDate.Text = strUserDate
@@ -309,12 +309,12 @@ Private Sub UserForm_Initialize()
     cboVerticalAnchor.AddItem "下"
     cboVerticalAnchor.ListIndex = varVerticalAnchor
     
-    chkAutoSize.value = varAutoSize
+    chkAutoSize.Value = varAutoSize
     
     lblUser.Caption = "ユーザ名:" & Application.UserName
     
-    chkOverflow.value = varOverFlow
-    chkWordWrap.value = varWordWrap
+    chkOverflow.Value = varOverFlow
+    chkWordWrap.Value = varWordWrap
     
     
     txtFormat.AddItem "yyyy/mm/dd"

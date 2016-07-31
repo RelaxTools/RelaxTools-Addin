@@ -45,8 +45,8 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub chkShow_Change()
-    If chkShow.value Then
-        Call SaveSetting(C_TITLE, "Info", "Show", ThisWorkbook.Worksheets("Info").Cells(1, 1).value)
+    If chkShow.Value Then
+        Call SaveSetting(C_TITLE, "Info", "Show", ThisWorkbook.Worksheets("Info").Cells(1, 1).Value)
     Else
         Call SaveSetting(C_TITLE, "Info", "Show", "")
     End If

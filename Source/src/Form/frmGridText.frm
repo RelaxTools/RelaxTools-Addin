@@ -846,11 +846,11 @@ Private Sub setGridData()
                         Case Selection(lngIdxRow, lngIdxCol).NumberFormatLocal = "@"
                             mudtGrid(lngIdxRow, lngIdxCol).Align = xlLeft
                             
-                        Case IsNumeric(Selection(lngIdxRow, lngIdxCol).value)
+                        Case IsNumeric(Selection(lngIdxRow, lngIdxCol).Value)
                             '数値の場合、右寄せ
                             mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
                         
-                        Case IsDate(Selection(lngIdxRow, lngIdxCol).value)
+                        Case IsDate(Selection(lngIdxRow, lngIdxCol).Value)
                             '日付の場合、右寄せ
                             mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
                             
@@ -885,7 +885,7 @@ Private Sub setGridData()
                     '数値の場合、word wrapしない
                     mudtGrid(lngIdxRow, lngIdxCol).NoWrapField = True
                 
-                Case IsDate(Selection(lngIdxRow, lngIdxCol).value) And mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
+                Case IsDate(Selection(lngIdxRow, lngIdxCol).Value) And mudtGrid(lngIdxRow, lngIdxCol).Align = xlRight
                     '日付の場合、word wrapしない
                     mudtGrid(lngIdxRow, lngIdxCol).NoWrapField = True
             
@@ -1866,7 +1866,7 @@ End Sub
 
 Private Sub chkKetaEnabled_Click()
 
-    If chkKetaEnabled.value = True Then
+    If chkKetaEnabled.Value = True Then
         txtKeta.enabled = True
         spnKeta.enabled = True
         chkDate.enabled = True
@@ -1889,7 +1889,7 @@ Private Sub cmdRun_Click()
     Dim lngKeta As Long
     Dim lngMin As Long
 
-    If chkKetaEnabled.value Then
+    If chkKetaEnabled.Value Then
     
         lngKeta = Val(txtKeta.Text)
         mlngMinKeta = (Selection.Columns.count + 1) * 2 + (Selection.Columns.count * 2)
@@ -1912,10 +1912,10 @@ Private Sub cmdRun_Click()
     Call kantanLineRun
     
     
-    Call SaveSetting(C_TITLE, "EasyLine", "chkKetaEnabled", CStr(chkKetaEnabled.value))
+    Call SaveSetting(C_TITLE, "EasyLine", "chkKetaEnabled", CStr(chkKetaEnabled.Value))
     Call SaveSetting(C_TITLE, "EasyLine", "txtKeta", CStr(txtKeta.Text))
-    Call SaveSetting(C_TITLE, "EasyLine", "chkDate", CStr(chkDate.value))
-    Call SaveSetting(C_TITLE, "EasyLine", "chkNum", CStr(chkNum.value))
+    Call SaveSetting(C_TITLE, "EasyLine", "chkDate", CStr(chkDate.Value))
+    Call SaveSetting(C_TITLE, "EasyLine", "chkNum", CStr(chkNum.Value))
     
     
 End Sub
@@ -1935,14 +1935,14 @@ End Sub
 
 Private Sub UserForm_Initialize()
 
-    chkKetaEnabled.value = CBool(GetSetting(C_TITLE, "EasyLine", "chkKetaEnabled", "False"))
+    chkKetaEnabled.Value = CBool(GetSetting(C_TITLE, "EasyLine", "chkKetaEnabled", "False"))
     txtKeta.Text = CLng(GetSetting(C_TITLE, "EasyLine", "txtKeta", CStr(C_LINE_MAX)))
-    chkDate.value = CBool(GetSetting(C_TITLE, "EasyLine", "chkDate", "False"))
-    chkNum.value = CBool(GetSetting(C_TITLE, "EasyLine", "chkNum", "False"))
+    chkDate.Value = CBool(GetSetting(C_TITLE, "EasyLine", "chkDate", "False"))
+    chkNum.Value = CBool(GetSetting(C_TITLE, "EasyLine", "chkNum", "False"))
 
     mlngMinKeta = (Selection.Columns.count + 1) * 2 + (Selection.Columns.count * 2)
     
-    If chkKetaEnabled.value Then
+    If chkKetaEnabled.Value Then
         mlngMaxKeta = CLng(txtKeta.Text)
     Else
         mlngMaxKeta = C_LINE_MAX

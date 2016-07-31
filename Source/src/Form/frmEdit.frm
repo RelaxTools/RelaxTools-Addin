@@ -89,7 +89,7 @@ Private Sub cmdOK_Click()
     If mBlnFormura Then
         ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
     Else
-        ActiveCell.value = Replace(txtEdit.Text, vbCrLf, vbLf)
+        ActiveCell.Value = Replace(txtEdit.Text, vbCrLf, vbLf)
     End If
     
     If Err.Number = 0 Then
@@ -109,8 +109,8 @@ Private Sub cmdReload_Click()
 '        ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
 '        txtEdit.Text = Replace(Replace(ActiveCell.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
 '    Else
-        ActiveCell.value = Replace(txtEdit.Text, vbCrLf, vbLf)
-        txtValue.Text = Replace(Replace(ActiveCell.value, vbCrLf, vbLf), vbLf, vbCrLf)
+        ActiveCell.Value = Replace(txtEdit.Text, vbCrLf, vbLf)
+        txtValue.Text = Replace(Replace(ActiveCell.Value, vbCrLf, vbLf), vbLf, vbCrLf)
 '    End If
     
 '    optValue.Value = True
@@ -224,12 +224,12 @@ Private Sub UserForm_Initialize()
     If mBlnFormura Then
         txtFormura.Text = Replace(Replace(ActiveCell.Formula, vbCrLf, vbLf), vbLf, vbCrLf)
     Else
-        txtFormura.Text = Replace(Replace(ActiveCell.value, vbCrLf, vbLf), vbLf, vbCrLf)
+        txtFormura.Text = Replace(Replace(ActiveCell.Value, vbCrLf, vbLf), vbLf, vbCrLf)
     End If
     
     Err.Clear
     On Error Resume Next
-    txtValue.Text = Replace(Replace(ActiveCell.value, vbCrLf, vbLf), vbLf, vbCrLf)
+    txtValue.Text = Replace(Replace(ActiveCell.Value, vbCrLf, vbLf), vbLf, vbCrLf)
     If Err.Number <> 0 Then
         txtValue.Text = C_ERROR
     End If
@@ -237,7 +237,7 @@ Private Sub UserForm_Initialize()
     txtEdit.Text = txtFormura.Text
     txtEdit.SelStart = 0
     
-    optFormura.value = True
+    optFormura.Value = True
     
     Set MW = basMouseWheel.GetInstance
     MW.Install
@@ -265,7 +265,7 @@ End Sub
 Private Sub changeValue()
     Dim r As Range
     
-    If optValue.value Then
+    If optValue.Value Then
         txtEdit.BackColor = &H8000000F
         txtFormura.Text = txtEdit.Text
         txtEdit.Text = txtValue.Text

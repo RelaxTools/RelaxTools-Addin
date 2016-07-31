@@ -50,7 +50,7 @@ Public Function Start(ByRef strFolder As String, ByRef blnSubFolder As Boolean) 
 
     'デフォルト値のセット
     txtFolder.Text = ""
-    chkSubFolder.value = False
+    chkSubFolder.Value = False
     mResult = vbCancel
     
     'フォームの表示
@@ -58,7 +58,7 @@ Public Function Start(ByRef strFolder As String, ByRef blnSubFolder As Boolean) 
 
     '結果の設定
     strFolder = txtFolder.Text
-    blnSubFolder = chkSubFolder.value
+    blnSubFolder = chkSubFolder.Value
     Start = mResult
     
 

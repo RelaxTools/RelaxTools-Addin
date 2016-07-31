@@ -75,7 +75,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    r.value = rlxDriveToUNC(r.value)
+    r.Value = rlxDriveToUNC(r.Value)
 
     Exit Sub
 e:

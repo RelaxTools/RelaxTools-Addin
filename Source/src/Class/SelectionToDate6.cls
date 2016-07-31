@@ -77,11 +77,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
   
     On Error GoTo e
     
-    s = r.value
+    s = r.Value
     If s <> "" _
     And IsNumeric(s) = True _
     And Len(s) = 6 Then
-        r.value = DateValue(Left(s, 2) & "/" & Mid(s, 3, 2) & "/" & Right(s, 2))
+        r.Value = DateValue(Left(s, 2) & "/" & Mid(s, 3, 2) & "/" & Right(s, 2))
     End If
     
     Exit Sub

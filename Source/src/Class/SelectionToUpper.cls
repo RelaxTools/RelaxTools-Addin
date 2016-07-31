@@ -75,7 +75,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    r.value = StrConvU(r.value, vbUpperCase)
+    r.Value = StrConvU(r.Value, vbUpperCase)
 
     Exit Sub
 e:

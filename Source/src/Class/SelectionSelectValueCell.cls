@@ -75,7 +75,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     On Error GoTo e
     
-    If r.value = "" Then
+    If r.Value = "" Then
     Else
         If mRange Is Nothing Then
             Set mRange = r

@@ -96,16 +96,16 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    lngPos = InStrRev(r.value, mstrIns)
+    lngPos = InStrRev(r.Value, mstrIns)
     
     If lngPos = 0 Then
         Exit Sub
     End If
     
-    If Not (NotHoldFormat) And VarType(r.value) = vbString Then
+    If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
         r.Characters(lngPos, r.Characters.count - lngPos + 1).Delete
     Else
-        r.value = Mid(r.value, 1, lngPos - 1)
+        r.Value = Mid(r.Value, 1, lngPos - 1)
     End If
 
     Exit Sub

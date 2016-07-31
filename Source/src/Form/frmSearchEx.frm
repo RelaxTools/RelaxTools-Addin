@@ -118,11 +118,11 @@ Private Sub cmdOK_Click()
     End If
     
     '正規表現の場合
-    If chkRegEx.value Then
+    If chkRegEx.Value Then
         Dim o As Object
         Set o = CreateObject("VBScript.RegExp")
         o.Pattern = txtSearch.Text
-        o.IgnoreCase = Not (chkCase.value)
+        o.IgnoreCase = Not (chkCase.Value)
         o.Global = True
         Err.Clear
         On Error Resume Next
@@ -169,11 +169,11 @@ Private Sub cmdOK_Click()
     
     SaveSetting C_TITLE, "Search", "cboPlace", cboPlace.ListIndex
     SaveSetting C_TITLE, "Search", "cboObj", cboObj.ListIndex
-    SaveSetting C_TITLE, "Search", "chkRegEx", chkRegEx.value
-    SaveSetting C_TITLE, "Search", "chkCase", chkCase.value
-    SaveSetting C_TITLE, "Search", "chkZenHan", chkZenHan.value
+    SaveSetting C_TITLE, "Search", "chkRegEx", chkRegEx.Value
+    SaveSetting C_TITLE, "Search", "chkCase", chkCase.Value
+    SaveSetting C_TITLE, "Search", "chkZenHan", chkZenHan.Value
     SaveSetting C_TITLE, "Search", "cboValue", cboValue.ListIndex
-    SaveSetting C_TITLE, "Search", "chkSmartArt", chkSmartArt.value
+    SaveSetting C_TITLE, "Search", "chkSmartArt", chkSmartArt.Value
     
     Logger.LogFinish TypeName(Me) & ".cmdOk_Click"
     
@@ -195,11 +195,11 @@ Private Sub cmdReplace_Click()
     End If
     
     '正規表現の場合
-    If chkRegEx.value Then
+    If chkRegEx.Value Then
         Dim o As Object
         Set o = CreateObject("VBScript.RegExp")
         o.Pattern = txtSearch.Text
-        o.IgnoreCase = Not (chkCase.value)
+        o.IgnoreCase = Not (chkCase.Value)
         o.Global = True
         Err.Clear
         On Error Resume Next
@@ -341,29 +341,29 @@ Private Function replaceStart(ByVal blnAsk As Boolean) As Long
             Set r = Worksheets(strSheet).Range(strAddress)
            
             '正規表現の場合
-            If chkRegEx.value Then
+            If chkRegEx.Value Then
             
                 Set objRegx = CreateObject("VBScript.RegExp")
                 
                 objRegx.Pattern = strPattern
-                objRegx.IgnoreCase = Not (chkCase.value)
+                objRegx.IgnoreCase = Not (chkCase.Value)
                 objRegx.Global = True
                 
                 If r.HasFormula Then
                     r.FormulaLocal = objRegx.Replace(r.FormulaLocal, convEscSeq(strReplace))
                 Else
-                    r.value = objRegx.Replace(r.value, convEscSeq(strReplace))
+                    r.Value = objRegx.Replace(r.Value, convEscSeq(strReplace))
                 End If
                 Set objRegx = Nothing
                
             Else
-                Call r.Replace(strPattern, strReplace, xlPart, xlByColumns, chkCase.value, False)
+                Call r.Replace(strPattern, strReplace, xlPart, xlByColumns, chkCase.Value, False)
             End If
             
             If r.HasFormula Then
                 lstResult.List(i, C_SEARCH_STR) = r.FormulaLocal
             Else
-                lstResult.List(i, C_SEARCH_STR) = Left(r.value, C_SIZE)
+                lstResult.List(i, C_SEARCH_STR) = Left(r.Value, C_SIZE)
             End If
             Set r = Nothing
         Else
@@ -373,12 +373,12 @@ Private Function replaceStart(ByVal blnAsk As Boolean) As Long
             Set s = getObjFromID(Worksheets(strSheet), Mid$(strAddress, InStrRev(strAddress, ":") + 1))
            
             '正規表現の場合
-            If chkRegEx.value Then
+            If chkRegEx.Value Then
               
                 Set objRegx = CreateObject("VBScript.RegExp")
                 
                 objRegx.Pattern = strPattern
-                objRegx.IgnoreCase = Not (chkCase.value)
+                objRegx.IgnoreCase = Not (chkCase.Value)
                 objRegx.Global = True
                 
                 If InStr(strAddress, C_SEARCH_ID_SMARTART) > 0 Then
@@ -404,7 +404,7 @@ Private Function replaceStart(ByVal blnAsk As Boolean) As Long
                 End If
                 
                 lngLen = Len(strPattern)
-                If chkCase.value Then
+                If chkCase.Value Then
                     lngPos = InStr(strBuf, strPattern)
                 Else
                     lngPos = InStr(UCase(strBuf), UCase(strPattern))
@@ -417,7 +417,7 @@ Private Function replaceStart(ByVal blnAsk As Boolean) As Long
                     
                     strBuf = strL & strReplace & strR
                     
-                    If chkCase.value Then
+                    If chkCase.Value Then
                         lngPos = InStr(Len(strL & strReplace) + 1, strBuf, strPattern)
                     Else
                         lngPos = InStr(Len(strL & strReplace) + 1, UCase(strBuf), UCase(strPattern))
@@ -510,13 +510,13 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
         Set objRegx = CreateObject("VBScript.RegExp")
         
         objRegx.Pattern = strPattern
-        objRegx.IgnoreCase = Not (chkCase.value)
+        objRegx.IgnoreCase = Not (chkCase.Value)
         objRegx.Global = True
         
-        If cboValue.value = C_SEARCH_VALUE_VALUE Then
-            Set objFind = objSheet.UsedRange.Find("*", , xlValues, xlPart, xlByRows, xlNext, chkCase.value, chkZenHan.value)
+        If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+            Set objFind = objSheet.UsedRange.Find("*", , xlValues, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
         Else
-            Set objFind = objSheet.UsedRange.Find("*", , xlFormulas, xlPart, xlByRows, xlNext, chkCase.value, chkZenHan.value)
+            Set objFind = objSheet.UsedRange.Find("*", , xlFormulas, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
         End If
         
         If Not objFind Is Nothing Then
@@ -527,13 +527,13 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
     
                 Dim schStr As Variant
                 
-                If cboValue.value = C_SEARCH_VALUE_VALUE Then
-                    schStr = objFind.value
+                If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+                    schStr = objFind.Value
                 Else
                     If objFind.HasFormula Then
                         schStr = objFind.FormulaLocal
                     Else
-                        schStr = objFind.value
+                        schStr = objFind.Value
                     End If
                 End If
                 
@@ -567,10 +567,10 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
         End If
     Else
         
-        If cboValue.value = C_SEARCH_VALUE_VALUE Then
-            Set objFind = objSheet.UsedRange.Find(strPattern, , xlValues, xlPart, xlByRows, xlNext, chkCase.value, chkZenHan.value)
+        If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+            Set objFind = objSheet.UsedRange.Find(strPattern, , xlValues, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
         Else
-            Set objFind = objSheet.UsedRange.Find(strPattern, , xlFormulas, xlPart, xlByRows, xlNext, chkCase.value, chkZenHan.value)
+            Set objFind = objSheet.UsedRange.Find(strPattern, , xlFormulas, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
         End If
         
         If Not objFind Is Nothing Then
@@ -582,13 +582,13 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
                 lstResult.AddItem ""
                 lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                 
-                If cboValue.value = C_SEARCH_VALUE_VALUE Then
-                    lstResult.List(mlngCount, C_SEARCH_STR) = Left(objFind.value, C_SIZE)
+                If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+                    lstResult.List(mlngCount, C_SEARCH_STR) = Left(objFind.Value, C_SIZE)
                 Else
                     If objFind.HasFormula Then
                         lstResult.List(mlngCount, C_SEARCH_STR) = objFind.FormulaLocal
                     Else
-                        lstResult.List(mlngCount, C_SEARCH_STR) = Left(objFind.value, C_SIZE)
+                        lstResult.List(mlngCount, C_SEARCH_STR) = Left(objFind.Value, C_SIZE)
                     End If
                 End If
                 
@@ -635,7 +635,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
     If chkRegEx Then
         Set mobjRegx = CreateObject("VBScript.RegExp")
         mobjRegx.Pattern = strPattern
-        mobjRegx.IgnoreCase = Not (chkCase.value)
+        mobjRegx.IgnoreCase = Not (chkCase.Value)
         mobjRegx.Global = True
     End If
     
@@ -660,7 +660,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
                         End If
                         matchCount = objMatch.count
                     Else
-                        If chkCase.value Then
+                        If chkCase.Value Then
                             matchCount = InStr(strBuf, strPattern)
                         Else
                             matchCount = InStr(UCase(strBuf), UCase(strPattern))
@@ -689,7 +689,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
 
             Case msoSmartArt
                 'check があるときのみ検索
-                If chkSmartArt.value Then
+                If chkSmartArt.Value Then
                     SmartArtprc objSheet, c, c, colShapes
                 End If
 
@@ -727,7 +727,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                         End If
                         matchCount = objMatch.count
                     Else
-                        If chkCase.value Then
+                        If chkCase.Value Then
                             matchCount = InStr(strBuf, strPattern)
                         Else
                             matchCount = InStr(UCase(strBuf), UCase(strPattern))
@@ -758,7 +758,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
             
             Case msoSmartArt
                 'check があるときのみ検索
-                If chkSmartArt.value Then
+                If chkSmartArt.Value Then
                     SmartArtprc WS, c, c, colShapes
                 End If
         End Select
@@ -798,7 +798,7 @@ Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objS
                 End If
                 matchCount = objMatch.count
             Else
-                If chkCase.value Then
+                If chkCase.Value Then
                     matchCount = InStr(strBuf, strPattern)
                 Else
                     matchCount = InStr(UCase(strBuf), UCase(strPattern))
@@ -1040,7 +1040,7 @@ Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer,
 End Sub
 
 Private Sub schTab_Change()
-    Select Case schTab.value
+    Select Case schTab.Value
         Case 0
             Dim c As Object
             For Each c In Controls
@@ -1136,13 +1136,13 @@ Private Sub UserForm_Initialize()
     
     schTab.Tabs(0).Caption = "検索"
     schTab.Tabs(1).Caption = "置換"
-    schTab.value = 0
+    schTab.Value = 0
     Call schTab_Change
     
-    chkRegEx.value = GetSetting(C_TITLE, "Search", "chkRegEx", False)
-    chkCase.value = GetSetting(C_TITLE, "Search", "chkCase", False)
-    chkZenHan.value = GetSetting(C_TITLE, "Search", "chkZenHan", False)
-    chkSmartArt.value = GetSetting(C_TITLE, "Search", "chkSmartArt", False)
+    chkRegEx.Value = GetSetting(C_TITLE, "Search", "chkRegEx", False)
+    chkCase.Value = GetSetting(C_TITLE, "Search", "chkCase", False)
+    chkZenHan.Value = GetSetting(C_TITLE, "Search", "chkZenHan", False)
+    chkSmartArt.Value = GetSetting(C_TITLE, "Search", "chkSmartArt", False)
 
     Me.Top = (Application.Top + Application.Height - Me.Height) - 20
     Me.Left = (Application.Left + Application.Width - Me.Width) - 20
@@ -1174,7 +1174,7 @@ Private Sub UserForm_Initialize()
 End Sub
 Public Sub Start(ByVal lngTab As Long)
 
-    schTab.value = lngTab
+    schTab.Value = lngTab
 
     Me.Show
 

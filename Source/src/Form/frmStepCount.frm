@@ -112,13 +112,13 @@ Private Sub cmdOK_Click()
     Set WB = Workbooks.Add
     
     lngCnt = 2
-    WB.Worksheets(1).Cells(lngCnt, C_NO).value = "No."
-    WB.Worksheets(1).Cells(lngCnt, C_MODULE).value = "オブジェクト"
-    WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "種類"
-    WB.Worksheets(1).Cells(lngCnt, C_CODE).value = "実行"
-    WB.Worksheets(1).Cells(lngCnt, C_COMMENT).value = "ｺﾒﾝﾄ"
-    WB.Worksheets(1).Cells(lngCnt, C_BLANK).value = "空白"
-    WB.Worksheets(1).Cells(lngCnt, C_ALL).value = "全行"
+    WB.Worksheets(1).Cells(lngCnt, C_NO).Value = "No."
+    WB.Worksheets(1).Cells(lngCnt, C_MODULE).Value = "オブジェクト"
+    WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "種類"
+    WB.Worksheets(1).Cells(lngCnt, C_CODE).Value = "実行"
+    WB.Worksheets(1).Cells(lngCnt, C_COMMENT).Value = "ｺﾒﾝﾄ"
+    WB.Worksheets(1).Cells(lngCnt, C_BLANK).Value = "空白"
+    WB.Worksheets(1).Cells(lngCnt, C_ALL).Value = "全行"
     lngCnt = 3
     
     For Each o In Target.VBProject.VBComponents
@@ -128,25 +128,25 @@ Private Sub cmdOK_Click()
         lngCodeCount = 0
         lngCommentCount = 0
         
-        WB.Worksheets(1).Cells(lngCnt, C_MODULE).value = o.Name
+        WB.Worksheets(1).Cells(lngCnt, C_MODULE).Value = o.Name
         
         Select Case o.Type
             Case 1
-                WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "標準モジュール"
-                WB.Worksheets(1).Cells(lngCnt, C_SORT).value = 4
+                WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "標準モジュール"
+                WB.Worksheets(1).Cells(lngCnt, C_SORT).Value = 4
             Case 2
-                WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "クラスモジュール"
-                WB.Worksheets(1).Cells(lngCnt, C_SORT).value = 5
+                WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "クラスモジュール"
+                WB.Worksheets(1).Cells(lngCnt, C_SORT).Value = 5
             Case 3
-                WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "フォーム"
-                WB.Worksheets(1).Cells(lngCnt, C_SORT).value = 3
+                WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "フォーム"
+                WB.Worksheets(1).Cells(lngCnt, C_SORT).Value = 3
             Case Else
                 If o.Name = "ThisWorkbook" Then
-                    WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "Excel Objects"
-                    WB.Worksheets(1).Cells(lngCnt, C_SORT).value = 2
+                    WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "Excel Objects"
+                    WB.Worksheets(1).Cells(lngCnt, C_SORT).Value = 2
                 Else
-                    WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "Excel Objects"
-                    WB.Worksheets(1).Cells(lngCnt, C_SORT).value = 1
+                    WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "Excel Objects"
+                    WB.Worksheets(1).Cells(lngCnt, C_SORT).Value = 1
                 End If
         End Select
         
@@ -172,11 +172,11 @@ Private Sub cmdOK_Click()
 
         lngCodeCount = lngAllCount - lngCommentCount - lngBlankCount
         
-        WB.Worksheets(1).Cells(lngCnt, C_NO).value = lngCnt - 2
-        WB.Worksheets(1).Cells(lngCnt, C_CODE).value = lngCodeCount
-        WB.Worksheets(1).Cells(lngCnt, C_COMMENT).value = lngCommentCount
-        WB.Worksheets(1).Cells(lngCnt, C_BLANK).value = lngBlankCount
-        WB.Worksheets(1).Cells(lngCnt, C_ALL).value = lngAllCount
+        WB.Worksheets(1).Cells(lngCnt, C_NO).Value = lngCnt - 2
+        WB.Worksheets(1).Cells(lngCnt, C_CODE).Value = lngCodeCount
+        WB.Worksheets(1).Cells(lngCnt, C_COMMENT).Value = lngCommentCount
+        WB.Worksheets(1).Cells(lngCnt, C_BLANK).Value = lngBlankCount
+        WB.Worksheets(1).Cells(lngCnt, C_ALL).Value = lngAllCount
         
         lngCnt = lngCnt + 1
     
@@ -202,8 +202,8 @@ Private Sub cmdOK_Click()
     WB.Worksheets(1).Range("A2").CurrentRegion.Select
     execSelectionRowDrawGrid
     
-    WB.Worksheets(1).Cells(1, C_NO).value = Target.Name & " ステップカウント"
-    WB.Worksheets(1).Cells(lngCnt, C_TYPE).value = "合計"
+    WB.Worksheets(1).Cells(1, C_NO).Value = Target.Name & " ステップカウント"
+    WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "合計"
     WB.Worksheets(1).Cells(lngCnt, C_CODE).Formula = "=sum(D3:D" & lngCnt - 1 & ")"
     WB.Worksheets(1).Cells(lngCnt, C_COMMENT).Formula = "=sum(E3:E" & lngCnt - 1 & ")"
     WB.Worksheets(1).Cells(lngCnt, C_BLANK).Formula = "=sum(F3:F" & lngCnt - 1 & ")"

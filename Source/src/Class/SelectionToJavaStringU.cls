@@ -81,9 +81,9 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    strResult = rlxToJavaFieldNm(r.value)
+    strResult = rlxToJavaFieldNm(r.Value)
     
-    r.value = addSetStr("", strResult)
+    r.Value = addSetStr("", strResult)
 
     Exit Sub
 e:

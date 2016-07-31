@@ -75,7 +75,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    r.value = rlxGetFullpathFromExt(r.value)
+    r.Value = rlxGetFullpathFromExt(r.Value)
 
     Exit Sub
 e:

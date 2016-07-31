@@ -97,7 +97,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 '        Exit Sub
 '    End If
     
-    strSource = StrConvU(r.value, vbNarrow)
+    strSource = StrConvU(r.Value, vbNarrow)
     
     lngLen = Len(strSource)
     strDest = ""
@@ -133,7 +133,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         strDest = strDest & StrConvU(strBuf, vbWide)
     End If
         
-    r.value = strDest
+    r.Value = strDest
     
     Exit Sub
 e:

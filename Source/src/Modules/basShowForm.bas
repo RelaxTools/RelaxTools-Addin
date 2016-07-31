@@ -59,7 +59,7 @@ Sub cellSearch()
         Exit Sub
     End If
     
-    frmSearchEx.txtSearch.Text = Replace(Replace(ActiveCell.value, vbCrLf, "\n"), vbCr, "\n")
+    frmSearchEx.txtSearch.Text = Replace(Replace(ActiveCell.Value, vbCrLf, "\n"), vbCr, "\n")
     frmSearchEx.txtSearch.SelStart = 0
     
     frmSearchEx.Show
@@ -76,7 +76,7 @@ Sub replaceEx()
         Exit Sub
     End If
     
-    frmSearchEx.schTab.value = 1
+    frmSearchEx.schTab.Value = 1
     
     frmSearchEx.Show
     

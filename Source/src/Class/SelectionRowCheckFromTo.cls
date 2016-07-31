@@ -112,12 +112,12 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
     'キーの作成
     strKey = ""
     For Each v In r
-        If IsError(v.value) Then
+        If IsError(v.Value) Then
         Else
             If Len(strKey) = 0 Then
-                strKey = v.value
+                strKey = v.Value
             Else
-                strKey = strKey & vbTab & v.value
+                strKey = strKey & vbTab & v.Value
             End If
         End If
     Next
@@ -132,8 +132,8 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
     blnMatch = False
     
     For Each c In mobjCol
-        strFrom = c.Cells(1, 1).value
-        strTo = c.Cells(1, 2).value
+        strFrom = c.Cells(1, 1).Value
+        strTo = c.Cells(1, 2).Value
     
         '期間重複チェック
         If schCell(0) <= strTo And schCell(1) >= strFrom Then

@@ -129,7 +129,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
     Set last = r.Columns(r.Columns.count)
     Set out = r.Worksheet.Cells(last.row, last.Column + 1)
 
-    out.value = mInsert & strSQL & ");"""
+    out.Value = mInsert & strSQL & ");"""
 
     Exit Sub
 e:

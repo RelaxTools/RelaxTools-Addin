@@ -134,11 +134,11 @@ Private Sub cmdOK_Click()
     
     strPtn = ""
     
-    If chkExcel.value Then
+    If chkExcel.Value Then
         strPtn = "*.xls;*.xlsx"
     End If
     
-    If chkWord.value Then
+    If chkWord.Value Then
         If strPtn = "" Then
             strPtn = strPtn & "*.doc;*.docx"
         Else
@@ -146,7 +146,7 @@ Private Sub cmdOK_Click()
         End If
     End If
     
-    If chkPoint.value Then
+    If chkPoint.Value Then
         If strPtn = "" Then
             strPtn = strPtn & "*.ppt;*.pptx"
         Else
@@ -184,10 +184,10 @@ Private Sub cmdOK_Click()
     ThisWorkbook.Worksheets("ページ数カウント結果").Copy
     Set ResultWS = ActiveSheet
     
-    ResultWS.Cells(1, C_SEARCH_NO).value = "No."
-    ResultWS.Cells(1, C_SEARCH_BOOK).value = "ファイル名"
+    ResultWS.Cells(1, C_SEARCH_NO).Value = "No."
+    ResultWS.Cells(1, C_SEARCH_BOOK).Value = "ファイル名"
     ResultWS.Cells(1, C_SEARCH_BOOK).ColumnWidth = 60
-    ResultWS.Cells(1, C_SEARCH_PAGE).value = "ページ数"
+    ResultWS.Cells(1, C_SEARCH_PAGE).Value = "ページ数"
 
     lngCount = C_START_ROW
 
@@ -195,15 +195,15 @@ Private Sub cmdOK_Click()
     
     cmdCancel.Caption = "キャンセル"
     
-    If chkExcel.value Then
+    If chkExcel.Value Then
         Set XL = New Excel.Application
     End If
-    If chkWord.value Then
+    If chkWord.Value Then
         Dim WD As Object
         Dim DC As Object
         Set WD = CreateObject("Word.Application")
     End If
-    If chkPoint.value Then
+    If chkPoint.Value Then
         Dim PP As Object
         Dim pt As Object
         Set PP = CreateObject("PowerPoint.Application")
@@ -221,8 +221,8 @@ Private Sub cmdOK_Click()
     
         Err.Clear
         
-        ResultWS.Cells(lngCount, C_SEARCH_NO).value = lngCount - C_START_ROW + 1
-        ResultWS.Cells(lngCount, C_SEARCH_BOOK).value = varBook
+        ResultWS.Cells(lngCount, C_SEARCH_NO).Value = lngCount - C_START_ROW + 1
+        ResultWS.Cells(lngCount, C_SEARCH_BOOK).Value = varBook
     
         ResultWS.Hyperlinks.Add _
             Anchor:=ResultWS.Cells(lngCount, C_SEARCH_BOOK), _
@@ -242,7 +242,7 @@ Private Sub cmdOK_Click()
                     End If
                 Next
                 
-                ResultWS.Cells(lngCount, C_SEARCH_PAGE).value = lngPage
+                ResultWS.Cells(lngCount, C_SEARCH_PAGE).Value = lngPage
                 WB.Close SaveChanges:=False
                 Set WB = Nothing
         
@@ -252,7 +252,7 @@ Private Sub cmdOK_Click()
                 
                 DC.Repaginate
                 
-                ResultWS.Cells(lngCount, C_SEARCH_PAGE).value = DC.BuiltinDocumentProperties(14)
+                ResultWS.Cells(lngCount, C_SEARCH_PAGE).Value = DC.BuiltinDocumentProperties(14)
                 
                 DC.Close SaveChanges:=False
                 Set DC = Nothing
@@ -261,7 +261,7 @@ Private Sub cmdOK_Click()
             
                 Set pt = PP.Presentations.Open(FileName:=varBook, ReadOnly:=True, withwindow:=False)
                     
-                ResultWS.Cells(lngCount, C_SEARCH_PAGE).value = pt.Slides.count
+                ResultWS.Cells(lngCount, C_SEARCH_PAGE).Value = pt.Slides.count
                 
                 pt.Close
                 Set pt = Nothing
@@ -273,15 +273,15 @@ Private Sub cmdOK_Click()
         mMm.DisplayGauge lngBookCount
     Next
     
-    If chkPoint.value Then
+    If chkPoint.Value Then
         PP.Quit
         Set PP = Nothing
     End If
-    If chkWord.value Then
+    If chkWord.Value Then
         WD.Quit
         Set WD = Nothing
     End If
-    If chkExcel.value Then
+    If chkExcel.Value Then
         XL.Quit
         Set XL = Nothing
     End If
@@ -313,7 +313,7 @@ Private Sub cmdOK_Click()
     SaveSetting C_TITLE, "ExcelPages", "FolderStr", strBuf
     
 
-    SaveSetting C_TITLE, "ExcelPages", "chkSubFolder", chkSubFolder.value
+    SaveSetting C_TITLE, "ExcelPages", "chkSubFolder", chkSubFolder.Value
 
     
     Set mMm = Nothing
@@ -357,7 +357,7 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
     Next
     
     'サブフォルダ検索あり
-    If chkSubFolder.value Then
+    If chkSubFolder.Value Then
         For Each objSub In objfld.SubFolders
             DoEvents
             DoEvents
@@ -388,11 +388,11 @@ Private Sub UserForm_Initialize()
 
     lblGauge.visible = False
     
-    chkExcel.value = True
-    chkWord.value = True
-    chkPoint.value = True
+    chkExcel.Value = True
+    chkWord.Value = True
+    chkPoint.Value = True
     
-    chkSubFolder.value = GetSetting(C_TITLE, "ExcelPages", "chkSubFolder", False)
+    chkSubFolder.Value = GetSetting(C_TITLE, "ExcelPages", "chkSubFolder", False)
     
 End Sub
 

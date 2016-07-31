@@ -57,15 +57,15 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
         Exit Sub
     End If
 
-    strBook = Cells(ActiveCell.row, C_SEARCH_BOOK).value
+    strBook = Cells(ActiveCell.row, C_SEARCH_BOOK).Value
     If Len(strBook) = 0 Then
         Exit Sub
     End If
-    strSheet = Cells(ActiveCell.row, C_SEARCH_SHEET).value
+    strSheet = Cells(ActiveCell.row, C_SEARCH_SHEET).Value
     If Len(strSheet) = 0 Then
         Exit Sub
     End If
-    strId = Cells(ActiveCell.row, C_SEARCH_ADDRESS).value
+    strId = Cells(ActiveCell.row, C_SEARCH_ADDRESS).Value
     If Len(strId) = 0 Then
         Exit Sub
     End If
@@ -76,9 +76,9 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
     Dim varPass As Variant
     Dim strBuf As String
     
-    lngPos = InStr(Cells(8, C_SEARCH_NO).value, "：")
+    lngPos = InStr(Cells(8, C_SEARCH_NO).Value, "：")
     If lngPos > 0 Then
-        strBuf = Mid(Cells(8, C_SEARCH_NO).value, lngPos + 1)
+        strBuf = Mid(Cells(8, C_SEARCH_NO).Value, lngPos + 1)
         varPassword = Split(strBuf, ",")
     Else
         varPassword = Array("")
@@ -179,7 +179,7 @@ Sub ReplaceStr()
         Exit Sub
     End If
     
-    If Cells(6, 1).value = "検索対象：値" Then
+    If Cells(6, 1).Value = "検索対象：値" Then
         MsgBox "検索対象が値の場合、Grep置換はできません。", vbOKOnly + vbCritical, C_TITLE
         Exit Sub
     End If
@@ -199,17 +199,17 @@ Sub ReplaceStr()
     Dim varPass As Variant
     Dim strBuf As String
     
-    lngPos = InStr(Cells(8, C_SEARCH_NO).value, "：")
+    lngPos = InStr(Cells(8, C_SEARCH_NO).Value, "：")
     If lngPos > 0 Then
-        strBuf = Mid(Cells(8, C_SEARCH_NO).value, lngPos + 1)
+        strBuf = Mid(Cells(8, C_SEARCH_NO).Value, lngPos + 1)
         varPassword = Split(strBuf, ",")
     Else
         varPassword = Array("")
     End If
     
-    Do Until Cells(lngRow, C_SEARCH_NO).value = ""
+    Do Until Cells(lngRow, C_SEARCH_NO).Value = ""
         
-        strBook = Cells(lngRow, C_SEARCH_BOOK).value
+        strBook = Cells(lngRow, C_SEARCH_BOOK).Value
         
         'バックアップする
         FS.CopyFile strBook, strBook & "." & Format$(Now(), "yyyymmddhhnnss")
@@ -233,22 +233,22 @@ Sub ReplaceStr()
         
         AppActivate Application.Caption
             
-        Do Until strBook <> Cells(lngRow, C_SEARCH_BOOK).value Or Cells(lngRow, C_SEARCH_NO).value = ""
+        Do Until strBook <> Cells(lngRow, C_SEARCH_BOOK).Value Or Cells(lngRow, C_SEARCH_NO).Value = ""
         
-            strSheet = Cells(lngRow, C_SEARCH_SHEET).value
+            strSheet = Cells(lngRow, C_SEARCH_SHEET).Value
             
             Set WS = WB.Worksheets(strSheet)
             WS.Select
             
-            Do Until strBook <> Cells(lngRow, C_SEARCH_BOOK).value Or strSheet <> Cells(lngRow, C_SEARCH_SHEET).value Or Cells(lngRow, C_SEARCH_NO).value = ""
+            Do Until strBook <> Cells(lngRow, C_SEARCH_BOOK).Value Or strSheet <> Cells(lngRow, C_SEARCH_SHEET).Value Or Cells(lngRow, C_SEARCH_NO).Value = ""
         
-                strId = Cells(lngRow, C_SEARCH_ADDRESS).value
+                strId = Cells(lngRow, C_SEARCH_ADDRESS).Value
                 
                 Dim strSrch As String
-                strSrch = Cells(lngRow, C_SEARCH_STR).value
+                strSrch = Cells(lngRow, C_SEARCH_STR).Value
                 
                 If InStr(strId, "$") > 0 Then
-                    WS.Range(strId).value = strSrch
+                    WS.Range(strId).Value = strSrch
                 Else
                     Set s = getObjFromID(WS, Mid$(strId, InStrRev(strId, ":") + 1))
                     s.TextFrame.Characters.Text = strSrch

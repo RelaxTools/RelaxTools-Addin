@@ -97,7 +97,7 @@ Private Sub cmdOK_Click()
             Exit Sub
     End Select
     
-    If optNew.value Then
+    If optNew.Value Then
     Else
     
         If Len(txtDanrakuCell.Text) = 0 Then
@@ -166,7 +166,7 @@ Private Sub cmdOK_Click()
 
     Set WB = ActiveWorkbook
     
-    If optNew.value Then
+    If optNew.Value Then
         
         'シートの存在チェック
         For Each s In WB.Worksheets
@@ -188,8 +188,8 @@ Private Sub cmdOK_Click()
     
         Set WS = WB.Worksheets.Add(WB.Worksheets(1))
         WS.Name = C_NAME
-        WS.Cells(C_HEAD_ROW, C_CONTENT_LIST).value = C_NAME
-        WS.Cells(C_HEAD_ROW, C_CONTENT_PAGE).value = "ページ"
+        WS.Cells(C_HEAD_ROW, C_CONTENT_LIST).Value = C_NAME
+        WS.Cells(C_HEAD_ROW, C_CONTENT_PAGE).Value = "ページ"
     Else
         C_CONTENT_LIST = getAto1(txtDanrakuCell.Text)
         C_CONTENT_PAGE = getAto1(txtPageCell.Text)
@@ -235,7 +235,7 @@ Private Sub cmdOK_Click()
                         
             For i = 1 To lngRow
             
-                strBuf = Worksheets(strSheet).Cells(i, lngCol).value
+                strBuf = Worksheets(strSheet).Cells(i, lngCol).Value
                             
                 If Worksheets(strSheet).Cells(i, lngCol).IndentLevel < lngLevel Then
                 
@@ -248,32 +248,32 @@ Private Sub cmdOK_Click()
                     If blnAns Then
 
                         
-                        If chkPeriod.value Then
-                            WS.Cells(j, C_CONTENT_LIST).value = Worksheets(strSheet).Cells(i, lngCol).value & C_PERIOD
+                        If chkPeriod.Value Then
+                            WS.Cells(j, C_CONTENT_LIST).Value = Worksheets(strSheet).Cells(i, lngCol).Value & C_PERIOD
                         Else
-                            WS.Cells(j, C_CONTENT_LIST).value = Worksheets(strSheet).Cells(i, lngCol).value
+                            WS.Cells(j, C_CONTENT_LIST).Value = Worksheets(strSheet).Cells(i, lngCol).Value
                         End If
                         WS.Cells(j, C_CONTENT_LIST).IndentLevel = Worksheets(strSheet).Cells(i, lngCol).IndentLevel
                         
                         If l = 0 Then
                             k = 1
-                            WS.Cells(j, C_CONTENT_PAGE).value = k + lngPage
+                            WS.Cells(j, C_CONTENT_PAGE).Value = k + lngPage
                         Else
                             For k = 1 To UBound(p)
                                 If p(k) > i Then
-                                    WS.Cells(j, C_CONTENT_PAGE).value = k + lngPage
+                                    WS.Cells(j, C_CONTENT_PAGE).Value = k + lngPage
                                     Exit For
                                 End If
                             Next
-                            WS.Cells(j, C_CONTENT_PAGE).value = k + lngPage
+                            WS.Cells(j, C_CONTENT_PAGE).Value = k + lngPage
                         End If
                         
-                        If chkHyperLink.value Then
+                        If chkHyperLink.Value Then
                             WS.Hyperlinks.Add _
                                 Anchor:=WS.Cells(j, C_CONTENT_LIST), _
                                 Address:="", _
                                 SubAddress:="'" & Worksheets(strSheet).Name & "'!" & Worksheets(strSheet).Cells(i, lngCol).Address, _
-                                TextToDisplay:=WS.Cells(j, C_CONTENT_LIST).value
+                                TextToDisplay:=WS.Cells(j, C_CONTENT_LIST).Value
                         End If
                         
                         j = j + 1
@@ -288,7 +288,7 @@ Private Sub cmdOK_Click()
         End If
     Next
     
-    If optNew.value Then
+    If optNew.Value Then
         WS.Columns(C_CONTENT_LIST).ColumnWidth = 70
         WS.Columns(C_CONTENT_PAGE).ColumnWidth = 7
     End If
@@ -313,7 +313,7 @@ Private Function getSectionCol(ByRef WS As Worksheet) As Long
     
         For i = 1 To WS.UsedRange.Item(WS.UsedRange.count).row
         
-            strBuf = WS.Cells(i, j).value
+            strBuf = WS.Cells(i, j).Value
                         
             '段落番号レベル１～２が存在する場合
             If rlxHasSectionNo(strBuf, 0) Or rlxHasSectionNo(strBuf, 1) Then
@@ -458,7 +458,7 @@ Private Sub UserForm_Initialize()
     Next
     cboSheet.ListIndex = j
     
-    optNew.value = True
+    optNew.Value = True
 
     txtDanrakuCell.Text = get1toA(C_COLUMN_LIST)
     txtPageCell.Text = get1toA(C_COLUMN_PAGE)
@@ -510,13 +510,13 @@ Private Function get1toA(ByVal lngCol As Long) As String
 End Function
 Sub setEnebled()
 
-    cboSheet.enabled = optEmb.value
-    txtDanrakuCell.enabled = optEmb.value
-    txtPageCell.enabled = optEmb.value
-    txtRow.enabled = optEmb.value
-    spnDanraku.enabled = optEmb.value
-    spnPage.enabled = optEmb.value
-    spnRow.enabled = optEmb.value
+    cboSheet.enabled = optEmb.Value
+    txtDanrakuCell.enabled = optEmb.Value
+    txtPageCell.enabled = optEmb.Value
+    txtRow.enabled = optEmb.Value
+    spnDanraku.enabled = optEmb.Value
+    spnPage.enabled = optEmb.Value
+    spnRow.enabled = optEmb.Value
     
 End Sub
 

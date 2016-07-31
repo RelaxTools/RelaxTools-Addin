@@ -73,7 +73,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     Dim strNumber As String
 
-    strNumber = Trim(rlxGetSectionNo(r.value, r.IndentLevel))
+    strNumber = Trim(rlxGetSectionNo(r.Value, r.IndentLevel))
     If Len(strNumber) > 0 Then
     
         If mstrBuf = "" Then

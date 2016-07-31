@@ -82,10 +82,10 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     If r.HasFormula Then
     Else
-        If Not (NotHoldFormat) And VarType(r.value) = vbString Then
+        If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
             r.Characters(r.Characters.count, 1).Delete
         Else
-            r.value = Mid$(r.value, 1, Len(r.value) - 1)
+            r.Value = Mid$(r.Value, 1, Len(r.Value) - 1)
         End If
     End If
 

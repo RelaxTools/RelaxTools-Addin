@@ -360,12 +360,12 @@ Private Sub UserForm_Initialize()
     
     cboCategory.AddItem "すべて"
     'マクロシートのロード
-    Do Until WS.Cells(i, C_COM_NO).value = ""
+    Do Until WS.Cells(i, C_COM_NO).Value = ""
 
-        If WS.Cells(i, C_COM_USE).value <> "－" And WS.Cells(i, C_COM_CATEGORY).value <> "まとめ実行" Then
-            If WS.Cells(i, C_COM_CATEGORY).value <> strBefore Then
-                cboCategory.AddItem WS.Cells(i, C_COM_CATEGORY).value
-                strBefore = WS.Cells(i, C_COM_CATEGORY).value
+        If WS.Cells(i, C_COM_USE).Value <> "－" And WS.Cells(i, C_COM_CATEGORY).Value <> "まとめ実行" Then
+            If WS.Cells(i, C_COM_CATEGORY).Value <> strBefore Then
+                cboCategory.AddItem WS.Cells(i, C_COM_CATEGORY).Value
+                strBefore = WS.Cells(i, C_COM_CATEGORY).Value
             End If
         End If
         i = i + 1
@@ -417,15 +417,15 @@ Sub dispCommand()
     lstCommand.Clear
 
     'マクロシートのロード
-    Do Until WS.Cells(i, C_COM_NO).value = ""
+    Do Until WS.Cells(i, C_COM_NO).Value = ""
         
-        If WS.Cells(i, C_COM_USE).value <> "－" And WS.Cells(i, C_COM_CATEGORY).value <> "まとめ実行" Then
-            If (cboCategory.ListIndex = 0 Or cboCategory.Text = WS.Cells(i, C_COM_CATEGORY).value) And (txtKinou.Text = "" Or InStr(WS.Cells(i, C_COM_DISP_NAME).value, txtKinou.Text) > 0) Then
+        If WS.Cells(i, C_COM_USE).Value <> "－" And WS.Cells(i, C_COM_CATEGORY).Value <> "まとめ実行" Then
+            If (cboCategory.ListIndex = 0 Or cboCategory.Text = WS.Cells(i, C_COM_CATEGORY).Value) And (txtKinou.Text = "" Or InStr(WS.Cells(i, C_COM_DISP_NAME).Value, txtKinou.Text) > 0) Then
                 lstCommand.AddItem ""
                 lstCommand.List(j, C_SET_NO) = j + 1
-                lstCommand.List(j, C_SET_CATEGORY) = WS.Cells(i, C_COM_CATEGORY).value
-                lstCommand.List(j, C_SET_DISP_NAME) = WS.Cells(i, C_COM_DISP_NAME).value
-                lstCommand.List(j, C_SET_MACRO) = WS.Cells(i, C_COM_MACRO).value
+                lstCommand.List(j, C_SET_CATEGORY) = WS.Cells(i, C_COM_CATEGORY).Value
+                lstCommand.List(j, C_SET_DISP_NAME) = WS.Cells(i, C_COM_DISP_NAME).Value
+                lstCommand.List(j, C_SET_MACRO) = WS.Cells(i, C_COM_MACRO).Value
                 j = j + 1
             End If
         End If

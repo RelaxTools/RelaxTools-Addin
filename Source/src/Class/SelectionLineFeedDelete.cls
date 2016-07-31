@@ -79,18 +79,18 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     On Error GoTo e
 
-    If IsError(r.value) Then
+    If IsError(r.Value) Then
         Exit Sub
     End If
 
-    s = r.value
+    s = r.Value
     lngMax = Len(s)
 
     If Len(s) = 0 Then
         Exit Sub
     End If
 
-    If Not (NotHoldFormat) And VarType(r.value) = vbString Then
+    If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
 
         For i = r.Characters.count To 1 Step -1
             Select Case r.Characters(i, 1).Text
@@ -111,7 +111,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
                     Exit For
             End Select
         Next
-        r.value = s
+        r.Value = s
     End If
 
     Exit Sub

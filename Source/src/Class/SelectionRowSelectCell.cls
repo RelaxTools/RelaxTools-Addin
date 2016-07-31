@@ -110,7 +110,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolea
     
         Select Case mlngType
             Case 0
-                If mstrSearch = c.value Then
+                If mstrSearch = c.Value Then
                     If mSel Is Nothing Then
                         Set mSel = c
                     Else
@@ -118,7 +118,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolea
                     End If
                 End If
             Case 1
-                If mstrSearch <> c.value Then
+                If mstrSearch <> c.Value Then
                     If mSel Is Nothing Then
                         Set mSel = c
                     Else
@@ -126,7 +126,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolea
                     End If
                 End If
             Case Else
-                If InStr(c.value, mstrSearch) Then
+                If InStr(c.Value, mstrSearch) Then
                     If mSel Is Nothing Then
                         Set mSel = c
                     Else

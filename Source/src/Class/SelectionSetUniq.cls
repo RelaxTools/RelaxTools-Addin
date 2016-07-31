@@ -102,7 +102,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    If r.value = "" Then
+    If r.Value = "" Then
         Exit Sub
     End If
 
@@ -112,7 +112,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     Err.Clear
     On Error Resume Next
     Set c = Nothing
-    Set c = mobjCol(CStr(r.value))
+    Set c = mobjCol(CStr(r.Value))
     
     On Error GoTo 0
             
@@ -131,7 +131,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     Else
         '存在しない場合コレクションに追加
         mlngMax = mlngMax + 1
-        Call mobjCol.Add(r, CStr(r.value))
+        Call mobjCol.Add(r, CStr(r.Value))
     End If
 
     Exit Sub

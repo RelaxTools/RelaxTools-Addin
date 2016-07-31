@@ -78,7 +78,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     Dim strBuf As String
     
     '鼻濁音対応
-    r.value = StrConvU(r.value, vbWide)
+    r.Value = StrConvU(r.Value, vbWide)
     
 '    strbuf = Replace(r.Value, "ﾊﾟ", "パ")
 '    strbuf = Replace(strbuf, "ﾋﾟ", "ピ")

@@ -83,7 +83,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     '現在選択されたいる場所と使用箇所で重なっている場所について
     '指数表記を数字に更新する。
-    r.FormulaR1C1 = Format$(r.value, "0")
+    r.FormulaR1C1 = Format$(r.Value, "0")
 
     Exit Sub
 e:

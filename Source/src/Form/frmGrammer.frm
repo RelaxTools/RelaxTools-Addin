@@ -244,7 +244,7 @@ Private Sub seachCell(ByRef WD As Object, ByRef objSheet As Worksheet)
         strFirstAddress = objFind.Address
 
         Do
-            If GetGrammer(WD, objFind.value, strRet) Then
+            If GetGrammer(WD, objFind.Value, strRet) Then
 
                 lstResult.AddItem ""
                 lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
@@ -275,7 +275,7 @@ Private Sub seachCell(ByRef WD As Object, ByRef objSheet As Worksheet)
     
 End Sub
 
-Private Function GetGrammer(ByRef WD As Object, ByVal value As String, ByRef strRet As String) As Boolean
+Private Function GetGrammer(ByRef WD As Object, ByVal Value As String, ByRef strRet As String) As Boolean
 
     
     Dim a As Object
@@ -291,7 +291,7 @@ Private Function GetGrammer(ByRef WD As Object, ByVal value As String, ByRef str
     
     GetGrammer = False
 
-    WD.ActiveDocument.Range.Text = value
+    WD.ActiveDocument.Range.Text = Value
     DoEvents
     
     lngMax = WD.ActiveDocument.GrammaticalErrors.count

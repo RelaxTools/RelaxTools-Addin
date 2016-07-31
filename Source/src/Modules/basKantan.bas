@@ -33,7 +33,7 @@ Option Private Module
 '--------------------------------------------------------------
 '　プレビュー用画像作成
 '--------------------------------------------------------------
-Public Function editKantan(ByRef s As KantanLine, ByVal lngFormat As Long) As StdPicture
+Public Function editKantan(ByRef s As KantanLineDTO, ByVal lngFormat As Long) As StdPicture
 
     Dim strMiddle As String
     Dim WS As Worksheet
@@ -121,13 +121,13 @@ Public Function editKantan(ByRef s As KantanLine, ByVal lngFormat As Long) As St
     
     
     If s.EnableHogan Then
-        r(2, 1).value = "方"
-        r(3, 2).value = "眼"
-        r(4, 3).value = "紙"
+        r(2, 1).Value = "方"
+        r(3, 2).Value = "眼"
+        r(4, 3).Value = "紙"
     Else
-        r(2, 1).value = ""
-        r(3, 2).value = ""
-        r(4, 3).value = ""
+        r(2, 1).Value = ""
+        r(3, 2).Value = ""
+        r(4, 3).Value = ""
     End If
     
     Set editKantan = CreatePictureFromClipboard(WS.Range("b3:f9"))
@@ -143,7 +143,7 @@ Function getImageKantan(ByVal Index As Long) As StdPicture
 
     '設定情報取得
     Dim col As Collection
-    Dim k As KantanLine
+    Dim k As KantanLineDTO
 
     Set getImageKantan = Nothing
 
@@ -182,7 +182,7 @@ Sub kantanPaste2(ByVal Index As Long)
 
     '設定情報取得
     Dim col As Collection
-    Dim s As KantanLine
+    Dim s As KantanLineDTO
     Dim r As Range
     Dim i As Long
     Dim j As Long
@@ -249,7 +249,7 @@ Sub kantanPaste2(ByVal Index As Long)
         
         If s.EnableHogan Then
             For j = 2 To r.Columns.count
-                If r(z, j).value <> "" Then
+                If r(z, j).Value <> "" Then
                     r.Columns(j).Borders(xlEdgeLeft).Weight = getBorderWeight(s.VHeadBorderLine)
                     r.Columns(j).Borders(xlEdgeLeft).LineStyle = getLineStyle(s.VHeadBorderLine)
                 Else
@@ -276,7 +276,7 @@ Sub kantanPaste2(ByVal Index As Long)
             
             If s.EnableHogan Then
                 For j = 2 To r.Columns.count
-                    If r(z, j).value <> "" Then
+                    If r(z, j).Value <> "" Then
                         r(i, j).Borders(xlEdgeLeft).Weight = getBorderWeight(s.VHeadBorderLine)
                         r(i, j).Borders(xlEdgeLeft).LineStyle = getLineStyle(s.VHeadBorderLine)
                     Else
@@ -347,7 +347,7 @@ End Sub
 Public Function getPropertyKantan() As Collection
 
     Dim strBuf As String
-    Dim k As KantanLine
+    Dim k As KantanLineDTO
     Dim lngMax As Long
     Dim i As Long
 
@@ -359,7 +359,7 @@ Public Function getPropertyKantan() As Collection
     
     If lngMax = -1 Then
 
-        Set k = New KantanLine
+        Set k = New KantanLineDTO
         
         k.Text = "標準"
         
@@ -388,7 +388,7 @@ Public Function getPropertyKantan() As Collection
 
         Set k = Nothing
 
-        Set k = New KantanLine
+        Set k = New KantanLineDTO
         
         k.Text = "標準ヘッダ２行"
         
@@ -418,7 +418,7 @@ Public Function getPropertyKantan() As Collection
         Set k = Nothing
         
         
-        Set k = New KantanLine
+        Set k = New KantanLineDTO
         
         k.Text = "行ヘッダ１列ヘッダ列１"
         
@@ -447,7 +447,7 @@ Public Function getPropertyKantan() As Collection
 
         Set k = Nothing
         
-        Set k = New KantanLine
+        Set k = New KantanLineDTO
         
         k.Text = "方眼紙"
         
@@ -476,7 +476,7 @@ Public Function getPropertyKantan() As Collection
 
         Set k = Nothing
 
-        Set k = New KantanLine
+        Set k = New KantanLineDTO
         
         k.Text = "しましまブルー"
         
@@ -505,7 +505,7 @@ Public Function getPropertyKantan() As Collection
 
         Set k = Nothing
     
-        Set k = New KantanLine
+        Set k = New KantanLineDTO
         
         k.Text = "しましまベージュ"
         
@@ -534,7 +534,7 @@ Public Function getPropertyKantan() As Collection
 
         Set k = Nothing
         
-        Set k = New KantanLine
+        Set k = New KantanLineDTO
         
         k.Text = "しましまグリーン"
         
@@ -563,7 +563,7 @@ Public Function getPropertyKantan() As Collection
 
         Set k = Nothing
         
-        Set k = New KantanLine
+        Set k = New KantanLineDTO
         
         k.Text = "しましまピンク"
         
@@ -615,7 +615,7 @@ End Function
 Public Sub setPropertyKantan(ByRef col As Collection)
 
     Dim strBuf As String
-    Dim s As KantanLine
+    Dim s As KantanLineDTO
     Dim lngMax As Long
     Dim i As Long
 
@@ -636,7 +636,7 @@ Public Sub setPropertyKantan(ByRef col As Collection)
     Call SaveSetting(C_TITLE, "KantanDx", "Count", col.count)
 
 End Sub
-Function serialize(ByRef k As KantanLine) As String
+Function serialize(ByRef k As KantanLineDTO) As String
 
     Dim strBuf As String
     
@@ -690,15 +690,15 @@ Function serialize(ByRef k As KantanLine) As String
     serialize = strBuf
 
 End Function
-Function deserialize(ByVal strBuf As String) As KantanLine
+Function deserialize(ByVal strBuf As String) As KantanLineDTO
 
-    Dim k As KantanLine
+    Dim k As KantanLineDTO
     Dim varBuf As Variant
     Dim i As Long
     
     varBuf = Split(strBuf, vbVerticalTab)
     
-    Set k = New KantanLine
+    Set k = New KantanLineDTO
 
     i = 0
     

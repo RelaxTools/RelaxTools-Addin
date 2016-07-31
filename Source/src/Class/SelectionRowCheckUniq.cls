@@ -109,9 +109,9 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
     'キーの作成
     strKey = ""
     For Each v In r
-        If IsError(v.value) Then
+        If IsError(v.Value) Then
         Else
-            strKey = strKey & vbTab & v.value
+            strKey = strKey & vbTab & v.Value
         End If
     Next
 

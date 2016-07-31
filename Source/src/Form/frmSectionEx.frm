@@ -142,21 +142,21 @@ End Sub
 
 Private Sub chkFontBold_Click()
     If lstSetting.ListIndex > -1 Then
-        lstSetting.List(lstSetting.ListIndex, C_FONT_BOLD) = chgBoolToStr(chkFontBold.value)
+        lstSetting.List(lstSetting.ListIndex, C_FONT_BOLD) = chgBoolToStr(chkFontBold.Value)
     End If
     Call previewLabel
 End Sub
 
 Private Sub chkFontItalic_Click()
     If lstSetting.ListIndex > -1 Then
-        lstSetting.List(lstSetting.ListIndex, C_FONT_ITALIC) = chgBoolToStr(chkFontItalic.value)
+        lstSetting.List(lstSetting.ListIndex, C_FONT_ITALIC) = chgBoolToStr(chkFontItalic.Value)
     End If
     Call previewLabel
 End Sub
 
 Private Sub chkFontUnderLine_Click()
     If lstSetting.ListIndex > -1 Then
-        lstSetting.List(lstSetting.ListIndex, C_FONT_UNDER_LINE) = chgBoolToStr(chkFontUnderLine.value)
+        lstSetting.List(lstSetting.ListIndex, C_FONT_UNDER_LINE) = chgBoolToStr(chkFontUnderLine.Value)
     End If
     Call previewLabel
 End Sub
@@ -165,7 +165,7 @@ Private Sub chkUseFormat_Click()
 
     Dim blnValue As Boolean
     
-    blnValue = chkUseFormat.value
+    blnValue = chkUseFormat.Value
     
     cboFont.enabled = blnValue
     txtFontSize.enabled = blnValue
@@ -182,7 +182,7 @@ Private Sub chkUseFormat2_Click()
 
     Dim blnValue As Boolean
     
-    blnValue = chkUseFormat2.value
+    blnValue = chkUseFormat2.Value
     
     cboFont2.enabled = blnValue
     txtFontSize2.enabled = blnValue
@@ -291,12 +291,12 @@ Sub previewLabel()
     'strbuf = strbuf & Space(2) & obj.SectionLevelName(2) & vbCrLf
 
     lblPreview.Caption = strBuf
-    If chkUseFormat.value Then
+    If chkUseFormat.Value Then
         lblPreview.Font = cboFont.Text
         lblPreview.fontSize = txtFontSize.Text
-        lblPreview.Font.Bold = chkFontBold.value
-        lblPreview.Font.Italic = chkFontItalic.value
-        lblPreview.Font.Underline = chkFontUnderLine.value
+        lblPreview.Font.Bold = chkFontBold.Value
+        lblPreview.Font.Italic = chkFontItalic.Value
+        lblPreview.Font.Underline = chkFontUnderLine.Value
     Else
         lblPreview.Font = C_FONT_DEFAULT
         lblPreview.fontSize = Application.StandardFontSize
@@ -321,30 +321,30 @@ Private Sub lstSetting_Click()
 
 
     If lstSetting.List(lstSetting.ListIndex, C_ENABLE) = C_TRUE Then
-        chkUseFormat.value = True
+        chkUseFormat.Value = True
     Else
-        chkUseFormat.value = False
+        chkUseFormat.Value = False
     End If
     
     cboFont.Text = lstSetting.List(lstSetting.ListIndex, C_FONT_NAME)
     txtFontSize.Text = lstSetting.List(lstSetting.ListIndex, C_FONT_SIZE)
     
     If lstSetting.List(lstSetting.ListIndex, C_FONT_BOLD) = C_TRUE Then
-        chkFontBold.value = True
+        chkFontBold.Value = True
     Else
-        chkFontBold.value = False
+        chkFontBold.Value = False
     End If
     
     If lstSetting.List(lstSetting.ListIndex, C_FONT_ITALIC) = C_TRUE Then
-        chkFontItalic.value = True
+        chkFontItalic.Value = True
     Else
-        chkFontItalic.value = False
+        chkFontItalic.Value = False
     End If
     
     If lstSetting.List(lstSetting.ListIndex, C_FONT_UNDER_LINE) = C_TRUE Then
-        chkFontUnderLine.value = True
+        chkFontUnderLine.Value = True
     Else
-        chkFontUnderLine.value = False
+        chkFontUnderLine.Value = False
     End If
             
 End Sub
@@ -439,14 +439,14 @@ Public Function Start(ByRef col As Collection) As Collection
     If lstSetting.ListCount > 0 Then
         lstSetting.Selected(0) = True
         
-        chkUseFormat2.value = col(1).useFormat2
+        chkUseFormat2.Value = col(1).useFormat2
             
         cboFont2.Text = col(1).fontName2
         txtFontSize2.Text = col(1).fontSize2
         
-        chkFontBold2.value = col(1).fontBold2
-        chkFontItalic2.value = col(1).fontItalic2
-        chkFontUnderLine2.value = col(1).fontUnderLine2
+        chkFontBold2.Value = col(1).fontBold2
+        chkFontItalic2.Value = col(1).fontItalic2
+        chkFontUnderLine2.Value = col(1).fontUnderLine2
         
     End If
 
@@ -501,14 +501,14 @@ Public Function Start(ByRef col As Collection) As Collection
                 ss.fontUnderLine = False
             End If
             
-            ss.useFormat2 = chkUseFormat2.value
+            ss.useFormat2 = chkUseFormat2.Value
             
             ss.fontName2 = cboFont2.Text
             ss.fontSize2 = txtFontSize2.Text
             
-            ss.fontBold2 = chkFontBold2.value
-            ss.fontItalic2 = chkFontItalic2.value
-            ss.fontUnderLine2 = chkFontUnderLine2.value
+            ss.fontBold2 = chkFontBold2.Value
+            ss.fontItalic2 = chkFontItalic2.Value
+            ss.fontUnderLine2 = chkFontUnderLine2.Value
             
             ret.Add ss, Format$(i + 1, "00")
             Set ss = Nothing

@@ -60,15 +60,15 @@ End Sub
 Public Function Start(ByRef blnResult As Boolean) As Long
 
     lngResult = VbMsgBoxResult.vbCancel
-    optRef1.value = True
+    optRef1.Value = True
     
     Me.Show vbModal
 
     Select Case True
-        Case optRef1.value
+        Case optRef1.Value
             blnResult = False
             
-        Case optRef2.value
+        Case optRef2.Value
             blnResult = True
     
     End Select

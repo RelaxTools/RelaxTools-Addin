@@ -55,18 +55,18 @@ Private Sub cmdOK_Click()
     Dim lngType As Long
     
     Select Case True
-        Case optDebugWindow.value
+        Case optDebugWindow.Value
             lngType = C_LOG_DEBUGWINDOW
-        Case optLogfile.value
+        Case optLogfile.Value
             lngType = C_LOG_LOGFILE
-        Case optAll.value
+        Case optAll.Value
             lngType = C_LOG_ALL
     End Select
     Call SaveSetting(C_TITLE, "Log", "LogType", lngType)
     Call SaveSetting(C_TITLE, "Log", "Level", cboLogLevel.ListIndex)
 
-    Call SaveSetting(C_TITLE, "Option", "OnRepeat", chkOnRepeat.value)
-    Call SaveSetting(C_TITLE, "Option", "NotHoldFormat", chkNotHoldFormat.value)
+    Call SaveSetting(C_TITLE, "Option", "OnRepeat", chkOnRepeat.Value)
+    Call SaveSetting(C_TITLE, "Option", "NotHoldFormat", chkNotHoldFormat.Value)
     
     Logger.Level = cboLogLevel.ListIndex
     
@@ -92,8 +92,8 @@ Private Sub UserForm_Initialize()
     
     Dim strBuf As String
     
-    chkOnRepeat.value = CBool(GetSetting(C_TITLE, "Option", "OnRepeat", True))
-    chkNotHoldFormat.value = CBool(GetSetting(C_TITLE, "Option", "NotHoldFormat", False))
+    chkOnRepeat.Value = CBool(GetSetting(C_TITLE, "Option", "OnRepeat", True))
+    chkNotHoldFormat.Value = CBool(GetSetting(C_TITLE, "Option", "NotHoldFormat", False))
     
     strBuf = ""
     strBuf = strBuf & "・セルの最後に文字列挿入" & vbCrLf
@@ -127,11 +127,11 @@ Private Sub UserForm_Initialize()
     
     Select Case lngType
         Case C_LOG_DEBUGWINDOW
-            optDebugWindow.value = True
+            optDebugWindow.Value = True
         Case C_LOG_LOGFILE
-            optLogfile.value = True
+            optLogfile.Value = True
         Case C_LOG_ALL
-            optAll.value = True
+            optAll.Value = True
     End Select
     
 End Sub

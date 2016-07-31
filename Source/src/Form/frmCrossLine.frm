@@ -50,17 +50,17 @@ Private mResult As VBA.VbMsgBoxResult
 
 Private Sub chkBackColor_Change()
 
-    lblHead.enabled = Not (chkBackColor.value)
-    txtHead.enabled = Not (chkBackColor.value)
-    spnHead.enabled = Not (chkBackColor.value)
+    lblHead.enabled = Not (chkBackColor.Value)
+    txtHead.enabled = Not (chkBackColor.Value)
+    spnHead.enabled = Not (chkBackColor.Value)
 
 End Sub
 
 Private Sub chkLine_Change()
 
-    lblEven.enabled = Not (chkLine.value)
-    txtCol.enabled = Not (chkLine.value)
-    spnCol.enabled = Not (chkLine.value)
+    lblEven.enabled = Not (chkLine.Value)
+    txtCol.enabled = Not (chkLine.Value)
+    spnCol.enabled = Not (chkLine.Value)
     
 End Sub
 
@@ -72,13 +72,13 @@ End Sub
 
 Private Sub cmdInit_Click()
 
-    chkBackColor.value = False
+    chkBackColor.Value = False
     lblHead.BackColor = &H50B000
-    txtHead.value = "50"
+    txtHead.Value = "50"
     
-    chkLine.value = True
+    chkLine.Value = True
     lblEven.BackColor = 0
-    txtCol.value = "1"
+    txtCol.Value = "1"
     
     lblFont.BackColor = &HFFFFFF
     
@@ -97,14 +97,14 @@ Private Sub cmdOK_Click()
     Dim blnEdit As Boolean
     Dim strFontColor As String
     
-    Select Case Val(txtHead.value)
+    Select Case Val(txtHead.Value)
         Case 0 To 100
         Case Else
             MsgBox "透明度は０～１００を入力してください。", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
     End Select
     
-    Select Case Val(txtCol.value)
+    Select Case Val(txtCol.Value)
         Case 1 To 100
         Case Else
             MsgBox "線の幅は１～１００を入力してください。", vbOKOnly + vbExclamation, C_TITLE
@@ -112,34 +112,34 @@ Private Sub cmdOK_Click()
     End Select
     
     Select Case True
-        Case optHolizon.value
+        Case optHolizon.Value
             lngType = C_HOLIZON
-        Case optVertical.value
+        Case optVertical.Value
             lngType = C_VERTICAL
         Case Else
             lngType = C_ALL
     End Select
     
-    If chkBackColor.value Then
+    If chkBackColor.Value Then
         strFillVisible = "0"
     Else
         strFillVisible = "-1"
     End If
     
     strFillColor = "&H" & Right$("00000000" & Hex(lblHead.BackColor), 8)
-    strFillTransparency = txtHead.value
+    strFillTransparency = txtHead.Value
     
-    If chkLine.value Then
+    If chkLine.Value Then
         strLineVisible = "0"
     Else
         strLineVisible = "-1"
     End If
     
     strLineColor = "&H" & Right$("00000000" & Hex(lblEven.BackColor), 8)
-    strLineWeight = txtCol.value
+    strLineWeight = txtCol.Value
     
-    blnGuid = chkGuid.value
-    blnEdit = chkEdit.value
+    blnGuid = chkGuid.Value
+    blnEdit = chkEdit.Value
     
     strFontColor = "&H" & Right$("00000000" & Hex(lblFont.BackColor), 8)
     
@@ -292,37 +292,37 @@ Private Sub UserForm_Initialize()
     
     Select Case lngType
         Case C_HOLIZON
-            optHolizon.value = True
+            optHolizon.Value = True
         Case C_VERTICAL
-            optVertical.value = True
+            optVertical.Value = True
         Case Else
-            optAll.value = True
+            optAll.Value = True
     End Select
     
     If lngFillVisible Then
-        chkBackColor.value = False
+        chkBackColor.Value = False
     Else
-        chkBackColor.value = True
+        chkBackColor.Value = True
     End If
     
     lblHead.BackColor = lngFillColor
     
-    txtHead.value = Int(dblFillTransparency)
+    txtHead.Value = Int(dblFillTransparency)
     
     If lngLineVisible Then
-        chkLine.value = False
+        chkLine.Value = False
     Else
-        chkLine.value = True
+        chkLine.Value = True
     End If
     
-    chkGuid.value = blnGuid
+    chkGuid.Value = blnGuid
     
     lblEven.BackColor = lngLineColor
     
-    txtCol.value = sngLineWeight
+    txtCol.Value = sngLineWeight
     
     lblFont.BackColor = lngFontColor
     
-    chkEdit.value = blnEdit
+    chkEdit.Value = blnEdit
     
 End Sub
