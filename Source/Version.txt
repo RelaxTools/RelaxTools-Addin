@@ -1,9 +1,12 @@
-﻿2016/08/01(Mon) RelaxTools-Addin Version 4.4.3(RustRemover) 
+﻿2016/08/02(Tue) RelaxTools-Addin Version 4.4.4(RustRemover) 
 ◇バグ修正
  ・表のテキスト変換がエラーになって動作していなかったのを修正。
 （マクロ名と同名のクラスを作ってしまったらコンパイルは通って実行時にエラーになっていた）
 ◇機能改善
 　・表のTextile変換で背景色を有効にした。
+
+2016/08/01(Mon) RelaxTools-Addin Version 4.4.3(RustRemover) 
+　すみません、コミットミスってました((((;^^)
 
 2016/07/28(Thu) RelaxTools-Addin Version 4.4.2(RustRemover) 
 ◇機能改善
