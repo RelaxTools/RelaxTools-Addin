@@ -80,7 +80,7 @@ Private Sub cmdRun_Click()
     Dim j As Long
     Dim k As Long
     Dim arPaste() As Variant
-    Dim lngSize As Long
+    Dim lngsize As Long
     Dim lngRead As Long
     Dim lngMax As Long
     
@@ -103,15 +103,15 @@ Private Sub cmdRun_Click()
     fp = FreeFile()
     Open strFile For Binary As fp
     
-    lngSize = LOF(fp)
-    If lngSize <> 0 Then
+    lngsize = LOF(fp)
+    If lngsize <> 0 Then
         ReDim bytBuf(0 To LOF(fp) - 1)
         Get fp, , bytBuf
     End If
     
     Close fp
     
-    If lngSize = 0 Then
+    If lngsize = 0 Then
         Exit Sub
     End If
     
@@ -165,7 +165,7 @@ Private Sub cmdRun_Click()
 
     Const BASE_LINE As Long = 20000
     
-    lngSize = UBound(strLine) + 1
+    lngsize = UBound(strLine) + 1
     
     lngMax = UBound(strLine) + 1
     mm.StartGauge lngMax
@@ -173,10 +173,10 @@ Private Sub cmdRun_Click()
     lngRow = 1
     
     i = 0
-    Do While lngSize > 0
+    Do While lngsize > 0
     
-        If lngSize < BASE_LINE Then
-            lngRead = lngSize
+        If lngsize < BASE_LINE Then
+            lngRead = lngsize
         Else
             lngRead = BASE_LINE
         End If
@@ -198,7 +198,7 @@ Private Sub cmdRun_Click()
         Next
            
         Range(WS.Cells(lngRow, 1), WS.Cells(lngRow + UBound(arPaste, 1) - 1, UBound(arPaste, 2))).Value = arPaste
-       lngSize = lngSize - lngRead
+       lngsize = lngsize - lngRead
        lngRow = lngRow + lngRead
        
     Loop

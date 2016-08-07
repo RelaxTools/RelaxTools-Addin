@@ -227,17 +227,17 @@ Private Sub kantanLineRun()
                     lngLen = lngLen + 1
                 End If
             
-                Dim lngSize As Long
-                lngSize = 0
+                Dim lngsize As Long
+                lngsize = 0
                 For i = 1 To mudtGrid(lngIdxRow, lngIdxCol).ColSpan
-                    lngSize = lngSize + mlngMaxColWidth(lngIdxCol + i - 1)
+                    lngsize = lngsize + mlngMaxColWidth(lngIdxCol + i - 1)
                 Next
                 
                 '結合しているセルの内容の方が大きい場合
-                If lngLen > lngSize Then
+                If lngLen > lngsize Then
                 
                     Dim lngSa As Long
-                    lngSa = (lngLen - lngSize) \ mudtGrid(lngIdxRow, lngIdxCol).ColSpan
+                    lngSa = (lngLen - lngsize) \ mudtGrid(lngIdxRow, lngIdxCol).ColSpan
                 
                     '奇数だった場合＋１
                     If lngSa Mod 2 = 1 Then
@@ -361,15 +361,15 @@ Private Sub kantanLineRun()
                 
                 lngLen = mudtGrid(lngIdxRow, lngIdxCol).TextCount
                 
-                lngSize = 0
+                lngsize = 0
                 For i = 1 To mudtGrid(lngIdxRow, lngIdxCol).RowSpan
-                    lngSize = lngSize + mlngHeight(lngIdxRow + i - 1)
+                    lngsize = lngsize + mlngHeight(lngIdxRow + i - 1)
                 Next
                 
                 '結合しているセルの内容の方が大きい場合
-                If lngLen > lngSize Then
+                If lngLen > lngsize Then
                 
-                    lngSa = (lngLen - lngSize) \ mudtGrid(lngIdxRow, lngIdxCol).ColSpan
+                    lngSa = (lngLen - lngsize) \ mudtGrid(lngIdxRow, lngIdxCol).ColSpan
                 
                     '結合セルが表示されるように各セルに割り振る
                     For i = 1 To mudtGrid(lngIdxRow, lngIdxCol).RowSpan
@@ -642,15 +642,15 @@ Private Function drawGridData() As String
 
                 If mudtGrid(lngIdxRow, lngIdxCol).ColSpan > 1 Then
 
-                    Dim lngSize As Long
+                    Dim lngsize As Long
 
-                    lngSize = 0
+                    lngsize = 0
                     For i = 0 To mudtGrid(lngIdxRow, lngIdxCol).ColSpan - 1
-                        lngSize = lngSize + mlngWidth(lngIdxCol + i)
+                        lngsize = lngsize + mlngWidth(lngIdxCol + i)
                     Next
                     '罫線分をプラス
-                    lngSize = lngSize + (mudtGrid(lngIdxRow, lngIdxCol).ColSpan - 1) * 2
-                    strGrid = setAlign(mudtGrid(lngIdxRow, lngIdxCol).Text(lngTextCount), lngSize, mudtGrid(lngIdxRow, lngIdxCol).Align)
+                    lngsize = lngsize + (mudtGrid(lngIdxRow, lngIdxCol).ColSpan - 1) * 2
+                    strGrid = setAlign(mudtGrid(lngIdxRow, lngIdxCol).Text(lngTextCount), lngsize, mudtGrid(lngIdxRow, lngIdxCol).Align)
 
                 Else
                 
@@ -757,7 +757,7 @@ End Sub
 '--------------------------------------------------------------
 '　文字の配置
 '--------------------------------------------------------------
-Private Function setAlign(ByVal strValue As String, ByVal lngSize As Long, ByVal lngAlign As Long) As String
+Private Function setAlign(ByVal strValue As String, ByVal lngsize As Long, ByVal lngAlign As Long) As String
 
     Dim strResult As String
     Dim lngLen As Long
@@ -770,7 +770,7 @@ Private Function setAlign(ByVal strValue As String, ByVal lngSize As Long, ByVal
         Exit Function
     End If
     
-    If lngSize - lngLen < 0 Then
+    If lngsize - lngLen < 0 Then
         setAlign = strValue
         Exit Function
     End If
@@ -780,10 +780,10 @@ Private Function setAlign(ByVal strValue As String, ByVal lngSize As Long, ByVal
             strResult = strValue
             
         Case xlRight
-            strResult = Space(lngSize - lngLen) & strValue
+            strResult = Space(lngsize - lngLen) & strValue
         
         Case xlCenter
-            lngLeft = (lngSize - lngLen) \ 2
+            lngLeft = (lngsize - lngLen) \ 2
             strResult = Space(lngLeft) & strValue
             
     End Select

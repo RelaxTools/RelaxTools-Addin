@@ -180,7 +180,7 @@ Private Sub repFiles(FS As FileParamDTO, colParam As Collection, colResult As Co
     
     Dim intfp As Integer
     Dim lngMaxCol As Long
-    Dim lngSize As Long
+    Dim lngsize As Long
     
     Dim lngSearchChar As Long
     Dim lngSearchCount As Long
@@ -203,9 +203,9 @@ Private Sub repFiles(FS As FileParamDTO, colParam As Collection, colResult As Co
     'ファイルを全部読む。
     intfp = FreeFile()
     Open strSourceFile For Binary As intfp
-    lngSize = LOF(intfp)
+    lngsize = LOF(intfp)
     
-    ReDim bytBuf(0 To lngSize - 1)
+    ReDim bytBuf(0 To lngsize - 1)
 
     Get intfp, , bytBuf
 

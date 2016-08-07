@@ -633,7 +633,7 @@ End Function
 '----------------------------------------------------------------------------------
 '　文字列の左端から指定した文字数分の文字列を返す。漢字２バイト、半角１バイト。
 '----------------------------------------------------------------------------------
-Public Function rlxAscLeft(ByVal var As Variant, ByVal lngSize As Long) As String
+Public Function rlxAscLeft(ByVal var As Variant, ByVal lngsize As Long) As String
 Attribute rlxAscLeft.VB_Description = "文字列の左端から指定した文字数分の文字列を返します。\n漢字２バイト、半角１バイト。"
 Attribute rlxAscLeft.VB_ProcData.VB_Invoke_Func = " \n19"
 
@@ -649,7 +649,7 @@ Attribute rlxAscLeft.VB_ProcData.VB_Invoke_Func = " \n19"
     For i = 1 To lngLen
     
         strChr = Mid(var, i, 1)
-        If rlxAscLen(strResult & strChr) > lngSize Then
+        If rlxAscLen(strResult & strChr) > lngsize Then
             Exit For
         End If
         strResult = strResult & strChr
@@ -662,7 +662,7 @@ End Function
 '----------------------------------------------------------------------------------
 '　文字列の右端から指定した文字数分の文字列を返す。漢字２バイト、半角１バイト。
 '----------------------------------------------------------------------------------
-Public Function rlxAscRight(ByVal var As Variant, ByVal lngSize As Long) As String
+Public Function rlxAscRight(ByVal var As Variant, ByVal lngsize As Long) As String
 Attribute rlxAscRight.VB_Description = "文字列の右端から指定した文字数分の文字列を返します。\n漢字２バイト、半角１バイト。"
 Attribute rlxAscRight.VB_ProcData.VB_Invoke_Func = " \n19"
 
@@ -670,7 +670,7 @@ Attribute rlxAscRight.VB_ProcData.VB_Invoke_Func = " \n19"
     
     ascVar = StrConv(var, vbFromUnicode)
 
-    rlxAscRight = StrConv(RightB(ascVar, lngSize), vbUnicode)
+    rlxAscRight = StrConv(RightB(ascVar, lngsize), vbUnicode)
 
 End Function
 '----------------------------------------------------------------------------------

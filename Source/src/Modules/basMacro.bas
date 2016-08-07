@@ -843,7 +843,7 @@ Sub encryptionFileEx()
     Dim strFile As String
     Dim intIn As Integer
     Dim intOut As Integer
-    Dim lngSize As Long
+    Dim lngsize As Long
     Dim i As Long
     Dim bytBuf() As Byte
     
@@ -874,12 +874,12 @@ Sub encryptionFileEx()
     intOut = FreeFile()
     Open strFile & C_TEMP_FILE_EXT For Binary As intOut
     
-    lngSize = LOF(intIn)
+    lngsize = LOF(intIn)
     
-    Do While lngSize > 0
+    Do While lngsize > 0
     
-        If lngSize < C_BUFFER_SIZE Then
-            lngRead = lngSize
+        If lngsize < C_BUFFER_SIZE Then
+            lngRead = lngsize
         Else
             lngRead = C_BUFFER_SIZE
         End If
@@ -898,7 +898,7 @@ Sub encryptionFileEx()
         '結果を書き込む
         Put intOut, , bytBuf
 
-        lngSize = lngSize - lngRead
+        lngsize = lngsize - lngRead
     Loop
 
     Close intIn
@@ -2556,7 +2556,7 @@ Sub cellEditExt()
     Const C_FE As Byte = &HFE
     Dim strBuf As String
     Dim fp As Integer
-    Dim lngSize As Long
+    Dim lngsize As Long
     Dim WSH As Object
     Dim FS As Object
     Dim strBefore As String
@@ -2653,11 +2653,11 @@ Sub cellEditExt()
         fp = FreeFile()
         Open strFileName For Binary As #fp
         
-        lngSize = LOF(fp)
+        lngsize = LOF(fp)
         
-        If lngSize <> 0 Then
+        If lngsize <> 0 Then
         
-            ReDim bytBuf(0 To lngSize - 1)
+            ReDim bytBuf(0 To lngsize - 1)
             Get fp, , bytBuf
             
             If UBound(bytBuf) - LBound(bytBuf) + 1 >= 2 Then
@@ -3297,7 +3297,7 @@ Sub RegExport()
 
     Set Locator = CreateObject("WbemScripting.SWbemLocator")
     Set Service = Locator.ConnectServer(vbNullString, "root\default")
-    Set Reg = Service.get("StdRegProv")
+    Set Reg = Service.Get("StdRegProv")
     
     Const HKEY_CURRENT_USER = &H80000001
     

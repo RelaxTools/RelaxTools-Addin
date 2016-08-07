@@ -232,19 +232,19 @@ Public Function Run(ByVal strPath As String, ByVal strCommand As String, ByVal s
     Call CloseHandle(pi.hProcess)
     Call CloseHandle(hOutWrite)
     
-    Dim lngSize As Long
+    Dim lngsize As Long
     Dim bytBuf() As Byte
     
     fp = FreeFile()
     Open strFileName For Binary As fp
 
-    lngSize = LOF(fp)
-    If lngSize = 0 Then
+    lngsize = LOF(fp)
+    If lngsize = 0 Then
         Close fp
         GoTo Error
     End If
     
-    ReDim bytBuf(0 To lngSize - 1)
+    ReDim bytBuf(0 To lngsize - 1)
     
     Get #fp, , bytBuf
 

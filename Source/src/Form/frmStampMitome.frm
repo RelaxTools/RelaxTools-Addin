@@ -148,16 +148,16 @@ Sub dispPreview()
     End Select
     
     
-    Dim lngSize As Double
+    Dim lngsize As Double
     Select Case True
         Case optLineSingle.Value, optLineBold.Value
-            lngSize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Width
+            lngsize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Width
 
         Case optLineDouble.Value
-            lngSize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Width * 0.8
+            lngsize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Width * 0.8
 
     End Select
-    ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Height = lngSize
+    ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Height = lngsize
     
     s.Color = getHexColor(lblColor.BackColor)
     s.Size = txtSize.Text
