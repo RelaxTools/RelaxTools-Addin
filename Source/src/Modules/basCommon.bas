@@ -805,35 +805,35 @@ End Function
 '--------------------------------------------------------------
 '　指定桁での四捨五入(decimal型非対称)
 '--------------------------------------------------------------
-Public Function rlxRound(ByVal 数値 As Variant, ByVal 桁数 As Long) As Variant
+Public Function rlxRound(ByVal varNumber As Variant, ByVal lngDigit As Long) As Variant
 Attribute rlxRound.VB_Description = "ワークシート関数のRoundと同じ使用方法。\n計算をDecimal型で行っています。処理は遅いです。"
 Attribute rlxRound.VB_ProcData.VB_Invoke_Func = " \n19"
 
-    rlxRound = Int(CDec(数値) * (10 ^ 桁数) + CDec(0.5)) / 10 ^ 桁数
+    rlxRound = Int(CDec(varNumber) * (10 ^ lngDigit) + CDec(0.5)) / 10 ^ lngDigit
 
 End Function
 '--------------------------------------------------------------
 '　指定桁での切捨て(decimal型非対称)
 '--------------------------------------------------------------
-Public Function rlxRoundDown(ByVal 数値 As Variant, ByVal 桁数 As Long) As Variant
+Public Function rlxRoundDown(ByVal varNumber As Variant, ByVal lngDigit As Long) As Variant
 Attribute rlxRoundDown.VB_Description = "ワークシート関数のRoundDownと同じ使用方法。\n計算をDecimal型で行っています。処理は遅いです。"
 Attribute rlxRoundDown.VB_ProcData.VB_Invoke_Func = " \n19"
 
-    rlxRoundDown = Int(CDec(数値) * (10 ^ 桁数)) / 10 ^ 桁数
+    rlxRoundDown = Int(CDec(varNumber) * (10 ^ lngDigit)) / 10 ^ lngDigit
 
 End Function
 '--------------------------------------------------------------
 '　指定桁での切上げ(decimal型非対称)
 '--------------------------------------------------------------
-Public Function rlxRoundUp(ByVal 数値 As Variant, ByVal 桁数 As Long) As Variant
+Public Function rlxRoundUp(ByVal varNumber As Variant, ByVal lngDigit As Long) As Variant
 Attribute rlxRoundUp.VB_Description = "ワークシート関数のRoundUpと同じ使用方法。\n計算をDecimal型で行っています。処理は遅いです。"
 Attribute rlxRoundUp.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim work As Variant
     Dim work2 As Variant
 
-    work = Int(CDec(数値) * (10 ^ 桁数))
-    work2 = CDec(数値) * (10 ^ 桁数)
+    work = Int(CDec(varNumber) * (10 ^ lngDigit))
+    work2 = CDec(varNumber) * (10 ^ lngDigit)
     
     '小数点以下が存在する場合
     If work = work2 Then
@@ -841,7 +841,7 @@ Attribute rlxRoundUp.VB_ProcData.VB_Invoke_Func = " \n19"
         work = work + 1
     End If
     
-    rlxRoundUp = work / 10 ^ 桁数
+    rlxRoundUp = work / 10 ^ lngDigit
 
 End Function
 '--------------------------------------------------------------
