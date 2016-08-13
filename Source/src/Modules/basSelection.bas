@@ -2350,4 +2350,18 @@ Sub execSelectionFormatStr()
     Set obj = Nothing
 
 End Sub
+'--------------------------------------------------------------
+' 書式（数値エラー解除）
+'--------------------------------------------------------------
+Sub execSelectionNumberAsText()
+    
+    Dim obj As SelectionNumberAsText
+    
+    Set obj = New SelectionNumberAsText
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
 

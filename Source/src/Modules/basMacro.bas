@@ -337,7 +337,7 @@ End Sub
 Sub commandList()
 
     Dim c As CommandBar
-    Dim D As CommandBarControl
+    Dim d As CommandBarControl
     
     Dim lngCnt As Long
     
@@ -355,13 +355,13 @@ Sub commandList()
 
     For Each c In CommandBars
 
-        For Each D In c.Controls
+        For Each d In c.Controls
 
             Cells(lngCnt, 1) = c.Name
             Cells(lngCnt, 2) = c.NameLocal
         
-            Cells(lngCnt, 3) = D.Caption
-            Cells(lngCnt, 4) = D.id
+            Cells(lngCnt, 3) = d.Caption
+            Cells(lngCnt, 4) = d.id
             
             lngCnt = lngCnt + 1
         Next

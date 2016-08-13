@@ -248,4 +248,9 @@
 <Relationship Id="swap" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/swap.png"/>
 <Relationship Id="kantanDx" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/kantanDx.png"/>
 <Relationship Id="bin" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/bin.png"/>
+<Relationship Id="NumberAsText" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/NumberAsText.png"/>
+<Relationship Id="r1c1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/r1c1.png"/>
+<Relationship Id="return" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/return.png"/>
+<Relationship Id="ac" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/ac.png"/>
+<Relationship Id="binView" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/binView.png"/>
 </Relationships>

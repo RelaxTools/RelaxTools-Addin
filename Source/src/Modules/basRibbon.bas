@@ -1276,4 +1276,164 @@ Public Sub KantanOnAction(control As IRibbonControl, selectedId As String, selec
 
 End Sub
 
+'--------------------------------------------------------------------
+'  エラーチェックの押下状態の取得
+'--------------------------------------------------------------------
+Sub errCheckPressed(control As IRibbonControl, ByRef returnValue)
+    
+    returnValue = Application.ErrorCheckingOptions.BackgroundChecking
+    
+End Sub
+'--------------------------------------------------------------------
+'  エラーチェックの押下時イベント
+'--------------------------------------------------------------------
+Sub errCheckOnAction(control As IRibbonControl, pressed As Boolean)
+  
+    On Error GoTo e
+  
+    Call RefreshRibbon
+
+    Application.ErrorCheckingOptions.BackgroundChecking = pressed
+
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+'--------------------------------------------------------------------
+'  エラーチェックのToggle
+'--------------------------------------------------------------------
+Sub errCheckToggle()
+  
+    On Error GoTo e
+  
+    Application.ErrorCheckingOptions.BackgroundChecking = Not (Application.ErrorCheckingOptions.BackgroundChecking)
+
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+'--------------------------------------------------------------------
+'  A1⇔R1C1の押下状態の取得
+'--------------------------------------------------------------------
+Sub a1Pressed(control As IRibbonControl, ByRef returnValue)
+    
+    returnValue = (Application.ReferenceStyle = xlR1C1)
+    
+End Sub
+'--------------------------------------------------------------------
+'  A1⇔R1C1の押下時イベント
+'--------------------------------------------------------------------
+Sub a1OnAction(control As IRibbonControl, pressed As Boolean)
+  
+    On Error GoTo e
+  
+    Call RefreshRibbon
+
+    If pressed Then
+        Application.ReferenceStyle = xlR1C1
+    Else
+        Application.ReferenceStyle = xlA1
+    End If
+
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+'--------------------------------------------------------------------
+'  A1⇔R1C1トグル動作
+'--------------------------------------------------------------------
+Sub a1Toggle()
+  
+    On Error GoTo e
+  
+    If Application.ReferenceStyle = xlA1 Then
+        Application.ReferenceStyle = xlR1C1
+    Else
+        Application.ReferenceStyle = xlA1
+    End If
+
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+'--------------------------------------------------------------------
+'  Return時のカーソルの取得
+'--------------------------------------------------------------------
+Sub MoveAfterReturnPressed(control As IRibbonControl, ByRef returnValue)
+    
+    returnValue = (Application.MoveAfterReturnDirection = xlToRight)
+    
+End Sub
+'--------------------------------------------------------------------
+'  Return時のカーソルの押下時イベント
+'--------------------------------------------------------------------
+Sub MoveAfterReturnOnAction(control As IRibbonControl, pressed As Boolean)
+  
+    On Error GoTo e
+  
+    Call RefreshRibbon
+
+    If pressed Then
+        Application.MoveAfterReturnDirection = xlToRight
+    Else
+        Application.MoveAfterReturnDirection = xlDown
+    End If
+
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+'--------------------------------------------------------------------
+'  Return時のカーソルの押下時イベント
+'--------------------------------------------------------------------
+Sub MoveAfterReturnToggle()
+  
+    On Error GoTo e
+  
+    If Application.MoveAfterReturnDirection = xlDown Then
+        Application.MoveAfterReturnDirection = xlToRight
+    Else
+        Application.MoveAfterReturnDirection = xlDown
+    End If
+
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+'--------------------------------------------------------------------
+'  オートコンプリートの取得
+'--------------------------------------------------------------------
+Sub AutoCompletePressed(control As IRibbonControl, ByRef returnValue)
+    
+    returnValue = Application.EnableAutoComplete
+    
+End Sub
+'--------------------------------------------------------------------
+'  オートコンプリート押下時イベント
+'--------------------------------------------------------------------
+Sub AutoCompleteOnAction(control As IRibbonControl, pressed As Boolean)
+  
+    On Error GoTo e
+  
+    Call RefreshRibbon
+
+    Application.EnableAutoComplete = pressed
+
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+'--------------------------------------------------------------------
+'  オートコンプリート切り替え
+'--------------------------------------------------------------------
+Sub AutoCompleteTogggle()
+  
+    On Error GoTo e
+  
+    Application.EnableAutoComplete = Not (Application.EnableAutoComplete)
+
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
 

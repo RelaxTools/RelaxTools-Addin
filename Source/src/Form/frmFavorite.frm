@@ -1276,14 +1276,14 @@ Sub moveCategory(ByVal strCategory As String)
             Else
                 Set cat = CreateObject("Scripting.Dictionary")
             End If
-            Dim D As favoriteDTO
+            Dim d As favoriteDTO
             
-            Set D = New favoriteDTO
-            D.FileName = lstFavorite.List(i, C_ORIGINAL)
-            D.Category = strCategory
+            Set d = New favoriteDTO
+            d.FileName = lstFavorite.List(i, C_ORIGINAL)
+            d.Category = strCategory
 '            d.Text = lstFavorite.List(i, C_FILE_NAME)
             
-            cat.Add D.FileName, D
+            cat.Add d.FileName, d
             If mobjCategory.Exists(strCategory) Then
                 mobjCategory.Remove strCategory
             End If

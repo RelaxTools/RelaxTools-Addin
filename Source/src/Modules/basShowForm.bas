@@ -330,3 +330,6 @@ Sub showCheckList()
     frmCheckList.Show
 End Sub
 
+Sub execBinaryView()
+    frmBinary.Show
+End Sub
