@@ -1307,6 +1307,7 @@ Sub errCheckToggle()
     On Error GoTo e
   
     Application.ErrorCheckingOptions.BackgroundChecking = Not (Application.ErrorCheckingOptions.BackgroundChecking)
+    Call RefreshRibbon
 
     Exit Sub
 e:
@@ -1351,6 +1352,7 @@ Sub a1Toggle()
     Else
         Application.ReferenceStyle = xlA1
     End If
+    Call RefreshRibbon
 
     Exit Sub
 e:
@@ -1395,6 +1397,8 @@ Sub MoveAfterReturnToggle()
     Else
         Application.MoveAfterReturnDirection = xlDown
     End If
+    
+    Call RefreshRibbon
 
     Exit Sub
 e:
@@ -1431,6 +1435,7 @@ Sub AutoCompleteTogggle()
     On Error GoTo e
   
     Application.EnableAutoComplete = Not (Application.EnableAutoComplete)
+    Call RefreshRibbon
 
     Exit Sub
 e:

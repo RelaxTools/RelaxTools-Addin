@@ -135,7 +135,7 @@ Private Sub UserForm_Initialize()
                 lbl.TextAlign = fmTextAlignLeft
             End If
             
-            lbl.visible = True
+'            lbl.visible = True
             Set objLabel(i, j) = lbl
             
             Set lbl = Nothing
