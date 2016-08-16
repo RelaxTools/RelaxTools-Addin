@@ -4,7 +4,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmBinary
    ClientHeight    =   6195
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   8610
+   ClientWidth     =   8655
    OleObjectBlob   =   "frmBinary.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
@@ -102,17 +102,17 @@ Private Sub UserForm_Initialize()
     Dim varLeft As Variant
     Dim varWidth As Variant
     
-    varLeft = Array(lblHead01.Left, lblHead02.Left, lblHead03.Left, lblHead04.Left, lblHead05.Left, lblHead06.Left, lblHead07.Left, lblHead08.Left, lblHead09.Left, lblHead10.Left, lblHead11.Left, lblHead12.Left, lblHead13.Left, lblHead14.Left, lblHead15.Left, lblHead16.Left, lblHead17.Left, lblHead18.Left)
-    varWidth = Array(lblHead01.Width, lblHead02.Width, lblHead03.Width, lblHead04.Width, lblHead05.Width, lblHead06.Width, lblHead07.Width, lblHead08.Width, lblHead09.Width, lblHead10.Width, lblHead11.Width, lblHead12.Width, lblHead13.Width, lblHead14.Width, lblHead15.Width, lblHead16.Width, lblHead17.Width, lblHead18.Width)
+    varLeft = Array(lblHead01.Left, lblHead02.Left, lblHead03.Left, lblHead04.Left, lblHead05.Left, lblHead06.Left, lblHead07.Left, lblHead08.Left, lblHead09.Left, lblHead18.Left)
+    varWidth = Array(lblHead01.Width, lblHead02.Width, lblHead03.Width, lblHead04.Width, lblHead05.Width, lblHead06.Width, lblHead07.Width, lblHead08.Width, lblHead09.Width, lblHead18.Width)
     
     lngTop = 4
-    ReDim objLabel(1 To 16, 1 To 18)
+    ReDim objLabel(1 To 16, 1 To 10)
     
     For i = 1 To 16
         
         lngTop = lngTop + 16
         
-        For j = 1 To 18
+        For j = 1 To 10
         
             Set lbl = Controls.Add("Forms.Label.1", "Lavel" & Format(i, "00") & Format(j, "00"), False)
             
@@ -129,7 +129,7 @@ Private Sub UserForm_Initialize()
             lbl.BackColor = &HFFFFFF
             lbl.SpecialEffect = fmSpecialEffectEtched
             
-            If j <> 18 Then
+            If j <> 10 Then
                 lbl.TextAlign = fmTextAlignCenter
             Else
                 lbl.TextAlign = fmTextAlignLeft
@@ -173,7 +173,7 @@ Private Sub UserForm_Initialize()
     lngLine = rlxRoundUp(lngMax / 16, 0)
     
     
-    ReDim varBuf(1 To lngLine, 1 To 18)
+    ReDim varBuf(1 To lngLine, 1 To 10)
     
     Dim bytStr() As Byte
     Dim k As Long
@@ -181,23 +181,25 @@ Private Sub UserForm_Initialize()
     
     k = 0
     For i = 1 To lngLine
-        For j = 1 To 18
+        For j = 1 To 10
         
             Select Case j
                 Case 1
                     varBuf(i, j) = FixHex(k, 8)
                     ReDim bytStr(0 To 15)
                     m = 0
-                Case 18
+                Case 10
                     varBuf(i, j) = ReplaceStr(bytStr)
                 Case Else
                     If UBound(bytBuf) < k Then
                         varBuf(i, j) = ""
                     Else
-                        varBuf(i, j) = FixHex(bytBuf(k), 2)
+                        varBuf(i, j) = FixHex(bytBuf(k), 2) & FixHex(bytBuf(k + 1), 2)
                         bytStr(m) = bytChr(k)
-                        k = k + 1
                         m = m + 1
+                        bytStr(m) = bytChr(k + 1)
+                        m = m + 1
+                        k = k + 2
                     End If
             End Select
   
@@ -231,7 +233,7 @@ Sub disp()
     k = (scrBar.Value - 1)
     
     For i = 1 To 16
-        For j = 1 To 18
+        For j = 1 To 10
             If UBound(varBuf, 1) < i + k Then
                 objLabel(i, j).Caption = ""
                 objLabel(i, j).visible = False
@@ -241,7 +243,8 @@ Sub disp()
             End If
         Next
     Next
-    
+
+
 End Sub
 Function ReplaceStr(ByVal strBuf As String) As String
 
