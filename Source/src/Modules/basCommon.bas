@@ -1879,11 +1879,17 @@ Public Function CreatePictureFromClipboard(o As Object) As StdPicture
   
     Dim c As New Collection
     
+    On Error GoTo e
+    
     'クリップボードの保存
 '    SaveClipData c
   
     '指定シェイプをビットマップでクリップボードに貼り付け
-    o.CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+10  o.CopyPicture Appearance:=xlScreen, Format:=xlBitmap
+
+    Do Until IsClipboardFormatAvailable(CF_BITMAP) <> 0
+        DoEvents
+    Loop
     
     If IsClipboardFormatAvailable(CF_BITMAP) <> 0 Then
     
@@ -1922,9 +1928,13 @@ Public Function CreatePictureFromClipboard(o As Object) As StdPicture
     
     'クリップボードの復元
 '    RestoreClipData c
-
-End Function
-'--------------------------------------------------------------
+    Exit Function
+e:
+    If Erl = 10 Then
+        Resume
+    End If
+    
+End Function '--------------------------------------------------------------
 'クリップボードにデータを保存するプロシージャ
 '--------------------------------------------------------------
 Public Sub SaveClipData(c As Collection)
