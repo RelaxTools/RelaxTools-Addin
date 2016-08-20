@@ -192,6 +192,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
 
     Else
         r.CopyPicture Appearance:=xlScreen, Format:=xlPicture
+        Call CopyClipboardSleep
     End If
     
     Set WS = Nothing

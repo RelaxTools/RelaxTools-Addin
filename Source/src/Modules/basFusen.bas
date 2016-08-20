@@ -93,6 +93,7 @@ Sub pasteFusen(ByVal strId As String, ByVal Index As Long)
     Set r = ThisWorkbook.Worksheets(strId).Shapes("shpSquare" & Format(Index, "00"))
 
     r.Copy
+    Call CopyClipboardSleep
  
     ActiveSheet.Paste
     

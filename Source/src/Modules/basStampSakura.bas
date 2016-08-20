@@ -44,6 +44,7 @@ Sub pasteSakura(ByVal strId As String, ByVal Index As Long)
     Set r = ThisWorkbook.Worksheets("sakura").Shapes("picSakura" & Format(Index, "00"))
 
     r.CopyPicture Appearance:=xlScreen, Format:=xlPicture
+    Call CopyClipboardSleep
  
     ActiveSheet.Paste
 

@@ -138,6 +138,7 @@ Public Function editStampMitome(ByRef s As StampMitomeDTO, ByVal lngFormat As Lo
 
     Else
         r.CopyPicture Appearance:=xlScreen, Format:=xlPicture
+        Call CopyClipboardSleep
     End If
     
     Set WS = Nothing
@@ -231,6 +232,7 @@ Sub MitomePaste2(Optional ByVal Index As Variant)
     Else
         With ActiveSheet.Pictures.Insert(s.FilePath)
             .CopyPicture xlScreen, xlPicture
+            Call CopyClipboardSleep
             .Delete
         End With
     End If

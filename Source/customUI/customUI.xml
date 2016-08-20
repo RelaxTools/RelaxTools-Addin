@@ -223,15 +223,17 @@
             </menu>
           </box>
           <separator id="cellEditSep"/>
-          <splitButton id="cellEditSplit" getEnabled="getRibbonEnabled">
-            <button id="cellEditExt" image="editor" label="外部エディタ編集" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <menu id="cellEditMenu" itemSize="large">
-              <menuSeparator id="cellEditSep01" title="外部エディタ設定" />
-              <button id="cellEditExtSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            </menu>
-          </splitButton>
-          <button id="cellEdit" label="セル拡大＋編集" image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-          <button id="execBinaryView" label="UNICODE表示" image="binView"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+          <box id="boxEdit" boxStyle="vertical">
+            <splitButton id="cellEditSplit" getEnabled="getRibbonEnabled">
+              <button id="cellEditExt" label="編集" image="editor" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              <menu id="cellEditMenu" itemSize="large">
+                <menuSeparator id="cellEditSep01" title="外部エディタ設定" />
+                <button id="cellEditExtSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              </menu>
+            </splitButton>
+            <button id="cellEdit" label="拡大" image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="execBinaryView" label="Unicode" image="binView"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+          </box>
         </group>
         <group id="format" label="書式・文書作成支援" image="format">
           <button id="execSelectionToFormula" image="refresh" label="書式リフレッシュ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" size="large" />
@@ -284,7 +286,9 @@
               <button id="HorizontalLineToggle" image="hLine32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
           </menu>
+
           <separator id="filSep"/>
+
           <box id="formatBox1" boxStyle="vertical">
             <menu id="relaxFill" label="Relaxフィル" itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  image="RelaxFillNext" getEnabled="getRibbonEnabled" >
               <menuSeparator id="filSep01" title="Relaxフィル"/>

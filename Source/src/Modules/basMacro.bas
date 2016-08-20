@@ -817,6 +817,7 @@ Sub execSelectionPictureCopy()
     End If
     
     Selection.CopyPicture Appearance:=xlScreen, Format:=xlPicture
+    Call CopyClipboardSleep
     ActiveSheet.Paste
     
     ActiveWindow.DisplayGridlines = blnB
@@ -2729,10 +2730,12 @@ Public Sub saveImage()
         Application.ScreenUpdating = False
         
         Selection.CopyPicture xlScreen, xlBitmap
+        Call CopyClipboardSleep
         ActiveSheet.Paste
         With Selection
             m_Width = .Width: m_Height = .Height
             .CopyPicture xlScreen, xlBitmap
+            Call CopyClipboardSleep
             .Delete
         End With
         

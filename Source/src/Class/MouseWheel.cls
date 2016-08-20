@@ -103,7 +103,7 @@ Private mIsRunning As Boolean
 Private mobj As Object
 Public Sub Activate()
     mActWnd = GetActiveWindow
-    Debug.Print "Activate" & mActWnd
+'    Debug.Print "Activate" & mActWnd
 End Sub
     
 Public Property Set obj(s As Object)
@@ -173,7 +173,7 @@ ErrorHandler:
         Dim m_MouseLLHookStruct As MouseLLHookStruct
     
         On Error GoTo ErrorHandler
-            Debug.Print "MouseLLHookProc" & GetActiveWindow
+'            Debug.Print "MouseLLHookProc" & GetActiveWindow
 
         If ncode < 0 Or mobj Is Nothing Or GetActiveWindow <> mActWnd Then
             GoTo ErrorHandler

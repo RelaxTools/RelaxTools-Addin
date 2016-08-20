@@ -581,6 +581,7 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
 
     Else
         r.CopyPicture Appearance:=xlScreen, Format:=xlPicture
+        Call CopyClipboardSleep
     End If
     
     Set WS = Nothing

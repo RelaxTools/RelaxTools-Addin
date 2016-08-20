@@ -56,6 +56,7 @@ Option Private Module
     Private Declare PtrSafe Function CopyImage Lib "user32" (ByVal handle As LongPtr, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As LongPtr
     Private Declare PtrSafe Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
     Declare PtrSafe Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA" (ByVal uAction As Long, ByVal uParam As Long, ByRef lpvParam As Any, ByVal fuWinIni As Long) As Long
+    Private Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal ms As LongPtr)
 
     Private Type ChooseColor
         lStructSize As LongPtr
@@ -124,8 +125,9 @@ Option Private Module
     Private Declare Function CopyImage Lib "user32" (ByVal handle As Long, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As Long
     Private Declare Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
     Declare Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA" (ByVal uAction As Long, ByVal uParam As Long, ByRef lpvParam As Any, ByVal fuWinIni As Long) As Long
-    
-    Private Type ChooseColor
+    Private Declare Sub Sleep Lib "kernel32" (ByVal ms As Long)
+
+Private Type ChooseColor
       lStructSize As Long
       hWndOwner As Long
       hInstance As Long
@@ -1883,14 +1885,16 @@ Public Function CreatePictureFromClipboard(o As Object) As StdPicture
     
     'クリップボードの保存
 '    SaveClipData c
-  
+    If OpenClipboard(0&) <> 0 Then
+        Call EmptyClipboard
+        Call CloseClipboard
+    End If
+    
     '指定シェイプをビットマップでクリップボードに貼り付け
 10  o.CopyPicture Appearance:=xlScreen, Format:=xlBitmap
 
-    Do Until IsClipboardFormatAvailable(CF_BITMAP) <> 0
-        DoEvents
-    Loop
-    
+    Call CopyClipboardSleep
+        
     If IsClipboardFormatAvailable(CF_BITMAP) <> 0 Then
     
         If OpenClipboard(0&) <> 0 Then
@@ -1934,7 +1938,8 @@ e:
         Resume
     End If
     
-End Function '--------------------------------------------------------------
+End Function
+'--------------------------------------------------------------
 'クリップボードにデータを保存するプロシージャ
 '--------------------------------------------------------------
 Public Sub SaveClipData(c As Collection)
@@ -2358,3 +2363,10 @@ Function getHtmlRGB(ByVal lngColor As Variant) As String
         getHtmlRGB = "#" & Mid$(strBuf, 5, 2) & Mid$(strBuf, 3, 2) & Mid$(strBuf, 1, 2)
     End If
 End Function
+'------------------------------------------------------------------------------------------------------------------------
+' CopyPictureがJavaアプリやクリップボードツールなどで失敗する対策
+'------------------------------------------------------------------------------------------------------------------------
+Public Sub CopyClipboardSleep()
+    DoEvents
+    Sleep Val(GetSetting(C_TITLE, "Option", "ClipboardSleep", 0))
+End Sub

@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCommonOption 
    Caption         =   "RelaxTools共通設定"
-   ClientHeight    =   8775
+   ClientHeight    =   5670
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   6525
+   ClientWidth     =   12105
    OleObjectBlob   =   "frmCommonOption.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
@@ -54,6 +54,21 @@ Private Sub cmdOK_Click()
 
     Dim lngType As Long
     
+    
+    If rlxIsNumber(txtSleep.Text) Then
+        Select Case Val(txtSleep.Text)
+            Case 0 To 500
+            Case Else
+                MsgBox "数値を入力してください。0～500ms", vbOKOnly + vbExclamation, C_TITLE
+                txtSleep.SetFocus
+                Exit Sub
+        End Select
+    Else
+        MsgBox "数値を入力してください。0～500ms", vbOKOnly + vbExclamation, C_TITLE
+        txtSleep.SetFocus
+        Exit Sub
+    End If
+    
     Select Case True
         Case optDebugWindow.Value
             lngType = C_LOG_DEBUGWINDOW
@@ -67,6 +82,7 @@ Private Sub cmdOK_Click()
 
     Call SaveSetting(C_TITLE, "Option", "OnRepeat", chkOnRepeat.Value)
     Call SaveSetting(C_TITLE, "Option", "NotHoldFormat", chkNotHoldFormat.Value)
+    Call SaveSetting(C_TITLE, "Option", "ClipboardSleep", txtSleep.Text)
     
     Logger.Level = cboLogLevel.ListIndex
     
@@ -86,6 +102,14 @@ Private Sub cmdOpen_Click()
 e:
     MsgBox "ログフォルダを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
 
+End Sub
+
+Private Sub txtSleep_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+    Select Case KeyAscii
+        Case &H30 To &H39
+        Case Else
+            KeyAscii = 0
+    End Select
 End Sub
 
 Private Sub UserForm_Initialize()
@@ -134,4 +158,46 @@ Private Sub UserForm_Initialize()
             optAll.Value = True
     End Select
     
+    strBuf = ""
+    strBuf = strBuf & "NetBeansやSqlDeveloperなどのJavaアプリや" & vbCrLf
+    strBuf = strBuf & "クリップボードを扱うツールを同時使用した際に" & vbCrLf
+    strBuf = strBuf & "不安定になる場合があります。" & vbCrLf
+    strBuf = strBuf & "数値を大きくすると誤動作が軽減します。0～500ms" & vbCrLf
+    strBuf = strBuf & "大きくしすぎると処理スピードが遅くなるので注意。"
+    lblSleep.Caption = strBuf
+    
+    txtSleep.Text = GetSetting(C_TITLE, "Option", "ClipboardSleep", 0)
+    
 End Sub
+Private Sub spnSleep_SpinDown()
+    txtSleep.Text = spinDown(txtSleep.Text)
+End Sub
+
+Private Sub spnSleep_SpinUp()
+    txtSleep.Text = spinUp(txtSleep.Text)
+End Sub
+Private Function spinUp(ByVal vntValue As Variant) As Variant
+
+    Dim lngValue As Long
+
+    lngValue = Val(vntValue)
+    lngValue = lngValue + 5
+    If lngValue > 500 Then
+        lngValue = 500
+    End If
+    spinUp = lngValue
+
+End Function
+
+Private Function spinDown(ByVal vntValue As Variant) As Variant
+
+    Dim lngValue As Long
+
+    lngValue = Val(vntValue)
+    lngValue = lngValue - 5
+    If lngValue < 0 Then
+        lngValue = 0
+    End If
+    spinDown = lngValue
+
+End Function
