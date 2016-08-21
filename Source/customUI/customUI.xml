@@ -10,7 +10,7 @@
         </group>
       </tab>
       <tab id="RelaxToolsTab" label="RelaxTools" getVisible="tabGetVisible">
-        <group id="file" label="開く・検索・プレビュー" image="A1">
+        <group id="file" label="開く/検索/プレビュー" image="A1">
           <splitButton id="favSplit" size="large" getEnabled="getRibbonEnabled">
             <button id="showFavorite"  image="favorite32"  label="お気に&#xD;&#xA;入り" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
             <menu id="favorite" itemSize="large" >
@@ -108,7 +108,7 @@
             </menu>
           </splitButton>
         </group>
-        <group id="edit" label="チェック・編集・変換" image="edit">
+        <group id="edit" label="チェック/編集/変換" image="edit">
           <menu id="checkMenu" label="チェック&#xD;&#xA;" image="check32" size="large" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled">
             <menuSeparator id="checkSep01" title="数を数える"/>
             <button id="execSelectionCheckCount"          image="check32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -222,20 +222,8 @@
               <button id="execSelectionStringZeroPadding" image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
           </box>
-          <separator id="cellEditSep"/>
-          <box id="boxEdit" boxStyle="vertical">
-            <splitButton id="cellEditSplit" getEnabled="getRibbonEnabled">
-              <button id="cellEditExt" label="編集" image="editor" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <menu id="cellEditMenu" itemSize="large">
-                <menuSeparator id="cellEditSep01" title="外部エディタ設定" />
-                <button id="cellEditExtSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              </menu>
-            </splitButton>
-            <button id="cellEdit" label="拡大" image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <button id="execBinaryView" label="Unicode" image="binView"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-          </box>
         </group>
-        <group id="format" label="書式・文書作成支援" image="format">
+        <group id="format" label="書式/文書作成支援" image="format">
           <button id="execSelectionToFormula" image="refresh" label="書式リフレッシュ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" size="large" />
           <separator id="formatSep"/>
           <menu id="formatMenu" label="書式" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="format" getEnabled="getRibbonEnabled" >
@@ -248,12 +236,6 @@
             <button id="execSelectionFormatStd"       image="std"       getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="execSelectionFormatStr"       image="str"       getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="execSelectionNumberAsText"    image="NumberAsText"       getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <menuSeparator id="formatSep03" title="クリア"/>
-            <button id="execSelectionClearPhonetic"   image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="execSelectionRemoveHyperlink" image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="execSelectionInitialize"      image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="delnamae"                     image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="execDelStyle"                 image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <menuSeparator id="formatSep07" title="その他"/>
             <menu id="formatMenu2" label="文字の配置" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="format" getEnabled="getRibbonEnabled" >
               <button id="execSelectionAlignTopLeft"      image="format"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -285,6 +267,14 @@
               <button id="verticalLineToggle" image="vLine32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="HorizontalLineToggle" image="hLine32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
+          </menu>
+          <menu id="clearMenu" label="クリア" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="erase" getEnabled="getRibbonEnabled" >
+            <menuSeparator id="formatSep03" title="クリア"/>
+            <button id="execSelectionClearPhonetic"   image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="execSelectionRemoveHyperlink" image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="execSelectionInitialize"      image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="delnamae"                     image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="execDelStyle"                 image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           </menu>
 
           <separator id="filSep"/>
@@ -524,7 +514,7 @@
             </box>
           </box>
         </group>
-        <group id="RelaxBook" label="ブック・シート" image="splitSheet">
+        <group id="RelaxBook" label="ブック/シート" image="splitSheet">
           <button id="execSheetManager"      image="sheet16"   getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" getEnabled="getRibbonEnabled" />
           <menu id="merge1" label="分割マージ" itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  image="book16"  getEnabled="getRibbonEnabled">
             <menuSeparator id="mergeSep01" title="ブックの分割・マージ" />
@@ -538,7 +528,21 @@
             <button id="nextWorkbook" image="greenDown" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           </box>
         </group>
-        <group id="kantanGroup" label="ツール" image="shimaBlue">
+        
+        <group id="cellEditGroup" label="セル編集/表示" image="editor">
+          <box id="boxEdit" boxStyle="vertical">
+            <splitButton id="cellEditSplit" getEnabled="getRibbonEnabled">
+              <button id="cellEditExt" label="外部エディタ" image="editor" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              <menu id="cellEditMenu" itemSize="large">
+                <menuSeparator id="cellEditSep01" title="外部エディタ設定" />
+                <button id="cellEditExtSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              </menu>
+            </splitButton>
+            <button id="cellEdit" label="拡大・編集" image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="execBinaryView" label="Unicode" image="binView"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+          </box>
+        </group>
+        <group id="kantanGroup" label="ツール" image="kantanDx">
           <gallery id="kantanGallery" label="かんたん表&#xD;&#xA;DX" size="large" image="kantanDx" showImage="false" columns="4" rows="5" itemWidth="64" itemHeight="64" getSupertip="getSupertip" getDescription="getDescription" getItemCount="kantanGetItemCount" getItemID="kantanGetItemId" getItemImage="kantanGetItemImage" onAction="KantanOnAction" getEnabled="getRibbonEnabled">
             <button id="showKantanDx"   image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <button id="kantanPaste"    image="kantanDx" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
