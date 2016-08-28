@@ -63,6 +63,7 @@
             </menu>
           </box>
           <separator id="clipSep"/>
+
           <menu id="clipboard1" label="クリップ&#xD;&#xA;ボード"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="clipboard" size="large" getEnabled="getRibbonEnabled" >
             <menuSeparator id="clipSep01" title="ブック名、シート名をコピーする"/>
             <button id="getCurrentBookName" image="clipCopy" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -107,6 +108,7 @@
               <button idMso="PageSetupPageDialog" />
             </menu>
           </splitButton>
+          
         </group>
         <group id="edit" label="チェック/編集/変換" image="edit">
           <menu id="checkMenu" label="チェック&#xD;&#xA;" image="check32" size="large" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled">
@@ -223,7 +225,7 @@
             </menu>
           </box>
         </group>
-        <group id="format" label="書式/文書作成支援" image="format">
+        <group id="format" label="書式" image="format">
           <button id="execSelectionToFormula" image="refresh" label="書式リフレッシュ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" size="large" />
           <separator id="formatSep"/>
           <menu id="formatMenu" label="書式" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="format" getEnabled="getRibbonEnabled" >
@@ -248,6 +250,12 @@
               <button id="execSelectionAlignBottomCenter" image="format"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionAlignBottomRight"  image="format"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
+            <menuSeparator id="formatSep03" title="クリア"/>
+            <button id="execSelectionClearPhonetic"   image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="execSelectionRemoveHyperlink" image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="execSelectionInitialize"      image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="delnamae"                     image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="execDelStyle"                 image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           </menu>
           <menu id="lineMenu" label="罫線" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="winLine" getEnabled="getRibbonEnabled" >
             <menuSeparator id="formatSep04" title="選択範囲の中線と消去"/>
@@ -268,17 +276,16 @@
               <button id="HorizontalLineToggle" image="hLine32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
           </menu>
-          <menu id="clearMenu" label="クリア" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="erase" getEnabled="getRibbonEnabled" >
-            <menuSeparator id="formatSep03" title="クリア"/>
-            <button id="execSelectionClearPhonetic"   image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="execSelectionRemoveHyperlink" image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="execSelectionInitialize"      image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="delnamae"                     image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="execDelStyle"                 image="erase"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+          <menu id="relaxFill" label="フィル" itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  image="RelaxFillNext" getEnabled="getRibbonEnabled" >
+            <menuSeparator id="filSep01" title="Relaxフィル"/>
+            <button id="getNextNumber"         image="RelaxFillNext"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="getNextNumberLeft"         image="RelaxFillLeft"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="execSelectionAllPlus"  image="RelaxFillPlus"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="execSelectionAllMinus" image="RelaxFillMinus" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           </menu>
 
+<!--
           <separator id="filSep"/>
-
           <box id="formatBox1" boxStyle="vertical">
             <menu id="relaxFill" label="Relaxフィル" itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  image="RelaxFillNext" getEnabled="getRibbonEnabled" >
               <menuSeparator id="filSep01" title="Relaxフィル"/>
@@ -326,6 +333,7 @@
               <button id="documentSetting"              image="gear32"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
           </box>
+-->
         </group>
         <group id="color2003" label="2003互換色" image="format">
           <box id="boxPush1" boxStyle="horizontal">

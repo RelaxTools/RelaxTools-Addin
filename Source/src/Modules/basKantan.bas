@@ -39,6 +39,7 @@ Public Function editKantan(ByRef s As KantanLineDTO, ByVal lngFormat As Long) As
     Dim WS As Worksheet
     
     Set editKantan = Nothing
+    Application.Cursor = xlWait
     
     Set WS = ThisWorkbook.Worksheets("table")
 
@@ -132,6 +133,7 @@ Public Function editKantan(ByRef s As KantanLineDTO, ByVal lngFormat As Long) As
     
     Set editKantan = CreatePictureFromClipboard(WS.Range("b3:f9"))
     
+    Application.Cursor = xlDefault
     Set WS = Nothing
     
 End Function
