@@ -347,11 +347,11 @@ Attribute rlxFormatSql.VB_ProcData.VB_Invoke_Func = " \n19"
                     'コメント
                     Case Left$(strJiku(i), 2) = "/*" Or Left$(strJiku(i), 2) = "--"
                         'ヒント句の場合、普通の列扱い
-                        If Left$(strJiku(i), 3) = "/*+" Then
+'                        If Left$(strJiku(i), 3) = "/*+" Then
                             lngMode = C_MODE_ADD_AFTER_CRLF
-                        Else
-                            lngMode = C_MODE_ADD_COMMENT
-                        End If
+'                        Else
+'                            lngMode = C_MODE_ADD_COMMENT
+'                        End If
                     '左括弧
                     Case strJiku(i) = "("
                         If i = 1 Then

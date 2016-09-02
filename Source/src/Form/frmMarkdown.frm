@@ -55,6 +55,7 @@ Private Sub cmdCancel_Click()
 End Sub
 
 Private Sub UserForm_Activate()
+    
     txtText.SelStart = 0
     txtText.SelLength = Len(txtText.Text)
 End Sub
@@ -147,7 +148,7 @@ Private Function getAttr(ByRef r As Range) As String
 
     Dim strValue As String
     
-    strValue = r.Value
+    strValue = r.Text
             
     If VarType(r.Value) = vbString Then
     

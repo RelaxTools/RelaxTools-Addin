@@ -179,7 +179,7 @@ Private Function getAttr(ByRef r As Range) As String
         #End If
     End If
     
-    strValue = r.Value
+    strValue = r.Text
             
     If r.HasFormula Then
         Select Case True
