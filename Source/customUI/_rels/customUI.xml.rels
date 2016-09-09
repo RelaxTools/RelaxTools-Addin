@@ -253,4 +253,5 @@
 <Relationship Id="return" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/return.png"/>
 <Relationship Id="ac" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/ac.png"/>
 <Relationship Id="binView" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/binView.png"/>
+<Relationship Id="rename" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/rename.png"/>
 </Relationships>

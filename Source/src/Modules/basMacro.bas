@@ -87,11 +87,11 @@ Sub saveWorkSheets()
         Set b = ActiveWorkbook
         Select Case LCase(Mid$(vntFileName, InStr(vntFileName, ".") + 1))
             Case "xls"
-                b.SaveAs FileName:=vntFileName, FileFormat:=xlExcel8, Local:=True
+                b.SaveAs FileName:=vntFileName, FileFormat:=xlExcel8, local:=True
             Case "xlsm"
-                b.SaveAs FileName:=vntFileName, FileFormat:=xlOpenXMLWorkbookMacroEnabled, Local:=True
+                b.SaveAs FileName:=vntFileName, FileFormat:=xlOpenXMLWorkbookMacroEnabled, local:=True
             Case Else
-                b.SaveAs FileName:=vntFileName, Local:=True
+                b.SaveAs FileName:=vntFileName, local:=True
         End Select
         b.Close
         Set b = Nothing
@@ -509,7 +509,7 @@ Sub setAllA1save()
     End If
     
     varRet = getAttr(ActiveWorkbook.FullName)
-    If Err.Number > 0 Then
+    If err.Number > 0 Then
         MsgBox "現在のファイルにアクセスできませんでした。保存できませんでした。", vbOKOnly + vbExclamation, C_TITLE
         GoTo pass
     End If
@@ -730,7 +730,7 @@ Sub divideWorkBook()
             
             '新規作成したワークブックを保存する。フォーマットは親と同じ
             Application.DisplayAlerts = False
-            WB.SaveAs FileName:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name, FileFormat:=motoWB.FileFormat, Local:=True
+            WB.SaveAs FileName:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name, FileFormat:=motoWB.FileFormat, local:=True
             Application.DisplayAlerts = True
             WB.Close
     
@@ -1199,7 +1199,7 @@ Private Sub SelectionShiftCell(ByVal lngRow As Long, ByVal lngCol As Long)
     
     For Each r In Selection.Areas
     
-        Err.Clear
+        err.Clear
         On Error Resume Next
         If c Is Nothing Then
             Set c = r.Offset(lngRow, lngCol)
@@ -1254,7 +1254,7 @@ Public Sub createReferenceBook()
     strActBook = ActiveWorkbook.FullName
     strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(ActiveWorkbook.Name)
 
-    FS.CopyFile strActBook, strTmpBook
+    FS.copyfile strActBook, strTmpBook
 
     If blnResult Then
         Set XL = New Excel.Application
@@ -1310,7 +1310,7 @@ Public Sub changeReferenceBook()
     strActBook = ActiveWorkbook.FullName
     strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(ActiveWorkbook.Name)
 
-    FS.CopyFile strActBook, strTmpBook
+    FS.copyfile strActBook, strTmpBook
 
     WB.Close
 
@@ -1364,7 +1364,7 @@ Public Sub OpenReferenceBook()
     strActBook = strFile
     strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(strFile)
 
-    FS.CopyFile strActBook, strTmpBook
+    FS.copyfile strActBook, strTmpBook
 
     If blnResult Then
         Set XL = New Excel.Application
@@ -2637,7 +2637,7 @@ Sub cellEditExt()
     
     On Error Resume Next
     Call WSH.Run("""" & strEditor & """ " & """" & strFileName & """", 1, True)
-    If Err.Number <> 0 Then
+    If err.Number <> 0 Then
         MsgBox "エディタの起動に失敗しました。設定を確認してください。", vbOKOnly + vbExclamation, C_TITLE
         GoTo e
     End If
@@ -2678,11 +2678,11 @@ Sub cellEditExt()
             End Select
             
             On Error Resume Next
-            Err.Clear
+            err.Clear
             
             r.Value = Replace(strBuf, vbCrLf, vbLf)
             
-            If Err.Number <> 0 Then
+            If err.Number <> 0 Then
                 MsgBox "式の設定に失敗しました。式が正しくない可能性があります。", vbOKOnly + vbExclamation, C_TITLE
             End If
         Else
@@ -3028,7 +3028,7 @@ Sub openFileNameFromClipboard()
             
         strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(f)
     
-        FS.CopyFile f, strTmpBook
+        FS.copyfile f, strTmpBook
     
         WB.Open FileName:=strTmpBook, ReadOnly:=True
 pass:

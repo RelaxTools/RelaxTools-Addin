@@ -86,7 +86,7 @@ Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boo
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
@@ -108,7 +108,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
     Cancel = True
 End Sub
 

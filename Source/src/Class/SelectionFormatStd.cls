@@ -82,7 +82,7 @@ Private Sub SFWork_SelectionMain(r As Range)
     
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
 End Sub
 
 

@@ -1855,7 +1855,7 @@ Sub rlxErrMsg(ByRef objErr As Object)
         Case 1004
             MsgBox "エラーです。シート保護などを確認してください。", vbCritical + vbOKOnly, C_TITLE
         Case Else
-            MsgBox objErr.Description & "(" & Err.Number & ")", vbCritical + vbOKOnly, C_TITLE
+            MsgBox objErr.Description & "(" & err.Number & ")", vbCritical + vbOKOnly, C_TITLE
     End Select
 
 End Sub
@@ -2233,8 +2233,79 @@ Sub CloseAndOpen()
     End If
 
 End Sub
-
 '--------------------------------------------------------------
+'  現在アクティブなブックをRenameする
+'--------------------------------------------------------------
+Sub RenameActiveBook()
+
+    Dim WB As Workbook
+    Dim strFile As String
+    Dim strBook As String
+    Dim strPath As String
+    Dim strBuf As String
+    Dim strNew As String
+    
+    Dim strExt As String
+    Dim strName As String
+    
+    Set WB = ActiveWorkbook
+    strBook = WB.FullName
+    
+    If Not rlxIsFileExists(strBook) Then
+        MsgBox "ブックが保存されていません。保存してから実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        Exit Sub
+    End If
+    
+    strFile = rlxGetFullpathFromFileName(strBook)
+    strPath = rlxGetFullpathFromPathName(strBook)
+    
+    '読み取り専用の場合は名前を変更させない
+    If ActiveWorkbook.ReadOnly Then
+        MsgBox "読み取り専用の場合には名前を変更できません。", vbOKOnly + vbExclamation, C_TITLE
+        Exit Sub
+    End If
+    
+    strName = rlxGetFullpathFromExt(strFile)
+    strExt = Mid(strFile, InStr(strFile, "."))
+    
+    strBuf = InputBox("変更後のブック名を入力してください。", "アクティブなブックの名前を変更", strName)
+    If Trim(strBuf) = "" Then
+        Exit Sub
+    End If
+    
+    '変更後のブックを合成
+    strNew = rlxAddFileSeparator(strPath) & strBuf & strExt
+    
+    Dim s As Workbook
+    Dim strNewName As String
+    strNewName = rlxGetFullpathFromFileName(strNew)
+    For Each s In Workbooks
+        If LCase(s.Name) = LCase(strNewName) Then
+            MsgBox "同名のブックを開いているため名前の変更ができません。", vbOKOnly + vbExclamation, C_TITLE
+            Exit Sub
+        End If
+    Next
+    
+    If rlxIsFileExists(strNew) Then
+        MsgBox "すでに変更後のブックが存在します。", vbOKOnly + vbExclamation, C_TITLE
+        Exit Sub
+    End If
+    
+    On Error Resume Next
+    Application.ScreenUpdating = False
+    
+    err.Clear
+    WB.SaveAs FileName:=strNew, local:=True
+    If err.Number <> 0 Then
+        Application.ScreenUpdating = True
+        MsgBox "エラーが発生しました。名前の変更に失敗しました。", vbOKOnly + vbExclamation, C_TITLE
+        Exit Sub
+    Else
+        Kill strBook
+    End If
+    Application.ScreenUpdating = True
+    
+End Sub '--------------------------------------------------------------
 '  全角トリム
 '--------------------------------------------------------------
 Function TrimZen(ByVal strBuf As String) As String

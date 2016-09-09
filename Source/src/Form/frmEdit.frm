@@ -84,7 +84,7 @@ End Sub
 Private Sub cmdOK_Click()
     
     On Error Resume Next
-    Err.Clear
+    err.Clear
     
     If mBlnFormura Then
         ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
@@ -92,7 +92,7 @@ Private Sub cmdOK_Click()
         ActiveCell.Value = Replace(txtEdit.Text, vbCrLf, vbLf)
     End If
     
-    If Err.Number = 0 Then
+    If err.Number = 0 Then
         Unload Me
     Else
         MsgBox "式の設定に失敗しました。式が正しくない可能性があります。", vbOKOnly + vbExclamation, C_TITLE
@@ -103,7 +103,7 @@ End Sub
 Private Sub cmdReload_Click()
 
     On Error GoTo e
-    Err.Clear
+    err.Clear
     
 '    If mBlnFormura Then
 '        ActiveCell.Formula = Replace(txtEdit.Text, vbCrLf, vbLf)
@@ -227,10 +227,10 @@ Private Sub UserForm_Initialize()
         txtFormura.Text = Replace(Replace(ActiveCell.Value, vbCrLf, vbLf), vbLf, vbCrLf)
     End If
     
-    Err.Clear
+    err.Clear
     On Error Resume Next
     txtValue.Text = Replace(Replace(ActiveCell.Value, vbCrLf, vbLf), vbLf, vbCrLf)
-    If Err.Number <> 0 Then
+    If err.Number <> 0 Then
         txtValue.Text = C_ERROR
     End If
     

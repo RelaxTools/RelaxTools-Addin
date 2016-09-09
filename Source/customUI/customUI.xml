@@ -36,6 +36,8 @@
               <button id="OpenReferenceBook"   image="openReadonly"   getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="createReferenceBook" image="copyReadonly"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
               <button id="CloseAndOpen" image="FileReload"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+              <menuSeparator id="openSep06" title="アクティブなブックの名前を変更"/>
+              <button id="RenameActiveBook"  image="rename" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <menuSeparator id="openSep03" title="ブックの読み取り専用をオン／オフできます。"/>
               <button idMso="ReadOnly"/>
               <menuSeparator id="openSep04" title="CSVを開く"/>

@@ -90,7 +90,7 @@ Private Sub SFWork_SelectionInit(ByRef rAreas As Excel.Areas, Cancel As Boolean,
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
@@ -160,7 +160,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
     Cancel = True
 End Sub
 
@@ -182,7 +182,7 @@ Private Sub SFWork_SelectionTerm()
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
 End Sub
 
 

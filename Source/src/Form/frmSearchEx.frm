@@ -124,10 +124,10 @@ Private Sub cmdOK_Click()
         o.Pattern = txtSearch.Text
         o.IgnoreCase = Not (chkCase.Value)
         o.Global = True
-        Err.Clear
+        err.Clear
         On Error Resume Next
         o.Execute ""
-        If Err.Number <> 0 Then
+        If err.Number <> 0 Then
             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
             txtSearch.SetFocus
             Exit Sub
@@ -201,10 +201,10 @@ Private Sub cmdReplace_Click()
         o.Pattern = txtSearch.Text
         o.IgnoreCase = Not (chkCase.Value)
         o.Global = True
-        Err.Clear
+        err.Clear
         On Error Resume Next
         o.Execute ""
-        If Err.Number <> 0 Then
+        If err.Number <> 0 Then
             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
             txtSearch.SetFocus
             Exit Sub
@@ -650,10 +650,10 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
                     
                     '正規表現の場合
                     If chkRegEx Then
-                        Err.Clear
+                        err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
-                        If Err.Number <> 0 Then
+                        If err.Number <> 0 Then
                             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
                             txtSearch.SetFocus
                             Exit Sub
@@ -682,7 +682,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
                     End If
                 Else
                     On Error GoTo 0
-                    Err.Clear
+                    err.Clear
                 End If
             Case msoGroup
                 grouprc objSheet, c, c, colShapes
@@ -717,10 +717,10 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                     
                     '正規表現の場合
                     If chkRegEx Then
-                        Err.Clear
+                        err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
-                        If Err.Number <> 0 Then
+                        If err.Number <> 0 Then
                             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
                             txtSearch.SetFocus
                             Exit Sub
@@ -750,7 +750,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                     End If
                 Else
                     On Error GoTo 0
-                    Err.Clear
+                    err.Clear
                 End If
             Case msoGroup
                 '再帰呼出
@@ -788,10 +788,10 @@ Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objS
             
             '正規表現の場合
             If chkRegEx Then
-                Err.Clear
+                err.Clear
                 On Error Resume Next
                 Set objMatch = mobjRegx.Execute(strBuf)
-                If Err.Number <> 0 Then
+                If err.Number <> 0 Then
                     MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
                     txtSearch.SetFocus
                     Exit Sub
@@ -817,7 +817,7 @@ Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objS
             End If
         Else
             On Error GoTo 0
-            Err.Clear
+            err.Clear
         End If
     
     Next
@@ -830,9 +830,9 @@ Private Function getGroupId(ByRef objShape As Object) As String
     Dim s As Object
     
     On Error Resume Next
-    Err.Clear
+    err.Clear
     Set s = objShape.ParentGroup
-    Do Until Err.Number <> 0
+    Do Until err.Number <> 0
         strBuf = "/" & s.id & strBuf
         Set s = s.ParentGroup
     Loop
@@ -933,7 +933,7 @@ Private Sub lstResult_Change()
         Next
         If r Is Nothing Then
         Else
-            Application.GoTo setCellPos(r(1)), True
+            Application.Goto setCellPos(r(1)), True
             r.Select
         End If
     Else
@@ -962,7 +962,7 @@ Private Sub lstResult_Change()
                         objShape.Shapes(1).Select False
                     Else
                         blnFlg = True
-                        Application.GoTo setCellPos(objArt.TopLeftCell), True
+                        Application.Goto setCellPos(objArt.TopLeftCell), True
                         objShape.Shapes(1).Select
                     End If
                     On Error GoTo 0
@@ -972,7 +972,7 @@ Private Sub lstResult_Change()
                         objShape.Select False
                     Else
                         blnFlg = True
-                        Application.GoTo setCellPos(objShape.TopLeftCell), True
+                        Application.Goto setCellPos(objShape.TopLeftCell), True
                         objShape.Select
                     End If
                     On Error GoTo 0

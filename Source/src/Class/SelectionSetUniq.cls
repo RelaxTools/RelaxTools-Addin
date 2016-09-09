@@ -87,7 +87,7 @@ Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boo
     
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 主処理(UOC)
@@ -109,14 +109,14 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     'コレクション内に一致するものがあるかどうかチェック
     blnMatch = False
     
-    Err.Clear
+    err.Clear
     On Error Resume Next
     Set c = Nothing
     Set c = mobjCol(CStr(r.Value))
     
     On Error GoTo 0
             
-    If Err.Number = 0 And Not (c Is Nothing) Then
+    If err.Number = 0 And Not (c Is Nothing) Then
         blnMatch = True
     End If
     
@@ -136,7 +136,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
     Cancel = True
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
@@ -160,6 +160,6 @@ Private Sub SFWork_SelectionTerm()
     
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
 End Sub
 

@@ -190,7 +190,7 @@ pass:
     Exit Sub
 e:
 '    Application.ScreenUpdating = True
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
     Cancel = True
     
 End Sub

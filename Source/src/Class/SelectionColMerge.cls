@@ -85,7 +85,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal col As Long, Cancel As Boolea
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
     Cancel = True
 End Sub
 

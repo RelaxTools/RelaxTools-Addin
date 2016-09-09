@@ -89,7 +89,7 @@ Private Sub SFWork_SelectionInit(rAreas As Excel.Areas, Cancel As Boolean, Undo 
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 主処理(UOC)
@@ -133,7 +133,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
     Cancel = True
 End Sub
 '------------------------------------------------------------------------------------------------------------------------

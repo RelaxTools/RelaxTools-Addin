@@ -758,9 +758,9 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                         MsgBox "ブックが存在しません。", vbOKOnly + vbExclamation, C_TITLE
                     Else
                         On Error Resume Next
-                        Err.Clear
+                        err.Clear
                         Workbooks.Open FileName:=strBook, ReadOnly:=blnReadOnly
-                        If Err.Number <> 0 Then
+                        If err.Number <> 0 Then
                             MsgBox "ブックを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
                         End If
                         AppActivate Application.Caption
@@ -768,11 +768,11 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                     
                 Case rlxIsPowerPointFile(strBook)
                     On Error Resume Next
-                    Err.Clear
+                    err.Clear
                     With CreateObject("PowerPoint.Application")
                         .visible = True
                         Call .Presentations.Open(FileName:=strBook, ReadOnly:=blnReadOnly)
-                        If Err.Number <> 0 Then
+                        If err.Number <> 0 Then
                             MsgBox "ファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
                         End If
                         AppActivate .Caption
@@ -780,11 +780,11 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                     
                 Case rlxIsWordFile(strBook)
                     On Error Resume Next
-                    Err.Clear
+                    err.Clear
                     With CreateObject("Word.Application")
                         .visible = True
                         .Documents.Open FileName:=strBook, ReadOnly:=blnReadOnly
-                        If Err.Number <> 0 Then
+                        If err.Number <> 0 Then
                             MsgBox "ファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
                         End If
                         AppActivate .Caption
@@ -796,7 +796,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                     Set WSH = CreateObject("WScript.Shell")
                     
                     WSH.Run ("""" & strBook & """")
-                     If Err.Number <> 0 Then
+                     If err.Number <> 0 Then
                         MsgBox "ファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
                     End If
                     Set WSH = Nothing

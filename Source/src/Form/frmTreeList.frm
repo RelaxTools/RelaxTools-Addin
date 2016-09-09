@@ -144,7 +144,7 @@ Private Sub cmdRun_Click()
     Set mMm = Nothing
     Set objFs = Nothing
     
-    Select Case Err.Number
+    Select Case err.Number
     Case 75, 76
         MsgBox "フォルダが存在しません。", vbExclamation, "ツリー構造取得"
         txtFolder.SetFocus

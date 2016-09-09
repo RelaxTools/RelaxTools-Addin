@@ -150,10 +150,10 @@ Private Sub cmdOK_Click()
         o.Pattern = cboSearch.Text
         o.IgnoreCase = Not (chkCase.Value)
         o.Global = True
-        Err.Clear
+        err.Clear
         On Error Resume Next
         o.Execute ""
-        If Err.Number <> 0 Then
+        If err.Number <> 0 Then
             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
             cboSearch.SetFocus
             Exit Sub
@@ -175,7 +175,7 @@ Private Sub cmdOK_Click()
     mMm.DispGuidance "ファイルの数をカウントしています..."
     
     FileSearch objFs, strPath, strPatterns(), colBook
-    Select Case Err.Number
+    Select Case err.Number
     Case 75, 76
         mMm.Enable
         Set mMm = Nothing
@@ -241,9 +241,9 @@ Private Sub cmdOK_Click()
     
 '        If Len(txtPassword.Text) <> 0 Then
             For Each pass In varPassword
-                Err.Clear
-                Set WB = XL.Workbooks.Open(FileName:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, Notify:=False, Password:=pass, Local:=True)
-                If Err.Number = 0 Then
+                err.Clear
+                Set WB = XL.Workbooks.Open(FileName:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, Notify:=False, Password:=pass, local:=True)
+                If err.Number = 0 Then
                     Exit For
                 End If
             Next
@@ -251,7 +251,7 @@ Private Sub cmdOK_Click()
 '            err.Clear
 '            Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, Notify:=False, Password:="", Local:=True)
 '        End If
-        If Err.Number = 0 Then
+        If err.Number = 0 Then
             For Each WS In WB.Worksheets
                 If WS.visible = xlSheetVisible Then
                     Select Case cboObj.Text
@@ -275,7 +275,7 @@ Private Sub cmdOK_Click()
             ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = ""
     
             ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
-            ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = Err.Description
+            ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = err.Description
             mlngCount = mlngCount + 1
         End If
         WB.Close SaveChanges:=False
@@ -531,6 +531,8 @@ End Sub
 Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
 
     Dim strPattern As String
+    Dim objFind As Range
+    Dim strFirstAddress As String
     
     strPattern = cboSearch.Text
         
@@ -544,46 +546,60 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
         objRegx.IgnoreCase = Not (chkCase.Value)
         objRegx.Global = True
     
-        Dim c As Range
-        For Each c In objSheet.UsedRange
+        If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+            Set objFind = objSheet.UsedRange.Find("*", , xlValues, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
+        Else
+            Set objFind = objSheet.UsedRange.Find("*", , xlFormulas, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
+        End If
+        
+        If Not objFind Is Nothing Then
+        
+            strFirstAddress = objFind.Address
     
-            Dim schStr As Variant
+            Do
+    
+                Dim schStr As Variant
+                
+                If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+                    schStr = objFind.Value
+                Else
+                    schStr = objFind.FormulaLocal
+                End If
+                
+                Dim objMatch As Object
+                Set objMatch = objRegx.Execute(schStr)
+    
+                If objMatch.count > 0 Then
+                    ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
+                    ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
+                    ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
+                    ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = objFind.Address
+    '                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = c.Address
             
-            If cboValue.Value = C_SEARCH_VALUE_VALUE Then
-                schStr = c.Value
-            Else
-                schStr = c.FormulaLocal
-            End If
+                    ResultWS.Hyperlinks.Add _
+                        Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+                        Address:="", _
+                        SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
+                        TextToDisplay:=objFind.Address
             
-            Dim objMatch As Object
-            Set objMatch = objRegx.Execute(schStr)
-
-            If objMatch.count > 0 Then
-                ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
-                ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
-                ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
-                ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Address
-'                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = c.Address
+                    ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
+                    ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = schStr
+                    mlngCount = mlngCount + 1
+                End If
+                
+                Set objMatch = Nothing
+                Set objFind = objSheet.UsedRange.FindNext(objFind)
+                
+                If objFind Is Nothing Then
+                    Exit Do
+                End If
         
-                ResultWS.Hyperlinks.Add _
-                    Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
-                    Address:="", _
-                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
-                    TextToDisplay:=c.Address
-        
-                ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
-                ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = schStr
-                mlngCount = mlngCount + 1
-            End If
+            Loop Until strFirstAddress = objFind.Address
+            Set objRegx = Nothing
             
-            Set objMatch = Nothing
-        
-        Next
-        Set objRegx = Nothing
+        End If
         
     Else
-        Dim objFind As Range
-        Dim strFirstAddress As String
         
         If cboValue.Value = C_SEARCH_VALUE_VALUE Then
             Set objFind = objSheet.UsedRange.Find(strPattern, , xlValues, xlPart, xlByColumns, xlNext, chkCase.Value, chkZenHan.Value)
@@ -665,15 +681,15 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                 'シェイプに文字があるかないか判断がつかないためエラー検出にて処理
                 On Error Resume Next
                 strBuf = c.TextFrame.Characters.Text
-                If Err.Number = 0 Then
+                If err.Number = 0 Then
                     On Error GoTo 0
                     
                     '正規表現の場合
                     If chkRegEx Then
-                        Err.Clear
+                        err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
-                        If Err.Number <> 0 Then
+                        If err.Number <> 0 Then
                             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
                             cboSearch.SetFocus
                             Exit Sub
@@ -719,7 +735,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     End If
                 Else
                     On Error GoTo 0
-                    Err.Clear
+                    err.Clear
                 End If
             Case msoGroup
                 grouprc c, c, colShapes, ResultWS
@@ -745,15 +761,15 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                 'シェイプに文字があるかないか判断がつかないためエラー検出にて処理
                 On Error Resume Next
                 strBuf = c.TextFrame.Characters.Text
-                If Err.Number = 0 Then
+                If err.Number = 0 Then
                     On Error GoTo 0
                     
                     '正規表現の場合
                     If chkRegEx Then
-                        Err.Clear
+                        err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
-                        If Err.Number <> 0 Then
+                        If err.Number <> 0 Then
                             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
                             cboSearch.SetFocus
                             Exit Sub
@@ -794,7 +810,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     End If
                 Else
                     On Error GoTo 0
-                    Err.Clear
+                    err.Clear
                 End If
             Case msoGroup
                 '再帰呼出

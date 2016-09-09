@@ -81,5 +81,5 @@ Private Sub SFWork_SelectionTerm()
     
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
 End Sub

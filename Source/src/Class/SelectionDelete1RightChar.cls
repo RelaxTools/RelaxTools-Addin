@@ -77,7 +77,7 @@ End Sub
 
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
     
-    Err.Clear
+    err.Clear
     On Error Resume Next
 
     If r.HasFormula Then

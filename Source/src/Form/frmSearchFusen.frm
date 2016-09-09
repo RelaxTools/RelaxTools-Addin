@@ -154,9 +154,9 @@ Private Function getGroupId(ByRef objShape As Object) As String
     Dim s As Object
     
     On Error Resume Next
-    Err.Clear
+    err.Clear
     Set s = objShape.ParentGroup
-    Do Until Err.Number <> 0
+    Do Until err.Number <> 0
         strBuf = "/" & s.id & strBuf
         Set s = s.ParentGroup
     Loop
@@ -357,7 +357,7 @@ Private Sub lstResult_Change()
                     objShape.Select False
                 Else
                     blnFlg = True
-                    Application.GoTo setCellPos(objShape.TopLeftCell), True
+                    Application.Goto setCellPos(objShape.TopLeftCell), True
                     objShape.Select
                 End If
                 On Error GoTo 0

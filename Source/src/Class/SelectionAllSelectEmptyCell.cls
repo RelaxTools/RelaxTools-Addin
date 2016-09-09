@@ -85,7 +85,7 @@ Private Sub SFWork_SelectionMain(r As Range, Cancel As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
     Cancel = True
 End Sub
 
@@ -101,6 +101,6 @@ Private Sub SFWork_SelectionTerm()
 
     Exit Sub
 e:
-    Call rlxErrMsg(Err)
+    Call rlxErrMsg(err)
 End Sub
 

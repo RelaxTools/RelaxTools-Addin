@@ -166,9 +166,9 @@ Private Sub searchStart()
     Set colSheet = New Collection
 
     On Error Resume Next
-    Err.Clear
+    err.Clear
     Set WD = CreateObject("Word.Application")
-    If Err.Number <> 0 Then
+    If err.Number <> 0 Then
         MsgBox "Wordがインストールされていないか、使用できません。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
@@ -300,9 +300,9 @@ Private Function GetGrammer(ByRef WD As Object, ByVal Value As String, ByRef str
     For lngCnt = 1 To lngMax
     
         On Error Resume Next
-        Err.Clear
+        err.Clear
         Set a = WD.ActiveDocument.GrammaticalErrors(lngCnt)
-        If Err.Number <> 0 Then
+        If err.Number <> 0 Then
             Exit For
         End If
         
@@ -418,7 +418,7 @@ Private Sub searchShape(ByRef WD As Object, ByRef objSheet As Worksheet)
                     End If
                 Else
                     On Error GoTo 0
-                    Err.Clear
+                    err.Clear
                 End If
             Case msoGroup
                 grouprc objSheet, c, c, colShapes, WD
@@ -467,7 +467,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                     End If
                 Else
                     On Error GoTo 0
-                    Err.Clear
+                    err.Clear
                 End If
             Case msoGroup
                 '再帰呼出
@@ -547,9 +547,9 @@ Private Function getGroupId(ByRef objShape As Object) As String
     Dim s As Object
     
     On Error Resume Next
-    Err.Clear
+    err.Clear
     Set s = objShape.ParentGroup
-    Do Until Err.Number <> 0
+    Do Until err.Number <> 0
         strBuf = "/" & s.id & strBuf
         Set s = s.ParentGroup
     Loop
@@ -685,7 +685,7 @@ Private Sub lstResult_Change()
                         objShape.Shapes(1).Select False
                     Else
                         blnFlg = True
-                        Application.GoTo setCellPos(objArt.TopLeftCell), True
+                        Application.Goto setCellPos(objArt.TopLeftCell), True
                         objShape.Shapes(1).Select
                     End If
                     On Error GoTo 0
@@ -695,7 +695,7 @@ Private Sub lstResult_Change()
                         objShape.Select False
                     Else
                         blnFlg = True
-                        Application.GoTo setCellPos(objShape.TopLeftCell), True
+                        Application.Goto setCellPos(objShape.TopLeftCell), True
                         objShape.Select
                     End If
                     On Error GoTo 0
