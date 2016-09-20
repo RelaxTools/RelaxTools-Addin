@@ -1,4 +1,8 @@
-﻿2016/09/09(Fri) RelaxTools-Addin Version 4.6.0(RustRemover) 
+﻿2016/09/XX(xxx) RelaxTools-Addin Version 4.6.1(RustRemover) 
+◇機能改善
+　・「クリップボードからフォルダ／ファイル一覧の貼り付け」でちらつきを防ぐように改善。
+
+2016/09/10(sat) RelaxTools-Addin Version 4.6.0(RustRemover) 
 ◇新規機能
 　・現在開いているブックの名前を変更できる夢のような機能を追加。[RelaxToolsタブ]→[開く]→[アクティブなブックの名前を変更]
 ◇機能改善
