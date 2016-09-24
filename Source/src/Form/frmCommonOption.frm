@@ -45,7 +45,7 @@ Attribute VB_Exposed = False
 
 
 Option Explicit
-
+Private mblnSpin As Boolean
 Private Sub cmdCancel_Click()
     Unload Me
 End Sub
@@ -170,11 +170,21 @@ Private Sub UserForm_Initialize()
     
 End Sub
 Private Sub spnSleep_SpinDown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtSleep.Text = spinDown(txtSleep.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnSleep_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtSleep.Text = spinUp(txtSleep.Text)
+    mblnSpin = False
 End Sub
 Private Function spinUp(ByVal vntValue As Variant) As Variant
 

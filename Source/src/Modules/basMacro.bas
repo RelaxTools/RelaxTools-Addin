@@ -2946,6 +2946,8 @@ Sub getFileNameFromClipboard()
         Exit Sub
     End If
     
+    Application.ScreenUpdating = False
+    
     strBuf = rlxGetFileNameFromCli()
     
     If strBuf = "" Then
@@ -2959,8 +2961,10 @@ Sub getFileNameFromClipboard()
         ActiveCell.Offset(i, 0).Value = files(i)
     Next
     
+    Application.ScreenUpdating = True
     Exit Sub
 ErrHandle:
+    Application.ScreenUpdating = True
     MsgBox "エラーが発生しました。", vbOKOnly, C_TITLE
 
 End Sub

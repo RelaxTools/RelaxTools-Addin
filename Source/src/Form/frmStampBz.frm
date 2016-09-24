@@ -67,6 +67,7 @@ Private Const C_DOWN As Long = 2
 Private mResult As VbMsgBoxResult
 
 Private mblnRefresh As Boolean
+Private mblnSpin As Boolean
 
 Private Sub cmbFont_Click()
     If cmbFont.ListIndex = -1 Then
@@ -851,26 +852,56 @@ Private Function spinDownSize(ByVal vntValue As Variant) As Variant
 
 End Function
 Private Sub spnLine_Spindown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtLineSize.Text = spinDownSize(txtLineSize.Text)
+    mblnSpin = False
 End Sub
 Private Sub spnLine_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtLineSize.Text = spinUpSize(txtLineSize.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnWidth_SpinDown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtWidth.Text = spinDownWidth(txtWidth.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnWidth_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtWidth.Text = spinUpWidth(txtWidth.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnRound_SpinDown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtRound.Text = spinDownRound(txtRound.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnRound_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtRound.Text = spinUpRound(txtRound.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub txtFormat_Change()

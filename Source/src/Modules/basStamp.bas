@@ -170,6 +170,8 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         WS.Shapes("shpCircle").Fill.visible = False
     End If
     
+    r.Rotation = getRect(s.rect)
+    
     If lngFormat = xlBitmap Then
     
         Dim b As Shape
@@ -196,6 +198,18 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
     End If
     
     Set WS = Nothing
+    
+End Function
+Function getRect(rect As String) As Single
+    Dim a As Single
+    Dim b As Single
+    a = (Val(rect) / 100) * -1
+    
+    b = (a * 180)
+    If b < 0 Then
+        b = b + 360
+    End If
+    getRect = b '+ 90
     
 End Function
 '--------------------------------------------------------------
@@ -339,7 +353,8 @@ Public Function getProperty() As Collection
         s.Size = "15"
         s.WordArt = C_STAMP_WORDART_ON
         s.Fill = C_STAMP_FILL_OFF
-    
+        s.rect = "0"
+
         col.Add s
         
         Set s = Nothing
@@ -357,6 +372,7 @@ Public Function getProperty() As Collection
         s.Size = "15"
         s.WordArt = C_STAMP_WORDART_ON
         s.Fill = C_STAMP_FILL_OFF
+        s.rect = "0"
     
         col.Add s
         
@@ -375,6 +391,7 @@ Public Function getProperty() As Collection
         s.Size = "15"
         s.WordArt = C_STAMP_WORDART_ON
         s.Fill = C_STAMP_FILL_OFF
+        s.rect = "0"
     
         col.Add s
         
@@ -395,6 +412,7 @@ Public Function getProperty() As Collection
             s.Size = GetSetting(C_TITLE, "Stamp", "Size" & Format$(i, "000"), "15")
             s.WordArt = GetSetting(C_TITLE, "Stamp", "WordArt" & Format$(i, "000"), C_STAMP_WORDART_ON)
             s.Fill = GetSetting(C_TITLE, "Stamp", "Fill" & Format$(i, "000"), C_STAMP_FILL_OFF)
+            s.rect = GetSetting(C_TITLE, "Stamp", "Rect" & Format$(i, "000"), "0")
     
             col.Add s
             
@@ -427,6 +445,7 @@ Public Sub setProperty(ByRef col As Collection)
     DeleteSetting C_TITLE, "Stamp", "Size"
     DeleteSetting C_TITLE, "Stamp", "WordArt"
     DeleteSetting C_TITLE, "Stamp", "Fill"
+    DeleteSetting C_TITLE, "Stamp", "Rect"
     
     For i = 0 To col.count - 1
         
@@ -443,6 +462,7 @@ Public Sub setProperty(ByRef col As Collection)
         Call SaveSetting(C_TITLE, "Stamp", "Size" & Format$(i, "000"), s.Size)
         Call SaveSetting(C_TITLE, "Stamp", "WordArt" & Format$(i, "000"), s.WordArt)
         Call SaveSetting(C_TITLE, "Stamp", "Fill" & Format$(i, "000"), s.Fill)
+        Call SaveSetting(C_TITLE, "Stamp", "Rect" & Format$(i, "000"), s.rect)
     
         Set s = Nothing
     Next

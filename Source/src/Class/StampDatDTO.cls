@@ -51,5 +51,6 @@ Public Size As String
 Public Line As String
 Public WordArt As String
 Public Fill As String
+Public rect As String
 
 

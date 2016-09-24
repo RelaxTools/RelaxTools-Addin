@@ -1,5 +1,6 @@
-﻿2016/09/XX(xxx) RelaxTools-Addin Version 4.6.1(RustRemover) 
+﻿2016/09/25(Sun) RelaxTools-Addin Version 4.6.1(RustRemover) 
 ◇機能改善
+　・「データ印」で社畜機能（陰影の傾き設定）を追加。
 　・「クリップボードからフォルダ／ファイル一覧の貼り付け」でちらつきを防ぐように改善。
 
 2016/09/10(sat) RelaxTools-Addin Version 4.6.0(RustRemover) 

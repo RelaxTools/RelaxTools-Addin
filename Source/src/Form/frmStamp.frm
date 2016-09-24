@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmStamp 
    Caption         =   "データ印"
-   ClientHeight    =   7395
+   ClientHeight    =   8175
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   10110
@@ -57,6 +57,7 @@ Private Const C_SIZE As Long = 8
 Private Const C_Line As Long = 9
 Private Const c_WordArt As Long = 10
 Private Const C_Fill As Long = 11
+Private Const C_Rect As String = 12
 
 Private Const C_DATA As Long = 1
 
@@ -66,6 +67,7 @@ Private Const C_DOWN As Long = 2
 Private mResult As VbMsgBoxResult
 
 Private mblnRefresh As Boolean
+Private mblnSpin As Boolean
 
 Private Sub chkFill_Change()
     dispPreview
@@ -92,7 +94,7 @@ Private Sub cmdAdd_Click()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_TEXT To C_Fill)
+    ReDim varBuf(C_TEXT To C_Rect)
 
     
     
@@ -136,6 +138,8 @@ Private Sub cmdAdd_Click()
     Else
         varBuf(C_Fill) = C_STAMP_FILL_OFF
     End If
+    
+    varBuf(C_Rect) = txtRect.Text
     
     strBuf = Join(varBuf, vbTab)
     
@@ -263,7 +267,9 @@ Sub dispPreview()
     If Not IsNumeric(txtSize.Text) Then
         Exit Sub
     End If
-
+    If Not IsNumeric(txtRect.Text) Then
+        Exit Sub
+    End If
 '    strPath = rlxGetTempFolder() & C_STAMP_FILE_NAME & ".jpg"
     
     Dim s As StampDatDTO
@@ -309,7 +315,8 @@ Sub dispPreview()
     Else
         s.Fill = C_STAMP_FILL_OFF
     End If
-
+    s.rect = txtRect.Text
+    
 '    Call editStamp(s, xlBitmap)
     imgPreview.Picture = editStamp(s, xlBitmap)
     
@@ -326,7 +333,7 @@ Sub dispPreview()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_TEXT To C_Fill)
+    ReDim varBuf(C_TEXT To C_Rect)
     
     mblnRefresh = True
             
@@ -341,6 +348,8 @@ Sub dispPreview()
     varBuf(C_Font) = s.Font
     varBuf(c_WordArt) = s.WordArt
     varBuf(C_Fill) = s.Fill
+    varBuf(C_Rect) = s.rect
+        
     strBuf = Join(varBuf, vbTab)
 
     lstStamp.List(i, C_TEXT) = s.Upper & " + " & s.Lower
@@ -377,6 +386,7 @@ Private Sub cmdOK_Click()
         s.Lower = varBuf(C_Lower)
         s.WordArt = varBuf(c_WordArt)
         s.Fill = varBuf(C_Fill)
+        s.rect = varBuf(C_Rect)
         
         If s.DateType = C_STAMP_DATE_USER Then
             If IsDate(s.UserDate) Then
@@ -402,7 +412,13 @@ Private Sub cmdOK_Click()
             txtSize.SetFocus
             Exit Sub
         End If
-        
+        If IsNumeric(s.rect) Then
+        Else
+            MsgBox "社畜度には数値をで入力してください。（-100%～100%）", vbExclamation + vbOKOnly, C_TITLE
+            lstStamp.Selected(i) = True
+            txtSize.SetFocus
+            Exit Sub
+        End If
         col.Add s
         
         Set s = Nothing
@@ -521,6 +537,8 @@ Private Sub lstStamp_Click()
         chkFill.Value = False
     End If
     
+    txtRect.Text = varBuf(C_Rect)
+    
     Dim strFont As String
     Dim pos As Long
     
@@ -552,11 +570,66 @@ End Sub
 Private Sub optUserDate_Change()
     dispPreview
 End Sub
-Private Sub spnSize_SpinDown()
-    txtSize.Text = spinDown(txtSize.Text)
+
+Private Sub txtRect_Change()
+    dispPreview
 End Sub
+Private Sub spnRect_SpinDown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
+    txtRect.Text = spinDownRect(txtRect.Text)
+    mblnSpin = False
+End Sub
+
+Private Sub spnRect_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
+    txtRect.Text = spinUpRect(txtRect.Text)
+    mblnSpin = False
+End Sub
+Private Sub spnSize_SpinDown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    txtSize.Text = spinDown(txtSize.Text)
+    mblnSpin = False
+End Sub
+Private Function spinUpRect(ByVal vntValue As Variant) As Variant
+
+    Dim lngValue As Variant
+    
+    lngValue = Val(vntValue)
+    lngValue = lngValue + 5
+    If lngValue > 100 Then
+        lngValue = 100
+    End If
+    spinUpRect = Format(lngValue, "0")
+
+End Function
+
+Private Function spinDownRect(ByVal vntValue As Variant) As Variant
+
+    Dim lngValue As Variant
+    
+    lngValue = Val(vntValue)
+    lngValue = lngValue - 5
+    If lngValue < -100 Then
+        lngValue = -100
+    End If
+    spinDownRect = Format(lngValue, "0")
+
+End Function
 Private Sub spnSize_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtSize.Text = spinUp(txtSize.Text)
+    mblnSpin = False
 End Sub
 Private Sub txtFormat_Change()
     dispPreview
@@ -582,7 +655,7 @@ Private Sub UserForm_Initialize()
     Dim strBuf As String
     Dim varBuf() As Variant
     
-    ReDim varBuf(C_TEXT To C_Fill)
+    ReDim varBuf(C_TEXT To C_Rect)
     
     '設定情報取得
     Set col = getProperty()
@@ -602,6 +675,7 @@ Private Sub UserForm_Initialize()
         varBuf(C_Line) = s.Line
         varBuf(c_WordArt) = s.WordArt
         varBuf(C_Fill) = s.Fill
+        varBuf(C_Rect) = s.rect
         
         lstStamp.AddItem ""
         
@@ -633,6 +707,7 @@ Private Sub UserForm_Initialize()
         txtFormat.Text = "yyyy.m.d"
         txtSize.Text = "15"
         lblColor.BackColor = vbRed
+        txtRect.Text = "0"
     
         mblnRefresh = False
     End If

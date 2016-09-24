@@ -66,6 +66,7 @@ Private Const C_DOWN As Long = 2
 
 Private mResult As VbMsgBoxResult
 Private mblnRefresh As Boolean
+Private mblnSpin As Boolean
 
 Sub dispPreview()
     
@@ -676,35 +677,75 @@ Private Sub optVertical_Click()
 End Sub
 
 Private Sub spnLine_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtLineSize.Text = spinUpSize(txtLineSize.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnLine_Spindown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtLineSize.Text = spinDownSize(txtLineSize.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnRect_SpinDown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtRect.Text = spinDownRect(txtRect.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnRect_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtRect.Text = spinUpRect(txtRect.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnRound_SpinDown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtRound.Text = spinDownRound(txtRound.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnRound_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtRound.Text = spinUpRound(txtRound.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnSize_SpinDown()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtSize.Text = spinDown(txtSize.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub spnSize_SpinUp()
+    If mblnSpin Then
+        Exit Sub
+    End If
+    mblnSpin = True
     txtSize.Text = spinUp(txtSize.Text)
+    mblnSpin = False
 End Sub
 
 Private Sub txtFile_Change()
