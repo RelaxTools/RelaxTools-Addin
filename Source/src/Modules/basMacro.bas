@@ -109,6 +109,10 @@ End Sub
 '--------------------------------------------------------------
 Sub lineCopy()
 
+    If rlxCheckSelectRange = False Then
+        Exit Sub
+    End If
+
     If ActiveCell Is Nothing Then
         Exit Sub
     End If
@@ -144,6 +148,10 @@ End Sub
 '　行挿入
 '--------------------------------------------------------------
 Sub lineInsert()
+    
+    If rlxCheckSelectRange = False Then
+        Exit Sub
+    End If
     
     If ActiveCell Is Nothing Then
         Exit Sub
@@ -181,6 +189,10 @@ End Sub
 '--------------------------------------------------------------
 Sub lineDel()
 
+    If rlxCheckSelectRange = False Then
+        Exit Sub
+    End If
+    
     If ActiveCell Is Nothing Then
         Exit Sub
     End If
@@ -225,6 +237,10 @@ Sub lineNCopy()
     Dim lngCnt As Long
     Dim f As Long
     Dim t As Long
+    
+    If rlxCheckSelectRange = False Then
+        Exit Sub
+    End If
     
     If ActiveCell Is Nothing Then
         Exit Sub
@@ -424,6 +440,7 @@ Sub setAllA1()
     Dim WB As Workbook
     Dim blnRatio As Boolean
     Dim lngPercent As Long
+    Dim blnView As Boolean
  
     If ActiveWorkbook Is Nothing Then
         MsgBox "アクティブなブックが見つかりません。", vbCritical, C_TITLE
@@ -431,6 +448,7 @@ Sub setAllA1()
     End If
     
     blnRatio = GetSetting(C_TITLE, "A1Setting", "ratio", False)
+    blnView = GetSetting(C_TITLE, "A1Setting", "ViewEnable", 0)
     lngPercent = Val(GetSetting(C_TITLE, "A1Setting", "percent", "100"))
     If lngPercent = 0 Then
         lngPercent = 100
@@ -453,6 +471,18 @@ Sub setAllA1()
             WS.Range("A1").Activate
             WB.Windows(1).ScrollRow = 1
             WB.Windows(1).ScrollColumn = 1
+            
+            If blnView Then
+                Select Case Val(GetSetting(C_TITLE, "A1Setting", "View", "0"))
+                    Case 0
+                        WB.Windows(1).View = xlNormalView
+                    Case 1
+                        WB.Windows(1).View = xlPageLayoutView
+                    Case 2
+                        WB.Windows(1).View = xlPageBreakPreview
+                End Select
+            End If
+            
             If blnRatio Then
                 WB.Windows(1).Zoom = lngPercent
             End If
@@ -2345,9 +2375,9 @@ Sub nextWorksheet()
         Exit Sub
     End If
     
-    For i = ActiveSheet.Index + 1 To ActiveWorkbook.Worksheets.count
-        If ActiveWorkbook.Worksheets(i).visible = xlSheetVisible Then
-            ActiveWorkbook.Worksheets(i).Select
+    For i = ActiveSheet.Index + 1 To ActiveWorkbook.Sheets.count
+        If ActiveWorkbook.Sheets(i).visible = xlSheetVisible Then
+            ActiveWorkbook.Sheets(i).Select
             Exit For
         End If
     Next
@@ -2369,8 +2399,8 @@ Sub prevWorksheet()
         Exit Sub
     End If
     For i = ActiveSheet.Index - 1 To 1 Step -1
-        If ActiveWorkbook.Worksheets(i).visible = xlSheetVisible Then
-            ActiveWorkbook.Worksheets(i).Select
+        If ActiveWorkbook.Sheets(i).visible = xlSheetVisible Then
+            ActiveWorkbook.Sheets(i).Select
             Exit For
         End If
     Next

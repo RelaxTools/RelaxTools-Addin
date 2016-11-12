@@ -719,6 +719,9 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdSubmit_Click()
 
+
+    On Error GoTo ErrHandle
+    
     Const C_TEMP_NAME As String = "~~temp"
 
     Dim WS As Object
@@ -752,10 +755,6 @@ Private Sub cmdSubmit_Click()
             lngVisibleCount = lngVisibleCount + 1
         End If
     Next
-    If lngVisibleCount = lstSheet.ListCount Then
-        MsgBox "すべてのシートを非表示にはできません。", vbOKOnly + vbExclamation, C_TITLE
-        Exit Sub
-    End If
     
     lngDeleteCount = 0
     For lngCnt = 0 To lstSheet.ListCount - 1
@@ -767,8 +766,8 @@ Private Sub cmdSubmit_Click()
         
     Next
     
-    If lngDeleteCount = lstSheet.ListCount Then
-        MsgBox "すべてのシートを削除できません。", vbOKOnly + vbExclamation, C_TITLE
+    If (lngVisibleCount = lstSheet.ListCount) Or (lngDeleteCount = lstSheet.ListCount) Or (lngDeleteCount + lngVisibleCount = lstSheet.ListCount) Then
+        MsgBox "すべてのシートを非表示・削除はできません。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
@@ -776,7 +775,7 @@ Private Sub cmdSubmit_Click()
     
         For lngCnt2 = lngCnt + 1 To lstSheet.ListCount - 1
             If lstSheet.List(lngCnt, C_SHEET_STATUS) <> C_DEL And lstSheet.List(lngCnt2, C_SHEET_STATUS) <> C_DEL Then
-                If lstSheet.List(lngCnt, C_SHEET_NEW_NAME) = lstSheet.List(lngCnt2, C_SHEET_NEW_NAME) Then
+                If StrConv(UCase(lstSheet.List(lngCnt, C_SHEET_NEW_NAME)), vbNarrow) = StrConv(UCase(lstSheet.List(lngCnt2, C_SHEET_NEW_NAME)), vbNarrow) Then
                     MsgBox "シートの名前をほかのシート、Visual Basic で参照されるオブジェクト ライブラリまたはワークシートと同じ名前に変更することはできません。", vbOKOnly + vbExclamation, C_TITLE
                     Exit Sub
                 End If
@@ -812,12 +811,14 @@ Private Sub cmdSubmit_Click()
     For lngCnt = 0 To lstSheet.ListCount - 1
     
         '名称が同じなら何もしない
-        If mBook.Sheets(lngCnt + 1).Name = lstSheet.List(lngCnt, C_SHEET_OLD_NAME) Then
+        If mBook.Sheets(lngCnt + 1).visible = xlSheetVeryHidden Then
         Else
-            '異なる場合、リストを正とし、現在のシートの前に移動。
-            mBook.Sheets(lstSheet.List(lngCnt, C_SHEET_OLD_NAME)).Move Before:=mBook.Sheets(lngCnt + 1)
+            If mBook.Sheets(lngCnt + 1).Name = lstSheet.List(lngCnt, C_SHEET_OLD_NAME) Then
+            Else
+                '異なる場合、リストを正とし、現在のシートの前に移動。
+                mBook.Sheets(lstSheet.List(lngCnt, C_SHEET_OLD_NAME)).Move Before:=mBook.Sheets(lngCnt + 1)
+            End If
         End If
-        
     Next
     'もともとアクティブだったシートを選択
     WS.Select
@@ -888,6 +889,11 @@ Private Sub cmdSubmit_Click()
 '    If lstSheet.ListCount > 0 Then
 '        lstSheet.Selected(lngLast) = True
 '    End If
+
+    Exit Sub
+ErrHandle:
+    MsgBox "エラーが発生しました。", vbOKOnly, C_TITLE
+
 End Sub
 
 Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)

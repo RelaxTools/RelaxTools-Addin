@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmA1Setting 
    Caption         =   "ホームポジション（A1)設定"
-   ClientHeight    =   1980
+   ClientHeight    =   3090
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   4710
@@ -51,6 +51,10 @@ Private Sub chkRatio_Click()
 
 End Sub
 
+Private Sub chkView_Click()
+    cboView.enabled = chkView.Value
+End Sub
+
 Private Sub cmdCancel_Click()
     Unload Me
 End Sub
@@ -67,6 +71,8 @@ Private Sub cmdOK_Click()
 
     SaveSetting C_TITLE, "A1Setting", "ratio", chkRatio.Value
     SaveSetting C_TITLE, "A1Setting", "percent", cboPercent.Value
+    SaveSetting C_TITLE, "A1Setting", "ViewEnable", chkView.Value
+    SaveSetting C_TITLE, "A1Setting", "View", cboView.ListIndex
     Unload Me
     
 End Sub
@@ -75,6 +81,7 @@ End Sub
 Private Sub UserForm_Initialize()
 
     chkRatio.Value = GetSetting(C_TITLE, "A1Setting", "ratio", False)
+    chkView.Value = GetSetting(C_TITLE, "A1Setting", "ViewEnable", False)
     
     cboPercent.Clear
     cboPercent.AddItem "25"
@@ -84,8 +91,14 @@ Private Sub UserForm_Initialize()
     cboPercent.AddItem "200"
     cboPercent.AddItem "400"
     
+    cboView.AddItem "標準"
+    cboView.AddItem "ページレイアウト"
+    cboView.AddItem "改ページプレビュー"
+    
     cboPercent.Value = GetSetting(C_TITLE, "A1Setting", "percent", "100")
+    cboView.ListIndex = Val(GetSetting(C_TITLE, "A1Setting", "View", "0"))
     
     cboPercent.enabled = chkRatio.Value
+    cboView.enabled = chkView.Value
 
 End Sub
