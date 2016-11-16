@@ -159,6 +159,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
 
     Dim objfld As Object
     Dim objfl As Object
+    Dim objKey As Variant
     Dim objSub As Object
     
     Dim i As Long
@@ -166,8 +167,8 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     Dim lngCol2 As Long
     
     Dim strLine As String
-    Dim colFolders As Collection
-    Dim colFiles As Collection
+    Dim colFolders As Object
+    Dim colFiles As Object
     
     '罫線の列幅を２とする。
     Columns(lngCol).ColumnWidth = mdblLineWidth
@@ -189,16 +190,16 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     
     If chkFileName.Value Then
         
-        Set colFiles = New Collection
+        Set colFiles = CreateObject("Scripting.Dictionary")
         
         For Each objfl In objfld.files
-            colFiles.Add objfl, objfl.Name
+            colFiles.Add objfl.Name, objfl
         Next
         
-        rlxSortCollection colFiles
+        'rlxSortCollection colFiles
         
         'ファイルの一覧を作成する。
-        For Each objfl In colFiles
+        For Each objKey In colFiles.keys
             DoEvents
             If mblnCancel Then
                 Exit Sub
@@ -208,7 +209,8 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
             
             'ファイル名
             Cells(lngRow, lngCol2).NumberFormatLocal = "@"
-            Cells(lngRow, lngCol2).Value = objfl.Name
+            
+            Cells(lngRow, lngCol2).Value = colFiles.Item(objKey).Name
     
             
             'ハイパーリンク
@@ -218,8 +220,8 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
             If chkFile.Value Then
                 ActiveSheet.Hyperlinks.Add _
                     Anchor:=Cells(lngRow, lngCol2), _
-                    Address:=rlxAddFileSeparator(strPath) & objfl.Name, _
-                    TextToDisplay:=objfl.Name
+                    Address:=rlxAddFileSeparator(strPath) & colFiles.Item(objKey).Name, _
+                    TextToDisplay:=colFiles.Item(objKey).Name
             End If
             
             lngRow = lngRow + 1
@@ -236,15 +238,15 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     'サブフォルダ検索あり
     i = 1
     
-    Set colFolders = New Collection
+    Set colFolders = CreateObject("Scripting.Dictionary")
     
     For Each objSub In objfld.SubFolders
-        colFolders.Add objSub, objSub.Name
+        colFolders.Add objSub.Name, objSub
     Next
     
-    rlxSortCollection colFolders
+    'rlxSortCollection colFolders
         
-    For Each objSub In colFolders
+    For Each objKey In colFolders
         DoEvents
         If mblnCancel Then
             Exit Sub
@@ -262,18 +264,18 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         
         'フォルダ見出し
         Cells(lngRow, lngCol2).NumberFormatLocal = "@"
-        Cells(lngRow, lngCol2).Value = rlxGetFullpathFromFileName(objSub.Path)
+        Cells(lngRow, lngCol2).Value = rlxGetFullpathFromFileName(colFolders.Item(objKey).Path)
         
         'フォルダ指定の場合
         If chkFolder.Value Then
             ActiveSheet.Hyperlinks.Add _
                 Anchor:=Cells(lngRow, lngCol2), _
                 Address:=objSub.Path, _
-                TextToDisplay:=rlxGetFullpathFromFileName(objSub.Path)
+                TextToDisplay:=rlxGetFullpathFromFileName(colFolders.Item(objKey).Path)
         End If
                 
         '自分自身を呼び出す（再帰）
-        FileDisp objFs, objSub.Path, lngRow, lngCol2, lngHCol, strLine, lngFolderCnt
+        FileDisp objFs, colFolders.Item(objKey).Path, lngRow, lngCol2, lngHCol, strLine, lngFolderCnt
         
         i = i + 1
         lngFolderCnt = lngFolderCnt + 1
@@ -282,8 +284,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     Next
     Set colFolders = Nothing
     
-End Sub
-'Tree描画
+End Sub 'Tree描画
 Private Sub SetTree(ByVal strLine As String, ByVal lngRow As Long, ByVal lngCol As Long)
 
     Dim lngLen As Long
