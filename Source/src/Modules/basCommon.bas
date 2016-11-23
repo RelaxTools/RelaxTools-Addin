@@ -473,7 +473,7 @@ Attribute rlxShellExec.VB_ProcData.VB_Invoke_Func = " \n19"
 
 End Function
 '--------------------------------------------------------------
-'　小文字がなかったらDB項目（大雑把）
+'　アンダーバーがあったらDB項目（大雑把）
 '--------------------------------------------------------------
 Public Function rlxIsDBField(ByVal strBuf As String) As Boolean
 Attribute rlxIsDBField.VB_Description = "DB項目名（半角大文字＋アンダーバー）の場合\ntrueを返却します。"
@@ -485,18 +485,21 @@ Attribute rlxIsDBField.VB_ProcData.VB_Invoke_Func = " \n19"
     
     rlxIsDBField = False
     
-    lngLen = Len(strBuf)
-    
-    For i = 1 To lngLen
-    
-        Select Case Mid$(strBuf, i, 1)
-            Case "a" To "z"
-            Case Else
-                lngCnt = lngCnt + 1
-        End Select
-    Next
-
-    If lngLen = lngCnt Then
+'    lngLen = Len(strBuf)
+'
+'    For i = 1 To lngLen
+'
+'        Select Case Mid$(strBuf, i, 1)
+'            Case "a" To "z"
+'            Case Else
+'                lngCnt = lngCnt + 1
+'        End Select
+'    Next
+'
+'    If lngLen = lngCnt Then
+'        rlxIsDBField = True
+'    End If
+    If InStr(strBuf, "_") > 0 Then
         rlxIsDBField = True
     End If
 
@@ -1879,7 +1882,7 @@ Public Function CreatePictureFromClipboard(o As Object) As StdPicture
     
     Set CreatePictureFromClipboard = Nothing
   
-    Dim c As New Collection
+'    Dim c As New Collection
     
     On Error GoTo e
     
@@ -2103,14 +2106,22 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
     Dim strRet As String
     Dim strBefore As String
     Dim strChr As String
+    Dim strNext As String
 
     strRet = ""
     strBuf = ""
     strBefore = ""
+    strNext = ""
 
     For i = 1 To Len(strSource)
 
-        c = Mid(strSource, i, 1)
+        c = Mid$(strSource, i, 1)
+        
+        If i = Len(strSource) Then
+            strNext = ""
+        Else
+            strNext = Mid$(strSource, i + 1, 1)
+        End If
 
         Select Case c
             '全角の濁点、半濁点
@@ -2121,11 +2132,11 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
                     Else
                         strChr = "ﾞ"
                     End If
+                    strRet = strRet & StrConv(strBuf, conv) & strChr
+                    strBuf = ""
                 Else
-                    strChr = c
+                    strBuf = strBuf & c
                 End If
-                strRet = strRet & StrConv(strBuf, conv) & strChr
-                strBuf = ""
                 
             '半角の半濁点
             Case "ﾟ"
@@ -2136,29 +2147,49 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
                     Case Else
                         If (conv And vbWide) > 0 Then
                              strChr = "゜"
+                            strRet = strRet & StrConv(strBuf, conv) & strChr
+                            strBuf = ""
                         Else
-                            strChr = c
+                            strBuf = strBuf & c
                         End If
-                        strRet = strRet & StrConv(strBuf, conv) & strChr
-                        strBuf = ""
                 End Select
                 
             '半角の濁点
             Case "ﾞ"
                 '１つ前の文字
                 Select Case strBefore
-                    Case "ｶ" To "ｺ", "ｻ" To "ｿ", "ﾀ" To "ﾄ", "ﾊ" To "ﾎ"
+                    Case "ｳ", "ｶ" To "ｺ", "ｻ" To "ｿ", "ﾀ" To "ﾄ", "ﾊ" To "ﾎ"
                         strBuf = strBuf & c
                     Case Else
                         If (conv And vbWide) > 0 Then
                             strChr = "゛"
+                            strRet = strRet & StrConv(strBuf, conv) & strChr
+                            strBuf = ""
                         Else
-                            strChr = c
+                            strBuf = strBuf & c
                         End If
-                        strRet = strRet & StrConv(strBuf, conv) & strChr
-                        strBuf = ""
                 End Select
+            'ヴ
+            Case "ヴ"
+                If (conv And vbHiragana) > 0 Then
+                    strChr = "う゛"
+                    strRet = strRet & StrConv(strBuf, conv) & strChr
+                    strBuf = ""
+                Else
+                    strBuf = strBuf & c
+                End If
+            'う゛
+            Case "う"
+                If strNext = "゛" And (conv And vbKatakana) > 0 Then
+                    strChr = "ヴ"
+                    strRet = strRet & StrConv(strBuf, conv) & strChr
+                    strBuf = ""
+                    i = i + 1
+                Else
+                    strBuf = strBuf & c
+                End If
                 
+
             'その他
             Case Else
                 '第二水準等StrConvで文字化けするものを退避
@@ -2305,7 +2336,8 @@ Sub RenameActiveBook()
     End If
     Application.ScreenUpdating = True
     
-End Sub '--------------------------------------------------------------
+End Sub
+'--------------------------------------------------------------
 '  全角トリム
 '--------------------------------------------------------------
 Function TrimZen(ByVal strBuf As String) As String

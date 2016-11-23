@@ -28,7 +28,9 @@ Attribute VB_Name = "Logger"
 ' SOFTWARE.
 '
 '-----------------------------------------------------------------------------------------------------
+Option Explicit
 Option Private Module
+
 #If Win64 And VBA7 Then
     Declare PtrSafe Function GetTickCount Lib "kernel32" Alias "GetTickCount64" () As LongLong
 #Else

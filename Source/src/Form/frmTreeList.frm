@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmTreeList 
    Caption         =   "フォルダツリー構造取得"
-   ClientHeight    =   2775
+   ClientHeight    =   3480
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   7230
@@ -46,6 +46,7 @@ Attribute VB_Exposed = False
 Option Explicit
 Private mblnCancel As Boolean
 Private mMm As MacroManager
+Private XL As Excel.Application
 
 Private mdblLineWidth As Double
 
@@ -138,11 +139,20 @@ Private Sub cmdRun_Click()
     
     On Error Resume Next
     
+    If optViewSheet.Value Then
+        Set XL = New Excel.Application
+    End If
+    
     lngFolderCnt = 0
     FileDisp objFs, strFolder, lngRow, lngCol, lngCol, strLine, lngFolderCnt
     
     Set mMm = Nothing
     Set objFs = Nothing
+    
+    If optViewSheet.Value Then
+        XL.Quit
+        Set XL = Nothing
+    End If
     
     Select Case err.Number
     Case 75, 76
@@ -169,6 +179,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     Dim strLine As String
     Dim colFolders As Object
     Dim colFiles As Object
+    Dim v As Variant
     
     '罫線の列幅を２とする。
     Columns(lngCol).ColumnWidth = mdblLineWidth
@@ -209,9 +220,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
             
             'ファイル名
             Cells(lngRow, lngCol2).NumberFormatLocal = "@"
-            
             Cells(lngRow, lngCol2).Value = colFiles.Item(objKey).Name
-    
             
             'ハイパーリンク
             'Office プログラム内のハイパーリンクのファイル名でポンド文字を使用できません。(KB202261)
@@ -222,6 +231,16 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
                     Anchor:=Cells(lngRow, lngCol2), _
                     Address:=rlxAddFileSeparator(strPath) & colFiles.Item(objKey).Name, _
                     TextToDisplay:=colFiles.Item(objKey).Name
+            End If
+    
+            If optViewSheet.Value Then
+                If rlxIsExcelFile(colFiles.Item(objKey).Name) Then
+                    For Each v In getSheets(colFiles.Item(objKey).Path)
+                        lngRow = lngRow + 1
+                        Cells(lngRow, lngCol2 + 1).Value = v
+                        SetTree strLine, lngRow, lngHCol
+                    Next
+                End If
             End If
             
             lngRow = lngRow + 1
@@ -339,3 +358,25 @@ End Sub
 Private Sub UserForm_Terminate()
     mblnCancel = True
 End Sub
+
+Private Function getSheets(ByVal strBook As String) As Collection
+
+    Dim WB As Workbook
+    Dim WS As Object
+    Set getSheets = New Collection
+    
+    On Error GoTo e
+        
+    Set WB = XL.Workbooks.Open(FileName:=strBook, ReadOnly:=True)
+    
+    For Each WS In WB.Sheets
+        If WS.visible = xlSheetVisible Then
+            getSheets.Add WS.Name, WS.Name
+        End If
+    Next
+    
+    WB.Close SaveChanges:=False
+e:
+    Set WB = Nothing
+
+End Function
