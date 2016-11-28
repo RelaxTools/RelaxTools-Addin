@@ -1,4 +1,10 @@
-﻿2016/11/24(thu) RelaxTools-Addin Version 4.7.0(RustRemover) 
+﻿2016/11/29(tue) RelaxTools-Addin Version 4.7.1(RustRemover) 
+◇機能改善
+　・クリップボードのファイル名(フルパス)でネットワークドライブのUNC変換を行わないバージョンを追加。
+　・「ゔ」(機種依存)を半角にすると「ｳﾞ」になってしまう不具合を修正。
+　・「エヴァ」を「ひらがな変換」すると「えゔぁ」になるよう修正。
+
+2016/11/24(thu) RelaxTools-Addin Version 4.7.0(RustRemover) 
 ◇機能改善
 　・フォルダツリー作成でExcelファイル以下のシートを展開する機能を追加。
 　・「行削除」のUndo前処理の処理を改善。

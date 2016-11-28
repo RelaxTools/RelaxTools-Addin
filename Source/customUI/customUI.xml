@@ -70,6 +70,7 @@
             <menuSeparator id="clipSep01" title="ブック名、シート名をコピーする"/>
             <button id="getCurrentBookName" image="clipCopy" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="getCurrentBookFullName" image="clipCopy" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <button id="getCurrentBookFullNameDrv" image="clipCopy" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <menuSeparator id="clipSep02"/>
             <menu id="clipboardMenu01" label="全シート、全ブック" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="clipCopy" getEnabled="getRibbonEnabled" >
               <button id="getSheetName"             image="clipCopy" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />

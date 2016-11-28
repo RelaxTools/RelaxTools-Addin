@@ -671,6 +671,26 @@ End Sub
 '--------------------------------------------------------------
 '　現在のワークブック名（フルパス）をクリップボードに貼り付け
 '--------------------------------------------------------------
+Sub getCurrentBookFullNameDrv()
+    
+    On Error GoTo ErrHandle
+
+    If ActiveWorkbook Is Nothing Then
+        MsgBox "アクティブなブックが見つかりません。", vbCritical, C_TITLE
+        Exit Sub
+    End If
+    
+    'クリップボード貼り付け
+    putClipboard ActiveWorkbook.FullName '& vbCrLf
+    
+    Exit Sub
+ErrHandle:
+    MsgBox "エラーが発生しました。", vbOKOnly, C_TITLE
+    
+End Sub
+'--------------------------------------------------------------
+'　現在のワークブック名（フルパス）をクリップボードに貼り付け
+'--------------------------------------------------------------
 Sub getCurrentBookName()
 
     On Error GoTo ErrHandle

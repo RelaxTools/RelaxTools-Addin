@@ -2172,7 +2172,11 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
             'ヴ
             Case "ヴ"
                 If (conv And vbHiragana) > 0 Then
-                    strChr = "う゛"
+                    Dim b() As Byte
+                    ReDim b(0 To 1)
+                    b(0) = &H94
+                    b(1) = &H30
+                    strChr = b
                     strRet = strRet & StrConv(strBuf, conv) & strChr
                     strBuf = ""
                 Else
@@ -2197,7 +2201,18 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
                     strRet = strRet & StrConv(strBuf, conv) & c
                     strBuf = ""
                 Else
-                    strBuf = strBuf & c
+                    'う”
+                    If Unicode(c) = &H3094 Then
+                        If conv = vbKatakana Then
+                            strRet = strRet & StrConv(strBuf, conv) & "ヴ"
+                            strBuf = ""
+                        Else
+                            strRet = strRet & StrConv(strBuf, conv) & c
+                            strBuf = ""
+                        End If
+                    Else
+                        strBuf = strBuf & c
+                    End If
                 End If
         End Select
         
@@ -2212,6 +2227,14 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
 
     StrConvU = strRet
 
+End Function
+Private Function Unicode(ByVal strBuf As String) As Long
+    Dim bytBuf() As Byte
+    
+    If Len(strBuf) <> 0 Then
+        bytBuf = strBuf
+        Unicode = CLng(bytBuf(1)) * &H100 + bytBuf(0)
+    End If
 End Function
 '--------------------------------------------------------------
 '  フォルダの作成
