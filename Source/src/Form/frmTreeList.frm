@@ -289,7 +289,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         If chkFolder.Value Then
             ActiveSheet.Hyperlinks.Add _
                 Anchor:=Cells(lngRow, lngCol2), _
-                Address:=objSub.Path, _
+                Address:=colFolders.Item(objKey).Path, _
                 TextToDisplay:=rlxGetFullpathFromFileName(colFolders.Item(objKey).Path)
         End If
                 

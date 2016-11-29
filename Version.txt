@@ -1,4 +1,8 @@
-﻿2016/11/29(tue) RelaxTools-Addin Version 4.7.1(RustRemover) 
+﻿2016/11/30(wed) RelaxTools-Addin Version 4.7.2(RustRemover) 
+◇バグ修正
+　・4.6.3 のデグレード。「フォルダツリー作成」でフォルダ名にリンクをつけると異常終了する不具合を修正。
+　
+2016/11/29(tue) RelaxTools-Addin Version 4.7.1(RustRemover) 
 ◇機能改善
 　・クリップボードのファイル名(フルパス)でネットワークドライブのUNC変換を行わないバージョンを追加。
 　・「ゔ」(機種依存)を半角にすると「ｳﾞ」になってしまう不具合を修正。
