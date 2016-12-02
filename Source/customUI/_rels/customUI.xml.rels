@@ -254,4 +254,5 @@
 <Relationship Id="ac" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/ac.png"/>
 <Relationship Id="binView" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/binView.png"/>
 <Relationship Id="rename" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/rename.png"/>
+<Relationship Id="sushi" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="images/sushi.png"/>
 </Relationships>
