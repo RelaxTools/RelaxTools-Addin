@@ -465,7 +465,7 @@ Private Function setCellPos(ByRef r As Range) As Range
 
 End Function
 
-Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = lstResult
 End Sub
 
@@ -524,7 +524,7 @@ End Sub
 Private Sub UserForm_Activate()
     MW.Activate
 End Sub
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = Nothing
 End Sub
 

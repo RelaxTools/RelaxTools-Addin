@@ -34,7 +34,7 @@ Option Private Module
 
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function GetSystemMetrics Lib "user32" (ByVal nIndex As Long) As Long
-    Private Declare PtrSafe Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
+    Private Declare PtrSafe Function SendInput Lib "User32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
     Private Declare PtrSafe Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
 
     Private Type MOUSEINPUT
@@ -53,8 +53,8 @@ Option Private Module
     End Type
 
 #Else
-    Private Declare Function GetSystemMetrics Lib "user32.dll" (ByVal nIndex As Integer) As Integer
-    Private Declare Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
+    Private Declare Function GetSystemMetrics Lib "User32.dll" (ByVal nIndex As Integer) As Integer
+    Private Declare Function SendInput Lib "User32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
     Private Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
     
     Private Type MOUSEINPUT
@@ -74,8 +74,8 @@ Option Private Module
 #End If
     
 Private Type POINTAPI
-    X As Long
-    Y As Long
+    x As Long
+    y As Long
 End Type
 
 Private Const INPUT_MOUSE As Long = 0
@@ -142,8 +142,8 @@ End Function
 
 Sub PickShape(ByRef objDataSet As Object)
 
-    Dim X As Long
-    Dim Y As Long
+    Dim x As Long
+    Dim y As Long
     Dim ax As Long
     Dim ay As Long
 
@@ -201,29 +201,29 @@ Sub PickShape(ByRef objDataSet As Object)
     GetCursorPos a
 '    Const RoundConst = 0.5000001
     
-    ax = ((a.X - spx) * PPI / DPI)
-    X = ActiveSheet.Cells(by, bx).Left + ax * (100 / ActiveWindow.Zoom)
+    ax = ((a.x - spx) * PPI / DPI)
+    x = ActiveSheet.Cells(by, bx).Left + ax * (100 / ActiveWindow.Zoom)
 
-    ay = ((a.Y - spy) * PPI / DPI)
-    Y = ActiveSheet.Cells(by, bx).Top + ay * (100 / ActiveWindow.Zoom)
+    ay = ((a.y - spy) * PPI / DPI)
+    y = ActiveSheet.Cells(by, bx).Top + ay * (100 / ActiveWindow.Zoom)
     
     Dim r As Range
     Set r = ActiveWindow.ActivePane.VisibleRange
     
     'マウスカーソルが作業ウィンドウ内にある場合
-    If r(1).Top < Y And r(1).Left < X And r(r.count).Top + r(r.count).Height > Y + objDataSet.Height And r(r.count).Left + r(r.count).Width > X + objDataSet.Width Then
-        objDataSet.Left = X - (objDataSet.Width) / 2
-        objDataSet.Top = Y - (objDataSet.Height) / 2
-        Call SetCursoleAndLeftDown(a.X, a.Y)
+    If r(1).Top < y And r(1).Left < x And r(r.count).Top + r(r.count).Height > y + objDataSet.Height And r(r.count).Left + r(r.count).Width > x + objDataSet.Width Then
+        objDataSet.Left = x - (objDataSet.Width) / 2
+        objDataSet.Top = y - (objDataSet.Height) / 2
+        Call SetCursoleAndLeftDown(a.x, a.y)
     Else
     
         'マウスカーソルが作業ウィンドウ外にある場合
         ax = ((objDataSet.Left + (objDataSet.Width / 2) - ActiveSheet.Cells(by, bx).Left) * DPI / PPI)
-        X = spx + ax
+        x = spx + ax
         
         ay = ((objDataSet.Top + (objDataSet.Height / 4) - ActiveSheet.Cells(by, bx).Top) * DPI / PPI)
-        Y = spy + ay
-        Call SetCursoleAndLeftDown(X, Y)
+        y = spy + ay
+        Call SetCursoleAndLeftDown(x, y)
     
     End If
     
@@ -232,7 +232,7 @@ Sub PickShape(ByRef objDataSet As Object)
 
 
 End Sub
-Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
+Sub SetCursoleAndLeftDown(ByVal x As Long, ByVal y As Long)
 
     Dim inp(0 To 2) As INPUT_TYPE
     
@@ -242,8 +242,8 @@ Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
     
     With inp(0)
         .dwType = INPUT_MOUSE
-        .mi.dX = (X * 65535 / (GetSystemMetrics(SM_CXSCREEN) - 1))
-        .mi.dY = (Y * 65535 / (GetSystemMetrics(SM_CYSCREEN) - 1))
+        .mi.dX = (x * 65535 / (GetSystemMetrics(SM_CXSCREEN) - 1))
+        .mi.dY = (y * 65535 / (GetSystemMetrics(SM_CYSCREEN) - 1))
         .mi.mouseData = 0
         .mi.dwFlags = MOUSE_MOVED Or MOUSEEVENTF_ABSOLUTE
         .mi.time = 0

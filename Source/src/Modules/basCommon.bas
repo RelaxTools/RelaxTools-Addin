@@ -36,7 +36,7 @@ Option Private Module
 #If VBA7 And Win64 Then
     'VBA7 = Excel2010以降。赤くコンパイルエラーになって見えますが問題ありません。
     Private Declare PtrSafe Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
-    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hWnd As LongPtr) As Long
+    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hwnd As LongPtr) As Long
     Private Declare PtrSafe Function CloseClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function EmptyClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As LongPtr
@@ -49,9 +49,9 @@ Option Private Module
     Private Declare PtrSafe Function ChooseColor Lib "comdlg32.dll" Alias "ChooseColorA" (pChoosecolor As ChooseColor) As Long
     Private Declare PtrSafe Function DragQueryFile Lib "shell32.dll" Alias "DragQueryFileA" (ByVal hDrop As LongPtr, ByVal UINT As Long, ByVal lpszFile As String, ByVal ch As Long) As Long
     Private Declare PtrSafe Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As LongPtr
-    Private Declare PtrSafe Function FlashWindowEx Lib "user32.dll" (pfwi As FLASHWINFO) As LongPtr
+    Private Declare PtrSafe Function FlashWindowEx Lib "User32.dll" (pfwi As FLASHWINFO) As LongPtr
     Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
-    Private Declare PtrSafe Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
+    Private Declare PtrSafe Function IsClipboardFormatAvailable Lib "User32.dll" (ByVal wFormat As Long) As Long
     Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32" (ByRef lpPictDesc As PictDesc, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As LongPtr, ByRef IPic As IPicture) As Long
     Private Declare PtrSafe Function CopyImage Lib "user32" (ByVal handle As LongPtr, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As LongPtr
     Private Declare PtrSafe Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
@@ -71,8 +71,8 @@ Option Private Module
     End Type
     
     Private Type POINTAPI
-        X As Long
-        Y As Long
+        x As Long
+        y As Long
     End Type
     
     Private Type DROPFILES
@@ -84,7 +84,7 @@ Option Private Module
     
     Private Type FLASHWINFO
         cbsize As LongPtr
-        hWnd As LongPtr
+        hwnd As LongPtr
         dwFlags As Long
         uCount As Long
         dwTimeout As LongPtr
@@ -105,7 +105,7 @@ Option Private Module
     End Type
 #Else
     Private Declare Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
-    Declare Function OpenClipboard Lib "user32" (ByVal hWnd As Long) As Long
+    Declare Function OpenClipboard Lib "user32" (ByVal hwnd As Long) As Long
     Declare Function CloseClipboard Lib "user32" () As Long
     Declare Function EmptyClipboard Lib "user32" () As Long
     Declare Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As Long
@@ -117,10 +117,10 @@ Option Private Module
     Declare Function lstrcpy Lib "kernel32" Alias "lstrcpyA" (ByVal lpString1 As Any, ByVal lpString2 As Any) As Long
     Declare Function ChooseColor Lib "comdlg32.dll" Alias "ChooseColorA" (pChoosecolor As ChooseColor) As Long
     Declare Function DragQueryFile Lib "shell32.dll" Alias "DragQueryFileA" (ByVal hDrop As Long, ByVal UINT As Long, ByVal lpszFile As String, ByVal ch As Long) As Long
-    Private Declare Function FindWindow Lib "user32.dll" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
-    Private Declare Function FlashWindowEx Lib "user32.dll" (pfwi As FLASHWINFO) As Long
+    Private Declare Function FindWindow Lib "User32.dll" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
+    Private Declare Function FlashWindowEx Lib "User32.dll" (pfwi As FLASHWINFO) As Long
     Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
-    Private Declare Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
+    Private Declare Function IsClipboardFormatAvailable Lib "User32.dll" (ByVal wFormat As Long) As Long
     Private Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (ByRef lpPictDesc As PictDesc, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As Long, ByRef IPic As IPicture) As Long
     Private Declare Function CopyImage Lib "user32" (ByVal handle As Long, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As Long
     Private Declare Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
@@ -140,8 +140,8 @@ Private Type ChooseColor
     End Type
     
     Private Type POINTAPI
-        X As Long
-        Y As Long
+        x As Long
+        y As Long
     End Type
     
     Private Type DROPFILES
@@ -153,7 +153,7 @@ Private Type ChooseColor
     
     Private Type FLASHWINFO
         cbsize As Long
-        hWnd As Long
+        hwnd As Long
         dwFlags As Long
         uCount As Long
         dwTimeout As Long
@@ -351,7 +351,7 @@ Attribute rlxSelectFolder.VB_ProcData.VB_Invoke_Func = " \n19"
             Set WS = CreateObject("WScript.Shell")
             rlxSelectFolder = WS.SpecialFolders("Desktop")
         Else
-            rlxSelectFolder = objPath.items.Item.Path
+            rlxSelectFolder = objPath.Items.Item.Path
         
         End If
     Else
@@ -1409,6 +1409,75 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     Set col2 = Nothing
 
 End Sub
+'--------------------------------------------------------------
+'  ディクショナリのソート
+'--------------------------------------------------------------
+Public Sub rlxSortDictionary(ByRef col As Object)
+
+    Dim i As Long
+    Dim j As Long
+    Dim n As Long
+    Dim key1 As String
+    Dim key2 As String
+    Dim col2 As Object
+    Dim strKey() As String
+    Dim wk As String
+
+    'Collectionが空ならなにもしない
+    If col Is Nothing Then
+        Exit Sub
+    End If
+
+    'Collectionの要素数が０または１の場合ソート不要
+    If col.count <= 1 Then
+        Exit Sub
+    End If
+
+    n = col.count
+    ReDim strKey(1 To n)
+
+    i = i + 1
+    Dim v As Variant
+    For Each v In col
+        strKey(i) = v
+        i = i + 1
+    Next
+
+    '挿入ソート
+    For i = 2 To n
+
+        wk = strKey(i)
+
+        If strKey(i - 1) > wk Then
+
+            j = i
+
+            Do
+
+                strKey(j) = strKey(j - 1)
+
+                j = j - 1
+
+                If j = 1 Then
+                    Exit Do
+                End If
+
+            Loop While strKey(j - 1) > wk
+            strKey(j) = wk
+
+        End If
+    Next
+
+    Set col2 = CreateObject("Scripting.Dictionary")
+
+    For i = 1 To n
+        col2.Add col.Item(strKey(i)).Name, col.Item(strKey(i))
+    Next
+
+    Set col = col2
+    Set col2 = Nothing
+
+End Sub
 
 'クリップボードにテキストデータを書き込むプロシージャ
 Public Sub SetClipText(strData As String)
@@ -1820,9 +1889,9 @@ End Function
 Sub rlxFlashWindow()
 
 #If VBA7 And Win64 Then
-    Dim hWnd As LongPtr
+    Dim hwnd As LongPtr
 #Else
-    Dim hWnd As Long
+    Dim hwnd As Long
 #End If
     Dim udtFLASHWINFO As FLASHWINFO
     
@@ -1833,12 +1902,12 @@ Sub rlxFlashWindow()
     Const FLASH_TIMER = &H4
     Const FLASH_TIMERNOFG = &HC
 
-    hWnd = FindWindow("XLMAIN", Application.Caption)
+    hwnd = FindWindow("XLMAIN", Application.Caption)
     
     '点滅の設定
     With udtFLASHWINFO
         .cbsize = Len(udtFLASHWINFO)
-        .hWnd = hWnd
+        .hwnd = hwnd
         .dwFlags = FLASH_ALL
         .uCount = 5
         .dwTimeout = 100

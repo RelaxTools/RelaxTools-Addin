@@ -67,7 +67,7 @@ Private Sub lblUrl_Click()
 End Sub
 
 
-Private Sub txtDebug_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub txtDebug_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = txtDebug
 End Sub
 Private Sub UserForm_Activate()
@@ -240,7 +240,7 @@ Private Sub MW_WheelUp(obj As Object)
 e:
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
     Set MW.obj = Nothing
 End Sub
 

@@ -50,10 +50,10 @@ Private blnCancel As Boolean
 
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As Any, ByVal lpWindowName As String) As LongPtr
-    Public hWnd As LongPtr
+    Public hwnd As LongPtr
 #Else
     Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As Any, ByVal lpWindowName As String) As Long
-    Public hWnd As Long
+    Public hwnd As Long
 #End If
 
 Private Sub cmdCancel_Click()
@@ -81,7 +81,7 @@ Private Sub cmdOK_Click()
     End If
     
     'ウィンドウハンドルの取得
-    hWnd = FindWindow(0&, Me.Caption)
+    hwnd = FindWindow(0&, Me.Caption)
 
     'スクリーンショット処理開始
     basScreenShot.StartScreenShot
@@ -94,7 +94,7 @@ Private Sub UserForm_Initialize()
     blnCancel = False
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
 '    Select Case X \ screen.TwipsPerPixelX
 '            Case WM_MOUSEMOVE
 '            Case WM_LBUTTONDOWN

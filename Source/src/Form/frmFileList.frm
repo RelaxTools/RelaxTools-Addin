@@ -156,7 +156,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
 '    'コレクションのソート
 '    rlxSortCollection colFiles
     
-    For Each objKey In colFiles.keys
+    For Each objKey In colFiles.Keys
         DoEvents
         If mblnCancel Then
             Exit Sub
@@ -200,7 +200,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
 '    'コレクションのソート
 '    rlxSortCollection colFolders
     
-    For Each objKey In colFolders.keys
+    For Each objKey In colFolders.Keys
         DoEvents
         If mblnCancel Then
             Exit Sub

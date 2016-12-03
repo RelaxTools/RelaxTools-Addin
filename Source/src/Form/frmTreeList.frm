@@ -207,10 +207,10 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
             colFiles.Add objfl.Name, objfl
         Next
         
-        'rlxSortCollection colFiles
+        rlxSortDictionary colFiles
         
         'ファイルの一覧を作成する。
-        For Each objKey In colFiles.keys
+        For Each objKey In colFiles.Keys
             DoEvents
             If mblnCancel Then
                 Exit Sub
@@ -263,7 +263,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         colFolders.Add objSub.Name, objSub
     Next
     
-    'rlxSortCollection colFolders
+    rlxSortDictionary colFolders
         
     For Each objKey In colFolders
         DoEvents

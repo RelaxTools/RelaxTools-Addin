@@ -1,4 +1,13 @@
-﻿2016/11/30(wed) RelaxTools-Addin Version 4.7.2(RustRemover) 
+﻿2016/12/03(sat) RelaxTools-Addin Version 4.8.0(RustRemover) 
+◇新規機能
+　・「スシ」を流せるようにしました。「RelaxApps」→「その他」→「スシを流す」
+　　おふざけなのであくまでもスシを流しながら仕事をしないこと。
+　　なんでスシ？理由は以下を参照のこと。
+　　http://forest.watch.impress.co.jp/docs/serial/yajiuma/1032311.html
+◇バグ修正
+　・4.6.3 のデグレード。「フォルダツリー作成」でファイル名がソートされない不具合を修正。
+
+2016/11/30(wed) RelaxTools-Addin Version 4.7.2(RustRemover) 
 ◇バグ修正
 　・4.6.3 のデグレード。「フォルダツリー作成」でフォルダ名にリンクをつけると異常終了する不具合を修正。
 　

@@ -54,6 +54,7 @@ Private mSecTog06 As Boolean
 'Ａ１保存のパブリック変数
 Public pblnA1SaveCheck As Boolean
 
+
 Public mLineEnable As Boolean
 Public mScrollEnable As Boolean
 Public mScreenEnable As Boolean
@@ -620,6 +621,7 @@ Sub linePressed(control As IRibbonControl, ByRef returnValue)
     returnValue = mLineEnable
     
 End Sub
+
 '--------------------------------------------------------------------
 '  十字カーソルの押下時イベント
 '--------------------------------------------------------------------
@@ -641,6 +643,7 @@ Sub lineOnAction(control As IRibbonControl, pressed As Boolean)
 e:
     Call rlxErrMsg(err)
 End Sub
+
 ''--------------------------------------------------------------------
 ''  フック固定の押下状態の取得
 ''--------------------------------------------------------------------
@@ -1237,6 +1240,7 @@ Sub getScrollEnabled(control As IRibbonControl, ByRef enabled)
 e:
     Call rlxErrMsg(err)
 End Sub
+
 '--------------------------------------------------------------------
 ' かんたん表の数を取得
 '--------------------------------------------------------------------
