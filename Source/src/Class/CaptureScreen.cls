@@ -103,7 +103,7 @@ Option Explicit
     
     Private Declare Function LoadImage Lib "user32" Alias "LoadImageA" (ByVal hInst As Long, ByVal lpszName As String, ByVal uType As Long, ByVal cxDesired As Long, ByVal cyDesired As Long, ByVal fuLoad As Long) As Long
     Private Declare Function PrintWindow Lib "User32.dll" (ByVal hwnd As Long, ByVal hdcBlt As Long, ByVal nFlags As Long) As Long
-    Private Declare Function UpdateWindow Lib "user32" (ByVal hwnd As LongPtr) As Long
+    Private Declare Function UpdateWindow Lib "user32" (ByVal hwnd As Long) As Long
 
     Private Declare Function OleCreatePictureIndirect Lib "olepro32" (PicDesc As PicBmp, RefIID As GUID, ByVal fPictureOwnsHandle As Long, IPic As IPicture) As Long
     Private Declare Function GetDeviceCaps Lib "gdi32" (ByVal hdc As Long, ByVal iCapabilitiy As Long) As Long
@@ -113,7 +113,7 @@ Option Explicit
     Private Declare Function RealizePalette Lib "gdi32" (ByVal hdc As Long) As Long
     Private Declare Function GetSystemMetrics Lib "user32" (ByVal nIndex As Long) As Long
 
-    Private Declare Function DwmGetWindowAttribute Lib "Dwmapi" (ByVal hwnd As LongPtr, ByVal t As Long, lpRect As rect, ByVal Size As Long) As Long
+    Private Declare Function DwmGetWindowAttribute Lib "Dwmapi" (ByVal hwnd As Long, ByVal t As Long, lpRect As rect, ByVal Size As Long) As Long
     Private Declare Function PatBlt Lib "gdi32" (ByVal hdc As Long, ByVal nXLeft As Long, ByVal nYLeft As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal dwRop As Long) As Long
     Private Declare Function DwmIsCompositionEnabled Lib "Dwmapi" (b As Boolean) As Long
     
