@@ -70,7 +70,7 @@ Sub sushiOnAction(control As IRibbonControl, pressed As Boolean)
     
         mlngSpeed = Val(GetSetting(C_TITLE, "Sushi", "Speed", 8))
         mlngInterval = Val(GetSetting(C_TITLE, "Sushi", "Interval", 10))
-'        mstrValue = GetSetting(C_TITLE, "Sushi", "Show", "1")
+        mstrValue = GetSetting(C_TITLE, "Sushi", "Show", "1")
     
         Call SushiGoRound
     End If
@@ -140,6 +140,7 @@ Sub SushiGoRound()
     Dim f As Object
     Dim i As Long
     Dim k As Long
+    Dim j As Long
     Dim lngTopfrgin As Long
     Dim lngLeftfrgin As Long
     Dim lngMove As Long
@@ -149,6 +150,7 @@ Sub SushiGoRound()
     
     lngMaisu = mlngInterval
     
+    j = 1
     For i = 1 To lngMaisu
         Set f = New frmSushi
         If i = 1 Then
@@ -157,6 +159,11 @@ Sub SushiGoRound()
         f.Left = Application.Left - i * 40
         f.Top = Application.Top + Application.Height - 36
         f.tag = "→"
+        f.Neta = Mid(mstrValue, j, 1)
+        j = j + 1
+        If j > Len(mstrValue) Then
+            j = 1
+        End If
         c.Add f
     Next
     

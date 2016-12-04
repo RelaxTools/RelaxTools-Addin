@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSushiSetting 
    Caption         =   "スシを流す設定"
-   ClientHeight    =   2010
+   ClientHeight    =   4245
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   3525
+   ClientWidth     =   3540
    OleObjectBlob   =   "frmSushiSetting.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
@@ -58,21 +58,21 @@ Private Sub cmdOK_Click()
     SaveSetting C_TITLE, "Sushi", "Speed", scrSpeed.Value
     SaveSetting C_TITLE, "Sushi", "Interval", scrInterval.Value
     
-'    strBuf = ""
-'    For Each c In Controls
-'        If TypeName(c) = "CheckBox" Then
-'            If c.Value Then
-'                strBuf = strBuf & c.tag
-'            End If
-'        End If
-'    Next
-'
-'    If strBuf = "" Then
-'        MsgBox "せめて１つぐらいは指定してね", vbExclamation + vbOKOnly, C_TITLE
-'        Exit Sub
-'    End If
-'
-'    SaveSetting C_TITLE, "Sushi", "Show", strBuf
+    strBuf = ""
+    For Each c In Controls
+        If TypeName(c) = "CheckBox" Then
+            If c.Value Then
+                strBuf = strBuf & c.tag
+            End If
+        End If
+    Next
+
+    If strBuf = "" Then
+        MsgBox "せめて１つぐらいは指定してね", vbExclamation + vbOKOnly, C_TITLE
+        Exit Sub
+    End If
+
+    SaveSetting C_TITLE, "Sushi", "Show", strBuf
     Unload Me
     
 End Sub
@@ -93,21 +93,21 @@ Private Sub UserForm_Initialize()
     scrInterval.Value = GetSetting(C_TITLE, "Sushi", "Interval", 10)
     txtInterval.Value = scrInterval.Value
     
-'    Dim strBuf As String
-'
-'    strBuf = GetSetting(C_TITLE, "Sushi", "Show", "1")
-'
-'    Dim c As Object
-'    Dim i As Long
-'
-'    For i = 1 To Len(strBuf)
-'        For Each c In Controls
-'            If TypeName(c) = "CheckBox" Then
-'                If Mid(strBuf, i, 1) = c.tag Then
-'                    c.Value = True
-'                End If
-'            End If
-'        Next
-'    Next
+    Dim strBuf As String
+
+    strBuf = GetSetting(C_TITLE, "Sushi", "Show", "1")
+
+    Dim c As Object
+    Dim i As Long
+
+    For i = 1 To Len(strBuf)
+        For Each c In Controls
+            If TypeName(c) = "CheckBox" Then
+                If Mid(strBuf, i, 1) = c.tag Then
+                    c.Value = True
+                End If
+            End If
+        Next
+    Next
     
 End Sub

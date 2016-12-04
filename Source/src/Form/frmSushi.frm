@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSushi 
    Caption         =   "スシ"
-   ClientHeight    =   645
+   ClientHeight    =   2460
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   1800
+   ClientWidth     =   4350
    OleObjectBlob   =   "frmSushi.frx":0000
    ShowModal       =   0   'False
 End
@@ -68,6 +68,9 @@ Private Const WS_CAPTION = &HC00000
 Private Const WS_EX_DLGMODALFRAME = &H1&
 Private mblnUnload As Boolean
 
+
+
+
 Private Sub UserForm_Initialize()
 
     Dim OvalSet As Long
@@ -91,6 +94,19 @@ Private Sub UserForm_Initialize()
     rc = SetWindowRgn(hwnd, OvalSet, True)
     
 End Sub
+
+Public Property Let Neta(v As String)
+    
+    Dim c As Object
+    For Each c In Controls
+        If c.tag = v Then
+            imgSushi.Picture = c.Picture
+        End If
+    Next
+End Property
+
+
+
 '
 'Private Sub UserForm_Activate()
 '    Dim i As Long
