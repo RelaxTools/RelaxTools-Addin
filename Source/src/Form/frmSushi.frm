@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSushi 
    Caption         =   "スシ"
-   ClientHeight    =   2460
+   ClientHeight    =   3240
    ClientLeft      =   120
    ClientTop       =   465
-   ClientWidth     =   4350
+   ClientWidth     =   4380
    OleObjectBlob   =   "frmSushi.frx":0000
    ShowModal       =   0   'False
 End
@@ -45,20 +45,26 @@ Attribute VB_Exposed = False
 Option Explicit
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal ms As LongPtr)
-    Private Declare PtrSafe Function SetWindowRgn Lib "user32" (ByVal hwnd As LongPtr, ByVal hRgn As Long, ByVal bRedraw As Boolean) As Long
+    Private Declare PtrSafe Function SetWindowRgn Lib "user32" (ByVal hWnd As LongPtr, ByVal hRgn As Long, ByVal bRedraw As Boolean) As Long
     Private Declare PtrSafe Function CreateEllipticRgn Lib "gdi32" (ByVal X1 As Long, ByVal Y1 As Long, ByVal X2 As Long, ByVal Y2 As Long) As Long
     Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
-    Private Declare PtrSafe Function SetWindowLong Lib "User32.dll" Alias "SetWindowLongA" (ByVal hwnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
-    Private Declare PtrSafe Function GetWindowLong Lib "User32.dll" Alias "GetWindowLongA" (ByVal hwnd As LongPtr, ByVal nIndex As Long) As Long
-    Private Declare PtrSafe Function SetLayeredWindowAttributes Lib "User32.dll" (ByVal hwnd As LongPtr, ByVal crKey As Long, ByVal bAlpha As Byte, ByVal dwFlags As Long) As Long
+    Private Declare PtrSafe Function SetWindowLong Lib "user32.dll" Alias "SetWindowLongA" (ByVal hWnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+    Private Declare PtrSafe Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As Long
+    Private Declare PtrSafe Function SetLayeredWindowAttributes Lib "user32.dll" (ByVal hWnd As LongPtr, ByVal crKey As Long, ByVal bAlpha As Byte, ByVal dwFlags As Long) As Long
+    Private Declare PtrSafe Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hWnd As LongPtr, ByVal wMsg As Long, ByVal wParam As LongPtr, lParam As Any) As LongPtr
+    Private Declare PtrSafe Sub ReleaseCapture Lib "user32.dll" ()
 #Else
     Private Declare Sub Sleep Lib "kernel32" (ByVal ms As Long)
-    Private Declare Function SetWindowRgn Lib "user32" (ByVal hwnd As Long, ByVal hRgn As Long, ByVal bRedraw As Boolean) As Long
+    Private Declare Function SetWindowRgn Lib "user32" (ByVal hWnd As Long, ByVal hRgn As Long, ByVal bRedraw As Boolean) As Long
     Private Declare Function CreateEllipticRgn Lib "gdi32" (ByVal X1 As Long, ByVal Y1 As Long, ByVal X2 As Long, ByVal Y2 As Long) As Long
     Private Declare Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
-    Private Declare Function SetWindowLong Lib "User32.dll" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
-    Private Declare Function GetWindowLong Lib "User32.dll" Alias "GetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long) As Long
-    Private Declare Function SetLayeredWindowAttributes Lib "User32.dll" (ByVal hwnd As Long, ByVal crKey As Long, ByVal bAlpha As Byte, ByVal dwFlags As Long) As Long
+    Private Declare Function SetWindowLong Lib "user32.dll" Alias "SetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+    Private Declare Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long) As Long
+    Private Declare Function SetLayeredWindowAttributes Lib "user32.dll" (ByVal hWnd As Long, ByVal crKey As Long, ByVal bAlpha As Byte, ByVal dwFlags As Long) As Long
+
+    Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
+    Private Declare Sub ReleaseCapture Lib "user32.dll" ()
+
 #End If
 Private Const WS_EX_LAYERED As Long = &H80000
 Private Const LWA_ALPHA As Long = &H2
@@ -66,32 +72,36 @@ Private Const GWL_EXSTYLE As Long = -20
 Private Const GWL_STYLE = (-16)
 Private Const WS_CAPTION = &HC00000
 Private Const WS_EX_DLGMODALFRAME = &H1&
+Private Const WM_NCLBUTTONDOWN = &HA1
+Private Const HTCAPTION = 2
 Private mblnUnload As Boolean
-
-
-
+#If VBA7 And Win64 Then
+    Private hWnd As LongPtr
+#Else
+    Private hWnd As Long
+#End If
+Private Sub imgSushi_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    ReleaseCapture
+    Call SendMessage(hWnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&)
+End Sub
 
 Private Sub UserForm_Initialize()
 
     Dim OvalSet As Long
     Dim rc As Long
-#If VBA7 And Win64 Then
-    Dim hwnd As LongPtr
-#Else
-    Dim hwnd As Long
-#End If
-    Dim x As Single
-    Dim y As Single
+
+    Dim X As Single
+    Dim Y As Single
     
-    hwnd = FindWindowA("ThunderDFrame", Me.Caption)
+    hWnd = FindWindowA("ThunderDFrame", Me.Caption)
 
-    SetWindowLong hwnd, GWL_EXSTYLE, GetWindowLong(hwnd, GWL_EXSTYLE) And Not WS_EX_DLGMODALFRAME
-    SetWindowLong hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) And Not WS_CAPTION
+    SetWindowLong hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) And Not WS_EX_DLGMODALFRAME
+    SetWindowLong hWnd, GWL_STYLE, GetWindowLong(hWnd, GWL_STYLE) And Not WS_CAPTION
 
-    x = 5
-    y = 3
-    OvalSet = CreateEllipticRgn(x, y, x + 35, y + 35)
-    rc = SetWindowRgn(hwnd, OvalSet, True)
+    X = 5
+    Y = 3
+    OvalSet = CreateEllipticRgn(X, Y, X + 35, Y + 35)
+    rc = SetWindowRgn(hWnd, OvalSet, True)
     
 End Sub
 

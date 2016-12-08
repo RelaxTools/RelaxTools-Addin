@@ -261,12 +261,12 @@ Private Sub lstCombo_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
     
 End Sub
 
-Private Sub lstCombo_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstCombo_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = lstCombo
 
 End Sub
 
-Private Sub lstCommand_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstCommand_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = lstCommand
 End Sub
 
@@ -462,7 +462,7 @@ Private Sub MW_WheelUp(obj As Object)
 
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = Nothing
 End Sub
 

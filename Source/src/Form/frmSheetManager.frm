@@ -168,7 +168,7 @@ Private Sub cmdSaveBook_Click()
 
 End Sub
 
-Private Sub lstSheet_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstSheet_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = lstSheet
 End Sub
 
@@ -896,7 +896,7 @@ ErrHandle:
 
 End Sub
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = Nothing
 End Sub
 

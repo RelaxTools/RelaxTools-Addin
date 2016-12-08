@@ -739,7 +739,7 @@ Private Sub lstResult_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shif
 
 End Sub
 
-Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = lstResult
 End Sub
 
@@ -1035,7 +1035,7 @@ Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal id As Strin
     
 End Function
 
-Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal x As Single, ByVal y As Single)
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = Nothing
 End Sub
 

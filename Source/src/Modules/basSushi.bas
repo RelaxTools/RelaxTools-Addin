@@ -47,6 +47,8 @@ Public mSushiEnable As Boolean
 Dim mlngInterval As Long
 Dim mlngSpeed As Long
 Dim mstrValue As String
+
+
 '--------------------------------------------------------------------
 '  スシを流すの押下状態の取得
 '--------------------------------------------------------------------
@@ -59,26 +61,28 @@ End Sub
 '  スシを流すの押下時イベント
 '--------------------------------------------------------------------
 Sub sushiOnAction(control As IRibbonControl, pressed As Boolean)
-  
+
     On Error GoTo e
-    
+
     mSushiEnable = pressed
-  
+
     Call RefreshRibbon
 
     If mSushiEnable Then
-    
+
         mlngSpeed = Val(GetSetting(C_TITLE, "Sushi", "Speed", 8))
         mlngInterval = Val(GetSetting(C_TITLE, "Sushi", "Interval", 10))
         mstrValue = GetSetting(C_TITLE, "Sushi", "Show", "1")
-    
-        Call SushiGoRound
+
+        Application.OnTime Now, "SushiGoRound"
+        
     End If
 
     Exit Sub
 e:
     Call rlxErrMsg(err)
 End Sub
+
 '--------------------------------------------------------------------
 '  スシ設定のEnabled/Disabled
 '--------------------------------------------------------------------
@@ -145,11 +149,11 @@ Sub SushiGoRound()
     Dim lngLeftfrgin As Long
     Dim lngMove As Long
     Dim lngWait As Long
-    
+
     Dim lngMaisu As Long
-    
+
     lngMaisu = mlngInterval
-    
+
     j = 1
     For i = 1 To lngMaisu
         Set f = New frmSushi
@@ -166,18 +170,18 @@ Sub SushiGoRound()
         End If
         c.Add f
     Next
-    
+
     Do While mSushiEnable
         For i = 1 To c.count
-        
+
             Set f = c(i)
-        
-            Sleep 2
-            
+
+            Sleep 10
+
             '移動量
             lngMove = mlngSpeed
-            
-            
+
+
             lngTopfrgin = 10
             lngLeftfrgin = 40
 
@@ -185,19 +189,19 @@ Sub SushiGoRound()
             If f.tag = "→" Then
                 f.Left = f.Left + lngMove
                 f.Top = Application.Top + Application.Height - lngLeftfrgin
-                
+
                 If i <> c.count Then
                     If f.Left > Application.Left + 40 And c(i + 1).visible = False Then
                         c(i + 1).Show
                     End If
                 End If
-                
+
                 DoEvents
                 If f.Left > (Application.Left + Application.Width - 36) Then
                     f.tag = "↑"
                 End If
             End If
-        
+
             '↑
             If f.tag = "↑" Then
                 f.Top = f.Top - lngMove
@@ -207,7 +211,7 @@ Sub SushiGoRound()
                     f.tag = "←"
                 End If
             End If
-        
+
             '←
             If f.tag = "←" Then
                 f.Left = f.Left - lngMove
@@ -217,13 +221,13 @@ Sub SushiGoRound()
                     f.tag = "↓"
                 End If
             End If
-        
+
             '↓
             If f.tag = "↓" Then
                 f.Top = f.Top + lngMove
                 f.Left = Application.Left + lngTopfrgin
                 DoEvents
-                If f.Top > (Application.Top + Application.Height - 40) Then
+                If f.Top > (Application.Top + Application.Height - 50) Then
                     f.tag = "→"
                 End If
             End If
@@ -231,11 +235,10 @@ Sub SushiGoRound()
             If mSushiEnable = False Then
                 Exit Do
             End If
-            
+
         Next
     Loop
     For Each f In c
         Unload f
     Next
 End Sub
-

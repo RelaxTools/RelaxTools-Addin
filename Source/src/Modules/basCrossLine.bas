@@ -32,7 +32,7 @@ Option Explicit
 Option Private Module
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
-    Private Declare PtrSafe Function SendInput Lib "User32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
+    Private Declare PtrSafe Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
 
 Private Type KEYBDINPUT
     wVk As Integer
@@ -46,7 +46,7 @@ End Type
 
 #Else
     Private Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
-    Private Declare Function SendInput Lib "User32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
+    Private Declare Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
 
 Private Type KEYBDINPUT
     wVk As Integer
@@ -61,8 +61,8 @@ End Type
 #End If
 
 Private Type POINTAPI
-    x As Long
-    y As Long
+    X As Long
+    Y As Long
 End Type
 
 Private Type INPUT_TYPE
@@ -92,7 +92,7 @@ Sub rlxCrossClick()
     
     GetCursorPos a
 
-    Set r = ActiveWindow.RangeFromPoint(a.x, a.y)
+    Set r = ActiveWindow.RangeFromPoint(a.X, a.Y)
     If r Is Nothing Then
     Else
     
