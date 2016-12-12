@@ -136,6 +136,8 @@ Public Sub Run()
     objStatus.MaxItems = lngMax
 
     Dim rArea As Range
+    
+    Application.ScreenUpdating = False
     For Each rArea In Selection.Areas
 
         '---------------------------
@@ -187,6 +189,7 @@ Public Sub Run()
         RaiseEvent SelectionFinal(rArea)
     
     Next
+    Application.ScreenUpdating = True
     
     'Selection進捗バーのDispose
     objStatus.Dispose
@@ -209,6 +212,7 @@ Public Sub Run()
     
     Exit Sub
 ErrHandle:
+    Application.ScreenUpdating = True
     MsgBox "エラーが発生しました。", vbOKOnly, C_TITLE
 End Sub
 
