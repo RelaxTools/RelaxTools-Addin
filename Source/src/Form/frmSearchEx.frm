@@ -85,9 +85,9 @@ Private mlngLblPlaceLeft As Long
 Private mlngColumnWidth As Long
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+'Private TR As Transparent
 
-'Private Const C_SEARCH_VALUE_FORMULA_NO As Long = 2
-'Private Const C_SEACH_VALUE_VALUE_NO As Long = 1
+'Private Tr As Transparent
 
 Private Sub chkRegEx_Change()
 
@@ -933,7 +933,7 @@ Private Sub lstResult_Change()
         Next
         If r Is Nothing Then
         Else
-            Application.Goto setCellPos(r(1)), True
+            Application.GoTo setCellPos(r(1)), True
             r.Select
         End If
     Else
@@ -962,7 +962,7 @@ Private Sub lstResult_Change()
                         objShape.Shapes(1).Select False
                     Else
                         blnFlg = True
-                        Application.Goto setCellPos(objArt.TopLeftCell), True
+                        Application.GoTo setCellPos(objArt.TopLeftCell), True
                         objShape.Shapes(1).Select
                     End If
                     On Error GoTo 0
@@ -972,7 +972,7 @@ Private Sub lstResult_Change()
                         objShape.Select False
                     Else
                         blnFlg = True
-                        Application.Goto setCellPos(objShape.TopLeftCell), True
+                        Application.GoTo setCellPos(objShape.TopLeftCell), True
                         objShape.Select
                     End If
                     On Error GoTo 0
@@ -1072,6 +1072,10 @@ Private Sub schTab_MouseMove(ByVal Index As Long, ByVal Button As Integer, ByVal
 
 End Sub
 
+'Private Sub scrTransparent_Change()
+'    Tr.setTransparent scrTransparent.Value
+'End Sub
+
 Private Sub UserForm_Activate()
 '    Call FormResize
     
@@ -1170,6 +1174,10 @@ Private Sub UserForm_Initialize()
     Set MW = basMouseWheel.GetInstance
     MW.Install
 #End If
+'
+'    Set TR = New Transparent
+'    TR.Init Me
+'    TR.setTransparent 220
 
 End Sub
 Public Sub Start(ByVal lngTab As Long)
@@ -1399,6 +1407,9 @@ Private Sub UserForm_Terminate()
     MW.UnInstall
     Set MW = Nothing
 #End If
+    
+'    TR.Term
+'    Set TR = Nothing
 
 End Sub
 

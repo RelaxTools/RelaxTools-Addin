@@ -252,7 +252,7 @@ Attribute rlxGetSectionObject.VB_Description = "ワークシート関数とし�
 Attribute rlxGetSectionObject.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim o As Object
-    Dim KEY As String
+    Dim key As String
     
     On Error Resume Next
     
@@ -260,9 +260,9 @@ Attribute rlxGetSectionObject.VB_ProcData.VB_Invoke_Func = " \n19"
         Set mColSection = rlxInitSectionSetting()
     End If
     
-    KEY = Format$((lngLevel Mod mColSection.count) + 1, "00")
+    key = Format$((lngLevel Mod mColSection.count) + 1, "00")
     
-    Set rlxGetSectionObject = mColSection(KEY)
+    Set rlxGetSectionObject = mColSection(key)
 
 End Function
 Function rlxInitSectionSetting() As Collection

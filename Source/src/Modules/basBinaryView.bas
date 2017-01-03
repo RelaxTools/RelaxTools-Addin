@@ -47,7 +47,7 @@ Sub BinaryViewer()
     
     Dim lngRead As Long
     
-    Const KEY As Byte = &H44
+    Const key As Byte = &H44
     Const C_BUFFER_SIZE = 1048576 '1MB
 
     On Error GoTo ErrHandle

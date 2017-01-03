@@ -854,7 +854,7 @@
         <group id="InformationGroup" label="その他" image="countpage">
           <button id="encryptionFileEx" size="large" image="Encrypt"  label="ファイルの&#xD;&#xA;難読化" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           <button id="excelPage" image="countpage" size="large" label="Word/Excel/PP&#xD;&#xA;ページ数取得" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-          <splitButton id="sushiSplit" size="large" getEnabled="getRibbonEnabled">
+          <splitButton id="sushiSplit" size="large" getEnabled="getRibbonEnabled" getVisible="sushiGetVisible">
             <toggleButton id="sushiShow" image="sushi" label="スシを&#xD;&#xA;流す" getSupertip="getSupertip" getDescription="getDescription" getPressed="sushiPressed" onAction="sushiOnAction"/>
             <menu id="sushiMenu"  itemSize="large" >
               <menuSeparator id="sushiSep01" title="スシ設定" />

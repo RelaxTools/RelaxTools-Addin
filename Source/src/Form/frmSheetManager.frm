@@ -72,7 +72,11 @@ Private mSainyu As Boolean
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
 
-
+#If Win64 And VBA7 Then
+    Declare PtrSafe Function GetTickCount Lib "kernel32" Alias "GetTickCount64" () As LongLong
+#Else
+    Private Declare Function GetTickCount Lib "kernel32" () As Long
+#End If
 
 Private Sub cmdPrint_Click()
 
@@ -723,6 +727,8 @@ Private Sub cmdSubmit_Click()
     On Error GoTo ErrHandle
     
     Const C_TEMP_NAME As String = "~~temp"
+    Dim strSheetName As String
+
 
     Dim WS As Object
     Dim lngCnt As Long
@@ -732,6 +738,8 @@ Private Sub cmdSubmit_Click()
     Dim strBuf As String
     Dim lngLen As Long
     Dim i As Long
+    
+    strSheetName = C_TEMP_NAME & "_" & Format(Now, "yyyymmddhhmmss") & "_"
 
     Dim lngLast As Long
     
@@ -849,7 +857,7 @@ Private Sub cmdSubmit_Click()
 
         
         'シート名変更
-        strNew = C_TEMP_NAME & lngCnt
+        strNew = strSheetName & lngCnt
         strOld = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
         
         If strNew <> strOld Then
@@ -862,7 +870,7 @@ Private Sub cmdSubmit_Click()
         
         'シート名変更
         strNew = lstSheet.List(lngCnt, C_SHEET_NEW_NAME)
-        strOld = C_TEMP_NAME & lngCnt
+        strOld = strSheetName & lngCnt
         
         If strNew <> strOld Then
             mBook.Sheets(strOld).Name = strNew

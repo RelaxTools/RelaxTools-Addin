@@ -153,7 +153,8 @@ Sub SushiGoRound()
     Dim lngMaisu As Long
 
     lngMaisu = mlngInterval
-
+'    Dim a As New Transparent
+'    a.Init
     j = 1
     For i = 1 To lngMaisu
         Set f = New frmSushi
@@ -170,6 +171,8 @@ Sub SushiGoRound()
         End If
         c.Add f
     Next
+    
+
 
     Do While mSushiEnable
         For i = 1 To c.count
@@ -241,4 +244,5 @@ Sub SushiGoRound()
     For Each f In c
         Unload f
     Next
+'    a.Term
 End Sub

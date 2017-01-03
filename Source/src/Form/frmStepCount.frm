@@ -185,9 +185,9 @@ Private Sub cmdOK_Click()
     WB.Worksheets(1).Columns("A:G").EntireColumn.AutoFit
     
     WB.Worksheets(1).Sort.SortFields.Clear
-    WB.Worksheets(1).Sort.SortFields.Add KEY:=Range(WB.Worksheets(1).Cells(2, C_SORT), WB.Worksheets(1).Cells(lngCnt, C_SORT)), _
+    WB.Worksheets(1).Sort.SortFields.Add key:=Range(WB.Worksheets(1).Cells(2, C_SORT), WB.Worksheets(1).Cells(lngCnt, C_SORT)), _
         SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:=xlSortNormal
-    WB.Worksheets(1).Sort.SortFields.Add KEY:=Range(WB.Worksheets(1).Cells(2, C_MODULE), WB.Worksheets(1).Cells(lngCnt, C_MODULE)), _
+    WB.Worksheets(1).Sort.SortFields.Add key:=Range(WB.Worksheets(1).Cells(2, C_MODULE), WB.Worksheets(1).Cells(lngCnt, C_MODULE)), _
         SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:=xlSortNormal
     With WB.Worksheets(1).Sort
         .SetRange Range(WB.Worksheets(1).Cells(2, C_MODULE), WB.Worksheets(1).Cells(lngCnt, C_SORT))

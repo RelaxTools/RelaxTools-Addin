@@ -900,7 +900,7 @@ Sub encryptionFileEx()
     
     Dim lngRead As Long
     
-    Const KEY As Byte = &H44
+    Const key As Byte = &H44
     Const C_BUFFER_SIZE = 10485760 '10MB
     Const C_TEMP_FILE_EXT As String = ".tmp"
     
@@ -943,7 +943,7 @@ Sub encryptionFileEx()
         
         'なんちゃって暗号化
         For i = 0 To lngRead - 1
-            bytBuf(i) = bytBuf(i) Xor KEY
+            bytBuf(i) = bytBuf(i) Xor key
         Next
         
         '結果を書き込む
@@ -3359,9 +3359,9 @@ Sub RegExport()
     Const HKEY_CURRENT_USER = &H80000001
     
     Const ROOT = "HKEY_CURRENT_USER\"
-    Const KEY = "SOFTWARE\VB and VBA Program Settings\RelaxTools-Addin"
+    Const key = "SOFTWARE\VB and VBA Program Settings\RelaxTools-Addin"
     
-    Reg.EnumKey HKEY_CURRENT_USER, KEY, SubKey
+    Reg.EnumKey HKEY_CURRENT_USER, key, SubKey
     
     fp = FreeFile()
     Open FileName For Output As fp
@@ -3378,23 +3378,23 @@ Sub RegExport()
     strBuf = "Windows Registry Editor Version 5.00" & vbCrLf & vbCrLf
     Put fp, , strBuf
     
-    strBuf = "[" & ROOT & KEY & "]" & vbCrLf
+    strBuf = "[" & ROOT & key & "]" & vbCrLf
     Put fp, , strBuf
     
     For i = 0 To UBound(SubKey)
         
-        Reg.EnumValues HKEY_CURRENT_USER, KEY & "\" & SubKey(i), RegName, RegType
+        Reg.EnumValues HKEY_CURRENT_USER, key & "\" & SubKey(i), RegName, RegType
             
-        strBuf = vbCrLf & "[" & ROOT & KEY & "\" & SubKey(i) & "]" & vbCrLf
+        strBuf = vbCrLf & "[" & ROOT & key & "\" & SubKey(i) & "]" & vbCrLf
         Put fp, , strBuf
         
         For j = 0 To UBound(RegName)
         
             Select Case RegType(j)
                 Case 1
-                    Reg.GetStringValue HKEY_CURRENT_USER, KEY & "\" & SubKey(i), RegName(j), RegData
+                    Reg.GetStringValue HKEY_CURRENT_USER, key & "\" & SubKey(i), RegName(j), RegData
                 Case Else
-                    Reg.GetMultiStringValue HKEY_CURRENT_USER, KEY & "\" & SubKey(i), RegName(j), RegData
+                    Reg.GetMultiStringValue HKEY_CURRENT_USER, key & "\" & SubKey(i), RegName(j), RegData
                 
             End Select
         

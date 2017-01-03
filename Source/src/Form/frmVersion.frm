@@ -45,9 +45,30 @@ Attribute VB_Exposed = False
 Option Explicit
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+Private TR As Transparent
 
+Private Const mstrAns As String = "26262828252725274241" '上上下下左右左右ＢＡ
+Private mstrKey As String
 Private Sub cmdOK_Click()
     Unload Me
+End Sub
+
+
+
+
+
+
+
+Private Sub imgMado_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+
+    Dim WSH As Object
+    
+    Set WSH = CreateObject("WScript.Shell")
+    
+    Call WSH.Run("http://forest.watch.impress.co.jp/prize/2014/")
+    
+    Set WSH = Nothing
+
 End Sub
 
 Private Sub lblGitHub_Click()
@@ -67,6 +88,19 @@ Private Sub lblUrl_Click()
 End Sub
 
 
+Private Sub txtDebug_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+
+    Debug.Print Hex(KeyCode);
+
+    mstrKey = mstrKey & Hex(KeyCode)
+    If mstrKey = mstrAns Then
+        MsgBox "「すし流し」機能の封印が解かれました。", vbInformation + vbOKOnly, C_TITLE
+        mblnSushi = True
+        Call RefreshRibbon
+    End If
+
+End Sub
+
 Private Sub txtDebug_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = txtDebug
 End Sub
@@ -77,6 +111,8 @@ Private Sub UserForm_Initialize()
 
     Dim strVer As String
     Dim strTitle As String
+    
+    mstrKey = ""
 
     strTitle = ThisWorkbook.BuiltinDocumentProperties("Title").Value
     strVer = ThisWorkbook.BuiltinDocumentProperties("Comments").Value
@@ -211,6 +247,10 @@ Private Sub UserForm_Initialize()
     Set MW = basMouseWheel.GetInstance
     MW.Install
     
+    Set TR = New Transparent
+    TR.Init Me
+    TR.setTransparent 220
+    
 End Sub
 
 
@@ -247,4 +287,6 @@ End Sub
 Private Sub UserForm_Terminate()
     MW.UnInstall
     Set MW = Nothing
+    TR.Term
+    Set TR = Nothing
 End Sub

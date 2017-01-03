@@ -59,6 +59,10 @@ Public mLineEnable As Boolean
 Public mScrollEnable As Boolean
 Public mScreenEnable As Boolean
 
+
+
+Public mblnSushi As Boolean
+
 '--------------------------------------------------------------------
 ' マクロ名取得
 '--------------------------------------------------------------------
@@ -107,6 +111,14 @@ Sub tabGetVisible(control As IRibbonControl, ByRef visible)
 
     visible = GetSetting(C_TITLE, "Ribbon", Replace(control.id, "Tab", ""), True)
 
+End Sub
+'--------------------------------------------------------------------
+' スシ表示取得
+'--------------------------------------------------------------------
+Sub sushiGetVisible(control As IRibbonControl, ByRef visible)
+
+    visible = mblnSushi
+1
 End Sub
 '--------------------------------------------------------------------
 ' リボン押下状態取得

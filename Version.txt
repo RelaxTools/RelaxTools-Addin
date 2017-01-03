@@ -1,4 +1,7 @@
-﻿2016/12/12(fri) RelaxTools-Addin Version 4.8.6(RustRemover) 
+﻿2017/01/03(tue) RelaxTools-Addin Version 4.8.6(RustRemover) 
+◇機能改善
+　・「スシ流し」機能を大人の事情にて封印。くれぐれも封印は解かないでください。
+　・「シート管理」の名前のリネーム方法を変更。
 ◇バグ修正
 　・「列のマージ」で画面がちらつくのを修正。
 

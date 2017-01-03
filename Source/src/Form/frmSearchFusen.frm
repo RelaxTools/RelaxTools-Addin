@@ -357,7 +357,7 @@ Private Sub lstResult_Change()
                     objShape.Select False
                 Else
                     blnFlg = True
-                    Application.Goto setCellPos(objShape.TopLeftCell), True
+                    Application.GoTo setCellPos(objShape.TopLeftCell), True
                     objShape.Select
                 End If
                 On Error GoTo 0

@@ -31,6 +31,7 @@ Attribute VB_Name = "basCommon"
 Option Explicit
 Option Private Module
 
+
 ' 32-bit Function version.
 ' ドライブ名からネットワークドライブを取得
 #If VBA7 And Win64 Then
@@ -2193,6 +2194,25 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
         End If
 
         Select Case c
+            '全角の￥
+            Case "￥"
+                If (conv And vbNarrow) > 0 Then
+                    strChr = "\"
+                    strRet = strRet & StrConv(strBuf, conv) & strChr
+                    strBuf = ""
+                Else
+                    strBuf = strBuf & c
+                End If
+           
+            '半角の\
+            Case "\"
+                If (conv And vbWide) > 0 Then
+                    strChr = "￥"
+                    strRet = strRet & StrConv(strBuf, conv) & strChr
+                    strBuf = ""
+                Else
+                    strBuf = strBuf & c
+                End If
             '全角の濁点、半濁点
             Case "゜", "゛"
                 If (conv And vbNarrow) > 0 Then
