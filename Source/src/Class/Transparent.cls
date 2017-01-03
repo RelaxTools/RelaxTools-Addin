@@ -10,11 +10,11 @@ Attribute VB_Exposed = False
 Option Explicit
 
 #If Win64 And VBA7 Then
-    Private Declare Function GetActiveWindow Lib "user32" () As LongPtr
+    Private Declare PtrSafe Function GetActiveWindow Lib "user32" () As LongPtr
     Private Declare PtrSafe Function SetWindowLong Lib "user32.dll" Alias "SetWindowLongA" (ByVal hWnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
     Private Declare PtrSafe Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As Long
     Private Declare PtrSafe Function SetLayeredWindowAttributes Lib "user32.dll" (ByVal hWnd As LongPtr, ByVal crKey As Long, ByVal bAlpha As Byte, ByVal dwFlags As Long) As Long
-    Private Declare Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
+    Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
     Private hWnd As LongPtr
 #Else
     Private Declare Function GetActiveWindow Lib "user32" () As Long

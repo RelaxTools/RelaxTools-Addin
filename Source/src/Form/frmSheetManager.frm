@@ -72,12 +72,6 @@ Private mSainyu As Boolean
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
 
-#If Win64 And VBA7 Then
-    Declare PtrSafe Function GetTickCount Lib "kernel32" Alias "GetTickCount64" () As LongLong
-#Else
-    Private Declare Function GetTickCount Lib "kernel32" () As Long
-#End If
-
 Private Sub cmdPrint_Click()
 
     Dim lngCnt As Long
