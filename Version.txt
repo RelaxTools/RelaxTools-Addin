@@ -1,4 +1,10 @@
-﻿2017/01/03(tue) RelaxTools-Addin Version 4.8.8(RustRemover) 
+﻿2017/01/09(mon) RelaxTools-Addin Version 4.8.9(RustRemover) 
+◇バグ修正
+　・「シート管理」のシート名の変更時、バックスラッシュを入力するとエラーになっていた不具合を修正。
+◇機能改善
+　・「シート管理」でのENTERキーでシート選択になっていたのをAlt-Sに変更。
+　
+2017/01/03(tue) RelaxTools-Addin Version 4.8.8(RustRemover) 
 ◇機能改善
 　・「スシ流し」機能を大人の事情にて封印。くれぐれも封印は解かないでください。
 　・「シート管理」の名前のリネーム方法を変更。
