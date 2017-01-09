@@ -452,7 +452,7 @@ End Sub
 Private Sub errorMsg()
     MsgBox "入力されたシートまたはグラフの名前が正しくありません。次の点を確認して修正してください。" & vbCrLf & vbCrLf & _
     "・入力文字が31文字以内であること" & vbCrLf & _
-    "・次の使用できない文字が含まれていないこと:コロン(:)、円記号(\)、スラッシュ(/)、疑問符(?)、アスタリスク(*)、左角かっこ([)、右角かっこ(])" & vbCrLf & _
+    "・次の使用できない文字が含まれていないこと:コロン(:)、円記号(\)、スラッシュ(/)、バックスラッシュ(＼)、疑問符(?)、アスタリスク(*)、左角かっこ([)、右角かっこ(])" & vbCrLf & _
     "・名前が空白でないこと", vbOKOnly + vbExclamation, C_TITLE
 
 End Sub
@@ -737,7 +737,7 @@ Private Sub cmdSubmit_Click()
 
     Dim lngLast As Long
     
-    strBuf = ":\/?*[]：￥／？＊［］"
+    strBuf = ":\/?*[]：￥／？＊［］＼"
     lngLen = Len(strBuf)
 
     For lngCnt = 0 To lstSheet.ListCount - 1
