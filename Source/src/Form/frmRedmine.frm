@@ -181,8 +181,19 @@ Private Function getAttr(ByRef r As Range) As String
     
     strValue = r.Text
             
-    If r.HasFormula Then
+'    If r.HasFormula Then
+        If chkColor.Value And Len(strValue) > 0 Then
+            #If VBA7 Then
+                strValue = "%{color:" & getHtmlRGB(r.DisplayFormat.Font.Color) & "}" & strValue & "%"
+            #Else
+                strValue = "%{color:" & getHtmlRGB(r.Font.Color) & "}" & strValue & "%"
+            #End If
+        End If
         Select Case True
+            Case IsNull(r.Font.Strikethrough)
+            Case IsNull(r.Font.Underline)
+            Case IsNull(r.Font.Italic)
+            
             Case r.Font.Strikethrough
                 strValue = "-" & strValue & "-"
             Case r.Font.Underline <> xlUnderlineStyleNone
@@ -191,21 +202,14 @@ Private Function getAttr(ByRef r As Range) As String
                 strValue = "_" & strValue & "_"
             Case Else
         End Select
-        If chkColor.Value Then
-            #If VBA7 Then
-                strValue = "%{color:" & getHtmlRGB(r.DisplayFormat.Font.Color) & "}" & strValue & "%"
-            #Else
-                strValue = "%{color:" & getHtmlRGB(r.Font.Color) & "}" & strValue & "%"
-            #End If
-        End If
         If r.Font.Bold Then
             strValue = "*" & strValue & "*"
         End If
-    Else
-        If VarType(r.Value) = vbString Then
-            strValue = CharacterStyle(r)
-        End If
-    End If
+'    Else
+'        If VarType(r.Value) = vbString Then
+'            strValue = CharacterStyle(r)
+'        End If
+'    End If
 
     getAttr = strH & strV & strColor & ". " & strValue
 

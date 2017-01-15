@@ -77,22 +77,32 @@ Private Sub cmdPrint_Click()
     Dim lngCnt As Long
     Dim strSheets As String
     Dim r As Range
+    Dim s As Worksheet
 
     strSheets = ""
     For lngCnt = 0 To lstSheet.ListCount - 1
 
         If lstSheet.Selected(lngCnt) And lstSheet.List(lngCnt, C_SHEET_OLD_STATUS) = C_SHOW Then
 
-            If strSheets = "" Then
-                strSheets = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
-            Else
-                strSheets = strSheets & vbTab & lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
+            err.Clear
+            On Error Resume Next
+            Set s = mBook.Sheets(lstSheet.List(lngCnt, C_SHEET_OLD_NAME))
+            If err.Number = 0 And s.Type = xlWorksheet Then
+                If s.PageSetup.Pages.count > 0 Then
+    
+                    If strSheets = "" Then
+                        strSheets = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
+                    Else
+                        strSheets = strSheets & vbTab & lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
+                    End If
+    
+                End If
             End If
-
         End If
     Next
 
     If strSheets = "" Then
+        MsgBox "プレビューできるシートがありません。", vbOKOnly + vbExclamation, C_TITLE
     Else
         Me.Hide
         mBook.Sheets(Split(strSheets, vbTab)).PrintPreview
@@ -452,7 +462,7 @@ End Sub
 Private Sub errorMsg()
     MsgBox "入力されたシートまたはグラフの名前が正しくありません。次の点を確認して修正してください。" & vbCrLf & vbCrLf & _
     "・入力文字が31文字以内であること" & vbCrLf & _
-    "・次の使用できない文字が含まれていないこと:コロン(:)、円記号(\)、スラッシュ(/)、バックスラッシュ(＼)、疑問符(?)、アスタリスク(*)、左角かっこ([)、右角かっこ(])" & vbCrLf & _
+    "・次の使用できない文字が含まれていないこと:コロン(:)、円記号(\)、スラッシュ(/)、バックスラッシュ(＼)、疑問符(?)、アスタリスク(*)、シングルコーテーション(')、左角かっこ([)、右角かっこ(])" & vbCrLf & _
     "・名前が空白でないこと", vbOKOnly + vbExclamation, C_TITLE
 
 End Sub
@@ -737,13 +747,13 @@ Private Sub cmdSubmit_Click()
 
     Dim lngLast As Long
     
-    strBuf = ":\/?*[]：￥／？＊［］＼"
+    strBuf = ":\/?*[]：￥／？＊［］＼'"
     lngLen = Len(strBuf)
 
     For lngCnt = 0 To lstSheet.ListCount - 1
         For i = 1 To lngLen
     
-            If InStr(lstSheet.List(lngCnt, C_SHEET_NEW_NAME), Mid$(strBuf, i, 1)) > 0 Then
+            If InStr(lstSheet.List(lngCnt, C_SHEET_NEW_NAME), Mid$(strBuf, i, 1)) > 0 Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) = 0 Then
                 Call errorMsg
                 Exit Sub
             End If
