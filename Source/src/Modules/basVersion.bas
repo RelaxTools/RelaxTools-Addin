@@ -1,6 +1,14 @@
 Attribute VB_Name = "basVersion"
 Option Explicit
+Public Sub TortoiseSVNAdd()
 
+    Dim Ver As IVersion
+    
+    Set Ver = New TortoiseSVN
+    Ver.Add
+    Set Ver = Nothing
+
+End Sub
 Public Sub TortoiseSVNCommit()
 
     Dim Ver As IVersion

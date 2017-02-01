@@ -9,6 +9,9 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
 
+Public Sub Add()
+
+End Sub
 Public Sub Commit()
 
 End Sub
