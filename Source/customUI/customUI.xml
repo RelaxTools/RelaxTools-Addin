@@ -866,12 +866,13 @@
           <button id="TortoiseSVNUpdate"  size="large"   image="refreshG"  label="HEAD&#xD;&#xA;更新" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseSVNRevert"  size="large"   image="revert"    label="変更の&#xD;&#xA;取り消し" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseSVNAdd"     size="large"   image="plusBlue"  label="追加&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-          <separator id="tortoiseSep1"/>
-          <button id="TortoiseSVNLog"     size="large"   image="log"       label="ログ表示&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-          <button id="openDocumentPath.2"   size="large"   image="folder"    label="作業フォルダを&#xD;&#xA;開く" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-          <separator id="tortoiseSep2"/>
+        </group>
+        <group id="SVNLockGroup" label="ロック・ログ表示" image="lock">
           <button id="TortoiseSVNLock"    size="large"   image="lock"      label="ロック取得&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseSVNUnlock"  size="large"   image="unlock"    label="ロック解除&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <separator id="SvnSep"/>
+          <button id="openDocumentPath.2" size="large"   image="folder"    label="作業フォルダ&#xD;&#xA;を開く" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+          <button id="TortoiseSVNLog"     size="large"   image="log"       label="ログ表示&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
         <group id="SVNToolGroup" label="ツール" image="diff">
           <button id="TortoiseSVNDiff"    size="large"   image="diff"      label="Tortoise&#xD;&#xA;DIFF" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
@@ -880,7 +881,6 @@
         </group>
         <group id="SVNINFOGroup" label="情報" image="diff">
           <button id="TortoiseSVNHelp"    size="large"   image="help"      label="ヘルプ&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-          <separator id="tortoiseSep5"/>
           <button id="TortoiseSVNVer"     size="large"   image="tortoise"  label="About...&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
         

@@ -17,18 +17,18 @@ Private Const OPT_PATH As String = "/path:"
 Private Const OPT_END0 As String = "/closeonend:0"
 Private Const OPT_END1 As String = "/closeonend:1"
 
-Private Const CMD_ADD As String = "add"
-Private Const CMD_COMMIT As String = "commit"
-Private Const CMD_DIFF As String = "diff"
-Private Const CMD_LOCK As String = "lock"
-Private Const CMD_UNLOCK As String = "unlock"
-Private Const CMD_LOG As String = "log"
-Private Const CMD_UPDATE As String = "update"
-Private Const CMD_REVERT As String = "revert"
-Private Const CMD_BROUSER As String = "repobrowser"
-Private Const CMD_CLEANUP As String = "cleanup"
-Private Const CMD_ABOUT As String = "about"
-Private Const CMD_HELP As String = "help"
+Private Const CMD_ADD As String = "add "
+Private Const CMD_COMMIT As String = "commit "
+Private Const CMD_DIFF As String = "diff "
+Private Const CMD_LOCK As String = "lock "
+Private Const CMD_UNLOCK As String = "unlock "
+Private Const CMD_LOG As String = "log "
+Private Const CMD_UPDATE As String = "update "
+Private Const CMD_REVERT As String = "revert "
+Private Const CMD_BROUSER As String = "repobrowser "
+Private Const CMD_CLEANUP As String = "cleanup "
+Private Const CMD_ABOUT As String = "about "
+Private Const CMD_HELP As String = "help "
 
 Private Sub IVersion_Add()
 
@@ -50,25 +50,19 @@ Private Sub IVersion_Add()
     End If
     
     With CreateObject("SubWCRev.object")
-        .GetWCInfo strBook, 1, 1
+        .GetWCInfo strBook, 0, 0
         If .IsSvnItem Then
             MsgBox "すでにバージョン管理に登録されているファイルです。", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
         End If
     End With
-        
-    If Not WB.Saved Then
-        If MsgBox("ブックが変更されています。保存しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
-            MsgBox "処理を中断しました。", vbOKOnly + vbExclamation, C_TITLE
-            Exit Sub
-        Else
-            WB.Save
-            WB.Saved = True
-        End If
+    
+    If MsgBox("ブックをバージョン管理システムに追加します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        Exit Sub
     End If
     
-    strCommand = CMD_ADD & " " & GetPath(WB) & OPT_END0
-    Run strCommand, WB
+    strCommand = CMD_ADD & GetPath(WB.FullName) & OPT_END0
+    Run strCommand
     
     MsgBox "追加しました。", vbOKOnly + vbExclamation, C_TITLE
 
@@ -91,8 +85,8 @@ Private Sub IVersion_Brouser()
     
     WB.ChangeFileAccess Mode:=xlReadOnly
     
-    strCommand = CMD_BROUSER & " " & GetPath(WB) & OPT_END0
-    Run strCommand, WB
+    strCommand = CMD_BROUSER & GetPath(WB.FullName) & OPT_END0
+    Run strCommand
 
     WB.ChangeFileAccess Mode:=xlReadWrite
     
@@ -104,16 +98,27 @@ Private Sub IVersion_Cleanup()
 
     Dim strCommand As String
     Dim WB As Workbook
+    Dim strBook As String
     
     Set WB = ActiveWorkbook
+    strBook = WB.FullName
     If IsError(WB) Then
         Exit Sub
     End If
     
-    Set WB = ActiveWorkbook
-    strCommand = CMD_CLEANUP & " /PATH:" & rlxGetFullpathFromPathName(WB.FullName) & OPT_END0
+    On Error Resume Next
+        
+    Application.DisplayAlerts = False
+    Application.ScreenUpdating = False
     
-    Run strCommand, WB
+    strCommand = CMD_CLEANUP & "/PATH:" & rlxGetFullpathFromPathName(strBook) & " " & OPT_END0
+    WB.Close False
+    
+    Run strCommand
+
+    Workbooks.Open strBook
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
     
 End Sub
 
@@ -127,8 +132,8 @@ Private Sub IVersion_Commit()
         Exit Sub
     End If
     
-    strCommand = CMD_COMMIT & " " & GetPath(WB) & OPT_END0
-    Run strCommand, WB
+    strCommand = CMD_COMMIT & GetPath(WB.FullName) & OPT_END0
+    Run strCommand
 
 End Sub
 
@@ -142,8 +147,9 @@ Private Sub IVersion_Diff()
         Exit Sub
     End If
     
-    strCommand = CMD_DIFF & " " & GetPath(WB) & OPT_END0
-    Run strCommand, WB
+    strCommand = CMD_DIFF & GetPath(WB.FullName) & OPT_END0
+    Run strCommand
+
 End Sub
 
 Private Sub IVersion_Help()
@@ -153,7 +159,7 @@ Private Sub IVersion_Help()
     
     Set WB = ActiveWorkbook
     strCommand = CMD_HELP
-    Run strCommand, WB
+    Run strCommand
     
 End Sub
 
@@ -168,15 +174,16 @@ Private Sub IVersion_Locked()
     End If
     
     With CreateObject("SubWCRev.object")
-        .GetWCInfo WB.FullName, 1, 1
+        .GetWCInfo WB.FullName, 0, 0
         If .IsLocked Then
-            MsgBox "ブックは既にロックされています。", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "ブックはロック済みです。", vbOKCancel + vbQuestion, C_TITLE
             Exit Sub
         End If
     End With
     
-    strCommand = CMD_LOCK & " " & GetPath(WB) & OPT_END0
-    Run strCommand, WB
+    strCommand = CMD_LOCK & GetPath(WB.FullName) & OPT_END0
+    Run strCommand
+
 End Sub
 Private Sub IVersion_Unlocked()
 
@@ -188,17 +195,18 @@ Private Sub IVersion_Unlocked()
         Exit Sub
     End If
     
-    With CreateObject("SubWCRev.object")
-        .GetWCInfo WB.FullName, 1, 1
-        If .IsLocked Then
-        Else
-            MsgBox "ブックはロックされていません。", vbOKOnly + vbExclamation, C_TITLE
-            Exit Sub
-        End If
-    End With
+'    With CreateObject("SubWCRev.object")
+'        .GetWCInfo WB.FullName, 1, 1
+'        If .IsLocked Then
+'        Else
+'            MsgBox "ブックはロックされていません。", vbOKOnly + vbExclamation, C_TITLE
+'            Exit Sub
+'        End If
+'    End With
     
-    strCommand = CMD_UNLOCK & " " & GetPath(WB) & OPT_END0
-    Run strCommand, WB
+    strCommand = CMD_UNLOCK & GetPath(WB.FullName) & OPT_END0
+    Run strCommand
+
 End Sub
 Private Sub IVersion_Log()
 
@@ -217,8 +225,8 @@ Private Sub IVersion_Log()
     
     WB.ChangeFileAccess Mode:=xlReadOnly
     
-    strCommand = CMD_LOG & " " & GetPath(WB) & OPT_END0
-    Run strCommand, WB
+    strCommand = CMD_LOG & GetPath(WB.FullName) & OPT_END0
+    Run strCommand
 
     WB.ChangeFileAccess Mode:=xlReadWrite
     
@@ -231,35 +239,10 @@ Private Sub IVersion_Revert()
     
     Dim strCommand As String
     Dim WB As Workbook
-    Dim strBook As String
     
     Set WB = ActiveWorkbook
-    
-    If WB Is Nothing Then
+    If IsError(WB) Then
         Exit Sub
-    End If
-    
-    strBook = WB.FullName
-    
-    If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
-        Exit Sub
-    End If
-    
-    With CreateObject("SubWCRev.object")
-        .GetWCInfo WB.FullName, 1, 1
-        If .IsSvnItem Then
-        Else
-            MsgBox "バージョン管理外のファイルです。", vbOKOnly + vbExclamation, C_TITLE
-            Exit Sub
-        End If
-    End With
-    
-    If Not WB.Saved Then
-        If MsgBox("ブックが変更されています。破棄しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
-            MsgBox "処理を中断しました。", vbOKOnly + vbExclamation, C_TITLE
-            Exit Sub
-        End If
     End If
     
     On Error Resume Next
@@ -267,12 +250,13 @@ Private Sub IVersion_Revert()
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
     
-    strCommand = CMD_REVERT & " " & GetPath(WB) & OPT_END0
-    WB.Close False
+    WB.ChangeFileAccess Mode:=xlReadOnly
     
-    Run strCommand, WB
+    strCommand = CMD_REVERT & GetPath(WB.FullName) & OPT_END0
+    Run strCommand
 
-    Workbooks.Open strBook
+    WB.ChangeFileAccess Mode:=xlReadWrite
+    
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
@@ -286,36 +270,9 @@ Private Sub IVersion_Update()
     Dim strBook As String
     
     Set WB = ActiveWorkbook
-    
-    If WB Is Nothing Then
-        Exit Sub
-    End If
-    
     strBook = WB.FullName
-    
-    If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+    If IsError(WB, True) Then
         Exit Sub
-    End If
-    
-    With CreateObject("SubWCRev.object")
-        .GetWCInfo strBook, 1, 1
-        If .HasModifications Then
-            MsgBox "作業フォルダのブックは変更されているため、更新することができません。" & vbCrLf & "変更を元に戻す場合は「変更の取り消し」を行ってください。", vbOKOnly + vbExclamation, C_TITLE
-            Exit Sub
-        End If
-        If .IsSvnItem Then
-        Else
-            MsgBox "バージョン管理外のファイルです。", vbOKOnly + vbExclamation, C_TITLE
-            Exit Sub
-        End If
-    End With
-    
-    If Not WB.Saved Then
-        If MsgBox("ブックが変更されています。破棄しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
-            MsgBox "処理を中断しました。", vbOKOnly + vbExclamation, C_TITLE
-            Exit Sub
-        End If
     End If
     
     If MsgBox("HEADに更新します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
@@ -327,20 +284,29 @@ Private Sub IVersion_Update()
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
     
-    strCommand = CMD_UPDATE & " " & GetPath(WB) & OPT_END0
+    strCommand = CMD_UPDATE & GetPath(WB.FullName) & OPT_END0
     WB.Close False
     
-    Run strCommand, WB
+    Run strCommand
 
     Workbooks.Open strBook
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
 End Sub
+Private Sub IVersion_Ver()
 
-Private Sub Run(ByVal strExe As String, WB As Workbook)
-    On Error Resume Next
+    Dim strCommand As String
+    Dim WB As Workbook
     
+    Set WB = ActiveWorkbook
+    strCommand = CMD_ABOUT
+    Run strCommand
+    
+End Sub
+
+Private Sub Run(ByVal strExe As String)
+    On Error Resume Next
 
     err.Clear
     With CreateObject("WScript.Shell")
@@ -350,12 +316,13 @@ Private Sub Run(ByVal strExe As String, WB As Workbook)
         MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
     End If
     
-    
 End Sub
-Private Function GetPath(WB As Workbook) As String
-    GetPath = OPT_PATH & """" & WB.FullName & """ "
+Private Function GetPath(ByVal strBook As String) As String
+    
+    GetPath = OPT_PATH & """" & strBook & """ "
+
 End Function
-Private Function IsError(WB As Workbook) As Boolean
+Private Function IsError(WB As Workbook, Optional ByVal Upd As Boolean = False) As Boolean
 
     Dim strBook As String
     Dim ret As Boolean
@@ -374,35 +341,33 @@ Private Function IsError(WB As Workbook) As Boolean
     End If
     
     With CreateObject("SubWCRev.object")
-        .GetWCInfo strBook, 1, 1
+        .GetWCInfo strBook, 0, 0
         If .IsSvnItem Then
         Else
-            MsgBox "バージョン管理外のファイルです。", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
             Exit Function
         End If
-    End With
         
-    If Not WB.Saved Then
-        If MsgBox("ブックが変更されています。保存しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
-            MsgBox "処理を中断しました。", vbOKOnly + vbExclamation, C_TITLE
+        If Upd And (.HasModifications Or Not WB.Saved) Then
+            MsgBox "ブックは変更されているため、更新することができません。", vbOKOnly + vbExclamation, C_TITLE
             Exit Function
-        Else
-            WB.Save
-            WB.Saved = True
         End If
-    End If
+        
+        If Not WB.Saved Then
+            If MsgBox("ブックが変更されています。保存しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+                MsgBox "処理を中断しました。", vbOKOnly + vbExclamation, C_TITLE
+                Exit Function
+            Else
+                Application.DisplayAlerts = False
+                WB.Save
+                Application.DisplayAlerts = True
+                WB.Saved = True
+            End If
+        End If
+    
+    End With
     
     IsError = False
     
 End Function
 
-Private Sub IVersion_Ver()
-
-    Dim strCommand As String
-    Dim WB As Workbook
-    
-    Set WB = ActiveWorkbook
-    strCommand = CMD_ABOUT
-    Run strCommand, WB
-    
-End Sub

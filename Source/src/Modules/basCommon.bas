@@ -1338,8 +1338,8 @@ Attribute rlxHtmlSanitizing.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim strRep As String
 
-    strRep = Replace(strBuf, """", "&quot;")
     strRep = Replace(strRep, "&", "&amp;")
+    strRep = Replace(strBuf, """", "&quot;")
     strRep = Replace(strRep, "<", "&lt;")
     rlxHtmlSanitizing = Replace(strRep, ">", "&gt;")
 
@@ -2281,7 +2281,15 @@ Public Function StrConvU(ByVal strSource As String, conv As VbStrConv) As String
                 Else
                     strBuf = strBuf & c
                 End If
-                
+
+            'ヶヵ
+            Case "ヶ", "ヵ"
+                If (conv And vbHiragana) > 0 Then
+                    strRet = strRet & StrConv(strBuf, conv) & c
+                    strBuf = ""
+                Else
+                    strBuf = strBuf & c
+                End If
 
             'その他
             Case Else
