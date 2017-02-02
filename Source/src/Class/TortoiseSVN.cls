@@ -36,6 +36,8 @@ Private Sub IVersion_Add()
     Dim WB As Workbook
     Dim strBook As String
     
+    On Error GoTo e
+    
     Set WB = ActiveWorkbook
     
     If WB Is Nothing Then
@@ -65,7 +67,10 @@ Private Sub IVersion_Add()
     Run strCommand
     
     MsgBox "追加しました。", vbOKOnly + vbExclamation, C_TITLE
-
+    
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 Private Sub IVersion_Brouser()
@@ -73,12 +78,12 @@ Private Sub IVersion_Brouser()
     Dim strCommand As String
     Dim WB As Workbook
     
+    On Error GoTo e
+    
     Set WB = ActiveWorkbook
     If IsError(WB) Then
         Exit Sub
     End If
-    
-    On Error Resume Next
     
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
@@ -92,6 +97,9 @@ Private Sub IVersion_Brouser()
     
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 Private Sub IVersion_Cleanup()
@@ -100,14 +108,14 @@ Private Sub IVersion_Cleanup()
     Dim WB As Workbook
     Dim strBook As String
     
+    On Error GoTo e
+    
     Set WB = ActiveWorkbook
     strBook = WB.FullName
     If IsError(WB) Then
         Exit Sub
     End If
     
-    On Error Resume Next
-        
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
     
@@ -120,12 +128,17 @@ Private Sub IVersion_Cleanup()
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
     
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 Private Sub IVersion_Commit()
 
     Dim strCommand As String
     Dim WB As Workbook
+    
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     If IsError(WB) Then
@@ -135,12 +148,17 @@ Private Sub IVersion_Commit()
     strCommand = CMD_COMMIT & GetPath(WB.FullName) & OPT_END0
     Run strCommand
 
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 Private Sub IVersion_Diff()
 
     Dim strCommand As String
     Dim WB As Workbook
+    
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     If IsError(WB) Then
@@ -150,6 +168,9 @@ Private Sub IVersion_Diff()
     strCommand = CMD_DIFF & GetPath(WB.FullName) & OPT_END0
     Run strCommand
 
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 Private Sub IVersion_Help()
@@ -157,16 +178,23 @@ Private Sub IVersion_Help()
     Dim strCommand As String
     Dim WB As Workbook
     
+    On Error GoTo e
+    
     Set WB = ActiveWorkbook
     strCommand = CMD_HELP
     Run strCommand
     
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 Private Sub IVersion_Locked()
 
     Dim strCommand As String
     Dim WB As Workbook
+    
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     If IsError(WB) Then
@@ -184,11 +212,16 @@ Private Sub IVersion_Locked()
     strCommand = CMD_LOCK & GetPath(WB.FullName) & OPT_END0
     Run strCommand
 
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 Private Sub IVersion_Unlocked()
 
     Dim strCommand As String
     Dim WB As Workbook
+    
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     If IsError(WB) Then
@@ -207,11 +240,16 @@ Private Sub IVersion_Unlocked()
     strCommand = CMD_UNLOCK & GetPath(WB.FullName) & OPT_END0
     Run strCommand
 
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 Private Sub IVersion_Log()
 
     Dim strCommand As String
     Dim WB As Workbook
+    
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     If IsError(WB) Then
@@ -233,12 +271,17 @@ Private Sub IVersion_Log()
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
     
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 Private Sub IVersion_Revert()
     
     Dim strCommand As String
     Dim WB As Workbook
+    
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     If IsError(WB) Then
@@ -260,6 +303,9 @@ Private Sub IVersion_Revert()
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 
@@ -268,6 +314,8 @@ Private Sub IVersion_Update()
     Dim strCommand As String
     Dim WB As Workbook
     Dim strBook As String
+    
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     strBook = WB.FullName
@@ -293,16 +341,24 @@ Private Sub IVersion_Update()
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 Private Sub IVersion_Ver()
 
     Dim strCommand As String
     Dim WB As Workbook
     
+    On Error GoTo e
+    
     Set WB = ActiveWorkbook
     strCommand = CMD_ABOUT
     Run strCommand
     
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 Private Sub Run(ByVal strExe As String)
@@ -316,6 +372,9 @@ Private Sub Run(ByVal strExe As String)
         MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
     End If
     
+    Exit Sub
+e:
+    MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 Private Function GetPath(ByVal strBook As String) As String
     
