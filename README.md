@@ -49,6 +49,7 @@ Copyright(C) Yasuhiro Watanabe 2009
 * 付箋作成機能。
 * Excel/Word/PowerPointのページ数カウント
 * VBAのステップカウント
+* バージョン管理クライアント「TortoiseSVN」に対応。Commit, Revert が簡単に。
 ・・・などなど250を超える機能を搭載
 
 ---
