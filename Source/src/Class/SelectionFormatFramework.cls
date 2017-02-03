@@ -95,7 +95,7 @@ Public Sub Run()
     If blnObject Then
         If Selection.ShapeRange.count > 0 Then
         
-            Application.ScreenUpdating = True
+'            Application.ScreenUpdating = True
         
             Dim c As Shape
             
@@ -117,7 +117,7 @@ Public Sub Run()
                 End Select
             Next
             
-            Application.ScreenUpdating = True
+'            Application.ScreenUpdating = True
             Exit Sub
         End If
     End If
@@ -168,13 +168,14 @@ Public Sub Run()
     
     RaiseEvent SelectionMain(Selection)
 
+    Application.ScreenUpdating = True
+    
     '---------------------------
     '終了イベント
     '---------------------------
     
     RaiseEvent SelectionTerm
     
-    Application.ScreenUpdating = True
     
     If Undo Then
         'Undo

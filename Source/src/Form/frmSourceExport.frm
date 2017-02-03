@@ -118,7 +118,7 @@ Private Sub cmdOK_Click()
         Exit Sub
     End If
     
-    Application.ScreenUpdating = False
+'    Application.ScreenUpdating = False
     
 
     Dim lngCnt As Long
@@ -217,7 +217,7 @@ Private Sub cmdOK_Click()
     SaveSetting C_TITLE, "VBAExport", "Category", chkCategory.Value
     SaveSetting C_TITLE, "VBAExport", "UTF8", chkUTF8.Value
     
-    Application.ScreenUpdating = True
+'    Application.ScreenUpdating = True
     
     MsgBox "エクスポート完了しました。" & vbCrLf & "ＯＫを押すとエクスポート先のフォルダを開きます。", vbOKOnly + vbInformation, C_TITLE
     
@@ -232,7 +232,7 @@ Private Sub cmdOK_Click()
     
     Exit Sub
 ErrHandle:
-    Application.ScreenUpdating = True
+'    Application.ScreenUpdating = True
     If mMm Is Nothing Then
     Else
         mMm.Enable

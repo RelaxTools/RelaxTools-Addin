@@ -105,7 +105,7 @@ Private Sub cmdOK_Click()
         Exit Sub
     End If
         
-    Application.ScreenUpdating = False
+'    Application.ScreenUpdating = False
         
     Set Target = Workbooks(cboSrcBook.Text)
     
@@ -210,11 +210,11 @@ Private Sub cmdOK_Click()
     WB.Worksheets(1).Cells(lngCnt, C_ALL).Formula = "=sum(G3:G" & lngCnt - 1 & ")"
     Unload Me
     
-    Application.ScreenUpdating = True
+'    Application.ScreenUpdating = True
     
     Exit Sub
 ErrHandle:
-    Application.ScreenUpdating = True
+'    Application.ScreenUpdating = True
     MsgBox "エラーが発生しました。", vbOKOnly, C_TITLE
 End Sub
 

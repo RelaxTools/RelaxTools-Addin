@@ -148,11 +148,11 @@ pass:
     '---------------------------
     '終了イベント
     '---------------------------
-    Application.ScreenUpdating = False
+'    Application.ScreenUpdating = False
     
     RaiseEvent SelectionTerm
     
-    Application.ScreenUpdating = True
+'    Application.ScreenUpdating = True
     
     If Undo Then
         'Undo

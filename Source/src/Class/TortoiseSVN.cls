@@ -99,6 +99,8 @@ Private Sub IVersion_Brouser()
     Application.ScreenUpdating = True
     Exit Sub
 e:
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -130,6 +132,8 @@ Private Sub IVersion_Cleanup()
     
     Exit Sub
 e:
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -273,6 +277,8 @@ Private Sub IVersion_Log()
     
     Exit Sub
 e:
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -305,6 +311,8 @@ Private Sub IVersion_Revert()
 
     Exit Sub
 e:
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -343,6 +351,8 @@ Private Sub IVersion_Update()
 
     Exit Sub
 e:
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 Private Sub IVersion_Ver()

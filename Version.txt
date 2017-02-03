@@ -1,4 +1,9 @@
-﻿2017/02/03(fri) RelaxTools-Addin Version 4.9.0(RustRemover) 
+﻿2017/02/03(fri) RelaxTools-Addin Version 4.9.1(RustRemover) 
+◇バグ修正
+　・2013以降でセルの値をチェックや変更する処理で、最後にメッセージボックスを表示する際に
+　　Application.ScreenUpdating = false の状態となり処理が固まる不具合を修正。
+
+2017/02/03(fri) RelaxTools-Addin Version 4.9.0(RustRemover) 
 ◇新規機能
 　・バージョン管理クライアント「TortoiseSVN」に対応。
 ◇バグ修正
