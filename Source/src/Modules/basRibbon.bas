@@ -638,6 +638,12 @@ End Sub
 '  十字カーソルの押下時イベント
 '--------------------------------------------------------------------
 Sub lineOnAction(control As IRibbonControl, pressed As Boolean)
+
+    If ActiveSheet.ProtectContents Then
+        MsgBox "保護されているシートでは十字カーソルは実行できません。", vbOKOnly + vbExclamation, C_TITLE
+        pressed = False
+        Exit Sub
+    End If
   
     On Error GoTo e
     

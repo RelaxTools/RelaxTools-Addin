@@ -67,6 +67,25 @@ End Sub
 
 Private Sub IVersion_Brouser()
 
+    Dim strCommand As String
+    Dim WB As Workbook
+    Dim strBook As String
+    
+    On Error GoTo e
+    
+    Set WB = ActiveWorkbook
+    strBook = WB.FullName
+    If IsError(WB) Then
+        Exit Sub
+    End If
+    
+    strCommand = CMD_BROUSER & "/PATH:" & rlxGetFullpathFromPathName(strBook) & " " & OPT_END0
+    
+    Run strCommand
+    
+    Exit Sub
+e:
+    MsgBox "TortoiseGitの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 Private Sub IVersion_Cleanup()

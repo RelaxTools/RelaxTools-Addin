@@ -72,6 +72,10 @@ End Sub
 Private Sub SFWork_SelectionInit(rArea As Areas, Cancel As Boolean, Undo As Boolean)
 
     mstrSep = InputBox("区切り文字が必要であれば入力してください。")
+    If mstrSep = "" Then
+        Cancel = True
+        Exit Sub
+    End If
     Undo = True
     
 End Sub

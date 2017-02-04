@@ -198,6 +198,14 @@ Public Sub TortoiseGitDiff()
     Set Ver = Nothing
 
 End Sub
+Public Sub TortoiseGitBrouser()
+    Dim Ver As IVersion
+    
+    Set Ver = New TortoiseGit
+    Ver.Brouser
+    Set Ver = Nothing
+
+End Sub
 Public Sub TortoiseGitWeb()
     If MsgBox("インターネットに接続します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
