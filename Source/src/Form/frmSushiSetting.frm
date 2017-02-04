@@ -62,7 +62,7 @@ Private Sub cmdOK_Click()
     For Each c In Controls
         If TypeName(c) = "CheckBox" Then
             If c.Value Then
-                strBuf = strBuf & c.tag
+                strBuf = strBuf & c.Tag
             End If
         End If
     Next
@@ -103,7 +103,7 @@ Private Sub UserForm_Initialize()
     For i = 1 To Len(strBuf)
         For Each c In Controls
             If TypeName(c) = "CheckBox" Then
-                If Mid(strBuf, i, 1) = c.tag Then
+                If Mid(strBuf, i, 1) = c.Tag Then
                     c.Value = True
                 End If
             End If

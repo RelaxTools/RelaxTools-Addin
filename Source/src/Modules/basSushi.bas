@@ -163,7 +163,7 @@ Sub SushiGoRound()
         End If
         f.Left = Application.Left - i * 40
         f.Top = Application.Top + Application.Height - 36
-        f.tag = "→"
+        f.Tag = "→"
         f.Neta = Mid(mstrValue, j, 1)
         j = j + 1
         If j > Len(mstrValue) Then
@@ -189,7 +189,7 @@ Sub SushiGoRound()
             lngLeftfrgin = 40
 
             '→
-            If f.tag = "→" Then
+            If f.Tag = "→" Then
                 f.Left = f.Left + lngMove
                 f.Top = Application.Top + Application.Height - lngLeftfrgin
 
@@ -201,37 +201,37 @@ Sub SushiGoRound()
 
                 DoEvents
                 If f.Left > (Application.Left + Application.Width - 36) Then
-                    f.tag = "↑"
+                    f.Tag = "↑"
                 End If
             End If
 
             '↑
-            If f.tag = "↑" Then
+            If f.Tag = "↑" Then
                 f.Top = f.Top - lngMove
                 f.Left = Application.Left + Application.Width - lngLeftfrgin
                 DoEvents
                 If f.Top < (Application.Top + lngTopfrgin) Then
-                    f.tag = "←"
+                    f.Tag = "←"
                 End If
             End If
 
             '←
-            If f.tag = "←" Then
+            If f.Tag = "←" Then
                 f.Left = f.Left - lngMove
                 f.Top = Application.Top + lngTopfrgin
                 DoEvents
                 If f.Left < (Application.Left + lngTopfrgin) Then
-                    f.tag = "↓"
+                    f.Tag = "↓"
                 End If
             End If
 
             '↓
-            If f.tag = "↓" Then
+            If f.Tag = "↓" Then
                 f.Top = f.Top + lngMove
                 f.Left = Application.Left + lngTopfrgin
                 DoEvents
                 If f.Top > (Application.Top + Application.Height - 50) Then
-                    f.tag = "→"
+                    f.Tag = "→"
                 End If
             End If
 

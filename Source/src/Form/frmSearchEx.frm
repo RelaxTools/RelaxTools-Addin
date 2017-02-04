@@ -1044,14 +1044,14 @@ Private Sub schTab_Change()
         Case 0
             Dim c As Object
             For Each c In Controls
-                If c.tag = "v" Then
+                If c.Tag = "v" Then
                     c.visible = False
                 End If
             Next
             cboValue.enabled = True
         Case 1
             For Each c In Controls
-                If c.tag = "v" Then
+                If c.Tag = "v" Then
                     c.visible = True
                 End If
             Next

@@ -160,11 +160,11 @@ Private Sub cmdAdd_Click()
     k.HHeadLineCount = txtHead.Text
     k.VHeadLineCount = txtCol.Text
     
-    k.OutSideLine = Val(imgOutSide.tag)
-    k.VHeadBorderLine = Val(imgVHead.tag)
-    k.HHeadBorderLine = Val(imgHHead.tag)
-    k.HInsideLine = Val(imgHLine.tag)
-    k.VInsideLine = Val(imgVLine.tag)
+    k.OutSideLine = Val(imgOutSide.Tag)
+    k.VHeadBorderLine = Val(imgVHead.Tag)
+    k.HHeadBorderLine = Val(imgHHead.Tag)
+    k.HInsideLine = Val(imgHLine.Tag)
+    k.VInsideLine = Val(imgVLine.Tag)
     
     k.HeadColor = lblHead.BackColor
     k.EvenColor = lblEven.BackColor
@@ -521,11 +521,11 @@ Sub dispPreview()
     Set s = New KantanLineDTO
     
     s.Text = txtName.Text
-    s.OutSideLine = Val(imgOutSide.tag)
-    s.VHeadBorderLine = Val(imgVHead.tag)
-    s.HHeadBorderLine = Val(imgHHead.tag)
-    s.VInsideLine = Val(imgVLine.tag)
-    s.HInsideLine = Val(imgHLine.tag)
+    s.OutSideLine = Val(imgOutSide.Tag)
+    s.VHeadBorderLine = Val(imgVHead.Tag)
+    s.HHeadBorderLine = Val(imgHHead.Tag)
+    s.VInsideLine = Val(imgVLine.Tag)
+    s.HInsideLine = Val(imgHLine.Tag)
 
     s.HHeadLineCount = Val(txtHead.Text)
     s.VHeadLineCount = Val(txtCol.Text)
@@ -646,7 +646,7 @@ Private Function setPicture(ByRef obj As image, ByVal lngPos As Long)
         Case 14
             Set obj.Picture = Image14.Picture
     End Select
-    obj.tag = lngPos
+    obj.Tag = lngPos
     
     obj.visible = False
     obj.visible = True

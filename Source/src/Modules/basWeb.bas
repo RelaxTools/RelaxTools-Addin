@@ -43,7 +43,7 @@ End Sub
 Public Sub GotoRegExpHelp()
     Call GoURL(C_REGEXP_URL)
 End Sub
-Private Sub GoURL(ByVal strURL As String)
+Public Sub GoURL(ByVal strURL As String)
     With CreateObject("WScript.Shell")
         .Run (strURL)
     End With

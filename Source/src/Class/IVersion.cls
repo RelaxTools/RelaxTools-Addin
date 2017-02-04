@@ -50,3 +50,16 @@ End Sub
 Public Sub Help()
 
 End Sub
+Public Sub Pull()
+
+End Sub
+Public Sub Push()
+
+End Sub
+
+Public Sub Tag()
+
+End Sub
+Public Sub RevisionGraph()
+
+End Sub

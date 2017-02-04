@@ -220,6 +220,23 @@ Private Sub IVersion_Locked()
 e:
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
+
+Private Sub IVersion_Pull()
+
+End Sub
+
+Private Sub IVersion_Push()
+
+End Sub
+
+Private Sub IVersion_RevisionGraph()
+
+End Sub
+
+Private Sub IVersion_Tag()
+
+End Sub
+
 Private Sub IVersion_Unlocked()
 
     Dim strCommand As String

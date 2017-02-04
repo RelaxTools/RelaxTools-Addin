@@ -8,6 +8,7 @@
           <checkBox id="RelaxWord"   label="RelaxWord"   getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
           <checkBox id="RelaxApps"   label="RelaxApps"   getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
           <checkBox id="TortoiseSVN" label="TortoiseSVN" getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
+          <checkBox id="TortoiseGit" label="TortoiseGit" getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
         </group>
       </tab>
       <tab id="RelaxToolsTab" label="RelaxTools" getVisible="tabGetVisible">
@@ -861,29 +862,56 @@
       </tab>
         
       <tab id="TortoiseSVNTab" label="TortoiseSVN" getVisible="tabGetVisible">
-        <group id="SVNGroup" label="操作" image="tortoise">
+        <group id="SVNGroup" label="ファイル操作" image="tortoise">
           <button id="TortoiseSVNCommit"  size="large"   image="commit"    label="コミット&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseSVNUpdate"  size="large"   image="refreshG"  label="HEAD&#xD;&#xA;更新" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseSVNRevert"  size="large"   image="revert"    label="変更の&#xD;&#xA;取り消し" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-          <button id="TortoiseSVNAdd"     size="large"   image="plusBlue"  label="追加&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-        </group>
-        <group id="SVNLockGroup" label="ロック・ログ表示" image="lock">
+          <button id="TortoiseSVNAdd"     size="large"   image="addfile"  label="追加&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <separator id="SvnSep"/>
           <button id="TortoiseSVNLock"    size="large"   image="lock"      label="ロック取得&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseSVNUnlock"  size="large"   image="unlock"    label="ロック解除&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-          <separator id="SvnSep"/>
-          <button id="openDocumentPath.2" size="large"   image="folder"    label="作業フォルダ&#xD;&#xA;を開く" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+          <separator id="SvnLogSep"/>
           <button id="TortoiseSVNLog"     size="large"   image="log"       label="ログ表示&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+        </group>
+        <group id="SVNFolderGroup" label="フォルダ操作" image="tortoise">
+          <button id="openDocumentPath.2" size="large"   image="folder"    label="作業フォルダ&#xD;&#xA;を開く" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+          <button id="TortoiseSVNCleanup" size="large"   image="eraser"    label="クリーン&#xD;&#xA;アップ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
         <group id="SVNToolGroup" label="ツール" image="diff">
           <button id="TortoiseSVNDiff"    size="large"   image="diff"      label="Tortoise&#xD;&#xA;DIFF" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseSVNBrouser" size="large"   image="brouser"   label="リポジトリ&#xD;&#xA;ブラウザ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-          <button id="TortoiseSVNCleanup" size="large"   image="eraser"    label="クリーン&#xD;&#xA;アップ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
         <group id="SVNINFOGroup" label="情報" image="diff">
           <button id="TortoiseSVNHelp"    size="large"   image="help"      label="ヘルプ&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
-          <button id="TortoiseSVNVer"     size="large"   image="tortoise"  label="About...&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseSVNVer"     size="large"   image="tortoise"  label="Tortoise&#xD;&#xA;SVN" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseSVNWeb"     size="large"   image="subversion"  label="Subversion&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
+      </tab>
         
+      <tab id="TortoiseGitTab" label="TortoiseGit" getVisible="tabGetVisible">
+        <group id="GitGroup" label="ファイル操作" image="tortoise">
+          <button id="TortoiseGitCommit"  size="large"   image="commit"    label="コミット&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseGitRevert"  size="large"   image="revert"    label="変更の&#xD;&#xA;取り消し" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseGitAdd"     size="large"   image="addfile"  label="追加&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseGitLog"     size="large"   image="log"       label="ログ表示&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+        </group>
+        <group id="GitLockGroup" label="ローカルブランチ操作" image="lock">
+          <button id="openDocumentPath.3" size="large"   image="folder"    label="作業フォルダ&#xD;&#xA;を開く" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+          <button id="TortoiseGitPush"    size="large"   image="push"      label="プッシュ&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseGitTag"     size="large"   image="tag"       label="タグを&#xD;&#xA;作成" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseGitCleanup" size="large"   image="eraser"    label="クリーン&#xD;&#xA;アップ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+        </group>
+        <group id="GitToolGroup" label="ツール" image="diff">
+          <button id="TortoiseGitDiff"    size="large"   image="diff"      label="Tortoise&#xD;&#xA;DIFF" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseGitRevisionGraph"    size="large"   image="revisiongraph"      label="Revision&#xD;&#xA;Graph" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseGitBrouser" size="large"   image="brouser"   label="リポジトリ&#xD;&#xA;ブラウザ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+        </group>
+        <group id="GitINFOGroup" label="情報" image="diff">
+          <button id="TortoiseGitHelp"    size="large"   image="help"      label="ヘルプ&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseGitVer"     size="large"   image="tortoisegit"  label="Tortoise&#xD;&#xA;Git" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseGitWeb"     size="large"   image="git"  label="git&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+        </group>
+
       </tab>
     </tabs>
   </ribbon>

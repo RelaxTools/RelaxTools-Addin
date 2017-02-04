@@ -771,11 +771,11 @@ Function deserialize(ByVal strBuf As String) As KantanLineDTO
 
 End Function
 
-Function getLineStyle(ByVal tag As String) As XlLineStyle
+Function getLineStyle(ByVal Tag As String) As XlLineStyle
     
     Dim bStyle As XlLineStyle
     
-    Select Case Val(tag)
+    Select Case Val(Tag)
         Case 1
             bStyle = xlLineStyleNone
         Case 2
@@ -809,11 +809,11 @@ Function getLineStyle(ByVal tag As String) As XlLineStyle
     getLineStyle = bStyle
 
 End Function
-Function getBorderWeight(ByVal tag As String) As XlBorderWeight
+Function getBorderWeight(ByVal Tag As String) As XlBorderWeight
     
     Dim bLine As XlBorderWeight
     
-    Select Case Val(tag)
+    Select Case Val(Tag)
         Case 1
             bLine = xlHairline
         Case 2

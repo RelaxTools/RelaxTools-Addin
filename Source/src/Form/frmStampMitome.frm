@@ -107,7 +107,7 @@ Sub dispPreview()
             s.Text = txtName.Text
             Dim c As control
             For Each c In Controls
-                Select Case c.tag
+                Select Case c.Tag
                     Case "N"
                         c.enabled = True
                     Case "F"
@@ -119,7 +119,7 @@ Sub dispPreview()
             s.Text = rlxGetFullpathFromFileName(txtFile.Text)
 '            Dim c As control
             For Each c In Controls
-                Select Case c.tag
+                Select Case c.Tag
                     Case "N"
                         c.enabled = False
                     Case "F"

@@ -109,7 +109,7 @@ Public Property Let Neta(v As String)
     
     Dim c As Object
     For Each c In Controls
-        If c.tag = v Then
+        If c.Tag = v Then
             imgSushi.Picture = c.Picture
         End If
     Next
