@@ -264,6 +264,11 @@ Private Sub cmdOK_Click()
         MsgBox "比較先のシートを入力してください。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
+    
+    If cboSrcBook.Text = cboDstBook.Text And cboSrcSheet.Text = cboDstSheet.Text Then
+        MsgBox "比較元と比較先が同じです。", vbOKOnly + vbExclamation, C_TITLE
+        Exit Sub
+    End If
 
     Set srcSheet = Workbooks(cboSrcBook.Text).Worksheets(cboSrcSheet.Text)
     Set dstSheet = Workbooks(cboDstBook.Text).Worksheets(cboDstSheet.Text)
