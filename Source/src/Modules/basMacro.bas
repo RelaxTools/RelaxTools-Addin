@@ -1252,9 +1252,17 @@ Private Sub SelectionShiftCell(ByVal lngRow As Long, ByVal lngCol As Long)
         err.Clear
         On Error Resume Next
         If c Is Nothing Then
-            Set c = r.Offset(lngRow, lngCol)
+            If r.Offset(lngRow, lngCol) Is Nothing Then
+                Exit Sub
+            Else
+                Set c = r.Offset(lngRow, lngCol)
+            End If
         Else
-            Set c = Union(c, r.Offset(lngRow, lngCol))
+            If r.Offset(lngRow, lngCol) Is Nothing Then
+                Exit Sub
+            Else
+                Set c = Union(c, r.Offset(lngRow, lngCol))
+            End If
         End If
     
     Next
