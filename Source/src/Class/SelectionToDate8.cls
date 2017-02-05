@@ -75,19 +75,19 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     Dim s As String
   
-    On Error GoTo e
+    On Error Resume Next
     
     s = r.Value
     If s <> "" _
     And IsNumeric(s) = True _
     And Len(s) = 8 Then
-        r.Value = DateValue(Mid(s, 1, 4) & "/" & Mid(s, 5, 2) & "/" & Mid(s, 7, 2))
+        r.Value = CDate(Mid(s, 1, 4) & "/" & Mid(s, 5, 2) & "/" & Mid(s, 7, 2))
     End If
     
-    Exit Sub
-e:
-    Call rlxErrMsg(err)
-    Cancel = True
+'    Exit Sub
+'e:
+'    Call rlxErrMsg(err)
+'    Cancel = True
 End Sub
 
 

@@ -2593,3 +2593,86 @@ Public Sub CopyClipboardSleep()
     DoEvents
     Sleep Val(GetSetting(C_TITLE, "Option", "ClipboardSleep", 0))
 End Sub
+
+'--------------------------------------------------------------
+'  UNICODE対応ひらがな→カタカナ変換
+'--------------------------------------------------------------
+Function ToKatakana(ByVal strBuf As String) As String
+
+    Dim bytBuf() As Byte
+    Dim retBuf() As Byte
+    Dim lngBuf As Long
+    Dim i As Long
+    Dim lngLen As Long
+    Dim lngConv As Long
+    
+    lngLen = 0
+    
+    If Len(strBuf) = 0 Then
+        ToKatakana = ""
+        Exit Function
+    End If
+    
+    bytBuf = strBuf
+    retBuf = strBuf
+    
+    For i = LBound(bytBuf) To UBound(bytBuf) Step 2
+    
+        lngBuf = LShift(bytBuf(i + 1), 8) + bytBuf(i)
+    
+        Select Case lngBuf
+            'ひらがな
+            Case &H3041& To &H3096&
+            
+                lngConv = lngBuf + &H60&
+                retBuf(i) = LByte(lngConv)
+                retBuf(i + 1) = UByte(lngConv)
+            
+        End Select
+    
+    Next
+    
+    ToKatakana = retBuf()
+
+End Function
+'--------------------------------------------------------------
+'  UNICODE対応カタカナ→ひらがな変換
+'--------------------------------------------------------------
+Function ToHiragana(ByVal strBuf As String) As String
+
+    Dim bytBuf() As Byte
+    Dim retBuf() As Byte
+    Dim lngBuf As Long
+    Dim i As Long
+    Dim lngLen As Long
+    Dim lngConv As Long
+    
+    lngLen = 0
+    
+    If Len(strBuf) = 0 Then
+        ToHiragana = ""
+        Exit Function
+    End If
+    
+    bytBuf = strBuf
+    retBuf = strBuf
+    
+    For i = LBound(bytBuf) To UBound(bytBuf) Step 2
+    
+        lngBuf = LShift(bytBuf(i + 1), 8) + bytBuf(i)
+    
+        Select Case lngBuf
+            'カタカナ
+            Case &H30A1& To &H30F6&
+            
+                lngConv = lngBuf - &H60&
+                retBuf(i) = LByte(lngConv)
+                retBuf(i + 1) = UByte(lngConv)
+            
+        End Select
+    
+    Next
+    
+    ToHiragana = retBuf()
+
+End Function

@@ -893,15 +893,18 @@
           <button id="TortoiseGitCommit"  size="large"   image="commit"    label="コミット&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseGitRevert"  size="large"   image="revert"    label="変更の&#xD;&#xA;取り消し" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseGitAdd"     size="large"   image="addfile"  label="追加&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <separator id="GitSep"/>
           <button id="TortoiseGitLog"     size="large"   image="log"       label="ログ表示&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
+<!--
         <group id="GitLockGroup" label="ローカルブランチ操作" image="lock">
-          <button id="openDocumentPath.3" size="large"   image="folder"    label="作業フォルダ&#xD;&#xA;を開く" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           <button id="TortoiseGitPush"    size="large"   image="push"      label="プッシュ&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseGitTag"     size="large"   image="tag"       label="タグを&#xD;&#xA;作成" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseGitCleanup" size="large"   image="eraser"    label="クリーン&#xD;&#xA;アップ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
+-->
         <group id="GitToolGroup" label="ツール" image="diff">
+          <button id="openDocumentPath.3" size="large"   image="folder"    label="作業フォルダ&#xD;&#xA;を開く" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           <button id="TortoiseGitDiff"    size="large"   image="diff"      label="Tortoise&#xD;&#xA;DIFF" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseGitRevisionGraph"    size="large"   image="revisiongraph"      label="Revision&#xD;&#xA;Graph" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseGitBrouser" size="large"   image="brouser"   label="リポジトリ&#xD;&#xA;ブラウザ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />

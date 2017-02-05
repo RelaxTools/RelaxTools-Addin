@@ -51,14 +51,14 @@ Private Sub IVersion_Add()
         Exit Sub
     End If
     
-    If MsgBox("ブックをバージョン管理システムに追加します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
-        Exit Sub
-    End If
+'    If MsgBox("ブックをバージョン管理システムに追加します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+'        Exit Sub
+'    End If
     
     strCommand = CMD_ADD & GetPath(WB.FullName) & OPT_END0
     Run strCommand
     
-    MsgBox "追加しました。", vbOKOnly + vbExclamation, C_TITLE
+'    MsgBox "追加しました。", vbOKOnly + vbExclamation, C_TITLE
     
     Exit Sub
 e:
@@ -267,10 +267,12 @@ Private Sub IVersion_Log()
 
     Dim strCommand As String
     Dim WB As Workbook
+    Dim strBook As String
     
     On Error GoTo e
     
     Set WB = ActiveWorkbook
+    strBook = WB.FullName
     If IsError(WB) Then
         Exit Sub
     End If
@@ -282,6 +284,7 @@ Private Sub IVersion_Log()
     
     WB.ChangeFileAccess Mode:=xlReadOnly
     
+    'strCommand = CMD_LOG & "/PATH:" & rlxGetFullpathFromPathName(strBook) & " " & OPT_END0
     strCommand = CMD_LOG & GetPath(WB.FullName) & OPT_END0
     Run strCommand
 
