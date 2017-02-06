@@ -45,7 +45,7 @@ Attribute VB_Exposed = False
 Option Explicit
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private TR As Transparent
+'Private TR As Transparent
 
 Private Const mstrAns As String = "26262828252725274241" '上上下下左右左右ＢＡ
 Private mstrKey As String
@@ -247,9 +247,9 @@ Private Sub UserForm_Initialize()
     Set MW = basMouseWheel.GetInstance
     MW.Install
     
-    Set TR = New Transparent
-    TR.Init Me
-    TR.setTransparent 220
+'    Set TR = New Transparent
+'    TR.Init Me
+'    TR.setTransparent 220
     
 End Sub
 
@@ -287,6 +287,6 @@ End Sub
 Private Sub UserForm_Terminate()
     MW.UnInstall
     Set MW = Nothing
-    TR.Term
-    Set TR = Nothing
+'    TR.Term
+'    Set TR = Nothing
 End Sub
