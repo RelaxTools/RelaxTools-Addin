@@ -167,9 +167,9 @@ Private Sub txtEdit_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, B
     Set MW.obj = txtEdit
 End Sub
 
-Private Sub UserForm_Activate()
-    MW.Activate
-End Sub
+'Private Sub UserForm_Activate()
+'    MW.Activate
+'End Sub
 
 Private Sub UserForm_Initialize()
 
@@ -240,7 +240,7 @@ Private Sub UserForm_Initialize()
     optFormura.Value = True
     
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
     
 End Sub
 

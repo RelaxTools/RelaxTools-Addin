@@ -404,7 +404,7 @@ Private Sub UserForm_Initialize()
     chkUseFormat2_Click
     
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
 End Sub
 Private Function chgBoolToStr(ByVal blnFlg As Boolean) As String
     If blnFlg Then
@@ -413,9 +413,9 @@ Private Function chgBoolToStr(ByVal blnFlg As Boolean) As String
         chgBoolToStr = C_FALSE
     End If
 End Function
-Private Sub UserForm_Activate()
-    MW.Activate
-End Sub
+'Private Sub UserForm_Activate()
+'    MW.Activate
+'End Sub
 Public Function Start(ByRef col As Collection) As Collection
     
     Dim i As Long

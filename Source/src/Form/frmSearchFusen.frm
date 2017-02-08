@@ -479,7 +479,7 @@ Private Sub UserForm_Initialize()
     Me.Left = (Application.Left + Application.Width - Me.Width) - 20
     
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
 End Sub
 
 Sub dispList()
@@ -521,9 +521,9 @@ Sub dispList()
         
     Next
 End Sub
-Private Sub UserForm_Activate()
-    MW.Activate
-End Sub
+'Private Sub UserForm_Activate()
+'    MW.Activate
+'End Sub
 Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
     Set MW.obj = Nothing
 End Sub

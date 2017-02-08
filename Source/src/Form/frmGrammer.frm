@@ -768,19 +768,19 @@ End Sub
 
 
 
-Private Sub UserForm_Activate()
-'    Call FormResize
-    
-'    Me.Top = GetSetting(C_TITLE, "Search", "Top", (Application.Top + Application.Height - Me.Height) - 20)
-'    Me.Left = GetSetting(C_TITLE, "Search", "Left", (Application.Left + Application.Width - Me.Width) - 20)
-'    Me.Width = GetSetting(C_TITLE, "Search", "Width", Me.Width)
-'    Me.Height = GetSetting(C_TITLE, "Search", "Height", Me.Height)
-    
-    
-    
-'    Call UserForm_Resize
-    MW.Activate
-End Sub
+'Private Sub UserForm_Activate()
+''    Call FormResize
+'
+''    Me.Top = GetSetting(C_TITLE, "Search", "Top", (Application.Top + Application.Height - Me.Height) - 20)
+''    Me.Left = GetSetting(C_TITLE, "Search", "Left", (Application.Left + Application.Width - Me.Width) - 20)
+''    Me.Width = GetSetting(C_TITLE, "Search", "Width", Me.Width)
+''    Me.Height = GetSetting(C_TITLE, "Search", "Height", Me.Height)
+'
+'
+'
+''    Call UserForm_Resize
+'    MW.Activate
+'End Sub
 
 Private Sub UserForm_Initialize()
     
@@ -859,7 +859,7 @@ Private Sub UserForm_Initialize()
 '    mlngColumnWidth = Val(Split(Me.lstResult.ColumnWidths, ";")(1))
 
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
     
 End Sub
 Public Sub Start(ByVal lngTab As Long)

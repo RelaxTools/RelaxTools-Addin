@@ -1076,22 +1076,22 @@ End Sub
 '    Tr.setTransparent scrTransparent.Value
 'End Sub
 
-Private Sub UserForm_Activate()
-'    Call FormResize
-    
-'    Me.Top = GetSetting(C_TITLE, "Search", "Top", (Application.Top + Application.Height - Me.Height) - 20)
-'    Me.Left = GetSetting(C_TITLE, "Search", "Left", (Application.Left + Application.Width - Me.Width) - 20)
-'    Me.Width = GetSetting(C_TITLE, "Search", "Width", Me.Width)
-'    Me.Height = GetSetting(C_TITLE, "Search", "Height", Me.Height)
-    
-    
-    
-'    Call UserForm_Resize
-#If VBA7 And Win64 Then
-#Else
-    MW.Activate
-#End If
-End Sub
+'Private Sub UserForm_Activate()
+''    Call FormResize
+'
+''    Me.Top = GetSetting(C_TITLE, "Search", "Top", (Application.Top + Application.Height - Me.Height) - 20)
+''    Me.Left = GetSetting(C_TITLE, "Search", "Left", (Application.Left + Application.Width - Me.Width) - 20)
+''    Me.Width = GetSetting(C_TITLE, "Search", "Width", Me.Width)
+''    Me.Height = GetSetting(C_TITLE, "Search", "Height", Me.Height)
+'
+'
+'
+''    Call UserForm_Resize
+'#If VBA7 And Win64 Then
+'#Else
+'    MW.Activate
+'#End If
+'End Sub
 
 Private Sub UserForm_Initialize()
     
@@ -1172,7 +1172,7 @@ Private Sub UserForm_Initialize()
 #If VBA7 And Win64 Then
 #Else
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
 #End If
 '
 '    Set TR = New Transparent

@@ -384,9 +384,9 @@ Private Sub UserForm_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift
         
     End Select
 End Sub
-Private Sub UserForm_Activate()
-    MW.Activate
-End Sub
+'Private Sub UserForm_Activate()
+'    MW.Activate
+'End Sub
 Private Sub UserForm_Initialize()
 
     Dim strList() As String
@@ -542,7 +542,7 @@ Private Sub UserForm_Initialize()
     chkDetail.Value = GetSetting(C_TITLE, "Favirite", "Detail", False)
     
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------

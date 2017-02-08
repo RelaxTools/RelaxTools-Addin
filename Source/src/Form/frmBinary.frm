@@ -86,12 +86,12 @@ Private Sub scrBar_Scroll()
     disp
 End Sub
 
-Private Sub UserForm_Activate()
-    If MW Is Nothing Then
-    Else
-        MW.Activate
-    End If
-End Sub
+'Private Sub UserForm_Activate()
+'    If MW Is Nothing Then
+'    Else
+'        MW.Activate
+'    End If
+'End Sub
 
 Private Sub UserForm_Initialize()
             
@@ -221,7 +221,7 @@ Private Sub UserForm_Initialize()
     disp
     
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
     Set MW.obj = scrBar
 
 End Sub

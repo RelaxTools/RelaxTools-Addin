@@ -61,6 +61,7 @@ Public Event WheelDown(ByRef obj As Object)
     Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As LongPtr
     Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
     Private Declare PtrSafe Function GetActiveWindow Lib "user32" () As LongPtr
+    Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
 #Else
     Private Declare Function SetWindowsHookEx Lib "user32.dll" Alias "SetWindowsHookExA" (ByVal idHook As Long, ByVal lpfn As Long, ByVal hmod As Long, ByVal dwThreadId As Long) As Long
     Private Declare Function UnhookWindowsHookEx Lib "user32.dll" (ByVal hhk As Long) As Long
@@ -68,8 +69,8 @@ Public Event WheelDown(ByRef obj As Object)
     Private Declare Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long) As Long
     Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
     Private Declare Function GetActiveWindow Lib "user32" () As Long
+    Private Declare Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
 #End If
-
 Private Const GWL_HINSTANCE As Long = -6
 Private Const WH_MOUSE_LL As Long = 14
 
@@ -101,21 +102,20 @@ Private mIsRunning As Boolean
 
 'Private mstrName As String
 Private mobj As Object
-Public Sub Activate()
-    mActWnd = GetActiveWindow
-'    Debug.Print "Activate" & mActWnd
-End Sub
-    
+'Public Sub Activate()
+'    mActWnd = GetActiveWindow
+'End Sub
 Public Property Set obj(s As Object)
     Set mobj = s
 End Property
 'Public Property Let Name(s As String)
 '    mstrName = s
 'End Property
-Public Sub Install()
+Public Sub Install(f As UserForm)
 
     If mIsRunning = False Then
     
+        mActWnd = FindWindowA("ThunderDFrame", f.Caption)
         mHWnd = Application.hWnd
 
         mHandle = SetWindowsHookEx(WH_MOUSE_LL, AddressOf basMouseWheel.MouseEventHookHandler, GetWindowLong(mHWnd, GWL_HINSTANCE), 0)

@@ -164,7 +164,7 @@ Private Sub UserForm_Initialize()
     Call cmdSearch_Click
     
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
 End Sub
 Function SearchStyle(ByVal strBuf As String) As Boolean
 

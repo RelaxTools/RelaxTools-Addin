@@ -465,7 +465,7 @@ Private Sub UserForm_Initialize()
     txtRow.Text = C_START_ROW
     
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
 End Sub
 Private Function getAto1(ByVal strCol As String) As Long
 

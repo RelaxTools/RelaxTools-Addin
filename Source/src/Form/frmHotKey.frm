@@ -584,9 +584,9 @@ Private Sub txtKinou_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift
         Call dispCommand
     End If
 End Sub
-Private Sub UserForm_Activate()
-    MW.Activate
-End Sub
+'Private Sub UserForm_Activate()
+'    MW.Activate
+'End Sub
 Private Sub UserForm_Initialize()
     
     Dim WS As Worksheet
@@ -689,7 +689,7 @@ Private Sub UserForm_Initialize()
     End If
     
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
     
 End Sub
 Function getEnable(ByVal strBuf As String) As String

@@ -1953,7 +1953,7 @@ Private Sub UserForm_Initialize()
     Call kantanLineRun
     
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
     
 End Sub
 Private Sub UserForm_Activate()

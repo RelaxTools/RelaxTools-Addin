@@ -234,9 +234,9 @@ Private Sub txtSheetName_Change()
     
 End Sub
 
-Private Sub UserForm_Activate()
-    MW.Activate
-End Sub
+'Private Sub UserForm_Activate()
+'    MW.Activate
+'End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
 ' リスト初期表示イベント
@@ -265,7 +265,7 @@ Private Sub UserForm_Initialize()
 '        Next
 '    Next
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' リフレッシュ処理

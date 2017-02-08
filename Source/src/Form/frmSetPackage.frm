@@ -322,7 +322,7 @@ End Sub
 
 Private Sub UserForm_Initialize()
     Set MW = basMouseWheel.GetInstance
-    MW.Install
+    MW.Install Me
 End Sub
 
 Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
@@ -339,9 +339,9 @@ Private Sub MW_WheelDown(obj As Object)
     obj.TopIndex = obj.TopIndex + 3
     
 End Sub
-Private Sub UserForm_Activate()
-    MW.Activate
-End Sub
+'Private Sub UserForm_Activate()
+'    MW.Activate
+'End Sub
 Private Sub MW_WheelUp(obj As Object)
 
     Dim lngPos As Long
