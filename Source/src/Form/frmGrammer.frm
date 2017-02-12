@@ -255,8 +255,8 @@ Private Sub seachCell(ByRef WD As Object, ByRef objSheet As Worksheet)
                 lstResult.List(mlngCount, C_SEARCH_ADDRESS) = objFind.Address
                 lstResult.List(mlngCount, C_SEARCH_ID) = objFind.Address
                 
-                lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
-                lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.Name
+                lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.name
+                lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.name
     
                 mlngCount = mlngCount + 1
             End If
@@ -408,10 +408,10 @@ Private Sub searchShape(ByRef WD As Object, ByRef objSheet As Worksheet)
                         lstResult.AddItem ""
                         lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                         lstResult.List(mlngCount, C_SEARCH_STR) = Left(strRet, C_SIZE)
-                        lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
+                        lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.name
                         lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & ":" & c.id
-                        lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
-                        lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.Name
+                        lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.name
+                        lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.name
 
                         mlngCount = mlngCount + 1
                         
@@ -457,10 +457,10 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                         lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                         lstResult.List(mlngCount, C_SEARCH_STR) = Left(strRet, C_SIZE)
 
-                        lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
+                        lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.name
                         lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.id
-                        lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.Name
-                        lstResult.List(mlngCount, C_SEARCH_BOOK) = WS.Parent.Name
+                        lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.name
+                        lstResult.List(mlngCount, C_SEARCH_BOOK) = WS.Parent.name
 
                         mlngCount = mlngCount + 1
                     
@@ -1088,14 +1088,18 @@ End Sub
 
 Private Sub MW_WheelDown(obj As Object)
 
+    On Error GoTo e
+
     If obj.ListCount = 0 Then Exit Sub
     obj.TopIndex = obj.TopIndex + 3
-    
+e:
 End Sub
 
 Private Sub MW_WheelUp(obj As Object)
 
     Dim lngPos As Long
+
+    On Error GoTo e
 
     If obj.ListCount = 0 Then Exit Sub
     lngPos = obj.TopIndex - 3
@@ -1105,5 +1109,5 @@ Private Sub MW_WheelUp(obj As Object)
     End If
 
     obj.TopIndex = lngPos
-
+e:
 End Sub

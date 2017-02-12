@@ -63,7 +63,7 @@ Private Sub cboDstBook_Change()
     cboDstSheet.Clear
     If cboDstBook.ListIndex <> -1 Then
         For Each s In Workbooks(cboDstBook.Text).Worksheets
-            cboDstSheet.AddItem s.Name
+            cboDstSheet.AddItem s.name
         Next
     End If
 End Sub
@@ -74,7 +74,7 @@ Private Sub cboSrcBook_Change()
     cboSrcSheet.Clear
     If cboSrcBook.ListIndex <> -1 Then
         For Each s In Workbooks(cboSrcBook.Text).Worksheets
-            cboSrcSheet.AddItem s.Name
+            cboSrcSheet.AddItem s.name
         Next
     End If
 End Sub
@@ -235,8 +235,8 @@ Private Sub UserForm_Initialize()
     Dim b As Workbook
     
     For Each b In Workbooks
-        cboSrcBook.AddItem b.Name
-        cboDstBook.AddItem b.Name
+        cboSrcBook.AddItem b.name
+        cboDstBook.AddItem b.name
     Next
     
     cboSrcSheet.Clear
@@ -301,7 +301,7 @@ Private Sub cmdOK_Click()
     ThisWorkbook.Worksheets("比較結果").Copy
     Set ResultWS = ActiveSheet
     
-    ResultWS.Name = "比較結果"
+    ResultWS.name = "比較結果"
     
     ResultWS.Cells(1, C_COMP_NO).Value = "シートの比較"
     ResultWS.Cells(2, C_COMP_NO).Value = "比較元：" & cboSrcBook.Text & "!" & cboSrcSheet.Text
@@ -374,8 +374,8 @@ Sub makeResult(ByRef ResultWS As Worksheet, ByRef srcSheet As Worksheet, ByRef d
                 
     ResultWS.Cells(lngCount, C_COMP_NO).Value = lngCount - C_START_ROW + 1
     ResultWS.Cells(lngCount, C_COMP_RESULT).Value = "不一致"
-    ResultWS.Cells(lngCount, C_COMP_BOOK).Value = dstSheet.Parent.Name
-    ResultWS.Cells(lngCount, C_COMP_SHEET).Value = dstSheet.Name
+    ResultWS.Cells(lngCount, C_COMP_BOOK).Value = dstSheet.Parent.name
+    ResultWS.Cells(lngCount, C_COMP_SHEET).Value = dstSheet.name
     ResultWS.Cells(lngCount, C_COMP_ADDRESS).Value = r1.Address
     ResultWS.Cells(lngCount, C_COMP_SRCSTR).Value = r1.Value
     ResultWS.Cells(lngCount, C_COMP_DSTSTR).Value = r2.Value

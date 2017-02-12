@@ -345,14 +345,14 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
         DoEvents
         DoEvents
         For Each f In strPatterns
-            If LCase(objfl.Name) Like LCase(f) Then
+            If LCase(objfl.name) Like LCase(f) Then
                 blnFind = True
                 Exit For
             End If
         Next
         
         If blnFind Then
-            objCol.Add rlxAddFileSeparator(objfl.ParentFolder.Path) & objfl.Name
+            objCol.Add rlxAddFileSeparator(objfl.ParentFolder.Path) & objfl.name
         End If
     Next
     

@@ -2365,3 +2365,105 @@ Sub execSelectionNumberAsText()
 
 End Sub
 
+'--------------------------------------------------------------
+' 月＋１
+'--------------------------------------------------------------
+Sub execSelectioDateMonthAdd()
+    
+    Dim obj As SelectionDateAdd
+    
+    Set obj = New SelectionDateAdd
+    
+    obj.DateType = "m"
+    obj.DateValue = 1
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
+' 月－１
+'--------------------------------------------------------------
+Sub execSelectioDateMonthMinus()
+    
+    Dim obj As SelectionDateAdd
+    
+    Set obj = New SelectionDateAdd
+    
+    obj.DateType = "m"
+    obj.DateValue = -1
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
+' 年＋１
+'--------------------------------------------------------------
+Sub execSelectioDateYearAdd()
+    
+    Dim obj As SelectionDateAdd
+    
+    Set obj = New SelectionDateAdd
+    
+    obj.DateType = "yyyy"
+    obj.DateValue = 1
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
+' 年－１
+'--------------------------------------------------------------
+Sub execSelectioDateYearMinus()
+    
+    Dim obj As SelectionDateAdd
+    
+    Set obj = New SelectionDateAdd
+    
+    obj.DateType = "yyyy"
+    obj.DateValue = -1
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
+' 日＋１
+'--------------------------------------------------------------
+Sub execSelectioDateDayAdd()
+    
+    Dim obj As SelectionDateAdd
+    
+    Set obj = New SelectionDateAdd
+    
+    obj.DateType = "d"
+    obj.DateValue = 1
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
+' 日－１
+'--------------------------------------------------------------
+Sub execSelectioDateDayMinus()
+    
+    Dim obj As SelectionDateAdd
+    
+    Set obj = New SelectionDateAdd
+    
+    obj.DateType = "d"
+    obj.DateValue = -1
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub

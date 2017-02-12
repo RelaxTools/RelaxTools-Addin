@@ -1,4 +1,10 @@
-﻿2017/02/08(wed) RelaxTools-Addin Version 4.10.2(RustRemover) 
+﻿2017/02/12(sun) RelaxTools-Addin Version 4.10.3(RustRemover) 
+◇機能改善
+　・ひらがな変換、カタカナ変換で小文字の「ヵ」「ヶ」を変換対象とする設定画面を追加。
+◇バグ修正
+　・リストボックスのマウスホイールでエラーになることがあるのを本対策。
+
+2017/02/08(wed) RelaxTools-Addin Version 4.10.2(RustRemover) 
 ◇バグ修正
 　・TortoiseSVN, TortoiseGit のヘルプ表示が異なっていた不具合を修正。
 　・リストボックスのマウスホイールでエラーになることがあるのをお試しで修正。

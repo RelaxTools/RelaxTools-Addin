@@ -150,7 +150,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
         If mblnCancel Then
             Exit Sub
         End If
-        colFiles.Add objfl.Name, objfl
+        colFiles.Add objfl.name, objfl
     Next
     
 '    'コレクションのソート
@@ -164,7 +164,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
         lngCol2 = lngCol
         If chkFile.Value Then
             Cells(lngRow, lngCol2).NumberFormatLocal = "@"
-            Cells(lngRow, lngCol2) = colFiles.Item(objKey).Name
+            Cells(lngRow, lngCol2) = colFiles.Item(objKey).name
             lngCol2 = lngCol2 + 1
         End If
         If chkFolder.Value Then
@@ -194,7 +194,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
         If mblnCancel Then
             Exit Sub
         End If
-        colFolders.Add objSub.Name, objSub
+        colFolders.Add objSub.name, objSub
     Next
     
 '    'コレクションのソート
@@ -210,7 +210,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
             lngCol2 = lngCol
             If chkFile.Value Then
                 Cells(lngRow, lngCol2).NumberFormatLocal = "@"
-                Cells(lngRow, lngCol2) = colFolders.Item(objKey).Name
+                Cells(lngRow, lngCol2) = colFolders.Item(objKey).name
                 lngCol2 = lngCol2 + 1
             End If
             If chkFolder.Value Then

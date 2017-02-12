@@ -57,7 +57,7 @@ Public Function Start(ByRef lngColor As Long) As VbMsgBoxResult
         If TypeName(c) = "Image" Then
     
             '色の初期設定
-            c.BackColor = ActiveWorkbook.Colors(Val(Right(c.Name, 2)))
+            c.BackColor = ActiveWorkbook.Colors(Val(Right(c.name, 2)))
         
             If c.BackColor = lngColor Then
                 c.SpecialEffect = fmSpecialEffectSunken

@@ -455,7 +455,7 @@ Private Sub addCrossLine()
         If lngType And C_HOLIZON Then
             Set s = mWS.Shapes.AddShape(msoShapeRectangle, 10, 10, 10, 10)
             
-            s.Name = C_HOLIZONTAL_BAR_NAME
+            s.name = C_HOLIZONTAL_BAR_NAME
             s.Line.visible = msoFalse
             
             s.Select
@@ -475,7 +475,7 @@ Private Sub addCrossLine()
         If lngType And C_VERTICAL Then
             Set s = mWS.Shapes.AddShape(msoShapeRectangle, 20, 20, 10, 10)
         
-            s.Name = C_VERTICAL_BAR_NAME
+            s.name = C_VERTICAL_BAR_NAME
             s.Line.visible = msoFalse
             
             s.Select
@@ -495,7 +495,7 @@ Private Sub addCrossLine()
         If blnGuid Then
             Set s = mWS.Shapes.AddShape(msoShapeRectangle, 20, 20, 10, 10)
         
-            s.Name = C_XY_BAR_NAME
+            s.name = C_XY_BAR_NAME
             s.Line.visible = msoFalse
             
             s.Select
@@ -571,7 +571,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         Exit Sub
     End If
     
-    If mWS.Name <> sh.Name Then
+    If mWS.name <> sh.name Then
         Exit Sub
     End If
     
@@ -722,7 +722,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
             .TextRange.Text = strBuf
             .TextRange.Font.NameComplexScript = "Meiryo UI"
             .TextRange.Font.NameFarEast = "Meiryo UI"
-            .TextRange.Font.Name = "Meiryo UI"
+            .TextRange.Font.name = "Meiryo UI"
             .TextRange.Font.Size = 9
             .TextRange.Font.Bold = msoTrue
             .TextRange.Font.Fill.ForeColor.RGB = lngFontColor

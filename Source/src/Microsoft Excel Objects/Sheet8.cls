@@ -52,7 +52,7 @@ Sub reboot()
 
     For Each a In Application.AddIns
 
-        If UCase(a.Name) = C_File Then
+        If UCase(a.name) = C_File Then
             a.Installed = False
             a.Installed = True
             Exit For
@@ -78,7 +78,7 @@ Sub RelaxInit()
     
     For Each a In Application.AddIns
 
-        If UCase(a.Name) = C_File Then
+        If UCase(a.name) = C_File Then
         
             a.Installed = False
             
@@ -107,7 +107,7 @@ Sub RelaxUninstall()
 
     For Each a In Application.AddIns
 
-        If UCase(a.Name) = C_File Then
+        If UCase(a.name) = C_File Then
             a.Installed = False
             Kill a.FullName
             Exit For

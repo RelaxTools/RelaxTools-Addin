@@ -78,7 +78,7 @@ Function getImageSakura(ByVal strId As String, ByVal Index As Long) As StdPictur
     
     b.ZOrder msoSendToBack
     
-    Set o = ThisWorkbook.Worksheets("sakura").Shapes.Range(Array(r.Name, b.Name)).Group
+    Set o = ThisWorkbook.Worksheets("sakura").Shapes.Range(Array(r.name, b.name)).Group
     
     Set getImageSakura = CreatePictureFromClipboard(o)
     

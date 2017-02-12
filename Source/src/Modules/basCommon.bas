@@ -1372,7 +1372,7 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     ReDim strKey(1 To n)
 
     For i = 1 To n
-        strKey(i) = col.Item(i).Name
+        strKey(i) = col.Item(i).name
     Next
 
     '挿入ソート
@@ -1403,7 +1403,7 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     Set col2 = New Collection
 
     For i = 1 To n
-        col2.Add col.Item(strKey(i)), col.Item(strKey(i)).Name
+        col2.Add col.Item(strKey(i)), col.Item(strKey(i)).name
     Next
 
     Set col = col2
@@ -1472,7 +1472,7 @@ Public Sub rlxSortDictionary(ByRef col As Object)
     Set col2 = CreateObject("Scripting.Dictionary")
 
     For i = 1 To n
-        col2.Add col.Item(strKey(i)).Name, col.Item(strKey(i))
+        col2.Add col.Item(strKey(i)).name, col.Item(strKey(i))
     Next
 
     Set col = col2
@@ -2431,7 +2431,7 @@ Sub RenameActiveBook()
     Dim strNewName As String
     strNewName = rlxGetFullpathFromFileName(strNew)
     For Each s In Workbooks
-        If LCase(s.Name) = LCase(strNewName) Then
+        If LCase(s.name) = LCase(strNewName) Then
             MsgBox "同名のブックを開いているため名前の変更ができません。", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
         End If
@@ -2597,7 +2597,7 @@ End Sub
 '--------------------------------------------------------------
 '  UNICODE対応ひらがな→カタカナ変換
 '--------------------------------------------------------------
-Function ToKatakana(ByVal strBuf As String) As String
+Function ToKatakana(ByVal strBuf As String, Optional ByVal flag As Boolean = False) As String
 
     Dim bytBuf() As Byte
     Dim retBuf() As Byte
@@ -2605,6 +2605,7 @@ Function ToKatakana(ByVal strBuf As String) As String
     Dim i As Long
     Dim lngLen As Long
     Dim lngConv As Long
+    Dim lngOpt As Long
     
     lngLen = 0
     
@@ -2616,13 +2617,19 @@ Function ToKatakana(ByVal strBuf As String) As String
     bytBuf = strBuf
     retBuf = strBuf
     
+    If flag Then
+        lngOpt = &H3096&
+    Else
+        lngOpt = &H3094&
+    End If
+    
     For i = LBound(bytBuf) To UBound(bytBuf) Step 2
     
         lngBuf = LShift(bytBuf(i + 1), 8) + bytBuf(i)
     
         Select Case lngBuf
             'ひらがな
-            Case &H3041& To &H3096&
+            Case &H3041& To lngOpt, &H309D&, &H309E&
             
                 lngConv = lngBuf + &H60&
                 retBuf(i) = LByte(lngConv)
@@ -2638,7 +2645,7 @@ End Function
 '--------------------------------------------------------------
 '  UNICODE対応カタカナ→ひらがな変換
 '--------------------------------------------------------------
-Function ToHiragana(ByVal strBuf As String) As String
+Function ToHiragana(ByVal strBuf As String, Optional ByVal flag As Boolean = False) As String
 
     Dim bytBuf() As Byte
     Dim retBuf() As Byte
@@ -2646,6 +2653,7 @@ Function ToHiragana(ByVal strBuf As String) As String
     Dim i As Long
     Dim lngLen As Long
     Dim lngConv As Long
+    Dim lngOpt As Long
     
     lngLen = 0
     
@@ -2657,13 +2665,19 @@ Function ToHiragana(ByVal strBuf As String) As String
     bytBuf = strBuf
     retBuf = strBuf
     
+    If flag Then
+        lngOpt = &H30F6&
+    Else
+        lngOpt = &H30F4&
+    End If
+    
     For i = LBound(bytBuf) To UBound(bytBuf) Step 2
     
         lngBuf = LShift(bytBuf(i + 1), 8) + bytBuf(i)
     
         Select Case lngBuf
             'カタカナ
-            Case &H30A1& To &H30F6&
+            Case &H30A1& To lngOpt, &H30FD&, &H30FE&
             
                 lngConv = lngBuf - &H60&
                 retBuf(i) = LByte(lngConv)

@@ -191,7 +191,7 @@ Private Sub cmdOK_Click()
     Set ResultWS = ActiveSheet
     
     'Set ResultWS = Workbooks.Add.Worksheets(1)
-    ResultWS.Name = "Grep結果"
+    ResultWS.name = "Grep結果"
     
     ResultWS.Cells(1, C_SEARCH_NO).Value = "ExcelファイルのGrep"
     ResultWS.Cells(2, C_SEARCH_NO).Value = "条件：" & cboSearch.Text
@@ -378,14 +378,14 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
         DoEvents
         DoEvents
         For Each f In strPatterns
-            If LCase(objfl.Name) Like LCase(f) Then
+            If LCase(objfl.name) Like LCase(f) Then
                 blnFind = True
                 Exit For
             End If
         Next
         
         If blnFind Then
-            objCol.Add rlxAddFileSeparator(objfl.ParentFolder.Path) & objfl.Name
+            objCol.Add rlxAddFileSeparator(objfl.ParentFolder.Path) & objfl.name
         End If
     Next
     
@@ -572,7 +572,7 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                 If objMatch.count > 0 Then
                     ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                     ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
-                    ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
+                    ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.name
                     ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = objFind.Address
     '                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = c.Address
             
@@ -617,7 +617,7 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                 ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
                 ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = objFind.Address
 '                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = objFind.Address
-                ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
+                ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.name
                 
                 ResultWS.Hyperlinks.Add _
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
@@ -708,7 +708,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     
                         ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                         ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
-                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.id
+                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.name & ":" & c.id
 '                        ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = "Shape:" & c.ID
                         
 '                        ResultWS.Hyperlinks.Add _
@@ -725,9 +725,9 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
                     SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
-                    TextToDisplay:=c.Name & ":" & c.id
+                    TextToDisplay:=c.name & ":" & c.id
                     
-                        ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
+                        ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.name
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = strBuf
                         mlngCount = mlngCount + 1
@@ -783,8 +783,8 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     
                         ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                         ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objShape.Parent.Parent.FullName
-                        ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objShape.Parent.Name
-                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.id
+                        ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objShape.Parent.name
+                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.name & ":" & c.id
 '                        ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = "Shape:" & c.ID
                         
 '                        ResultWS.Hyperlinks.Add _
@@ -801,7 +801,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
                     SubAddress:=Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
-                    TextToDisplay:=c.Name & ":" & c.id
+                    TextToDisplay:=c.name & ":" & c.id
                         
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = strBuf

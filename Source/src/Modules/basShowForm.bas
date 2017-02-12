@@ -333,3 +333,7 @@ End Sub
 Sub execBinaryView()
     frmBinary.Show
 End Sub
+Sub KanaSetting()
+    frmKana.Show
+End Sub
+

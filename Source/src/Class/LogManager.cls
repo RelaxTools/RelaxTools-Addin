@@ -142,7 +142,7 @@ Private Sub OpenLog()
     'ログフォルダを Dictionaryに追加
     Set objFolder = objFs.GetFolder(strLogFolder)
     For Each objFile In objFolder.files
-        objDic.Add objFile.Name, objFile.Name
+        objDic.Add objFile.name, objFile.name
     Next
     
     Dim i As Long

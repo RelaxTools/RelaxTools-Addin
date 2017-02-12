@@ -259,6 +259,7 @@ Private Sub MW_WheelDown(obj As Object)
     Dim lngPos As Long
     
     On Error GoTo e
+    
     lngPos = obj.CurLine + 3
     If lngPos >= obj.LineCount Then
         lngPos = obj.LineCount - 1
@@ -272,6 +273,7 @@ Private Sub MW_WheelUp(obj As Object)
     Dim lngPos As Long
     
     On Error GoTo e
+    
     lngPos = obj.CurLine - 3
     If lngPos < 0 Then
         lngPos = 0

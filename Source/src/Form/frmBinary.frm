@@ -58,6 +58,9 @@ End Sub
 
 Private Sub MW_WheelDown(obj As Object)
     Dim lngValue As Long
+    
+    On Error GoTo e
+
     lngValue = scrBar.Value + 3
     If lngValue > scrBar.Max Then
         scrBar.Value = scrBar.Max
@@ -65,10 +68,14 @@ Private Sub MW_WheelDown(obj As Object)
         scrBar.Value = lngValue
     End If
     disp
+e:
 End Sub
 
 Private Sub MW_WheelUp(obj As Object)
     Dim lngValue As Long
+    
+    On Error GoTo e
+
     lngValue = scrBar.Value - 3
     If lngValue < scrBar.Min Then
         scrBar.Value = scrBar.Min
@@ -76,6 +83,7 @@ Private Sub MW_WheelUp(obj As Object)
         scrBar.Value = lngValue
     End If
     disp
+e:
 End Sub
 
 Private Sub scrBar_Change()

@@ -72,7 +72,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         With WS.Shapes("shpUp").TextFrame2.TextRange.Font
             .NameComplexScript = s.Font
             .NameFarEast = s.Font
-            .Name = s.Font
+            .name = s.Font
             .Strikethrough = False
             .Superscript = False
             .Subscript = False
@@ -87,7 +87,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         With WS.Shapes("shpUp2").TextFrame2.TextRange.Font
             .NameComplexScript = s.Font
             .NameFarEast = s.Font
-            .Name = s.Font
+            .name = s.Font
             .Strikethrough = False
             .Superscript = False
             .Subscript = False
@@ -103,7 +103,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
     With WS.Shapes("shpMid").TextFrame2.TextRange.Font
         .NameComplexScript = s.Font
         .NameFarEast = s.Font
-        .Name = s.Font
+        .name = s.Font
         .Strikethrough = False
         .Superscript = False
         .Subscript = False
@@ -117,7 +117,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         With WS.Shapes("shpLow").TextFrame2.TextRange.Font
             .NameComplexScript = s.Font
             .NameFarEast = s.Font
-            .Name = s.Font
+            .name = s.Font
             .Strikethrough = False
             .Superscript = False
             .Subscript = False
@@ -132,7 +132,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         With WS.Shapes("shpLow2").TextFrame2.TextRange.Font
             .NameComplexScript = s.Font
             .NameFarEast = s.Font
-            .Name = s.Font
+            .name = s.Font
             .Strikethrough = False
             .Superscript = False
             .Subscript = False
@@ -186,7 +186,7 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         
         b.ZOrder msoSendToBack
         
-        Set o = WS.Shapes.Range(Array(r.Name, b.Name)).Group
+        Set o = WS.Shapes.Range(Array(r.name, b.name)).Group
         
         Set editStamp = CreatePictureFromClipboard(o)
         
