@@ -306,7 +306,7 @@ Private Sub XL_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolea
     End If
     
     strFolder = GetSetting(C_TITLE, "Backup", "Folder", "")
-    Dim strFullname As String
+    Dim strFullName As String
     Dim strPath As String
     
     lngGen = Val(GetSetting(C_TITLE, "Backup", "Gen", "99"))
@@ -314,17 +314,17 @@ Private Sub XL_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolea
     For i = lngGen To 0 Step -1
     
         If Len(Trim(strFolder)) = 0 Then
-            strFullname = WB.FullName
+            strFullName = WB.FullName
         Else
-            strFullname = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(WB.FullName)
+            strFullName = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(WB.FullName)
         End If
     
-        strSourceFile = strFullname & "." & Format$(i, "000")
+        strSourceFile = strFullName & "." & Format$(i, "000")
         If rlxIsFileExists(strSourceFile) Then
             If i = lngGen Then
                 Kill strSourceFile
             Else
-                strDestFile = strFullname & "." & Format$(i + 1, "000")
+                strDestFile = strFullName & "." & Format$(i + 1, "000")
                 Name strSourceFile As strDestFile
             End If
         End If
@@ -384,15 +384,15 @@ Private Sub XL_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
         Next
         If blnFind Then
             Dim strFolder As String
-            Dim strFullname As String
+            Dim strFullName As String
             strFolder = GetSetting(C_TITLE, "Backup", "Folder", "")
             If Len(Trim(strFolder)) = 0 Then
-                strFullname = WB.FullName
+                strFullName = WB.FullName
             Else
-                strFullname = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(WB.FullName)
+                strFullName = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(WB.FullName)
             End If
             mblnEventCancel = True
-            WB.SaveCopyAs strFullname & ".000"
+            WB.SaveCopyAs strFullName & ".000"
             mblnEventCancel = False
         
         End If

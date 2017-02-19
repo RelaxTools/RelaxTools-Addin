@@ -248,3 +248,113 @@ Public Sub TortoiseSVNWeb()
     End If
     Call GoURL("https://subversion.apache.org/")
 End Sub
+
+
+
+
+Public Sub TortoiseHGAdd()
+
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Add
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGCommit()
+
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Commit
+    Set Ver = Nothing
+
+End Sub
+
+Public Sub TortoiseHGRevert()
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Revert
+    
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGLog()
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Log
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGCleanup()
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Cleanup
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGVer()
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Ver
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGHelp()
+
+    If MsgBox("インターネットに接続します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        Exit Sub
+    End If
+    Call GoURL("https://tortoisehg-ja.readthedocs.io/ja/latest/")
+
+End Sub
+Public Sub TortoiseHGTag()
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Tag
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGPush()
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Push
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGRevisionGraph()
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.RevisionGraph
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGDiff()
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Diff
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGBrouser()
+    Dim Ver As IVersion
+    
+    Set Ver = New TorToiseHG
+    Ver.Brouser
+    Set Ver = Nothing
+
+End Sub
+Public Sub TortoiseHGWeb()
+    If MsgBox("インターネットに接続します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+        Exit Sub
+    End If
+    Call GoURL("https://tortoisehg.bitbucket.io/ja/?")
+End Sub

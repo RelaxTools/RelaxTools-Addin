@@ -332,12 +332,35 @@ Private Sub IVersion_Revert()
     
     Dim strCommand As String
     Dim WB As Workbook
+    Dim strBook As String
     
     On Error GoTo e
     
     Set WB = ActiveWorkbook
-    If IsError(WB) Then
+    strBook = WB.FullName
+    
+    If Not rlxIsFileExists(strBook) Then
+        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
+    End If
+    
+    With CreateObject("SubWCRev.object")
+        .GetWCInfo strBook, 0, 0
+        If .IsSvnItem Then
+        Else
+            MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
+            Exit Sub
+        End If
+    End With
+        
+    If Not WB.Saved Then
+        If MsgBox("ブックが変更されています。破棄しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            Exit Sub
+        End If
+    Else
+        If MsgBox("変更を元に戻します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            Exit Sub
+        End If
     End If
     
     On Error Resume Next
@@ -345,13 +368,12 @@ Private Sub IVersion_Revert()
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
     
-    WB.ChangeFileAccess Mode:=xlReadOnly
-    
     strCommand = CMD_REVERT & GetPath(WB.FullName) & OPT_END0
+    WB.Close False
+    
     Run strCommand
 
-    WB.ChangeFileAccess Mode:=xlReadWrite
-    
+    Workbooks.Open strBook
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
@@ -373,12 +395,29 @@ Private Sub IVersion_Update()
     
     Set WB = ActiveWorkbook
     strBook = WB.FullName
-    If IsError(WB, True) Then
+    
+    If Not rlxIsFileExists(strBook) Then
+        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
-    If MsgBox("HEADに更新します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
-        Exit Sub
+    With CreateObject("SubWCRev.object")
+        .GetWCInfo strBook, 0, 0
+        If .IsSvnItem Then
+        Else
+            MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
+            Exit Sub
+        End If
+    End With
+        
+    If Not WB.Saved Then
+        If MsgBox("ブックが変更されています。破棄しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            Exit Sub
+        End If
+    Else
+        If MsgBox("HEADに更新します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            Exit Sub
+        End If
     End If
     
     On Error Resume Next

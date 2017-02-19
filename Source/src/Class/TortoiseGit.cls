@@ -333,12 +333,26 @@ Private Sub IVersion_Revert()
     
     Dim strCommand As String
     Dim WB As Workbook
+    Dim strBook As String
     
     On Error GoTo e
     
     Set WB = ActiveWorkbook
-    If IsError(WB) Then
+    strBook = WB.FullName
+    
+    If Not rlxIsFileExists(strBook) Then
+        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
+    End If
+        
+    If Not WB.Saved Then
+        If MsgBox("ブックが変更されています。破棄しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            Exit Sub
+        End If
+    Else
+        If MsgBox("変更を元に戻します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            Exit Sub
+        End If
     End If
     
     On Error Resume Next
@@ -346,13 +360,12 @@ Private Sub IVersion_Revert()
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
     
-    WB.ChangeFileAccess Mode:=xlReadOnly
-    
     strCommand = CMD_REVERT & GetPath(WB.FullName) & OPT_END0
+    WB.Close False
+    
     Run strCommand
 
-    WB.ChangeFileAccess Mode:=xlReadWrite
-    
+    Workbooks.Open strBook
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
@@ -361,6 +374,7 @@ e:
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
     MsgBox "TortoiseGitの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
+    
 End Sub
 
 
