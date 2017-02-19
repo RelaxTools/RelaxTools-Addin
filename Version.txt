@@ -1,4 +1,9 @@
-﻿2017/02/12(sun) RelaxTools-Addin Version 4.10.3(RustRemover) 
+﻿2017/02/19(sun) RelaxTools-Addin Version 4.10.4(RustRemover) 
+◇機能改善
+　・TortoiseSVN/Gitの「Head更新」/「変更取り消し」でExcelに変更があった場合、
+　　破棄メッセージを表示して続行できるように修正。
+　
+2017/02/12(sun) RelaxTools-Addin Version 4.10.3(RustRemover) 
 ◇機能改善
 　・ひらがな変換、カタカナ変換で小文字の「ヵ」「ヶ」を変換対象とする設定画面を追加。
 ◇バグ修正
