@@ -82,7 +82,7 @@ End Type
 Private Type MouseLLHookStruct
     Point As Point
     mouseData As Long
-    flags As Long
+    Flags As Long
     time As Long
     dwExtraInfo As Long
 End Type

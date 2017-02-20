@@ -65,7 +65,7 @@ Option Private Module
         hInstance As LongPtr
         rgbResult As LongPtr
         lpCustColors As String
-        flags As LongPtr
+        Flags As LongPtr
         lCustData As LongPtr
         lpfnHook As LongPtr
         lpTemplateName As String
@@ -134,7 +134,7 @@ Private Type ChooseColor
       hInstance As Long
       rgbResult As Long
       lpCustColors As String
-      flags As Long
+      Flags As Long
       lCustData As Long
       lpfnHook As Long
       lpTemplateName As String
