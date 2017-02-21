@@ -356,5 +356,5 @@ Public Sub TortoiseHGWeb()
     If MsgBox("インターネットに接続します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
         Exit Sub
     End If
-    Call GoURL("https://tortoisehg.bitbucket.io/ja/?")
+    Call GoURL("https://www.mercurial-scm.org/")
 End Sub

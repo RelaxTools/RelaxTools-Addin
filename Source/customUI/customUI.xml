@@ -9,6 +9,7 @@
           <checkBox id="RelaxApps"   label="RelaxApps"   getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
           <checkBox id="TortoiseSVN" label="TortoiseSVN" getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
           <checkBox id="TortoiseGit" label="TortoiseGit" getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
+          <checkBox id="TortoiseHG" label="TortoiseHG"   getSupertip="getSupertip" getDescription="getDescription" onAction="tabOnAction" getPressed="tabGetPressed"/>
         </group>
       </tab>
       <tab id="RelaxToolsTab" label="RelaxTools" getVisible="tabGetVisible">
@@ -196,11 +197,16 @@
               <button id="execSelectionToLower"           image="lower" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToZenkaku"         image="zenkaku" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToHankaku"         image="hankaku" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              <button id="execSelectionToHiragana"        image="hiragana" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              <button id="execSelectionToKatakana"        image="katakana" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToPropercase"      image="firstUpper" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <menu id="convMenu03" label="ひらがな⇔カタカナ変換変換"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="calendar" getEnabled="getRibbonEnabled" >
+                <menuSeparator id="convSep11" title="ひらがな⇔カタカナ変換変換"/>
+                <button id="execSelectionToHiragana"        image="hiragana" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+                <button id="execSelectionToKatakana"        image="katakana" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+                <menuSeparator id="convSep03"/>
+                <button id="KanaSetting"                    image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              </menu>
               <menu id="convMenu02" label="日付変換"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="calendar" getEnabled="getRibbonEnabled" >
-                <menuSeparator id="convSep02" title="日付"/>
+                <menuSeparator id="convSep04" title="日付"/>
                 <button id="execSelectionToDate8"           image="calendar" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <button id="execSelectionToDate6"           image="calendar" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <button id="execSelectionToDate6mdy"        image="calendar" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -208,23 +214,23 @@
               </menu>
             </menu>
             <menu id="fileConv" label="式・ファイル"      image="convert" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
-              <menuSeparator id="convSep07" title="絶対/相対参照を変換する"/>
+              <menuSeparator id="convSep05" title="絶対/相対参照を変換する"/>
               <button id="execSelectionToAbsolute"        image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToRelative"        image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToRelRowAbsColumn" image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToAbsRowRelColumn" image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              <menuSeparator id="convSep08" />
+              <menuSeparator id="convSep06" />
               <button id="toggleAbsoluteFomura"           image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              <menuSeparator id="convSep03" title="ファイル名またはパス名の変換をする"/>
+              <menuSeparator id="convSep07" title="ファイル名またはパス名の変換をする"/>
               <button id="execSelectionRemovePath"        image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionRemoveFilename"    image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionRemoveExt"         image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToUNC"             image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
             <menu id="valueRefConv" label="その他変換"    image="convert" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
-              <menuSeparator id="convSep05" title="式→値に変換する"/>
+              <menuSeparator id="convSep08" title="式→値に変換する"/>
               <button id="execSelectionToValue"           image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-              <menuSeparator id="convSep06" title="数値→文字に変換する"/>
+              <menuSeparator id="convSep09" title="数値→文字に変換する"/>
               <button id="execSelectionStringFormura"     image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionStringZeroPadding" image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
@@ -801,7 +807,7 @@
         </group>
         <group id="ProgramGroup" label="プログラミング関連" image="vbaexport">
           <menu id="snakeMenu" label="キャメル&#xD;&#xA;スネーク" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="rtos" size="large" getEnabled="getRibbonEnabled" >
-            <menuSeparator id="convSep04" title="スネーク区切(AB_CDE)とキャメル区切(abCde)を相互変換する"/>
+            <menuSeparator id="convSep10" title="スネーク区切(AB_CDE)とキャメル区切(abCde)を相互変換する"/>
             <button id="execSelectionToJavaStringU"     image="rtos" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="execSelectionToJavaString"      image="rtos" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="execSelectionToJavaStringGet"   image="rtos" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -914,8 +920,28 @@
           <button id="TortoiseGitVer"     size="large"   image="tortoisegit"  label="Tortoise&#xD;&#xA;Git" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
           <button id="TortoiseGitWeb"     size="large"   image="git"  label="git&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
-
       </tab>
+
+      <tab id="TortoiseHGTab" label="TortoiseHG" getVisible="tabGetVisible">
+        <group id="HGGroup" label="ファイル操作" image="tortoise">
+          <button id="TortoiseHGCommit"  size="large"   image="commit"    label="コミット&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseHGRevert"  size="large"   image="revert"    label="変更の&#xD;&#xA;取り消し" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseHGAdd"     size="large"   image="addfile"   label="追加&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <separator id="HGSep"/>
+          <button id="TortoiseHGLog"     size="large"   image="log"       label="ログ表示&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+        </group>
+        <group id="HGToolGroup" label="ツール" image="diff">
+          <button id="openDocumentPath.4" size="large"   image="folder"    label="作業フォルダ&#xD;&#xA;を開く" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+          <button id="TortoiseHGDiff"    size="large"   image="diff"      label="DIFF&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseHGBrouser" size="large"   image="brouser"   label="WorkBench&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+        </group>
+        <group id="HGINFOGroup" label="情報" image="diff">
+          <button id="TortoiseHGHelp"    size="large"   image="help"      label="ヘルプ&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseHGVer"     size="large"   image="TortoiseHg"  label="Tortoise&#xD;&#xA;HG" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+          <button id="TortoiseHGWeb"     size="large"   image="hg"  label="Mercurial&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+        </group>
+      </tab>
+
     </tabs>
   </ribbon>
 </customUI>

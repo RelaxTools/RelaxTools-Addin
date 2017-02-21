@@ -112,7 +112,7 @@ Private Sub IVersion_Add()
     Dim WB As Workbook
     Dim strBook As String
     
-'    On Error GoTo e
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     
@@ -151,7 +151,7 @@ Private Sub IVersion_Brouser()
     Dim WB As Workbook
     Dim strBook As String
     
-'    On Error GoTo e
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     strBook = WB.FullName
@@ -180,7 +180,7 @@ Private Sub IVersion_Commit()
     Dim strFile As String
     Dim WB As Workbook
     
-'    On Error GoTo e
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     If IsError(WB) Then
@@ -205,7 +205,7 @@ Private Sub IVersion_Diff()
     Dim strFile As String
     Dim WB As Workbook
     
-'    On Error GoTo e
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     If IsError(WB) Then
@@ -228,14 +228,13 @@ Private Sub IVersion_Help()
     Dim strFile As String
     Dim WB As Workbook
     
-'    On Error GoTo e
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     
     strPath = rlxGetFullpathFromPathName(WB.FullName)
     strCommand = CMD_HELP
     Run strPath, strCommand
-
     
     Exit Sub
 e:
@@ -273,7 +272,7 @@ Private Sub IVersion_Log()
     Dim WB As Workbook
     Dim strBook As String
     
-'    On Error GoTo e
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     strBook = WB.FullName
@@ -312,7 +311,7 @@ Private Sub IVersion_Revert()
     Dim strFile As String
     Dim WB As Workbook
     
-'    On Error GoTo e
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     If IsError(WB) Then
@@ -353,7 +352,7 @@ Private Sub IVersion_Ver()
     Dim strFile As String
     Dim WB As Workbook
     
-'    On Error GoTo e
+    On Error GoTo e
     
     Set WB = ActiveWorkbook
     
@@ -380,7 +379,7 @@ Private Sub Run(ByVal strPath As String, ByVal strExe As String)
     Dim lngCount As Long
 
     ' 外部プログラムの実行
-'    On Error GoTo e
+    On Error GoTo e
     
     ChDir strPath
     err.Clear
@@ -395,7 +394,9 @@ Private Sub Run(ByVal strPath As String, ByVal strExe As String)
     ' プロセスハンドルが返されたかを判定
     If hProc <> 0 Then
         ' プロセスのシグナル待ち
-        Call WaitForSingleObject(hProc, INFINITE)
+        Do Until WaitForSingleObject(hProc, 100) = 0
+            DoEvents
+        Loop
         ' プロセスクローズ
         CloseHandle hProc
     End If
