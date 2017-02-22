@@ -76,7 +76,7 @@ Private Sub IVersion_Add()
     strBook = WB.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
@@ -278,15 +278,6 @@ Private Sub IVersion_Unlocked()
         Exit Sub
     End If
     
-'    With CreateObject("SubWCRev.object")
-'        .GetWCInfo WB.FullName, 1, 1
-'        If .IsLocked Then
-'        Else
-'            MsgBox "ブックはロックされていません。", vbOKOnly + vbExclamation, C_TITLE
-'            Exit Sub
-'        End If
-'    End With
-    
     strCommand = CMD_UNLOCK & GetPath(WB.FullName) & OPT_END0
     Run strCommand
 
@@ -340,7 +331,7 @@ Private Sub IVersion_Revert()
     strBook = WB.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
@@ -397,7 +388,7 @@ Private Sub IVersion_Update()
     strBook = WB.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
@@ -424,10 +415,10 @@ Private Sub IVersion_Update()
         
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
-    
+
     strCommand = CMD_UPDATE & GetPath(WB.FullName) & OPT_END0
     WB.Close False
-    
+
     Run strCommand
 
     Workbooks.Open strBook
@@ -490,7 +481,7 @@ Private Function IsError(WB As Workbook, Optional ByVal Upd As Boolean = False) 
     strBook = WB.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Function
     End If
     

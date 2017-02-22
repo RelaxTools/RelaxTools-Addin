@@ -123,20 +123,14 @@ Private Sub IVersion_Add()
     strBook = WB.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
-    
-'    If MsgBox("ブックをバージョン管理システムに追加します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
-'        Exit Sub
-'    End If
 
     strPath = rlxGetFullpathFromPathName(WB.FullName)
     strCommand = CMD_ADD & GetFile(WB.FullName)
     
     Run strPath, strCommand
-    
-'    MsgBox "追加しました。", vbOKOnly + vbExclamation, C_TITLE
     
     Exit Sub
 e:
@@ -159,10 +153,18 @@ Private Sub IVersion_Brouser()
         Exit Sub
     End If
     
+    Application.DisplayAlerts = False
+    
+    WB.ChangeFileAccess Mode:=xlReadOnly
+    
     strPath = rlxGetFullpathFromPathName(WB.FullName)
     strCommand = ""
     
     Run strPath, strCommand
+    
+    WB.ChangeFileAccess Mode:=xlReadWrite
+    
+    Application.DisplayAlerts = True
     
     Exit Sub
 e:
@@ -280,10 +282,7 @@ Private Sub IVersion_Log()
         Exit Sub
     End If
     
-'    On Error Resume Next
-    
     Application.DisplayAlerts = False
-    Application.ScreenUpdating = False
     
     WB.ChangeFileAccess Mode:=xlReadOnly
     
@@ -291,16 +290,13 @@ Private Sub IVersion_Log()
     strCommand = CMD_LOG & GetFile(WB.FullName)
     Run strPath, strCommand
 
-
     WB.ChangeFileAccess Mode:=xlReadWrite
     
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     
     Exit Sub
 e:
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     MsgBox "TortoiseHGの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -317,11 +313,8 @@ Private Sub IVersion_Revert()
     If IsError(WB) Then
         Exit Sub
     End If
-    
-'    On Error Resume Next
         
     Application.DisplayAlerts = False
-    Application.ScreenUpdating = False
     
     WB.ChangeFileAccess Mode:=xlReadOnly
     
@@ -332,12 +325,10 @@ Private Sub IVersion_Revert()
     WB.ChangeFileAccess Mode:=xlReadWrite
     
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
 
     Exit Sub
 e:
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     MsgBox "TortoiseHGの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -356,10 +347,9 @@ Private Sub IVersion_Ver()
     
     Set WB = ActiveWorkbook
     
-    strPath = rlxGetFullpathFromPathName(WB.FullName)
+    strPath = ""
     strCommand = CMD_ABOUT
     Run strPath, strCommand
-
     
     Exit Sub
 e:
@@ -381,7 +371,10 @@ Private Sub Run(ByVal strPath As String, ByVal strExe As String)
     ' 外部プログラムの実行
     On Error GoTo e
     
-    ChDir strPath
+    If strPath <> "" Then
+        ChDir strPath
+    End If
+    
     err.Clear
     TaskId = GetChildPid(Shell(EXE_NAME & " " & strExe))
     If err.Number <> 0 Then
@@ -422,7 +415,7 @@ Private Function IsError(WB As Workbook, Optional ByVal Upd As Boolean = False) 
     strBook = WB.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Function
     End If
     
@@ -448,9 +441,7 @@ Private Function GetFile(ByVal strFullName As String) As String
     GetFile = """" & rlxGetFullpathFromFileName(strFullName) & """"
 
 End Function
-
-
-
+'子プロセスのPID取得
 Function GetChildPid(ByVal lngPid As Long) As Long
 
 #If VBA7 And Win64 Then

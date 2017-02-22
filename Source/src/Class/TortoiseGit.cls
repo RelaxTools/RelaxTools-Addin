@@ -76,18 +76,12 @@ Private Sub IVersion_Add()
     strBook = WB.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
-'    If MsgBox("ブックをバージョン管理システムに追加します。よろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
-'        Exit Sub
-'    End If
-    
     strCommand = CMD_ADD & GetPath(WB.FullName) & OPT_END0
     Run strCommand
-    
-'    MsgBox "追加しました。", vbOKOnly + vbExclamation, C_TITLE
     
     Exit Sub
 e:
@@ -132,7 +126,6 @@ Private Sub IVersion_Cleanup()
     End If
     
     Application.DisplayAlerts = False
-    Application.ScreenUpdating = False
     
     strCommand = CMD_CLEANUP & "/PATH:" & rlxGetFullpathFromPathName(strBook) & " " & OPT_END0
     WB.Close False
@@ -141,12 +134,10 @@ Private Sub IVersion_Cleanup()
 
     Workbooks.Open strBook
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     
     Exit Sub
 e:
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     MsgBox "TortoiseGitの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -233,8 +224,6 @@ Private Sub IVersion_Push()
     
     Exit Sub
 e:
-    Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     MsgBox "TortoiseGitの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
     
 End Sub
@@ -258,8 +247,6 @@ Private Sub IVersion_RevisionGraph()
     
     Exit Sub
 e:
-    Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     MsgBox "TortoiseGitの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
     
 End Sub
@@ -283,8 +270,6 @@ Private Sub IVersion_Tag()
     
     Exit Sub
 e:
-    Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     MsgBox "TortoiseGitの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 
 End Sub
@@ -309,23 +294,19 @@ Private Sub IVersion_Log()
     On Error Resume Next
     
     Application.DisplayAlerts = False
-    Application.ScreenUpdating = False
     
     WB.ChangeFileAccess Mode:=xlReadOnly
     
-    'strCommand = CMD_LOG & "/PATH:" & rlxGetFullpathFromPathName(strBook) & " " & OPT_END0
     strCommand = CMD_LOG & GetPath(WB.FullName) & OPT_END0
     Run strCommand
 
     WB.ChangeFileAccess Mode:=xlReadWrite
     
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     
     Exit Sub
 e:
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     MsgBox "TortoiseGitの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -341,7 +322,7 @@ Private Sub IVersion_Revert()
     strBook = WB.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
         
@@ -358,7 +339,6 @@ Private Sub IVersion_Revert()
     On Error Resume Next
         
     Application.DisplayAlerts = False
-    Application.ScreenUpdating = False
     
     strCommand = CMD_REVERT & GetPath(WB.FullName) & OPT_END0
     WB.Close False
@@ -367,12 +347,10 @@ Private Sub IVersion_Revert()
 
     Workbooks.Open strBook
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
 
     Exit Sub
 e:
     Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     MsgBox "TortoiseGitの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
     
 End Sub
@@ -431,7 +409,7 @@ Private Function IsError(WB As Workbook, Optional ByVal Upd As Boolean = False) 
     strBook = WB.FullName
     
     If Not rlxIsFileExists(strBook) Then
-        MsgBox "ブックが保存されていません。" & vbCrLf & "ブックを保存してから再実行してください。", vbOKOnly + vbExclamation, C_TITLE
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Function
     End If
     
