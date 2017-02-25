@@ -462,7 +462,7 @@ End Sub
 Private Sub errorMsg()
     MsgBox "入力されたシートまたはグラフの名前が正しくありません。次の点を確認して修正してください。" & vbCrLf & vbCrLf & _
     "・入力文字が31文字以内であること" & vbCrLf & _
-    "・次の使用できない文字が含まれていないこと:コロン(:)、円記号(\)、スラッシュ(/)、バックスラッシュ(＼)、疑問符(?)、アスタリスク(*)、シングルコーテーション(')、左角かっこ([)、右角かっこ(])" & vbCrLf & _
+    "・次の使用できない文字が含まれていないこと(全角も含む):コロン(:)、円記号(\)、スラッシュ(/)、バックスラッシュ(＼)、疑問符(?)、アスタリスク(*)、シングルコーテーション(')、左角かっこ([)、右角かっこ(])、アポストロフィー(＇)" & vbCrLf & _
     "・名前が空白でないこと", vbOKOnly + vbExclamation, C_TITLE
 
 End Sub
@@ -739,20 +739,16 @@ Private Sub cmdSubmit_Click()
     Dim lngCnt2 As Long
     Dim lngVisibleCount As Long
     Dim lngDeleteCount As Long
-    Dim strBuf As String
-    Dim lngLen As Long
+
     Dim i As Long
     
     strSheetName = C_TEMP_NAME & "_" & Format(Now, "yyyymmddhhmmss") & "_"
 
     Dim lngLast As Long
-    
-    strBuf = ":\/?*[]：￥／？＊［］＼'"
-    lngLen = Len(strBuf)
 
     For lngCnt = 0 To lstSheet.ListCount - 1
     
-        If IsErrSheetNameChar(lstSheet.List(lngCnt, C_SHEET_NEW_NAME)) Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) = 0 Then
+        If IsErrSheetNameChar(lstSheet.List(lngCnt, C_SHEET_NEW_NAME)) Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) = 0 Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) > 31 Then
             Call errorMsg
             Exit Sub
         End If
