@@ -57,7 +57,7 @@ Option Explicit
     Private Declare PtrSafe Function Process32First Lib "kernel32" (ByVal lngHandleshot As LongPtr, ByRef ProcessEntry As PROCESSENTRY32) As LongPtr
     Private Declare PtrSafe Function Process32Next Lib "kernel32" (ByVal lngHandle As LongPtr, ByRef ProcessEntry As PROCESSENTRY32) As LongPtr
     Private Declare PtrSafe Function CloseHandle Lib "kernel32" (ByVal hObject As LongPtr) As Long
-    Private Const SIZEOF_PROCESSENTRY32 As Long = 300
+    Private Const SIZEOF_PROCESSENTRY32 As Long = 304
 
 #Else
     
