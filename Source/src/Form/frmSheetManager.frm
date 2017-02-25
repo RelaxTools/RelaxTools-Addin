@@ -751,14 +751,12 @@ Private Sub cmdSubmit_Click()
     lngLen = Len(strBuf)
 
     For lngCnt = 0 To lstSheet.ListCount - 1
-        For i = 1 To lngLen
     
-            If InStr(lstSheet.List(lngCnt, C_SHEET_NEW_NAME), Mid$(strBuf, i, 1)) > 0 Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) = 0 Then
-                Call errorMsg
-                Exit Sub
-            End If
+        If IsErrSheetNameChar(lstSheet.List(lngCnt, C_SHEET_NEW_NAME)) Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) = 0 Then
+            Call errorMsg
+            Exit Sub
+        End If
     
-        Next
     Next
     
     lngVisibleCount = 0

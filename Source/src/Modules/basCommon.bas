@@ -2690,3 +2690,28 @@ Function ToHiragana(ByVal strBuf As String, Optional ByVal flag As Boolean = Fal
     ToHiragana = retBuf()
 
 End Function
+Function IsErrSheetNameChar(ByVal strBuf As String) As Boolean
+
+    Dim lngChar As Long
+    Dim i As Long
+    Dim bytBuf() As Byte
+    
+    IsErrSheetNameChar = False
+    
+    bytBuf = strBuf
+    
+    For i = LBound(bytBuf) To UBound(bytBuf) Step 2
+    
+        lngChar = LShift(bytBuf(i + 1), 8) + bytBuf(i)
+    
+        Select Case lngChar
+            'エラーになる文字
+            Case &H0&, &H27&, &H2A&, &H2F&, &H3A&, &H3F&, &H5B&, &H5C&, &H5D&, &H2019&, &HFF07&, &HFF0A&, &HFF0F&, &HFF1A&, &HFF1F&, &HFF3B&, &HFF3C&, &HFF3D&, &HFFE5&
+                IsErrSheetNameChar = True
+                Exit For
+            
+        End Select
+    
+    Next
+
+End Function

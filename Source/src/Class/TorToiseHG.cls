@@ -41,55 +41,16 @@ Option Explicit
 Implements IVersion
 
 #If VBA7 And Win64 Then
-
     Private Declare PtrSafe Function OpenProcess Lib "kernel32" (ByVal dwDesiredAccess As Long, ByVal bInheritHandle As Long, ByVal dwProcessId As Long) As LongPtr
     Private Declare PtrSafe Function CloseHandle Lib "kernel32" (ByVal hObject As LongPtr) As Long
     Private Declare PtrSafe Function WaitForSingleObject Lib "kernel32" (ByVal hHandle As LongPtr, ByVal dwMilliseconds As Long) As Long
-    
-    Private Type PROCESSENTRY32
-        Size As Long
-        RefCount As Long
-        ProcessID As Long
-        HeapID As LongPtr
-        ModuleID As Long
-        ThreadCount As Long
-        ParentProcessID As Long
-        BasePriority As LongPtr
-        Flags As Long
-        FileName As String * 260
-    End Type
-    
-    Private Declare PtrSafe Function CreateToolhelp32Snapshot Lib "kernel32" (ByVal Flags As Long, ByVal ProcessID As Long) As LongPtr
-    Private Declare PtrSafe Function Process32First Lib "kernel32" (ByVal lngHandleshot As LongPtr, ByRef ProcessEntry As PROCESSENTRY32) As LongPtr
-    Private Declare PtrSafe Function Process32Next Lib "kernel32" (ByVal lngHandle As LongPtr, ByRef ProcessEntry As PROCESSENTRY32) As LongPtr
-    Private Const SIZEOF_PROCESSENTRY32 As Long = 304
-
 #Else
-    
     Private Declare Function OpenProcess Lib "kernel32" (ByVal dwDesiredAccess As Long, ByVal bInheritHandle As Long, ByVal dwProcessId As Long) As Long
     Private Declare Function CloseHandle Lib "kernel32" (ByVal hObject As Long) As Long
     Private Declare Function WaitForSingleObject Lib "kernel32" (ByVal hHandle As Long, ByVal dwMilliseconds As Long) As Long
-
-    Private Type PROCESSENTRY32
-        Size As Long
-        RefCount As Long
-        ProcessID As Long
-        HeapID As Long
-        ModuleID As Long
-        ThreadCount As Long
-        ParentProcessID As Long
-        BasePriority As Long
-        Flags As Long
-        FileName As String * 260
-    End Type
-    
-    Private Declare Function CreateToolhelp32Snapshot Lib "kernel32" (ByVal Flags As Long, ByVal ProcessID As Long) As Long
-    Private Declare Function Process32First Lib "kernel32" (ByVal lngHandleshot As Long, ByRef ProcessEntry As PROCESSENTRY32) As Long
-    Private Declare Function Process32Next Lib "kernel32" (ByVal lngHandle As Long, ByRef ProcessEntry As PROCESSENTRY32) As Long
-    Private Const SIZEOF_PROCESSENTRY32 As Long = 296
-
 #End If
-Private Const TH32CS_SNAPPROCESS = 2
+
+
 '--- Win32 API 定数の宣言 ---
 Private Const PROCESS_ALL_ACCESS As Long = &H1F0FFF
 Private Const INFINITE As Long = &HFFFF
@@ -358,7 +319,8 @@ End Sub
 
 Private Sub Run(ByVal strPath As String, ByVal strExe As String)
 
-    Dim TaskId As Long          'タスクID
+    Dim TaskId As Long
+    Dim Pid As Long
     
 #If VBA7 And Win64 Then
     Dim hProc  As LongPtr          'プロセスハンドル
@@ -367,6 +329,7 @@ Private Sub Run(ByVal strPath As String, ByVal strExe As String)
 #End If
     Dim hWnd As Long
     Dim lngCount As Long
+    Dim p As WinProcess
 
     ' 外部プログラムの実行
     On Error GoTo e
@@ -376,7 +339,16 @@ Private Sub Run(ByVal strPath As String, ByVal strExe As String)
     End If
     
     err.Clear
-    TaskId = GetChildPid(Shell(EXE_NAME & " " & strExe))
+    
+    Pid = Shell(EXE_NAME & " " & strExe)
+    
+    Set p = New WinProcess
+    
+    p.SnapShot
+    TaskId = p.GetChildProcessByPid(Pid)
+    
+    Set p = Nothing
+    
     If err.Number <> 0 Then
         MsgBox "TortoiseHGの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
         Exit Sub
@@ -439,41 +411,6 @@ End Function
 Private Function GetFile(ByVal strFullName As String) As String
 
     GetFile = """" & rlxGetFullpathFromFileName(strFullName) & """"
-
-End Function
-'子プロセスのPID取得
-Function GetChildPid(ByVal lngPid As Long) As Long
-
-#If VBA7 And Win64 Then
-    Dim lngResult As LongPtr
-    Dim lngHandle As LongPtr
-#Else
-    Dim lngResult As Long
-    Dim lngHandle As Long
-#End If
-
-    Dim procEntry As PROCESSENTRY32
-    Dim lngRet As Long
-    
-    lngHandle = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0)
-
-    procEntry.Size = SIZEOF_PROCESSENTRY32
-    
-    lngResult = Process32First(lngHandle, procEntry)
-
-    Do While lngResult
-
-        If procEntry.ParentProcessID = lngPid Then
-            lngRet = procEntry.ProcessID
-            Exit Do
-        End If
-
-        lngResult = Process32Next(lngHandle, procEntry)
-    Loop
-
-    CloseHandle lngHandle
-    
-    GetChildPid = lngRet
 
 End Function
 
