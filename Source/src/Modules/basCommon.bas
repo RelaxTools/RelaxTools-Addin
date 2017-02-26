@@ -2690,6 +2690,7 @@ Function ToHiragana(ByVal strBuf As String, Optional ByVal flag As Boolean = Fal
     ToHiragana = retBuf()
 
 End Function
+'シート名不可文字チェック
 Function IsErrSheetNameChar(ByVal strBuf As String) As Boolean
 
     Dim lngChar As Long
@@ -2698,6 +2699,18 @@ Function IsErrSheetNameChar(ByVal strBuf As String) As Boolean
     
     IsErrSheetNameChar = False
     
+    '空はエラー
+    If Len(strBuf) = 0 Then
+        IsErrSheetNameChar = True
+        Exit Function
+    End If
+    
+    '履歴は予約語なので
+    If strBuf = "履歴" Then
+        IsErrSheetNameChar = True
+        Exit Function
+    End If
+    
     bytBuf = strBuf
     
     For i = LBound(bytBuf) To UBound(bytBuf) Step 2
@@ -2705,11 +2718,11 @@ Function IsErrSheetNameChar(ByVal strBuf As String) As Boolean
         lngChar = LShift(bytBuf(i + 1), 8) + bytBuf(i)
     
         Select Case lngChar
-            'エラーになる文字
+            'エラーになる文字'*/:?[\]’＇＊／：？［＼］￥
             Case &H0&, &H27&, &H2A&, &H2F&, &H3A&, &H3F&, &H5B&, &H5C&, &H5D&, &H2019&, &HFF07&, &HFF0A&, &HFF0F&, &HFF1A&, &HFF1F&, &HFF3B&, &HFF3C&, &HFF3D&, &HFFE5&
                 IsErrSheetNameChar = True
-                Exit For
-            
+                Exit Function
+                
         End Select
     
     Next
