@@ -134,6 +134,19 @@ Sub execSheetManager()
     If ActiveWorkbook Is Nothing Then
         Exit Sub
     End If
+    
+    If ActiveWorkbook.ProtectStructure Then
+        MsgBox "このブックは保護されているためシート管理は使用できません。", vbOKOnly + vbInformation, C_TITLE
+        Exit Sub
+    End If
+    
+    Dim WS As Object
+    For Each WS In ActiveWorkbook.Sheets
+        If WS.name = "履歴" Then
+            MsgBox "「履歴」ワークシートが存在するためシート管理は使用できません。", vbOKOnly + vbInformation, C_TITLE
+            Exit Sub
+        End If
+    Next
 
     frmSheetManager.Show
 
@@ -187,6 +200,11 @@ Sub KantanLine()
     If ActiveCell Is Nothing Then
         Exit Sub
     End If
+    
+    If TypeOf Selection Is Range Then
+    Else
+        Exit Sub
+    End If
 
     frmGridText.Show
     
@@ -208,6 +226,11 @@ End Sub
 '--------------------------------------------------------------
 Sub convertHtml()
 
+    If TypeOf Selection Is Range Then
+    Else
+        Exit Sub
+    End If
+    
     frmHtml.Show vbModal
     
 End Sub
@@ -312,9 +335,21 @@ Sub scrollSetting()
     frmScroll.Show
 End Sub
 Sub convertTextile()
+
+    If TypeOf Selection Is Range Then
+    Else
+        Exit Sub
+    End If
+
     frmRedmine.Show
 End Sub
 Sub convertMarkdown()
+
+    If TypeOf Selection Is Range Then
+    Else
+        Exit Sub
+    End If
+    
     frmMarkdown.Show
 End Sub
 Sub showGrammer()

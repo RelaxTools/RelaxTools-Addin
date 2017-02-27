@@ -243,6 +243,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub UserForm_Initialize()
 
+
 '    Dim i As Long
 '    Dim sh As Object
 '    Set mBook = ActiveWorkbook
@@ -264,6 +265,12 @@ Private Sub UserForm_Initialize()
 '            End If
 '        Next
 '    Next
+    
+    If mBook.MultiUserEditing Then
+        cmdDel.enabled = False
+        cmdUndo.enabled = False
+    End If
+
     Set MW = basMouseWheel.GetInstance
     MW.Install Me
 End Sub
@@ -749,9 +756,11 @@ Private Sub cmdSubmit_Click()
 
     For lngCnt = 0 To lstSheet.ListCount - 1
     
-        If IsErrSheetNameChar(lstSheet.List(lngCnt, C_SHEET_NEW_NAME)) Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) = 0 Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) > 31 Then
-            Call errorMsg
-            Exit Sub
+        If lstSheet.List(lngCnt, C_SHEET_NEW_NAME) <> lstSheet.List(lngCnt, C_SHEET_OLD_NAME) Then
+            If IsErrSheetNameChar(lstSheet.List(lngCnt, C_SHEET_NEW_NAME)) Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) = 0 Or Len(Trim(lstSheet.List(lngCnt, C_SHEET_NEW_NAME))) > 31 Then
+                Call errorMsg
+                Exit Sub
+            End If
         End If
     
     Next
@@ -856,11 +865,12 @@ Private Sub cmdSubmit_Click()
 
         
         'シート名変更
-        strNew = strSheetName & lngCnt
-        strOld = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
-        
-        If strNew <> strOld Then
-            mBook.Sheets(strOld).name = strNew
+        If lstSheet.List(lngCnt, C_SHEET_NEW_NAME) <> lstSheet.List(lngCnt, C_SHEET_OLD_NAME) Then
+            strNew = strSheetName & lngCnt
+            strOld = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
+            If strNew <> strOld Then
+                mBook.Sheets(strOld).name = strNew
+            End If
         End If
         
     Next
@@ -868,19 +878,13 @@ Private Sub cmdSubmit_Click()
     For lngCnt = 0 To lstSheet.ListCount - 1
         
         'シート名変更
-        strNew = lstSheet.List(lngCnt, C_SHEET_NEW_NAME)
-        strOld = strSheetName & lngCnt
-        
-        If strNew <> strOld Then
-            mBook.Sheets(strOld).name = strNew
+        If lstSheet.List(lngCnt, C_SHEET_NEW_NAME) <> lstSheet.List(lngCnt, C_SHEET_OLD_NAME) Then
+            strNew = lstSheet.List(lngCnt, C_SHEET_NEW_NAME)
+            strOld = strSheetName & lngCnt
+            If strNew <> strOld Then
+                mBook.Sheets(strOld).name = strNew
+            End If
         End If
-        
-'        'シートの削除
-'        If lstSheet.List(lngCnt, C_SHEET_STATUS) = C_DEL Then
-'            strDel = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
-'            mBook.Sheets(strDel).Delete
-'        End If
-        
     Next
     
     Application.DisplayAlerts = True
