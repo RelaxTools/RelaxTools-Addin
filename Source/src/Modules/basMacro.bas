@@ -70,7 +70,7 @@ Sub saveWorkSheets()
     If vntFileName <> False Then
     
         For Each b In Workbooks
-            If UCase(b.name) = UCase(rlxGetFullpathFromFileName(vntFileName)) Then
+            If UCase(b.Name) = UCase(rlxGetFullpathFromFileName(vntFileName)) Then
                 MsgBox "現在開いているブックと同じ名前は指定できません。", vbOKOnly + vbExclamation, C_TITLE
                 Exit Sub
             End If
@@ -373,7 +373,7 @@ Sub commandList()
 
         For Each d In c.Controls
 
-            Cells(lngCnt, 1) = c.name
+            Cells(lngCnt, 1) = c.Name
             Cells(lngCnt, 2) = c.NameLocal
         
             Cells(lngCnt, 3) = d.Caption
@@ -394,7 +394,7 @@ Sub delnamae()
     On Error GoTo ErrHandle
     
     '変数宣言
-    Dim namae As name '名前
+    Dim namae As Name '名前
     Dim namae_del As String '消滅した名前リスト
     
     If ActiveWorkbook Is Nothing Then
@@ -409,9 +409,9 @@ Sub delnamae()
     
     '名前消滅
     For Each namae In ActiveWorkbook.Names
-        If InStr(namae.name, "Print_") > 0 Then
+        If InStr(namae.Name, "Print_") > 0 Then
         Else
-            namae_del = namae_del & vbCrLf & namae.name
+            namae_del = namae_del & vbCrLf & namae.Name
             namae.Delete
         End If
     Next
@@ -577,7 +577,7 @@ Sub getSheetName()
     strBuf = ""
     For Each WS In Sheets
             
-        strBuf = strBuf & WS.name & vbCrLf
+        strBuf = strBuf & WS.Name & vbCrLf
 
     Next
 
@@ -607,7 +607,7 @@ Sub getBookName()
     
     strBuf = ""
     For Each WB In Workbooks
-        strBuf = strBuf & WB.name & vbCrLf
+        strBuf = strBuf & WB.Name & vbCrLf
     Next
     
     'クリップボード貼り付け
@@ -701,7 +701,7 @@ Sub getCurrentBookName()
     End If
     
     'クリップボード貼り付け
-    putClipboard rlxDriveToUNC(ActiveWorkbook.name) '& vbCrLf
+    putClipboard rlxDriveToUNC(ActiveWorkbook.Name) '& vbCrLf
     
     Exit Sub
 ErrHandle:
@@ -780,7 +780,7 @@ Sub divideWorkBook()
             
             '新規作成したワークブックを保存する。フォーマットは親と同じ
             Application.DisplayAlerts = False
-            WB.SaveAs FileName:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.name) & "_" & WS.name, FileFormat:=motoWB.FileFormat, local:=True
+            WB.SaveAs FileName:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name, FileFormat:=motoWB.FileFormat, local:=True
             Application.DisplayAlerts = True
             WB.Close
     
@@ -1310,7 +1310,7 @@ Public Sub createReferenceBook()
     Set FS = CreateObject("Scripting.FileSystemObject")
 
     strActBook = ActiveWorkbook.FullName
-    strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(ActiveWorkbook.name)
+    strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(ActiveWorkbook.Name)
 
     FS.copyfile strActBook, strTmpBook
 
@@ -1358,7 +1358,7 @@ Public Sub changeReferenceBook()
 
     Set FS = CreateObject("Scripting.FileSystemObject")
 
-    If Left$(FS.getFileName(ActiveWorkbook.name), 5) = C_REF_TEXT Then
+    If Left$(FS.getFileName(ActiveWorkbook.Name), 5) = C_REF_TEXT Then
         MsgBox "すでに参照用のブックが開かれています。", vbExclamation, C_TITLE
         Exit Sub
     End If
@@ -1366,7 +1366,7 @@ Public Sub changeReferenceBook()
     Set WB = ActiveWorkbook
 
     strActBook = ActiveWorkbook.FullName
-    strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(ActiveWorkbook.name)
+    strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(ActiveWorkbook.Name)
 
     FS.copyfile strActBook, strTmpBook
 
@@ -1869,7 +1869,7 @@ Sub documentSheet()
     r.NumberFormatLocal = "@"
     
     With r.Font
-        .name = "ＭＳ ゴシック"
+        .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
         .Size = 9
         .Strikethrough = False
@@ -1898,7 +1898,7 @@ Sub documentSheetMeiryo()
     r.NumberFormatLocal = "@"
     
     With r.Font
-        .name = "メイリオ"
+        .Name = "メイリオ"
         .FontStyle = "標準"
         .Size = 9
         .Strikethrough = False
@@ -1927,7 +1927,7 @@ Sub documentSheetMeiryoUI()
     r.NumberFormatLocal = "@"
     
     With r.Font
-        .name = "Meiryo UI"
+        .Name = "Meiryo UI"
         .FontStyle = "標準"
         .Size = 9
         .Strikethrough = False
@@ -1970,7 +1970,7 @@ Sub documentSheetHogan2Gothic9()
     r.ColumnWidth = 2
     
     With r.Font
-        .name = "ＭＳ ゴシック"
+        .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
         .Size = 9
     End With
@@ -1991,7 +1991,7 @@ Sub documentSheetHogan2Gothic9Str()
     r.ColumnWidth = 2
     
     With r.Font
-        .name = "ＭＳ ゴシック"
+        .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
         .Size = 9
     End With
@@ -2011,7 +2011,7 @@ Sub documentSheetHogan2Gothic11()
     r.ColumnWidth = 2
     
     With r.Font
-        .name = "ＭＳ ゴシック"
+        .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
         .Size = 11
     End With
@@ -2032,7 +2032,7 @@ Sub documentSheetHogan2Gothic11Str()
     r.ColumnWidth = 2
     
     With r.Font
-        .name = "ＭＳ ゴシック"
+        .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
         .Size = 11
     End With
@@ -2074,7 +2074,7 @@ Sub documentSheetUser()
     End If
     
     With r.Font
-        .name = strFont
+        .Name = strFont
         .FontStyle = "標準"
         .Size = Val(strPoint)
         .Strikethrough = False
@@ -2157,7 +2157,7 @@ Sub setA1SheetName()
         Exit Sub
     End If
     
-    ActiveSheet.Cells(1, 1).Value = ActiveSheet.name
+    ActiveSheet.Cells(1, 1).Value = ActiveSheet.Name
 
     Exit Sub
 ErrHandle:
@@ -2183,7 +2183,7 @@ Sub setA1SheetAll()
     For Each WS In Worksheets
             
         If WS.visible = xlSheetVisible Then
-            WS.Cells(1, 1).Value = WS.name
+            WS.Cells(1, 1).Value = WS.Name
         End If
     Next
 
@@ -2458,7 +2458,7 @@ Sub nextWorkbook()
             Workbooks(i).Activate
             Exit For
         End If
-        If UCase(ActiveWorkbook.name) = UCase(Workbooks(i).name) Then
+        If UCase(ActiveWorkbook.Name) = UCase(Workbooks(i).Name) Then
             blnFind = True
         End If
     Next
@@ -2488,7 +2488,7 @@ Sub prevWorkbook()
             Workbooks(i).Activate
             Exit For
         End If
-        If UCase(ActiveWorkbook.name) = UCase(Workbooks(i).name) Then
+        If UCase(ActiveWorkbook.Name) = UCase(Workbooks(i).Name) Then
             blnFind = True
         End If
     Next
@@ -2519,7 +2519,7 @@ Sub createContentsEx()
     
     'シートの存在チェック
     For Each s In WB.Worksheets
-        If s.name = C_NAME Then
+        If s.Name = C_NAME Then
             If MsgBox("「" & C_NAME & "」シートが既に存在します。削除していいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
                 Exit Sub
             Else
@@ -2535,9 +2535,9 @@ Sub createContentsEx()
     
     Application.ScreenUpdating = False
     Set WS = WB.Worksheets.Add(WB.Worksheets(1))
-    WS.name = C_NAME
+    WS.Name = C_NAME
     
-    WS.Cells(1, 1).Value = "ブック名:" & WB.name
+    WS.Cells(1, 1).Value = "ブック名:" & WB.Name
     
     lngCount = C_START_ROW
     WS.Cells(lngCount, C_NO).Value = "No."
@@ -2549,18 +2549,18 @@ Sub createContentsEx()
     
     For Each s In WB.Worksheets
     
-        If s.name <> C_NAME Then
+        If s.Name <> C_NAME Then
         
             If s.visible = xlSheetVisible Then
         
                 WS.Cells(lngCount, C_NO).Value = lngCount - C_START_ROW
-                WS.Cells(lngCount, C_SHEET_NAME).Value = s.name
+                WS.Cells(lngCount, C_SHEET_NAME).Value = s.Name
                 
                 WS.Hyperlinks.Add _
                     Anchor:=WS.Cells(lngCount, C_SHEET_NAME), _
                     Address:="", _
-                    SubAddress:="'" & s.name & "'!" & s.Cells(1, 1).Address, _
-                    TextToDisplay:=s.name
+                    SubAddress:="'" & s.Name & "'!" & s.Cells(1, 1).Address, _
+                    TextToDisplay:=s.Name
                 
                 Select Case s.PageSetup.PaperSize
                     Case xlPaperA3
@@ -3127,7 +3127,7 @@ Sub copyCurrentExcel()
     strFiles = Split(strFile, vbTab)
     SetCopyClipText strFiles
     
-    MsgBox ActiveWorkbook.name & "をクリップボードにコピーしました。", vbOKOnly + vbInformation, C_TITLE
+    MsgBox ActiveWorkbook.Name & "をクリップボードにコピーしました。", vbOKOnly + vbInformation, C_TITLE
 
 End Sub
 '--------------------------------------------------------------

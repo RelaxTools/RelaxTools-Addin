@@ -49,7 +49,7 @@ Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
 Private Sub cmbFont_Change()
 
-    txtEdit.Font.name = cmbFont.Text
+    txtEdit.Font.Name = cmbFont.Text
 
 End Sub
 
@@ -194,7 +194,7 @@ Private Sub UserForm_Initialize()
     End With
 
     cmbFont.ListIndex = pos
-    txtEdit.Font.name = strFont
+    txtEdit.Font.Name = strFont
     
     cmbSize.AddItem "6"
     cmbSize.AddItem "8"

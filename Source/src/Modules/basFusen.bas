@@ -133,7 +133,7 @@ Sub pasteFusen(ByVal strId As String, ByVal Index As Long)
     strText = Replace(strText, "$d", strDate)
     strText = Replace(strText, "$u", Application.UserName)
     
-    Selection.ShapeRange.TextFrame2.TextRange.Font.name = strFont
+    Selection.ShapeRange.TextFrame2.TextRange.Font.Name = strFont
     Selection.ShapeRange.TextFrame2.TextRange.Font.NameComplexScript = strFont
     Selection.ShapeRange.TextFrame2.TextRange.Font.NameFarEast = strFont
     Selection.ShapeRange.TextFrame2.TextRange.Font.NameAscii = strFont

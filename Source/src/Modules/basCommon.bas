@@ -1372,7 +1372,7 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     ReDim strKey(1 To n)
 
     For i = 1 To n
-        strKey(i) = col.Item(i).name
+        strKey(i) = col.Item(i).Name
     Next
 
     '挿入ソート
@@ -1403,7 +1403,7 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     Set col2 = New Collection
 
     For i = 1 To n
-        col2.Add col.Item(strKey(i)), col.Item(strKey(i)).name
+        col2.Add col.Item(strKey(i)), col.Item(strKey(i)).Name
     Next
 
     Set col = col2
@@ -1472,7 +1472,7 @@ Public Sub rlxSortDictionary(ByRef col As Object)
     Set col2 = CreateObject("Scripting.Dictionary")
 
     For i = 1 To n
-        col2.Add col.Item(strKey(i)).name, col.Item(strKey(i))
+        col2.Add col.Item(strKey(i)).Name, col.Item(strKey(i))
     Next
 
     Set col = col2
@@ -2431,7 +2431,7 @@ Sub RenameActiveBook()
     Dim strNewName As String
     strNewName = rlxGetFullpathFromFileName(strNew)
     For Each s In Workbooks
-        If LCase(s.name) = LCase(strNewName) Then
+        If LCase(s.Name) = LCase(strNewName) Then
             MsgBox "同名のブックを開いているため名前の変更ができません。", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
         End If

@@ -70,9 +70,9 @@ Private Sub UserForm_Initialize()
     Dim b As Workbook
     
     For Each b In Workbooks
-        If b.name = "RelaxTools.xlam" Then
+        If b.Name = "RelaxTools.xlam" Then
         Else
-            cboSrcBook.AddItem b.name
+            cboSrcBook.AddItem b.Name
         End If
     Next
     
@@ -128,7 +128,7 @@ Private Sub cmdOK_Click()
         lngCodeCount = 0
         lngCommentCount = 0
         
-        WB.Worksheets(1).Cells(lngCnt, C_MODULE).Value = o.name
+        WB.Worksheets(1).Cells(lngCnt, C_MODULE).Value = o.Name
         
         Select Case o.Type
             Case 1
@@ -141,7 +141,7 @@ Private Sub cmdOK_Click()
                 WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "フォーム"
                 WB.Worksheets(1).Cells(lngCnt, C_SORT).Value = 3
             Case Else
-                If o.name = "ThisWorkbook" Then
+                If o.Name = "ThisWorkbook" Then
                     WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "Excel Objects"
                     WB.Worksheets(1).Cells(lngCnt, C_SORT).Value = 2
                 Else
@@ -202,7 +202,7 @@ Private Sub cmdOK_Click()
     WB.Worksheets(1).Range("A2").CurrentRegion.Select
     execSelectionRowDrawGrid
     
-    WB.Worksheets(1).Cells(1, C_NO).Value = Target.name & " ステップカウント"
+    WB.Worksheets(1).Cells(1, C_NO).Value = Target.Name & " ステップカウント"
     WB.Worksheets(1).Cells(lngCnt, C_TYPE).Value = "合計"
     WB.Worksheets(1).Cells(lngCnt, C_CODE).Formula = "=sum(D3:D" & lngCnt - 1 & ")"
     WB.Worksheets(1).Cells(lngCnt, C_COMMENT).Formula = "=sum(E3:E" & lngCnt - 1 & ")"

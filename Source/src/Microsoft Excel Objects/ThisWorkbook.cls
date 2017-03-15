@@ -449,13 +449,14 @@ Private Sub addCrossLine()
         Dim blnGuid As Boolean
         Dim lngFontColor As Long
         Dim blnEdit As Boolean
+        Dim blnLineWidth As Boolean
     
-        Call getCrossLineSetting(lngType, lngFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit)
+        Call getCrossLineSetting(lngType, lngFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
         
         If lngType And C_HOLIZON Then
             Set s = mWS.Shapes.AddShape(msoShapeRectangle, 10, 10, 10, 10)
             
-            s.name = C_HOLIZONTAL_BAR_NAME
+            s.Name = C_HOLIZONTAL_BAR_NAME
             s.Line.visible = msoFalse
             
             s.Select
@@ -475,7 +476,7 @@ Private Sub addCrossLine()
         If lngType And C_VERTICAL Then
             Set s = mWS.Shapes.AddShape(msoShapeRectangle, 20, 20, 10, 10)
         
-            s.name = C_VERTICAL_BAR_NAME
+            s.Name = C_VERTICAL_BAR_NAME
             s.Line.visible = msoFalse
             
             s.Select
@@ -495,7 +496,7 @@ Private Sub addCrossLine()
         If blnGuid Then
             Set s = mWS.Shapes.AddShape(msoShapeRectangle, 20, 20, 10, 10)
         
-            s.name = C_XY_BAR_NAME
+            s.Name = C_XY_BAR_NAME
             s.Line.visible = msoFalse
             
             s.Select
@@ -571,7 +572,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         Exit Sub
     End If
     
-    If mWS.name <> sh.name Then
+    If mWS.Name <> sh.Name Then
         Exit Sub
     End If
     
@@ -623,8 +624,9 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     Dim blnGuid As Boolean
     Dim lngFontColor As Long
     Dim blnEdit As Boolean
+    Dim blnLineWidth As Boolean
 
-    Call getCrossLineSetting(lngType, lngFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit)
+    Call getCrossLineSetting(lngType, lngFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
 
     '横軸
     If lngType And C_HOLIZON Then
@@ -633,7 +635,11 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Top = r.Top
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Left = sngLeft
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Width = sngWidth 'r.Width
-        sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = r.Height
+        If blnLineWidth Then
+            sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = 0
+        Else
+            sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = r.Height
+        End If
         
         If lngFillVisible = msoTrue Then
             sh.Shapes(C_HOLIZONTAL_BAR_NAME).OnAction = strOnAction
@@ -662,7 +668,13 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     
         sh.Shapes(C_VERTICAL_BAR_NAME).Top = sngTop
         sh.Shapes(C_VERTICAL_BAR_NAME).Left = r.Left
-        sh.Shapes(C_VERTICAL_BAR_NAME).Width = r.Width
+        
+        If blnLineWidth Then
+            sh.Shapes(C_VERTICAL_BAR_NAME).Width = 0
+        Else
+            sh.Shapes(C_VERTICAL_BAR_NAME).Width = r.Width
+        End If
+        
         sh.Shapes(C_VERTICAL_BAR_NAME).Height = sngHeight 'r.Height
     
         If lngFillVisible = msoTrue Then
@@ -722,7 +734,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
             .TextRange.Text = strBuf
             .TextRange.Font.NameComplexScript = "Meiryo UI"
             .TextRange.Font.NameFarEast = "Meiryo UI"
-            .TextRange.Font.name = "Meiryo UI"
+            .TextRange.Font.Name = "Meiryo UI"
             .TextRange.Font.Size = 9
             .TextRange.Font.Bold = msoTrue
             .TextRange.Font.Fill.ForeColor.RGB = lngFontColor

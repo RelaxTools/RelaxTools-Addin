@@ -147,7 +147,7 @@ Private Sub cmdSaveBook_Click()
         If vntFileName <> False Then
         
             For Each b In Workbooks
-                If UCase(b.name) = UCase(rlxGetFullpathFromFileName(vntFileName)) Then
+                If UCase(b.Name) = UCase(rlxGetFullpathFromFileName(vntFileName)) Then
                     MsgBox "現在開いているブックと同じ名前は指定できません。", vbOKOnly + vbExclamation, C_TITLE
                     Exit Sub
                 End If
@@ -304,9 +304,9 @@ Private Sub refreshList()
         lstSheet.AddItem ""
         lstSheet.List(lngCount, C_SHEET_NO) = Right("   " & lngCount + 1, 3)
         lstSheet.List(lngCount, C_SHEET_STATUS) = strStatus
-        lstSheet.List(lngCount, C_SHEET_DSP_NAME) = WS.name
-        lstSheet.List(lngCount, C_SHEET_NEW_NAME) = WS.name
-        lstSheet.List(lngCount, C_SHEET_OLD_NAME) = WS.name
+        lstSheet.List(lngCount, C_SHEET_DSP_NAME) = WS.Name
+        lstSheet.List(lngCount, C_SHEET_NEW_NAME) = WS.Name
+        lstSheet.List(lngCount, C_SHEET_OLD_NAME) = WS.Name
         lstSheet.List(lngCount, C_SHEET_OLD_STATUS) = strStatus
         lstSheet.List(lngCount, C_SHEET_OLD_POS) = lngCount
         lngCount = lngCount + 1
@@ -316,7 +316,7 @@ Private Sub refreshList()
     For i = 0 To lstSheet.ListCount - 1
 
         For Each sh In mBook.Windows(1).SelectedSheets
-            If lstSheet.List(i, C_SHEET_DSP_NAME) = sh.name Then
+            If lstSheet.List(i, C_SHEET_DSP_NAME) = sh.Name Then
                 If blnSw = False Then
                     lstSheet.TopIndex = i
                     lstSheet.ListIndex = i
@@ -829,7 +829,7 @@ Private Sub cmdSubmit_Click()
         '名称が同じなら何もしない
         If mBook.Sheets(lngCnt + 1).visible = xlSheetVeryHidden Then
         Else
-            If mBook.Sheets(lngCnt + 1).name = lstSheet.List(lngCnt, C_SHEET_OLD_NAME) Then
+            If mBook.Sheets(lngCnt + 1).Name = lstSheet.List(lngCnt, C_SHEET_OLD_NAME) Then
             Else
                 '異なる場合、リストを正とし、現在のシートの前に移動。
                 mBook.Sheets(lstSheet.List(lngCnt, C_SHEET_OLD_NAME)).Move Before:=mBook.Sheets(lngCnt + 1)
@@ -869,7 +869,7 @@ Private Sub cmdSubmit_Click()
             strNew = strSheetName & lngCnt
             strOld = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
             If strNew <> strOld Then
-                mBook.Sheets(strOld).name = strNew
+                mBook.Sheets(strOld).Name = strNew
             End If
         End If
         
@@ -882,7 +882,7 @@ Private Sub cmdSubmit_Click()
             strNew = lstSheet.List(lngCnt, C_SHEET_NEW_NAME)
             strOld = strSheetName & lngCnt
             If strNew <> strOld Then
-                mBook.Sheets(strOld).name = strNew
+                mBook.Sheets(strOld).Name = strNew
             End If
         End If
     Next

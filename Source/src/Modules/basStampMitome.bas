@@ -61,7 +61,7 @@ Public Function editStampMitome(ByRef s As StampMitomeDTO, ByVal lngFormat As Lo
     With r.TextFrame2.TextRange.Font
         .NameComplexScript = s.Font
         .NameFarEast = s.Font
-        .name = s.Font
+        .Name = s.Font
         .Strikethrough = False
         .Superscript = False
         .Subscript = False
@@ -130,7 +130,7 @@ Public Function editStampMitome(ByRef s As StampMitomeDTO, ByVal lngFormat As Lo
         
         b.ZOrder msoSendToBack
         
-        Set o = WS.Shapes.Range(Array(r.name, b.name)).Group
+        Set o = WS.Shapes.Range(Array(r.Name, b.Name)).Group
         
         Set editStampMitome = CreatePictureFromClipboard(o)
         

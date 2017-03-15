@@ -204,7 +204,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         Set colFiles = CreateObject("Scripting.Dictionary")
         
         For Each objfl In objfld.files
-            colFiles.Add objfl.name, objfl
+            colFiles.Add objfl.Name, objfl
         Next
         
         rlxSortDictionary colFiles
@@ -220,7 +220,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
             
             'ファイル名
             Cells(lngRow, lngCol2).NumberFormatLocal = "@"
-            Cells(lngRow, lngCol2).Value = colFiles.Item(objKey).name
+            Cells(lngRow, lngCol2).Value = colFiles.Item(objKey).Name
             
             'ハイパーリンク
             'Office プログラム内のハイパーリンクのファイル名でポンド文字を使用できません。(KB202261)
@@ -229,12 +229,12 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
             If chkFile.Value Then
                 ActiveSheet.Hyperlinks.Add _
                     Anchor:=Cells(lngRow, lngCol2), _
-                    Address:=rlxAddFileSeparator(strPath) & colFiles.Item(objKey).name, _
-                    TextToDisplay:=colFiles.Item(objKey).name
+                    Address:=rlxAddFileSeparator(strPath) & colFiles.Item(objKey).Name, _
+                    TextToDisplay:=colFiles.Item(objKey).Name
             End If
     
             If optViewSheet.Value Then
-                If rlxIsExcelFile(colFiles.Item(objKey).name) Then
+                If rlxIsExcelFile(colFiles.Item(objKey).Name) Then
                     For Each v In getSheets(colFiles.Item(objKey).Path)
                         lngRow = lngRow + 1
                         Cells(lngRow, lngCol2 + 1).Value = v
@@ -260,7 +260,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     Set colFolders = CreateObject("Scripting.Dictionary")
     
     For Each objSub In objfld.SubFolders
-        colFolders.Add objSub.name, objSub
+        colFolders.Add objSub.Name, objSub
     Next
     
     rlxSortDictionary colFolders
@@ -371,7 +371,7 @@ Private Function getSheets(ByVal strBook As String) As Collection
     
     For Each WS In WB.Sheets
         If WS.visible = xlSheetVisible Then
-            getSheets.Add WS.name, WS.name
+            getSheets.Add WS.Name, WS.Name
         End If
     Next
     

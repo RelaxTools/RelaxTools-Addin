@@ -142,7 +142,7 @@ Sub execSheetManager()
     
     Dim WS As Object
     For Each WS In ActiveWorkbook.Sheets
-        If WS.name = "履歴" Then
+        If WS.Name = "履歴" Then
             MsgBox "「履歴」ワークシートが存在するためシート管理は使用できません。", vbOKOnly + vbInformation, C_TITLE
             Exit Sub
         End If

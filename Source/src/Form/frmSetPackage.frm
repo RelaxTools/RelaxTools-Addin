@@ -152,9 +152,9 @@ Private Sub setJavaPackage()
         
         blnNoPackage = True
     
-        strDir = f.name
+        strDir = f.Name
         
-        If LCase(FS.GetExtensionName(f.name)) <> "java" Then
+        If LCase(FS.GetExtensionName(f.Name)) <> "java" Then
             GoTo pass
         End If
             

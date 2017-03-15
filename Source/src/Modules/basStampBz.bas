@@ -446,7 +446,7 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
         With WS.Shapes("shpSquMid").TextFrame2.TextRange
             .Font.NameComplexScript = datStampBz.Font
             .Font.NameFarEast = datStampBz.Font
-            .Font.name = datStampBz.Font
+            .Font.Name = datStampBz.Font
             .Font.Fill.ForeColor.RGB = CLng(datStampBz.Color)
             .Text = strText
         End With
@@ -454,7 +454,7 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
         With WS.Shapes("shpSquUp").TextFrame2.TextRange
             .Font.NameComplexScript = datStampBz.Font
             .Font.NameFarEast = datStampBz.Font
-            .Font.name = datStampBz.Font
+            .Font.Name = datStampBz.Font
             .Font.Fill.ForeColor.RGB = CLng(datStampBz.Color)
             .Text = ""
         End With
@@ -462,7 +462,7 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
         With WS.Shapes("shpSquDown").TextFrame2.TextRange
             .Font.NameComplexScript = datStampBz.Font
             .Font.NameFarEast = datStampBz.Font
-            .Font.name = datStampBz.Font
+            .Font.Name = datStampBz.Font
             .Font.Fill.ForeColor.RGB = CLng(datStampBz.Color)
             .Text = ""
         End With
@@ -481,7 +481,7 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
         With WS.Shapes("shpSquMid").TextFrame2.TextRange
             .Font.NameComplexScript = datStampBz.Font
             .Font.NameFarEast = datStampBz.Font
-            .Font.name = datStampBz.Font
+            .Font.Name = datStampBz.Font
             .Font.Fill.ForeColor.RGB = CLng(datStampBz.Color)
             .Text = ""
         End With
@@ -489,7 +489,7 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
         With WS.Shapes("shpSquUp").TextFrame2.TextRange
             .Font.NameComplexScript = datStampBz.Font
             .Font.NameFarEast = datStampBz.Font
-            .Font.name = datStampBz.Font
+            .Font.Name = datStampBz.Font
             .Font.Fill.ForeColor.RGB = CLng(datStampBz.Color)
             .Text = strHigh
         End With
@@ -497,7 +497,7 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
         With WS.Shapes("shpSquDown").TextFrame2.TextRange
             .Font.NameComplexScript = datStampBz.Font
             .Font.NameFarEast = datStampBz.Font
-            .Font.name = datStampBz.Font
+            .Font.Name = datStampBz.Font
             .Font.Fill.ForeColor.RGB = CLng(datStampBz.Color)
             .Text = strLow
         End With
@@ -572,7 +572,7 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
         
         b.ZOrder msoSendToBack
         
-        Set o = WS.Shapes.Range(Array(r.name, b.name)).Group
+        Set o = WS.Shapes.Range(Array(r.Name, b.Name)).Group
         
         Set editStampBz = CreatePictureFromClipboard(o)
 

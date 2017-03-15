@@ -549,8 +549,8 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
                     
                     lstResult.List(mlngCount, C_SEARCH_ADDRESS) = objFind.Address
                     lstResult.List(mlngCount, C_SEARCH_ID) = objFind.Address
-                    lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.name
-                    lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.name
+                    lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
+                    lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.Name
     
                     mlngCount = mlngCount + 1
                 End If
@@ -595,8 +595,8 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
                 lstResult.List(mlngCount, C_SEARCH_ADDRESS) = objFind.Address
                 lstResult.List(mlngCount, C_SEARCH_ID) = objFind.Address
                 
-                lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.name
-                lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.name
+                lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
+                lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.Name
 
                 mlngCount = mlngCount + 1
         
@@ -672,10 +672,10 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
                         lstResult.AddItem ""
                         lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                         lstResult.List(mlngCount, C_SEARCH_STR) = Left(strBuf, C_SIZE)
-                        lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.name
+                        lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
                         lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & ":" & c.id
-                        lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.name
-                        lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.name
+                        lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
+                        lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.Name
 
                         mlngCount = mlngCount + 1
                         
@@ -740,10 +740,10 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                         lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                         lstResult.List(mlngCount, C_SEARCH_STR) = Left(strBuf, C_SIZE)
 
-                        lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.name
+                        lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
                         lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.id
-                        lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.name
-                        lstResult.List(mlngCount, C_SEARCH_BOOK) = WS.Parent.name
+                        lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.Name
+                        lstResult.List(mlngCount, C_SEARCH_BOOK) = WS.Parent.Name
 
                         mlngCount = mlngCount + 1
                     
@@ -809,10 +809,10 @@ Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objS
                 lstResult.AddItem ""
                 lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                 lstResult.List(mlngCount, C_SEARCH_STR) = Left(strBuf, C_SIZE)
-                lstResult.List(mlngCount, C_SEARCH_ADDRESS) = objShape.name
+                lstResult.List(mlngCount, C_SEARCH_ADDRESS) = objShape.Name
                 lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SMARTART & getGroupId(objShape) & "/" & objShape.id & ":" & objShape.id & "," & lngIdx
-                lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.name
-                lstResult.List(mlngCount, C_SEARCH_BOOK) = WS.Parent.name
+                lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.Name
+                lstResult.List(mlngCount, C_SEARCH_BOOK) = WS.Parent.Name
                 mlngCount = mlngCount + 1
             End If
         Else

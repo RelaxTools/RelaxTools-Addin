@@ -207,6 +207,7 @@ Public Sub pasteScreenShot()
         
         '画像を張付
         WS.Paste
+        Call CopyClipboardSleep
     
         If err.Number <> 0 Then
             tray.ShowBalloon "コピー失敗しました"

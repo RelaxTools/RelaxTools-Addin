@@ -260,7 +260,7 @@ Sub ReplaceStr()
         
         
         If WB.ReadOnly Then
-            MsgBox "読み取り専用のブック(" & WB.name & ")です。" & vbCrLf & "Grep置換をスキップします。", vbOKOnly + vbCritical, C_TITLE
+            MsgBox "読み取り専用のブック(" & WB.Name & ")です。" & vbCrLf & "Grep置換をスキップします。", vbOKOnly + vbCritical, C_TITLE
             WB.Saved = True
         Else
             On Error GoTo e

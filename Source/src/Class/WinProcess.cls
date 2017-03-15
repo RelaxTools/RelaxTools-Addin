@@ -57,7 +57,6 @@ Option Explicit
     Private Declare PtrSafe Function Process32First Lib "kernel32" (ByVal lngHandleshot As LongPtr, ByRef ProcessEntry As PROCESSENTRY32) As LongPtr
     Private Declare PtrSafe Function Process32Next Lib "kernel32" (ByVal lngHandle As LongPtr, ByRef ProcessEntry As PROCESSENTRY32) As LongPtr
     Private Declare PtrSafe Function CloseHandle Lib "kernel32" (ByVal hObject As LongPtr) As Long
-    Private Const SIZEOF_PROCESSENTRY32 As Long = 304
 
 #Else
     
@@ -78,7 +77,6 @@ Option Explicit
     Private Declare Function Process32First Lib "kernel32" (ByVal lngHandleshot As Long, ByRef ProcessEntry As PROCESSENTRY32) As Long
     Private Declare Function Process32Next Lib "kernel32" (ByVal lngHandle As Long, ByRef ProcessEntry As PROCESSENTRY32) As Long
     Private Declare Function CloseHandle Lib "kernel32" (ByVal hObject As Long) As Long
-    Private Const SIZEOF_PROCESSENTRY32 As Long = 296
 
 #End If
 
@@ -147,7 +145,7 @@ Public Sub SnapShot()
     Dim lngRet As Long
     Dim lngPos As Long
     
-    procEntry.Size = SIZEOF_PROCESSENTRY32
+    procEntry.Size = LenB(procEntry)
     
     mEntryCount = 1
     

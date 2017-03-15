@@ -170,7 +170,7 @@ Private Sub cmdOK_Click()
         
         'シートの存在チェック
         For Each s In WB.Worksheets
-            If s.name = C_NAME Then
+            If s.Name = C_NAME Then
                 If MsgBox("「" & C_NAME & "」シートが既に存在します。削除していいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
                     Exit Sub
                 Else
@@ -187,7 +187,7 @@ Private Sub cmdOK_Click()
         C_ROW = C_START_ROW
     
         Set WS = WB.Worksheets.Add(WB.Worksheets(1))
-        WS.name = C_NAME
+        WS.Name = C_NAME
         WS.Cells(C_HEAD_ROW, C_CONTENT_LIST).Value = C_NAME
         WS.Cells(C_HEAD_ROW, C_CONTENT_PAGE).Value = "ページ"
     Else
@@ -272,7 +272,7 @@ Private Sub cmdOK_Click()
                             WS.Hyperlinks.Add _
                                 Anchor:=WS.Cells(j, C_CONTENT_LIST), _
                                 Address:="", _
-                                SubAddress:="'" & Worksheets(strSheet).name & "'!" & Worksheets(strSheet).Cells(i, lngCol).Address, _
+                                SubAddress:="'" & Worksheets(strSheet).Name & "'!" & Worksheets(strSheet).Cells(i, lngCol).Address, _
                                 TextToDisplay:=WS.Cells(j, C_CONTENT_LIST).Value
                         End If
                         
@@ -436,10 +436,10 @@ Private Sub UserForm_Initialize()
     For i = 1 To Worksheets.count
     
         If Worksheets(i).visible = xlSheetVisible Then
-            cboSheet.AddItem Worksheets(i).name
+            cboSheet.AddItem Worksheets(i).Name
             lstSheets.AddItem ""
             lstSheets.List(j - 1, 0) = j
-            lstSheets.List(j - 1, 1) = Worksheets(i).name
+            lstSheets.List(j - 1, 1) = Worksheets(i).Name
             If ActiveSheet.Index = Worksheets(i).Index Then
                 lstSheets.Selected(j - 1) = True
             End If

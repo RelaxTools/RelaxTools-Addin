@@ -89,8 +89,8 @@ Private Sub searchShape(ByRef strPattern As String, ByRef objSheet As Worksheet)
                     Else
                         lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "非表示"
                     End If
-                    lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.name
-                    lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.name
+                    lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
+                    lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
                     lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & ":" & c.id
 
                     mlngCount = mlngCount + 1
@@ -130,8 +130,8 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                     Else
                         lstResult.List(mlngCount, C_SEARCH_VISIBLE) = "非表示"
                     End If
-                    lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.name
-                    lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.name
+                    lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.Name
+                    lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
                     lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.id
 
                     mlngCount = mlngCount + 1

@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCrossLine 
    Caption         =   "十字カーソル設定"
-   ClientHeight    =   6270
+   ClientHeight    =   6495
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   8580
+   ClientWidth     =   8655
    OleObjectBlob   =   "frmCrossLine.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
@@ -96,18 +96,19 @@ Private Sub cmdOK_Click()
     Dim blnGuid As Boolean
     Dim blnEdit As Boolean
     Dim strFontColor As String
+    Dim blnLineWidth As Boolean
     
     Select Case Val(txtHead.Value)
         Case 0 To 100
         Case Else
-            MsgBox "透明度は０～１００を入力してください。", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "透明度は0～100を入力してください。", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
     End Select
     
     Select Case Val(txtCol.Value)
-        Case 1 To 100
+        Case 0.25! To 100
         Case Else
-            MsgBox "線の幅は１～１００を入力してください。", vbOKOnly + vbExclamation, C_TITLE
+            MsgBox "線の幅は0.25～100を入力してください。", vbOKOnly + vbExclamation, C_TITLE
             Exit Sub
     End Select
     
@@ -140,10 +141,11 @@ Private Sub cmdOK_Click()
     
     blnGuid = chkGuid.Value
     blnEdit = chkEdit.Value
+    blnLineWidth = chkLineWidth.Value
     
     strFontColor = "&H" & Right$("00000000" & Hex(lblFont.BackColor), 8)
     
-    Call setCrossLineSetting(lngType, strFillVisible, strFillColor, strFillTransparency, strLineVisible, strLineColor, strLineWeight, blnGuid, strFontColor, blnEdit)
+    Call setCrossLineSetting(lngType, strFillVisible, strFillColor, strFillTransparency, strLineVisible, strLineColor, strLineWeight, blnGuid, strFontColor, blnEdit, blnLineWidth)
 
     Unload Me
 End Sub
@@ -253,7 +255,7 @@ Private Function spinUp2(ByVal vntValue As Variant) As Variant
     Dim lngValue As Single
 
     lngValue = Val(vntValue)
-    lngValue = lngValue + 0.5
+    lngValue = lngValue + 0.25!
     If lngValue > 100 Then
         lngValue = 100
     End If
@@ -266,9 +268,9 @@ Private Function spinDown2(ByVal vntValue As Variant) As Variant
     Dim lngValue As Single
 
     lngValue = Val(vntValue)
-    lngValue = lngValue - 0.5
-    If lngValue < 1 Then
-        lngValue = 1
+    lngValue = lngValue - 0.25!
+    If lngValue < 0.25! Then
+        lngValue = 0.25!
     End If
     spinDown2 = lngValue
 
@@ -287,8 +289,9 @@ Private Sub UserForm_Initialize()
     Dim lngType As Long
     Dim blnGuid As Boolean
     Dim blnEdit As Boolean
+    Dim blnLineWidth As Boolean
 
-    Call getCrossLineSetting(lngType, lngFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit)
+    Call getCrossLineSetting(lngType, lngFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
     
     Select Case lngType
         Case C_HOLIZON
@@ -324,5 +327,6 @@ Private Sub UserForm_Initialize()
     lblFont.BackColor = lngFontColor
     
     chkEdit.Value = blnEdit
+    chkLineWidth.Value = blnLineWidth
     
 End Sub

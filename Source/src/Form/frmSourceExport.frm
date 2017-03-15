@@ -80,9 +80,9 @@ Private Sub UserForm_Initialize()
     Dim b As Workbook
     
     For Each b In Workbooks
-        If b.name = "RelaxTools.xlam" Then
+        If b.Name = "RelaxTools.xlam" Then
         Else
-            cboSrcBook.AddItem b.name
+            cboSrcBook.AddItem b.Name
         End If
     Next
     
@@ -168,11 +168,11 @@ Private Sub cmdOK_Click()
         
         If chkCategory.Value Then
             rlxCreateFolder rlxAddFileSeparator(strFile) & strFolder
-            strTo = rlxAddFileSeparator(strFile) & strFolder & "\" & vb_component.name & extention
-            strFrom = rlxGetTempFolder & vb_component.name & extention
+            strTo = rlxAddFileSeparator(strFile) & strFolder & "\" & vb_component.Name & extention
+            strFrom = rlxGetTempFolder & vb_component.Name & extention
         Else
-            strTo = rlxAddFileSeparator(strFile) & vb_component.name & extention
-            strFrom = rlxGetTempFolder & vb_component.name & extention
+            strTo = rlxAddFileSeparator(strFile) & vb_component.Name & extention
+            strFrom = rlxGetTempFolder & vb_component.Name & extention
         End If
         
         If chkUTF8.Value Then

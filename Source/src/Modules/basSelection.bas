@@ -2467,3 +2467,62 @@ Sub execSelectioDateDayMinus()
     Set obj = Nothing
 
 End Sub
+'--------------------------------------------------------------
+' 式セット(小数点以下四捨五入)
+'--------------------------------------------------------------
+Sub execSelectionSetRound()
+    
+    Dim obj As SelectionSetRound
+    
+    Set obj = New SelectionSetRound
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
+' 式セット(小数点以下切り上げ)
+'--------------------------------------------------------------
+Sub execSelectionSetRoundUp()
+    
+    Dim obj As SelectionSetRoundUp
+    
+    Set obj = New SelectionSetRoundUp
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
+' 式セット(小数点以下切り捨て)
+'--------------------------------------------------------------
+Sub execSelectionSetRoundDown()
+    
+    Dim obj As SelectionSetRoundDown
+    
+    Set obj = New SelectionSetRoundDown
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+'--------------------------------------------------------------
+' かっこ付加
+'--------------------------------------------------------------
+Sub execSelectionSetParenthesis()
+    
+    Dim obj As SelectionSetParenthesis
+    
+    Set obj = New SelectionSetParenthesis
+    
+    obj.Left = "("
+    obj.Right = ")"
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
