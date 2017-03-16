@@ -438,20 +438,13 @@ Private Sub addCrossLine()
         
         Call deleteCrossLine
         
-        Dim lngFillVisible As Long
-        Dim lngFillColor As Long
-        Dim dblFillTransparency As Double
-        Dim lngLineVisible As Long
         Dim lngLineColor As Long
         Dim sngLineWeight As Single
-        Dim strOnAction As String
         Dim lngType As Long
         Dim blnGuid As Boolean
         Dim lngFontColor As Long
-        Dim blnEdit As Boolean
-        Dim blnLineWidth As Boolean
     
-        Call getCrossLineSetting(lngType, lngFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
+        Call getCrossLineSetting(lngType, lngLineColor, sngLineWeight, blnGuid, lngFontColor)
         
         If lngType And C_HOLIZON Then
             Set s = mWS.Shapes.AddShape(msoShapeRectangle, 10, 10, 10, 10)
@@ -506,7 +499,7 @@ Private Sub addCrossLine()
             With s.Fill
                 .visible = msoTrue
                 .ForeColor.RGB = RGB(0, 176, 80)
-                .Transparency = 0.5
+                .Transparency = 1
                 .Solid
             End With
             
@@ -613,20 +606,13 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         sngWidth = C_MAX
     End If
 
-    Dim lngFillVisible As Long
-    Dim lngFillColor As Long
-    Dim dblFillTransparency As Double
-    Dim lngLineVisible As Long
     Dim lngLineColor As Long
     Dim sngLineWeight As Single
-    Dim strOnAction As String
     Dim lngType As Long
     Dim blnGuid As Boolean
     Dim lngFontColor As Long
-    Dim blnEdit As Boolean
-    Dim blnLineWidth As Boolean
 
-    Call getCrossLineSetting(lngType, lngFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
+    Call getCrossLineSetting(lngType, lngLineColor, sngLineWeight, blnGuid, lngFontColor)
 
     '横軸
     If lngType And C_HOLIZON Then
@@ -635,25 +621,18 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Top = r.Top
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Left = sngLeft
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Width = sngWidth 'r.Width
-        If blnLineWidth Then
-            sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = 0
-        Else
-            sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = r.Height
-        End If
+        sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = 0
         
-        If lngFillVisible = msoTrue Then
-            sh.Shapes(C_HOLIZONTAL_BAR_NAME).OnAction = strOnAction
-        End If
         
         With sh.Shapes(C_HOLIZONTAL_BAR_NAME).Fill
-            .visible = lngFillVisible
-            .ForeColor.RGB = lngFillColor
-            .Transparency = dblFillTransparency / 100
+            .visible = True
+'            .ForeColor.RGB = lngFillColor
+'            .Transparency = dblFillTransparency / 100
             .Solid
         End With
         
         With sh.Shapes(C_HOLIZONTAL_BAR_NAME).Line
-            .visible = lngLineVisible
+            .visible = True
             .ForeColor.RGB = lngLineColor
             .Weight = sngLineWeight
             .Transparency = 0
@@ -668,28 +647,19 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     
         sh.Shapes(C_VERTICAL_BAR_NAME).Top = sngTop
         sh.Shapes(C_VERTICAL_BAR_NAME).Left = r.Left
-        
-        If blnLineWidth Then
-            sh.Shapes(C_VERTICAL_BAR_NAME).Width = 0
-        Else
-            sh.Shapes(C_VERTICAL_BAR_NAME).Width = r.Width
-        End If
+        sh.Shapes(C_VERTICAL_BAR_NAME).Width = 0
         
         sh.Shapes(C_VERTICAL_BAR_NAME).Height = sngHeight 'r.Height
-    
-        If lngFillVisible = msoTrue Then
-            sh.Shapes(C_VERTICAL_BAR_NAME).OnAction = strOnAction
-        End If
         
         With sh.Shapes(C_VERTICAL_BAR_NAME).Fill
-            .visible = lngFillVisible
-            .ForeColor.RGB = lngFillColor
-            .Transparency = dblFillTransparency / 100
+            .visible = True
+'            .ForeColor.RGB = lngFillColor
+'            .Transparency = dblFillTransparency / 100
             .Solid
         End With
         
         With sh.Shapes(C_VERTICAL_BAR_NAME).Line
-            .visible = lngLineVisible
+            .visible = True
             .ForeColor.RGB = lngLineColor
             .Weight = sngLineWeight
             .Transparency = 0
@@ -708,22 +678,19 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         sh.Shapes(C_XY_BAR_NAME).Top = Target(1).Top + Target(1).Height + 10
         sh.Shapes(C_XY_BAR_NAME).Left = Target(1).Left + Target(1).Width + 10
         
-        If lngFillVisible = msoTrue Then
-            sh.Shapes(C_XY_BAR_NAME).OnAction = strOnAction
-        End If
         
         With sh.Shapes(C_XY_BAR_NAME).Fill
-            .visible = lngFillVisible
-            .ForeColor.RGB = lngFillColor
-            .Transparency = dblFillTransparency / 100
+            .visible = True
+'            .ForeColor.RGB = lngFillColor
+            .Transparency = 1
             .Solid
         End With
         
         With sh.Shapes(C_XY_BAR_NAME).Line
-            .visible = lngLineVisible
+            .visible = True
             .ForeColor.RGB = lngLineColor
             .Weight = sngLineWeight
-            .Transparency = 0
+'            .Transparency = 0
         End With
         
         Dim strBuf As String
