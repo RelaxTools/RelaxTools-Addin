@@ -93,53 +93,9 @@ End Function
 Function PointToPixelY(pt As Double) As Long
     PointToPixelY = Int(pt * DPI / PPI)
 End Function
-'Function PixelToPointX(px As Long) As Double
-'    PixelToPointX = PTUNIT * Int((px * PPI / DPI) / PTUNIT)
-'End Function
-'Function PixelToPointY(px As Long) As Double
-'    PixelToPointY = PTUNIT * Int((px * PPI / DPI) / PTUNIT)
-'End Function
-
 Private Function PPI() As Double
-'    If ActiveWindow Is Nothing Then
-        PPI = Application.InchesToPoints(1)
-'    Else
-'        ' 倍率を上げるとPPIが上がる想定
-'        PPI = rlxRoundDown((Application.InchesToPoints(1) * (100 / ActiveWindow.Zoom)), 2)
-'    End If
+    PPI = Application.InchesToPoints(1)
 End Function
-'Private Function PPIY() As Double
-'    If ActiveWindow Is Nothing Then
-'        PPIY = Application.InchesToPoints(1)
-'    Else
-'        If ActiveWindow.Zoom = 100 Then
-'            PPIY = Application.InchesToPoints(1)
-'        Else
-'            ' 倍率を上げるとPPIが上がる想定
-'            PPIY = rlxRoundDown((Application.InchesToPoints(1) * (100 / ActiveWindow.Zoom)), 2)
-'        End If
-'    End If
-'End Function
-
-'Private Sub realZoomRate(ByRef zoomx As Single, ByRef zoomy As Single)
-' Dim c As Range
-' Dim dotX As Long
-' Dim dotY As Long
-' Dim dotX1 As Long
-' Dim dotY1 As Long
-'
-' Set c = Range("a1")
-' With ActiveWindow
-' ' ---------- 実際のZoom比の計算 ---------------
-'dotY = c.Height * DPI / PPI
-' dotY1 = dotY * 100 / .Zoom
-' zoomy = dotY1 / dotY '実際に適用されているZoom率
-'dotX = c.Width * DPI / PPI
-' dotX1 = dotX * 100 / .Zoom
-' zoomx = dotX1 / dotX
-' End With
-' End Sub
-
 Sub PickShape(ByRef objDataSet As Object)
 
     Dim X As Long
@@ -154,7 +110,6 @@ Sub PickShape(ByRef objDataSet As Object)
 
     Application.ScreenUpdating = False
 
-
     Dim a As POINTAPI
 
     Dim dummy As Long
@@ -162,83 +117,87 @@ Sub PickShape(ByRef objDataSet As Object)
     by = ActiveWindow.ActivePane.ScrollRow
 
     ActiveWindow.ActivePane.ScrollColumn = 1
+    
     dummy = ActiveWindow.SplitHorizontal
     spx = ActiveWindow.ActivePane.PointsToScreenPixelsX(0)
     ActiveWindow.ActivePane.ScrollColumn = bx
 
     ActiveWindow.ActivePane.ScrollRow = 1
+    
     dummy = ActiveWindow.SplitHorizontal
     spy = ActiveWindow.ActivePane.PointsToScreenPixelsY(0)
     ActiveWindow.ActivePane.ScrollRow = by
     
-'    Dim dblZoomX As Double
-'    Dim dblZoomY As Double
-'
-'    If ActiveWindow.Zoom = 100 Then
-'        dblZoomX = 1
-'        dblZoomY = 1
-'    Else
-'        Dim lngZoom As Long
-'        Dim lngUsableWidth As Long
-'        Dim lngUsableHeight As Long
-'
-'        lngZoom = ActiveWindow.Zoom
-'        lngUsableWidth = ActiveWindow.activepane.
-'        lngUsableHeight = ActiveWindow.VisibleRange.Height
-'
-'        ' ズーム１００に対する割合を取得（ポイント）
-'        ActiveWindow.Zoom = 100
-'
-'        dblZoomX = ActiveWindow.VisibleRange.Width / lngUsableWidth
-'        Debug.Print "dblZoomX=" & dblZoomX
-'        dblZoomY = ActiveWindow.VisibleRange.Height / lngUsableHeight
-'        Debug.Print "dblZoomY=" & dblZoomY
-'
-'        ActiveWindow.Zoom = lngZoom
-'    End If
+    Dim dblZoomX As Double
+    Dim dblZoomY As Double
+
+    If ActiveWindow.Zoom = 100 Then
+        dblZoomX = 1
+        dblZoomY = 1
+    Else
+        Dim lngZoom As Long
+        Dim lngUsableWidth As Long
+        Dim lngUsableHeight As Long
+
+        lngZoom = ActiveWindow.Zoom
+
+        lngUsableWidth = ActiveWindow.ActivePane.PointsToScreenPixelsX(Cells(2, 2).Left) - ActiveWindow.ActivePane.PointsToScreenPixelsX(0)
+        lngUsableHeight = ActiveWindow.ActivePane.PointsToScreenPixelsY(Cells(2, 2).Top) - ActiveWindow.ActivePane.PointsToScreenPixelsY(0)
+
+        ' ズーム１００に対する割合を取得（ポイント）
+        ActiveWindow.Zoom = 100
+
+        dblZoomX = (ActiveWindow.ActivePane.PointsToScreenPixelsX(Cells(2, 2).Left) - ActiveWindow.ActivePane.PointsToScreenPixelsX(0)) / lngUsableWidth
+        dblZoomY = (ActiveWindow.ActivePane.PointsToScreenPixelsY(Cells(2, 2).Top) - ActiveWindow.ActivePane.PointsToScreenPixelsY(0)) / lngUsableHeight
+
+        ActiveWindow.Zoom = lngZoom
+    End If
 
     '現在のカーソル位置のスクリーン座標を取得
     GetCursorPos a
-'    Const RoundConst = 0.5000001
-    
+
     ax = ((a.X - spx) * PPI / DPI)
-    X = ActiveSheet.Cells(by, bx).Left + ax * (100 / ActiveWindow.Zoom)
+    X = ActiveSheet.Cells(by, bx).Left + ax * dblZoomX
+
 
     ay = ((a.Y - spy) * PPI / DPI)
-    Y = ActiveSheet.Cells(by, bx).Top + ay * (100 / ActiveWindow.Zoom)
+    Y = ActiveSheet.Cells(by, bx).Top + ay * dblZoomY
     
     Dim r As Range
     Set r = ActiveWindow.ActivePane.VisibleRange
     
     'マウスカーソルが作業ウィンドウ内にある場合
     If r(1).Top < Y And r(1).Left < X And r(r.count).Top + r(r.count).Height > Y + objDataSet.Height And r(r.count).Left + r(r.count).Width > X + objDataSet.Width Then
-        objDataSet.Left = X - (objDataSet.Width) / 2
-        objDataSet.Top = Y - (objDataSet.Height) / 2
-        Call SetCursoleAndLeftDown(a.X, a.Y)
-    Else
     
-        'マウスカーソルが作業ウィンドウ外にある場合
-        ax = ((objDataSet.Left + (objDataSet.Width / 2) - ActiveSheet.Cells(by, bx).Left) * DPI / PPI)
-        X = spx + ax
+        'シェイプをマウスカーソル位置に移動する
+        objDataSet.Left = X - (objDataSet.Width / 2)
+        objDataSet.Top = Y - (objDataSet.Height / 2)
         
-        ay = ((objDataSet.Top + (objDataSet.Height / 4) - ActiveSheet.Cells(by, bx).Top) * DPI / PPI)
-        Y = spy + ay
+        Call SetCursoleAndLeftDown(a.X, a.Y)
+    
+    'マウスカーソルが作業ウィンドウ外にある場合
+    Else
+        'カーソルをシェイプに移動する
+        ax = ((objDataSet.Left + (objDataSet.Width / 2) - ActiveSheet.Cells(by, bx).Left) * DPI / PPI)
+        X = spx + ax / dblZoomX
+        
+        ay = ((objDataSet.Top + (objDataSet.Height / 2) - ActiveSheet.Cells(by, bx).Top) * DPI / PPI)
+        Y = spy + ay / dblZoomY
+        
         Call SetCursoleAndLeftDown(X, Y)
     
     End If
-    
 
     Application.ScreenUpdating = True
-
 
 End Sub
 Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
 
     Dim inp(0 To 2) As INPUT_TYPE
     
-'    Dim a As POINTAPI
-'
-'    GetCursorPos a
+    Dim a As POINTAPI
+
+    GetCursorPos a
     
     With inp(0)
         .dwType = INPUT_MOUSE
@@ -262,8 +221,8 @@ Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
     
 '    With inp(2)
 '        .dwType = INPUT_MOUSE
-'        .mi.dX = (a.x * 65535 / (GetSystemMetrics(SM_CXSCREEN) - 1))
-'        .mi.dY = (a.y * 65535 / (GetSystemMetrics(SM_CYSCREEN) - 1))
+'        .mi.dX = (X2 * 65535 / (GetSystemMetrics(SM_CXSCREEN) - 1))
+'        .mi.dY = (Y2 * 65535 / (GetSystemMetrics(SM_CYSCREEN) - 1))
 '        .mi.mouseData = 0
 '        .mi.dwFlags = MOUSE_MOVED Or MOUSEEVENTF_ABSOLUTE
 '        .mi.time = 0
@@ -271,7 +230,7 @@ Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
 '    End With
     
     
-    SendInput 2, inp(0), Len(inp(0))
+    SendInput 2, inp(0), LenB(inp(0))
 
 End Sub
 
@@ -359,4 +318,6 @@ End Sub
 '
 '
 'End Sub
+
+
 

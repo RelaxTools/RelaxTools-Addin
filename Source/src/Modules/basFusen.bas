@@ -189,7 +189,12 @@ Sub pasteFusen(ByVal strId As String, ByVal Index As Long)
         Selection.ShapeRange.TextFrame2.WordWrap = CBool(varWordWrap)
     End If
     
-
+    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
+    Else
+        'シェイプをつまむ
+        PickShape Selection.ShapeRange
+    End If
+    
     Application.ScreenUpdating = True
 
 End Sub

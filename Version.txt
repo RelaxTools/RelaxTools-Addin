@@ -1,4 +1,8 @@
-﻿2017/03/15(thu) RelaxTools-Addin Version 4.11.2(RustRemover) 
+﻿2017/03/15(thu) RelaxTools-Addin Version 4.12.0(RustRemover) 
+◇機能改善
+・強調シェイプの貼り付ける際にマウスで場所を指定できるように改善した。
+
+2017/03/15(thu) RelaxTools-Addin Version 4.11.2(RustRemover) 
 ◇機能改善
 　・十字カーソルをリニューアル。より使いやすく線のみで表現するようにした。
 　　枠線を0.25刻みで設定できるように修正。
