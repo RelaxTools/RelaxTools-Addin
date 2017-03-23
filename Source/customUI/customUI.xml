@@ -188,6 +188,10 @@
               <button id="execSelectionRemoveLeftToChar"  image="headDel" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               <button id="execSelectionRemoveRightToChar"  image="bottomDel" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             </menu>
+            <menu id="ParenthesisConv" label="カッコ挿入"    image="headIns" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
+              <menuSeparator id="ParenthesisSep01" title="カッコ挿入"/>
+              <button id="execSelectionSetParenthesis" image="headIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            </menu>
           </menu>
           <separator id="convSep"/>
           <box id="box31" boxStyle="vertical">
@@ -226,6 +230,12 @@
               <button id="execSelectionRemoveFilename"    image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionRemoveExt"         image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionToUNC"             image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <menu id="RoundConv" label="四捨五入"    image="convert" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
+                <menuSeparator id="roundSep08" title="四捨五入の式を挿入"/>
+                <button id="execSelectionSetRound"       image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+                <button id="execSelectionSetRoundUp"     image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+                <button id="execSelectionSetRoundDown"   image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              </menu>
             </menu>
             <menu id="valueRefConv" label="その他変換"    image="convert" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
               <menuSeparator id="convSep08" title="式→値に変換する"/>
@@ -626,7 +636,9 @@
             </menu>
           </splitButton>
           <menu id="evidence" label="強調&#xD;&#xA;" size="large" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="shapeSquare" getEnabled="getRibbonEnabled" >
-            <menuSeparator id="shapeSep01" title="強調用シェイプ(実線)貼付"/>
+            <menuSeparator id="shapeSep01" title="シェイプの貼付方法"/>
+            <toggleButton  id="pickCheck"  image="pick" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getPressed="pickPressed" onAction="pickOnAction"/>
+            <menuSeparator id="shapeSep02" title="強調用シェイプ(実線)貼付"/>
             <button id="drawEvidenceArrow"    image="arrow"          getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <button id="drawEvidenceTextbox"  image="shapeSquare"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <button id="drawEvidenceOval"     image="shapeCircle"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
@@ -634,7 +646,7 @@
             <button id="drawEvidenceLineCallout"  image="shapeLineFukidashi" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <menuSeparator id="shapeEvidence" title="その他"/>
             <menu id="shapeEvidenceMenu" label="強調用シェイプ(破線)貼付" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="shapeSquare" getEnabled="getRibbonEnabled" >
-              <menuSeparator id="shapeSep02" title="強調用シェイプ(破線)貼付"/>
+              <menuSeparator id="shapeSep03" title="強調用シェイプ(破線)貼付"/>
               <button id="drawEvidenceArrow2"   image="arrow"          getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               <button id="drawEvidenceTextbox2" image="shapeSquare"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               <button id="drawEvidenceOval2"    image="shapeCircle"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
@@ -690,7 +702,7 @@
               <button id="execCopyScreenSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  getEnabled="getScreenShotEnabled" onAction="ribbonOnAction"/>
             </menu>
           </splitButton>
-          <separator id="shapeSep03"/>
+          <separator id="shapeSep04"/>
           <gallery idMso="ShapeChangeShapeGallery" size="large" label="他シェイプに&#xD;&#xA;変更" />
         </group>
       </tab>

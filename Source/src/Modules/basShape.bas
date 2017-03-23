@@ -37,7 +37,7 @@ Public Const C_RECT_Y  As Single = 12
 
 'その他の構成（４×３マス）
 Public Const C_NORMAL_WIDTH As Long = 7
-Public Const C_NORMAL_HEIGHT As Long = 3
+Public Const C_NORMAL_HEIGHT As Long = 4
 
 '
 ' 線を真っ直ぐにする

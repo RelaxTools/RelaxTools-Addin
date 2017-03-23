@@ -1463,4 +1463,26 @@ Sub AutoCompleteTogggle()
 e:
     Call rlxErrMsg(err)
 End Sub
+'--------------------------------------------------------------------
+'  Pickの押下状態の取得
+'--------------------------------------------------------------------
+Sub pickPressed(control As IRibbonControl, ByRef returnValue)
+    
+    returnValue = CBool(GetSetting(C_TITLE, "Shape", "PickMode", False))
+    
+End Sub
+'--------------------------------------------------------------------
+'  Pickの押下時イベント
+'--------------------------------------------------------------------
+Sub pickOnAction(control As IRibbonControl, pressed As Boolean)
+  
+    On Error GoTo e
+  
+    Call RefreshRibbon
 
+    Call SaveSetting(C_TITLE, "Shape", "PickMode", pressed)
+
+    Exit Sub
+e:
+    Call rlxErrMsg(err)
+End Sub
