@@ -38,8 +38,8 @@ Option Private Module
     Private Declare PtrSafe Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
 
     Private Type MOUSEINPUT
-        dX As Long
-        dY As Long
+        dx As Long
+        dy As Long
         mouseData As Long
         dwFlags As Long
         time As LongLong
@@ -58,8 +58,8 @@ Option Private Module
     Private Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
     
     Private Type MOUSEINPUT
-        dX As Long
-        dY As Long
+        dx As Long
+        dy As Long
         mouseData As Long
         dwFlags As Long
         time As Long
@@ -105,10 +105,12 @@ Sub PickShape(ByRef objDataSet As Object)
 
     Dim bx As Long
     Dim by As Long
+    Dim cx As Long
+    Dim cy As Long
+    Dim dx As Long
+    Dim dy As Long
     Dim spx As Long
     Dim spy As Long
-
-    Application.ScreenUpdating = False
 
     Dim a As POINTAPI
 
@@ -116,52 +118,96 @@ Sub PickShape(ByRef objDataSet As Object)
     bx = ActiveWindow.ActivePane.ScrollColumn
     by = ActiveWindow.ActivePane.ScrollRow
 
-    ActiveWindow.ActivePane.ScrollColumn = 1
+    ActiveWindow.ActivePane.ScrollColumn = ActiveWindow.SplitColumn + 1
     
-    dummy = ActiveWindow.SplitHorizontal
+    'Excel 2010 以前は True にして　PointsToScreenPixelsX/Y が動作するようにする
+    Application.ScreenUpdating = (Val(Application.Version) <= C_EXCEL_VERSION_2010)
+    
+    dummy = ActiveWindow.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
     spx = ActiveWindow.ActivePane.PointsToScreenPixelsX(0)
     ActiveWindow.ActivePane.ScrollColumn = bx
 
-    ActiveWindow.ActivePane.ScrollRow = 1
+    ActiveWindow.ActivePane.ScrollRow = ActiveWindow.SplitRow + 1
     
-    dummy = ActiveWindow.SplitHorizontal
+    dummy = ActiveWindow.SplitVertical    'PointsToScreenPixelsXの値を更新するために使用
     spy = ActiveWindow.ActivePane.PointsToScreenPixelsY(0)
     ActiveWindow.ActivePane.ScrollRow = by
+    
     
     Dim dblZoomX As Double
     Dim dblZoomY As Double
 
+    '現在のカーソル位置のスクリーン座標を取得
+    GetCursorPos a
+    
+    If ActiveWindow.RangeFromPoint(a.X, a.Y) Is Nothing Then
+        dx = 100
+        dy = 100
+    Else
+        dx = ActiveWindow.RangeFromPoint(a.X, a.Y).Left + (ActiveWindow.RangeFromPoint(a.X, a.Y).Width) / 2
+        dy = ActiveWindow.RangeFromPoint(a.X, a.Y).Top + (ActiveWindow.RangeFromPoint(a.X, a.Y).Height) / 2
+    End If
+    
     If ActiveWindow.Zoom = 100 Then
         dblZoomX = 1
         dblZoomY = 1
+        
+        '100%時の分割サイズを保存
+        cx = ActiveWindow.SplitHorizontal
+        cy = ActiveWindow.SplitVertical
     Else
+    
+        'この処理の趣旨 現在のマウスポインタ位置の指定％のピクセル数と１００％時のピクセル数から本来の倍率を求める
         Dim lngZoom As Long
-        Dim lngUsableWidth As Long
-        Dim lngUsableHeight As Long
+        
+        Dim lngToX1 As Long
+        Dim lngToY1 As Long
+        Dim lngToX2 As Long
+        Dim lngToY2 As Long
 
         lngZoom = ActiveWindow.Zoom
 
-        lngUsableWidth = ActiveWindow.ActivePane.PointsToScreenPixelsX(Cells(2, 2).Left) - ActiveWindow.ActivePane.PointsToScreenPixelsX(0)
-        lngUsableHeight = ActiveWindow.ActivePane.PointsToScreenPixelsY(Cells(2, 2).Top) - ActiveWindow.ActivePane.PointsToScreenPixelsY(0)
+        dummy = ActiveWindow.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
+        lngToX1 = ActiveWindow.ActivePane.PointsToScreenPixelsX(0)
+        
+        dummy = ActiveWindow.SplitVertical    'PointsToScreenPixelsYの値を更新するために使用
+        lngToY1 = ActiveWindow.ActivePane.PointsToScreenPixelsY(0)
 
+        dummy = ActiveWindow.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
+        lngToX2 = ActiveWindow.ActivePane.PointsToScreenPixelsX(dx) - lngToX1
+        
+        dummy = ActiveWindow.SplitVertical    'PointsToScreenPixelsYの値を更新するために使用
+        lngToY2 = ActiveWindow.ActivePane.PointsToScreenPixelsY(dy) - lngToY1
+
+        Dim lngFromX2 As Long
+        Dim lngFromY2 As Long
+        
+        lngFromX2 = Round(dx * DPI / PPI)
+        lngFromY2 = Round(dy * DPI / PPI)
+
+        '倍率を計算
+        dblZoomX = CDbl(lngFromX2) / lngToX2
+        dblZoomY = CDbl(lngFromY2) / lngToY2
+        
+        Application.ScreenUpdating = False
+        
+        '100%時の分割サイズを保存
         ' ズーム１００に対する割合を取得（ポイント）
         ActiveWindow.Zoom = 100
-
-        dblZoomX = (ActiveWindow.ActivePane.PointsToScreenPixelsX(Cells(2, 2).Left) - ActiveWindow.ActivePane.PointsToScreenPixelsX(0)) / lngUsableWidth
-        dblZoomY = (ActiveWindow.ActivePane.PointsToScreenPixelsY(Cells(2, 2).Top) - ActiveWindow.ActivePane.PointsToScreenPixelsY(0)) / lngUsableHeight
-
+        
+        cx = ActiveWindow.SplitHorizontal
+        cy = ActiveWindow.SplitVertical
+        
         ActiveWindow.Zoom = lngZoom
+
     End If
 
-    '現在のカーソル位置のスクリーン座標を取得
-    GetCursorPos a
+    'マウスポインタの座標(ピクセル)をポイントに変換
+    ax = Round(((a.X - spx) * PPI / DPI) * dblZoomX)
+    X = ActiveSheet.Cells(by, bx).Left - cx + ax
 
-    ax = ((a.X - spx) * PPI / DPI)
-    X = ActiveSheet.Cells(by, bx).Left + ax * dblZoomX
-
-
-    ay = ((a.Y - spy) * PPI / DPI)
-    Y = ActiveSheet.Cells(by, bx).Top + ay * dblZoomY
+    ay = Round(((a.Y - spy) * PPI / DPI) * dblZoomY)
+    Y = ActiveSheet.Cells(by, bx).Top - cy + ay
     
     Dim r As Range
     Set r = ActiveWindow.ActivePane.VisibleRange
@@ -173,17 +219,19 @@ Sub PickShape(ByRef objDataSet As Object)
         objDataSet.Left = X - (objDataSet.Width / 2)
         objDataSet.Top = Y - (objDataSet.Height / 2)
         
+        'シェイプを選択
         Call SetCursoleAndLeftDown(a.X, a.Y)
     
     'マウスカーソルが作業ウィンドウ外にある場合
     Else
         'カーソルをシェイプに移動する
-        ax = ((objDataSet.Left + (objDataSet.Width / 2) - ActiveSheet.Cells(by, bx).Left) * DPI / PPI)
-        X = spx + ax / dblZoomX
+        ax = ((objDataSet.Left + (objDataSet.Width / 2) - ActiveSheet.Cells(by, bx).Left + cx) * DPI / PPI)
+        X = Round(spx + ax / dblZoomX)
         
-        ay = ((objDataSet.Top + (objDataSet.Height / 2) - ActiveSheet.Cells(by, bx).Top) * DPI / PPI)
-        Y = spy + ay / dblZoomY
+        ay = ((objDataSet.Top + (objDataSet.Height / 2) - ActiveSheet.Cells(by, bx).Top + cy) * DPI / PPI)
+        Y = Round(spy + ay / dblZoomY)
         
+        'シェイプを選択
         Call SetCursoleAndLeftDown(X, Y)
     
     End If
@@ -191,7 +239,7 @@ Sub PickShape(ByRef objDataSet As Object)
     Application.ScreenUpdating = True
 
 End Sub
-Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
+Private Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
 
     Dim inp(0 To 2) As INPUT_TYPE
     
@@ -201,8 +249,8 @@ Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
     
     With inp(0)
         .dwType = INPUT_MOUSE
-        .mi.dX = (X * 65535 / (GetSystemMetrics(SM_CXSCREEN) - 1))
-        .mi.dY = (Y * 65535 / (GetSystemMetrics(SM_CYSCREEN) - 1))
+        .mi.dx = (X * 65535 / (GetSystemMetrics(SM_CXSCREEN) - 1))
+        .mi.dy = (Y * 65535 / (GetSystemMetrics(SM_CYSCREEN) - 1))
         .mi.mouseData = 0
         .mi.dwFlags = MOUSE_MOVED Or MOUSEEVENTF_ABSOLUTE
         .mi.time = 0
@@ -211,113 +259,14 @@ Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
     
     With inp(1)
         .dwType = INPUT_MOUSE
-        .mi.dX = 0
-        .mi.dY = 0
+        .mi.dx = 0
+        .mi.dy = 0
         .mi.mouseData = 0
         .mi.dwFlags = MOUSEEVENTF_LEFTDOWN
         .mi.time = 0
         .mi.dwExtraInfo = 0
     End With
     
-'    With inp(2)
-'        .dwType = INPUT_MOUSE
-'        .mi.dX = (X2 * 65535 / (GetSystemMetrics(SM_CXSCREEN) - 1))
-'        .mi.dY = (Y2 * 65535 / (GetSystemMetrics(SM_CYSCREEN) - 1))
-'        .mi.mouseData = 0
-'        .mi.dwFlags = MOUSE_MOVED Or MOUSEEVENTF_ABSOLUTE
-'        .mi.time = 0
-'        .mi.dwExtraInfo = 0
-'    End With
-    
-    
     SendInput 2, inp(0), LenB(inp(0))
 
 End Sub
-
-
-
-'Sub SetCursoleAndLeftDownCustom(ByVal x As Long, ByVal y As Long)
-'
-'    Dim inp(0 To 2) As INPUT_TYPE
-'
-'    Dim a As POINTAPI
-'
-'    GetCursorPos a
-'
-'    With inp(0)
-'        .dwType = INPUT_MOUSE
-'        .mi.dX = 0
-'        .mi.dY = 0
-'        .mi.mouseData = 0
-'        .mi.dwFlags = MOUSEEVENTF_LEFTDOWN
-'        .mi.time = 0
-'        .mi.dwExtraInfo = 0
-'    End With
-'
-'    SendInput 1, inp(0), Len(inp(0))
-'
-'End Sub
-
-
-
-'Sub PickShapeO(ByRef objDataSet As Object)
-'
-'    Dim x As Long
-'    Dim y As Long
-'    Dim ax As Long
-'    Dim ay As Long
-'
-'    Dim bx As Long
-'    Dim by As Long
-'    Dim spx As Long
-'    Dim spy As Long
-'
-'    Application.ScreenUpdating = False
-'
-'
-'    bx = ActiveWindow.ActivePane.ScrollColumn
-'    by = ActiveWindow.ActivePane.ScrollRow
-'
-'    ActiveWindow.ActivePane.ScrollColumn = 1
-'    spx = ActiveWindow.ActivePane.PointsToScreenPixelsX(0)
-'    ActiveWindow.ActivePane.ScrollColumn = bx
-'
-'    ActiveWindow.ActivePane.ScrollRow = 1
-'    spy = ActiveWindow.ActivePane.PointsToScreenPixelsY(0)
-'    ActiveWindow.ActivePane.ScrollRow = by
-'
-'    ax = ((objDataSet.Left + (objDataSet.Width / 2) - Cells(by, bx).Left) * DPI / PPI)
-'
-''    x = spx + ax * (ActiveWindow.Zoom / 100)
-'    x = spx + ax
-'    'x = (ActiveWindow.ActivePane.PointsToScreenPixelsX((objDataSet.Left + (objDataSet.Width / 2)) * DPI / PPI) - ActiveWindow.ActivePane.PointsToScreenPixelsX(0)) * (ActiveWindow.Zoom / 100)
-'
-'
-'
-'    ay = ((objDataSet.Top + (objDataSet.Height / 4) - Cells(by, bx).Top) * DPI / PPI)
-'
-''    y = spy + ay * (ActiveWindow.Zoom / 100)
-'    y = spy + ay
-'
-''    y = ActiveWindow.ActivePane.PointsToScreenPixelsY(0) + (ActiveWindow.ActivePane.PointsToScreenPixelsY(0) - spy + ay) * (ActiveWindow.Zoom / 100)  '+ (ActiveWindow.Zoom - 100) * ay
-''    y = ActiveWindow.ActivePane.PointsToScreenPixelsY(0) + Fix(((objDataSet.Top + (objDataSet.Height / 2)) * DPI / PPI) * (ActiveWindow.Zoom / 100))
-'    'y = (ActiveWindow.ActivePane.PointsToScreenPixelsY((objDataSet.Top + (objDataSet.Height / 2)) * DPI / PPI) - ActiveWindow.ActivePane.PointsToScreenPixelsY(0)) * (ActiveWindow.Zoom / 100)
-'
-'
-'
-''    x = ActiveWindow.ActivePane.PointsToScreenPixelsX(0) + ((objDataSet.Left + (objDataSet.Width / 2)) * DPI / PPI) * (ActiveWindow.Zoom / 100)
-''    y = ActiveWindow.ActivePane.PointsToScreenPixelsY(0) + ((objDataSet.Top + (objDataSet.Height / 2)) * DPI / PPI) * (ActiveWindow.Zoom / 100)
-'
-''    Call SetCursorPos(x, y)
-''
-''    mouse_event MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0
-'
-'    Call SetCursoleAndLeftDown(x, y)
-'
-'    Application.ScreenUpdating = True
-'
-'
-'End Sub
-
-
-
