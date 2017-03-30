@@ -2,7 +2,7 @@ VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
-Attribute VB_Name = "SelectionMerge"
+Attribute VB_Name = "ShapePasteFusen"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
@@ -37,18 +37,19 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private mr As Range
+Public Id As String
+Public No As Long
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 宣言
 '------------------------------------------------------------------------------------------------------------------------
-Private WithEvents SFWork As SelectionColFramework
+Private WithEvents SFWork As ShapeFramework
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 作成
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
-    Set SFWork = New SelectionColFramework
+    Set SFWork = New ShapeFramework
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
@@ -66,52 +67,16 @@ Public Sub Run()
 End Sub
 
 
+Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, Cancel As Boolean)
+    
+    pasteFusenOrg Id, No
+    Set obj = Selection
+    pos = BottomRight
 
-Private Sub SFWork_SelectionInit(rArea As Areas, Cancel As Boolean, Undo As Boolean)
-    Undo = True
-    Application.DisplayAlerts = False
 End Sub
 
-'------------------------------------------------------------------------------------------------------------------------
-' 主処理(UOC)
-'------------------------------------------------------------------------------------------------------------------------
 
-Private Sub SFWork_SelectionMain(r As Range, ByVal Col As Long, Cancel As Boolean)
 
-    Dim s As Range
-    
-    On Error GoTo e
-    
-    For Each s In r
-        
-        If (Not IsEmpty(s.Value)) And (Not IsError(s.Value)) Then
-            If mr Is Nothing Then
-                Set mr = s
-            Else
-                If s.Value = mr(mr.count).Value Then
-                    Set mr = Union(mr, s)
-                Else
-                    mr.Merge
-                    Set mr = s
-                End If
-            End If
-        End If
-    Next
-    
-    Exit Sub
-e:
-    Call rlxErrMsg(err)
-    Cancel = True
-End Sub
 
-Private Sub SFWork_SelectionTerm()
-    
-    On Error GoTo e
-    
-    mr.Merge
-    Application.DisplayAlerts = True
-    
-    Exit Sub
-e:
-    Call rlxErrMsg(err)
-End Sub
+
+

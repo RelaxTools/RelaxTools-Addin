@@ -73,7 +73,7 @@ End Sub
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
 
     Undo = True
-    mlngPos = Selection(1).row
+    mlngPos = Selection(1).Row
     
 End Sub
 
@@ -94,7 +94,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     On Error GoTo e
     
     lngCol = r.Column
-    lngRow = r.row - 1
+    lngRow = r.Row - 1
     
     strBuf = ""
     blnFind = False

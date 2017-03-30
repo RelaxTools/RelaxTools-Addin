@@ -91,7 +91,7 @@ Private Sub searchShape(ByRef strPattern As String, ByRef objSheet As Worksheet)
                     End If
                     lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
                     lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
-                    lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & ":" & c.id
+                    lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & ":" & c.Id
 
                     mlngCount = mlngCount + 1
                     
@@ -132,7 +132,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                     End If
                     lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.Name
                     lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
-                    lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.id
+                    lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.Id
 
                     mlngCount = mlngCount + 1
                     
@@ -157,7 +157,7 @@ Private Function getGroupId(ByRef objShape As Object) As String
     err.Clear
     Set s = objShape.ParentGroup
     Do Until err.Number <> 0
-        strBuf = "/" & s.id & strBuf
+        strBuf = "/" & s.Id & strBuf
         Set s = s.ParentGroup
     Loop
     
@@ -370,20 +370,20 @@ Private Sub lstResult_Change()
 
 
 End Sub
-Private Function getObjFromID(ByRef WS As Worksheet, ByVal id As String) As Object
+Private Function getObjFromID(ByRef WS As Worksheet, ByVal Id As String) As Object
     Dim ret As Object
     Dim s As Shape
     
     For Each s In WS.Shapes
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.id = CLng(id) Then
+                If s.Id = CLng(Id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, id)
+                Set ret = getObjFromIDSub(s, Id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -393,7 +393,7 @@ Private Function getObjFromID(ByRef WS As Worksheet, ByVal id As String) As Obje
     Set getObjFromID = ret
 
 End Function
-Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As Object
+Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal Id As String) As Object
     
     Dim s As Shape
     Dim ret As Object
@@ -401,13 +401,13 @@ Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As
     For Each s In objShape.GroupItems
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.id = CLng(id) Then
+                If s.Id = CLng(Id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, id)
+                Set ret = getObjFromIDSub(s, Id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -461,7 +461,7 @@ Private Function setCellPos(ByRef r As Range) As Range
             lngCol = r.Column
     End Select
 
-    Set setCellPos = r.Worksheet.Cells(r.row, lngCol)
+    Set setCellPos = r.Worksheet.Cells(r.Row, lngCol)
 
 End Function
 

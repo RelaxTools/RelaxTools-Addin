@@ -107,7 +107,7 @@ Private Sub cmdRun_Click()
     
     mMm.StartGauge lngFCnt
     
-    lngRow = ActiveCell.row
+    lngRow = ActiveCell.Row
     lngCol = ActiveCell.Column
     
     Dim lngCount As Long

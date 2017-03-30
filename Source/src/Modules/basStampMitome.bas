@@ -150,13 +150,13 @@ End Function
 Function getImageStampMitome(ByVal Index As Long) As StdPicture
 
     '設定情報取得
-    Dim col As Collection
+    Dim Col As Collection
     Dim bz As StampMitomeDTO
     
     Set getImageStampMitome = Nothing
     
-    Set col = getPropertyMitome()
-    Set bz = col(Index)
+    Set Col = getPropertyMitome()
+    Set bz = Col(Index)
     
     If bz.StampType = C_STAMP_MITOME_NORMAL Then
    
@@ -190,18 +190,18 @@ End Sub
 Sub MitomePaste2(Optional ByVal Index As Variant)
 
     '設定情報取得
-    Dim col As Collection
+    Dim Col As Collection
     Dim s As StampMitomeDTO
     Dim ss As Range
     
     On Error Resume Next
     
-    Set col = getPropertyMitome()
+    Set Col = getPropertyMitome()
     
     Select Case True
-        Case col Is Nothing
+        Case Col Is Nothing
             Exit Sub
-        Case col.count = 0
+        Case Col.count = 0
             Exit Sub
         Case Else
     End Select
@@ -225,7 +225,7 @@ Sub MitomePaste2(Optional ByVal Index As Variant)
         End If
     End If
 
-    Set s = col(Index)
+    Set s = Col(Index)
 
     If s.StampType = C_STAMP_MITOME_NORMAL Then
         Call editStampMitome(s, xlPicture)
@@ -304,9 +304,9 @@ Public Function getPropertyMitome() As Collection
     Dim lngMax As Long
     Dim i As Long
     
-    Dim col As Collection
+    Dim Col As Collection
     
-    Set col = New Collection
+    Set Col = New Collection
 
     lngMax = GetSetting(C_TITLE, "StampMitome", "Count", "-1")
     If lngMax = -1 Then
@@ -326,7 +326,7 @@ Public Function getPropertyMitome() As Collection
         s.Fill = C_STAMP_FILL_OFF
         s.rect = "0"
     
-        col.Add s
+        Col.Add s
         
         Set s = Nothing
         
@@ -345,7 +345,7 @@ Public Function getPropertyMitome() As Collection
         s.Fill = C_STAMP_FILL_OFF
         s.rect = "0"
     
-        col.Add s
+        Col.Add s
         
         Set s = Nothing
     
@@ -364,7 +364,7 @@ Public Function getPropertyMitome() As Collection
         s.Fill = C_STAMP_FILL_OFF
         s.rect = "0"
     
-        col.Add s
+        Col.Add s
         
         Set s = Nothing
     
@@ -386,19 +386,19 @@ Public Function getPropertyMitome() As Collection
             s.Fill = GetSetting(C_TITLE, "StampMitome", "Fill" & Format$(i, "000"), C_STAMP_FILL_OFF)
             s.rect = GetSetting(C_TITLE, "StampMitome", "Rect" & Format$(i, "000"), "0")
     
-            col.Add s
+            Col.Add s
             
             Set s = Nothing
         Next
     End If
     
-    Set getPropertyMitome = col
+    Set getPropertyMitome = Col
     
 End Function
 '--------------------------------------------------------------
 '　レジストリ設定値取得
 '--------------------------------------------------------------
-Public Sub setPropertyMitome(ByRef col As Collection)
+Public Sub setPropertyMitome(ByRef Col As Collection)
 
     Dim strBuf As String
     Dim s As StampMitomeDTO
@@ -419,9 +419,9 @@ Public Sub setPropertyMitome(ByRef col As Collection)
     DeleteSetting C_TITLE, "StampMitome", "Fill"
     DeleteSetting C_TITLE, "StampMitome", "Rect"
     
-    For i = 0 To col.count - 1
+    For i = 0 To Col.count - 1
         
-        Set s = col(i + 1)
+        Set s = Col(i + 1)
         
         Call SaveSetting(C_TITLE, "StampMitome", "StampType" & Format$(i, "000"), s.StampType)
         Call SaveSetting(C_TITLE, "StampMitome", "Text" & Format$(i, "000"), Replace(s.Text, vbCrLf, vbVerticalTab))
@@ -439,7 +439,7 @@ Public Sub setPropertyMitome(ByRef col As Collection)
         Set s = Nothing
     Next
     
-    Call SaveSetting(C_TITLE, "StampMitome", "Count", col.count)
+    Call SaveSetting(C_TITLE, "StampMitome", "Count", Col.count)
     
 End Sub
 

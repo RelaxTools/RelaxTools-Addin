@@ -261,7 +261,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 主処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolean)
+Private Sub SFWork_SelectionMain(r As Range, ByVal Row As Long, Cancel As Boolean)
         
     On Error GoTo e
     
@@ -270,15 +270,15 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolea
         Set mrngOdd = Nothing
     Else
         Select Case True
-            Case row <= mlngHead
-            Case (row - mlngHead) Mod 2 = 0
+            Case Row <= mlngHead
+            Case (Row - mlngHead) Mod 2 = 0
                 If mrngEven Is Nothing Then
                     Set mrngEven = r
                 Else
                     Set mrngEven = Union(mrngEven, r)
                 End If
                 
-            Case (row - mlngHead) Mod 2 = 1
+            Case (Row - mlngHead) Mod 2 = 1
                 If mrngOdd Is Nothing Then
                     Set mrngOdd = r
                 Else

@@ -120,7 +120,7 @@ Sub lineCopy()
     Dim f As Long
     Dim t As Long
     
-    f = Selection(1, 1).row
+    f = Selection(1, 1).Row
     t = f + Selection.Rows.count - 1
     
     On Error Resume Next
@@ -160,7 +160,7 @@ Sub lineInsert()
     Dim f As Long
     Dim t As Long
     
-    f = Selection(1, 1).row
+    f = Selection(1, 1).Row
     t = f + Selection.Rows.count - 1
     
     On Error Resume Next
@@ -200,7 +200,7 @@ Sub lineDel()
     Dim f As Long
     Dim t As Long
     
-    f = Selection(1, 1).row
+    f = Selection(1, 1).Row
     t = f + Selection.Rows.count - 1
     
     On Error Resume Next
@@ -258,7 +258,7 @@ Sub lineNCopy()
 '    lngDest = ActiveCell.row + Val(strbuf) - 1
     lngDest = lngBuf
 
-    f = Selection(1, 1).row
+    f = Selection(1, 1).Row
     t = f + Selection.Rows.count - 1
 
     On Error Resume Next
@@ -377,7 +377,7 @@ Sub commandList()
             Cells(lngCnt, 2) = c.NameLocal
         
             Cells(lngCnt, 3) = d.Caption
-            Cells(lngCnt, 4) = d.id
+            Cells(lngCnt, 4) = d.Id
             
             lngCnt = lngCnt + 1
         Next
@@ -1011,12 +1011,12 @@ Sub pasteCSV()
     End If
     
     Dim i As Long
-    Dim col As Collection
+    Dim Col As Collection
     Dim lngCol As Long
     Dim lngRow As Long
     Dim r As Range
     
-    lngRow = ActiveCell.row
+    lngRow = ActiveCell.Row
     For i = 0 To lngCount - 1
     
         'カンマ区切りで分割を行う（ダブルコーテーション内カンマ対応）
@@ -2277,15 +2277,15 @@ Sub tagJump()
         Exit Sub
     End If
 
-    strBook = Cells(ActiveCell.row, C_SEARCH_BOOK).Value
+    strBook = Cells(ActiveCell.Row, C_SEARCH_BOOK).Value
     If Len(strBook) = 0 Then
         Exit Sub
     End If
-    strSheet = Cells(ActiveCell.row, C_SEARCH_SHEET).Value
+    strSheet = Cells(ActiveCell.Row, C_SEARCH_SHEET).Value
     If Len(strSheet) = 0 Then
         Exit Sub
     End If
-    strAddress = Cells(ActiveCell.row, C_SEARCH_ADDRESS).Value
+    strAddress = Cells(ActiveCell.Row, C_SEARCH_ADDRESS).Value
     If Len(strAddress) = 0 Then
         Exit Sub
     End If
@@ -2983,7 +2983,7 @@ Sub removePageBreak()
     Dim p As HPageBreak
     
     For Each p In ActiveWindow.SelectedSheets.HPageBreaks
-        If p.Location.row = ActiveCell.row Then
+        If p.Location.Row = ActiveCell.Row Then
             p.Delete
             Exit For
         End If

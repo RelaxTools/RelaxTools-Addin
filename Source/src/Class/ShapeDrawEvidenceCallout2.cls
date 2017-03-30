@@ -2,7 +2,7 @@ VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
 END
-Attribute VB_Name = "SelectionMerge"
+Attribute VB_Name = "ShapeDrawEvidenceCallout2"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = False
@@ -37,18 +37,17 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private mr As Range
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 宣言
 '------------------------------------------------------------------------------------------------------------------------
-Private WithEvents SFWork As SelectionColFramework
+Private WithEvents SFWork As ShapeFramework
 Attribute SFWork.VB_VarHelpID = -1
 
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 作成
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub Class_Initialize()
-    Set SFWork = New SelectionColFramework
+    Set SFWork = New ShapeFramework
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------
@@ -66,52 +65,46 @@ Public Sub Run()
 End Sub
 
 
-
-Private Sub SFWork_SelectionInit(rArea As Areas, Cancel As Boolean, Undo As Boolean)
-    Undo = True
-    Application.DisplayAlerts = False
-End Sub
-
-'------------------------------------------------------------------------------------------------------------------------
-' 主処理(UOC)
-'------------------------------------------------------------------------------------------------------------------------
-
-Private Sub SFWork_SelectionMain(r As Range, ByVal Col As Long, Cancel As Boolean)
-
-    Dim s As Range
+Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, Cancel As Boolean)
     
-    On Error GoTo e
+    Dim c As Long
+    Dim r As Long
     
-    For Each s In r
+    c = ActiveWindow.ActivePane.ScrollColumn
+    r = ActiveWindow.ActivePane.ScrollRow
+    
+    Set obj = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    With obj
         
-        If (Not IsEmpty(s.Value)) And (Not IsError(s.Value)) Then
-            If mr Is Nothing Then
-                Set mr = s
-            Else
-                If s.Value = mr(mr.count).Value Then
-                    Set mr = Union(mr, s)
-                Else
-                    mr.Merge
-                    Set mr = s
-                End If
-            End If
-        End If
-    Next
+        '基本のスタイルをセット
+        .ShapeStyle = msoShapeStylePreset1
+        
+        With .Fill
+            .Solid
+            .Transparency = 0#
+            .visible = msoTrue
+            .ForeColor.RGB = RGB(255, 255, 255)
+        End With
+        With .Line
+            .Weight = 2.25
+            .DashStyle = msoLineDash
+            .Style = msoLineSingle
+            .Transparency = 0#
+            .visible = msoTrue
+            .ForeColor.SchemeColor = 10
+            .BackColor.RGB = RGB(255, 255, 255)
+        End With
+        With .TextFrame2.TextRange.Characters.Font
+            .Fill.ForeColor.RGB = RGB(0, 0, 0)
+        End With
+            
+        .Select
+        .Placement = xlMove
+
+    End With
     
-    Exit Sub
-e:
-    Call rlxErrMsg(err)
-    Cancel = True
 End Sub
 
-Private Sub SFWork_SelectionTerm()
-    
-    On Error GoTo e
-    
-    mr.Merge
-    Application.DisplayAlerts = True
-    
-    Exit Sub
-e:
-    Call rlxErrMsg(err)
-End Sub
+
+
+

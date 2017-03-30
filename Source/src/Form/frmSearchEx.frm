@@ -673,7 +673,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
                         lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                         lstResult.List(mlngCount, C_SEARCH_STR) = Left(strBuf, C_SIZE)
                         lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
-                        lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & ":" & c.id
+                        lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & ":" & c.Id
                         lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
                         lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.Name
 
@@ -741,7 +741,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                         lstResult.List(mlngCount, C_SEARCH_STR) = Left(strBuf, C_SIZE)
 
                         lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
-                        lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.id
+                        lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.Id
                         lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.Name
                         lstResult.List(mlngCount, C_SEARCH_BOOK) = WS.Parent.Name
 
@@ -810,7 +810,7 @@ Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objS
                 lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                 lstResult.List(mlngCount, C_SEARCH_STR) = Left(strBuf, C_SIZE)
                 lstResult.List(mlngCount, C_SEARCH_ADDRESS) = objShape.Name
-                lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SMARTART & getGroupId(objShape) & "/" & objShape.id & ":" & objShape.id & "," & lngIdx
+                lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SMARTART & getGroupId(objShape) & "/" & objShape.Id & ":" & objShape.Id & "," & lngIdx
                 lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.Name
                 lstResult.List(mlngCount, C_SEARCH_BOOK) = WS.Parent.Name
                 mlngCount = mlngCount + 1
@@ -833,7 +833,7 @@ Private Function getGroupId(ByRef objShape As Object) As String
     err.Clear
     Set s = objShape.ParentGroup
     Do Until err.Number <> 0
-        strBuf = "/" & s.id & strBuf
+        strBuf = "/" & s.Id & strBuf
         Set s = s.ParentGroup
     Loop
     
@@ -1003,7 +1003,7 @@ Private Function setCellPos(ByRef r As Range) As Range
             lngCol = r.Column
     End Select
 
-    Set setCellPos = r.Worksheet.Cells(r.row, lngCol)
+    Set setCellPos = r.Worksheet.Cells(r.Row, lngCol)
 
 End Function
 Private Sub lstResult_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
@@ -1200,7 +1200,7 @@ Private Function convEscSeq(ByVal strBuf As String) As String
     convEscSeq = strRet
     
 End Function
-Private Function getObjFromID2(ByRef WS As Worksheet, ByVal id As String) As Object
+Private Function getObjFromID2(ByRef WS As Worksheet, ByVal Id As String) As Object
 
     Dim ret As Object
     Dim s As Shape
@@ -1210,16 +1210,16 @@ Private Function getObjFromID2(ByRef WS As Worksheet, ByVal id As String) As Obj
     
     Set ret = Nothing
     
-    If InStr(id, ",") > 0 Then
-        lngID = CLng(Mid$(id, 1, InStrRev(id, ",") - 1))
+    If InStr(Id, ",") > 0 Then
+        lngID = CLng(Mid$(Id, 1, InStrRev(Id, ",") - 1))
     Else
-        lngID = CLng(id)
+        lngID = CLng(Id)
     End If
     
     For Each s In WS.Shapes
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoSmartArt, msoCallout, msoFreeform
-                If s.id = lngID Then
+                If s.Id = lngID Then
                     Set ret = s
                     Exit For
                 End If
@@ -1236,7 +1236,7 @@ Private Function getObjFromID2(ByRef WS As Worksheet, ByVal id As String) As Obj
     Set getObjFromID2 = ret
 
 End Function
-Private Function getObjFromIDSub2(ByRef objShape As Shape, ByVal id As Long) As Object
+Private Function getObjFromIDSub2(ByRef objShape As Shape, ByVal Id As Long) As Object
     
     Dim s As Shape
     Dim ret As Object
@@ -1244,13 +1244,13 @@ Private Function getObjFromIDSub2(ByRef objShape As Shape, ByVal id As Long) As 
     For Each s In objShape.GroupItems
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoSmartArt, msoCallout, msoFreeform
-                If s.id = id Then
+                If s.Id = Id Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, id)
+                Set ret = getObjFromIDSub(s, Id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -1261,26 +1261,26 @@ Private Function getObjFromIDSub2(ByRef objShape As Shape, ByVal id As Long) As 
 
     Set getObjFromIDSub2 = ret
 End Function
-Private Function getObjFromID(ByRef WS As Worksheet, ByVal id As String) As Object
+Private Function getObjFromID(ByRef WS As Worksheet, ByVal Id As String) As Object
     Dim ret As Object
     Dim s As Shape
     
     For Each s In WS.Shapes
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.id = CLng(id) Then
+                If s.Id = CLng(Id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, id)
+                Set ret = getObjFromIDSub(s, Id)
                 If ret Is Nothing Then
                 Else
                     Exit For
                 End If
             Case msoSmartArt
-                Set ret = getSmartArtFromIDSub(s, id)
+                Set ret = getSmartArtFromIDSub(s, Id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -1290,7 +1290,7 @@ Private Function getObjFromID(ByRef WS As Worksheet, ByVal id As String) As Obje
     Set getObjFromID = ret
 
 End Function
-Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As Object
+Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal Id As String) As Object
     
     Dim s As Shape
     Dim ret As Object
@@ -1298,20 +1298,20 @@ Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As
     For Each s In objShape.GroupItems
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.id = CLng(id) Then
+                If s.Id = CLng(Id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, id)
+                Set ret = getObjFromIDSub(s, Id)
                 If ret Is Nothing Then
                 Else
                     Exit For
                 End If
                 
             Case msoSmartArt
-                Set ret = getSmartArtFromIDSub(s, id)
+                Set ret = getSmartArtFromIDSub(s, Id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -1322,7 +1322,7 @@ Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As
     Set getObjFromIDSub = ret
 End Function
 
-Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal id As String) As Object
+Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal Id As String) As Object
     
     Dim ret As Object
     Dim i As Long
@@ -1332,11 +1332,11 @@ Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal id As Strin
     
     Set ret = Nothing
     
-    If InStr(id, ",") > 0 Then
-        lngID = CLng(Mid$(id, 1, InStrRev(id, ",") - 1))
-        lngPos = CLng(Mid$(id, InStrRev(id, ",") + 1))
+    If InStr(Id, ",") > 0 Then
+        lngID = CLng(Mid$(Id, 1, InStrRev(Id, ",") - 1))
+        lngPos = CLng(Mid$(Id, InStrRev(Id, ",") + 1))
         
-        If lngID = objShape.id Then
+        If lngID = objShape.Id Then
         
             For i = 1 To objShape.SmartArt.AllNodes.count
             

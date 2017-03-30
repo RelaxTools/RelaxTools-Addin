@@ -285,12 +285,12 @@ Attribute rlxInitSectionSetting.VB_ProcData.VB_Invoke_Func = " \n19"
     
         strPos = "1"
     
-        Dim col As Collection
+        Dim Col As Collection
         Dim ss As SectionStructDTO
         
         For i = 1 To 6
         
-            Set col = New Collection
+            Set Col = New Collection
             
             For j = 1 To 10
             
@@ -312,14 +312,14 @@ Attribute rlxInitSectionSetting.VB_ProcData.VB_Invoke_Func = " \n19"
                     ss.fontItalic2 = False
                     ss.fontUnderLine2 = False
                     
-                    col.Add ss, Format$(j, "00")
+                    Col.Add ss, Format$(j, "00")
                     Set ss = Nothing
                 End If
                 
             Next
             
-            setSectionSetting Format$(i, "00"), col
-            Set col = Nothing
+            setSectionSetting Format$(i, "00"), Col
+            Set Col = Nothing
         
         Next
     End If
@@ -333,7 +333,7 @@ Attribute rlxGetSectionSetting.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim strClass As String
     Dim ss As SectionStructDTO
-    Dim col As Collection
+    Dim Col As Collection
     Dim i As Long
     
 '    Dim C_FONT_DEFAULT As String
@@ -342,7 +342,7 @@ Attribute rlxGetSectionSetting.VB_ProcData.VB_Invoke_Func = " \n19"
     C_FONT_SIZE_DEFAULT = Application.StandardFontSize
     
     
-    Set col = New Collection
+    Set Col = New Collection
     
     i = 1
     Do While True
@@ -366,18 +366,18 @@ Attribute rlxGetSectionSetting.VB_ProcData.VB_Invoke_Func = " \n19"
             ss.fontItalic2 = GetSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontItalic2", False)
             ss.fontUnderLine2 = GetSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontUnderLine2", False)
             
-            col.Add ss, Format$(i, "00")
+            Col.Add ss, Format$(i, "00")
             Set ss = Nothing
         End If
         i = i + 1
     Loop
     
-    Set rlxGetSectionSetting = col
+    Set rlxGetSectionSetting = Col
     
-    Set col = Nothing
+    Set Col = Nothing
     
 End Function
-Sub setSectionSetting(ByVal strNo As String, ByRef col As Collection)
+Sub setSectionSetting(ByVal strNo As String, ByRef Col As Collection)
 
     Dim i As Long
     On Error Resume Next
@@ -404,26 +404,26 @@ Sub setSectionSetting(ByVal strNo As String, ByRef col As Collection)
         Call DeleteSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontUnderLine2")
     Next
     
-    For i = 1 To col.count
+    For i = 1 To Col.count
         
-        If col(i).classObj Is Nothing Then
+        If Col(i).classObj Is Nothing Then
             Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "class", "")
         Else
-            Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "class", col(i).classObj.Class)
+            Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "class", Col(i).classObj.Class)
         End If
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "useFormat", col(i).useFormat)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontName", col(i).fontName)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontSize", col(i).fontSize)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontBold", col(i).fontBold)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontItalic", col(i).fontItalic)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontUnderLine", col(i).fontUnderLine)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "useFormat", Col(i).useFormat)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontName", Col(i).fontName)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontSize", Col(i).fontSize)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontBold", Col(i).fontBold)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontItalic", Col(i).fontItalic)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontUnderLine", Col(i).fontUnderLine)
         
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "useFormat2", col(i).useFormat2)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontName2", col(i).fontName2)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontSize2", col(i).fontSize2)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontBold2", col(i).fontBold2)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontItalic2", col(i).fontItalic2)
-        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontUnderLine2", col(i).fontUnderLine2)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "useFormat2", Col(i).useFormat2)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontName2", Col(i).fontName2)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontSize2", Col(i).fontSize2)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontBold2", Col(i).fontBold2)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontItalic2", Col(i).fontItalic2)
+        Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontUnderLine2", Col(i).fontUnderLine2)
         
     Next
     

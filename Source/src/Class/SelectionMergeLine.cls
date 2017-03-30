@@ -76,7 +76,7 @@ End Sub
 ' 主処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 
-Private Sub SFWork_SelectionMain(r As Range, ByVal col As Long, ByRef Cancel As Boolean)
+Private Sub SFWork_SelectionMain(r As Range, ByVal Col As Long, ByRef Cancel As Boolean)
 
     Dim s As Range
     Dim p As Range

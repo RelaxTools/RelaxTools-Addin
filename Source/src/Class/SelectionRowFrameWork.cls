@@ -47,7 +47,7 @@ Public Event SelectionInit(ByRef rArea As Excel.Areas, ByRef Cancel As Boolean, 
 '前処理イベント
 Public Event SelectionBegin(ByRef rArea As Range, ByRef Cancel As Boolean)
 'メイン処理イベント
-Public Event SelectionMain(ByRef r As Range, ByVal row As Long, ByRef Cancel As Boolean)
+Public Event SelectionMain(ByRef r As Range, ByVal Row As Long, ByRef Cancel As Boolean)
 '後処理イベント
 Public Event SelectionFinal(ByRef rAarea As Range)
 '終了イベント

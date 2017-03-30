@@ -93,7 +93,7 @@ Private Sub SFWork_SelectionMain(r As Range, Cancel As Boolean)
     On Error Resume Next
 
     lngCol = r.Column
-    lngRow = r.row
+    lngRow = r.Row
     
     For lngCnt = lngCol - 1 To 1 Step -1
     

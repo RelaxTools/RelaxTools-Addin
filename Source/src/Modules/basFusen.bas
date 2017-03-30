@@ -76,6 +76,23 @@ Sub getSettingFusen(ByRef strText As String, ByRef strTag As String, ByRef varPr
     varWordWrap = GetSetting(C_TITLE, "Fusen", "WordWrap", True)
 
 End Sub
+''--------------------------------------------------------------
+''　付箋貼り付け
+''--------------------------------------------------------------
+'Sub pasteFusen(ByVal strId As String, ByVal Index As Long)
+'
+'    Dim obj As ShapePasteFusen
+'
+'    Set obj = New ShapePasteFusen
+'
+'    obj.Id = strId
+'    obj.No = Index
+'
+'    obj.Run
+'
+'    Set obj = Nothing
+'
+'End Sub
 '--------------------------------------------------------------
 '　付箋貼り付け
 '--------------------------------------------------------------
@@ -198,6 +215,7 @@ Sub pasteFusen(ByVal strId As String, ByVal Index As Long)
     Application.ScreenUpdating = True
 
 End Sub
+
 '--------------------------------------------------------------
 '　日付書式設定
 '--------------------------------------------------------------
@@ -244,19 +262,70 @@ End Function
 '　付箋貼り付けのショートカット用
 '--------------------------------------------------------------
 Sub pasteSquareW()
-    pasteFusen "fsGallery01", 1
+
+    Dim obj As ShapePasteFusen
+    
+    Set obj = New ShapePasteFusen
+    
+    obj.Id = "fsGallery01"
+    obj.No = 1
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+'    pasteFusen "fsGallery01", 1
 End Sub
 Sub pasteSquareY()
-    pasteFusen "fsGallery01", 2
+
+
+    Dim obj As ShapePasteFusen
+    
+    Set obj = New ShapePasteFusen
+    
+    obj.Id = "fsGallery01"
+    obj.No = 2
+    
+    obj.Run
+    
+    Set obj = Nothing
+'    pasteFusen "fsGallery01", 2
 End Sub
 Sub pasteSquareP()
-    pasteFusen "fsGallery01", 3
+    Dim obj As ShapePasteFusen
+    
+    Set obj = New ShapePasteFusen
+    
+    obj.Id = "fsGallery01"
+    obj.No = 3
+    obj.Run
+    
+    Set obj = Nothing
+'    pasteFusen "fsGallery01", 3
 End Sub
 Sub pasteSquareB()
-    pasteFusen "fsGallery01", 4
+    Dim obj As ShapePasteFusen
+    
+    Set obj = New ShapePasteFusen
+    
+    obj.Id = "fsGallery01"
+    obj.No = 4
+    obj.Run
+    
+    Set obj = Nothing
+'    pasteFusen "fsGallery01", 4
 End Sub
 Sub pasteSquareG()
-    pasteFusen "fsGallery01", 5
+    Dim obj As ShapePasteFusen
+    
+    Set obj = New ShapePasteFusen
+    
+    obj.Id = "fsGallery01"
+    obj.No = 5
+    obj.Run
+    
+    Set obj = Nothing
+'    pasteFusen "fsGallery01", 5
 End Sub
 Sub pasteMemoW()
     pasteFusen "fsGallery02", 1

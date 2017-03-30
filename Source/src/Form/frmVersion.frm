@@ -125,7 +125,7 @@ Private Sub UserForm_Initialize()
     lblGitHub.Caption = C_GITHUB_URL
     
     Dim strBuf As String
-    Dim col As New Collection
+    Dim Col As New Collection
     Dim i As Long
     Dim obj As Object
 

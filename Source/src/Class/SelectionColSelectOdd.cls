@@ -70,12 +70,12 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 主処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionMain(r As Range, ByVal col As Long, Cancel As Boolean)
+Private Sub SFWork_SelectionMain(r As Range, ByVal Col As Long, Cancel As Boolean)
         
     On Error GoTo e
     
     Select Case True
-        Case col Mod 2 = 1
+        Case Col Mod 2 = 1
             If mrngOdd Is Nothing Then
                 Set mrngOdd = r
             Else

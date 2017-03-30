@@ -425,10 +425,10 @@ Private Sub cmdOK_Click()
 '    SaveSetting C_TITLE, "Mitome", "Size", dblSize
     
     Dim s As StampMitomeDTO
-    Dim col As Collection
+    Dim Col As Collection
     Dim i As Long
 
-    Set col = New Collection
+    Set Col = New Collection
     '設定情報取得
 
     For i = 0 To lstStamp.ListCount - 1
@@ -514,18 +514,18 @@ Private Sub cmdOK_Click()
             End If
         End If
         
-        col.Add s
+        Col.Add s
         
         Set s = Nothing
         
     Next
 
     'プロパティ保存
-    setPropertyMitome col
+    setPropertyMitome Col
     
     Call SaveSetting(C_TITLE, "StampMitome", "Confirm", chkConfirm.Value)
     
-    Set col = Nothing
+    Set Col = Nothing
     
     'リボンのリフレッシュ
     Call RefreshRibbon
@@ -858,7 +858,7 @@ Private Sub UserForm_Initialize()
 '    dispPreview
 
     Dim s As StampMitomeDTO
-    Dim col As Collection
+    Dim Col As Collection
     Dim i As Long
     
     Dim strBuf As String
@@ -867,11 +867,11 @@ Private Sub UserForm_Initialize()
     ReDim varBuf(C_TEXT To C_Rect)
     
     '設定情報取得
-    Set col = getPropertyMitome()
+    Set Col = getPropertyMitome()
 
-    For i = 1 To col.count
+    For i = 1 To Col.count
         
-        Set s = col(i)
+        Set s = Col(i)
         
         varBuf(C_StampType) = s.StampType
         varBuf(C_TEXT) = s.Text
@@ -902,7 +902,7 @@ Private Sub UserForm_Initialize()
     End With
         
 
-    If col.count > 0 Then
+    If Col.count > 0 Then
         lstStamp.Selected(0) = True
     Else
         

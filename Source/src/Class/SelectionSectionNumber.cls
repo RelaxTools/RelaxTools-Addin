@@ -126,9 +126,9 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         If WS.visible = xlSheetVisible Then
         
             If lngRow = C_NOT_FOUND Then
-                lngRow = r.row - 1
+                lngRow = r.Row - 1
             Else
-                lngRow = WS.UsedRange.Item(WS.UsedRange.count).row
+                lngRow = WS.UsedRange.Item(WS.UsedRange.count).Row
             End If
             
             For lngCnt = lngRow To 1 Step -1

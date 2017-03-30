@@ -220,11 +220,11 @@ Private Sub cmdOK_Click()
             If l <> 0 Then
                 ReDim p(1 To l)
                 For k = 1 To l
-                    p(k) = Worksheets(strSheet).HPageBreaks(k).Location.row
+                    p(k) = Worksheets(strSheet).HPageBreaks(k).Location.Row
                 Next
             End If
             
-            lngRow = Worksheets(strSheet).UsedRange.Item(Worksheets(strSheet).UsedRange.count).row
+            lngRow = Worksheets(strSheet).UsedRange.Item(Worksheets(strSheet).UsedRange.count).Row
             lngCol = getSectionCol(Worksheets(strSheet))
             If lngCol = 0 Then
                 Exit For
@@ -311,7 +311,7 @@ Private Function getSectionCol(ByRef WS As Worksheet) As Long
     
     For j = 1 To WS.UsedRange.Item(WS.UsedRange.count).Column
     
-        For i = 1 To WS.UsedRange.Item(WS.UsedRange.count).row
+        For i = 1 To WS.UsedRange.Item(WS.UsedRange.count).Row
         
             strBuf = WS.Cells(i, j).Value
                         

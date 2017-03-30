@@ -58,15 +58,15 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
         Exit Sub
     End If
 
-    strBook = Cells(ActiveCell.row, C_COMP_BOOK).Value
+    strBook = Cells(ActiveCell.Row, C_COMP_BOOK).Value
     If Len(strBook) = 0 Then
         Exit Sub
     End If
-    strSheet = Cells(ActiveCell.row, C_COMP_SHEET).Value
+    strSheet = Cells(ActiveCell.Row, C_COMP_SHEET).Value
     If Len(strSheet) = 0 Then
         Exit Sub
     End If
-    strAddress = Cells(ActiveCell.row, C_COMP_ADDRESS).Value
+    strAddress = Cells(ActiveCell.Row, C_COMP_ADDRESS).Value
     If Len(strAddress) = 0 Then
         Exit Sub
     End If

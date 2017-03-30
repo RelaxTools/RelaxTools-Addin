@@ -221,11 +221,11 @@ Public Sub pasteScreenShot()
             Dim lngRow As Long
             
             ' ブランク行を計算しておく
-            lngRow = Selection.BottomRightCell.row + mlngBlankNum
+            lngRow = Selection.BottomRightCell.Row + mlngBlankNum
         
             ' 改行の設定
             If mblnPageBreakEnable Then
-                ActiveWindow.SelectedSheets.HPageBreaks.Add Before:=WS.Cells(Selection.BottomRightCell.row + mlngPageBreakNun, Selection.TopLeftCell.Column)
+                ActiveWindow.SelectedSheets.HPageBreaks.Add Before:=WS.Cells(Selection.BottomRightCell.Row + mlngPageBreakNun, Selection.TopLeftCell.Column)
             End If
         
             WS.Cells(lngRow, Selection.TopLeftCell.Column).Select

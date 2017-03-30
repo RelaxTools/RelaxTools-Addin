@@ -83,7 +83,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 主処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionMain(r As Range, ByVal row As Long, Cancel As Boolean)
+Private Sub SFWork_SelectionMain(r As Range, ByVal Row As Long, Cancel As Boolean)
         
     Dim rr As Range
     Dim strBuf As String

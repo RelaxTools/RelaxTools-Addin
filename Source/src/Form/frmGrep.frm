@@ -708,7 +708,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     
                         ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                         ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
-                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.id
+                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.Id
 '                        ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = "Shape:" & c.ID
                         
 '                        ResultWS.Hyperlinks.Add _
@@ -725,7 +725,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
                     SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
-                    TextToDisplay:=c.Name & ":" & c.id
+                    TextToDisplay:=c.Name & ":" & c.Id
                     
                         ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
@@ -784,7 +784,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                         ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                         ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objShape.Parent.Parent.FullName
                         ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objShape.Parent.Name
-                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.id
+                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.Id
 '                        ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = "Shape:" & c.ID
                         
 '                        ResultWS.Hyperlinks.Add _
@@ -801,7 +801,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
                     SubAddress:=Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
-                    TextToDisplay:=c.Name & ":" & c.id
+                    TextToDisplay:=c.Name & ":" & c.Id
                         
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = strBuf

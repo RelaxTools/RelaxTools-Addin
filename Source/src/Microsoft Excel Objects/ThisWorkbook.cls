@@ -580,7 +580,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
 
     blnCall = True
 
-    lngRow = Target(1).row
+    lngRow = Target(1).Row
     lngCol = Target(1).Column
 
     Dim sngTop As Single
@@ -696,7 +696,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         Dim strBuf As String
         
         strBuf = "  列:" & Target(1).Column & vbCrLf
-        strBuf = strBuf & "  行:" & Target(1).row
+        strBuf = strBuf & "  行:" & Target(1).Row
         With sh.Shapes(C_XY_BAR_NAME).TextFrame2
             .TextRange.Text = strBuf
             .TextRange.Font.NameComplexScript = "Meiryo UI"

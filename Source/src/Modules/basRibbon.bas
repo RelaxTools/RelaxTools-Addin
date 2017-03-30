@@ -71,12 +71,12 @@ Private Function getMacroName(control As IRibbonControl) As String
     Dim lngPos As Long
     
     '同じマクロを複数登録可能とするためにドット以降の文字を削除
-    lngPos = InStr(control.id, ".")
+    lngPos = InStr(control.Id, ".")
 
     If lngPos = 0 Then
-        getMacroName = control.id
+        getMacroName = control.Id
     Else
-        getMacroName = Mid$(control.id, 1, lngPos - 1)
+        getMacroName = Mid$(control.Id, 1, lngPos - 1)
     End If
 
 End Function
@@ -109,7 +109,7 @@ End Function
 '--------------------------------------------------------------------
 Sub tabGetVisible(control As IRibbonControl, ByRef visible)
 
-    visible = GetSetting(C_TITLE, "Ribbon", Replace(control.id, "Tab", ""), True)
+    visible = GetSetting(C_TITLE, "Ribbon", Replace(control.Id, "Tab", ""), True)
 
 End Sub
 '--------------------------------------------------------------------
@@ -125,7 +125,7 @@ End Sub
 '--------------------------------------------------------------------
 Sub tabGetPressed(control As IRibbonControl, ByRef returnValue)
     
-    returnValue = GetSetting(C_TITLE, "Ribbon", control.id, True)
+    returnValue = GetSetting(C_TITLE, "Ribbon", control.Id, True)
 
 End Sub
 '--------------------------------------------------------------------
@@ -133,7 +133,7 @@ End Sub
 '--------------------------------------------------------------------
 Sub tabOnAction(control As IRibbonControl, pressed As Boolean)
     
-    SaveSetting C_TITLE, "Ribbon", control.id, pressed
+    SaveSetting C_TITLE, "Ribbon", control.Id, pressed
     
     Call RefreshRibbon
     
@@ -308,7 +308,7 @@ Public Sub colorOnAction(control As IRibbonControl, selectedId As String, select
     On Error Resume Next
     Dim strBuf As String
 
-    Select Case control.id
+    Select Case control.Id
         Case "fontColorGallery"
             SaveSetting C_TITLE, "Color2003", "font", Right(selectedId, 2)
             strBuf = "execSelectionFormatFontColor"
@@ -378,7 +378,7 @@ Private Function ribbonDinamicMenu(control As IRibbonControl, ByRef content)
     Dim lngNo As Long
     
     'コントロールIDからメニュー名を取得
-    Set WS = ThisWorkbook.Worksheets(control.id)
+    Set WS = ThisWorkbook.Worksheets(control.Id)
     
     
     Const C_START_ROW As Long = 3
@@ -539,7 +539,7 @@ Public Sub RefreshRibbon(Optional control As IRibbonControl)
         If control Is Nothing Then
             mIR.Invalidate
         Else
-            mIR.InvalidateControl control.id
+            mIR.InvalidateControl control.Id
         End If
     End If
 
@@ -553,7 +553,7 @@ Sub sectionPressed(control As IRibbonControl, ByRef returnValue)
     
     On Error GoTo e
     
-    Select Case control.id
+    Select Case control.Id
         Case "sectionSetting01"
             returnValue = mSecTog01
     
@@ -591,7 +591,7 @@ Sub sectionOnAction(control As IRibbonControl, pressed As Boolean)
     mSecTog05 = False
     mSecTog06 = False
   
-    Select Case control.id
+    Select Case control.Id
         Case "sectionSetting01"
             mSecTog01 = pressed
             Call SaveSetting(C_TITLE, "Section", "pos", "1")
@@ -1016,7 +1016,7 @@ End Sub
 Public Sub GetSizeLabel(control As IRibbonControl, ByRef lbl)
 
     If Application.UsableWidth / 0.75 < 1420 Then
-        Select Case control.id
+        Select Case control.Id
             Case "MitomePaste.1"
                 lbl = "認め印"
             Case "FilePaste.1"
@@ -1025,7 +1025,7 @@ Public Sub GetSizeLabel(control As IRibbonControl, ByRef lbl)
                 lbl = "ビジネス印"
         End Select
     Else
-        Select Case control.id
+        Select Case control.Id
             Case "MitomePaste.1"
                 lbl = "認め印" & vbCrLf
             Case "FilePaste.1"
@@ -1042,19 +1042,19 @@ Public Sub GetSizeLabel(control As IRibbonControl, ByRef lbl)
  Sub stampGetItemCount(control As IRibbonControl, ByRef count)
 
     '設定情報取得
-    Dim col As Collection
+    Dim Col As Collection
     
-    Set col = getProperty()
+    Set Col = getProperty()
 
-    count = col.count
+    count = Col.count
 
 End Sub
 '--------------------------------------------------------------------
 ' データ印のIDを取得
 '--------------------------------------------------------------------
-Sub stampGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
+Sub stampGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
 
-    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1080,19 +1080,19 @@ End Sub
 Sub stampMitomeGetItemCount(control As IRibbonControl, ByRef count)
 
     '設定情報取得
-    Dim col As Collection
+    Dim Col As Collection
     
-    Set col = getPropertyMitome()
+    Set Col = getPropertyMitome()
 
-    count = col.count
+    count = Col.count
 
 End Sub
 '--------------------------------------------------------------------
 ' 認印のIDを取得
 '--------------------------------------------------------------------
-Sub stampMitomeGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
+Sub stampMitomeGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
 
-    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1118,19 +1118,19 @@ End Sub
 Sub stampBzGetItemCount(control As IRibbonControl, ByRef count)
 
     '設定情報取得
-    Dim col As Collection
+    Dim Col As Collection
     
-    Set col = getPropertyBz()
+    Set Col = getPropertyBz()
 
-    count = col.count
+    count = Col.count
 
 End Sub
 '--------------------------------------------------------------------
 ' ビジネス印のIDを取得
 '--------------------------------------------------------------------
-Sub stampBzGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
+Sub stampBzGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
 
-    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1165,9 +1165,9 @@ End Sub
 '--------------------------------------------------------------------
 '  さくら印のIDを取得
 '--------------------------------------------------------------------
-Sub sakuraGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
+Sub sakuraGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
 
-    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1175,7 +1175,7 @@ End Sub
 '--------------------------------------------------------------------
 Sub sakuraGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
 
-    Set image = getImageSakura(control.id, Index + 1)
+    Set image = getImageSakura(control.Id, Index + 1)
     
 End Sub
 '--------------------------------------------------------------------
@@ -1183,7 +1183,7 @@ End Sub
 '--------------------------------------------------------------------
 Public Sub sakuraOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
-    Call pasteSakura(control.id, selectedIndex + 1)
+    Call pasteSakura(control.Id, selectedIndex + 1)
 
 End Sub
 
@@ -1198,9 +1198,9 @@ End Sub
 '--------------------------------------------------------------------
 '  付箋のIDを取得
 '--------------------------------------------------------------------
-Sub fusenGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
+Sub fusenGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
 
-    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1208,7 +1208,7 @@ End Sub
 '--------------------------------------------------------------------
 Sub fusenGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
 
-    Set image = getImageFusen(control.id, Index + 1)
+    Set image = getImageFusen(control.Id, Index + 1)
     
 End Sub
 '--------------------------------------------------------------------
@@ -1216,7 +1216,7 @@ End Sub
 '--------------------------------------------------------------------
 Public Sub fusenOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
-    Call pasteFusen(control.id, selectedIndex + 1)
+    Call pasteFusen(control.Id, selectedIndex + 1)
 
 End Sub
 '--------------------------------------------------------------------
@@ -1265,19 +1265,19 @@ End Sub
  Sub kantanGetItemCount(control As IRibbonControl, ByRef count)
 
     '設定情報取得
-    Dim col As Collection
+    Dim Col As Collection
     
-    Set col = getPropertyKantan()
+    Set Col = getPropertyKantan()
 
-    count = col.count
+    count = Col.count
 
 End Sub
 '--------------------------------------------------------------------
 ' かんたん表のIDを取得
 '--------------------------------------------------------------------
-Sub kantanGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
+Sub kantanGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
 
-    id = "kantan" & Format$(Index + 1, "000")
+    Id = "kantan" & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------

@@ -417,7 +417,7 @@ Sub dispPreview()
 '    Dim lngHeight As Long
     Dim strPath As String
     
-    Dim col As Collection
+    Dim Col As Collection
 '    Dim r As Worksheet
     Dim bz As StampBzDTO
     
@@ -549,13 +549,13 @@ End Sub
 Private Sub cmdOK_Click()
         
     Dim datStampBz As StampBzDTO
-    Dim col As Collection
+    Dim Col As Collection
     Dim i As Long
     
     Dim varBuf As Variant
 
 
-    Set col = New Collection
+    Set Col = New Collection
     '設定情報取得
 
     For i = 0 To lstStampBz.ListCount - 1
@@ -634,16 +634,16 @@ Private Sub cmdOK_Click()
                 Exit Sub
         End Select
         
-        col.Add datStampBz
+        Col.Add datStampBz
         
         Set datStampBz = Nothing
         
     Next
 
     'プロパティ保存
-    setPropertyBz col
+    setPropertyBz Col
     
-    Set col = Nothing
+    Set Col = Nothing
     
     'リボンのリフレッシュ
     Call RefreshRibbon
@@ -943,7 +943,7 @@ End Sub
 Private Sub UserForm_Initialize()
 
     Dim datStampBz As StampBzDTO
-    Dim col As Collection
+    Dim Col As Collection
     Dim i As Long
     
     Dim strBuf As String
@@ -952,11 +952,11 @@ Private Sub UserForm_Initialize()
     ReDim varBuf(C_TEXT To C_LineSize)
 
     '設定情報取得
-    Set col = getPropertyBz()
+    Set Col = getPropertyBz()
 
-    For i = 1 To col.count
+    For i = 1 To Col.count
         
-        Set datStampBz = col(i)
+        Set datStampBz = Col(i)
         
         varBuf(C_StampType) = datStampBz.StampType
         varBuf(C_TEXT) = datStampBz.Text
@@ -984,7 +984,7 @@ Private Sub UserForm_Initialize()
         Next i
     End With
     
-    If col.count > 0 Then
+    If Col.count > 0 Then
         lstStampBz.Selected(0) = True
     Else
         mblnRefresh = True

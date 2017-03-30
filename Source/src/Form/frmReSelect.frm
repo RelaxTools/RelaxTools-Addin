@@ -152,8 +152,8 @@ Private Function getTop(ByVal s As Range) As Long
     lngMin = 2147483647
 
     For Each r In s.Areas
-        If lngMin > r.row Then
-            lngMin = r.row
+        If lngMin > r.Row Then
+            lngMin = r.Row
         End If
     Next
     getTop = lngMin

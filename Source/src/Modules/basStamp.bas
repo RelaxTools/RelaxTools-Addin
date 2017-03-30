@@ -218,14 +218,14 @@ End Function
 Function getImageStamp(ByVal Index As Long) As StdPicture
 
     '設定情報取得
-    Dim col As Collection
+    Dim Col As Collection
     Dim bz As StampDatDTO
     
     Set getImageStamp = Nothing
     
-    Set col = getProperty()
+    Set Col = getProperty()
     
-    Set bz = col(Index)
+    Set bz = Col(Index)
     
     Set getImageStamp = editStamp(bz, xlBitmap)
 
@@ -247,7 +247,7 @@ End Sub
 Sub pasteStamp2(ByVal Index As Long)
 
     '設定情報取得
-    Dim col As Collection
+    Dim Col As Collection
     Dim s As StampDatDTO
     Dim r As Shape
     Dim ss As Range
@@ -268,17 +268,17 @@ Sub pasteStamp2(ByVal Index As Long)
         End If
     End If
     
-    Set col = getProperty()
+    Set Col = getProperty()
 
     Select Case True
-        Case col Is Nothing
+        Case Col Is Nothing
             Exit Sub
-        Case col.count = 0
+        Case Col.count = 0
             Exit Sub
         Case Else
     End Select
 
-    Set s = col(Index)
+    Set s = Col(Index)
 
     Call editStamp(s, xlPicture)
 
@@ -333,9 +333,9 @@ Public Function getProperty() As Collection
     Dim lngMax As Long
     Dim i As Long
     
-    Dim col As Collection
+    Dim Col As Collection
     
-    Set col = New Collection
+    Set Col = New Collection
 
     lngMax = GetSetting(C_TITLE, "Stamp", "Count", "-1")
     If lngMax = -1 Then
@@ -355,7 +355,7 @@ Public Function getProperty() As Collection
         s.Fill = C_STAMP_FILL_OFF
         s.rect = "0"
 
-        col.Add s
+        Col.Add s
         
         Set s = Nothing
         
@@ -374,7 +374,7 @@ Public Function getProperty() As Collection
         s.Fill = C_STAMP_FILL_OFF
         s.rect = "0"
     
-        col.Add s
+        Col.Add s
         
         Set s = Nothing
     
@@ -393,7 +393,7 @@ Public Function getProperty() As Collection
         s.Fill = C_STAMP_FILL_OFF
         s.rect = "0"
     
-        col.Add s
+        Col.Add s
         
         Set s = Nothing
     Else
@@ -414,19 +414,19 @@ Public Function getProperty() As Collection
             s.Fill = GetSetting(C_TITLE, "Stamp", "Fill" & Format$(i, "000"), C_STAMP_FILL_OFF)
             s.rect = GetSetting(C_TITLE, "Stamp", "Rect" & Format$(i, "000"), "0")
     
-            col.Add s
+            Col.Add s
             
             Set s = Nothing
         Next
     End If
     
-    Set getProperty = col
+    Set getProperty = Col
     
 End Function
 '--------------------------------------------------------------
 '　レジストリ設定値取得
 '--------------------------------------------------------------
-Public Sub setProperty(ByRef col As Collection)
+Public Sub setProperty(ByRef Col As Collection)
 
     Dim strBuf As String
     Dim s As StampDatDTO
@@ -447,9 +447,9 @@ Public Sub setProperty(ByRef col As Collection)
     DeleteSetting C_TITLE, "Stamp", "Fill"
     DeleteSetting C_TITLE, "Stamp", "Rect"
     
-    For i = 0 To col.count - 1
+    For i = 0 To Col.count - 1
         
-        Set s = col(i + 1)
+        Set s = Col(i + 1)
         
         Call SaveSetting(C_TITLE, "Stamp", "Upper" & Format$(i, "000"), Replace(s.Upper, vbCrLf, vbVerticalTab))
         Call SaveSetting(C_TITLE, "Stamp", "Lower" & Format$(i, "000"), Replace(s.Lower, vbCrLf, vbVerticalTab))
@@ -467,7 +467,7 @@ Public Sub setProperty(ByRef col As Collection)
         Set s = Nothing
     Next
     
-    Call SaveSetting(C_TITLE, "Stamp", "Count", col.count)
+    Call SaveSetting(C_TITLE, "Stamp", "Count", Col.count)
     
 End Sub
 

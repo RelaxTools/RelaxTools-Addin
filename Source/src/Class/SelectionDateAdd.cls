@@ -99,7 +99,7 @@ Private Sub SFWork_SelectionMain(r As Range, Cancel As Boolean)
 '    On Error Resume Next
 
     lngCol = r.Column
-    lngRow = r.row
+    lngRow = r.Row
     lngPos = 0
     
     strBuf = r.FormulaLocal

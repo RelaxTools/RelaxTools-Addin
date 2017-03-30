@@ -103,7 +103,7 @@ Private Sub cmdRun_Click()
     
     Set objFs = CreateObject("Scripting.FileSystemObject")
     
-    lngRow = ActiveCell.row
+    lngRow = ActiveCell.Row
     lngCol = ActiveCell.Column
     
     strLine = ""

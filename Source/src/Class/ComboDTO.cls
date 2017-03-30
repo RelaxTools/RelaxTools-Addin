@@ -38,7 +38,7 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 
-Public NO As String
+Public No As String
 Public Category As String
 Public DISP_NAME As String
 Public MACRO As String

@@ -57,15 +57,15 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
         Exit Sub
     End If
 
-    strBook = Cells(ActiveCell.row, C_SEARCH_BOOK).Value
+    strBook = Cells(ActiveCell.Row, C_SEARCH_BOOK).Value
     If Len(strBook) = 0 Then
         Exit Sub
     End If
-    strSheet = Cells(ActiveCell.row, C_SEARCH_SHEET).Value
+    strSheet = Cells(ActiveCell.Row, C_SEARCH_SHEET).Value
     If Len(strSheet) = 0 Then
         Exit Sub
     End If
-    strId = Cells(ActiveCell.row, C_SEARCH_ADDRESS).Value
+    strId = Cells(ActiveCell.Row, C_SEARCH_ADDRESS).Value
     If Len(strId) = 0 Then
         Exit Sub
     End If
@@ -158,7 +158,7 @@ Private Function setCellPos(ByRef r As Range) As Range
             lngCol = r.Column
     End Select
 
-    Set setCellPos = r.Worksheet.Cells(r.row, lngCol)
+    Set setCellPos = r.Worksheet.Cells(r.Row, lngCol)
 
 End Function
 
@@ -288,20 +288,20 @@ e:
     End If
         
 End Sub
-Private Function getObjFromID(ByRef WS As Worksheet, ByVal id As String) As Object
+Private Function getObjFromID(ByRef WS As Worksheet, ByVal Id As String) As Object
     Dim ret As Object
     Dim s As Shape
     
     For Each s In WS.Shapes
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.id = CLng(id) Then
+                If s.Id = CLng(Id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, id)
+                Set ret = getObjFromIDSub(s, Id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -317,7 +317,7 @@ Private Function getObjFromID(ByRef WS As Worksheet, ByVal id As String) As Obje
     Set getObjFromID = ret
 
 End Function
-Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As Object
+Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal Id As String) As Object
     
     Dim s As Shape
     Dim ret As Object
@@ -325,13 +325,13 @@ Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As
     For Each s In objShape.GroupItems
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.id = CLng(id) Then
+                If s.Id = CLng(Id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, id)
+                Set ret = getObjFromIDSub(s, Id)
                 If ret Is Nothing Then
                 Else
                     Exit For
