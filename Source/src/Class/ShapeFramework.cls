@@ -305,10 +305,10 @@ Public Sub Run()
     dx_pt.X = dx_pt.X - WS.Cells(tb.Row, tb.Col).Left
     dx_pt.Y = dx_pt.Y - WS.Cells(tb.Row, tb.Col).Top
     
-    '実際の移動位置でもう一度精度を高めるためにズーム値を計算。ただしちらつくので2010以前は除外
-    If (Val(Application.Version) > C_EXCEL_VERSION_2010) Then
-        zm = GetTrueZoom(dx_pt)
-    End If
+    '実際の移動位置でもう一度精度を高めるためにズーム値を計算。
+    Application.ScreenUpdating = (Val(Application.Version) <= C_EXCEL_VERSION_2010)
+        
+    zm = GetTrueZoom(dx_pt)
     
     Dim dx_px As POINTAPI
     dx_px = PointToPixelZoom(dx_pt, zm)
@@ -317,7 +317,11 @@ Public Sub Run()
     dx_px.Y = dx_px.Y + org_px.Y
     
     'シェイプを選択
-    WD.ActiveCell.Select
+    If WD.RangeFromPoint(dx_px.X, dx_px.Y) Is Nothing Then
+    Else
+        WD.RangeFromPoint(dx_px.X, dx_px.Y).Select
+    End If
+    
     Call SetCursoleAndLeftDown(dx_px.X, dx_px.Y)
 
     Application.ScreenUpdating = True
