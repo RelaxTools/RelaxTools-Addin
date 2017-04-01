@@ -107,6 +107,9 @@ Private Const SM_CYSCREEN = 1    'ディスプレイの高さ
 Private Const PTUNIT As Single = 0.75  'エクセル上のポイント値は0.75の倍数
 Private Const MOUSEEVENTF_LEFTDOWN As Integer = &H2      '左ボタンDown
 
+Private WD As Window
+Private WS As Worksheet
+
 '初期化イベント
 Public Event SelectionInit(ByRef Cancel As Boolean)
 'メインイベント
@@ -137,6 +140,14 @@ Public Sub Run()
         Exit Sub
     End If
     
+    If ActiveWindow Is Nothing Then
+        MsgBox "アクティブなウィンドウが見つかりません。", vbCritical, C_TITLE
+        Exit Sub
+    End If
+    
+    Set WD = ActiveWindow
+    Set WS = WD.ActiveSheet
+    
     Cancel = False
     pos = MiddleCenter
     
@@ -157,26 +168,36 @@ Public Sub Run()
     Dim org_px As POINTAPI
     org_px = GetOriginPixel()
 
-
     '現在のカーソル位置のスクリーン座標を取得
     Dim cr_px As POINTAPI
-    Dim sp_pt As POINTAPI
     Dim zm As ZOOMVALUE
     
     GetCursorPos cr_px
     
-    If ActiveWindow.Zoom = 100 Then
+    If WD.Zoom = 100 Then
         zm.X = 1
         zm.Y = 1
     Else
         '現在のカーソル位置のセルまたはシェイプから大体の位置を割り出す。
         Dim sd_pt As POINTAPI
-        If ActiveWindow.RangeFromPoint(cr_px.X, cr_px.Y) Is Nothing Then
-            sd_pt.X = 100
-            sd_pt.Y = 100
+        Dim c As POINTAPI
+
+        If WD.RangeFromPoint(cr_px.X, cr_px.Y) Is Nothing Then
+        
+            '範囲外の場合そこそこの値を求める
+            Dim z As ZOOMVALUE
+            c.X = Abs(cr_px.X - org_px.X)
+            c.Y = Abs(cr_px.Y - org_px.Y)
+
+            z.X = 100 / WD.Zoom
+            z.Y = 100 / WD.Zoom
+
+            sd_pt = PixelToPointZoom(c, z)
+
         Else
-            sd_pt.X = ActiveWindow.RangeFromPoint(cr_px.X, cr_px.Y).Left + (ActiveWindow.RangeFromPoint(cr_px.X, cr_px.Y).Width) / 2
-            sd_pt.Y = ActiveWindow.RangeFromPoint(cr_px.X, cr_px.Y).Top + (ActiveWindow.RangeFromPoint(cr_px.X, cr_px.Y).Height) / 2
+            sd_pt.X = WD.RangeFromPoint(cr_px.X, cr_px.Y).Left + (WD.RangeFromPoint(cr_px.X, cr_px.Y).Width) / 2
+            sd_pt.Y = WD.RangeFromPoint(cr_px.X, cr_px.Y).Top + (WD.RangeFromPoint(cr_px.X, cr_px.Y).Height) / 2
+
         End If
         'シード値から真のズームを求める
         zm = GetTrueZoom(sd_pt)
@@ -207,22 +228,18 @@ Public Sub Run()
     
     wk_pt = PixelToPointZoom(wk_px, zm)
     
-    '分割部分の距離を求める
-    sp_pt.X = ActiveSheet.Cells(ActiveWindow.SplitRow + 1, ActiveWindow.SplitColumn + 1).Left
-    sp_pt.Y = ActiveSheet.Cells(ActiveWindow.SplitRow + 1, ActiveWindow.SplitColumn + 1).Top
-    
     '表示シートの左上を取得
     Dim tb As TABLE
-    tb.Col = ActiveWindow.ActivePane.ScrollColumn
-    tb.Row = ActiveWindow.ActivePane.ScrollRow
+    tb.Col = WD.ActivePane.ScrollColumn
+    tb.Row = WD.ActivePane.ScrollRow
     
     Dim cr_pt As POINTAPI
-    cr_pt.X = ActiveSheet.Cells(tb.Row, tb.Col).Left - sp_pt.X + wk_pt.X
-    cr_pt.Y = ActiveSheet.Cells(tb.Row, tb.Col).Top - sp_pt.Y + wk_pt.Y
+    cr_pt.X = WS.Cells(tb.Row, tb.Col).Left + wk_pt.X
+    cr_pt.Y = WS.Cells(tb.Row, tb.Col).Top + wk_pt.Y
     
     'マウスカーソルが作業ウィンドウ内にある場合
     Dim r As Range
-    Set r = ActiveWindow.ActivePane.VisibleRange
+    Set r = WD.ActivePane.VisibleRange
     If r(1).Top < cr_pt.Y And r(1).Left < cr_pt.X And r(r.count).Offset(-1, -1).Top + r(r.count).Offset(-1, -1).Height > cr_pt.Y And r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).Width > cr_pt.X Then
     
         'シェイプをマウスカーソル位置に移動する。ただし、かならずカーソルの中心に移動できるわけではないため、下でシェイプにあわせてカーソルを移動
@@ -253,40 +270,45 @@ Public Sub Run()
     
     'カーソルをシェイプに移動する
     Dim dx_pt As POINTAPI
+    Const C_MARGIN As Long = 5
         
     Select Case pos
         Case TopLeft
-            dx_pt.X = objDataSet.Left + 10
-            dx_pt.Y = objDataSet.Top + 10
+            dx_pt.X = objDataSet.Left + C_MARGIN
+            dx_pt.Y = objDataSet.Top + C_MARGIN
         Case TopCenter
             dx_pt.X = objDataSet.Left + (objDataSet.Width / 2)
-            dx_pt.Y = objDataSet.Top + 10
+            dx_pt.Y = objDataSet.Top + C_MARGIN
         Case TopRight
-            dx_pt.X = objDataSet.Left + objDataSet.Width - 10
-            dx_pt.Y = objDataSet.Top + 10
+            dx_pt.X = objDataSet.Left + objDataSet.Width - C_MARGIN
+            dx_pt.Y = objDataSet.Top + C_MARGIN
         Case MiddleLeft
-            dx_pt.X = objDataSet.Left + 10
+            dx_pt.X = objDataSet.Left + C_MARGIN
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case MiddleCenter
             dx_pt.X = objDataSet.Left + (objDataSet.Width / 2)
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case MiddleRight
-            dx_pt.X = objDataSet.Left + objDataSet.Width - 10
+            dx_pt.X = objDataSet.Left + objDataSet.Width - C_MARGIN
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case BottomLeft
-            dx_pt.X = objDataSet.Left + 10
-            dx_pt.Y = objDataSet.Top + objDataSet.Height - 10
+            dx_pt.X = objDataSet.Left + C_MARGIN
+            dx_pt.Y = objDataSet.Top + objDataSet.Height - C_MARGIN
         Case BottomCenter
             dx_pt.X = objDataSet.Left + (objDataSet.Width / 2)
-            dx_pt.Y = objDataSet.Top + objDataSet.Height - 10
+            dx_pt.Y = objDataSet.Top + objDataSet.Height - C_MARGIN
         Case BottomRight
-            dx_pt.X = objDataSet.Left + objDataSet.Width - 10
-            dx_pt.Y = objDataSet.Top + objDataSet.Height - 10
+            dx_pt.X = objDataSet.Left + objDataSet.Width - C_MARGIN
+            dx_pt.Y = objDataSet.Top + objDataSet.Height - C_MARGIN
     End Select
             
-    dx_pt.X = dx_pt.X - ActiveSheet.Cells(tb.Row, tb.Col).Left + sp_pt.X
-    dx_pt.Y = dx_pt.Y - ActiveSheet.Cells(tb.Row, tb.Col).Top + sp_pt.Y
+    dx_pt.X = dx_pt.X - WS.Cells(tb.Row, tb.Col).Left
+    dx_pt.Y = dx_pt.Y - WS.Cells(tb.Row, tb.Col).Top
     
+    '実際の移動位置でもう一度精度を高めるためにズーム値を計算。ただしちらつくので2010以前は除外
+    If (Val(Application.Version) > C_EXCEL_VERSION_2010) Then
+        zm = GetTrueZoom(dx_pt)
+    End If
     
     Dim dx_px As POINTAPI
     dx_px = PointToPixelZoom(dx_pt, zm)
@@ -295,7 +317,7 @@ Public Sub Run()
     dx_px.Y = dx_px.Y + org_px.Y
     
     'シェイプを選択
-    ActiveCell.Select
+    WD.ActiveCell.Select
     Call SetCursoleAndLeftDown(dx_px.X, dx_px.Y)
 
     Application.ScreenUpdating = True
@@ -364,32 +386,47 @@ Private Function PointToPixelZoom(ByRef pt As POINTAPI, ByRef zm As ZOOMVALUE) A
     
 End Function
 
+''シートの左上位置(Pixel)ヘッダや行番号を含むためZOOMにより変動する
+''Excel 2010以前ではExcelのバグで、ScreenUpdating = False の場合に値が取れないので注意
+'Private Function GetOriginPixel() As POINTAPI
+'
+'    Dim dummy As Long
+'    Dim b As POINTAPI
+'    Dim ret As POINTAPI
+'
+'    b.X = WD.ActivePane.ScrollColumn
+'    b.Y = WD.ActivePane.ScrollRow
+'
+'    WD.ActivePane.ScrollColumn = WD.SplitColumn + 1
+'    dummy = WD.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
+'    ret.X = WD.ActivePane.PointsToScreenPixelsX(0)
+'
+'    WD.ActivePane.ScrollRow = WD.SplitRow + 1
+'    dummy = WD.SplitVertical    'PointsToScreenPixelsXの値を更新するために使用
+'    ret.Y = WD.ActivePane.PointsToScreenPixelsY(0)
+'
+'    WD.ActivePane.ScrollColumn = b.X
+'    WD.ActivePane.ScrollRow = b.Y
+'
+'    GetOriginPixel = ret
+'
+'End Function
 'シートの左上位置(Pixel)ヘッダや行番号を含むためZOOMにより変動する
 'Excel 2010以前ではExcelのバグで、ScreenUpdating = False の場合に値が取れないので注意
 Private Function GetOriginPixel() As POINTAPI
 
     Dim dummy As Long
-    Dim b As POINTAPI
     Dim ret As POINTAPI
     
-    b.X = ActiveWindow.ActivePane.ScrollColumn
-    b.Y = ActiveWindow.ActivePane.ScrollRow
-    
-    ActiveWindow.ActivePane.ScrollColumn = ActiveWindow.SplitColumn + 1
-    dummy = ActiveWindow.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
-    ret.X = ActiveWindow.ActivePane.PointsToScreenPixelsX(0)
+    dummy = WD.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
+    ret.X = WD.ActivePane.PointsToScreenPixelsX(WD.ActivePane.VisibleRange(1).Left)
 
-    ActiveWindow.ActivePane.ScrollRow = ActiveWindow.SplitRow + 1
-    dummy = ActiveWindow.SplitVertical    'PointsToScreenPixelsXの値を更新するために使用
-    ret.Y = ActiveWindow.ActivePane.PointsToScreenPixelsY(0)
-    
-    ActiveWindow.ActivePane.ScrollColumn = b.X
-    ActiveWindow.ActivePane.ScrollRow = b.Y
+    dummy = WD.SplitVertical    'PointsToScreenPixelsXの値を更新するために使用
+    ret.Y = WD.ActivePane.PointsToScreenPixelsY(WD.ActivePane.VisibleRange(1).Top)
     
     GetOriginPixel = ret
 
 End Function
-
 '真のズームを求める
 '引数：ポイント（距離によりが割合が変わるためそのシード数）
 '計算しやすいように小数で返却(85% = 0.85)
@@ -401,7 +438,7 @@ Private Function GetTrueZoom(pt As POINTAPI) As ZOOMVALUE
     Dim dummy As Long
     Dim ret As ZOOMVALUE
     
-    If ActiveWindow.Zoom = 100 Then
+    If WD.Zoom = 100 Then
         ret.X = 1
         ret.Y = 1
         GetTrueZoom = ret
@@ -411,17 +448,17 @@ Private Function GetTrueZoom(pt As POINTAPI) As ZOOMVALUE
     '100% 時のPixel数
     px = PointToPixel(pt)
 
-    dummy = ActiveWindow.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
-    p1.X = ActiveWindow.ActivePane.PointsToScreenPixelsX(0)
+    dummy = WD.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
+    p1.X = WD.ActivePane.PointsToScreenPixelsX(0)
     
-    dummy = ActiveWindow.SplitVertical    'PointsToScreenPixelsYの値を更新するために使用
-    p1.Y = ActiveWindow.ActivePane.PointsToScreenPixelsY(0)
+    dummy = WD.SplitVertical    'PointsToScreenPixelsYの値を更新するために使用
+    p1.Y = WD.ActivePane.PointsToScreenPixelsY(0)
 
-    dummy = ActiveWindow.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
-    p2.X = ActiveWindow.ActivePane.PointsToScreenPixelsX(pt.X) - p1.X
+    dummy = WD.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
+    p2.X = WD.ActivePane.PointsToScreenPixelsX(pt.X) - p1.X
     
-    dummy = ActiveWindow.SplitVertical    'PointsToScreenPixelsYの値を更新するために使用
-    p2.Y = ActiveWindow.ActivePane.PointsToScreenPixelsY(pt.Y) - p1.Y
+    dummy = WD.SplitVertical    'PointsToScreenPixelsYの値を更新するために使用
+    p2.Y = WD.ActivePane.PointsToScreenPixelsY(pt.Y) - p1.Y
 
     '100% のピクセル数と 現在の% のピクセル数で、倍率を計算
     ret.X = CDbl(p2.X) / CDbl(px.X)

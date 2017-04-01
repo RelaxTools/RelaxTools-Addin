@@ -372,3 +372,6 @@ Sub KanaSetting()
     frmKana.Show
 End Sub
 
+Sub PickSetting()
+    frmPickSetting.Show
+End Sub

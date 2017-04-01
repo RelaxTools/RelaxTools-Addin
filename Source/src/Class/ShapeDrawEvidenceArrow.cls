@@ -95,6 +95,10 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, Cancel As 
 
     End With
     
+    If CBool(GetSetting(C_TITLE, "Shape", "PickShape", True)) = False Then
+        Cancel = True
+    End If
+    
 End Sub
 
 

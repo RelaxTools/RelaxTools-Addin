@@ -636,8 +636,6 @@
             </menu>
           </splitButton>
           <menu id="evidence" label="強調&#xD;&#xA;" size="large" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="shapeSquare" getEnabled="getRibbonEnabled" >
-            <menuSeparator id="shapeSep01" title="シェイプの貼付方法"/>
-            <toggleButton  id="pickCheck"  image="pick" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getPressed="pickPressed" onAction="pickOnAction"/>
             <menuSeparator id="shapeSep02" title="強調用シェイプ(実線)貼付"/>
             <button id="drawEvidenceArrow"    image="arrow"          getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <button id="drawEvidenceTextbox"  image="shapeSquare"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
@@ -705,6 +703,18 @@
           <separator id="shapeSep04"/>
           <gallery idMso="ShapeChangeShapeGallery" size="large" label="他シェイプに&#xD;&#xA;変更" />
         </group>
+
+        <group id="ShapeSettingGroup" label="設定" image="gear32">
+          <splitButton id="PickSplit" size="large" getEnabled="getRibbonEnabled">
+            <toggleButton  id="pickCheck"  image="pick" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getPressed="pickPressed" onAction="pickOnAction"/>
+            <menu id="PickMenu" itemSize="large" >
+              <menuSeparator id="PickSep" title="シェイプの貼り付け方法" />
+              <button id="PickSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  getEnabled="getScreenShotEnabled" onAction="ribbonOnAction"/>
+            </menu>
+          </splitButton>
+        </group>
+
+
       </tab>
       <tab id="RelaxWordTab" label="RelaxWord" getVisible="tabGetVisible">
         <group id="sectionGroup" label="段落番号・アウトライン" image="plusOrange">
