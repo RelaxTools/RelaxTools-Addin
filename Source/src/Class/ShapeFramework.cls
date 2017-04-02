@@ -134,6 +134,7 @@ Public Sub Run()
     Dim objDataSet As Object
     Dim Cancel As Boolean
     Dim pos As ClickPosition
+    Dim sh As Object
     
     If ActiveWorkbook Is Nothing Then
         MsgBox "アクティブなブックが見つかりません。", vbCritical, C_TITLE
@@ -184,15 +185,17 @@ Public Sub Run()
 
         If WD.RangeFromPoint(cr_px.X, cr_px.Y) Is Nothing Then
         
-            '範囲外の場合そこそこの値を求める
-            Dim z As ZOOMVALUE
-            c.X = Abs(cr_px.X - org_px.X)
-            c.Y = Abs(cr_px.Y - org_px.Y)
-
-            z.X = 100 / WD.Zoom
-            z.Y = 100 / WD.Zoom
-
-            sd_pt = PixelToPointZoom(c, z)
+'            '範囲外の場合そこそこの値を求める
+'            Dim z As ZOOMVALUE
+'            c.X = Abs(cr_px.X - org_px.X)
+'            c.Y = Abs(cr_px.Y - org_px.Y)
+'
+'            z.X = 100 / WD.Zoom
+'            z.Y = 100 / WD.Zoom
+'
+'            sd_pt = PixelToPointZoom(c, z)
+            sd_pt.X = 100
+            sd_pt.Y = 100
 
         Else
             sd_pt.X = WD.RangeFromPoint(cr_px.X, cr_px.Y).Left + (WD.RangeFromPoint(cr_px.X, cr_px.Y).Width) / 2
@@ -316,12 +319,17 @@ Public Sub Run()
     dx_px.X = dx_px.X + org_px.X
     dx_px.Y = dx_px.Y + org_px.Y
     
-    'シェイプを選択
-    If WD.RangeFromPoint(dx_px.X, dx_px.Y) Is Nothing Then
-    Else
-        WD.RangeFromPoint(dx_px.X, dx_px.Y).Select
-    End If
+    '
+    objDataSet.TopLeftCell.Select
+'    Set sh = WD.RangeFromPoint(dx_px.X, dx_px.Y)
+'    Select Case True
+'        Case TypeOf sh Is Shape
+'            sh.TopLeftCell.Select
+'        Case TypeOf sh Is Range
+'            sh.Select
+'    End Select
     
+    'シェイプを選択
     Call SetCursoleAndLeftDown(dx_px.X, dx_px.Y)
 
     Application.ScreenUpdating = True

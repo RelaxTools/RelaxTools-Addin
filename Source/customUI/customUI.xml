@@ -704,7 +704,7 @@
           <gallery idMso="ShapeChangeShapeGallery" size="large" label="他シェイプに&#xD;&#xA;変更" />
         </group>
 
-        <group id="ShapeSettingGroup" label="設定" image="gear32">
+        <group id="ShapeSettingGroup" label="シェイプ貼付設定" image="gear32">
           <splitButton id="PickSplit" size="large" getEnabled="getRibbonEnabled">
             <toggleButton  id="pickCheck"  image="pick" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getPressed="pickPressed" onAction="pickOnAction"/>
             <menu id="PickMenu" itemSize="large" >
