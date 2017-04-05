@@ -745,7 +745,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
     
     On Error Resume Next
     Me.Hide
-    Application.ScreenUpdating = False
+'    Application.ScreenUpdating = False
     For lngCnt = 0 To lstFavorite.ListCount - 1
     
         If lstFavorite.Selected(lngCnt) Then
@@ -806,7 +806,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
     Next
      
     Unload Me
-    Application.ScreenUpdating = True
+'    Application.ScreenUpdating = True
 End Sub
 
 '------------------------------------------------------------------------------------------------------------------------

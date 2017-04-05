@@ -47,6 +47,9 @@ Option Explicit
     Private Declare PtrSafe Function GetSystemMetrics Lib "user32" (ByVal nIndex As Long) As Long
     Private Declare PtrSafe Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
     Private Declare PtrSafe Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
+    Private Declare PtrSafe Function GetDeviceCaps Lib "gdi32" (ByVal hDc As LongPtr, ByVal nIndex As Long) As Long
+    Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hWnd As LongPtr) As LongPtr
+    Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hWnd As LongPtr, ByVal hDc As LongPtr) As Long
 
     Private Type MOUSEINPUT
         dx As Long
@@ -67,6 +70,9 @@ Option Explicit
     Private Declare Function GetSystemMetrics Lib "user32.dll" (ByVal nIndex As Integer) As Integer
     Private Declare Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
     Private Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
+    Private Declare Function GetDeviceCaps Lib "gdi32" (ByVal hDc As Long, ByVal nIndex As Long) As Long
+    Private Declare Function GetDC Lib "user32" (ByVal hWnd As Long) As Long
+    Private Declare Sub ReleaseDC Lib "user32" (ByVal hWnd As Long, ByVal hDc As Long)
     
     Private Type MOUSEINPUT
         dx As Long
@@ -83,7 +89,9 @@ Option Explicit
     End Type
     
 #End If
-    
+' モジュール宣言部に記述ここまで －－－－－－－－－－－－－－－－－－－－－－－－－－
+
+
 Private Type POINTAPI
     X As Long
     Y As Long
@@ -98,6 +106,8 @@ Private Type TABLE
     Row As Long
     Col As Long
 End Type
+Private Const LOGPIXELSX As Long = &H58&
+Private Const LOGPIXELSY As Long = &H5A&
 
 Private Const INPUT_MOUSE As Long = 0
 Private Const MOUSE_MOVED As Long = &H1               'マウスを移動する
@@ -109,6 +119,8 @@ Private Const MOUSEEVENTF_LEFTDOWN As Integer = &H2      '左ボタンDown
 
 Private WD As Window
 Private WS As Worksheet
+Private dblSx As Double
+Private dblSy As Double
 
 '初期化イベント
 Public Event SelectionInit(ByRef Cancel As Boolean)
@@ -149,6 +161,9 @@ Public Sub Run()
     Set WD = ActiveWindow
     Set WS = WD.ActiveSheet
     
+    'DPI取得
+    Call GetDPI
+    
     Cancel = False
     pos = MiddleCenter
     
@@ -184,23 +199,12 @@ Public Sub Run()
         Dim c As POINTAPI
 
         If WD.RangeFromPoint(cr_px.X, cr_px.Y) Is Nothing Then
-        
-'            '範囲外の場合そこそこの値を求める
-'            Dim z As ZOOMVALUE
-'            c.X = Abs(cr_px.X - org_px.X)
-'            c.Y = Abs(cr_px.Y - org_px.Y)
-'
-'            z.X = 100 / WD.Zoom
-'            z.Y = 100 / WD.Zoom
-'
-'            sd_pt = PixelToPointZoom(c, z)
             sd_pt.X = 100
             sd_pt.Y = 100
-
         Else
+            'カーソル下のオブジェクト(セルかシェイプ）の中心の位置を割り出す
             sd_pt.X = WD.RangeFromPoint(cr_px.X, cr_px.Y).Left + (WD.RangeFromPoint(cr_px.X, cr_px.Y).Width) / 2
             sd_pt.Y = WD.RangeFromPoint(cr_px.X, cr_px.Y).Top + (WD.RangeFromPoint(cr_px.X, cr_px.Y).Height) / 2
-
         End If
         'シード値から真のズームを求める
         zm = GetTrueZoom(sd_pt)
@@ -319,17 +323,8 @@ Public Sub Run()
     dx_px.X = dx_px.X + org_px.X
     dx_px.Y = dx_px.Y + org_px.Y
     
-    '
-    objDataSet.TopLeftCell.Select
-'    Set sh = WD.RangeFromPoint(dx_px.X, dx_px.Y)
-'    Select Case True
-'        Case TypeOf sh Is Shape
-'            sh.TopLeftCell.Select
-'        Case TypeOf sh Is Range
-'            sh.Select
-'    End Select
-    
     'シェイプを選択
+    objDataSet.TopLeftCell.Select
     Call SetCursoleAndLeftDown(dx_px.X, dx_px.Y)
 
     Application.ScreenUpdating = True
@@ -350,16 +345,34 @@ Private Function PPI() As Double
     PPI = Application.InchesToPoints(1)
 End Function
 ' Dot per Inch
-Private Function DPI() As Double
-    DPI = 96#
+Private Function DPIX() As Double
+    DPIX = dblSx
 End Function
-'ポイント から スクリーン座標
+Private Function DPIY() As Double
+    DPIY = dblSy
+End Function 'ポイント から スクリーン座標
+Private Sub GetDPI()
+
+#If VBA7 And Win64 Then
+    Dim hWnd As LongPtr
+    Dim hDc As LongPtr
+#Else
+    Dim hWnd As Long
+    Dim hDc As Long
+#End If
+    hWnd = Application.hWnd
+    hDc = GetDC(hWnd)
+    dblSx = GetDeviceCaps(hDc, LOGPIXELSX)
+    dblSy = GetDeviceCaps(hDc, LOGPIXELSY)
+    ReleaseDC hWnd, hDc
+    
+End Sub
 Private Function PointToPixel(ByRef pt As POINTAPI) As POINTAPI
 
     Dim px As POINTAPI
     
-    px.X = Round(pt.X * DPI / PPI)
-    px.Y = Round(pt.Y * DPI / PPI)
+    px.X = Round(pt.X * DPIX / PPI)
+    px.Y = Round(pt.Y * DPIY / PPI)
     
     PointToPixel = px
     
@@ -369,8 +382,8 @@ Private Function PixelToPoint(ByRef px As POINTAPI) As POINTAPI
 
     Dim pt As POINTAPI
     
-    pt.X = Round(px.X * PPI / DPI)
-    pt.Y = Round(px.Y * PPI / DPI)
+    pt.X = Round(px.X * PPI / DPIX)
+    pt.Y = Round(px.Y * PPI / DPIY)
     
     PixelToPoint = pt
     
@@ -380,8 +393,8 @@ Private Function PixelToPointZoom(ByRef px As POINTAPI, ByRef zm As ZOOMVALUE) A
 
     Dim pt As POINTAPI
     
-    pt.X = Round((px.X * PPI / DPI) / zm.X)
-    pt.Y = Round((px.Y * PPI / DPI) / zm.Y)
+    pt.X = Round((px.X * PPI / DPIX) / zm.X)
+    pt.Y = Round((px.Y * PPI / DPIY) / zm.Y)
     
     PixelToPointZoom = pt
     
@@ -391,38 +404,12 @@ Private Function PointToPixelZoom(ByRef pt As POINTAPI, ByRef zm As ZOOMVALUE) A
 
     Dim px As POINTAPI
     
-    px.X = Round((pt.X * DPI / PPI) * zm.X)
-    px.Y = Round((pt.Y * DPI / PPI) * zm.Y)
+    px.X = Round((pt.X * DPIX / PPI) * zm.X)
+    px.Y = Round((pt.Y * DPIY / PPI) * zm.Y)
     
     PointToPixelZoom = px
     
 End Function
-
-''シートの左上位置(Pixel)ヘッダや行番号を含むためZOOMにより変動する
-''Excel 2010以前ではExcelのバグで、ScreenUpdating = False の場合に値が取れないので注意
-'Private Function GetOriginPixel() As POINTAPI
-'
-'    Dim dummy As Long
-'    Dim b As POINTAPI
-'    Dim ret As POINTAPI
-'
-'    b.X = WD.ActivePane.ScrollColumn
-'    b.Y = WD.ActivePane.ScrollRow
-'
-'    WD.ActivePane.ScrollColumn = WD.SplitColumn + 1
-'    dummy = WD.SplitHorizontal    'PointsToScreenPixelsXの値を更新するために使用
-'    ret.X = WD.ActivePane.PointsToScreenPixelsX(0)
-'
-'    WD.ActivePane.ScrollRow = WD.SplitRow + 1
-'    dummy = WD.SplitVertical    'PointsToScreenPixelsXの値を更新するために使用
-'    ret.Y = WD.ActivePane.PointsToScreenPixelsY(0)
-'
-'    WD.ActivePane.ScrollColumn = b.X
-'    WD.ActivePane.ScrollRow = b.Y
-'
-'    GetOriginPixel = ret
-'
-'End Function
 'シートの左上位置(Pixel)ヘッダや行番号を含むためZOOMにより変動する
 'Excel 2010以前ではExcelのバグで、ScreenUpdating = False の場合に値が取れないので注意
 Private Function GetOriginPixel() As POINTAPI
@@ -480,11 +467,6 @@ Private Function GetTrueZoom(pt As POINTAPI) As ZOOMVALUE
 
 End Function
 
-Sub PickShape(ByRef objDataSet As Object)
-    
-
-
-End Sub
 '指定スクリーン座標に移動してマウス左ボタンクリック
 Private Sub SetCursoleAndLeftDown(ByVal X As Long, ByVal Y As Long)
 
