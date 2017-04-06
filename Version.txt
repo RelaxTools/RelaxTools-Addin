@@ -1,4 +1,9 @@
-﻿2017/04/05(wed) RelaxTools-Addin Version 4.12.1(RustRemover) 
+﻿2017/04/05(wed) RelaxTools-Addin Version 4.12.2(RustRemover) 
+◇機能改善
+・「列のマージ」でマージ後の列のみを選択するように修正した。
+・各変換処理後、選択範囲が変更されるのを修正。
+
+2017/04/05(wed) RelaxTools-Addin Version 4.12.1(RustRemover) 
 ◇バグ修正
 ・「マウスポインタ追従モード」が高DPI環境でうまく動作しなかった不具合を修正。
 
