@@ -89,8 +89,6 @@ Option Explicit
     End Type
     
 #End If
-' モジュール宣言部に記述ここまで －－－－－－－－－－－－－－－－－－－－－－－－－－
-
 
 Private Type POINTAPI
     X As Long

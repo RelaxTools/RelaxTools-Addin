@@ -624,6 +624,9 @@
            <button id="dispVer" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="information" onAction="ribbonOnAction" />
          </menu>
         </group>
+        <group id="cmGroup" label="CM" image="fcs">
+         <button id="showFCS"   image="fcs" label="FCS&#xD;&#xA;Web" size="large" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+        </group>
         
       </tab>
       <tab id="RelaxShapesTab" label="RelaxShapes" getVisible="tabGetVisible">

@@ -47,6 +47,7 @@ Attribute SFWork.VB_VarHelpID = -1
 ' メンバ変数宣言部(UOC)
 '------------------------------------------------------------------------------------------------------------------------
 Private mstrSep As String
+Private mr As Range
 
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 作成
@@ -105,10 +106,24 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal Row As Long, Cancel As Boolea
     Next
 
     r(1) = strBuf
-
+    
+    If mr Is Nothing Then
+        Set mr = r(1)
+    Else
+        Set mr = Union(mr, r(1))
+    End If
+    
     Exit Sub
 e:
     Call rlxErrMsg(err)
     Cancel = True
 End Sub
 
+Private Sub SFWork_SelectionTerm()
+
+    If mr Is Nothing Then
+    Else
+        mr.Select
+    End If
+    
+End Sub

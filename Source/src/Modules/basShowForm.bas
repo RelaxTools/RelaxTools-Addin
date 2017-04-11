@@ -375,3 +375,8 @@ End Sub
 Sub PickSetting()
     frmPickSetting.Show
 End Sub
+Sub ShowFCS()
+    With CreateObject("WScript.Shell")
+        .Run (C_FCS_URL)
+    End With
+End Sub

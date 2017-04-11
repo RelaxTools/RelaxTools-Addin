@@ -205,6 +205,7 @@ Public Const C_URL As String = "http://software.opensquare.net/relaxtools/"
 Public Const C_REGEXP_URL As String = "http://software.opensquare.net/relaxtools/about/foruse/regexp/"
 Public Const C_STAMP_URL As String = "http://software.opensquare.net/relaxtools/about/foruse/stamp/"
 Public Const C_CAMPAIGN_URL As String = "http://software.opensquare.net/relaxtools/support-2/campaign/"
+Public Const C_FCS_URL As String = "https://www.fcs.co.jp/?relaxtools"
 Public Const C_MAX_CELLS As Long = 100000
 Public pvarSelectionBuffer As Variant
 Public pobjSelection As Object

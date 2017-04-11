@@ -552,28 +552,28 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     On Error Resume Next
 
     Const C_MAX As Long = 50000
-    
+
     Dim lngRow As Long
     Dim lngCol As Long
     Dim r As Range
     Dim b As Boolean
     Dim s As Boolean
-    
+
     Static blnCall As Boolean
 
     If blnCall Then
         Exit Sub
     End If
-    
+
     If mWS.Name <> sh.Name Then
         Exit Sub
     End If
-    
+
     If existCrossLine(sh) Then
     Else
         Exit Sub
     End If
-    
+
     s = sh.Parent.Saved
 
     b = Application.ScreenUpdating
@@ -596,7 +596,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     If sngHeight > C_MAX Then
         sngHeight = C_MAX
     End If
-    
+
     sngLeft = Target(1).Left - C_MAX / 2
     If sngLeft < 0 Then
         sngLeft = 0
@@ -617,84 +617,80 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     '横軸
     If lngType And C_HOLIZON Then
         Set r = Range(sh.Cells(lngRow, 1), sh.Cells(lngRow, sh.Columns.count - 1))
-        
+
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Top = r.Top
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Left = sngLeft
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Width = sngWidth 'r.Width
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = 0
-        
-        
+
+
         With sh.Shapes(C_HOLIZONTAL_BAR_NAME).Fill
             .visible = True
-'            .ForeColor.RGB = lngFillColor
-'            .Transparency = dblFillTransparency / 100
             .Solid
         End With
-        
+
         With sh.Shapes(C_HOLIZONTAL_BAR_NAME).Line
             .visible = True
             .ForeColor.RGB = lngLineColor
             .Weight = sngLineWeight
             .Transparency = 0
         End With
-        
+
         Set r = Nothing
     End If
-    
+
     '縦軸
     If lngType And C_VERTICAL Then
         Set r = Range(sh.Cells(1, lngCol), sh.Cells(sh.Rows.count - 1, lngCol))
-    
+
         sh.Shapes(C_VERTICAL_BAR_NAME).Top = sngTop
         sh.Shapes(C_VERTICAL_BAR_NAME).Left = r.Left
         sh.Shapes(C_VERTICAL_BAR_NAME).Width = 0
-        
         sh.Shapes(C_VERTICAL_BAR_NAME).Height = sngHeight 'r.Height
-        
+
         With sh.Shapes(C_VERTICAL_BAR_NAME).Fill
             .visible = True
 '            .ForeColor.RGB = lngFillColor
 '            .Transparency = dblFillTransparency / 100
             .Solid
         End With
-        
+
         With sh.Shapes(C_VERTICAL_BAR_NAME).Line
             .visible = True
             .ForeColor.RGB = lngLineColor
             .Weight = sngLineWeight
             .Transparency = 0
         End With
-        
+
         Set r = Nothing
     End If
 
     'ＸＹラベル
     If blnGuid Then
         Set r = Range(sh.Cells(1, lngCol), sh.Cells(sh.Rows.count - 1, lngCol))
-    
+
         sh.Shapes(C_XY_BAR_NAME).Width = 80
         sh.Shapes(C_XY_BAR_NAME).Height = 50
-    
         sh.Shapes(C_XY_BAR_NAME).Top = Target(1).Top + Target(1).Height + 10
         sh.Shapes(C_XY_BAR_NAME).Left = Target(1).Left + Target(1).Width + 10
-        
-        
+
+
         With sh.Shapes(C_XY_BAR_NAME).Fill
             .visible = True
 '            .ForeColor.RGB = lngFillColor
             .Transparency = 1
             .Solid
         End With
-        
+
         With sh.Shapes(C_XY_BAR_NAME).Line
             .visible = True
             .ForeColor.RGB = lngLineColor
             .Weight = sngLineWeight
 '            .Transparency = 0
         End With
-        
+
         Dim strBuf As String
-        
+
         strBuf = "  列:" & Target(1).Column & vbCrLf
         strBuf = strBuf & "  行:" & Target(1).Row
         With sh.Shapes(C_XY_BAR_NAME).TextFrame2
@@ -708,7 +704,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
             .TextRange.ParagraphFormat.Alignment = msoAlignLeft
             .VerticalAnchor = msoAnchorMiddle
         End With
-        
+
         Set r = Nothing
     End If
 
@@ -718,6 +714,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     sh.Parent.Saved = s
 
 End Sub
+
 Private Sub XL_LINE_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolean, Cancel As Boolean)
 #If VBA7 Then
     On Error Resume Next

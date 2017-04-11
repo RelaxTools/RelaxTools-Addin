@@ -136,6 +136,10 @@ Public Sub Run()
         End If
     End If
     
+    Dim strRange As String
+    
+    strRange = Selection.Address
+    
     '使われているセルと現在選択セルのAND部分のみ処理する。
     Set a = Intersect(ActiveSheet.UsedRange, Selection)
     
@@ -250,6 +254,8 @@ Public Sub Run()
         'Undo
         Application.OnUndo "Undo", "execUndo"
     End If
+    
+    Range(strRange).Select
     
     Exit Sub
 ErrHandle:

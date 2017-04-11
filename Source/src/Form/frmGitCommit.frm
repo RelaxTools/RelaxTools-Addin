@@ -13,8 +13,12 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Option Explicit
-
-Private Sub cmdOK_Click()
-    GitCommit
-End Sub
+'Option Explicit
+'
+'Private Sub cmdOK_Click()
+'    GitCommit
+'End Sub
+'
+'Private Sub UserForm_Click()
+'
+'End Sub
