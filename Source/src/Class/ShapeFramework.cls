@@ -123,7 +123,7 @@ Private dblSy As Double
 '初期化イベント
 Public Event SelectionInit(ByRef Cancel As Boolean)
 'メインイベント
-Public Event SelectionMain(ByRef obj As Object, ByRef pos As ClickPosition, ByRef Cancel As Boolean)
+Public Event SelectionMain(ByRef obj As Object, ByRef pos As ClickPosition, ByRef margin As Long, ByRef Cancel As Boolean)
 '終了イベント
 Public Event SelectionTerm()
 
@@ -131,7 +131,7 @@ Enum ClickPosition
     TopLeft
     TopCenter
     TopRight
-    MiddleLeft
+    Middleleft
     MiddleCenter
     MiddleRight
     BottomLeft
@@ -144,7 +144,9 @@ Public Sub Run()
     Dim objDataSet As Object
     Dim Cancel As Boolean
     Dim pos As ClickPosition
+    Dim margin As Long
     Dim sh As Object
+    Const C_MARGIN As Long = 1
     
     If ActiveWorkbook Is Nothing Then
         MsgBox "アクティブなブックが見つかりません。", vbCritical, C_TITLE
@@ -164,6 +166,7 @@ Public Sub Run()
     
     Cancel = False
     pos = MiddleCenter
+    margin = C_MARGIN
     
     '2010以前はTrueそれ以降はFalse
     Application.ScreenUpdating = (Val(Application.Version) <= C_EXCEL_VERSION_2010)
@@ -213,7 +216,7 @@ Public Sub Run()
     '---------------------------
     'メインイベント
     '---------------------------
-    RaiseEvent SelectionMain(objDataSet, pos, Cancel)
+    RaiseEvent SelectionMain(objDataSet, pos, margin, Cancel)
     If Cancel Then
         Application.ScreenUpdating = True
         Exit Sub
@@ -275,36 +278,35 @@ Public Sub Run()
     
     'カーソルをシェイプに移動する
     Dim dx_pt As POINTAPI
-    Const C_MARGIN As Long = 5
         
     Select Case pos
         Case TopLeft
-            dx_pt.X = objDataSet.Left + C_MARGIN
-            dx_pt.Y = objDataSet.Top + C_MARGIN
+            dx_pt.X = objDataSet.Left + margin
+            dx_pt.Y = objDataSet.Top + margin
         Case TopCenter
             dx_pt.X = objDataSet.Left + (objDataSet.Width / 2)
-            dx_pt.Y = objDataSet.Top + C_MARGIN
+            dx_pt.Y = objDataSet.Top + margin
         Case TopRight
-            dx_pt.X = objDataSet.Left + objDataSet.Width - C_MARGIN
-            dx_pt.Y = objDataSet.Top + C_MARGIN
-        Case MiddleLeft
-            dx_pt.X = objDataSet.Left + C_MARGIN
+            dx_pt.X = objDataSet.Left + objDataSet.Width - margin
+            dx_pt.Y = objDataSet.Top + margin
+        Case Middleleft
+            dx_pt.X = objDataSet.Left + margin
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case MiddleCenter
             dx_pt.X = objDataSet.Left + (objDataSet.Width / 2)
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case MiddleRight
-            dx_pt.X = objDataSet.Left + objDataSet.Width - C_MARGIN
+            dx_pt.X = objDataSet.Left + objDataSet.Width - margin
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case BottomLeft
-            dx_pt.X = objDataSet.Left + C_MARGIN
-            dx_pt.Y = objDataSet.Top + objDataSet.Height - C_MARGIN
+            dx_pt.X = objDataSet.Left + margin
+            dx_pt.Y = objDataSet.Top + objDataSet.Height - margin
         Case BottomCenter
             dx_pt.X = objDataSet.Left + (objDataSet.Width / 2)
-            dx_pt.Y = objDataSet.Top + objDataSet.Height - C_MARGIN
+            dx_pt.Y = objDataSet.Top + objDataSet.Height - margin
         Case BottomRight
-            dx_pt.X = objDataSet.Left + objDataSet.Width - C_MARGIN
-            dx_pt.Y = objDataSet.Top + objDataSet.Height - C_MARGIN
+            dx_pt.X = objDataSet.Left + objDataSet.Width - margin
+            dx_pt.Y = objDataSet.Top + objDataSet.Height - margin
     End Select
             
     dx_pt.X = dx_pt.X - WS.Cells(tb.Row, tb.Col).Left
@@ -458,8 +460,17 @@ Private Function GetTrueZoom(pt As POINTAPI) As ZOOMVALUE
     p2.Y = WD.ActivePane.PointsToScreenPixelsY(pt.Y) - p1.Y
 
     '100% のピクセル数と 現在の% のピクセル数で、倍率を計算
-    ret.X = CDbl(p2.X) / CDbl(px.X)
-    ret.Y = CDbl(p2.Y) / CDbl(px.Y)
+    If px.X = 0 Then
+        ret.X = 1
+    Else
+        ret.X = CDbl(p2.X) / CDbl(px.X)
+    End If
+        
+    If px.Y = 0 Then
+        ret.Y = 1
+    Else
+        ret.Y = CDbl(p2.Y) / CDbl(px.Y)
+    End If
     
     GetTrueZoom = ret
 
@@ -512,4 +523,3 @@ Private Sub SetCursole(ByVal X As Long, ByVal Y As Long)
     SendInput 1, inp(0), LenB(inp(0))
 
 End Sub
-

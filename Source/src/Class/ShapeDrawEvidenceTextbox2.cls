@@ -65,7 +65,7 @@ Public Sub Run()
 End Sub
 
 
-Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, Cancel As Boolean)
+Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As Long, Cancel As Boolean)
     
     Dim c As Long
     Dim r As Long

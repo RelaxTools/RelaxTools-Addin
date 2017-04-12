@@ -15,10 +15,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private Sub UserForm_Click()
-
-End Sub
-
 Private Sub UserForm_Initialize()
     
     Dim strBuf As String
