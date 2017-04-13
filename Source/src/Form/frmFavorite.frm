@@ -694,7 +694,7 @@ Sub favCurrentUpdate()
     
     key = lstCategory.List(lstCategory.ListIndex)
     If mobjCategory.Exists(key) Then
-        mobjCategory.Remove key
+        mobjCategory.remove key
     End If
     
     Set objfav = CreateObject("Scripting.Dictionary")
@@ -1269,7 +1269,7 @@ Sub moveCategory(ByVal strCategory As String)
         
             Dim cat As Variant
             Set cat = mobjCategory.Item(lstFavorite.List(i, C_CATEGORY))
-            cat.Remove lstFavorite.List(i, C_ORIGINAL)
+            cat.remove lstFavorite.List(i, C_ORIGINAL)
         
             If mobjCategory.Exists(strCategory) Then
                 Set cat = mobjCategory.Item(strCategory)
@@ -1285,7 +1285,7 @@ Sub moveCategory(ByVal strCategory As String)
             
             cat.Add d.FileName, d
             If mobjCategory.Exists(strCategory) Then
-                mobjCategory.Remove strCategory
+                mobjCategory.remove strCategory
             End If
             mobjCategory.Add strCategory, cat
         
@@ -1400,7 +1400,7 @@ Sub delCategory()
         key = lstCategory.List(lstCategory.ListIndex)
         
         If mobjCategory.Exists(key) Then
-            mobjCategory.Remove key
+            mobjCategory.remove key
         End If
         
         'お気に入りをクリア

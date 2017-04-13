@@ -53,7 +53,7 @@ Function Pop() As String
         Pop = ""
     Else
         Pop = mCol(mCol.count)
-        mCol.Remove mCol.count
+        mCol.remove mCol.count
     End If
 End Function
 

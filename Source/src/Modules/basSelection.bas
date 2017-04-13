@@ -2767,3 +2767,17 @@ Sub execSelectionSetParenthesis15()
 End Sub
 
 
+'--------------------------------------------------------------
+' カッコ削除
+'--------------------------------------------------------------
+Sub execSelectionRemoveParenthesis()
+    
+    Dim obj As SelectionRemoveParenthesis
+    
+    Set obj = New SelectionRemoveParenthesis
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub

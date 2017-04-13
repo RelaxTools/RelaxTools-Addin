@@ -166,6 +166,29 @@
             <button id="execSelectionRemoveCrLf"      image="lf" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <menuSeparator id="editSep04" title="２つ範囲を交換する"/>
             <button id="swapAreas"        image="swapcell" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+            <menuSeparator id="kakkoSep11" title="カッコ操作"/>
+            <button id="execSelectionRemoveParenthesis"  image="kakkoDel" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            <menu id="ParenthesisConv1" label="半角カッコ挿入"    image="headIns" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
+              <menuSeparator id="ParenthesisHanSep" title="半角カッコ挿入"/>
+              <button id="execSelectionSetParenthesis"  image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis2" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis3" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis4" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis5" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            </menu>
+            <menu id="ParenthesisConv2" label="全角カッコ挿入"    image="headIns" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
+              <menuSeparator id="ParenthesisZenSep" title="全角カッコ挿入"/>
+              <button id="execSelectionSetParenthesis6"  image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis7"  image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis8"  image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis9"  image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis10" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis11" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis12" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis13" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis14" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="execSelectionSetParenthesis15" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+            </menu>
             <menuSeparator id="editSep11" title="その他"/>
             <menu id="editMenu2" label="列のマージ・分割/重複の削除"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="edit32" getEnabled="getRibbonEnabled">
               <menuSeparator id="editSep10" title="重複の削除"/>
@@ -187,10 +210,6 @@
               <button id="execSelectionRemoveRightToString"  image="headDel" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               <button id="execSelectionRemoveLeftToChar"  image="headDel" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               <button id="execSelectionRemoveRightToChar"  image="bottomDel" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
-            </menu>
-            <menu id="ParenthesisConv" label="カッコ挿入"    image="headIns" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
-              <menuSeparator id="ParenthesisSep01" title="カッコ挿入"/>
-              <button id="execSelectionSetParenthesis" image="headIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
           </menu>
           <separator id="convSep"/>
@@ -665,6 +684,80 @@
           <button id="removePageBreak.2" image="chPageDel" size="large" label="改ページ&#xD;&#xA;(水平)削除" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
         </group>
         <group id="grpFusen" label="付箋" image="fusen_l">
+
+          <splitButton id="PasteSquareSplit" size="large" getEnabled="getRibbonEnabled">
+            <button id="beforePasteSquare"  image="fusen01"  label="標準&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <menu id="fsGallery01" itemSize="large" >
+              <button id="pasteSquareW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen01w" onAction="ribbonOnAction" />
+              <button id="pasteSquareY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen01" onAction="ribbonOnAction" />
+              <button id="pasteSquareP" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen01p" onAction="ribbonOnAction" />
+              <button id="pasteSquareB" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen01b" onAction="ribbonOnAction" />
+              <button id="pasteSquareG" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen01g" onAction="ribbonOnAction" />
+            </menu>
+          </splitButton>
+
+          <splitButton id="PasteMemoSplit" size="large" getEnabled="getRibbonEnabled">
+            <button id="beforePasteMemo"  image="fusen02"  label="メモ&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <menu id="fsGallery02" itemSize="large" >
+              <button id="pasteMemoW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen02w" onAction="ribbonOnAction" />
+              <button id="pasteMemoY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen02" onAction="ribbonOnAction" />
+              <button id="pasteMemoP" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen02p" onAction="ribbonOnAction" />
+              <button id="pasteMemoB" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen02b" onAction="ribbonOnAction" />
+              <button id="pasteMemoG" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen02g" onAction="ribbonOnAction" />
+            </menu>
+          </splitButton>
+
+          <splitButton id="PasteCallSplit" size="large" getEnabled="getRibbonEnabled">
+            <button id="beforePasteCall"  image="fusen03"  label="吹き出し&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <menu id="fsGallery03" itemSize="large" >
+              <button id="pasteCallW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen03w" onAction="ribbonOnAction" />
+              <button id="pasteCallY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen03" onAction="ribbonOnAction" />
+              <button id="pasteCallP" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen03p" onAction="ribbonOnAction" />
+              <button id="pasteCallB" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen03b" onAction="ribbonOnAction" />
+              <button id="pasteCallG" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen03g" onAction="ribbonOnAction" />
+            </menu>
+          </splitButton>
+
+          <splitButton id="PasteLineSplit" size="large" getEnabled="getRibbonEnabled">
+            <button id="beforePasteLine"  image="fusen06"  label="線吹き出し&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <menu id="fsGallery06" itemSize="large" >
+              <button id="pasteLineW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen06w" onAction="ribbonOnAction" />
+              <button id="pasteLineY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen06" onAction="ribbonOnAction" />
+              <button id="pasteLineP" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen06p" onAction="ribbonOnAction" />
+              <button id="pasteLineB" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen06b" onAction="ribbonOnAction" />
+              <button id="pasteLineG" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen06g" onAction="ribbonOnAction" />
+            </menu>
+          </splitButton>
+
+          <splitButton id="PasteCircleSplit" size="large" getEnabled="getRibbonEnabled">
+            <button id="beforePasteCircle"  image="fusen04"  label="バルーン&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <menu id="fsGallery04" itemSize="large" >
+           <button id="pasteCircleW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen04w" onAction="ribbonOnAction" />
+           <button id="pasteCircleY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen04" onAction="ribbonOnAction" />
+           <button id="pasteCircleP" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen04p" onAction="ribbonOnAction" />
+           <button id="pasteCircleB" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen04b" onAction="ribbonOnAction" />
+           <button id="pasteCircleG" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen04g" onAction="ribbonOnAction" />
+         </menu>
+         </splitButton>
+
+          <splitButton id="PastePinSplit" size="large" getEnabled="getRibbonEnabled">
+            <button id="beforePastePin"  image="fusen05"  label="ピン&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <menu id="fsGallery05" itemSize="large" >
+           <button id="pastePinW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen05w" onAction="ribbonOnAction" />
+           <button id="pastePinY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen05" onAction="ribbonOnAction" />
+           <button id="pastePinP" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen05p" onAction="ribbonOnAction" />
+           <button id="pastePinB" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen05b" onAction="ribbonOnAction" />
+           <button id="pastePinG" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen05g" onAction="ribbonOnAction" />
+         </menu>
+         </splitButton>
+
+          <separator id="fusenSep01"/>
+          <button id="searchFusen" size="large" label="付箋の&#xD;&#xA;管理" getSupertip="getSupertip" getDescription="getDescription" image="searchFusen" onAction="ribbonOnAction" />
+          <separator id="fusenSep02"/>
+          <button id="showFusenSetting" size="large" label="付箋の&#xD;&#xA;設定" getSupertip="getSupertip" getDescription="getDescription" image="gear32" onAction="ribbonOnAction" />
+        </group>
+<!--
+        <group id="grpFusen" label="付箋" image="fusen_l">
           <gallery id="fsGallery01" size="large" label="標準&#xD;&#xA;" image="fusen01"  columns="1" rows="5" itemWidth="142" itemHeight="48" getItemCount="fusenGetItemCount" getItemID="fusenGetItemId" getItemImage="fusenGetItemImage" getSupertip="getSupertip" getDescription="getDescription" onAction="fusenOnAction" />
           <gallery id="fsGallery02" size="large" label="メモ&#xD;&#xA;" image="fusen02"  columns="1" rows="5" itemWidth="142" itemHeight="48" getItemCount="fusenGetItemCount" getItemID="fusenGetItemId" getItemImage="fusenGetItemImage" getSupertip="getSupertip" getDescription="getDescription" onAction="fusenOnAction" />
           <gallery id="fsGallery03" size="large" label="吹き出し&#xD;&#xA;" image="fusen03"  columns="1" rows="5" itemWidth="142" itemHeight="48" getItemCount="fusenGetItemCount" getItemID="fusenGetItemId" getItemImage="fusenGetItemImage" getSupertip="getSupertip" getDescription="getDescription" onAction="fusenOnAction" />
@@ -676,6 +769,9 @@
           <separator id="fusenSep02"/>
           <button id="showFusenSetting" size="large" label="付箋の&#xD;&#xA;設定" getSupertip="getSupertip" getDescription="getDescription" image="gear32" onAction="ribbonOnAction" />
         </group>
+-->
+        
+        
         <group id="stampGroup" label="電子職印" image="stamp_data">
           <box id="boxStamp1" boxStyle="vertical">
             <button id="MitomePaste" image="stamp_mitome" getLabel="getLabel" showLabel="false" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction"  />
