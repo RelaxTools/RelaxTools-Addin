@@ -71,7 +71,7 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
     
     pasteFusenOrg Id, No
     Set obj = Selection
-    pos = Middleleft
+    pos = MiddleLeft
     margin = 6
     
     If CBool(GetSetting(C_TITLE, "Shape", "PickFusen", True)) = False Then

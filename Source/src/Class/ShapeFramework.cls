@@ -131,7 +131,7 @@ Enum ClickPosition
     TopLeft
     TopCenter
     TopRight
-    Middleleft
+    MiddleLeft
     MiddleCenter
     MiddleRight
     BottomLeft
@@ -289,7 +289,7 @@ Public Sub Run()
         Case TopRight
             dx_pt.X = objDataSet.Left + objDataSet.Width - margin
             dx_pt.Y = objDataSet.Top + margin
-        Case Middleleft
+        Case MiddleLeft
             dx_pt.X = objDataSet.Left + margin
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case MiddleCenter

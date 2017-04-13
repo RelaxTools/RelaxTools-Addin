@@ -71,7 +71,8 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
     
     pasteFusenOrg Id, No
     Set obj = Selection
-    pos = TopLeft
+    pos = MiddleLeft
+    'margin = 5
     
     If CBool(GetSetting(C_TITLE, "Shape", "PickFusen", True)) = False Then
         Cancel = True

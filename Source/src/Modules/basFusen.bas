@@ -495,7 +495,7 @@ Sub pasteCircleP()
     Set obj = New ShapePasteFusenCircle
     
     obj.Id = "fsGallery04"
-    obj.No = 2
+    obj.No = 3
     obj.Run
     
     Set obj = Nothing
@@ -507,7 +507,7 @@ Sub pasteCircleB()
     Set obj = New ShapePasteFusenCircle
     
     obj.Id = "fsGallery04"
-    obj.No = 3
+    obj.No = 4
     obj.Run
     
     Set obj = Nothing
