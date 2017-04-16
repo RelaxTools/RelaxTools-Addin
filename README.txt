@@ -58,7 +58,6 @@ Copyright(C) Yasuhiro Watanabe 2009
 * README.txt                     ・・・・・・・・ 本書です。
 * RelaxTools.xlam                ・・・・・・・・ RelaxTools本体
 * install.vbs                    ・・・・・・・・ インストールに使用します。
-* uninstall.vbs                  ・・・・・・・・ アンインストールに使用します。
 * Section_No_Manual.xlsx         ・・・・・・・・ 段落番号の使用説明書です。
 * relaxtools.png                 ・・・・・・・・ アイコンファイルご自由にお使いください。
 * ExcelReadOnly.vbs              ・・・・・・・・ エクスプローラの右クリックメニューに「読み取り専用で開く」を追加するスクリプト
