@@ -153,6 +153,11 @@ Public Sub Run()
         Exit Sub
     End If
     
+    If ActiveWorkbook.MultiUserEditing Then
+        MsgBox "共有中はシェイプを追加できません。", vbCritical, C_TITLE
+        Exit Sub
+    End If
+    
     If ActiveWindow Is Nothing Then
         MsgBox "アクティブなウィンドウが見つかりません。", vbCritical, C_TITLE
         Exit Sub

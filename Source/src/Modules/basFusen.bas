@@ -33,6 +33,59 @@ Option Private Module
 
 Public Const C_FUSEN_DATE_SYSTEM As String = "1"
 Public Const C_FUSEN_DATE_USER As String = "2"
+
+Private Const IID_IPictureDisp As String = "{7BF80981-BF32-101A-8BBB-00AA00300CAB}"
+Private Const PICTYPE_BITMAP As Long = 1
+    
+#If VBA7 And Win64 Then
+    Private Declare PtrSafe Function GdipCreateBitmapFromFile Lib "GDIPlus" (ByVal filename As LongPtr, bitmap As LongPtr) As LongPtr
+    Private Declare PtrSafe Function GdipCreateHBITMAPFromBitmap Lib "GDIPlus" (ByVal bitmap As LongPtr, hbmReturn As LongPtr, ByVal background As Long) As LongPtr
+    Private Declare PtrSafe Function GdipDisposeImage Lib "GDIPlus" (ByVal image As LongPtr) As LongPtr
+    Private Declare PtrSafe Function GdiplusShutdown Lib "GDIPlus" (ByVal token As LongPtr) As LongPtr
+    Private Declare PtrSafe Function GdiplusStartup Lib "GDIPlus" (token As LongPtr, inputbuf As GdiplusStartupInput, Optional ByVal outputbuf As LongPtr = 0) As LongPtr
+    Private Declare PtrSafe Function IIDFromString Lib "ole32" (ByVal lpsz As LongPtr, lpiid As Any) As Long
+    Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32.dll" (PicDesc As PICTDESC, RefIID As Long, ByVal fPictureOwnsHandle As LongPtr, IPic As IPicture) As LongPtr
+    
+    Private Type PICTDESC
+        Size As Long
+        Type As Long
+        hPic As LongPtr
+        hPal As LongPtr
+    End Type
+    
+    Private Type GdiplusStartupInput
+        GdiplusVersion As Long
+        DebugEventCallback As LongPtr
+        SuppressBackgroundThread As Long
+        SuppressExternalCodecs As Long
+    End Type
+    
+#Else
+    Private Declare Function GdipCreateBitmapFromFile Lib "GDIPlus" (ByVal filename As Long, bitmap As Long) As Long
+    Private Declare Function GdipCreateHBITMAPFromBitmap Lib "GDIPlus" (ByVal bitmap As Long, hbmReturn As Long, ByVal background As Long) As Long
+    Private Declare Function GdipDisposeImage Lib "GDIPlus" (ByVal image As Long) As Long
+    Private Declare Function GdiplusShutdown Lib "GDIPlus" (ByVal token As Long) As Long
+    Private Declare Function GdiplusStartup Lib "GDIPlus" (token As Long, inputbuf As GdiplusStartupInput, Optional ByVal outputbuf As Long = 0) As Long
+    Private Declare Function IIDFromString Lib "ole32" (ByVal lpsz As Long, lpiid As Any) As Long
+    Private Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (PicDesc As PICTDESC, RefIID As Long, ByVal fPictureOwnsHandle As Long, IPic As IPicture) As Long
+    
+    Private Type PICTDESC
+      Size As Long
+      Type As Long
+      hPic As Long
+      hPal As Long
+    End Type
+
+    Private Type GdiplusStartupInput
+      GdiplusVersion As Long
+      DebugEventCallback As Long
+      SuppressBackgroundThread As Long
+      SuppressExternalCodecs As Long
+    End Type
+
+
+#End If
+
 '--------------------------------------------------------------
 '　画像張付設定画面
 '--------------------------------------------------------------
@@ -82,7 +135,17 @@ End Sub
 Sub pasteFusen(ByVal strId As String, ByVal Index As Long)
 
     Dim obj As Object
-
+    
+    If ActiveWorkbook Is Nothing Then
+        MsgBox "アクティブなブックが見つかりません。", vbCritical, C_TITLE
+        Exit Sub
+    End If
+    
+    If ActiveWorkbook.MultiUserEditing Then
+        MsgBox "共有中はシェイプを追加できません。", vbCritical, C_TITLE
+        Exit Sub
+    End If
+    
     Select Case strId
         Case "fsGallery01"
             Set obj = New ShapePasteFusenSquare
@@ -218,14 +281,6 @@ Sub pasteFusenOrg(ByVal strId As String, ByVal Index As Long)
     If strId <> "fsGallery05" Then
         Selection.ShapeRange.TextFrame2.WordWrap = CBool(varWordWrap)
     End If
-    
-'    If CBool(GetSetting(C_TITLE, "Shape", "PickMode", False)) = False Then
-'    Else
-'        'シェイプをつまむ
-'        PickShape Selection.ShapeRange
-'    End If
-    
-'    Application.ScreenUpdating = True
 
 End Sub
 
@@ -284,11 +339,9 @@ Sub pasteSquareW()
     obj.No = 1
     
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
 
-'    pasteFusen "fsGallery01", 1
 End Sub
 Sub pasteSquareY()
 
@@ -301,10 +354,9 @@ Sub pasteSquareY()
     obj.No = 2
     
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery01", 2
+
 End Sub
 Sub pasteSquareP()
     Dim obj As ShapePasteFusenSquare
@@ -314,10 +366,9 @@ Sub pasteSquareP()
     obj.Id = "fsGallery01"
     obj.No = 3
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery01", 3
+
 End Sub
 Sub pasteSquareB()
     Dim obj As ShapePasteFusenSquare
@@ -327,10 +378,9 @@ Sub pasteSquareB()
     obj.Id = "fsGallery01"
     obj.No = 4
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery01", 4
+
 End Sub
 Sub pasteSquareG()
     Dim obj As ShapePasteFusenSquare
@@ -340,10 +390,9 @@ Sub pasteSquareG()
     obj.Id = "fsGallery01"
     obj.No = 5
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery01", 5
+
 End Sub
 Sub beforePasteSquare()
     Dim obj As ShapePasteFusenSquare
@@ -351,7 +400,7 @@ Sub beforePasteSquare()
     Set obj = New ShapePasteFusenSquare
     
     obj.Id = "fsGallery01"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "1"))
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -366,7 +415,7 @@ Sub pasteMemoW()
     obj.Run
     
     Set obj = Nothing
-'    pasteFusen "fsGallery02", 1
+
 End Sub
 Sub pasteMemoY()
     Dim obj As ShapePasteFusenMemo
@@ -376,11 +425,9 @@ Sub pasteMemoY()
     obj.Id = "fsGallery02"
     obj.No = 2
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
 
-'    pasteFusen "fsGallery02", 2
 End Sub
 Sub pasteMemoP()
     Dim obj As ShapePasteFusenMemo
@@ -390,11 +437,9 @@ Sub pasteMemoP()
     obj.Id = "fsGallery02"
     obj.No = 3
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
 
-'    pasteFusen "fsGallery02", 3
 End Sub
 Sub pasteMemoB()
     Dim obj As ShapePasteFusenMemo
@@ -404,11 +449,9 @@ Sub pasteMemoB()
     obj.Id = "fsGallery02"
     obj.No = 4
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
 
-'    pasteFusen "fsGallery02", 4
 End Sub
 Sub pasteMemoG()
     Dim obj As ShapePasteFusenMemo
@@ -418,11 +461,9 @@ Sub pasteMemoG()
     obj.Id = "fsGallery02"
     obj.No = 5
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
 
-'    pasteFusen "fsGallery02", 5
 End Sub
 Sub beforePasteMemo()
     Dim obj As ShapePasteFusenMemo
@@ -430,7 +471,7 @@ Sub beforePasteMemo()
     Set obj = New ShapePasteFusenMemo
     
     obj.Id = "fsGallery02"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "1"))
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -443,11 +484,9 @@ Sub pasteCallW()
     obj.Id = "fsGallery03"
     obj.No = 1
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
 
-'    pasteFusen "fsGallery03", 1
 End Sub
 Sub pasteCallY()
     Dim obj As ShapePasteFusenCall
@@ -457,10 +496,9 @@ Sub pasteCallY()
     obj.Id = "fsGallery03"
     obj.No = 2
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery03", 2
+
 End Sub
 Sub pasteCallP()
     Dim obj As ShapePasteFusenCall
@@ -470,10 +508,9 @@ Sub pasteCallP()
     obj.Id = "fsGallery03"
     obj.No = 3
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery03", 3
+
 End Sub
 Sub pasteCallB()
     Dim obj As ShapePasteFusenCall
@@ -483,10 +520,9 @@ Sub pasteCallB()
     obj.Id = "fsGallery03"
     obj.No = 4
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery03", 4
+
 End Sub
 Sub pasteCallG()
     Dim obj As ShapePasteFusenCall
@@ -496,10 +532,9 @@ Sub pasteCallG()
     obj.Id = "fsGallery03"
     obj.No = 5
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery03", 5
+
 End Sub
 Sub beforePasteCall()
     Dim obj As ShapePasteFusenCall
@@ -507,7 +542,7 @@ Sub beforePasteCall()
     Set obj = New ShapePasteFusenCall
     
     obj.Id = "fsGallery03"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "1"))
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -520,10 +555,9 @@ Sub pasteCircleW()
     obj.Id = "fsGallery04"
     obj.No = 1
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery04", 1
+
 End Sub
 Sub pasteCircleY()
     Dim obj As ShapePasteFusenCircle
@@ -533,10 +567,9 @@ Sub pasteCircleY()
     obj.Id = "fsGallery04"
     obj.No = 2
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery04", 2
+
 End Sub
 Sub pasteCircleP()
     Dim obj As ShapePasteFusenCircle
@@ -546,10 +579,9 @@ Sub pasteCircleP()
     obj.Id = "fsGallery04"
     obj.No = 3
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery04", 3
+
 End Sub
 Sub pasteCircleB()
     Dim obj As ShapePasteFusenCircle
@@ -559,10 +591,9 @@ Sub pasteCircleB()
     obj.Id = "fsGallery04"
     obj.No = 4
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery04", 4
+
 End Sub
 Sub pasteCircleG()
     Dim obj As ShapePasteFusenCircle
@@ -572,10 +603,9 @@ Sub pasteCircleG()
     obj.Id = "fsGallery04"
     obj.No = 5
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery04", 5
+
 End Sub
 Sub beforePasteCircle()
     Dim obj As ShapePasteFusenCircle
@@ -583,7 +613,7 @@ Sub beforePasteCircle()
     Set obj = New ShapePasteFusenCircle
     
     obj.Id = "fsGallery04"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "1"))
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -596,10 +626,9 @@ Sub pastePinW()
     obj.Id = "fsGallery05"
     obj.No = 1
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery05", 1
+
 End Sub
 Sub pastePinY()
     Dim obj As ShapePasteFusenPin
@@ -609,10 +638,9 @@ Sub pastePinY()
     obj.Id = "fsGallery05"
     obj.No = 2
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery05", 2
+
 End Sub
 Sub pastePinP()
     Dim obj As ShapePasteFusenPin
@@ -622,10 +650,9 @@ Sub pastePinP()
     obj.Id = "fsGallery05"
     obj.No = 3
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery05", 3
+
 End Sub
 Sub pastePinB()
     Dim obj As ShapePasteFusenPin
@@ -635,10 +662,9 @@ Sub pastePinB()
     obj.Id = "fsGallery05"
     obj.No = 4
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery05", 4
+
 End Sub
 Sub pastePinG()
     Dim obj As ShapePasteFusenPin
@@ -648,10 +674,9 @@ Sub pastePinG()
     obj.Id = "fsGallery05"
     obj.No = 5
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery05", 5
+
 End Sub
 Sub beforePastePin()
     Dim obj As ShapePasteFusenPin
@@ -659,7 +684,7 @@ Sub beforePastePin()
     Set obj = New ShapePasteFusenPin
     
     obj.Id = "fsGallery05"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "1"))
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -672,10 +697,9 @@ Sub pasteLineW()
     obj.Id = "fsGallery06"
     obj.No = 1
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery06", 1
+
 End Sub
 Sub pasteLineY()
     Dim obj As ShapePasteFusenCall2
@@ -685,10 +709,9 @@ Sub pasteLineY()
     obj.Id = "fsGallery06"
     obj.No = 2
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery06", 2
+
 End Sub
 Sub pasteLineP()
     Dim obj As ShapePasteFusenCall2
@@ -698,10 +721,9 @@ Sub pasteLineP()
     obj.Id = "fsGallery06"
     obj.No = 3
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery06", 3
+
 End Sub
 Sub pasteLineB()
     Dim obj As ShapePasteFusenCall2
@@ -711,10 +733,9 @@ Sub pasteLineB()
     obj.Id = "fsGallery06"
     obj.No = 4
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery06", 4
+
 End Sub
 Sub pasteLineG()
     Dim obj As ShapePasteFusenCall2
@@ -724,10 +745,9 @@ Sub pasteLineG()
     obj.Id = "fsGallery06"
     obj.No = 5
     obj.Run
-    Call SaveSetting(C_TITLE, "Fusen", obj.Id, obj.No)
     
     Set obj = Nothing
-'    pasteFusen "fsGallery06", 5
+
 End Sub
 Sub beforePasteLine()
     Dim obj As ShapePasteFusenCall2
@@ -735,8 +755,159 @@ Sub beforePasteLine()
     Set obj = New ShapePasteFusenCall2
     
     obj.Id = "fsGallery06"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "1"))
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
     obj.Run
     
     Set obj = Nothing
 End Sub
+Sub getFusenImage(control As IRibbonControl, ByRef image) ' 画像の設定
+
+    Dim pictureId As String
+    
+    Select Case control.Id
+        Case "beforePasteSquare"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery01", "2"))
+                 Case 1
+                     pictureId = "fusen01w"
+                 Case 2
+                     pictureId = "fusen01"
+                 Case 3
+                     pictureId = "fusen01p"
+                 Case 4
+                     pictureId = "fusen01b"
+                 Case 5
+                     pictureId = "fusen01g"
+             End Select
+        Case "beforePasteMemo"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery02", "2"))
+                 Case 1
+                     pictureId = "fusen02w"
+                 Case 2
+                     pictureId = "fusen02"
+                 Case 3
+                     pictureId = "fusen02p"
+                 Case 4
+                     pictureId = "fusen02b"
+                 Case 5
+                     pictureId = "fusen02g"
+             End Select
+        Case "beforePasteCall"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery03", "2"))
+                 Case 1
+                     pictureId = "fusen03w"
+                 Case 2
+                     pictureId = "fusen03"
+                 Case 3
+                     pictureId = "fusen03p"
+                 Case 4
+                     pictureId = "fusen03b"
+                 Case 5
+                     pictureId = "fusen03g"
+             End Select
+        Case "beforePasteLine"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery06", "2"))
+                 Case 1
+                     pictureId = "fusen06w"
+                 Case 2
+                     pictureId = "fusen06"
+                 Case 3
+                     pictureId = "fusen06p"
+                 Case 4
+                     pictureId = "fusen06b"
+                 Case 5
+                     pictureId = "fusen06g"
+             End Select
+        Case "beforePasteCircle"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery04", "2"))
+                 Case 1
+                     pictureId = "fusen04w"
+                 Case 2
+                     pictureId = "fusen04"
+                 Case 3
+                     pictureId = "fusen04p"
+                 Case 4
+                     pictureId = "fusen04b"
+                 Case 5
+                     pictureId = "fusen04g"
+             End Select
+        Case "beforePastePin"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery05", "2"))
+                 Case 1
+                     pictureId = "fusen05w"
+                 Case 2
+                     pictureId = "fusen05"
+                 Case 3
+                     pictureId = "fusen05p"
+                 Case 4
+                     pictureId = "fusen05b"
+                 Case 5
+                     pictureId = "fusen05g"
+             End Select
+    End Select
+    
+    Dim file As String
+    
+    file = rlxGetAppDataFolder & "images\" & pictureId & ".png"
+    
+    'イメージが見つからなかったら「×」表示する
+    If rlxIsFileExists(file) Then
+        Set image = LoadImage(file)
+    Else
+        image = "CancelRequest"
+    End If
+    
+    Call RefreshRibbon
+    DoEvents
+    
+End Sub
+
+' 参考
+' 初心者備忘録
+' http://www.ka-net.org/ribbon/ri27.html
+' ボタンのイメージを外部から読み込む(PNG対応版)
+Private Function LoadImage(ByVal strFName As String) As IPicture
+
+    Dim uGdiInput As GdiplusStartupInput
+    
+#If VBA7 And Win64 Then
+    Dim hGdiPlus As LongPtr
+    Dim hGdiImage As LongPtr
+    Dim hBitmap As LongPtr
+#Else
+    Dim hGdiPlus As Long
+    Dim hGdiImage As Long
+    Dim hBitmap As Long
+#End If
+
+    uGdiInput.GdiplusVersion = 1&
+
+    If GdiplusStartup(hGdiPlus, uGdiInput) = 0& Then
+  
+        If GdipCreateBitmapFromFile(StrPtr(strFName), hGdiImage) = 0& Then
+        
+            Call GdipCreateHBITMAPFromBitmap(hGdiImage, hBitmap, 0&)
+          
+            Dim IID(0 To 3) As Long
+            Dim IPic As IPicture
+            Dim uPicInfo As PICTDESC
+            
+            With uPicInfo
+              .Size = LenB(uPicInfo)
+              .Type = PICTYPE_BITMAP
+              .hPic = hBitmap
+              .hPal = 0&
+            End With
+                
+            Call IIDFromString(StrPtr(IID_IPictureDisp), IID(0))
+            Call OleCreatePictureIndirect(uPicInfo, IID(0), True, LoadImage)
+          
+            Call GdipDisposeImage(hGdiImage)
+          
+        End If
+        
+        Call GdiplusShutdown(hGdiPlus)
+    
+    End If
+  
+End Function
+

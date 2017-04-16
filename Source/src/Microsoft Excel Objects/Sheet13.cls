@@ -87,11 +87,11 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
     On Error Resume Next
     
     If strBuf = "" Then
-        Set WB = Workbooks.Open(FileName:=strBook)
+        Set WB = Workbooks.Open(filename:=strBook)
     Else
         For Each varPass In varPassword
             err.Clear
-            Set WB = Workbooks.Open(FileName:=strBook, Password:=varPass)
+            Set WB = Workbooks.Open(filename:=strBook, Password:=varPass)
             If err.Number = 0 Then
                 Exit For
             End If
@@ -215,11 +215,11 @@ Sub ReplaceStr()
         FS.copyfile strBook, strBook & "." & Format$(Now(), "yyyymmddhhnnss")
         
         If strBuf = "" Then
-            Set WB = Workbooks.Open(FileName:=strBook, local:=True)
+            Set WB = Workbooks.Open(filename:=strBook, local:=True)
         Else
             For Each varPass In varPassword
                 err.Clear
-                Set WB = Workbooks.Open(FileName:=strBook, Password:=varPass, local:=True)
+                Set WB = Workbooks.Open(filename:=strBook, Password:=varPass, local:=True)
                 If err.Number = 0 Then
                     Exit For
                 End If

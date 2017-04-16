@@ -87,11 +87,11 @@ Sub saveWorkSheets()
         Set b = ActiveWorkbook
         Select Case LCase(Mid$(vntFileName, InStr(vntFileName, ".") + 1))
             Case "xls"
-                b.SaveAs FileName:=vntFileName, FileFormat:=xlExcel8, local:=True
+                b.SaveAs filename:=vntFileName, FileFormat:=xlExcel8, local:=True
             Case "xlsm"
-                b.SaveAs FileName:=vntFileName, FileFormat:=xlOpenXMLWorkbookMacroEnabled, local:=True
+                b.SaveAs filename:=vntFileName, FileFormat:=xlOpenXMLWorkbookMacroEnabled, local:=True
             Case Else
-                b.SaveAs FileName:=vntFileName, local:=True
+                b.SaveAs filename:=vntFileName, local:=True
         End Select
         b.Close
         Set b = Nothing
@@ -780,7 +780,7 @@ Sub divideWorkBook()
             
             '新規作成したワークブックを保存する。フォーマットは親と同じ
             Application.DisplayAlerts = False
-            WB.SaveAs FileName:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name, FileFormat:=motoWB.FileFormat, local:=True
+            WB.SaveAs filename:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name, FileFormat:=motoWB.FileFormat, local:=True
             Application.DisplayAlerts = True
             WB.Close
     
@@ -1319,10 +1319,10 @@ Public Sub createReferenceBook()
         
         XL.visible = True
         
-        Set WB = XL.Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
+        Set WB = XL.Workbooks.Open(filename:=strTmpBook, ReadOnly:=True)
         AppActivate XL.Caption
     Else
-        Set WB = Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
+        Set WB = Workbooks.Open(filename:=strTmpBook, ReadOnly:=True)
         AppActivate Application.Caption
     
     End If
@@ -1372,7 +1372,7 @@ Public Sub changeReferenceBook()
 
     WB.Close
 
-    Workbooks.Open FileName:=strTmpBook, ReadOnly:=True
+    Workbooks.Open filename:=strTmpBook, ReadOnly:=True
     AppActivate Application.Caption
     
     Set FS = Nothing
@@ -1429,10 +1429,10 @@ Public Sub OpenReferenceBook()
         
         XL.visible = True
         
-        Set WB = XL.Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
+        Set WB = XL.Workbooks.Open(filename:=strTmpBook, ReadOnly:=True)
         AppActivate XL.Caption
     Else
-        Set WB = Workbooks.Open(FileName:=strTmpBook, ReadOnly:=True)
+        Set WB = Workbooks.Open(filename:=strTmpBook, ReadOnly:=True)
         AppActivate Application.Caption
     End If
     
@@ -2291,7 +2291,7 @@ Sub tagJump()
     End If
 
     On Error Resume Next
-    Set WB = Workbooks.Open(FileName:=strBook)
+    Set WB = Workbooks.Open(filename:=strBook)
     AppActivate Application.Caption
 
     Set WS = WB.Worksheets(strSheet)
@@ -3092,7 +3092,7 @@ Sub openFileNameFromClipboard()
     
         FS.copyfile f, strTmpBook
     
-        WB.Open FileName:=strTmpBook, ReadOnly:=True
+        WB.Open filename:=strTmpBook, ReadOnly:=True
 pass:
     Next
     
@@ -3341,7 +3341,7 @@ Sub RegExport()
     Dim strDat As String
     Const C_FF As Byte = &HFF
     Const C_FE As Byte = &HFE
-    Dim FileName As Variant
+    Dim filename As Variant
     Dim strReg As String
     
     Dim Reg, Locator, Service, SubKey, RegName, RegType
@@ -3351,8 +3351,8 @@ Sub RegExport()
     
     SetMyDocument
     
-    FileName = Application.GetSaveAsFilename(InitialFileName:="RelaxTools-Addin.reg", FileFilter:="登録ファイル,*.reg")
-    If FileName = False Then
+    filename = Application.GetSaveAsFilename(InitialFileName:="RelaxTools-Addin.reg", FileFilter:="登録ファイル,*.reg")
+    If filename = False Then
         Exit Sub
     End If
     
@@ -3372,11 +3372,11 @@ Sub RegExport()
     Reg.EnumKey HKEY_CURRENT_USER, key, SubKey
     
     fp = FreeFile()
-    Open FileName For Output As fp
+    Open filename For Output As fp
     Close fp
     
     fp = FreeFile()
-    Open FileName For Binary As fp
+    Open filename For Binary As fp
     
     Dim strBuf() As Byte
     

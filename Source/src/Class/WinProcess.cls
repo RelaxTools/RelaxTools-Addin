@@ -50,7 +50,7 @@ Option Explicit
         ParentProcessID As Long
         BasePriority As Long
         Flags As Long
-        FileName As String * 260
+        filename As String * 260
     End Type
     
     Private Declare PtrSafe Function CreateToolhelp32Snapshot Lib "kernel32" (ByVal Flags As Long, ByVal ProcessID As Long) As LongPtr
@@ -70,7 +70,7 @@ Option Explicit
         ParentProcessID As Long
         BasePriority As Long
         Flags As Long
-        FileName As String * 260
+        filename As String * 260
     End Type
     
     Private Declare Function CreateToolhelp32Snapshot Lib "kernel32" (ByVal Flags As Long, ByVal ProcessID As Long) As Long
@@ -83,7 +83,7 @@ Option Explicit
 Private Type ENTRY
     ProcessID As Long
     ParentProcessID As Long
-    FileName As String
+    filename As String
 End Type
 Private mEntry() As ENTRY
 Private mEntryCount As Long
@@ -113,7 +113,7 @@ Function GetFilenameByPid(ByVal lngPid As Long) As String
     
     For i = 1 To mEntryCount
         If mEntry(i).ParentProcessID = lngPid Then
-            GetFilenameByPid = mEntry(i).FileName
+            GetFilenameByPid = mEntry(i).filename
             Exit For
         End If
     Next
@@ -124,7 +124,7 @@ Function IsExistProcess(ByVal strFile As String) As Boolean
     IsExistProcess = False
     
     For i = 1 To mEntryCount
-        If InStr(UCase(mEntry(i).FileName), UCase(strFile)) > 0 Then
+        If InStr(UCase(mEntry(i).filename), UCase(strFile)) > 0 Then
             IsExistProcess = True
             Exit For
         End If
@@ -157,11 +157,11 @@ Public Sub SnapShot()
     
         mEntry(mEntryCount).ProcessID = procEntry.ProcessID
         mEntry(mEntryCount).ParentProcessID = procEntry.ParentProcessID
-        lngPos = InStr(procEntry.FileName, vbNullChar)
+        lngPos = InStr(procEntry.filename, vbNullChar)
         If lngPos > 0 Then
-            mEntry(mEntryCount).FileName = Mid$(procEntry.FileName, 1, lngPos - 1)
+            mEntry(mEntryCount).filename = Mid$(procEntry.filename, 1, lngPos - 1)
         Else
-             mEntry(mEntryCount).FileName = ""
+             mEntry(mEntryCount).filename = ""
         End If
         
         mEntryCount = mEntryCount + 1

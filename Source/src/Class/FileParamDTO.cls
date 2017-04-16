@@ -42,11 +42,11 @@ Private strFileName As String
 Private strDirectory As String
 Private intAttribute As Integer
 
-Property Let FileName(ByVal c As String)
+Property Let filename(ByVal c As String)
     strFileName = c
 End Property
-Property Get FileName() As String
-    FileName = strFileName
+Property Get filename() As String
+    filename = strFileName
 End Property
 Property Let Directory(ByVal c As String)
     strDirectory = c

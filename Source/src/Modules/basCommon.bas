@@ -53,7 +53,7 @@ Option Private Module
     Private Declare PtrSafe Function FlashWindowEx Lib "user32.dll" (pfwi As FLASHWINFO) As LongPtr
     Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
     Private Declare PtrSafe Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
-    Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32" (ByRef lpPictDesc As PictDesc, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As LongPtr, ByRef IPic As IPicture) As Long
+    Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32" (ByRef lpPictDesc As PICTDESC, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As LongPtr, ByRef IPic As IPicture) As Long
     Private Declare PtrSafe Function CopyImage Lib "user32" (ByVal handle As LongPtr, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As LongPtr
     Private Declare PtrSafe Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
     Declare PtrSafe Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA" (ByVal uAction As Long, ByVal uParam As Long, ByRef lpvParam As Any, ByVal fuWinIni As Long) As Long
@@ -91,7 +91,7 @@ Option Private Module
         dwTimeout As LongPtr
     End Type
     
-    Private Type PictDesc
+    Private Type PICTDESC
         cbSizeofStruct As Long
         picType        As Long
         hImage         As LongPtr
@@ -122,7 +122,7 @@ Option Private Module
     Private Declare Function FlashWindowEx Lib "user32.dll" (pfwi As FLASHWINFO) As Long
     Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
     Private Declare Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
-    Private Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (ByRef lpPictDesc As PictDesc, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As Long, ByRef IPic As IPicture) As Long
+    Private Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (ByRef lpPictDesc As PICTDESC, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As Long, ByRef IPic As IPicture) As Long
     Private Declare Function CopyImage Lib "user32" (ByVal handle As Long, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As Long
     Private Declare Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
     Declare Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA" (ByVal uAction As Long, ByVal uParam As Long, ByRef lpvParam As Any, ByVal fuWinIni As Long) As Long
@@ -160,7 +160,7 @@ Private Type ChooseColor
         dwTimeout As Long
     End Type
     
-    Private Type PictDesc
+    Private Type PICTDESC
         cbSizeofStruct As Long
         picType        As Long
         hImage         As Long
@@ -1948,7 +1948,7 @@ Public Function CreatePictureFromClipboard(o As Object) As StdPicture
     Dim hCopy As Long
 #End If
     
-    Dim uPictDesc As PictDesc
+    Dim uPictDesc As PICTDESC
     Dim uGUID     As GUID
     
     Set CreatePictureFromClipboard = Nothing
@@ -2447,7 +2447,7 @@ Sub RenameActiveBook()
     Application.ScreenUpdating = False
     
     err.Clear
-    WB.SaveAs FileName:=strNew, local:=True
+    WB.SaveAs filename:=strNew, local:=True
     If err.Number <> 0 Then
         Application.ScreenUpdating = True
         MsgBox "エラーが発生しました。名前の変更に失敗しました。", vbOKOnly + vbExclamation, C_TITLE

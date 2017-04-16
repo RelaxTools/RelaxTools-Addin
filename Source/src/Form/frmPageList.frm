@@ -233,7 +233,7 @@ Private Sub cmdOK_Click()
         Select Case True
             Case InStr(UCase(varBook), C_EXCEL_FILE) > 0
             
-                Set WB = XL.Workbooks.Open(FileName:=varBook, ReadOnly:=True)
+                Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True)
                 
                 lngPage = 0
                 For Each WS In WB.Worksheets
@@ -248,7 +248,7 @@ Private Sub cmdOK_Click()
         
             Case InStr(UCase(varBook), C_WORD_FILE) > 0
             
-                Set DC = WD.Documents.Open(FileName:=varBook, ReadOnly:=True)
+                Set DC = WD.Documents.Open(filename:=varBook, ReadOnly:=True)
                 
                 DC.Repaginate
                 
@@ -259,7 +259,7 @@ Private Sub cmdOK_Click()
                 
             Case InStr(UCase(varBook), C_PPT_FILE) > 0
             
-                Set pt = PP.Presentations.Open(FileName:=varBook, ReadOnly:=True, withwindow:=False)
+                Set pt = PP.Presentations.Open(filename:=varBook, ReadOnly:=True, withwindow:=False)
                     
                 ResultWS.Cells(lngCount, C_SEARCH_PAGE).Value = pt.Slides.count
                 

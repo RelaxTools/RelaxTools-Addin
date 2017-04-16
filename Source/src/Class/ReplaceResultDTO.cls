@@ -43,11 +43,11 @@ Private strSearchString As String
 Private strReplaceString As String
 Private lngReplaceStrCount As Long
 
-Property Let FileName(ByVal c As String)
+Property Let filename(ByVal c As String)
     strFileName = c
 End Property
-Property Get FileName() As String
-    FileName = strFileName
+Property Get filename() As String
+    filename = strFileName
 End Property
 Property Let SearchString(ByVal c As String)
     strSearchString = c

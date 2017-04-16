@@ -80,6 +80,9 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
 
 End Sub
 
+Private Sub SFWork_SelectionTerm()
+    Call SaveSetting(C_TITLE, "Fusen", Id, No)
+End Sub
 
 
 

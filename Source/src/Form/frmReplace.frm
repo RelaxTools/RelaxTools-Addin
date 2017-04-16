@@ -88,7 +88,7 @@ Private Sub cmdRun_Click()
     
 '    Dim lngRow As Long
 '    Dim lngCol As Long
-    Dim FileName As String
+    Dim filename As String
 '    Dim objFs As Object
     
 '    If ActiveCell Is Nothing Then
@@ -97,8 +97,8 @@ Private Sub cmdRun_Click()
 '    End If
     
     'フォルダ名取得
-    FileName = txtFolder.Text
-    If FileName = "" Then
+    filename = txtFolder.Text
+    If filename = "" Then
         MsgBox "フォルダを入力してください。", vbExclamation, C_TITLE
         txtFolder.SetFocus
         Exit Sub

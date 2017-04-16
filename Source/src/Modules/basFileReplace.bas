@@ -143,7 +143,7 @@ Private Sub reDir(ByVal strDir As String, colParam As Collection, colResult As C
             Case Else
                 Set FS = New FileParamDTO
                 
-                FS.FileName = strFile
+                FS.filename = strFile
                 FS.Directory = strDir
                 FS.Attrib = getAttr(rlxAddFileSeparator(strDir) & strFile)
                 
@@ -158,7 +158,7 @@ Private Sub reDir(ByVal strDir As String, colParam As Collection, colResult As C
     
         If (FS.Attrib And vbDirectory) <> 0 Then
             ''再帰呼び出し
-            Call reDir(rlxAddFileSeparator(FS.Directory) & FS.FileName, colParam, colResult)
+            Call reDir(rlxAddFileSeparator(FS.Directory) & FS.filename, colParam, colResult)
         Else
             Call repFiles(FS, colParam, colResult)
         End If
@@ -194,11 +194,11 @@ Private Sub repFiles(FS As FileParamDTO, colParam As Collection, colResult As Co
     
     ''''==================================================
     ''''ステータスバーにメッセージを表示
-    Application.StatusBar = FS.FileName & "を処理中です"
+    Application.StatusBar = FS.filename & "を処理中です"
     ''''==================================================
 
     'ファイル名の作成
-    strSourceFile = rlxAddFileSeparator(FS.Directory) & FS.FileName
+    strSourceFile = rlxAddFileSeparator(FS.Directory) & FS.filename
 
     'ファイルを全部読む。
     intfp = FreeFile()
@@ -233,7 +233,7 @@ Private Sub repFiles(FS As FileParamDTO, colParam As Collection, colResult As Co
             
             Set rr = New ReplaceResultDTO
             
-            rr.FileName = FS.FileName
+            rr.filename = FS.filename
             rr.SearchString = rp.SearchString
             rr.ReplaceString = rp.ReplaceString
             rr.ReplaceStrCount = lngSearchCount

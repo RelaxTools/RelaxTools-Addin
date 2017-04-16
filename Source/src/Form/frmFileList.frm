@@ -69,7 +69,7 @@ Private Sub cmdRun_Click()
     
     Dim lngRow As Long
     Dim lngCol As Long
-    Dim FileName As String
+    Dim filename As String
     Dim objFs As Object
     
     If ActiveCell Is Nothing Then
@@ -78,8 +78,8 @@ Private Sub cmdRun_Click()
     End If
     
     'フォルダ名取得
-    FileName = txtFolder.Text
-    If FileName = "" Then
+    filename = txtFolder.Text
+    If filename = "" Then
         MsgBox "ファイル一覧を取得するフォルダを入力してください。", vbExclamation, "ファイル一覧取得"
         txtFolder.SetFocus
         Exit Sub
@@ -103,7 +103,7 @@ Private Sub cmdRun_Click()
     mMm.Disable
     mMm.DispGuidance "ファイルの数をカウントしています..."
     
-    rlxGetFilesCount objFs, FileName, lngFCnt, True, chkFolder.Value, chkSubFolder.Value
+    rlxGetFilesCount objFs, filename, lngFCnt, True, chkFolder.Value, chkSubFolder.Value
     
     mMm.StartGauge lngFCnt
     
@@ -114,7 +114,7 @@ Private Sub cmdRun_Click()
     
     On Error Resume Next
     
-    FileDisp objFs, FileName, lngRow, lngCol, lngCount, lngFCnt
+    FileDisp objFs, filename, lngRow, lngCol, lngCount, lngFCnt
     
     Set mMm = Nothing
     Select Case err.Number

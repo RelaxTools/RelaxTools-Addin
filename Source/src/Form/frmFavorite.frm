@@ -271,9 +271,9 @@ Private Sub lstCategory_Change()
         
             .lstFavorite.AddItem ""
             .lstFavorite.List(i, C_FILE_NO) = i + 1
-            .lstFavorite.List(i, C_FILE_NAME) = rlxGetFullpathFromFileName(fav.FileName)
-            .lstFavorite.List(i, C_PATH_NAME) = rlxGetFullpathFromPathName(fav.FileName)
-            .lstFavorite.List(i, C_ORIGINAL) = fav.FileName
+            .lstFavorite.List(i, C_FILE_NAME) = rlxGetFullpathFromFileName(fav.filename)
+            .lstFavorite.List(i, C_PATH_NAME) = rlxGetFullpathFromPathName(fav.filename)
+            .lstFavorite.List(i, C_ORIGINAL) = fav.filename
             .lstFavorite.List(i, C_CATEGORY) = fav.Category
             i = i + 1
         
@@ -463,12 +463,12 @@ Private Sub UserForm_Initialize()
        
         Select Case True
             Case UBound(strDat) = 0
-                fav.FileName = strDat(0)
+                fav.filename = strDat(0)
                 fav.Category = C_FAV_ALL
 '                fav.Text = rlxGetFullpathFromFileName(strDat(0))
                 
             Case Else
-                fav.FileName = strDat(0)
+                fav.filename = strDat(0)
                 fav.Category = strDat(1)
 '                fav.Text = rlxGetFullpathFromFileName(strDat(0))
                 
@@ -483,9 +483,9 @@ Private Sub UserForm_Initialize()
             mobjCategory.Add fav.Category, objfav
        End If
        
-       If objfav.Exists(fav.FileName) Then
+       If objfav.Exists(fav.filename) Then
        Else
-           objfav.Add fav.FileName, fav
+           objfav.Add fav.filename, fav
         End If
     Next
 
@@ -705,11 +705,11 @@ Sub favCurrentUpdate()
        
         Set fav = New favoriteDTO
     
-        fav.FileName = lstFavorite.List(i, C_ORIGINAL)
+        fav.filename = lstFavorite.List(i, C_ORIGINAL)
         fav.Category = lstFavorite.List(i, C_CATEGORY)
 '        fav.Text = lstFavorite.List(i, C_FILE_NAME)
        
-        objfav.Add fav.FileName, fav
+        objfav.Add fav.filename, fav
               
     Next
     
@@ -759,7 +759,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                     Else
                         On Error Resume Next
                         err.Clear
-                        Workbooks.Open FileName:=strBook, ReadOnly:=blnReadOnly
+                        Workbooks.Open filename:=strBook, ReadOnly:=blnReadOnly
                         If err.Number <> 0 Then
                             MsgBox "ブックを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
                         End If
@@ -771,7 +771,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                     err.Clear
                     With CreateObject("PowerPoint.Application")
                         .visible = True
-                        Call .Presentations.Open(FileName:=strBook, ReadOnly:=blnReadOnly)
+                        Call .Presentations.Open(filename:=strBook, ReadOnly:=blnReadOnly)
                         If err.Number <> 0 Then
                             MsgBox "ファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
                         End If
@@ -783,7 +783,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                     err.Clear
                     With CreateObject("Word.Application")
                         .visible = True
-                        .Documents.Open FileName:=strBook, ReadOnly:=blnReadOnly
+                        .Documents.Open filename:=strBook, ReadOnly:=blnReadOnly
                         If err.Number <> 0 Then
                             MsgBox "ファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
                         End If
@@ -1113,9 +1113,9 @@ Private Sub UserForm_Terminate()
                 Set fav = cat.Item(key2)
             
                 If Len(strBuf) = 0 Then
-                    strBuf = fav.FileName & vbTab & key1
+                    strBuf = fav.filename & vbTab & key1
                 Else
-                    strBuf = strBuf & vbVerticalTab & fav.FileName & vbTab & key1
+                    strBuf = strBuf & vbVerticalTab & fav.filename & vbTab & key1
                 End If
             Next
         
@@ -1279,11 +1279,11 @@ Sub moveCategory(ByVal strCategory As String)
             Dim d As favoriteDTO
             
             Set d = New favoriteDTO
-            d.FileName = lstFavorite.List(i, C_ORIGINAL)
+            d.filename = lstFavorite.List(i, C_ORIGINAL)
             d.Category = strCategory
 '            d.Text = lstFavorite.List(i, C_FILE_NAME)
             
-            cat.Add d.FileName, d
+            cat.Add d.filename, d
             If mobjCategory.Exists(strCategory) Then
                 mobjCategory.remove strCategory
             End If

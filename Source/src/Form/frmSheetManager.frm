@@ -161,11 +161,11 @@ Private Sub cmdSaveBook_Click()
             Set b = ActiveWorkbook
             Select Case LCase(Mid$(vntFileName, InStr(vntFileName, ".") + 1))
                 Case "xls"
-                    b.SaveAs FileName:=vntFileName, FileFormat:=xlExcel8, local:=True
+                    b.SaveAs filename:=vntFileName, FileFormat:=xlExcel8, local:=True
                 Case "xlsm"
-                    b.SaveAs FileName:=vntFileName, FileFormat:=xlOpenXMLWorkbookMacroEnabled, local:=True
+                    b.SaveAs filename:=vntFileName, FileFormat:=xlOpenXMLWorkbookMacroEnabled, local:=True
                 Case Else
-                    b.SaveAs FileName:=vntFileName, local:=True
+                    b.SaveAs filename:=vntFileName, local:=True
             End Select
             b.Close
             Set b = Nothing

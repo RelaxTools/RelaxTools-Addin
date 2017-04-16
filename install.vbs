@@ -1,11 +1,12 @@
 ' -------------------------------------------------------------------------------
-' RelaxTools-Addin インストールスクリプト Ver.1.0.2
+' RelaxTools-Addin インストールスクリプト Ver.1.0.3
 ' -------------------------------------------------------------------------------
 ' 参考サイト
 ' ある SE のつぶやき
 ' VBScript で Excel にアドインを自動でインストール/アンインストールする方法
 ' http://fnya.cocolog-nifty.com/blog/2014/03/vbscript-excel-.html
 ' 修正
+'   1.0.3 images フォルダをコピーするように修正。
 '   1.0.2 Windows Update にて インターネットより取得したアドインファイルが Excel にて読み込まれない場合に対応。
 '         警告とプロパティウィンドウを表示して「ブロック解除」をお願いするようにした。
 ' -------------------------------------------------------------------------------
@@ -16,6 +17,7 @@ Dim addInName
 Dim addInFileName 
 Dim objExcel 
 Dim objAddin
+Dim imageFolder
 
 'アドイン情報を設定 
 addInName = "RelaxTools Addin" 
@@ -34,6 +36,7 @@ END IF
 '(ex)C:\Users\[User]\AppData\Roaming\Microsoft\AddIns\[addInFileName] 
 strPath = objWshShell.SpecialFolders("Appdata") & "\Microsoft\Addins\"
 installPath = strPath  & addInFileName
+imageFolder = objWshShell.SpecialFolders("Appdata") & "\RelaxTools-Addin\"
 
 IF MsgBox(addInName & " をインストールしますか？" & vbCrLf &  "Version 4.0.0 以降とそれ以前では設定が引き継がれませんのでご了承ください。", vbYesNo + vbQuestion, addInName) = vbNo Then 
   WScript.Quit 
@@ -41,6 +44,9 @@ End IF
 
 'ファイルコピー(上書き) 
 objFileSys.CopyFile  addInFileName ,installPath , True
+
+'イメージフォルダをコピー(上書き) 
+objFileSys.CopyFolder  "Source\customUI\images" ,imageFolder , True
 
 Set objFileSys = Nothing
 

@@ -38,6 +38,6 @@ Attribute VB_Exposed = False
 '-----------------------------------------------------------------------------------------------------
 
 Public Category As String
-Public FileName As String
+Public filename As String
 'Public Text As String
 

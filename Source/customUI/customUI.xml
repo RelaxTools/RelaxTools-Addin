@@ -686,7 +686,7 @@
         <group id="grpFusen" label="付箋" image="fusen_l">
 
           <splitButton id="PasteSquareSplit" size="large" getEnabled="getRibbonEnabled">
-            <button id="beforePasteSquare"  image="fusen01"  label="標準&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <button id="beforePasteSquare"  getImage="getFusenImage"  label="標準&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
             <menu id="fsGallery01" itemSize="large" >
               <button id="pasteSquareW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen01w" onAction="ribbonOnAction" />
               <button id="pasteSquareY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen01" onAction="ribbonOnAction" />
@@ -697,7 +697,7 @@
           </splitButton>
 
           <splitButton id="PasteMemoSplit" size="large" getEnabled="getRibbonEnabled">
-            <button id="beforePasteMemo"  image="fusen02"  label="メモ&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <button id="beforePasteMemo"  getImage="getFusenImage"  label="メモ&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
             <menu id="fsGallery02" itemSize="large" >
               <button id="pasteMemoW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen02w" onAction="ribbonOnAction" />
               <button id="pasteMemoY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen02" onAction="ribbonOnAction" />
@@ -708,7 +708,7 @@
           </splitButton>
 
           <splitButton id="PasteCallSplit" size="large" getEnabled="getRibbonEnabled">
-            <button id="beforePasteCall"  image="fusen03"  label="吹き出し&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <button id="beforePasteCall"  getImage="getFusenImage"  label="吹き出し&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
             <menu id="fsGallery03" itemSize="large" >
               <button id="pasteCallW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen03w" onAction="ribbonOnAction" />
               <button id="pasteCallY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen03" onAction="ribbonOnAction" />
@@ -719,7 +719,7 @@
           </splitButton>
 
           <splitButton id="PasteLineSplit" size="large" getEnabled="getRibbonEnabled">
-            <button id="beforePasteLine"  image="fusen06"  label="線吹き出し&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <button id="beforePasteLine"  getImage="getFusenImage"  label="線吹き出し&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
             <menu id="fsGallery06" itemSize="large" >
               <button id="pasteLineW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen06w" onAction="ribbonOnAction" />
               <button id="pasteLineY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen06" onAction="ribbonOnAction" />
@@ -730,7 +730,7 @@
           </splitButton>
 
           <splitButton id="PasteCircleSplit" size="large" getEnabled="getRibbonEnabled">
-            <button id="beforePasteCircle"  image="fusen04"  label="バルーン&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <button id="beforePasteCircle"  getImage="getFusenImage"  label="バルーン&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
             <menu id="fsGallery04" itemSize="large" >
            <button id="pasteCircleW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen04w" onAction="ribbonOnAction" />
            <button id="pasteCircleY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen04" onAction="ribbonOnAction" />
@@ -741,7 +741,7 @@
          </splitButton>
 
           <splitButton id="PastePinSplit" size="large" getEnabled="getRibbonEnabled">
-            <button id="beforePastePin"  image="fusen05"  label="ピン&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
+            <button id="beforePastePin"  getImage="getFusenImage"  label="ピン&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
             <menu id="fsGallery05" itemSize="large" >
            <button id="pastePinW" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen05w" onAction="ribbonOnAction" />
            <button id="pastePinY" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  image="fusen05" onAction="ribbonOnAction" />

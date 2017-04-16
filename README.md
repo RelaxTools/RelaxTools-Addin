@@ -79,12 +79,6 @@ Copyright(C) Yasuhiro Watanabe 2009
 ## アンインストール方法
 * RelaxToolsヘルプ　→　「RelaxToolsのアンインストール」ボタンを押下する。
 
-## アンインストール方法(uninstall.vbsを使用する方法)
-* Excelが起動していないことを確認する。起動している場合は終了する。
-* uninstall.vbs を実行する。
-* Excelを起動し「RelaxTools」タブが表示されないことを確認する。
-* レジストリエディタで以下のキーを削除する。HKEY_CURRENT_USER\Software\VB and VBA Program Settings\RelaxTools-Addin」
-
 ## 使用方法
  使用方法についてはRelaxToolsを起動した後、ヘルプを表示してください。
  メニューにカーソルを当てることでポップアップヘルプを表示することが可能です。
