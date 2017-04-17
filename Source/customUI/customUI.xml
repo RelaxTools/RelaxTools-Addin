@@ -168,7 +168,7 @@
             <button id="swapAreas"        image="swapcell" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <menuSeparator id="kakkoSep11" title="カッコ操作"/>
             <button id="execSelectionRemoveParenthesis"  image="kakkoDel" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <menu id="ParenthesisConv1" label="半角カッコ挿入"    image="headIns" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
+            <menu id="ParenthesisConv1" label="半角カッコ挿入"    image="kakkoIns" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
               <menuSeparator id="ParenthesisHanSep" title="半角カッコ挿入"/>
               <button id="execSelectionSetParenthesis"  image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionSetParenthesis2" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
@@ -176,7 +176,7 @@
               <button id="execSelectionSetParenthesis4" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionSetParenthesis5" image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
-            <menu id="ParenthesisConv2" label="全角カッコ挿入"    image="headIns" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
+            <menu id="ParenthesisConv2" label="全角カッコ挿入"    image="kakkoIns" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled" >
               <menuSeparator id="ParenthesisZenSep" title="全角カッコ挿入"/>
               <button id="execSelectionSetParenthesis6"  image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="execSelectionSetParenthesis7"  image="kakkoIns" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />

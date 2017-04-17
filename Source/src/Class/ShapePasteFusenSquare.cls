@@ -76,11 +76,10 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
     If CBool(GetSetting(C_TITLE, "Shape", "PickFusen", True)) = False Then
         Cancel = True
     End If
-
-End Sub
-
-Private Sub SFWork_SelectionTerm()
+    
     Call SaveSetting(C_TITLE, "Fusen", Id, No)
+    RefreshRibbon
+
 End Sub
 
 

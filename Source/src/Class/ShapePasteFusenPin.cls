@@ -78,11 +78,11 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
         Cancel = True
     End If
 
+    Call SaveSetting(C_TITLE, "Fusen", Id, No)
+    RefreshRibbon
+
 End Sub
 
-Private Sub SFWork_SelectionTerm()
-    Call SaveSetting(C_TITLE, "Fusen", Id, No)
-End Sub
 
 
 
