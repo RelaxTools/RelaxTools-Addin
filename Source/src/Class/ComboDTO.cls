@@ -41,4 +41,4 @@ Option Explicit
 Public No As String
 Public Category As String
 Public DISP_NAME As String
-Public MACRO As String
+Public Macro As String

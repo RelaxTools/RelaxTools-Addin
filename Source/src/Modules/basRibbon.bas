@@ -59,7 +59,8 @@ Public mLineEnable As Boolean
 Public mScrollEnable As Boolean
 Public mScreenEnable As Boolean
 
-
+'メニュー
+Public mObjMenu As Object
 
 Public mblnSushi As Boolean
 
@@ -88,21 +89,57 @@ Private Function getSheetItem(control As IRibbonControl, lngItem As Long) As Str
     Dim lngPos As Long
     Dim strBuf As String
     Dim i As Long
+    Dim m As MenuDTO
+    Dim key As String
     
     getSheetItem = ""
     
     strBuf = getMacroName(control)
     
-    i = C_START_ROW
+    If mObjMenu Is Nothing Then
     
-    Do Until ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_NO).Value = ""
-        If strBuf = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_MACRO).Value Then
-            getSheetItem = ThisWorkbook.Worksheets("HELP").Cells(i, lngItem).Value
-            Exit Do
-        End If
-        i = i + 1
-    Loop
-
+        Set mObjMenu = CreateObject("Scripting.Dictionary")
+    
+        i = C_START_ROW
+        
+        Do Until ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_NO).Value = ""
+            
+            Set m = New MenuDTO
+            m.Category = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_CATEGORY).Value
+            m.Macro = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_MACRO).Value
+            m.Label = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_LABEL).Value
+            m.Devision = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_DIVISION).Value
+            m.Help = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_HELP).Value
+            m.Description = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_DESCRIPTION).Value
+            
+            If Not mObjMenu.Exists(m.Macro) Then
+                mObjMenu.Add m.Macro, m
+            Else
+                MsgBox "メニューのマクロ名が重複しています。" & strBuf
+            End If
+            i = i + 1
+        Loop
+        
+    End If
+    
+    If mObjMenu.Exists(strBuf) Then
+        Select Case lngItem
+            Case C_COL_CATEGORY
+                getSheetItem = mObjMenu.Item(strBuf).Category
+            Case C_COL_MACRO
+                getSheetItem = mObjMenu.Item(strBuf).Macro
+            Case C_COL_LABEL
+                getSheetItem = mObjMenu.Item(strBuf).Label
+            Case C_COL_DIVISION
+                getSheetItem = mObjMenu.Item(strBuf).Devision
+            Case C_COL_HELP
+                getSheetItem = mObjMenu.Item(strBuf).Help
+            Case C_COL_DESCRIPTION
+                getSheetItem = mObjMenu.Item(strBuf).Description
+        End Select
+    Else
+        getSheetItem = ""
+    End If
 End Function
 '--------------------------------------------------------------------
 ' リボン表示設定取得

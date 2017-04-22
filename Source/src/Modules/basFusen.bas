@@ -183,12 +183,14 @@ Sub pasteFusenOrg(ByVal strId As String, ByVal Index As Long)
     
 '    Application.ScreenUpdating = False
     
+    On Error GoTo e
+    
     Set r = ThisWorkbook.Worksheets(strId).Shapes("shpSquare" & Format(Index, "00"))
 
     r.Copy
     Call CopyClipboardSleep
  
-    ActiveSheet.Paste
+10    ActiveSheet.Paste
     
     Dim strText As String
     Dim strTag As String
@@ -281,7 +283,13 @@ Sub pasteFusenOrg(ByVal strId As String, ByVal Index As Long)
     If strId <> "fsGallery05" Then
         Selection.ShapeRange.TextFrame2.WordWrap = CBool(varWordWrap)
     End If
-
+    
+    Exit Sub
+e:
+    If Erl = 10 Then
+        Resume
+    End If
+    
 End Sub
 
 '--------------------------------------------------------------
