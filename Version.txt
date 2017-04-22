@@ -1,4 +1,6 @@
-﻿2017/04/17(mon) RelaxTools-Addin Version 4.13.3(RustRemover) 
+﻿2017/04/22(sat) RelaxTools-Addin Version 4.13.3(RustRemover) 
+◇機能改善
+・2003互換色アイコンに前回使用した色が表示されるように改善。
 ◇バグ修正
 ・メニュー表示時に空白になることがあるのを改善したつもり。
 

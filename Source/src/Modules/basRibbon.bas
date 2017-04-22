@@ -64,6 +64,76 @@ Public mObjMenu As Object
 
 Public mblnSushi As Boolean
 
+
+Private Const IID_IPictureDisp As String = "{7BF80981-BF32-101A-8BBB-00AA00300CAB}"
+Private Const PICTYPE_BITMAP As Long = 1
+    
+#If VBA7 And Win64 Then
+    Private Declare PtrSafe Function GdipCreateBitmapFromFile Lib "gdiplus" (ByVal filename As LongPtr, bitmap As LongPtr) As LongPtr
+    Private Declare PtrSafe Function GdipCreateHBITMAPFromBitmap Lib "gdiplus" (ByVal bitmap As LongPtr, hbmReturn As LongPtr, ByVal background As Long) As LongPtr
+    Private Declare PtrSafe Function GdipDisposeImage Lib "gdiplus" (ByVal image As LongPtr) As LongPtr
+    Private Declare PtrSafe Function GdiplusShutdown Lib "gdiplus" (ByVal token As LongPtr) As LongPtr
+    Private Declare PtrSafe Function GdiplusStartup Lib "gdiplus" (token As LongPtr, inputbuf As GdiplusStartupInput, Optional ByVal outputbuf As LongPtr = 0) As LongPtr
+    Private Declare PtrSafe Function IIDFromString Lib "ole32" (ByVal lpsz As LongPtr, lpiid As Any) As Long
+    Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32.dll" (PicDesc As PICTDESC, RefIID As Long, ByVal fPictureOwnsHandle As LongPtr, IPic As IPicture) As LongPtr
+    
+    Private Type PICTDESC
+        Size As Long
+        Type As Long
+        hPic As LongPtr
+        hPal As LongPtr
+    End Type
+    
+    Private Type GdiplusStartupInput
+        GdiplusVersion As Long
+        DebugEventCallback As LongPtr
+        SuppressBackgroundThread As Long
+        SuppressExternalCodecs As Long
+    End Type
+    
+    Private Declare PtrSafe Function GdipCreateSolidFill Lib "gdiplus" (ByVal pColor As Long, ByRef brush As LongPtr) As Long
+    Private Declare PtrSafe Function GdipGetImageGraphicsContext Lib "gdiplus" (ByVal image As LongPtr, graphics As LongPtr) As Long
+    Private Declare PtrSafe Function GdipFillRectangle Lib "gdiplus" (ByVal graphics As LongPtr, ByVal brush As LongPtr, ByVal X As Single, ByVal Y As Single, ByVal nWidth As Single, ByVal nHeight As Single) As Long
+    Private Declare PtrSafe Function GdipSetSmoothingMode Lib "gdiplus" (ByVal mGraphics As LongPtr, ByVal mSmoothingMode As Long) As Long
+    Private Declare PtrSafe Function GdipDeleteBrush Lib "gdiplus" (ByVal mBrush As LongPtr) As Long
+    Private Declare PtrSafe Function GdipDeleteGraphics Lib "gdiplus" (ByVal graphics As LongPtr) As Long
+    Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
+    
+#Else
+    Private Declare Function GdipCreateBitmapFromFile Lib "gdiplus" (ByVal filename As Long, bitmap As Long) As Long
+    Private Declare Function GdipCreateHBITMAPFromBitmap Lib "gdiplus" (ByVal bitmap As Long, hbmReturn As Long, ByVal background As Long) As Long
+    Private Declare Function GdipDisposeImage Lib "gdiplus" (ByVal image As Long) As Long
+    Private Declare Function GdiplusShutdown Lib "gdiplus" (ByVal token As Long) As Long
+    Private Declare Function GdiplusStartup Lib "gdiplus" (token As Long, inputbuf As GdiplusStartupInput, Optional ByVal outputbuf As Long = 0) As Long
+    Private Declare Function IIDFromString Lib "ole32" (ByVal lpsz As Long, lpiid As Any) As Long
+    Private Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (PicDesc As PICTDESC, RefIID As Long, ByVal fPictureOwnsHandle As Long, IPic As IPicture) As Long
+    
+    Private Type PICTDESC
+      Size As Long
+      Type As Long
+      hPic As Long
+      hPal As Long
+    End Type
+
+    Private Type GdiplusStartupInput
+      GdiplusVersion As Long
+      DebugEventCallback As Long
+      SuppressBackgroundThread As Long
+      SuppressExternalCodecs As Long
+    End Type
+
+    Private Declare Function GdipCreateSolidFill Lib "gdiplus" (ByVal pColor As Long, ByRef brush As Long) As Long
+    Private Declare Function GdipGetImageGraphicsContext Lib "gdiplus" (ByVal image As Long, graphics As Long) As Long
+    Private Declare Function GdipFillRectangle Lib "gdiplus" (ByVal graphics As Long, ByVal brush As Long, ByVal X As Single, ByVal Y As Single, ByVal nWidth As Single, ByVal nHeight As Single) As Long
+    Private Declare Function GdipSetSmoothingMode Lib "gdiplus" (ByVal mGraphics As Long, ByVal mSmoothingMode As Long) As Long
+    Private Declare Function GdipDeleteBrush Lib "gdiplus" (ByVal mBrush As Long) As Long
+    Private Declare Function GdipDeleteGraphics Lib "gdiplus" (ByVal graphics As Long) As Long
+    Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
+#End If
+
+
+Private Const SmoothingModeAntiAlias    As Long = &H4
+
 '--------------------------------------------------------------------
 ' マクロ名取得
 '--------------------------------------------------------------------
@@ -1523,3 +1593,294 @@ Sub pickOnAction(control As IRibbonControl, pressed As Boolean)
 e:
     Call rlxErrMsg(err)
 End Sub
+
+Sub getColorImage(control As IRibbonControl, ByRef image) ' 画像の設定
+
+    Dim pictureId As String
+    Dim strColor As String
+    Dim lngColor As Long
+    
+    Select Case control.Id
+        Case "execSelectionFormatFontColor"
+            pictureId = "fontColor"
+            strColor = GetSetting(C_TITLE, "Color2003", "font", C_COLOR_OTHER)
+        Case "execSelectionFormatLineColor"
+            pictureId = "lineColor"
+            strColor = GetSetting(C_TITLE, "Color2003", "line", C_COLOR_OTHER)
+        Case "execSelectionFormatBackColor"
+            pictureId = "backColor"
+            strColor = GetSetting(C_TITLE, "Color2003", "back", C_COLOR_OTHER)
+    End Select
+        
+    If strColor = C_COLOR_OTHER Then
+        lngColor = 1
+    Else
+        lngColor = ThisWorkbook.Colors(Val(strColor))
+    End If
+    
+    Dim file As String
+    
+    file = rlxGetAppDataFolder & "images\" & pictureId & ".png"
+    
+    'イメージが見つからなかったら「×」表示する
+    If rlxIsFileExists(file) Then
+        Set image = LoadImageColor(file, lngColor)
+    Else
+        image = "CancelRequest"
+    End If
+    
+'    Call RefreshRibbon
+'    DoEvents
+    
+End Sub
+Sub getFusenImage(control As IRibbonControl, ByRef image) ' 画像の設定
+
+    Dim pictureId As String
+    
+    Select Case control.Id
+        Case "beforePasteSquare"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery01", "2"))
+                 Case 1
+                     pictureId = "fusen01w"
+                 Case 2
+                     pictureId = "fusen01"
+                 Case 3
+                     pictureId = "fusen01p"
+                 Case 4
+                     pictureId = "fusen01b"
+                 Case 5
+                     pictureId = "fusen01g"
+             End Select
+        Case "beforePasteMemo"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery02", "2"))
+                 Case 1
+                     pictureId = "fusen02w"
+                 Case 2
+                     pictureId = "fusen02"
+                 Case 3
+                     pictureId = "fusen02p"
+                 Case 4
+                     pictureId = "fusen02b"
+                 Case 5
+                     pictureId = "fusen02g"
+             End Select
+        Case "beforePasteCall"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery03", "2"))
+                 Case 1
+                     pictureId = "fusen03w"
+                 Case 2
+                     pictureId = "fusen03"
+                 Case 3
+                     pictureId = "fusen03p"
+                 Case 4
+                     pictureId = "fusen03b"
+                 Case 5
+                     pictureId = "fusen03g"
+             End Select
+        Case "beforePasteLine"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery06", "2"))
+                 Case 1
+                     pictureId = "fusen06w"
+                 Case 2
+                     pictureId = "fusen06"
+                 Case 3
+                     pictureId = "fusen06p"
+                 Case 4
+                     pictureId = "fusen06b"
+                 Case 5
+                     pictureId = "fusen06g"
+             End Select
+        Case "beforePasteCircle"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery04", "2"))
+                 Case 1
+                     pictureId = "fusen04w"
+                 Case 2
+                     pictureId = "fusen04"
+                 Case 3
+                     pictureId = "fusen04p"
+                 Case 4
+                     pictureId = "fusen04b"
+                 Case 5
+                     pictureId = "fusen04g"
+             End Select
+        Case "beforePastePin"
+            Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery05", "2"))
+                 Case 1
+                     pictureId = "fusen05w"
+                 Case 2
+                     pictureId = "fusen05"
+                 Case 3
+                     pictureId = "fusen05p"
+                 Case 4
+                     pictureId = "fusen05b"
+                 Case 5
+                     pictureId = "fusen05g"
+             End Select
+    End Select
+    
+    Dim file As String
+    
+    file = rlxGetAppDataFolder & "images\" & pictureId & ".png"
+    
+    'イメージが見つからなかったら「×」表示する
+    If rlxIsFileExists(file) Then
+        Set image = LoadImage(file)
+    Else
+        image = "CancelRequest"
+    End If
+    
+'    Call RefreshRibbon
+'    DoEvents
+    
+End Sub
+
+' 参考
+' 初心者備忘録
+' http://www.ka-net.org/ribbon/ri27.html
+' ボタンのイメージを外部から読み込む(PNG対応版)
+Private Function LoadImage(ByVal strFName As String) As IPicture
+
+    Dim uGdiInput As GdiplusStartupInput
+    
+#If VBA7 And Win64 Then
+    Dim hGdiPlus As LongPtr
+    Dim hGdiImage As LongPtr
+    Dim hBitmap As LongPtr
+#Else
+    Dim hGdiPlus As Long
+    Dim hGdiImage As Long
+    Dim hBitmap As Long
+#End If
+
+    uGdiInput.GdiplusVersion = 1&
+
+    If GdiplusStartup(hGdiPlus, uGdiInput) = 0& Then
+  
+        If GdipCreateBitmapFromFile(StrPtr(strFName), hGdiImage) = 0& Then
+        
+            Call GdipCreateHBITMAPFromBitmap(hGdiImage, hBitmap, 0&)
+          
+            Dim IID(0 To 3) As Long
+            Dim IPic As IPicture
+            Dim uPicInfo As PICTDESC
+            
+            With uPicInfo
+              .Size = LenB(uPicInfo)
+              .Type = PICTYPE_BITMAP
+              .hPic = hBitmap
+              .hPal = 0&
+            End With
+                
+            Call IIDFromString(StrPtr(IID_IPictureDisp), IID(0))
+            Call OleCreatePictureIndirect(uPicInfo, IID(0), True, LoadImage)
+          
+            Call GdipDisposeImage(hGdiImage)
+          
+        End If
+        
+        Call GdiplusShutdown(hGdiPlus)
+    
+    End If
+  
+End Function
+' イメージを読み込む（色バーつき）
+Private Function LoadImageColor(ByVal strFName As String, ByVal lngColor As Long) As IPicture
+
+    Dim uGdiInput As GdiplusStartupInput
+    
+#If VBA7 And Win64 Then
+    Dim hGdiPlus As LongPtr
+    Dim hGdiImage As LongPtr
+    Dim hBitmap As LongPtr
+#Else
+    Dim hGdiPlus As Long
+    Dim hGdiImage As Long
+    Dim hBitmap As Long
+#End If
+
+    uGdiInput.GdiplusVersion = 1&
+
+    If GdiplusStartup(hGdiPlus, uGdiInput) = 0& Then
+  
+        If GdipCreateBitmapFromFile(StrPtr(strFName), hGdiImage) = 0& Then
+        
+            Call FillRectangle(hGdiImage, lngColor, 100, 0, 12, 16, 4)
+            
+            Call GdipCreateHBITMAPFromBitmap(hGdiImage, hBitmap, 0&)
+          
+            Dim IID(0 To 3) As Long
+            Dim IPic As IPicture
+            Dim uPicInfo As PICTDESC
+            
+            With uPicInfo
+              .Size = LenB(uPicInfo)
+              .Type = PICTYPE_BITMAP
+              .hPic = hBitmap
+              .hPal = 0&
+            End With
+                
+            Call IIDFromString(StrPtr(IID_IPictureDisp), IID(0))
+            Call OleCreatePictureIndirect(uPicInfo, IID(0), True, LoadImageColor)
+          
+            Call GdipDisposeImage(hGdiImage)
+          
+        End If
+        
+        Call GdiplusShutdown(hGdiPlus)
+    
+    End If
+  
+End Function
+
+#If VBA7 And Win64 Then
+Private Function FillRectangle(ByVal hBitmap As LongPtr, ByVal lColor As Long, ByVal Alpha As Long, ByVal X As Long, ByVal Y As Long, ByVal Width As Long, ByVal Height As Long) As Boolean
+
+    Dim hGraphics As LongPtr, hBrush As LongPtr
+
+    If GdipGetImageGraphicsContext(hBitmap, hGraphics) = 0 Then
+   
+        If GdipCreateSolidFill(ConvertColor(lColor, Alpha), hBrush) = 0 Then
+    
+            Call GdipSetSmoothingMode(hGraphics, SmoothingModeAntiAlias)
+           
+            FillRectangle = GdipFillRectangle(hGraphics, hBrush, X, Y, Width, Height) = 0
+        
+            Call GdipDeleteBrush(hBrush)
+        End If
+        
+        Call GdipDeleteGraphics(hGraphics)
+    End If
+    
+End Function
+#Else
+Private Function FillRectangle(ByVal hBitmap As Long, ByVal lColor As Long, ByVal Alpha As Long, ByVal X As Long, ByVal Y As Long, ByVal Width As Long, ByVal Height As Long) As Boolean
+
+    Dim hGraphics As Long, hBrush As Long
+
+    If GdipGetImageGraphicsContext(hBitmap, hGraphics) = 0 Then
+   
+        If GdipCreateSolidFill(ConvertColor(lColor, Alpha), hBrush) = 0 Then
+    
+            Call GdipSetSmoothingMode(hGraphics, SmoothingModeAntiAlias)
+           
+            FillRectangle = GdipFillRectangle(hGraphics, hBrush, X, Y, Width, Height) = 0
+        
+            Call GdipDeleteBrush(hBrush)
+        End If
+        
+        Call GdipDeleteGraphics(hGraphics)
+    End If
+    
+End Function
+#End If
+
+Private Function ConvertColor(Color As Long, Opacity As Long) As Long
+    Dim BGRA(0 To 3) As Byte
+ 
+    BGRA(3) = CByte((Abs(Opacity) / 100) * 255)
+    BGRA(0) = ((Color \ &H10000) And &HFF)
+    BGRA(1) = ((Color \ &H100) And &HFF)
+    BGRA(2) = (Color And &HFF)
+    CopyMemory ConvertColor, BGRA(0), 4&
+End Function
+

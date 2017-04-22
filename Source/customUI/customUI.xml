@@ -377,7 +377,7 @@
         </group>
         <group id="color2003" label="2003互換色" image="format">
           <box id="boxPush1" boxStyle="horizontal">
-            <button id="execSelectionFormatFontColor" image="fontColor" label="文字" showLabel="false" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+            <button id="execSelectionFormatFontColor" getImage="getColorImage" label="文字" showLabel="false" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <gallery id="fontColorGallery" image="fontColor" showImage="false" columns="8" rows="5" itemWidth="12" itemHeight="12" label="文字" getSupertip="getSupertip" getDescription="getDescription" onAction="colorOnAction" getEnabled="getRibbonEnabled">
               <item id="legacyFont01" image="Palet01"/>
               <item id="legacyFont53" image="Palet02"/>
@@ -423,7 +423,7 @@
             </gallery>
           </box>
           <box id="boxPush2" boxStyle="horizontal">
-            <button id="execSelectionFormatLineColor" image="lineColor" label="枠線" showLabel="false" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+            <button id="execSelectionFormatLineColor" getImage="getColorImage" label="枠線" showLabel="false" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <gallery id="lineColorGallery" image="lineColor" columns="8" rows="5" itemWidth="12" itemHeight="12" showImage="false" label="枠線"  getSupertip="getSupertip" getDescription="getDescription" onAction="colorOnAction" getEnabled="getRibbonEnabled">
               <item id="legacyLine01" image="Palet01"/>
               <item id="legacyLine53" image="Palet02"/>
@@ -469,7 +469,7 @@
             </gallery>
           </box>
           <box id="boxPush3" boxStyle="horizontal">
-            <button id="execSelectionFormatBackColor" image="backColor"  label="背景" showLabel="false" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
+            <button id="execSelectionFormatBackColor" getImage="getColorImage" label="背景" showLabel="false" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
             <gallery id="backColorGallery" image="backColor" columns="8" rows="5" itemWidth="12" itemHeight="12" showImage="false" label="背景"  getSupertip="getSupertip" getDescription="getDescription" onAction="colorOnAction" getEnabled="getRibbonEnabled">
               <item id="legacyBack01" image="Palet01"/>
               <item id="legacyBack53" image="Palet02"/>
