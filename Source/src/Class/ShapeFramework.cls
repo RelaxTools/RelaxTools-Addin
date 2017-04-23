@@ -209,7 +209,7 @@ Public Sub Run()
             sd_pt.Y = 100
         Else
             'カーソル下のオブジェクト(セルかシェイプ）の中心の位置を割り出す
-            sd_pt.X = WD.RangeFromPoint(cr_px.X, cr_px.Y).Left + (WD.RangeFromPoint(cr_px.X, cr_px.Y).Width) / 2
+            sd_pt.X = WD.RangeFromPoint(cr_px.X, cr_px.Y).Left + (WD.RangeFromPoint(cr_px.X, cr_px.Y).width) / 2
             sd_pt.Y = WD.RangeFromPoint(cr_px.X, cr_px.Y).Top + (WD.RangeFromPoint(cr_px.X, cr_px.Y).Height) / 2
         End If
         'シード値から真のズームを求める
@@ -253,15 +253,15 @@ Public Sub Run()
     'マウスカーソルが作業ウィンドウ内にある場合
     Dim r As Range
     Set r = WD.ActivePane.VisibleRange
-    If r(1).Top < cr_pt.Y And r(1).Left < cr_pt.X And r(r.count).Offset(-1, -1).Top + r(r.count).Offset(-1, -1).Height > cr_pt.Y And r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).Width > cr_pt.X Then
+    If r(1).Top < cr_pt.Y And r(1).Left < cr_pt.X And r(r.count).Offset(-1, -1).Top + r(r.count).Offset(-1, -1).Height > cr_pt.Y And r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).width > cr_pt.X Then
     
         'シェイプをマウスカーソル位置に移動する。ただし、かならずカーソルの中心に移動できるわけではないため、下でシェイプにあわせてカーソルを移動
         objDataSet.Top = cr_pt.Y - (objDataSet.Height / 2)
-        objDataSet.Left = cr_pt.X - (objDataSet.Width / 2)
+        objDataSet.Left = cr_pt.X - (objDataSet.width / 2)
     Else
     
         objDataSet.Top = cr_pt.Y - (objDataSet.Height / 2)
-        objDataSet.Left = cr_pt.X - (objDataSet.Width / 2)
+        objDataSet.Left = cr_pt.X - (objDataSet.width / 2)
     
         If cr_pt.Y < r.Top Then
             objDataSet.Top = r.Top
@@ -275,8 +275,8 @@ Public Sub Run()
             objDataSet.Top = r(r.count).Offset(-1, -1).Top + r(r.count).Offset(-1, -1).Height - objDataSet.Height
         End If
         
-        If cr_pt.X > r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).Width - objDataSet.Width Then
-            objDataSet.Left = r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).Width - objDataSet.Width
+        If cr_pt.X > r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).width - objDataSet.width Then
+            objDataSet.Left = r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).width - objDataSet.width
         End If
 
     End If
@@ -289,28 +289,28 @@ Public Sub Run()
             dx_pt.X = objDataSet.Left + margin
             dx_pt.Y = objDataSet.Top + margin
         Case TopCenter
-            dx_pt.X = objDataSet.Left + (objDataSet.Width / 2)
+            dx_pt.X = objDataSet.Left + (objDataSet.width / 2)
             dx_pt.Y = objDataSet.Top + margin
         Case TopRight
-            dx_pt.X = objDataSet.Left + objDataSet.Width - margin
+            dx_pt.X = objDataSet.Left + objDataSet.width - margin
             dx_pt.Y = objDataSet.Top + margin
         Case MiddleLeft
             dx_pt.X = objDataSet.Left + margin
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case MiddleCenter
-            dx_pt.X = objDataSet.Left + (objDataSet.Width / 2)
+            dx_pt.X = objDataSet.Left + (objDataSet.width / 2)
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case MiddleRight
-            dx_pt.X = objDataSet.Left + objDataSet.Width - margin
+            dx_pt.X = objDataSet.Left + objDataSet.width - margin
             dx_pt.Y = objDataSet.Top + (objDataSet.Height / 2)
         Case BottomLeft
             dx_pt.X = objDataSet.Left + margin
             dx_pt.Y = objDataSet.Top + objDataSet.Height - margin
         Case BottomCenter
-            dx_pt.X = objDataSet.Left + (objDataSet.Width / 2)
+            dx_pt.X = objDataSet.Left + (objDataSet.width / 2)
             dx_pt.Y = objDataSet.Top + objDataSet.Height - margin
         Case BottomRight
-            dx_pt.X = objDataSet.Left + objDataSet.Width - margin
+            dx_pt.X = objDataSet.Left + objDataSet.width - margin
             dx_pt.Y = objDataSet.Top + objDataSet.Height - margin
     End Select
             

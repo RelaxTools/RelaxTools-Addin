@@ -48,7 +48,7 @@ Sub pasteSakura(ByVal strId As String, ByVal Index As Long)
  
     ActiveSheet.Paste
 
-    Selection.ShapeRange.Width = 25 * C_RASIO
+    Selection.ShapeRange.width = 25 * C_RASIO
     Selection.ShapeRange.Height = 25 * C_RASIO
 
     Application.ScreenUpdating = True
@@ -73,8 +73,8 @@ Function getImageSakura(ByVal strId As String, ByVal Index As Long) As StdPictur
     
     b.Top = r.Top
     b.Left = r.Left
-    b.Height = r.Width
-    b.Width = r.Width
+    b.Height = r.width
+    b.width = r.width
     
     b.ZOrder msoSendToBack
     

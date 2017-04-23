@@ -166,7 +166,7 @@ Sub pasteFusenOrg(ByVal strId As String, ByVal Index As Long)
     Call getSettingFusen(strText, strTag, varPrint, strWidth, strHeight, strFormat, strUserDate, strFusenDate, strFont, strSize, strHorizontalAnchor, strVerticalAnchor, varAutoSize, varOverFlow, varWordWrap)
     
     If strId <> "fsGallery05" Then
-        Selection.ShapeRange.Width = CDbl(strWidth) * 10 * C_RASIO
+        Selection.ShapeRange.width = CDbl(strWidth) * 10 * C_RASIO
         Selection.ShapeRange.Height = CDbl(strHeight) * 10 * C_RASIO
     End If
     

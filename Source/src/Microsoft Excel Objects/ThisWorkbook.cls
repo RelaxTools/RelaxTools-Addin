@@ -620,7 +620,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
 
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Top = r.Top
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Left = sngLeft
-        sh.Shapes(C_HOLIZONTAL_BAR_NAME).Width = sngWidth 'r.Width
+        sh.Shapes(C_HOLIZONTAL_BAR_NAME).width = sngWidth 'r.Width
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = 0
 
 
@@ -645,7 +645,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
 
         sh.Shapes(C_VERTICAL_BAR_NAME).Top = sngTop
         sh.Shapes(C_VERTICAL_BAR_NAME).Left = r.Left
-        sh.Shapes(C_VERTICAL_BAR_NAME).Width = 0
+        sh.Shapes(C_VERTICAL_BAR_NAME).width = 0
         sh.Shapes(C_VERTICAL_BAR_NAME).Height = sngHeight 'r.Height
 
         With sh.Shapes(C_VERTICAL_BAR_NAME).Fill
@@ -669,10 +669,10 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     If blnGuid Then
         Set r = Range(sh.Cells(1, lngCol), sh.Cells(sh.Rows.count - 1, lngCol))
 
-        sh.Shapes(C_XY_BAR_NAME).Width = 80
+        sh.Shapes(C_XY_BAR_NAME).width = 80
         sh.Shapes(C_XY_BAR_NAME).Height = 50
         sh.Shapes(C_XY_BAR_NAME).Top = Target(1).Top + Target(1).Height + 10
-        sh.Shapes(C_XY_BAR_NAME).Left = Target(1).Left + Target(1).Width + 10
+        sh.Shapes(C_XY_BAR_NAME).Left = Target(1).Left + Target(1).width + 10
 
 
         With sh.Shapes(C_XY_BAR_NAME).Fill

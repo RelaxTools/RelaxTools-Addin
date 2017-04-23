@@ -179,10 +179,10 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
         
         Set b = WS.Shapes("shpBack")
         
-        b.Top = r.Top - ((r.Width - r.Height) / 2)
+        b.Top = r.Top - ((r.width - r.Height) / 2)
         b.Left = r.Left
-        b.Height = r.Width
-        b.Width = r.Width
+        b.Height = r.width
+        b.width = r.width
         
         b.ZOrder msoSendToBack
         
@@ -303,16 +303,16 @@ Sub pasteStamp2(ByVal Index As Long)
             If ss.Address = ss.MergeArea(1, 1).Address Then
 
                 destLeft = ss.MergeArea.Left
-                destWidth = ss.MergeArea.Width
+                destWidth = ss.MergeArea.width
                 destTop = ss.MergeArea.Top
                 destHeight = ss.MergeArea.Height
 
                 ActiveSheet.Paste
 
-                Selection.ShapeRange.Width = sngSize
+                Selection.ShapeRange.width = sngSize
 
                 Selection.ShapeRange.Top = destTop + (destHeight / 2) - (Selection.ShapeRange.Height / 2)
-                Selection.ShapeRange.Left = destLeft + (destWidth / 2) - (Selection.ShapeRange.Width / 2)
+                Selection.ShapeRange.Left = destLeft + (destWidth / 2) - (Selection.ShapeRange.width / 2)
             End If
         End If
     Next

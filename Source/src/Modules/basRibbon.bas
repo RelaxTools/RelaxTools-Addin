@@ -99,6 +99,10 @@ Private Const PICTYPE_BITMAP As Long = 1
     Private Declare PtrSafe Function GdipDeleteGraphics Lib "gdiplus" (ByVal graphics As LongPtr) As Long
     Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
     
+    Private Declare PtrSafe Function GdipCreatePen1 Lib "gdiplus" (ByVal pColor As Long, ByVal width As Long, ByVal unit As Long, ByRef hPen As LongPtr) As Long
+    Private Declare PtrSafe Function GdipDrawRectangle Lib "gdiplus" (ByVal hGraphics As LongPtr, ByVal hPen As LongPtr, ByVal X As Single, ByVal Y As Single, ByVal nWidth As Single, ByVal nHeight As Single) As Long
+    Private Declare PtrSafe Function GdipDeletePen Lib "gdiplus" (ByVal hPen As LongPtr) As Long
+    
 #Else
     Private Declare Function GdipCreateBitmapFromFile Lib "gdiplus" (ByVal filename As Long, bitmap As Long) As Long
     Private Declare Function GdipCreateHBITMAPFromBitmap Lib "gdiplus" (ByVal bitmap As Long, hbmReturn As Long, ByVal background As Long) As Long
@@ -129,6 +133,9 @@ Private Const PICTYPE_BITMAP As Long = 1
     Private Declare Function GdipDeleteBrush Lib "gdiplus" (ByVal mBrush As Long) As Long
     Private Declare Function GdipDeleteGraphics Lib "gdiplus" (ByVal graphics As Long) As Long
     Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
+    Private Declare Function GdipCreatePen1 Lib "gdiplus" (ByVal pColor As Long, ByVal width As Long, ByVal unit As Long, ByRef hPen As Long) As Long
+    Private Declare Function GdipDrawRectangle Lib "gdiplus" (ByVal hGraphics As Long, ByVal hPen As Long, ByVal X As Single, ByVal Y As Single, ByVal nWidth As Single, ByVal nHeight As Single) As Long
+    Private Declare Function GdipDeletePen Lib "gdiplus" (ByVal hPen As Long) As Long
 #End If
 
 
@@ -1599,6 +1606,9 @@ Sub getColorImage(control As IRibbonControl, ByRef image) ' 画像の設定
     Dim pictureId As String
     Dim strColor As String
     Dim lngColor As Long
+    Dim blnTranspairent As Boolean
+    
+    blnTranspairent = False
     
     Select Case control.Id
         Case "execSelectionFormatFontColor"
@@ -1613,10 +1623,14 @@ Sub getColorImage(control As IRibbonControl, ByRef image) ' 画像の設定
     End Select
         
     If strColor = C_COLOR_OTHER Then
-        lngColor = 1
-    Else
-        lngColor = ThisWorkbook.Colors(Val(strColor))
+        If control.Id = "execSelectionFormatBackColor" Then
+            strColor = "02"
+            blnTranspairent = True
+        Else
+            strColor = "01"
+        End If
     End If
+    lngColor = ThisWorkbook.Colors(Val(strColor))
     
     Dim file As String
     
@@ -1624,7 +1638,7 @@ Sub getColorImage(control As IRibbonControl, ByRef image) ' 画像の設定
     
     'イメージが見つからなかったら「×」表示する
     If rlxIsFileExists(file) Then
-        Set image = LoadImageColor(file, lngColor)
+        Set image = LoadImageColor(file, lngColor, blnTranspairent)
     Else
         image = "CancelRequest"
     End If
@@ -1784,7 +1798,7 @@ Private Function LoadImage(ByVal strFName As String) As IPicture
   
 End Function
 ' イメージを読み込む（色バーつき）
-Private Function LoadImageColor(ByVal strFName As String, ByVal lngColor As Long) As IPicture
+Private Function LoadImageColor(ByVal strFName As String, ByVal lngColor As Long, ByVal blnTranspairent As Boolean) As IPicture
 
     Dim uGdiInput As GdiplusStartupInput
     
@@ -1804,7 +1818,12 @@ Private Function LoadImageColor(ByVal strFName As String, ByVal lngColor As Long
   
         If GdipCreateBitmapFromFile(StrPtr(strFName), hGdiImage) = 0& Then
         
-            Call FillRectangle(hGdiImage, lngColor, 100, 0, 12, 16, 4)
+            If blnTranspairent Then
+                Call DrawRectangle(hGdiImage, RGB(150, 150, 150), 100, 0, 12, 15, 3)
+                
+            Else
+                Call FillRectangle(hGdiImage, lngColor, 100, 0, 12, 15, 3)
+            End If
             
             Call GdipCreateHBITMAPFromBitmap(hGdiImage, hBitmap, 0&)
           
@@ -1833,7 +1852,7 @@ Private Function LoadImageColor(ByVal strFName As String, ByVal lngColor As Long
 End Function
 
 #If VBA7 And Win64 Then
-Private Function FillRectangle(ByVal hBitmap As LongPtr, ByVal lColor As Long, ByVal Alpha As Long, ByVal X As Long, ByVal Y As Long, ByVal Width As Long, ByVal Height As Long) As Boolean
+Private Function FillRectangle(ByVal hBitmap As LongPtr, ByVal lColor As Long, ByVal Alpha As Long, ByVal X As Long, ByVal Y As Long, ByVal width As Long, ByVal Height As Long) As Boolean
 
     Dim hGraphics As LongPtr, hBrush As LongPtr
 
@@ -1843,7 +1862,7 @@ Private Function FillRectangle(ByVal hBitmap As LongPtr, ByVal lColor As Long, B
     
             Call GdipSetSmoothingMode(hGraphics, SmoothingModeAntiAlias)
            
-            FillRectangle = GdipFillRectangle(hGraphics, hBrush, X, Y, Width, Height) = 0
+            FillRectangle = GdipFillRectangle(hGraphics, hBrush, X, Y, width, Height) = 0
         
             Call GdipDeleteBrush(hBrush)
         End If
@@ -1852,8 +1871,27 @@ Private Function FillRectangle(ByVal hBitmap As LongPtr, ByVal lColor As Long, B
     End If
     
 End Function
+Private Function DrawRectangle(ByVal hBitmap As LongPtr, ByVal lColor As Long, ByVal Alpha As Long, ByVal X As Long, ByVal Y As Long, ByVal width As Long, ByVal Height As Long) As Boolean
+
+    Dim hGraphics As LongPtr, hPen As LongPtr
+
+    If GdipGetImageGraphicsContext(hBitmap, hGraphics) = 0 Then
+   
+        If GdipCreatePen1(ConvertColor(lColor, Alpha), 1, 2&, hPen) = 0 Then
+    
+            Call GdipSetSmoothingMode(hGraphics, SmoothingModeAntiAlias)
+           
+            DrawRectangle = GdipDrawRectangle(hGraphics, hPen, X, Y, width, Height) = 0
+        
+            Call GdipDeletePen(hPen)
+        End If
+        
+        Call GdipDeleteGraphics(hGraphics)
+    End If
+    
+End Function
 #Else
-Private Function FillRectangle(ByVal hBitmap As Long, ByVal lColor As Long, ByVal Alpha As Long, ByVal X As Long, ByVal Y As Long, ByVal Width As Long, ByVal Height As Long) As Boolean
+Private Function FillRectangle(ByVal hBitmap As Long, ByVal lColor As Long, ByVal Alpha As Long, ByVal X As Long, ByVal Y As Long, ByVal width As Long, ByVal Height As Long) As Boolean
 
     Dim hGraphics As Long, hBrush As Long
 
@@ -1863,9 +1901,28 @@ Private Function FillRectangle(ByVal hBitmap As Long, ByVal lColor As Long, ByVa
     
             Call GdipSetSmoothingMode(hGraphics, SmoothingModeAntiAlias)
            
-            FillRectangle = GdipFillRectangle(hGraphics, hBrush, X, Y, Width, Height) = 0
+            FillRectangle = GdipFillRectangle(hGraphics, hBrush, X, Y, width, Height) = 0
         
             Call GdipDeleteBrush(hBrush)
+        End If
+        
+        Call GdipDeleteGraphics(hGraphics)
+    End If
+    
+End Function
+Private Function DrawRectangle(ByVal hBitmap As Long, ByVal lColor As Long, ByVal Alpha As Long, ByVal X As Long, ByVal Y As Long, ByVal width As Long, ByVal Height As Long) As Boolean
+
+    Dim hGraphics As Long, hPen As Long
+
+    If GdipGetImageGraphicsContext(hBitmap, hGraphics) = 0 Then
+   
+        If GdipCreatePen1(ConvertColor(lColor, Alpha), 1, 2&, hPen) = 0 Then
+    
+            Call GdipSetSmoothingMode(hGraphics, SmoothingModeAntiAlias)
+           
+            DrawRectangle = GdipDrawRectangle(hGraphics, hPen, X, Y, width, Height) = 0
+        
+            Call GdipDeletePen(hPen)
         End If
         
         Call GdipDeleteGraphics(hGraphics)
@@ -1883,4 +1940,5 @@ Private Function ConvertColor(Color As Long, Opacity As Long) As Long
     BGRA(2) = (Color And &HFF)
     CopyMemory ConvertColor, BGRA(0), 4&
 End Function
+
 

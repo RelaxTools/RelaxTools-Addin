@@ -144,7 +144,7 @@ Sub PickShape(ByRef objDataSet As Object)
         dx = 100
         dy = 100
     Else
-        dx = ActiveWindow.RangeFromPoint(a.X, a.Y).Left + (ActiveWindow.RangeFromPoint(a.X, a.Y).Width) / 2
+        dx = ActiveWindow.RangeFromPoint(a.X, a.Y).Left + (ActiveWindow.RangeFromPoint(a.X, a.Y).width) / 2
         dy = ActiveWindow.RangeFromPoint(a.X, a.Y).Top + (ActiveWindow.RangeFromPoint(a.X, a.Y).Height) / 2
     End If
     
@@ -213,10 +213,10 @@ Sub PickShape(ByRef objDataSet As Object)
     Set r = ActiveWindow.ActivePane.VisibleRange
     
     'マウスカーソルが作業ウィンドウ内にある場合
-    If r(1).Top < Y And r(1).Left < X And r(r.count).Top + r(r.count).Height > Y + objDataSet.Height And r(r.count).Left + r(r.count).Width > X + objDataSet.Width Then
+    If r(1).Top < Y And r(1).Left < X And r(r.count).Top + r(r.count).Height > Y + objDataSet.Height And r(r.count).Left + r(r.count).width > X + objDataSet.width Then
     
         'シェイプをマウスカーソル位置に移動する
-        objDataSet.Left = X - (objDataSet.Width / 2)
+        objDataSet.Left = X - (objDataSet.width / 2)
         objDataSet.Top = Y - (objDataSet.Height / 2)
         
         'シェイプを選択
@@ -225,7 +225,7 @@ Sub PickShape(ByRef objDataSet As Object)
     'マウスカーソルが作業ウィンドウ外にある場合
     Else
         'カーソルをシェイプに移動する
-        ax = ((objDataSet.Left + (objDataSet.Width / 2) - ActiveSheet.Cells(by, bx).Left + cx) * DPI / PPI)
+        ax = ((objDataSet.Left + (objDataSet.width / 2) - ActiveSheet.Cells(by, bx).Left + cx) * DPI / PPI)
         X = Round(spx + ax / dblZoomX)
         
         ay = ((objDataSet.Top + (objDataSet.Height / 2) - ActiveSheet.Cells(by, bx).Top + cy) * DPI / PPI)

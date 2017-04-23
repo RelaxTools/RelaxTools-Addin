@@ -53,7 +53,7 @@ Sub straightLine()
         Dim w As Long
         Dim h As Long
         
-        w = s.Width
+        w = s.width
         h = s.Height
         
         If w > h Then
@@ -65,10 +65,10 @@ Sub straightLine()
             End If
         Else
             If s.HorizontalFlip Then
-                s.Left = s.Left + s.Width
-                s.Width = 0
+                s.Left = s.Left + s.width
+                s.width = 0
             Else
-                s.Width = 0
+                s.width = 0
             End If
         End If
     Next
@@ -97,7 +97,7 @@ Sub drawFlowchartStoredData()
     For Each r In Selection
         
         'データ記憶シェイプの作成
-        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeFlowchartStoredData, r.Left + r.Width, r.Top, C_RECT_X * C_NORMAL_WIDTH, C_RECT_Y * C_NORMAL_HEIGHT)
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeFlowchartStoredData, r.Left + r.width, r.Top, C_RECT_X * C_NORMAL_WIDTH, C_RECT_Y * C_NORMAL_HEIGHT)
     
         With objDataSet.TextFrame
             .Characters.Text = r.Value
@@ -127,7 +127,7 @@ Sub drawTextbox1()
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
         'データ記憶シェイプの作成
-        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, r.Left + r.width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
             .Characters.Text = r.Value
@@ -156,7 +156,7 @@ Sub drawTextbox2()
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
         'データ記憶シェイプの作成
-        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangle, r.Left + r.width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
             .Characters.Text = r.Value
@@ -187,7 +187,7 @@ Sub drawShapeRectangularCallout()
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
         'データ記憶シェイプの作成
-        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRectangularCallout, r.Left + r.width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
             .Characters.Text = r.Value
@@ -215,7 +215,7 @@ Sub drawShapeRoundedRectangularCallout()
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
         'データ記憶シェイプの作成
-        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRoundedRectangularCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeRoundedRectangularCallout, r.Left + r.width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
             .Characters.Text = r.Value
@@ -243,7 +243,7 @@ Sub drawShapeOvalCallout()
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
         'データ記憶シェイプの作成
-        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOvalCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeOvalCallout, r.Left + r.width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
             .Characters.Text = r.Value
@@ -271,7 +271,7 @@ Sub drawShapeCloudCallout()
         lngCnt = InStr(strBuf, vbCrLf) + 3
         
         'データ記憶シェイプの作成
-        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeCloudCallout, r.Left + r.Width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
+        Set objDataSet = ActiveSheet.Shapes.AddShape(msoShapeCloudCallout, r.Left + r.width, r.Top, C_RECT_X * 10, C_RECT_Y * lngCnt)
     
         With objDataSet.TextFrame
             .Characters.Text = r.Value

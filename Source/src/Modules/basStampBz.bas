@@ -349,7 +349,7 @@ Sub pasteStampBz2(Optional ByVal Index As Variant)
     Application.ScreenUpdating = False
     
     destLeft = ActiveCell.Left
-    destWidth = ActiveCell.Width
+    destWidth = ActiveCell.width
     destTop = ActiveCell.Top
     destHeight = ActiveCell.Height
  
@@ -357,13 +357,13 @@ Sub pasteStampBz2(Optional ByVal Index As Variant)
 
     Select Case datStampBz.Rotate
         Case C_STAMP_ROTATE_HOLIZONTAL
-            Selection.ShapeRange.Width = sngSize
+            Selection.ShapeRange.width = sngSize
         Case C_STAMP_ROTATE_VERTICAL
             Selection.ShapeRange.Height = sngSize
     End Select
     
     Selection.ShapeRange.Top = destTop + (destHeight / 2) - (Selection.ShapeRange.Height / 2)
-    Selection.ShapeRange.Left = destLeft + (destWidth / 2) - (Selection.ShapeRange.Width / 2)
+    Selection.ShapeRange.Left = destLeft + (destWidth / 2) - (Selection.ShapeRange.width / 2)
     
     Selection.Copy
     Application.ScreenUpdating = True
@@ -545,11 +545,11 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
     Select Case datStampBz.StampType
         Case C_STAMP_BZ_RECTANGLE
             WS.Shapes("grpSquare").Height = 50 * C_RASIO
-            WS.Shapes("grpSquare").Width = 150 * C_RASIO
+            WS.Shapes("grpSquare").width = 150 * C_RASIO
         
         Case Else
             WS.Shapes("grpSquare").Height = 150 * C_RASIO
-            WS.Shapes("grpSquare").Width = 150 * C_RASIO
+            WS.Shapes("grpSquare").width = 150 * C_RASIO
         
     End Select
     
@@ -564,11 +564,11 @@ Public Function editStampBz(ByRef datStampBz As StampBzDTO, ByVal lngFormat As L
         
         Set b = WS.Shapes("shpBack")
         
-        b.Top = r.Top - ((r.Width - r.Height) / 2)
+        b.Top = r.Top - ((r.width - r.Height) / 2)
         b.Left = r.Left
         
-        b.Height = r.Width
-        b.Width = r.Width
+        b.Height = r.width
+        b.width = r.width
         
         b.ZOrder msoSendToBack
         

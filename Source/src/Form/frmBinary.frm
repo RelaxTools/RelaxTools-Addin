@@ -111,7 +111,7 @@ Private Sub UserForm_Initialize()
     Dim varWidth As Variant
     
     varLeft = Array(lblHead01.Left, lblHead02.Left, lblHead03.Left, lblHead04.Left, lblHead05.Left, lblHead06.Left, lblHead07.Left, lblHead08.Left, lblHead09.Left, lblHead18.Left)
-    varWidth = Array(lblHead01.Width, lblHead02.Width, lblHead03.Width, lblHead04.Width, lblHead05.Width, lblHead06.Width, lblHead07.Width, lblHead08.Width, lblHead09.Width, lblHead18.Width)
+    varWidth = Array(lblHead01.width, lblHead02.width, lblHead03.width, lblHead04.width, lblHead05.width, lblHead06.width, lblHead07.width, lblHead08.width, lblHead09.width, lblHead18.width)
     
     lngTop = 4
     ReDim objLabel(1 To 16, 1 To 10)
@@ -132,7 +132,7 @@ Private Sub UserForm_Initialize()
             
             lbl.Top = lngTop
             lbl.Left = varLeft(j - 1)
-            lbl.Width = varWidth(j - 1)
+            lbl.width = varWidth(j - 1)
 '            lbl.Height = 16
             lbl.BackColor = &HFFFFFF
             lbl.SpecialEffect = fmSpecialEffectEtched

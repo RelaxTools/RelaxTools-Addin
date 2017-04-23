@@ -215,7 +215,7 @@ Private Sub htmlConv(ByVal flg As Variant)
     
     lngTotal = 0
     For lngCol = 1 To Selection.Columns.count
-        lngPoint(lngCol) = Selection.Columns(lngCol).Width
+        lngPoint(lngCol) = Selection.Columns(lngCol).width
         lngTotal = lngTotal + lngPoint(lngCol)
     Next
 

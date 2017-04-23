@@ -244,7 +244,7 @@ Private Sub UserForm_Initialize()
     Next
    
     Me.Top = (Application.Top + Application.Height - Me.Height) - 20
-    Me.Left = (Application.Left + Application.Width - Me.Width) - 20
+    Me.Left = (Application.Left + Application.width - Me.width) - 20
     
     Set MW = basMouseWheel.GetInstance
     MW.Install Me

@@ -838,7 +838,7 @@ Private Sub UserForm_Initialize()
 '    chkSmartArt.value = GetSetting(C_TITLE, "Search", "chkSmartArt", False)
 
     Me.Top = (Application.Top + Application.Height - Me.Height) - 20
-    Me.Left = (Application.Left + Application.Width - Me.Width) - 20
+    Me.Left = (Application.Left + Application.width - Me.width) - 20
 '
 '    With txtSearch
 '        .SelStart = 0

@@ -73,7 +73,7 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
     c = ActiveWindow.ActivePane.ScrollColumn
     r = ActiveWindow.ActivePane.ScrollRow
     
-    Set obj = ActiveSheet.Shapes.AddConnector(msoConnectorStraight, Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height - (C_NORMAL_HEIGHT * 25), Selection.Left + (Selection.Width / 2), Selection.Top + Selection.Height)
+    Set obj = ActiveSheet.Shapes.AddConnector(msoConnectorStraight, Selection.Left + (Selection.width / 2), Selection.Top + Selection.Height - (C_NORMAL_HEIGHT * 25), Selection.Left + (Selection.width / 2), Selection.Top + Selection.Height)
     
     With obj
         

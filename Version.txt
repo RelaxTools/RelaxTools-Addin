@@ -1,4 +1,4 @@
-﻿2017/04/23(sun) RelaxTools-Addin Version 4.13.4(RustRemover) 
+﻿2017/04/23(sun) RelaxTools-Addin Version 4.13.5(RustRemover) 
 ◇バグ修正
 ・2003互換色の背景で「塗りつぶしなし」で前回の色が「黒」になっていた不具合を修正。
 

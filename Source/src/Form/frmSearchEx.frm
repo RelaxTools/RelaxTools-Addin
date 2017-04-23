@@ -1149,7 +1149,7 @@ Private Sub UserForm_Initialize()
     chkSmartArt.Value = GetSetting(C_TITLE, "Search", "chkSmartArt", False)
 
     Me.Top = (Application.Top + Application.Height - Me.Height) - 20
-    Me.Left = (Application.Left + Application.Width - Me.Width) - 20
+    Me.Left = (Application.Left + Application.width - Me.width) - 20
     
     With txtSearch
         .SelStart = 0
@@ -1157,14 +1157,14 @@ Private Sub UserForm_Initialize()
     End With
     
     
-    RW.FormWidth = Me.Width
+    RW.FormWidth = Me.width
     RW.FormHeight = Me.Height
     
-    mlngListWidth = Me.lstResult.Width
+    mlngListWidth = Me.lstResult.width
     mlngListHeight = Me.lstResult.Height
-    mlngTabWidth = Me.schTab.Width
+    mlngTabWidth = Me.schTab.width
     mlngTabHeight = Me.schTab.Height
-    mlngLblWidth = Me.lblSearch.Width
+    mlngLblWidth = Me.lblSearch.width
     mlngLblObjLeft = Me.lblObj.Left
     mlngLblPlaceLeft = Me.lblPlace.Left
     mlngColumnWidth = Val(Split(Me.lstResult.ColumnWidths, ";")(1))
@@ -1371,26 +1371,26 @@ End Sub
 
 Private Sub UserForm_Resize()
     On Error Resume Next
-    If RW.FormWidth > Me.Width Then
-        Me.Width = RW.FormWidth
+    If RW.FormWidth > Me.width Then
+        Me.width = RW.FormWidth
     End If
     If RW.FormHeight > Me.Height Then
         Me.Height = RW.FormHeight
     End If
     
-    lstResult.Width = mlngListWidth + (Me.Width - RW.FormWidth)
+    lstResult.width = mlngListWidth + (Me.width - RW.FormWidth)
     lstResult.Height = mlngListHeight + (Me.Height - RW.FormHeight)
-    schTab.Width = mlngTabWidth + (Me.Width - RW.FormWidth)
+    schTab.width = mlngTabWidth + (Me.width - RW.FormWidth)
     schTab.Height = mlngTabHeight + (Me.Height - RW.FormHeight)
-    lblSearch.Width = mlngLblWidth + (Me.Width - RW.FormWidth)
-    lblObj.Left = mlngLblObjLeft + (Me.Width - RW.FormWidth)
-    lblPlace.Left = mlngLblPlaceLeft + (Me.Width - RW.FormWidth)
+    lblSearch.width = mlngLblWidth + (Me.width - RW.FormWidth)
+    lblObj.Left = mlngLblObjLeft + (Me.width - RW.FormWidth)
+    lblPlace.Left = mlngLblPlaceLeft + (Me.width - RW.FormWidth)
     
     
     Dim a As Variant
     a = Split(Me.lstResult.ColumnWidths, ";")
     
-    a(1) = mlngColumnWidth + (Me.Width - RW.FormWidth)
+    a(1) = mlngColumnWidth + (Me.width - RW.FormWidth)
     Me.lstResult.ColumnWidths = Join(a, ";")
     
     

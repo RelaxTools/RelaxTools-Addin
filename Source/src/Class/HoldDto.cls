@@ -43,7 +43,7 @@ Public ReadOnly As Boolean
 Public Top As Long
 Public Left As Long
 Public Height As Long
-Public Width As Long
+Public width As Long
 Public WindowState As Long
 
 

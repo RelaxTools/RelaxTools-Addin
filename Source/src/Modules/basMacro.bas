@@ -2791,7 +2791,7 @@ Public Sub saveImage()
         Call CopyClipboardSleep
         ActiveSheet.Paste
         With Selection
-            m_Width = .Width: m_Height = .Height
+            m_Width = .width: m_Height = .Height
             .CopyPicture xlScreen, xlBitmap
             Call CopyClipboardSleep
             .Delete

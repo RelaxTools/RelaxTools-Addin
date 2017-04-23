@@ -152,10 +152,10 @@ Sub dispPreview()
     Dim lngsize As Double
     Select Case True
         Case optLineSingle.Value, optLineBold.Value
-            lngsize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Width
+            lngsize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").width
 
         Case optLineDouble.Value
-            lngsize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Width * 0.8
+            lngsize = ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").width * 0.8
 
     End Select
     ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Height = lngsize

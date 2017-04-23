@@ -518,19 +518,19 @@ Private Sub UserForm_Initialize()
 '    cmdDel.Caption = "一覧から" & vbCrLf & "削除"
 '    cmdAdd.Caption = "現在のブックを" & vbCrLf & "追加"
     
-    RW.FormWidth = Me.Width
+    RW.FormWidth = Me.width
     RW.FormHeight = Me.Height
     
 '    mlngButtonLeft = Me.fraButton.Left
-    mlngListWidth = Me.lstFavorite.Width
+    mlngListWidth = Me.lstFavorite.width
     mlngListHeight = Me.lstFavorite.Height
-    mlngLblBookWidth = Me.lblBook.Width
+    mlngLblBookWidth = Me.lblBook.width
     
     mlngDetailTop = Me.txtDetail.Top
-    mlngDetailWidth = Me.txtDetail.Width
+    mlngDetailWidth = Me.txtDetail.width
     
     mlngLblTop = Me.lblMsg.Top
-    mlngLblWidth = Me.lblMsg.Width
+    mlngLblWidth = Me.lblMsg.width
     
 '    Me.Top = GetSetting(C_TITLE, "Favirite", "Top", Application.Top + 20)
 '    Me.Left = GetSetting(C_TITLE, "Favirite", "Left", Application.Left + 20)
@@ -1043,7 +1043,7 @@ End Sub
 Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
     SaveSetting C_TITLE, "Favirite", "Top", Me.Top
     SaveSetting C_TITLE, "Favirite", "Left", Me.Left
-    SaveSetting C_TITLE, "Favirite", "Width", Me.Width
+    SaveSetting C_TITLE, "Favirite", "Width", Me.width
     SaveSetting C_TITLE, "Favirite", "Height", Me.Height
     
 End Sub

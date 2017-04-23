@@ -73,7 +73,7 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
     c = ActiveWindow.ActivePane.ScrollColumn
     r = ActiveWindow.ActivePane.ScrollRow
     
-    Set obj = ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left + (Selection.Width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
+    Set obj = ActiveSheet.Shapes.AddShape(msoShapeRectangle, Selection.Left + (Selection.width - C_RECT_X * C_NORMAL_WIDTH * 3) / 2, Selection.Top + (Selection.Height - C_RECT_Y * C_NORMAL_HEIGHT) / 2, C_RECT_X * C_NORMAL_WIDTH * 3, C_RECT_Y * C_NORMAL_HEIGHT)
     With obj
     
         '基本のスタイルをセット

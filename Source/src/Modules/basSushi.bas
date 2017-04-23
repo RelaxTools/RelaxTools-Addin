@@ -200,7 +200,7 @@ Sub SushiGoRound()
                 End If
 
                 DoEvents
-                If f.Left > (Application.Left + Application.Width - 36) Then
+                If f.Left > (Application.Left + Application.width - 36) Then
                     f.Tag = "↑"
                 End If
             End If
@@ -208,7 +208,7 @@ Sub SushiGoRound()
             '↑
             If f.Tag = "↑" Then
                 f.Top = f.Top - lngMove
-                f.Left = Application.Left + Application.Width - lngLeftfrgin
+                f.Left = Application.Left + Application.width - lngLeftfrgin
                 DoEvents
                 If f.Top < (Application.Top + lngTopfrgin) Then
                     f.Tag = "←"
