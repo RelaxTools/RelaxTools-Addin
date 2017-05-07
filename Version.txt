@@ -1,6 +1,9 @@
-﻿2017/04/25(tue) RelaxTools-Addin Version 4.13.6(RustRemover) 
+﻿2017/05/07(sun) RelaxTools-Addin Version 4.13.6(RustRemover) 
 ◇機能改善
-・アドインの肥大化につき画像ファイルの圧縮を行った。
+・アドインの肥大化につき画像ファイルの圧縮を行いファイルサイズの削減を行った。
+◇バグ修正
+・「表示形式：標準(リフレッシュ有)」、「表示形式：文字列(リフレッシュ有)」で
+　複数エリアに対して行うと、セルの値を壊していた不具合を修正。
 
 2017/04/23(sun) RelaxTools-Addin Version 4.13.5(RustRemover) 
 ◇バグ修正
