@@ -136,6 +136,10 @@ Public Sub Run()
 '        Exit Sub
 '    End If
     
+    Dim strRange As String
+    
+    strRange = Selection.Address
+    
     '---------------------------
     '初期化イベント
     '---------------------------
@@ -166,7 +170,11 @@ Public Sub Run()
     '---------------------------
     Application.ScreenUpdating = False
     
-    RaiseEvent SelectionMain(Selection)
+    For Each r In Selection.Areas
+    
+        RaiseEvent SelectionMain(r)
+    
+    Next
 
     Application.ScreenUpdating = True
     
@@ -181,6 +189,8 @@ Public Sub Run()
         'Undo
         Application.OnUndo "Undo", "execUndo"
     End If
+    
+    Range(strRange).Select
     
     Exit Sub
 ErrHandle:
@@ -212,4 +222,5 @@ Private Sub grouprc(ByRef objShape As Shape, ByRef Cancel As Boolean)
     Next
 
 End Sub
+
 
