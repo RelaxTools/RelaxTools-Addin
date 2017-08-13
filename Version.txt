@@ -1,4 +1,4 @@
-﻿2017/08/13(sun) RelaxTools-Addin Version 4.13.7(RustRemover) 
+﻿2017/08/13(sun) RelaxTools-Addin Version 4.13.8(RustRemover) 
 ◇機能改善
 ・かんたん表DXで「矩形」を「短形」と記述していたのを修正。
 ・シートを新しいブックにコピーする際、ActiveBookで新しくコピーしたブックを判定していたが、
