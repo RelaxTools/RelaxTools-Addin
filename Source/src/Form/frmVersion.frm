@@ -65,7 +65,7 @@ Private Sub imgMado_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, B
     
     Set WSH = CreateObject("WScript.Shell")
     
-    Call WSH.Run("http://forest.watch.impress.co.jp/prize/2014/")
+    Call WSH.Run("http://forest.watch.impress.co.jp/docs/prize/2014/681765.html")
     
     Set WSH = Nothing
 

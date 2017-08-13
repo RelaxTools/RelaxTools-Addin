@@ -558,6 +558,8 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
                 Set objMatch = Nothing
                 Set objFind = objSheet.UsedRange.FindNext(objFind)
                 
+                DoEvents
+                
                 If objFind Is Nothing Then
                     Exit Do
                 End If
@@ -605,6 +607,8 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
                 If objFind Is Nothing Then
                     Exit Do
                 End If
+                
+                DoEvents
                 
             Loop Until strFirstAddress = objFind.Address
             
@@ -694,6 +698,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
                 End If
 
         End Select
+        DoEvents
     Next
 
 End Sub

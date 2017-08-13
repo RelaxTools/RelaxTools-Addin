@@ -84,7 +84,7 @@ Sub saveWorkSheets()
     
         Application.DisplayAlerts = False
         ActiveWorkbook.Windows(1).SelectedSheets.Copy
-        Set b = ActiveWorkbook
+        Set b = Application.Workbooks(Application.Workbooks.count)
         Select Case LCase(Mid$(vntFileName, InStr(vntFileName, ".") + 1))
             Case "xls"
                 b.SaveAs filename:=vntFileName, FileFormat:=xlExcel8, local:=True
@@ -776,7 +776,7 @@ Sub divideWorkBook()
             '現在のシートをコピーして新規のワークブックを作成する。
             WS.Copy
             
-            Set WB = ActiveWorkbook
+            Set WB = Application.Workbooks(Application.Workbooks.count)
             
             '新規作成したワークブックを保存する。フォーマットは親と同じ
             Application.DisplayAlerts = False
@@ -831,7 +831,7 @@ Sub mergeWorkBook()
         For Each WS In WB.Worksheets
             If blnFirst Then
                 WS.Copy
-                Set motoWB = ActiveWorkbook
+                Set motoWB = Application.Workbooks(Application.Workbooks.count)
                 blnFirst = False
             Else
                 WS.Copy , motoWB.Worksheets(motoWB.Worksheets.count)

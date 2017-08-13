@@ -70,7 +70,7 @@ Sub BinaryViewer()
     Dim WS As Worksheet
     
     ThisWorkbook.Worksheets("BinaryView").Copy
-    Set WS = ActiveSheet
+    Set WS = Application.Workbooks(Application.Workbooks.count).Worksheets(1)
     
     Dim lngRow As Long
     Dim lngCol As Long

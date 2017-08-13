@@ -380,3 +380,6 @@ Sub ShowFCS()
         .Run (C_FCS_URL)
     End With
 End Sub
+Sub ShowReport()
+    frmReport.Show
+End Sub

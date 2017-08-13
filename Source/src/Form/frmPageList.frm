@@ -182,7 +182,7 @@ Private Sub cmdOK_Click()
     Set objFs = Nothing
     
     ThisWorkbook.Worksheets("ページ数カウント結果").Copy
-    Set ResultWS = ActiveSheet
+    Set ResultWS = Application.Workbooks(Application.Workbooks.count).Worksheets(1)
     
     ResultWS.Cells(1, C_SEARCH_NO).Value = "No."
     ResultWS.Cells(1, C_SEARCH_BOOK).Value = "ファイル名"

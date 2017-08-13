@@ -188,9 +188,8 @@ Private Sub cmdOK_Click()
     Set objFs = Nothing
     
     ThisWorkbook.Worksheets("Grep結果").Copy
-    Set ResultWS = ActiveSheet
-    
-    'Set ResultWS = Workbooks.Add.Worksheets(1)
+    DoEvents
+    Set ResultWS = Application.Workbooks(Application.Workbooks.count).Worksheets(1)
     ResultWS.Name = "Grep結果"
     
     ResultWS.Cells(1, C_SEARCH_NO).Value = "ExcelファイルのGrep"
@@ -282,6 +281,7 @@ Private Sub cmdOK_Click()
         Set WB = Nothing
         lngBookCount = lngBookCount + 1
         mMm.DisplayGauge lngBookCount
+        DoEvents
     Next
     
     XL.EnableEvents = True

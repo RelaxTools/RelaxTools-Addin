@@ -158,7 +158,8 @@ Private Sub cmdSaveBook_Click()
             ActiveWorkbook.Sheets(Split(strSheets, vbTab)).Copy
             
             'ActiveWorkbook.Windows(1).SelectedSheets.Copy
-            Set b = ActiveWorkbook
+            Set b = Application.Workbooks(Application.Workbooks.count)
+            
             Select Case LCase(Mid$(vntFileName, InStr(vntFileName, ".") + 1))
                 Case "xls"
                     b.SaveAs filename:=vntFileName, FileFormat:=xlExcel8, local:=True

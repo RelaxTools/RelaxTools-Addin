@@ -47,6 +47,9 @@ Private mlngMaxItem As Variant
 Private mlngIndexStatusBar As Variant
 Private mblnNotCallDispose As Boolean
 Private mobjPointer As Excel.XlMousePointer
+Private mobjCalculation As Excel.XlCalculation
+Private mblnEnableEventsas As Boolean
+
 '-------------------------------------
 ' Initialize
 '-------------------------------------
@@ -73,6 +76,11 @@ Private Sub Class_Initialize()
 
     'マウスポインタを砂時計にする。
     mobjPointer = Application.Cursor
+    Application.Cursor = xlWait
+    mobjCalculation = Application.Calculation
+    Application.Calculation = xlCalculationManual
+    mblnEnableEventsas = Application.EnableEvents
+    Application.EnableEvents = False
     
 End Sub
 '-------------------------------------
@@ -94,6 +102,7 @@ Public Sub Refresh()
     Else
         Application.StatusBar = mlngIndexStatusBar & " / " & mlngMaxItem & " 件 処理中です..."
     End If
+    DoEvents
     
 End Sub
 '-------------------------------------
@@ -104,6 +113,10 @@ Public Sub Dispose()
     On Error Resume Next
     
     mblnNotCallDispose = False
+    
+    Application.EnableEvents = mblnEnableEventsas
+    Application.Calculation = mobjCalculation
+    Application.Cursor = mobjPointer
     
     'ステータスバーの表示内容をExcelの既定値に戻す
     Application.StatusBar = False
