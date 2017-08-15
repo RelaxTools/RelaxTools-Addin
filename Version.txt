@@ -1,4 +1,9 @@
-﻿2017/08/13(sun) RelaxTools-Addin Version 4.13.8(RustRemover) 
+﻿2017/08/15(tue) RelaxTools-Addin Version 4.13.9(RustRemover) 
+◇機能改善
+・十字カーソルのガイドの背景色が透明で他の文字と重なると見づらくなるので白固定とした。
+・ブックの世代管理でファイル作成時のタイムスタンプを保持するように修正。
+
+2017/08/13(sun) RelaxTools-Addin Version 4.13.8(RustRemover) 
 ◇機能改善
 ・かんたん表DXで「矩形」を「短形」と記述していたのを修正。
 ・シートを新しいブックにコピーする際、ActiveBookで新しくコピーしたブックを判定していたが、

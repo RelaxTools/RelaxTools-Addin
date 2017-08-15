@@ -292,13 +292,23 @@ Private Sub XL_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
             Dim strFullName As String
             strFolder = GetSetting(C_TITLE, "Backup", "Folder", "")
             If Len(Trim(strFolder)) = 0 Then
-                strFullName = WB.FullName
+                strFullName = WB.FullName & ".000"
             Else
-                strFullName = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(WB.FullName)
+                strFullName = rlxAddFileSeparator(strFolder) & rlxGetFullpathFromFileName(WB.FullName) & ".000"
             End If
+            
+            Dim DateCreated As Date
+            With CreateObject("Scripting.FileSystemObject")
+                DateCreated = .GetFile(WB.FullName).DateCreated
+            End With
+            
             mblnEventCancel = True
-            WB.SaveCopyAs strFullName & ".000"
+            WB.SaveCopyAs strFullName
             mblnEventCancel = False
+        
+            Dim a As FileTime
+            Set a = New FileTime
+            a.SetCreationTime strFullName, DateCreated
         
         End If
         
@@ -583,7 +593,9 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         With sh.Shapes(C_XY_BAR_NAME).Fill
             .visible = True
 '            .ForeColor.RGB = lngFillColor
-            .Transparency = 1
+'            .Transparency = 0
+            .ForeColor.RGB = vbWhite
+            .Transparency = 0
             .Solid
         End With
 
