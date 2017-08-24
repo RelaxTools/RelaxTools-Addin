@@ -1,20 +1,19 @@
 VERSION 5.00
-Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmGrep 
-   Caption         =   "ExcelファイルのGrep"
+Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmGrepMulti 
+   Caption         =   "ExcelファイルのGrep(マルチプロセス版)"
    ClientHeight    =   4860
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   8115
-   OleObjectBlob   =   "frmGrep.frx":0000
+   OleObjectBlob   =   "frmGrepMulti.frx":0000
    ShowModal       =   0   'False
    StartUpPosition =   2  '画面の中央
 End
-Attribute VB_Name = "frmGrep"
+Attribute VB_Name = "frmGrepMulti"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
 '-----------------------------------------------------------------------------------------------------
 '
 ' [RelaxTools-Addin] v4
@@ -89,6 +88,7 @@ End Sub
 Private Sub cmdCancel_Click()
     If cmdCancel.Caption = "閉じる" Then
         Unload Me
+        Application.Quit
     Else
         mblnCancel = True
     End If
@@ -349,10 +349,13 @@ Private Sub cmdOK_Click()
     
     Unload Me
     
+    Application.visible = True
+    
     AppActivate ResultWS.Application.Caption
     execSelectionRowDrawGrid
 
     Set ResultWS = Nothing
+    
     
     If mlngCount - C_START_ROW = 0 Then
         MsgBox "検索対象が見つかりませんでした。", vbInformation + vbOKOnly, C_TITLE

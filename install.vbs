@@ -1,11 +1,12 @@
 ' -------------------------------------------------------------------------------
-' RelaxTools-Addin インストールスクリプト Ver.1.0.3
+' RelaxTools-Addin インストールスクリプト Ver.1.0.4
 ' -------------------------------------------------------------------------------
 ' 参考サイト
 ' ある SE のつぶやき
 ' VBScript で Excel にアドインを自動でインストール/アンインストールする方法
 ' http://fnya.cocolog-nifty.com/blog/2014/03/vbscript-excel-.html
 ' 修正
+'   1.0.3 マルチプロセス用VBSをコピーするよう修正。
 '   1.0.3 images フォルダをコピーするように修正。
 '   1.0.2 Windows Update にて インターネットより取得したアドインファイルが Excel にて読み込まれない場合に対応。
 '         警告とプロパティウィンドウを表示して「ブロック解除」をお願いするようにした。
@@ -47,6 +48,9 @@ objFileSys.CopyFile  addInFileName ,installPath , True
 
 'イメージフォルダをコピー(上書き) 
 objFileSys.CopyFolder  "Source\customUI\images" ,imageFolder , True
+
+'マルチプロセス実行用VBSをコピー(上書き) 
+objFileSys.CopyFile  "RunMacro.vbs" ,imageFolder , True
 
 Set objFileSys = Nothing
 

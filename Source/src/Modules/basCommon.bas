@@ -487,23 +487,26 @@ Attribute rlxIsDBField.VB_ProcData.VB_Invoke_Func = " \n19"
     
     rlxIsDBField = False
     
-'    lngLen = Len(strBuf)
-'
-'    For i = 1 To lngLen
-'
-'        Select Case Mid$(strBuf, i, 1)
-'            Case "a" To "z"
-'            Case Else
-'                lngCnt = lngCnt + 1
-'        End Select
-'    Next
-'
-'    If lngLen = lngCnt Then
-'        rlxIsDBField = True
-'    End If
     If InStr(strBuf, "_") > 0 Then
         rlxIsDBField = True
+        Exit Function
     End If
+
+    lngLen = Len(strBuf)
+
+    For i = 1 To lngLen
+
+        Select Case Mid$(strBuf, i, 1)
+            Case "a" To "z"
+            Case Else
+                lngCnt = lngCnt + 1
+        End Select
+    Next
+
+    If lngLen = lngCnt Then
+        rlxIsDBField = True
+    End If
+
 
 End Function
 '--------------------------------------------------------------
@@ -2823,3 +2826,9 @@ xp:
     Isx64 = False
 
 End Function
+'マルチプロセス実行用
+Public Sub MultiProsess(ByVal strMacro As String)
+    With CreateObject("WScript.Shell")
+        .Run (.SpecialFolders("AppData") & "\" & C_TITLE & "\" & "RunMacro.vbs """ & strMacro & """")
+    End With
+End Sub

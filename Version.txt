@@ -1,4 +1,8 @@
-﻿2017/08/15(tue) RelaxTools-Addin Version 4.13.9(RustRemover) 
+﻿2017/08/14(thu) RelaxTools-Addin Version 4.13.10(RustRemover) 
+◇機能改善
+・ExcelのGrepをマルチプロセス対応にした。
+
+2017/08/15(tue) RelaxTools-Addin Version 4.13.9(RustRemover) 
 ◇機能改善
 ・十字カーソルのガイドの背景色が透明で他の文字と重なると見づらくなるので白固定とした。
 ・ブックの世代管理でファイル作成時のタイムスタンプを保持するように修正。
