@@ -76,8 +76,12 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    r.Value = "&H" & Right("00000000" & Hex(r.Interior.Color), 8)
-
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & "&H" & Right("00000000" & Hex(r.Interior.Color), 8)
+    Else
+        r.Value = "&H" & Right("00000000" & Hex(r.Interior.Color), 8)
+    End If
+    
     Exit Sub
 e:
     Call rlxErrMsg(err)

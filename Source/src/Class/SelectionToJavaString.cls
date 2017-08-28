@@ -79,15 +79,22 @@ End Sub
 Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Cancel As Boolean)
         
     Dim strResult As String
+    Dim strValue  As String
         
     On Error GoTo e
     
     strResult = rlxToJavaFieldNm(r.Value)
     
     If mstrType = "" Then
-        r.Value = setLow(strResult)
+       strValue = setLow(strResult)
     Else
-        r.Value = addSetStr(mstrType, strResult)
+        strValue = addSetStr(mstrType, strResult)
+    End If
+    
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & strValue
+    Else
+        r.Value = strValue
     End If
 
     Exit Sub

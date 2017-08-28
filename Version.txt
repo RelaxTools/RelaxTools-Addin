@@ -1,6 +1,8 @@
-﻿2017/08/14(thu) RelaxTools-Addin Version 4.13.10(RustRemover) 
+﻿2017/08/28(mon) RelaxTools-Addin Version 4.13.10(RustRemover) 
+◇バグ修正
+・「英数字記号を半角、カタカナを全角に変換」で文字の先頭が「'」のセルに実行すると「'」が消えてしまう不具合を修正。
 ◇機能改善
-・ExcelのGrepをマルチプロセス対応にした。
+・「スネーク区切リ→アッパーキャメル区切リ」等でのスネーク区切りの判定を改善。
 
 2017/08/15(tue) RelaxTools-Addin Version 4.13.9(RustRemover) 
 ◇機能改善

@@ -85,7 +85,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
             r.Characters(r.Characters.count, 1).Delete
         Else
-            r.Value = Mid$(r.Value, 1, Len(r.Value) - 1)
+            If Len(r.PrefixCharacter) > 0 Then
+                r.Value = r.PrefixCharacter & Mid$(r.Value, 1, Len(r.Value) - 1)
+            Else
+                r.Value = Mid$(r.Value, 1, Len(r.Value) - 1)
+            End If
         End If
     End If
 

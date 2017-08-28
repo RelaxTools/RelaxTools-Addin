@@ -101,7 +101,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal Row As Long, Cancel As Boolea
             Else
                 strBuf = strBuf & mstrSep & rr.Value
             End If
-            rr.Value = Empty
+            If Len(r.PrefixCharacter) > 0 Then
+                rr.Value = r.PrefixCharacter & Empty
+            Else
+                rr.Value = Empty
+            End If
         End If
     Next
 

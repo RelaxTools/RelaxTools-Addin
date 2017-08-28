@@ -195,7 +195,11 @@ Sub setSectionNo(ByRef r As Range, ByVal strNewNo As String)
     If VarType(r.Value) = vbString Then
         r.Characters(0, 0).Insert strNewNo
     Else
-        r.Value = strNewNo & r.Value
+        If Len(r.PrefixCharacter) > 0 Then
+            r.Value = r.PrefixCharacter & strNewNo & r.Value
+        Else
+            r.Value = strNewNo & r.Value
+        End If
     End If
     
 
@@ -228,7 +232,11 @@ Sub delSectionNo(ByRef r As Range)
         End If
     Else
         If Len(strSecNo) > 0 Then
-            r.Value = Mid$(r.Value, Len(strSecNo) + 1)
+            If Len(r.PrefixCharacter) > 0 Then
+                r.Value = r.PrefixCharacter & Mid$(r.Value, Len(strSecNo) + 1)
+            Else
+                r.Value = Mid$(r.Value, Len(strSecNo) + 1)
+            End If
         End If
     End If
 

@@ -79,7 +79,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    r.Value = removeKakko(r.Value)
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & removeKakko(r.Value)
+    Else
+        r.Value = removeKakko(r.Value)
+    End If
 
     Exit Sub
 e:

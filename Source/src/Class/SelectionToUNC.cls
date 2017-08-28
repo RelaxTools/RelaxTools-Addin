@@ -75,8 +75,12 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    r.Value = rlxDriveToUNC(r.Value)
-
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & rlxDriveToUNC(r.Value)
+    Else
+        r.Value = rlxDriveToUNC(r.Value)
+    End If
+    
     Exit Sub
 e:
     Call rlxErrMsg(err)

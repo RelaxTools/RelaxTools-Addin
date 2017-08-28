@@ -97,7 +97,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
         r.Characters(1, 0).Insert mstrIns
     Else
-        r.Value = mstrIns & r.Value
+        If Len(r.PrefixCharacter) > 0 Then
+            r.Value = r.PrefixCharacter & mstrIns & r.Value
+        Else
+            r.Value = mstrIns & r.Value
+        End If
     End If
 
     Exit Sub

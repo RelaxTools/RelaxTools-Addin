@@ -78,7 +78,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     Dim strBuf As String
     
     '鼻濁音対応
-    r.Value = StrConvU(r.Value, vbWide)
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & StrConvU(r.Value, vbWide)
+    Else
+        r.Value = StrConvU(r.Value, vbWide)
+    End If
     
 '    strbuf = Replace(r.Value, "ﾊﾟ", "パ")
 '    strbuf = Replace(strbuf, "ﾋﾟ", "ピ")

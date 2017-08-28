@@ -76,7 +76,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         
     On Error GoTo e
     
-    r.Formula = r.Formula
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & r.Value
+    Else
+        r.Formula = r.Formula
+    End If
     
     Exit Sub
 e:

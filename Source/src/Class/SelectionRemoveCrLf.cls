@@ -94,7 +94,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         s = Replace(s, vbCr, "")
         s = Replace(s, vbLf, "")
     
-        r.Value = s
+        If Len(r.PrefixCharacter) > 0 Then
+            r.Value = r.PrefixCharacter & s
+        Else
+            r.Value = s
+        End If
     End If
 
     Exit Sub

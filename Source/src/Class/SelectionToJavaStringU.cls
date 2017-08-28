@@ -83,8 +83,12 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     strResult = rlxToJavaFieldNm(r.Value)
     
-    r.Value = addSetStr("", strResult)
-
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & addSetStr("", strResult)
+    Else
+        r.Value = addSetStr("", strResult)
+    End If
+    
     Exit Sub
 e:
     Call rlxErrMsg(err)

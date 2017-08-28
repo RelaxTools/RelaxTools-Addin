@@ -98,7 +98,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     '現在選択されたいる場所と使用箇所で重なっている場所について
     '指数表記を数字に更新する。
-    r.Value = Right(String$(mlngSize, "0") & r.Value, mlngSize)
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & Right(String$(mlngSize, "0") & r.Value, mlngSize)
+    Else
+        r.Value = Right(String$(mlngSize, "0") & r.Value, mlngSize)
+    End If
     
     Exit Sub
 e:

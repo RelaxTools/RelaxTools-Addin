@@ -2738,7 +2738,11 @@ Sub cellEditExt()
             On Error Resume Next
             err.Clear
             
-            r.Value = Replace(strBuf, vbCrLf, vbLf)
+            If Len(r.PrefixCharacter) > 0 Then
+                r.Value = r.PrefixCharacter & Replace(strBuf, vbCrLf, vbLf)
+            Else
+                r.Value = Replace(strBuf, vbCrLf, vbLf)
+            End If
             
             If err.Number <> 0 Then
                 MsgBox "式の設定に失敗しました。式が正しくない可能性があります。", vbOKOnly + vbExclamation, C_TITLE

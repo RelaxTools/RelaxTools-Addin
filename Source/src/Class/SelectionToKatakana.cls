@@ -78,8 +78,12 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     On Error GoTo e
     
 '    r.Value = StrConvU(r.Value, vbKatakana)
-    r.Value = ToKatakana(r.Value, blnKake)
-
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & ToKatakana(r.Value, blnKake)
+    Else
+        r.Value = ToKatakana(r.Value, blnKake)
+    End If
+    
     Exit Sub
 e:
     Call rlxErrMsg(err)

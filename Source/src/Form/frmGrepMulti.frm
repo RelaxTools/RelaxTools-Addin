@@ -73,6 +73,7 @@ Private Const C_SEARCH_VALUE_FORMULA = "式"
 
 Private mMm As MacroManager
 
+Private mtray As TaskTrayView
 
 Private Sub chkRegEx_Change()
 '    chkZenHan.enabled = Not (chkRegEx.Value)
@@ -221,6 +222,11 @@ Private Sub cmdOK_Click()
     lngBookMax = colBook.count
     mMm.StartGauge lngBookMax
     
+    
+    Set mtray = New TaskTrayView
+    Call mtray.AddIcon(Application.hWnd, "Grepマルチプロセス版")  'システムトレイにアイコンを登録
+    Call mtray.ShowBalloon("Grep開始")
+    
     XL.DisplayAlerts = False
     XL.EnableEvents = False
     
@@ -282,6 +288,7 @@ Private Sub cmdOK_Click()
         Set WB = Nothing
         lngBookCount = lngBookCount + 1
         mMm.DisplayGauge lngBookCount
+        
         DoEvents
     Next
     
@@ -344,6 +351,10 @@ Private Sub cmdOK_Click()
     SaveSetting C_TITLE, "ExcelGrep", "Password", txtPassword.Text
     
     Set mMm = Nothing
+    
+    Call mtray.ShowBalloon("Grep終了しました")
+    mtray.DeleteIcon
+    Set mtray = Nothing
     
 '    MsgBox Timer - a
     
@@ -830,6 +841,10 @@ End Sub
 
 Private Sub TextBox1_Change()
 
+End Sub
+
+Private Sub UserForm_Activate()
+    AppActivate Me.Caption
 End Sub
 
 Private Sub UserForm_Initialize()

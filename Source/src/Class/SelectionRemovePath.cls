@@ -75,8 +75,12 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     On Error GoTo e
     
-    r.Value = rlxGetFullpathFromFileName(r.Value)
-
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & rlxGetFullpathFromFileName(r.Value)
+    Else
+        r.Value = rlxGetFullpathFromFileName(r.Value)
+    End If
+    
     Exit Sub
 e:
     Call rlxErrMsg(err)

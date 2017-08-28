@@ -80,8 +80,12 @@ Private Sub SFWork_SelectionMain(r As Range, Cancel As Boolean)
     
     s = r.Value
     
-    r.Value = InsertStr
-
+    If Len(r.PrefixCharacter) > 0 Then
+        r.Value = r.PrefixCharacter & InsertStr
+    Else
+        r.Value = InsertStr
+    End If
+    
     Exit Sub
 e:
     Call rlxErrMsg(err)

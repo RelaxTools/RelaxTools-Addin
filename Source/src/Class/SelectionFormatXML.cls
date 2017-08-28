@@ -90,7 +90,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     strBuf = FormatXML(r.Value)
     
     If Len(strBuf) <> 0 Then
-        r.Value = strBuf
+        If Len(r.PrefixCharacter) > 0 Then
+            r.Value = r.PrefixCharacter & strBuf
+        Else
+            r.Value = strBuf
+        End If
     End If
 
     Exit Sub

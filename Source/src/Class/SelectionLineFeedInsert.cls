@@ -99,7 +99,11 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
         Select Case Right$(s, 1)
             Case vbCr, vbLf, vbCrLf
             Case Else
-                r.Value = s & vbLf
+                If Len(r.PrefixCharacter) > 0 Then
+                    r.Value = r.PrefixCharacter & s & vbLf
+                Else
+                    r.Value = s & vbLf
+                End If
         End Select
     End If
 
