@@ -399,3 +399,6 @@ End Sub
 Sub ShowReport()
     frmReport.Show
 End Sub
+Sub contextMenu()
+    frmContextMenu.Show
+End Sub

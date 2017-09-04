@@ -217,12 +217,12 @@ Private Sub UserForm_Initialize()
     
     
     scrBar.Min = 1
-    Dim d As Long
-    d = lngLine
-    If d <= 0 Then
+    Dim D As Long
+    D = lngLine
+    If D <= 0 Then
         scrBar.Max = 1
     Else
-        scrBar.Max = d
+        scrBar.Max = D
     End If
     scrBar.LargeChange = 16
     scrBar.SmallChange = 1

@@ -1,19 +1,18 @@
 VERSION 5.00
-Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFavCategory 
+Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmContextMenuAdd 
    Caption         =   "カテゴリー編集"
    ClientHeight    =   1605
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4470
-   OleObjectBlob   =   "frmFavCategory.frx":0000
+   OleObjectBlob   =   "frmContextMenuAdd.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
-Attribute VB_Name = "frmFavCategory"
+Attribute VB_Name = "frmContextMenuAdd"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
 '-----------------------------------------------------------------------------------------------------
 '
 ' [RelaxTools-Addin] v4
@@ -46,8 +45,7 @@ Attribute VB_Exposed = False
 
 
 Option Explicit
-Private mlngMode As Long
-
+Private mblnMode As Boolean
 
 Private Sub cmdCancel_Click()
     Unload Me
@@ -56,63 +54,44 @@ End Sub
 Private Sub cmdOK_Click()
 
     Dim i As Long
-    Dim fav As favoriteDTO
-    Dim c As Variant
     
-    With frmFavorite.lstCategory
-        Select Case mlngMode
-            Case C_FAVORITE_ADD
-                For i = 0 To .ListCount - 1
-                    If txtCat.Text = .List(i) Then
-                        MsgBox "すでに登録されています。", vbExclamation + vbOKOnly, C_TITLE
-                        Exit Sub
-                    End If
-                Next
-                 .AddItem Me.txtCat.Text
-            Case C_FAVORITE_MOD
-                For i = 0 To .ListCount - 1
-                    If txtCat.Text = .List(i) And i <> .ListIndex Then
-                        MsgBox "すでに登録されています。", vbExclamation + vbOKOnly, C_TITLE
-                        Exit Sub
-                    End If
-                Next
-                If frmFavorite.mobjCategory.Exists(.List(.ListIndex)) Then
-                    frmFavorite.mobjCategory.key(.List(.ListIndex)) = Me.txtCat.Text
-                    Dim cat As Variant
-                    Set cat = frmFavorite.mobjCategory.Item(Me.txtCat.Text)
-                    
-                    i = 0
-                    For Each c In cat
-                    
-                        Set fav = cat.Item(c)
-                        fav.Category = Me.txtCat.Text
-                    
-                    Next
+    With frmContextMenu.lstMenu1
+        If mblnMode Then
+            For i = 0 To .ListCount - 1
+                If txtCat.Text = .List(i) Then
+                    MsgBox "すでに登録されています。", vbExclamation + vbOKOnly, C_TITLE
+                    Exit Sub
                 End If
-                .List(.ListIndex) = Me.txtCat.Text
-                
-        End Select
+            Next
+             .AddItem ""
+             .List(.ListCount - 1, 0) = Me.txtCat.Text
+             .List(.ListCount - 1, 1) = ""
+        Else
+            For i = 0 To .ListCount - 1
+                If txtCat.Text = .List(i) And i <> .ListIndex Then
+                    MsgBox "すでに登録されています。", vbExclamation + vbOKOnly, C_TITLE
+                    Exit Sub
+                End If
+            Next
+            .List(.ListIndex, 0) = Me.txtCat.Text
+        End If
     End With
     Unload Me
 End Sub
 
-Sub Start(ByVal lngMode As Long)
+Sub Start(ByVal Mode As Boolean)
 
-    mlngMode = lngMode
+    mblnMode = Mode
     
-    Select Case lngMode
-        Case C_FAVORITE_ADD
-            lblCat.Caption = "カテゴリの追加"
-        Case C_FAVORITE_MOD
-            lblCat.Caption = "カテゴリの編集"
-            Me.txtCat.Text = frmFavorite.lstCategory.Text
-    End Select
+    If mblnMode Then
+        lblCat.Caption = "カテゴリの追加"
+    Else
+        lblCat.Caption = "カテゴリの編集"
+        Me.txtCat.Text = frmContextMenu.lstMenu1.Text
+    End If
     
     Me.Show
 
 End Sub
 
-Private Sub UserForm_Activate()
-'    Call AllwaysOnTop
-End Sub
 

@@ -1,4 +1,4 @@
-﻿<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="ribbonLoaded">
+﻿<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui" onLoad="ribbonLoaded">
   <ribbon startFromScratch="false">
     <tabs>
       <tab idMso="TabView">
@@ -616,28 +616,24 @@
             <button id="execSelectionRowDrawGridBlue" image="shimaBlue" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           </box>
           <separator id="matomeSep"/>
-          <menu id="matomeMenu" label ="まとめ実行" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="tool32">
-            <button id="execMatome01" image="No1" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <button id="execMatome02" image="No2" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <button id="execMatome03" image="No3" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <button id="execMatome04" image="No4" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <button id="execMatome05" image="No5" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <menuSeparator id="matomeSettingSep" title="まとめ設定"/>
-            <button id="execComboSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-          </menu>
-          <splitButton id="scrollSplit"  getEnabled="getRibbonEnabled">
-            <toggleButton id="scrollMenu" label="ホイール量(小)" image="mouse" getSupertip="getSupertip" getDescription="getDescription" getPressed="scrollPressed" onAction="scrollOnAction"/>
-            <menu id="scrolMenu2"  itemSize="large" >
-              <menuSeparator id="scrollSep01" title="ホイール量設定" />
-              <button id="scrollSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getScrollEnabled" onAction="ribbonOnAction"/>
+            <menu id="matomeMenu" label ="まとめ実行" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="tool32">
+              <button id="execMatome01" image="No1" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              <button id="execMatome02" image="No2" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              <button id="execMatome03" image="No3" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              <button id="execMatome04" image="No4" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              <button id="execMatome05" image="No5" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              <menuSeparator id="matomeSettingSep" title="まとめ設定"/>
+              <button id="execComboSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
             </menu>
-          </splitButton>
+            <splitButton id="scrollSplit"  getEnabled="getRibbonEnabled">
+              <toggleButton id="scrollMenu" label="ホイール量(小)" image="mouse" getSupertip="getSupertip" getDescription="getDescription" getPressed="scrollPressed" onAction="scrollOnAction"/>
+              <menu id="scrolMenu2"  itemSize="large" >
+                <menuSeparator id="scrollSep01" title="ホイール量設定" />
+                <button id="scrollSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getScrollEnabled" onAction="ribbonOnAction"/>
+              </menu>
+            </splitButton>
+          <button id="hotkey" image="keyboard" label="ショートカット割当" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           
-          <menu id="customMenu" label ="カスタマイズ" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="keyboard">
-            <menuSeparator id="customSep01" title="ショートカット・右クリック設定" />
-            <button id="hotkey" image="keyboard" label="ショートカット割当" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-            <button id="contextMenu" image="LegendHS" label="右クリックメニュー割当" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-          </menu>
         </group>
         <group id="helpGroup" label="オプション" image="help32">
           <box id="boxOpt" boxStyle="horizontal">
@@ -1084,32 +1080,7 @@
           <button id="TortoiseHGWeb"     size="large"   image="hg"  label="Mercurial&#xD;&#xA;" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  />
         </group>
       </tab>
+
     </tabs>
   </ribbon>
-  <contextMenus>
-    <contextMenu idMso="ContextMenuCell">
-      <dynamicMenu   id="ContextMenuCell"    insertBeforeMso="Cut" label="RelexTools Addin" image="relaxico"  getVisible="contextMenus_GetVisible" getContent="contextMenus_GetContent" />
-      <menuSeparator id="ContextMenuCellSep" insertBeforeMso="Cut" />
-    </contextMenu>
-    <contextMenu idMso="ContextMenuCellLayout">
-      <dynamicMenu   id="ContextMenuCellLayout"    insertBeforeMso="Cut" label="RelexTools Addin" image="relaxico"  getVisible="contextMenus_GetVisible" getContent="contextMenus_GetContent" />
-      <menuSeparator id="ContextMenuCellLayoutSep" insertBeforeMso="Cut" />
-    </contextMenu>
-    <contextMenu idMso="ContextMenuRow">
-      <dynamicMenu   id="ContextMenuRow"    insertBeforeMso="Cut" label="RelexTools Addin" image="relaxico"  getVisible="contextMenus_GetVisible" getContent="contextMenus_GetContent" />
-      <menuSeparator id="ContextMenuRowSep" insertBeforeMso="Cut" />
-    </contextMenu>
-    <contextMenu idMso="ContextMenuColumn">
-      <dynamicMenu   id="ContextMenuCol"    insertBeforeMso="Cut" label="RelexTools Addin" image="relaxico"  getVisible="contextMenus_GetVisible" getContent="contextMenus_GetContent" />
-      <menuSeparator id="ContextMenuColSep" insertBeforeMso="Cut" />
-    </contextMenu>
-    <contextMenu idMso="ContextMenuShape">
-      <dynamicMenu   id="ContextMenuShape"    insertBeforeMso="Cut" label="RelexTools Addin" image="relaxico"  getVisible="contextMenus_GetVisible" getContent="contextMenus_GetContent" />
-      <menuSeparator id="ContextMenuShapeSep" insertBeforeMso="Cut" />
-    </contextMenu>
-    <contextMenu idMso="ContextMenuPicture">
-      <dynamicMenu   id="ContextMenuPicture"    insertBeforeMso="Cut" label="RelexTools Addin" image="relaxico"  getVisible="contextMenus_GetVisible" getContent="contextMenus_GetContent" />
-      <menuSeparator id="ContextMenuPictureSep" insertBeforeMso="Cut" />
-    </contextMenu>
-  </contextMenus>
 </customUI>

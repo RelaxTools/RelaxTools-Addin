@@ -241,6 +241,8 @@ Public Sub Run()
     
     Set objStatus = Nothing
 
+    Range(strRange).Select
+    
     '---------------------------
     '終了イベント
     '---------------------------
@@ -251,7 +253,6 @@ Public Sub Run()
         Application.OnUndo "Undo", "execUndo"
     End If
     
-    Range(strRange).Select
     
     Exit Sub
 ErrHandle:

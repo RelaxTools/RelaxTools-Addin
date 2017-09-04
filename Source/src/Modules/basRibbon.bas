@@ -1940,5 +1940,78 @@ Private Function ConvertColor(Color As Long, Opacity As Long) As Long
     BGRA(2) = (Color And &HFF)
     CopyMemory ConvertColor, BGRA(0), 4&
 End Function
+Public Sub ContextMenus_GetVisible(control As IRibbonControl, ByRef visible)
+
+    Dim strBuf As String
+    
+    strBuf = GetSetting(C_TITLE, "ContextMenu", control.Id, "")
+    
+    If Len(strBuf) = 0 Then
+        visible = False
+    Else
+        visible = True
+    End If
+    
+End Sub
+Public Sub ContextMenus_GetContent(control As IRibbonControl, ByRef returnedVal)
+
+    Dim D As Object
+    Dim elmMenu As Object
+    Dim elmButton As Object
+    Dim i As Long
+    Dim j As Long
+    Dim lngCount As Long
+    Dim varRow As Variant
+    Dim varCol As Variant
+    Dim strBuf As String
+  
+    strBuf = GetSetting(C_TITLE, "ContextMenu", control.Id, "")
+    
+    If Len(strBuf) <> 0 Then
+    
+        Set D = CreateObject("Msxml2.DOMDocument")
+        
+        Set elmMenu = D.createElement("menu")
+        elmMenu.setAttribute "xmlns", "http://schemas.microsoft.com/office/2006/01/customui"
+  
+        varRow = Split(strBuf, vbCrLf)
+        
+        For j = LBound(varRow) To UBound(varRow) - 1
+        
+            varCol = Split(varRow(j), vbTab)
+            
+            If varCol(2) = "-" Then
+                Set elmButton = D.createElement("menuSeparator")
+                With elmButton
+                  .setAttribute "id", control.Id & "Sep" & j
+                End With
+                elmMenu.appendChild elmButton
+                Set elmButton = Nothing
+            Else
+                Set elmButton = D.createElement("button")
+                With elmButton
+                  .setAttribute "id", varCol(2) & ".dyn" & j
+                  .setAttribute "label", varCol(1)
+                  .setAttribute "onAction", "ribbonOnAction"
+                End With
+                elmMenu.appendChild elmButton
+                Set elmButton = Nothing
+            End If
+        Next
+    
+      D.appendChild elmMenu
+    
+      returnedVal = D.XML
+      
+      Set elmMenu = Nothing
+      Set D = Nothing
+      
+    Else
+        returnedVal = ""
+    End If
+
+End Sub
+
+
 
 
