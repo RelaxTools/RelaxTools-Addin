@@ -84,6 +84,10 @@ End Sub
 
 
 
+Private Sub cboCategory_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Set MW.obj = cboCategory
+End Sub
+
 Private Sub cmbShift_Click()
     Call getGuidence
 End Sub

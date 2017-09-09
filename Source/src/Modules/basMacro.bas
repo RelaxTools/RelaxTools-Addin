@@ -377,7 +377,7 @@ Sub commandList()
             Cells(lngCnt, 2) = c.NameLocal
         
             Cells(lngCnt, 3) = D.Caption
-            Cells(lngCnt, 4) = D.Id
+            Cells(lngCnt, 4) = D.id
             
             lngCnt = lngCnt + 1
         Next
@@ -539,7 +539,7 @@ Sub setAllA1save()
     End If
     
     varRet = getAttr(ActiveWorkbook.FullName)
-    If err.Number > 0 Then
+    If Err.Number > 0 Then
         MsgBox "現在のファイルにアクセスできませんでした。保存できませんでした。", vbOKOnly + vbExclamation, C_TITLE
         GoTo pass
     End If
@@ -1249,7 +1249,7 @@ Private Sub SelectionShiftCell(ByVal lngRow As Long, ByVal lngCol As Long)
     
     For Each r In Selection.Areas
     
-        err.Clear
+        Err.Clear
         On Error Resume Next
         If c Is Nothing Then
             If r.Offset(lngRow, lngCol) Is Nothing Then
@@ -2695,7 +2695,7 @@ Sub cellEditExt()
     
     On Error Resume Next
     Call WSH.Run("""" & strEditor & """ " & """" & strFileName & """", 1, True)
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         MsgBox "エディタの起動に失敗しました。設定を確認してください。", vbOKOnly + vbExclamation, C_TITLE
         GoTo e
     End If
@@ -2736,7 +2736,7 @@ Sub cellEditExt()
             End Select
             
             On Error Resume Next
-            err.Clear
+            Err.Clear
             
             If Len(r.PrefixCharacter) > 0 Then
                 r.Value = r.PrefixCharacter & Replace(strBuf, vbCrLf, vbLf)
@@ -2744,7 +2744,7 @@ Sub cellEditExt()
                 r.Value = Replace(strBuf, vbCrLf, vbLf)
             End If
             
-            If err.Number <> 0 Then
+            If Err.Number <> 0 Then
                 MsgBox "式の設定に失敗しました。式が正しくない可能性があります。", vbOKOnly + vbExclamation, C_TITLE
             End If
         Else

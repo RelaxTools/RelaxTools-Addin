@@ -103,7 +103,7 @@ End Sub
 
 
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     Dim XL As Excel.Application
     Dim WB As Workbook
@@ -169,7 +169,7 @@ Private Sub cmdOK_Click()
     mMm.DispGuidance "ファイルの数をカウントしています..."
     
     FileSearch objFs, strPath, strPatterns(), colBook
-    Select Case err.Number
+    Select Case Err.Number
     Case 75, 76
         mMm.Enable
         Set mMm = Nothing
@@ -219,7 +219,7 @@ Private Sub cmdOK_Click()
             Exit For
         End If
     
-        err.Clear
+        Err.Clear
         
         ResultWS.Cells(lngCount, C_SEARCH_NO).Value = lngCount - C_START_ROW + 1
         ResultWS.Cells(lngCount, C_SEARCH_BOOK).Value = varBook

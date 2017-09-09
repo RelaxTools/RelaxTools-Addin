@@ -49,22 +49,31 @@ Dim mlngSpeed As Long
 Dim mstrValue As String
 
 
-'--------------------------------------------------------------------
-'  スシを流すの押下状態の取得
-'--------------------------------------------------------------------
-Sub sushiPressed(control As IRibbonControl, ByRef returnValue)
-    
-    returnValue = mSushiEnable
-    
-End Sub
+''--------------------------------------------------------------------
+''  スシを流すの押下状態の取得
+''--------------------------------------------------------------------
+'Sub sushiPressed(control As IRibbonControl, ByRef returnValue)
+'
+'    returnValue = mSushiEnable
+'
+'End Sub
 '--------------------------------------------------------------------
 '  スシを流すの押下時イベント
 '--------------------------------------------------------------------
-Sub sushiOnAction(control As IRibbonControl, pressed As Boolean)
+'Sub sushiOnAction(control As IRibbonControl, pressed As Boolean)
+Sub sushiOnAction(control As IRibbonControl)
 
     On Error GoTo e
 
-    mSushiEnable = pressed
+    Select Case control.id
+        Case "sushiShow"
+            mSushiEnable = True
+        Case "sushiStop"
+            mSushiEnable = False
+        Case "sushiSetting"
+            frmSushiSetting.Show
+            Exit Sub
+    End Select
 
     Call RefreshRibbon
 
@@ -80,9 +89,11 @@ Sub sushiOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
-
+Public Sub StopSushi()
+    mSushiEnable = False
+End Sub
 '--------------------------------------------------------------------
 '  スシ設定のEnabled/Disabled
 '--------------------------------------------------------------------
@@ -94,7 +105,7 @@ Sub getSushiEnabled(control As IRibbonControl, ByRef enabled)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '
 'Private Sub showSushi()
@@ -133,9 +144,9 @@ End Sub
 '
 'End Sub
 
-Sub sushisetting()
-    frmSushiSetting.Show
-End Sub
+'Sub sushisetting()
+'    frmSushiSetting.Show
+'End Sub
 
 Sub SushiGoRound()
 

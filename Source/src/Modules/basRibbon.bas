@@ -149,12 +149,12 @@ Private Function getMacroName(control As IRibbonControl) As String
     Dim lngPos As Long
     
     '同じマクロを複数登録可能とするためにドット以降の文字を削除
-    lngPos = InStr(control.Id, ".")
+    lngPos = InStr(control.id, ".")
 
     If lngPos = 0 Then
-        getMacroName = control.Id
+        getMacroName = control.id
     Else
-        getMacroName = Mid$(control.Id, 1, lngPos - 1)
+        getMacroName = Mid$(control.id, 1, lngPos - 1)
     End If
 
 End Function
@@ -223,7 +223,7 @@ End Function
 '--------------------------------------------------------------------
 Sub tabGetVisible(control As IRibbonControl, ByRef visible)
 
-    visible = GetSetting(C_TITLE, "Ribbon", Replace(control.Id, "Tab", ""), True)
+    visible = GetSetting(C_TITLE, "Ribbon", Replace(control.id, "Tab", ""), True)
 
 End Sub
 '--------------------------------------------------------------------
@@ -239,7 +239,7 @@ End Sub
 '--------------------------------------------------------------------
 Sub tabGetPressed(control As IRibbonControl, ByRef returnValue)
     
-    returnValue = GetSetting(C_TITLE, "Ribbon", control.Id, True)
+    returnValue = GetSetting(C_TITLE, "Ribbon", control.id, True)
 
 End Sub
 '--------------------------------------------------------------------
@@ -247,7 +247,7 @@ End Sub
 '--------------------------------------------------------------------
 Sub tabOnAction(control As IRibbonControl, pressed As Boolean)
     
-    SaveSetting C_TITLE, "Ribbon", control.Id, pressed
+    SaveSetting C_TITLE, "Ribbon", control.id, pressed
     
     Call RefreshRibbon
     
@@ -285,7 +285,7 @@ Public Sub RibbonOnAction(control As IRibbonControl)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 'チェックボックス設定取得
@@ -298,7 +298,7 @@ Public Sub CheckGetPressed(control As IRibbonControl, ByRef returnValue)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 'チェックボックス設定
@@ -313,7 +313,7 @@ Public Sub CheckOnAction(control As IRibbonControl, pressed As Boolean)
         
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 'チェックボックスEnable/Disable
@@ -333,7 +333,7 @@ Sub CheckSetEnabled(control As IRibbonControl, ByRef enabled)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' ヘルプ内容を表示する。customUIから使用
@@ -348,7 +348,7 @@ Public Sub GetSupertip(control As IRibbonControl, ByRef Screentip)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' メニュー表示内容を表示する。customUIから使用
@@ -361,7 +361,7 @@ Public Sub GetDescription(control As IRibbonControl, ByRef Screentip)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' ラベルを表示する。customUIから使用
@@ -374,7 +374,7 @@ Public Sub GetLabel(control As IRibbonControl, ByRef Screentip)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' 2003互換色　背景色自動
@@ -422,7 +422,7 @@ Public Sub colorOnAction(control As IRibbonControl, selectedId As String, select
     On Error Resume Next
     Dim strBuf As String
 
-    Select Case control.Id
+    Select Case control.id
         Case "fontColorGallery"
             SaveSetting C_TITLE, "Color2003", "font", Right(selectedId, 2)
             strBuf = "execSelectionFormatFontColor"
@@ -492,7 +492,7 @@ Private Function ribbonDinamicMenu(control As IRibbonControl, ByRef content)
     Dim lngNo As Long
     
     'コントロールIDからメニュー名を取得
-    Set WS = ThisWorkbook.Worksheets(control.Id)
+    Set WS = ThisWorkbook.Worksheets(control.id)
     
     
     Const C_START_ROW As Long = 3
@@ -629,7 +629,7 @@ Sub ribbonLoaded(ByRef IR As IRibbonUI)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 ' リボンのリフレッシュ
@@ -653,12 +653,12 @@ Public Sub RefreshRibbon(Optional control As IRibbonControl)
         If control Is Nothing Then
             mIR.Invalidate
         Else
-            mIR.InvalidateControl control.Id
+            mIR.InvalidateControl control.id
         End If
     End If
 
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  段落番号トグルボタン
@@ -667,7 +667,7 @@ Sub sectionPressed(control As IRibbonControl, ByRef returnValue)
     
     On Error GoTo e
     
-    Select Case control.Id
+    Select Case control.id
         Case "sectionSetting01"
             returnValue = mSecTog01
     
@@ -689,7 +689,7 @@ Sub sectionPressed(control As IRibbonControl, ByRef returnValue)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  現在の段落番号の設定
@@ -705,7 +705,7 @@ Sub sectionOnAction(control As IRibbonControl, pressed As Boolean)
     mSecTog05 = False
     mSecTog06 = False
   
-    Select Case control.Id
+    Select Case control.id
         Case "sectionSetting01"
             mSecTog01 = pressed
             Call SaveSetting(C_TITLE, "Section", "pos", "1")
@@ -737,7 +737,7 @@ Sub sectionOnAction(control As IRibbonControl, pressed As Boolean)
     
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  十字カーソルの押下状態の取得
@@ -773,7 +773,7 @@ Sub lineOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 
 ''--------------------------------------------------------------------
@@ -1078,7 +1078,7 @@ Sub scrollOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  スクショモードの押下状態取得
@@ -1107,7 +1107,7 @@ Sub screenOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 
 '--------------------------------------------------------------------
@@ -1130,7 +1130,7 @@ End Sub
 Public Sub GetSizeLabel(control As IRibbonControl, ByRef lbl)
 
     If Application.UsableWidth / 0.75 < 1420 Then
-        Select Case control.Id
+        Select Case control.id
             Case "MitomePaste.1"
                 lbl = "認め印"
             Case "FilePaste.1"
@@ -1139,7 +1139,7 @@ Public Sub GetSizeLabel(control As IRibbonControl, ByRef lbl)
                 lbl = "ビジネス印"
         End Select
     Else
-        Select Case control.Id
+        Select Case control.id
             Case "MitomePaste.1"
                 lbl = "認め印" & vbCrLf
             Case "FilePaste.1"
@@ -1166,9 +1166,9 @@ End Sub
 '--------------------------------------------------------------------
 ' データ印のIDを取得
 '--------------------------------------------------------------------
-Sub stampGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
+Sub stampGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
-    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1204,9 +1204,9 @@ End Sub
 '--------------------------------------------------------------------
 ' 認印のIDを取得
 '--------------------------------------------------------------------
-Sub stampMitomeGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
+Sub stampMitomeGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
-    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1242,9 +1242,9 @@ End Sub
 '--------------------------------------------------------------------
 ' ビジネス印のIDを取得
 '--------------------------------------------------------------------
-Sub stampBzGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
+Sub stampBzGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
-    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1279,9 +1279,9 @@ End Sub
 '--------------------------------------------------------------------
 '  さくら印のIDを取得
 '--------------------------------------------------------------------
-Sub sakuraGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
+Sub sakuraGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
-    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1289,7 +1289,7 @@ End Sub
 '--------------------------------------------------------------------
 Sub sakuraGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
 
-    Set image = getImageSakura(control.Id, Index + 1)
+    Set image = getImageSakura(control.id, Index + 1)
     
 End Sub
 '--------------------------------------------------------------------
@@ -1297,7 +1297,7 @@ End Sub
 '--------------------------------------------------------------------
 Public Sub sakuraOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
-    Call pasteSakura(control.Id, selectedIndex + 1)
+    Call pasteSakura(control.id, selectedIndex + 1)
 
 End Sub
 
@@ -1312,9 +1312,9 @@ End Sub
 '--------------------------------------------------------------------
 '  付箋のIDを取得
 '--------------------------------------------------------------------
-Sub fusenGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
+Sub fusenGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
-    Id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
+    id = C_STAMP_FILE_NAME & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1322,7 +1322,7 @@ End Sub
 '--------------------------------------------------------------------
 Sub fusenGetItemImage(control As IRibbonControl, Index As Integer, ByRef image)
 
-    Set image = getImageFusen(control.Id, Index + 1)
+    Set image = getImageFusen(control.id, Index + 1)
     
 End Sub
 '--------------------------------------------------------------------
@@ -1330,7 +1330,7 @@ End Sub
 '--------------------------------------------------------------------
 Public Sub fusenOnAction(control As IRibbonControl, selectedId As String, selectedIndex As Integer)
 
-    Call pasteFusen(control.Id, selectedIndex + 1)
+    Call pasteFusen(control.id, selectedIndex + 1)
 
 End Sub
 '--------------------------------------------------------------------
@@ -1344,7 +1344,7 @@ Sub getScreenShotEnabled(control As IRibbonControl, ByRef enabled)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  十字カーソル設定のEnabled/Disabled
@@ -1357,7 +1357,7 @@ Sub getCrossEnabled(control As IRibbonControl, ByRef enabled)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  ホイール量設定のEnabled/Disabled
@@ -1370,7 +1370,7 @@ Sub getScrollEnabled(control As IRibbonControl, ByRef enabled)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 
 '--------------------------------------------------------------------
@@ -1389,9 +1389,9 @@ End Sub
 '--------------------------------------------------------------------
 ' かんたん表のIDを取得
 '--------------------------------------------------------------------
-Sub kantanGetItemId(control As IRibbonControl, Index As Integer, ByRef Id)
+Sub kantanGetItemId(control As IRibbonControl, Index As Integer, ByRef id)
 
-    Id = "kantan" & Format$(Index + 1, "000")
+    id = "kantan" & Format$(Index + 1, "000")
 
 End Sub
 '--------------------------------------------------------------------
@@ -1433,7 +1433,7 @@ Sub errCheckOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  エラーチェックのToggle
@@ -1447,7 +1447,7 @@ Sub errCheckToggle()
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  A1⇔R1C1の押下状態の取得
@@ -1474,7 +1474,7 @@ Sub a1OnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  A1⇔R1C1トグル動作
@@ -1492,7 +1492,7 @@ Sub a1Toggle()
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  Return時のカーソルの取得
@@ -1519,7 +1519,7 @@ Sub MoveAfterReturnOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  Return時のカーソルの押下時イベント
@@ -1538,7 +1538,7 @@ Sub MoveAfterReturnToggle()
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  オートコンプリートの取得
@@ -1561,7 +1561,7 @@ Sub AutoCompleteOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  オートコンプリート切り替え
@@ -1575,7 +1575,7 @@ Sub AutoCompleteTogggle()
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 '--------------------------------------------------------------------
 '  Pickの押下状態の取得
@@ -1598,7 +1598,7 @@ Sub pickOnAction(control As IRibbonControl, pressed As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 
 Sub getColorImage(control As IRibbonControl, ByRef image) ' 画像の設定
@@ -1610,7 +1610,7 @@ Sub getColorImage(control As IRibbonControl, ByRef image) ' 画像の設定
     
     blnTranspairent = False
     
-    Select Case control.Id
+    Select Case control.id
         Case "execSelectionFormatFontColor"
             pictureId = "fontColor"
             strColor = GetSetting(C_TITLE, "Color2003", "font", C_COLOR_OTHER)
@@ -1623,7 +1623,7 @@ Sub getColorImage(control As IRibbonControl, ByRef image) ' 画像の設定
     End Select
         
     If strColor = C_COLOR_OTHER Then
-        If control.Id = "execSelectionFormatBackColor" Then
+        If control.id = "execSelectionFormatBackColor" Then
             strColor = "02"
             blnTranspairent = True
         Else
@@ -1651,7 +1651,7 @@ Sub getFusenImage(control As IRibbonControl, ByRef image) ' 画像の設定
 
     Dim pictureId As String
     
-    Select Case control.Id
+    Select Case control.id
         Case "beforePasteSquare"
             Select Case Val(GetSetting(C_TITLE, "Fusen", "fsGallery01", "2"))
                  Case 1
@@ -1944,7 +1944,8 @@ Public Sub ContextMenus_GetVisible(control As IRibbonControl, ByRef visible)
 
     Dim strBuf As String
     
-    strBuf = GetSetting(C_TITLE, "ContextMenu", control.Id, "")
+    '改ページプレビューも一緒に判定
+    strBuf = GetSetting(C_TITLE, "ContextMenu", Replace(control.id, "Layout", ""), "")
     
     If Len(strBuf) = 0 Then
         visible = False
@@ -1964,15 +1965,17 @@ Public Sub ContextMenus_GetContent(control As IRibbonControl, ByRef returnedVal)
     Dim varRow As Variant
     Dim varCol As Variant
     Dim strBuf As String
-  
-    strBuf = GetSetting(C_TITLE, "ContextMenu", control.Id, "")
+    
+    '改ページプレビューも一緒に判定
+    strBuf = GetSetting(C_TITLE, "ContextMenu", Replace(control.id, "Layout", ""), "")
     
     If Len(strBuf) <> 0 Then
     
         Set D = CreateObject("Msxml2.DOMDocument")
         
         Set elmMenu = D.createElement("menu")
-        elmMenu.setAttribute "xmlns", "http://schemas.microsoft.com/office/2006/01/customui"
+'        elmMenu.setAttribute "xmlns", "http://schemas.microsoft.com/office/2006/01/customui"
+        elmMenu.setAttribute "xmlns", "http://schemas.microsoft.com/office/2009/07/customui"
   
         varRow = Split(strBuf, vbCrLf)
         
@@ -1983,7 +1986,7 @@ Public Sub ContextMenus_GetContent(control As IRibbonControl, ByRef returnedVal)
             If varCol(2) = "-" Then
                 Set elmButton = D.createElement("menuSeparator")
                 With elmButton
-                  .setAttribute "id", control.Id & "Sep" & j
+                  .setAttribute "id", control.id & "Sep" & j
                 End With
                 elmMenu.appendChild elmButton
                 Set elmButton = Nothing

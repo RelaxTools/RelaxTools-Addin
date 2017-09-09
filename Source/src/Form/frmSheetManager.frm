@@ -84,10 +84,10 @@ Private Sub cmdPrint_Click()
 
         If lstSheet.Selected(lngCnt) And lstSheet.List(lngCnt, C_SHEET_OLD_STATUS) = C_SHOW Then
 
-            err.Clear
+            Err.Clear
             On Error Resume Next
             Set s = mBook.Sheets(lstSheet.List(lngCnt, C_SHEET_OLD_NAME))
-            If err.Number = 0 And s.Type = xlWorksheet Then
+            If Err.Number = 0 And s.Type = xlWorksheet Then
                 If s.PageSetup.Pages.count > 0 Then
     
                     If strSheets = "" Then

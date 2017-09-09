@@ -61,7 +61,7 @@ Private Sub cmdInit_Click()
     
 End Sub
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     Dim strFillVisible As String
     Dim strFillColor As String

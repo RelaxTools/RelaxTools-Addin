@@ -31,6 +31,20 @@ Attribute VB_Name = "basWeb"
 Option Explicit
 Option Private Module
 
+Public Const C_GITHUB_URL As String = "https://github.com/RelaxTools/RelaxTools-Addin"
+Public Const C_URL As String = "http://software.opensquare.net/relaxtools/"
+Public Const C_REGEXP_URL As String = "http://software.opensquare.net/relaxtools/about/foruse/regexp/"
+Public Const C_STAMP_URL As String = "http://software.opensquare.net/relaxtools/about/foruse/stamp/"
+Public Const C_CAMPAIGN_URL As String = "http://software.opensquare.net/relaxtools/support-2/campaign/"
+Public Const C_FCS_URL As String = "https://www.fcs.co.jp/?relaxtools"
+
+Public Const C_RELEASE_URL As String = "https://github.com/RelaxTools/RelaxTools-Addin/releases"
+Public Const C_MADO_URL As String = "http://forest.watch.impress.co.jp/library/software/relaxtools/"
+Public Const C_BBS_URL As String = "http://software.opensquare.net/relaxtools/bbs/wforum.cgi"
+Public Const C_ISSUE_URL As String = "https://github.com/RelaxTools/RelaxTools-Addin/issues"
+Public Const C_MAIL_URL As String = "mailto:relaxtools@opensquare.net"
+
+
 Public Sub GotoGitHub()
     Call GoURL(C_GITHUB_URL)
 End Sub
@@ -42,6 +56,24 @@ Public Sub GotoCampaign()
 End Sub
 Public Sub GotoRegExpHelp()
     Call GoURL(C_REGEXP_URL)
+End Sub
+Public Sub GotoRelease()
+    Call GoURL(C_RELEASE_URL)
+End Sub
+Public Sub GotoMado()
+    Call GoURL(C_MADO_URL)
+End Sub
+Public Sub GotoBBS()
+    Call GoURL(C_BBS_URL)
+End Sub
+Public Sub GotoIssue()
+    Call GoURL(C_ISSUE_URL)
+End Sub
+Public Sub GotoMail()
+    Call GoURL(C_MAIL_URL)
+End Sub
+Public Sub GotoFCS()
+    Call GoURL(C_FCS_URL)
 End Sub
 Public Sub GoURL(ByVal strURL As String)
     With CreateObject("WScript.Shell")

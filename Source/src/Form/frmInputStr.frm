@@ -45,7 +45,7 @@ Attribute VB_Exposed = False
 Option Explicit
 Private mResult As VBA.VbMsgBoxResult
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     Dim strBuf As String
     Dim i As Long

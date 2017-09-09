@@ -14,7 +14,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
 '-----------------------------------------------------------------------------------------------------
 '
 ' [RelaxTools-Addin] v4
@@ -117,7 +116,7 @@ Private Sub cmdHelp_Click()
     
 End Sub
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     Dim XL As Excel.Application
     Dim WB As Workbook
@@ -151,10 +150,10 @@ Private Sub cmdOK_Click()
         o.Pattern = cboSearch.Text
         o.IgnoreCase = Not (chkCase.Value)
         o.Global = True
-        err.Clear
+        Err.Clear
         On Error Resume Next
         o.Execute ""
-        If err.Number <> 0 Then
+        If Err.Number <> 0 Then
             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
             cboSearch.SetFocus
             Exit Sub
@@ -176,7 +175,7 @@ Private Sub cmdOK_Click()
     mMm.DispGuidance "ファイルの数をカウントしています..."
     
     FileSearch objFs, strPath, strPatterns(), colBook
-    Select Case err.Number
+    Select Case Err.Number
     Case 75, 76
         mMm.Enable
         Set mMm = Nothing
@@ -241,9 +240,9 @@ Private Sub cmdOK_Click()
     
 '        If Len(txtPassword.Text) <> 0 Then
             For Each pass In varPassword
-                err.Clear
+                Err.Clear
                 Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, notify:=False, Password:=pass, local:=True)
-                If err.Number = 0 Then
+                If Err.Number = 0 Then
                     Exit For
                 End If
             Next
@@ -251,7 +250,7 @@ Private Sub cmdOK_Click()
 '            err.Clear
 '            Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, Notify:=False, Password:="", Local:=True)
 '        End If
-        If err.Number = 0 Then
+        If Err.Number = 0 Then
             For Each WS In WB.Worksheets
                 If WS.visible = xlSheetVisible Then
                     Select Case cboObj.Text
@@ -275,7 +274,7 @@ Private Sub cmdOK_Click()
             ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = ""
     
             ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
-            ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = err.Description
+            ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = Err.Description
             mlngCount = mlngCount + 1
         End If
         WB.Close SaveChanges:=False
@@ -682,15 +681,15 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                 'シェイプに文字があるかないか判断がつかないためエラー検出にて処理
                 On Error Resume Next
                 strBuf = c.TextFrame.Characters.Text
-                If err.Number = 0 Then
+                If Err.Number = 0 Then
                     On Error GoTo 0
                     
                     '正規表現の場合
                     If chkRegEx Then
-                        err.Clear
+                        Err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
-                        If err.Number <> 0 Then
+                        If Err.Number <> 0 Then
                             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
                             cboSearch.SetFocus
                             Exit Sub
@@ -709,7 +708,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     
                         ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                         ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
-                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.Id
+                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.id
 '                        ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = "Shape:" & c.ID
                         
 '                        ResultWS.Hyperlinks.Add _
@@ -726,7 +725,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
                     SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
-                    TextToDisplay:=c.Name & ":" & c.Id
+                    TextToDisplay:=c.Name & ":" & c.id
                     
                         ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
@@ -736,7 +735,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                     End If
                 Else
                     On Error GoTo 0
-                    err.Clear
+                    Err.Clear
                 End If
             Case msoGroup
                 grouprc c, c, colShapes, ResultWS
@@ -762,15 +761,15 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                 'シェイプに文字があるかないか判断がつかないためエラー検出にて処理
                 On Error Resume Next
                 strBuf = c.TextFrame.Characters.Text
-                If err.Number = 0 Then
+                If Err.Number = 0 Then
                     On Error GoTo 0
                     
                     '正規表現の場合
                     If chkRegEx Then
-                        err.Clear
+                        Err.Clear
                         On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
-                        If err.Number <> 0 Then
+                        If Err.Number <> 0 Then
                             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
                             cboSearch.SetFocus
                             Exit Sub
@@ -785,7 +784,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                         ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                         ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objShape.Parent.Parent.FullName
                         ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objShape.Parent.Name
-                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.Id
+                        ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = c.Name & ":" & c.id
 '                        ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = "Shape:" & c.ID
                         
 '                        ResultWS.Hyperlinks.Add _
@@ -802,7 +801,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
                     SubAddress:=Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
-                    TextToDisplay:=c.Name & ":" & c.Id
+                    TextToDisplay:=c.Name & ":" & c.id
                         
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = strBuf
@@ -811,7 +810,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     End If
                 Else
                     On Error GoTo 0
-                    err.Clear
+                    Err.Clear
                 End If
             Case msoGroup
                 '再帰呼出

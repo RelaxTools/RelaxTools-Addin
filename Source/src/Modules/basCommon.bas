@@ -200,12 +200,7 @@ Public Const C_EXCEL_VERSION_2003 As Long = 11
 
 'UNDOバッファ
 Public Const C_TITLE As String = "RelaxTools-Addin"
-Public Const C_GITHUB_URL As String = "https://github.com/RelaxTools/RelaxTools-Addin"
-Public Const C_URL As String = "http://software.opensquare.net/relaxtools/"
-Public Const C_REGEXP_URL As String = "http://software.opensquare.net/relaxtools/about/foruse/regexp/"
-Public Const C_STAMP_URL As String = "http://software.opensquare.net/relaxtools/about/foruse/stamp/"
-Public Const C_CAMPAIGN_URL As String = "http://software.opensquare.net/relaxtools/support-2/campaign/"
-Public Const C_FCS_URL As String = "https://www.fcs.co.jp/?relaxtools"
+
 Public Const C_MAX_CELLS As Long = 100000
 Public pvarSelectionBuffer As Variant
 Public pobjSelection As Object
@@ -1932,7 +1927,7 @@ Sub rlxErrMsg(ByRef objErr As Object)
         Case 1004
             MsgBox "エラーです。シート保護などを確認してください。", vbCritical + vbOKOnly, C_TITLE
         Case Else
-            MsgBox objErr.Description & "(" & err.Number & ")", vbCritical + vbOKOnly, C_TITLE
+            MsgBox objErr.Description & "(" & Err.Number & ")", vbCritical + vbOKOnly, C_TITLE
     End Select
 
 End Sub
@@ -2449,9 +2444,9 @@ Sub RenameActiveBook()
     On Error Resume Next
     Application.ScreenUpdating = False
     
-    err.Clear
+    Err.Clear
     WB.SaveAs filename:=strNew, local:=True
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         Application.ScreenUpdating = True
         MsgBox "エラーが発生しました。名前の変更に失敗しました。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub

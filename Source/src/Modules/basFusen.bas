@@ -111,7 +111,7 @@ Sub pasteFusen(ByVal strId As String, ByVal Index As Long)
             Set obj = New ShapePasteFusenCall2
     End Select
 
-    obj.Id = strId
+    obj.id = strId
     obj.No = Index
 
     obj.Run
@@ -293,7 +293,7 @@ Sub pasteSquareW()
     
     Set obj = New ShapePasteFusenSquare
     
-    obj.Id = "fsGallery01"
+    obj.id = "fsGallery01"
     obj.No = 1
     
     obj.Run
@@ -308,7 +308,7 @@ Sub pasteSquareY()
     
     Set obj = New ShapePasteFusenSquare
     
-    obj.Id = "fsGallery01"
+    obj.id = "fsGallery01"
     obj.No = 2
     
     obj.Run
@@ -321,7 +321,7 @@ Sub pasteSquareP()
     
     Set obj = New ShapePasteFusenSquare
     
-    obj.Id = "fsGallery01"
+    obj.id = "fsGallery01"
     obj.No = 3
     obj.Run
     
@@ -333,7 +333,7 @@ Sub pasteSquareB()
     
     Set obj = New ShapePasteFusenSquare
     
-    obj.Id = "fsGallery01"
+    obj.id = "fsGallery01"
     obj.No = 4
     obj.Run
     
@@ -345,7 +345,7 @@ Sub pasteSquareG()
     
     Set obj = New ShapePasteFusenSquare
     
-    obj.Id = "fsGallery01"
+    obj.id = "fsGallery01"
     obj.No = 5
     obj.Run
     
@@ -357,8 +357,8 @@ Sub beforePasteSquare()
     
     Set obj = New ShapePasteFusenSquare
     
-    obj.Id = "fsGallery01"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
+    obj.id = "fsGallery01"
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -368,7 +368,7 @@ Sub pasteMemoW()
     
     Set obj = New ShapePasteFusenMemo
     
-    obj.Id = "fsGallery02"
+    obj.id = "fsGallery02"
     obj.No = 1
     obj.Run
     
@@ -380,7 +380,7 @@ Sub pasteMemoY()
     
     Set obj = New ShapePasteFusenMemo
     
-    obj.Id = "fsGallery02"
+    obj.id = "fsGallery02"
     obj.No = 2
     obj.Run
     
@@ -392,7 +392,7 @@ Sub pasteMemoP()
     
     Set obj = New ShapePasteFusenMemo
     
-    obj.Id = "fsGallery02"
+    obj.id = "fsGallery02"
     obj.No = 3
     obj.Run
     
@@ -404,7 +404,7 @@ Sub pasteMemoB()
     
     Set obj = New ShapePasteFusenMemo
     
-    obj.Id = "fsGallery02"
+    obj.id = "fsGallery02"
     obj.No = 4
     obj.Run
     
@@ -416,7 +416,7 @@ Sub pasteMemoG()
     
     Set obj = New ShapePasteFusenMemo
     
-    obj.Id = "fsGallery02"
+    obj.id = "fsGallery02"
     obj.No = 5
     obj.Run
     
@@ -428,8 +428,8 @@ Sub beforePasteMemo()
     
     Set obj = New ShapePasteFusenMemo
     
-    obj.Id = "fsGallery02"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
+    obj.id = "fsGallery02"
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -439,7 +439,7 @@ Sub pasteCallW()
     
     Set obj = New ShapePasteFusenCall
     
-    obj.Id = "fsGallery03"
+    obj.id = "fsGallery03"
     obj.No = 1
     obj.Run
     
@@ -451,7 +451,7 @@ Sub pasteCallY()
     
     Set obj = New ShapePasteFusenCall
     
-    obj.Id = "fsGallery03"
+    obj.id = "fsGallery03"
     obj.No = 2
     obj.Run
     
@@ -463,7 +463,7 @@ Sub pasteCallP()
     
     Set obj = New ShapePasteFusenCall
     
-    obj.Id = "fsGallery03"
+    obj.id = "fsGallery03"
     obj.No = 3
     obj.Run
     
@@ -475,7 +475,7 @@ Sub pasteCallB()
     
     Set obj = New ShapePasteFusenCall
     
-    obj.Id = "fsGallery03"
+    obj.id = "fsGallery03"
     obj.No = 4
     obj.Run
     
@@ -487,7 +487,7 @@ Sub pasteCallG()
     
     Set obj = New ShapePasteFusenCall
     
-    obj.Id = "fsGallery03"
+    obj.id = "fsGallery03"
     obj.No = 5
     obj.Run
     
@@ -499,8 +499,8 @@ Sub beforePasteCall()
     
     Set obj = New ShapePasteFusenCall
     
-    obj.Id = "fsGallery03"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
+    obj.id = "fsGallery03"
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -510,7 +510,7 @@ Sub pasteCircleW()
     
     Set obj = New ShapePasteFusenCircle
     
-    obj.Id = "fsGallery04"
+    obj.id = "fsGallery04"
     obj.No = 1
     obj.Run
     
@@ -522,7 +522,7 @@ Sub pasteCircleY()
     
     Set obj = New ShapePasteFusenCircle
     
-    obj.Id = "fsGallery04"
+    obj.id = "fsGallery04"
     obj.No = 2
     obj.Run
     
@@ -534,7 +534,7 @@ Sub pasteCircleP()
     
     Set obj = New ShapePasteFusenCircle
     
-    obj.Id = "fsGallery04"
+    obj.id = "fsGallery04"
     obj.No = 3
     obj.Run
     
@@ -546,7 +546,7 @@ Sub pasteCircleB()
     
     Set obj = New ShapePasteFusenCircle
     
-    obj.Id = "fsGallery04"
+    obj.id = "fsGallery04"
     obj.No = 4
     obj.Run
     
@@ -558,7 +558,7 @@ Sub pasteCircleG()
     
     Set obj = New ShapePasteFusenCircle
     
-    obj.Id = "fsGallery04"
+    obj.id = "fsGallery04"
     obj.No = 5
     obj.Run
     
@@ -570,8 +570,8 @@ Sub beforePasteCircle()
     
     Set obj = New ShapePasteFusenCircle
     
-    obj.Id = "fsGallery04"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
+    obj.id = "fsGallery04"
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -581,7 +581,7 @@ Sub pastePinW()
     
     Set obj = New ShapePasteFusenPin
     
-    obj.Id = "fsGallery05"
+    obj.id = "fsGallery05"
     obj.No = 1
     obj.Run
     
@@ -593,7 +593,7 @@ Sub pastePinY()
     
     Set obj = New ShapePasteFusenPin
     
-    obj.Id = "fsGallery05"
+    obj.id = "fsGallery05"
     obj.No = 2
     obj.Run
     
@@ -605,7 +605,7 @@ Sub pastePinP()
     
     Set obj = New ShapePasteFusenPin
     
-    obj.Id = "fsGallery05"
+    obj.id = "fsGallery05"
     obj.No = 3
     obj.Run
     
@@ -617,7 +617,7 @@ Sub pastePinB()
     
     Set obj = New ShapePasteFusenPin
     
-    obj.Id = "fsGallery05"
+    obj.id = "fsGallery05"
     obj.No = 4
     obj.Run
     
@@ -629,7 +629,7 @@ Sub pastePinG()
     
     Set obj = New ShapePasteFusenPin
     
-    obj.Id = "fsGallery05"
+    obj.id = "fsGallery05"
     obj.No = 5
     obj.Run
     
@@ -641,8 +641,8 @@ Sub beforePastePin()
     
     Set obj = New ShapePasteFusenPin
     
-    obj.Id = "fsGallery05"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
+    obj.id = "fsGallery05"
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.id, "2"))
     obj.Run
     
     Set obj = Nothing
@@ -652,7 +652,7 @@ Sub pasteLineW()
     
     Set obj = New ShapePasteFusenCall2
     
-    obj.Id = "fsGallery06"
+    obj.id = "fsGallery06"
     obj.No = 1
     obj.Run
     
@@ -664,7 +664,7 @@ Sub pasteLineY()
     
     Set obj = New ShapePasteFusenCall2
     
-    obj.Id = "fsGallery06"
+    obj.id = "fsGallery06"
     obj.No = 2
     obj.Run
     
@@ -676,7 +676,7 @@ Sub pasteLineP()
     
     Set obj = New ShapePasteFusenCall2
     
-    obj.Id = "fsGallery06"
+    obj.id = "fsGallery06"
     obj.No = 3
     obj.Run
     
@@ -688,7 +688,7 @@ Sub pasteLineB()
     
     Set obj = New ShapePasteFusenCall2
     
-    obj.Id = "fsGallery06"
+    obj.id = "fsGallery06"
     obj.No = 4
     obj.Run
     
@@ -700,7 +700,7 @@ Sub pasteLineG()
     
     Set obj = New ShapePasteFusenCall2
     
-    obj.Id = "fsGallery06"
+    obj.id = "fsGallery06"
     obj.No = 5
     obj.Run
     
@@ -712,8 +712,8 @@ Sub beforePasteLine()
     
     Set obj = New ShapePasteFusenCall2
     
-    obj.Id = "fsGallery06"
-    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.Id, "2"))
+    obj.id = "fsGallery06"
+    obj.No = Val(GetSetting(C_TITLE, "Fusen", obj.id, "2"))
     obj.Run
     
     Set obj = Nothing

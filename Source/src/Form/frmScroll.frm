@@ -51,7 +51,7 @@ Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
      Call SaveSetting(C_TITLE, "ScrollLine", "ScrollLine", txtScroll.Text)
      Call SaveSetting(C_TITLE, "ScrollLine", "DefaultLine", txtDefault.Text)

@@ -275,7 +275,7 @@ Private Sub moveList(ByVal lngMode As Long)
 End Sub
 
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     Dim s As KantanLineDTO
     Dim Col As Collection

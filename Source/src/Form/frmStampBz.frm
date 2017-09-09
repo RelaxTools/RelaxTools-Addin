@@ -546,7 +546,7 @@ End Sub
 
 
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
         
     Dim datStampBz As StampBzDTO
     Dim Col As Collection

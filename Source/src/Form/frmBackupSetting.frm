@@ -85,7 +85,7 @@ Private Sub cmdFolder_Click()
     
 End Sub
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     Dim i As Long
     Dim strFile As String

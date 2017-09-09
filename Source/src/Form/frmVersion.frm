@@ -49,7 +49,7 @@ Attribute MW.VB_VarHelpID = -1
 
 Private Const mstrAns As String = "26262828252725274241" '上上下下左右左右ＢＡ
 Private mstrKey As String
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
     Unload Me
 End Sub
 

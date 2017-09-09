@@ -177,7 +177,7 @@ End Sub
 Sub dispVer()
     
     frmVersion.Show
-    
+
 End Sub
 
 '--------------------------------------------------------------
@@ -391,14 +391,13 @@ End Sub
 Sub PickSetting()
     frmPickSetting.Show
 End Sub
-Sub ShowFCS()
-    With CreateObject("WScript.Shell")
-        .Run (C_FCS_URL)
-    End With
-End Sub
+
 Sub ShowReport()
     frmReport.Show
 End Sub
 Sub contextMenu()
     frmContextMenu.Show
+End Sub
+Sub showStaticCheck()
+    frmStaticCheck.Show
 End Sub

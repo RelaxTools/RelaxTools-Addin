@@ -49,7 +49,7 @@ Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     If Len(Trim(txtSpace.Text)) = 0 Or Not rlxIsNumber(txtSpace.Text) Then
         Call MsgBox("SPACEの数は数字を入力してください。", vbOKOnly + vbExclamation, C_TITLE)

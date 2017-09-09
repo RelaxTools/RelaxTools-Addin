@@ -37,7 +37,7 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Public Id As String
+Public id As String
 Public No As Long
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 宣言
@@ -69,7 +69,7 @@ End Sub
 
 Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As Long, Cancel As Boolean)
     
-    pasteFusenOrg Id, No
+    pasteFusenOrg id, No
     Set obj = Selection
     pos = MiddleLeft
     
@@ -77,7 +77,7 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
         Cancel = True
     End If
 
-    Call SaveSetting(C_TITLE, "Fusen", Id, No)
+    Call SaveSetting(C_TITLE, "Fusen", id, No)
     RefreshRibbon
 
 End Sub

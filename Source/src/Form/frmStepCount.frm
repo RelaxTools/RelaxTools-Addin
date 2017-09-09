@@ -83,7 +83,7 @@ Private Sub UserForm_Initialize()
 End Sub
 
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     Dim Target As Workbook
     Dim i As Integer

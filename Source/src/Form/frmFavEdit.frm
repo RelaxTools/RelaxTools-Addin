@@ -53,7 +53,7 @@ Private Sub cmdCancel_Click()
     
 End Sub
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     If rlxIsFolderExists(txtFile.Text) Or rlxIsFileExists(txtFile.Text) Then
     Else

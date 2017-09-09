@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmContextMenu 
    Caption         =   "右クリックメニュー割り当て"
-   ClientHeight    =   7035
+   ClientHeight    =   8100
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   10185
@@ -52,23 +52,10 @@ Const C_COM_MACRO As Long = 3
 Const C_COM_DISP_NAME As Long = 4
 Const C_COM_USE As Long = 5
 
-'Const C_KEY_DATA As Long = 3
-'Const C_KEY_NO As Long = 1
-'Const C_KEY_NAME As Long = 2
-'Const C_KEY_KEY As Long = 3
-
 Const C_SET_DATA As Long = 3
 Const C_SET_NO As Long = 1
 Const C_SET_KEY As Long = 2
 Const C_SET_DISP_NAME As Long = 3
-
-'Const C_SETLIST_NO As Long = 0
-'Const C_SETLIST_ENABLE As Long = 1
-'Const C_SETLIST_KEY_NAME As Long = 2
-'Const C_SETLIST_KEY As Long = 3
-'Const C_SETLIST_CATEGORY As Long = 4
-'Const C_SETLIST_MACRO_NAME As Long = 5
-'Const C_SETLIST_MACRO As Long = 6
 
 Const C_MENU_DISP As Long = 0
 Const C_MENU_SETTING As Long = 1
@@ -76,13 +63,19 @@ Const C_MENU_KEY As Long = 2
 
 Private Const C_UP As Long = 1
 Private Const C_DOWN As Long = 2
+Private mBarFav As Object
 
 Private mblnFlg As Boolean
 
-
+Private WithEvents MW As MouseWheel
+Attribute MW.VB_VarHelpID = -1
 
 Private Sub cboCategory_Click()
     Call dispCommand
+End Sub
+
+Private Sub cboCategory_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Set MW.obj = cboCategory
 End Sub
 
 'Private Function existMacro(ByVal strMacro As String) As Boolean
@@ -166,10 +159,7 @@ Private Sub cmdSave_Click()
     Dim i As Long
     
     For i = 0 To lstMenu1.ListCount - 1
-
-        Call SaveSetting(C_TITLE, "ContextMenuDisp", lstMenu1.List(i, C_MENU_KEY), lstMenu1.List(i, C_MENU_DISP))
         Call SaveSetting(C_TITLE, "ContextMenu", lstMenu1.List(i, C_MENU_KEY), lstMenu1.List(i, C_MENU_SETTING))
-
     Next
     Unload Me
 
@@ -201,6 +191,12 @@ Private Sub cmdUp_Click()
 End Sub
 
 
+
+Private Sub lstCommand_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+
+    Set MW.obj = lstCommand
+    
+End Sub
 
 Private Sub lstMenu1_Click()
 
@@ -263,6 +259,69 @@ End Sub
 
 
 
+Private Sub lstMenu1_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+
+    If Button = 2 Then
+    
+        Set mBarFav = CommandBars.Add(Position:=msoBarPopup, Temporary:=True)
+        With mBarFav
+            Dim myCBCtrl2 As Variant
+            Set myCBCtrl2 = .Controls.Add(Type:=msoControlPopup)
+            With myCBCtrl2
+                .Caption = "メニューのコピー先を選択"
+            End With
+
+            Dim a As Variant
+            Dim i As Long
+            For i = 0 To lstMenu1.ListCount - 1
+                If i <> lstMenu1.ListIndex Then
+                    With myCBCtrl2.Controls.Add
+                        .Caption = lstMenu1.List(i)
+                        .OnAction = "'basContextMenu.copyMenu(""" & i & """)'"
+                       '.FaceId = 526
+                        .FaceId = 525
+                    End With
+                End If
+            Next
+
+        
+        End With
+        mBarFav.ShowPopup
+    
+    End If
+End Sub
+Public Sub copyMenu(ByVal Index As Long)
+
+    Dim ret As VbMsgBoxResult
+    
+    ret = vbOK
+
+    If lstMenu1.List(Index, 1) = "" Then
+    Else
+        ret = MsgBox("上書きされますがよろしいですか？", vbOKCancel + vbQuestion, C_TITLE)
+    End If
+    
+    If ret = vbOK Then
+        lstMenu1.List(Index, 1) = lstMenu1.List(lstMenu1.ListIndex, 1)
+        lstMenu1.ListIndex = Index
+    End If
+
+End Sub
+
+Private Sub lstMenu1_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Set MW.obj = lstMenu1
+End Sub
+
+Private Sub lstMenu2_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Set MW.obj = lstMenu2
+End Sub
+
+Private Sub txtKinou_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+    If KeyCode = vbKeyReturn Then
+        Call dispCommand
+    End If
+End Sub
+
 Private Sub UserForm_Initialize()
     
     Dim WS As Worksheet
@@ -299,30 +358,34 @@ Private Sub UserForm_Initialize()
     lngCount = GetSetting(C_TITLE, "ContextMenu", "Count", 0)
         
     lstMenu1.AddItem ""
-    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = GetSetting(C_TITLE, "ContextMenuDisp", "ContextMenuCell", "セルの右クリックメニュー")
+    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = "セルの右クリックメニュー"
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_SETTING) = GetSetting(C_TITLE, "ContextMenu", "ContextMenuCell", "")
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_KEY) = "ContextMenuCell"
     lstMenu1.AddItem ""
-    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = GetSetting(C_TITLE, "ContextMenuDisp", "ContextMenuCellLayout", "セルの右クリックメニュー(ページレイアウト)")
-    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_SETTING) = GetSetting(C_TITLE, "ContextMenu", "ContextMenuCellLayout", "")
-    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_KEY) = "ContextMenuCellLayout"
-    lstMenu1.AddItem ""
-    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = GetSetting(C_TITLE, "ContextMenuDisp", "ContextMenuRow", "行の右クリックメニュー")
+    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = "行の右クリックメニュー"
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_SETTING) = GetSetting(C_TITLE, "ContextMenu", "ContextMenuRow", "")
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_KEY) = "ContextMenuRow"
     lstMenu1.AddItem ""
-    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = GetSetting(C_TITLE, "ContextMenuDisp", "ContextMenuCol", "列の右クリックメニュー")
+    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = "列の右クリックメニュー"
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_SETTING) = GetSetting(C_TITLE, "ContextMenu", "ContextMenuCol", "")
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_KEY) = "ContextMenuCol"
     lstMenu1.AddItem ""
-    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = GetSetting(C_TITLE, "ContextMenuDisp", "ContextMenuShape", "シェイプの右クリックメニュー")
+    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = "シェイプの右クリックメニュー"
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_SETTING) = GetSetting(C_TITLE, "ContextMenu", "ContextMenuShape", "")
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_KEY) = "ContextMenuShape"
     lstMenu1.AddItem ""
-    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = GetSetting(C_TITLE, "ContextMenuDisp", "ContextMenuPicture", "ピクチャの右クリックメニュー")
+    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = "ピクチャの右クリックメニュー"
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_SETTING) = GetSetting(C_TITLE, "ContextMenu", "ContextMenuPicture", "")
     lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_KEY) = "ContextMenuPicture"
+    lstMenu1.AddItem ""
+    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_DISP) = "シートタブの右クリックメニュー"
+    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_SETTING) = GetSetting(C_TITLE, "ContextMenu", "ContextMenuWorkbookPly", "")
+    lstMenu1.List(lstMenu1.ListCount - 1, C_MENU_KEY) = "ContextMenuWorkbookPly"
+    
     lstMenu1.ListIndex = 0
+    
+    Set MW = basMouseWheel.GetInstance
+    MW.Install Me
     
 End Sub
 'Function getEnable(ByVal strBuf As String) As String
@@ -376,104 +439,7 @@ Sub dispCommand()
 End Sub
 
 
-'Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
-''    MW.Name = "lstSetting"
-'    Set MW.obj = Nothing
-'
-'End Sub
 
-'Private Sub UserForm_Terminate()
-'    MW.UnInstall
-'    Set MW = Nothing
-'End Sub
-
-'Private Sub MW_WheelDown(ByVal Name As String)
-'
-'    Select Case Name
-'        Case "lstKey"
-'            If lstKey.ListCount = 0 Then Exit Sub
-'            lstKey.TopIndex = lstKey.TopIndex + 3
-'        Case "lstCommand"
-'            If lstCommand.ListCount = 0 Then Exit Sub
-'            lstCommand.TopIndex = lstCommand.TopIndex + 3
-'        Case "lstSetting"
-'            If lstSetting.ListCount = 0 Then Exit Sub
-'            lstSetting.TopIndex = lstSetting.TopIndex + 3
-'    End Select
-'
-'End Sub
-'
-'Private Sub MW_WheelUp(ByVal Name As String)
-'
-'    Dim lngPos As Long
-'
-'    Select Case Name
-'        Case "lstKey"
-'            If lstKey.ListCount = 0 Then Exit Sub
-'            lngPos = lstKey.TopIndex - 3
-'        Case "lstCommand"
-'            If lstCommand.ListCount = 0 Then Exit Sub
-'            lngPos = lstCommand.TopIndex - 3
-'        Case "lstSetting"
-'            If lstSetting.ListCount = 0 Then Exit Sub
-'            lngPos = lstSetting.TopIndex - 3
-'    End Select
-'
-'    If lngPos < 0 Then
-'        lngPos = 0
-'    End If
-'
-'    Select Case Name
-'        Case "lstKey"
-'            lstKey.TopIndex = lngPos
-'        Case "lstCommand"
-'            lstCommand.TopIndex = lngPos
-'        Case "lstSetting"
-'            lstSetting.TopIndex = lngPos
-'    End Select
-'
-'End Sub
-'Private Sub MW_WheelDown(ByVal Name As String)
-'
-'    Select Case Name
-'        Case "lstKey"
-'            If lstKey.ListCount = 0 Then Exit Sub
-'            lstKey.TopIndex = lstKey.TopIndex + 3
-'        Case "lstCommand"
-'            If lstCommand.ListCount = 0 Then Exit Sub
-'            lstCommand.TopIndex = lstCommand.TopIndex + 3
-'        Case "lstSetting"
-'            If lstSetting.ListCount = 0 Then Exit Sub
-'            lstSetting.TopIndex = lstSetting.TopIndex + 3
-'    End Select
-'
-'End Sub
-
-Private Sub MW_WheelDown(obj As Object)
-
-    On Error GoTo e
-
-    If obj.ListCount = 0 Then Exit Sub
-    obj.TopIndex = obj.TopIndex + 3
-e:
-End Sub
-
-Private Sub MW_WheelUp(obj As Object)
-
-    On Error GoTo e
-
-    Dim lngPos As Long
-
-    If obj.ListCount = 0 Then Exit Sub
-    lngPos = obj.TopIndex - 3
-
-    If lngPos < 0 Then
-        lngPos = 0
-    End If
-
-    obj.TopIndex = lngPos
-e:
-End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 移動処理
 '------------------------------------------------------------------------------------------------------------------------
@@ -527,4 +493,39 @@ Private Sub moveList(ByVal lngMode As Long)
     
     Next
     Call SetList
+End Sub
+
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    Set MW.obj = Nothing
+End Sub
+
+Private Sub UserForm_Terminate()
+    MW.UnInstall
+    Set MW = Nothing
+End Sub
+
+Private Sub MW_WheelDown(obj As Object)
+
+    On Error GoTo e
+
+    If obj.ListCount = 0 Then Exit Sub
+    obj.TopIndex = obj.TopIndex + 3
+e:
+End Sub
+
+Private Sub MW_WheelUp(obj As Object)
+
+    On Error GoTo e
+
+    Dim lngPos As Long
+
+    If obj.ListCount = 0 Then Exit Sub
+    lngPos = obj.TopIndex - 3
+
+    If lngPos < 0 Then
+        lngPos = 0
+    End If
+
+    obj.TopIndex = lngPos
+e:
 End Sub

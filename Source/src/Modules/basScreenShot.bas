@@ -209,7 +209,7 @@ Public Sub pasteScreenShot()
         WS.Paste
         Call CopyClipboardSleep
     
-        If err.Number <> 0 Then
+        If Err.Number <> 0 Then
             tray.ShowBalloon "コピー失敗しました"
         Else
     

@@ -77,6 +77,6 @@ Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean)
 
     Exit Sub
 e:
-    Call rlxErrMsg(err)
+    Call rlxErrMsg(Err)
 End Sub
 

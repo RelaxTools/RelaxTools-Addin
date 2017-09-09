@@ -338,7 +338,7 @@ Private Sub Run(ByVal strPath As String, ByVal strExe As String)
         ChDir strPath
     End If
     
-    err.Clear
+    Err.Clear
     
     Pid = Shell(EXE_NAME & " " & strExe)
     
@@ -349,7 +349,7 @@ Private Sub Run(ByVal strPath As String, ByVal strExe As String)
     
     Set p = Nothing
     
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         MsgBox "TortoiseHGの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
         Exit Sub
     End If

@@ -48,7 +48,7 @@ Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
     Call SaveSetting(C_TITLE, "Shape", "PickShape", chkShape.Value)
     Call SaveSetting(C_TITLE, "Shape", "PickFusen", chkFusen.Value)

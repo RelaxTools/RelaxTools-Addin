@@ -90,14 +90,14 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
         Set WB = Workbooks.Open(filename:=strBook)
     Else
         For Each varPass In varPassword
-            err.Clear
+            Err.Clear
             Set WB = Workbooks.Open(filename:=strBook, Password:=varPass)
-            If err.Number = 0 Then
+            If Err.Number = 0 Then
                 Exit For
             End If
         Next
     End If
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         MsgBox "ブックを開けませんでした。", vbExclamation, "Grep"
         Exit Sub
     End If
@@ -218,14 +218,14 @@ Sub ReplaceStr()
             Set WB = Workbooks.Open(filename:=strBook, local:=True)
         Else
             For Each varPass In varPassword
-                err.Clear
+                Err.Clear
                 Set WB = Workbooks.Open(filename:=strBook, Password:=varPass, local:=True)
-                If err.Number = 0 Then
+                If Err.Number = 0 Then
                     Exit For
                 End If
             Next
         End If
-        If err.Number <> 0 Then
+        If Err.Number <> 0 Then
             MsgBox "ブックが開けません(" & FS.getFileName(strBook) & ")です。" & vbCrLf & "Grep置換をスキップします。", vbOKOnly + vbCritical, C_TITLE
             lngRow = lngRow + 1
             GoTo pass
@@ -281,27 +281,27 @@ pass:
     MsgBox "Grep置換完了しました。", vbOKOnly + vbInformation, C_TITLE
     Exit Sub
 e:
-    If MsgBox("ブック保存時にエラーになりました。(" & err.Description & ")" & vbCrLf & "再試行しますか？", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
+    If MsgBox("ブック保存時にエラーになりました。(" & Err.Description & ")" & vbCrLf & "再試行しますか？", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
         Resume
     Else
         MsgBox "Grep置換を中断しました。", vbOKOnly + vbCritical, C_TITLE
     End If
         
 End Sub
-Private Function getObjFromID(ByRef WS As Worksheet, ByVal Id As String) As Object
+Private Function getObjFromID(ByRef WS As Worksheet, ByVal id As String) As Object
     Dim ret As Object
     Dim s As Shape
     
     For Each s In WS.Shapes
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.Id = CLng(Id) Then
+                If s.id = CLng(id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, Id)
+                Set ret = getObjFromIDSub(s, id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -317,7 +317,7 @@ Private Function getObjFromID(ByRef WS As Worksheet, ByVal Id As String) As Obje
     Set getObjFromID = ret
 
 End Function
-Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal Id As String) As Object
+Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As Object
     
     Dim s As Shape
     Dim ret As Object
@@ -325,13 +325,13 @@ Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal Id As String) As
     For Each s In objShape.GroupItems
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.Id = CLng(Id) Then
+                If s.id = CLng(id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, Id)
+                Set ret = getObjFromIDSub(s, id)
                 If ret Is Nothing Then
                 Else
                     Exit For

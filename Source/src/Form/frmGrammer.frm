@@ -121,7 +121,7 @@ Private Sub cmdHelp_Click()
 '    End If
 End Sub
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
 
 
     
@@ -166,9 +166,9 @@ Private Sub searchStart()
     Set colSheet = New Collection
 
     On Error Resume Next
-    err.Clear
+    Err.Clear
     Set WD = CreateObject("Word.Application")
-    If err.Number <> 0 Then
+    If Err.Number <> 0 Then
         MsgBox "Wordがインストールされていないか、使用できません。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
@@ -300,9 +300,9 @@ Private Function GetGrammer(ByRef WD As Object, ByVal Value As String, ByRef str
     For lngCnt = 1 To lngMax
     
         On Error Resume Next
-        err.Clear
+        Err.Clear
         Set a = WD.ActiveDocument.GrammaticalErrors(lngCnt)
-        If err.Number <> 0 Then
+        If Err.Number <> 0 Then
             Exit For
         End If
         
@@ -321,7 +321,7 @@ Private Function GetGrammer(ByRef WD As Object, ByVal Value As String, ByRef str
                       For Each ctl In WD.CommandBars("Grammar").Controls
                   
                         '[IDが「0」のもの = 修正候補]として取得
-                        If ctl.Id = 0 Then
+                        If ctl.id = 0 Then
                         
                             If cnt < 1 Then
                                 s = ctl.Caption
@@ -409,7 +409,7 @@ Private Sub searchShape(ByRef WD As Object, ByRef objSheet As Worksheet)
                         lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                         lstResult.List(mlngCount, C_SEARCH_STR) = Left(strRet, C_SIZE)
                         lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
-                        lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & ":" & c.Id
+                        lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & ":" & c.id
                         lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
                         lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.Name
 
@@ -418,7 +418,7 @@ Private Sub searchShape(ByRef WD As Object, ByRef objSheet As Worksheet)
                     End If
                 Else
                     On Error GoTo 0
-                    err.Clear
+                    Err.Clear
                 End If
             Case msoGroup
                 grouprc objSheet, c, c, colShapes, WD
@@ -458,7 +458,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                         lstResult.List(mlngCount, C_SEARCH_STR) = Left(strRet, C_SIZE)
 
                         lstResult.List(mlngCount, C_SEARCH_ADDRESS) = c.Name
-                        lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.Id
+                        lstResult.List(mlngCount, C_SEARCH_ID) = C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.id
                         lstResult.List(mlngCount, C_SEARCH_SHEET) = WS.Name
                         lstResult.List(mlngCount, C_SEARCH_BOOK) = WS.Parent.Name
 
@@ -467,7 +467,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                     End If
                 Else
                     On Error GoTo 0
-                    err.Clear
+                    Err.Clear
                 End If
             Case msoGroup
                 '再帰呼出
@@ -547,10 +547,10 @@ Private Function getGroupId(ByRef objShape As Object) As String
     Dim s As Object
     
     On Error Resume Next
-    err.Clear
+    Err.Clear
     Set s = objShape.ParentGroup
-    Do Until err.Number <> 0
-        strBuf = "/" & s.Id & strBuf
+    Do Until Err.Number <> 0
+        strBuf = "/" & s.id & strBuf
         Set s = s.ParentGroup
     Loop
     
@@ -882,7 +882,7 @@ Private Function convEscSeq(ByVal strBuf As String) As String
     convEscSeq = strRet
     
 End Function
-Private Function getObjFromID2(ByRef WS As Worksheet, ByVal Id As String) As Object
+Private Function getObjFromID2(ByRef WS As Worksheet, ByVal id As String) As Object
 
     Dim ret As Object
     Dim s As Shape
@@ -892,16 +892,16 @@ Private Function getObjFromID2(ByRef WS As Worksheet, ByVal Id As String) As Obj
     
     Set ret = Nothing
     
-    If InStr(Id, ",") > 0 Then
-        lngID = CLng(Mid$(Id, 1, InStrRev(Id, ",") - 1))
+    If InStr(id, ",") > 0 Then
+        lngID = CLng(Mid$(id, 1, InStrRev(id, ",") - 1))
     Else
-        lngID = CLng(Id)
+        lngID = CLng(id)
     End If
     
     For Each s In WS.Shapes
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoSmartArt, msoCallout, msoFreeform
-                If s.Id = lngID Then
+                If s.id = lngID Then
                     Set ret = s
                     Exit For
                 End If
@@ -918,7 +918,7 @@ Private Function getObjFromID2(ByRef WS As Worksheet, ByVal Id As String) As Obj
     Set getObjFromID2 = ret
 
 End Function
-Private Function getObjFromIDSub2(ByRef objShape As Shape, ByVal Id As Long) As Object
+Private Function getObjFromIDSub2(ByRef objShape As Shape, ByVal id As Long) As Object
     
     Dim s As Shape
     Dim ret As Object
@@ -926,13 +926,13 @@ Private Function getObjFromIDSub2(ByRef objShape As Shape, ByVal Id As Long) As 
     For Each s In objShape.GroupItems
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoSmartArt, msoCallout, msoFreeform
-                If s.Id = Id Then
+                If s.id = id Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, Id)
+                Set ret = getObjFromIDSub(s, id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -943,26 +943,26 @@ Private Function getObjFromIDSub2(ByRef objShape As Shape, ByVal Id As Long) As 
 
     Set getObjFromIDSub2 = ret
 End Function
-Private Function getObjFromID(ByRef WS As Worksheet, ByVal Id As String) As Object
+Private Function getObjFromID(ByRef WS As Worksheet, ByVal id As String) As Object
     Dim ret As Object
     Dim s As Shape
     
     For Each s In WS.Shapes
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.Id = CLng(Id) Then
+                If s.id = CLng(id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, Id)
+                Set ret = getObjFromIDSub(s, id)
                 If ret Is Nothing Then
                 Else
                     Exit For
                 End If
             Case msoSmartArt
-                Set ret = getSmartArtFromIDSub(s, Id)
+                Set ret = getSmartArtFromIDSub(s, id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -972,7 +972,7 @@ Private Function getObjFromID(ByRef WS As Worksheet, ByVal Id As String) As Obje
     Set getObjFromID = ret
 
 End Function
-Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal Id As String) As Object
+Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As Object
     
     Dim s As Shape
     Dim ret As Object
@@ -980,20 +980,20 @@ Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal Id As String) As
     For Each s In objShape.GroupItems
         Select Case s.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
-                If s.Id = CLng(Id) Then
+                If s.id = CLng(id) Then
                     Set ret = s
                     Exit For
                 End If
             
             Case msoGroup
-                Set ret = getObjFromIDSub(s, Id)
+                Set ret = getObjFromIDSub(s, id)
                 If ret Is Nothing Then
                 Else
                     Exit For
                 End If
                 
             Case msoSmartArt
-                Set ret = getSmartArtFromIDSub(s, Id)
+                Set ret = getSmartArtFromIDSub(s, id)
                 If ret Is Nothing Then
                 Else
                     Exit For
@@ -1004,7 +1004,7 @@ Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal Id As String) As
     Set getObjFromIDSub = ret
 End Function
 
-Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal Id As String) As Object
+Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal id As String) As Object
     
     Dim ret As Object
     Dim i As Long
@@ -1014,11 +1014,11 @@ Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal Id As Strin
     
     Set ret = Nothing
     
-    If InStr(Id, ",") > 0 Then
-        lngID = CLng(Mid$(Id, 1, InStrRev(Id, ",") - 1))
-        lngPos = CLng(Mid$(Id, InStrRev(Id, ",") + 1))
+    If InStr(id, ",") > 0 Then
+        lngID = CLng(Mid$(id, 1, InStrRev(id, ",") - 1))
+        lngPos = CLng(Mid$(id, InStrRev(id, ",") + 1))
         
-        If lngID = objShape.Id Then
+        If lngID = objShape.id Then
         
             For i = 1 To objShape.SmartArt.AllNodes.count
             

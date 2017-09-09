@@ -686,20 +686,20 @@ Function existCrossLine(ByVal sh As Worksheet) As Boolean
     
     On Error Resume Next
     
-    err.Clear
+    Err.Clear
     Set s = sh.Shapes(C_HOLIZONTAL_BAR_NAME)
     Set s = Nothing
     
-    If err.Number = 0 Then
+    If Err.Number = 0 Then
         existCrossLine = True
         Exit Function
     End If
     
-    err.Clear
+    Err.Clear
     Set s = sh.Shapes(C_VERTICAL_BAR_NAME)
     Set s = Nothing
     
-    If err.Number = 0 Then
+    If Err.Number = 0 Then
         existCrossLine = True
         Exit Function
     End If

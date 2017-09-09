@@ -65,7 +65,7 @@ Private Sub cmdHelp_Click()
 
 End Sub
 
-Private Sub cmdOK_Click()
+Private Sub cmdOk_Click()
     
     Dim strText As String
     Dim strTag As String
