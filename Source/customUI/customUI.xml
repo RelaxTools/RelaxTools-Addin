@@ -1153,8 +1153,8 @@
         <group id="grpRelaxtools6" label="Do you like Sushi?" helperText="Excel作業に疲れたら回すやつ" visible="true">
           <topItems>
             <layoutContainer id="layoutSushi" layoutChildren="horizontal">
-              <button id="sushiShow" image="sushi" label="Let's&#xD;&#xA;Party!" style="large" onAction="sushiOnAction"/>
-              <button id="sushiStop" imageMso="CancelRequest" label="Party is&#xD;&#xA;Over!" style="large" onAction="sushiOnAction"/>
+              <button id="sushiShow" image="sushi" label="Start" style="large" onAction="sushiOnAction"/>
+              <button id="sushiStop" imageMso="CancelRequest" label="Stop" style="large" onAction="sushiOnAction"/>
               <button id="sushiSetting" image="gear32" label="Setting" style="large" onAction="sushiOnAction"/>
             </layoutContainer>
           </topItems>

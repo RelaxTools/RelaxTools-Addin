@@ -1,6 +1,10 @@
-﻿2017/09/09(sat) RelaxTools-Addin Version 4.14.0(RustRemover) 
+﻿2017/09/10(sun) RelaxTools-Addin Version 4.14.1(RustRemover) 
+◇機能改善
+・「ブックの静的チェック」のヘルプで「複数セルに対応」という記述を削除。
+
+2017/09/09(sat) RelaxTools-Addin Version 4.14.0(RustRemover) 
 ◇お知らせ
-・2017年10月10日にExcel2007のサポートが切れる予定のため
+・2017年10月10日にExcel2007のサポート終了のため
 　今バージョンよりExcel2007非対応になります。
 ◇新規機能
 ・右クリックメニューのカスタマイズが可能になりました。
