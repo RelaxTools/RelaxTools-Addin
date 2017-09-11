@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmStaticCheck 
    Caption         =   "ブックの静的チェック"
-   ClientHeight    =   7125
+   ClientHeight    =   7395
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   11970
@@ -220,6 +220,21 @@ Private Sub cmdOk_Click()
             
         End If
     Next
+    
+    
+    Dim lngAns As Long
+    
+    txtChk.Value = lstResult.ListCount
+    lngAns = txtTotal.Value - (Val(txtTen.Value) * Val(txtChk.Value))
+    
+    If lngAns < 0 Then
+        txtANS.ForeColor = vbRed
+    Else
+        txtANS.ForeColor = vbBlack
+    End If
+    txtANS.Text = lngAns
+    
+    
 End Sub
 
 Private Sub cmdCancel_Click()

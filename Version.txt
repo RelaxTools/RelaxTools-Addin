@@ -1,4 +1,9 @@
-﻿2017/09/10(sun) RelaxTools-Addin Version 4.14.1(RustRemover) 
+﻿2017/09/11(mon) RelaxTools-Addin Version 4.14.2(RustRemover) 
+◇バグ修正
+・付箋「メモ」青のアイコンが表示されない不具合を修正。
+・「ブックの静的チェック」のボタンを「検索」→「チェック」に修正。
+
+2017/09/10(sun) RelaxTools-Addin Version 4.14.1(RustRemover) 
 ◇機能改善
 ・「ブックの静的チェック」のヘルプで「複数セルに対応」という記述を削除。
 
