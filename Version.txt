@@ -1,4 +1,9 @@
-﻿2017/09/11(mon) RelaxTools-Addin Version 4.14.2(RustRemover) 
+﻿2017/09/14(thu) RelaxTools-Addin Version 4.14.3(RustRemover) 
+◇機能改善
+・ToitoiseSVNで「needs-lock」対応のため、「ロック」「アンロック」「コミット」後、
+　ブックを開きなおすように修正。
+
+2017/09/11(mon) RelaxTools-Addin Version 4.14.2(RustRemover) 
 ◇バグ修正
 ・付箋「メモ」青のアイコンが表示されない不具合を修正。
 ・「ブックの静的チェック」のボタンを「検索」→「チェック」に修正。

@@ -170,19 +170,32 @@ Private Sub IVersion_Commit()
 
     Dim strCommand As String
     Dim WB As Workbook
+    Dim strBook As String
     
     On Error GoTo e
     
     Set WB = ActiveWorkbook
+    strBook = WB.FullName
     If IsError(WB) Then
         Exit Sub
     End If
     
+    Application.DisplayAlerts = False
+    Application.ScreenUpdating = False
+    
     strCommand = CMD_COMMIT & GetPath(WB.FullName) & OPT_END0
+    WB.Close False
+    
     Run strCommand
+    
+    Workbooks.Open strBook
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
 
     Exit Sub
 e:
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -226,13 +239,26 @@ Private Sub IVersion_Locked()
 
     Dim strCommand As String
     Dim WB As Workbook
+    Dim strBook As String
     
     On Error GoTo e
     
     Set WB = ActiveWorkbook
-    If IsError(WB) Then
+    strBook = WB.FullName
+    
+    If Not rlxIsFileExists(strBook) Then
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
+    
+    With CreateObject("SubWCRev.object")
+        .GetWCInfo strBook, 0, 0
+        If .IsSvnItem Then
+        Else
+            MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
+            Exit Sub
+        End If
+    End With
     
     With CreateObject("SubWCRev.object")
         .GetWCInfo WB.FullName, 0, 0
@@ -242,11 +268,29 @@ Private Sub IVersion_Locked()
         End If
     End With
     
+    If Not WB.Saved Then
+        If MsgBox("ブックが変更されています。破棄しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            Exit Sub
+        End If
+    End If
+    
+    On Error Resume Next
+        
+    Application.DisplayAlerts = False
+    Application.ScreenUpdating = False
+    
     strCommand = CMD_LOCK & GetPath(WB.FullName) & OPT_END0
+    WB.Close False
     Run strCommand
 
+    Workbooks.Open strBook
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
+    
     Exit Sub
 e:
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
@@ -270,19 +314,58 @@ Private Sub IVersion_Unlocked()
 
     Dim strCommand As String
     Dim WB As Workbook
+    Dim strBook As String
     
     On Error GoTo e
     
     Set WB = ActiveWorkbook
-    If IsError(WB) Then
+    strBook = WB.FullName
+    
+    If Not rlxIsFileExists(strBook) Then
+        MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
+    With CreateObject("SubWCRev.object")
+        .GetWCInfo strBook, 0, 0
+        If .IsSvnItem Then
+        Else
+            MsgBox "バージョン管理外のブックです。", vbOKOnly + vbExclamation, C_TITLE
+            Exit Sub
+        End If
+    End With
+    
+    With CreateObject("SubWCRev.object")
+        .GetWCInfo WB.FullName, 0, 0
+        If Not .IsLocked Then
+            MsgBox "ブックはロックされていません。", vbOKCancel + vbQuestion, C_TITLE
+            Exit Sub
+        End If
+    End With
+    
+    If Not WB.Saved Then
+        If MsgBox("ブックが変更されています。破棄しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            Exit Sub
+        End If
+    End If
+    
+    On Error Resume Next
+        
+    Application.DisplayAlerts = False
+    Application.ScreenUpdating = False
+    
     strCommand = CMD_UNLOCK & GetPath(WB.FullName) & OPT_END0
+    WB.Close False
     Run strCommand
+
+    Workbooks.Open strBook
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
 
     Exit Sub
 e:
+    Application.DisplayAlerts = True
+    Application.ScreenUpdating = True
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 Private Sub IVersion_Log()
