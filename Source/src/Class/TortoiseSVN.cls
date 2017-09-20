@@ -278,8 +278,6 @@ Private Sub IVersion_Locked()
     
     Exit Sub
 e:
-    Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 

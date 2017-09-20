@@ -1,4 +1,10 @@
-﻿2017/09/14(thu) RelaxTools-Addin Version 4.14.3(RustRemover) 
+﻿2017/09/20(wed) RelaxTools-Addin Version 4.14.4(RustRemover) 
+◇機能改善
+・house1059さんのプルリクを反映。
+　ToitoiseSNVのロックを取得する際に読み取り専用だった場合も閉じずに
+　そのままロックの取得をするように変更しました。 #44
+　
+2017/09/14(thu) RelaxTools-Addin Version 4.14.3(RustRemover) 
 ◇機能改善
 ・ToitoiseSVNで「needs-lock」対応のため、「ロック」「アンロック」「コミット」後、
 　ブックを開きなおすように修正。
