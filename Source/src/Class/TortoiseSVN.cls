@@ -268,24 +268,13 @@ Private Sub IVersion_Locked()
         End If
     End With
     
-    If Not WB.Saved Then
-        If MsgBox("ブックが変更されています。破棄しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
-            Exit Sub
-        End If
+    CreateObject("Scripting.FileSystemObject").GetFile(WB.FullName).Attributes = 0
+    If WB.ReadOnly Then
+        WB.ChangeFileAccess xlReadWrite
+        Set WB = ActiveWorkbook     'ローカルの場合情報が失われるため再セット
     End If
-    
-    On Error Resume Next
-        
-    Application.DisplayAlerts = False
-    Application.ScreenUpdating = False
-    
     strCommand = CMD_LOCK & GetPath(WB.FullName) & OPT_END0
-    WB.Close False
     Run strCommand
-
-    Workbooks.Open strBook
-    Application.DisplayAlerts = True
-    Application.ScreenUpdating = True
     
     Exit Sub
 e:
