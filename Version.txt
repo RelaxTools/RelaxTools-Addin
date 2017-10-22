@@ -1,4 +1,9 @@
-﻿2017/09/20(wed) RelaxTools-Addin Version 4.14.4(RustRemover) 
+﻿2017/10/22(sun) RelaxTools-Addin Version 4.14.5(RustRemover) 
+◇機能改善
+・yuki さんの要望で「十字カーソル」で行全体を選択するモードを復活。
+・ToitoiseSVN のコミット時のブックの閉じ方を変更。
+
+2017/09/20(wed) RelaxTools-Addin Version 4.14.4(RustRemover) 
 ◇機能改善
 ・house1059さんのプルリクを反映。
 　ToitoiseSNVのロックを取得する際に読み取り専用だった場合も閉じずに

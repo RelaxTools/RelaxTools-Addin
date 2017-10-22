@@ -353,13 +353,21 @@ Private Sub addCrossLine()
         
         Call deleteCrossLine
         
+        Dim blnFillVisible As Boolean
+        Dim lngFillColor As Long
+        Dim dblFillTransparency As Double
+        Dim lngLineVisible As Long
         Dim lngLineColor As Long
         Dim sngLineWeight As Single
+        Dim strOnAction As String
         Dim lngType As Long
         Dim blnGuid As Boolean
         Dim lngFontColor As Long
+        Dim blnEdit As Boolean
+        Dim blnLineWidth As Boolean
     
-        Call getCrossLineSetting(lngType, lngLineColor, sngLineWeight, blnGuid, lngFontColor)
+        Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
+        
         
         If lngType And C_HOLIZON Then
             Set s = mWS.Shapes.AddShape(msoShapeRectangle, 10, 10, 10, 10)
@@ -377,7 +385,7 @@ Private Sub addCrossLine()
                 .Transparency = 0.5
                 .Solid
             End With
-            
+        
             Set s = Nothing
         End If
         
@@ -521,14 +529,21 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         sngWidth = C_MAX
     End If
 
+    Dim blnFillVisible As Boolean
+    Dim lngFillColor As Long
+    Dim dblFillTransparency As Double
+    Dim lngLineVisible As Long
     Dim lngLineColor As Long
     Dim sngLineWeight As Single
+    Dim strOnAction As String
     Dim lngType As Long
     Dim blnGuid As Boolean
     Dim lngFontColor As Long
+    Dim blnEdit As Boolean
+    Dim blnLineWidth As Boolean
 
-    Call getCrossLineSetting(lngType, lngLineColor, sngLineWeight, blnGuid, lngFontColor)
-
+    Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
+        
     '横軸
     If lngType And C_HOLIZON Then
         Set r = Range(sh.Cells(lngRow, 1), sh.Cells(lngRow, sh.Columns.count - 1))
@@ -536,11 +551,21 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Top = r.Top
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).Left = sngLeft
         sh.Shapes(C_HOLIZONTAL_BAR_NAME).width = sngWidth 'r.Width
-        sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = 0
-
+        
+        If blnFillVisible Then
+            sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = 0
+        Else
+            sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = r.Height
+        End If
+    
+'        If Not blnFillVisible Then
+            sh.Shapes(C_HOLIZONTAL_BAR_NAME).OnAction = strOnAction
+'        End If
 
         With sh.Shapes(C_HOLIZONTAL_BAR_NAME).Fill
             .visible = True
+            .ForeColor.RGB = lngFillColor
+            .Transparency = dblFillTransparency / 100
             .Solid
         End With
 
@@ -560,13 +585,23 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
 
         sh.Shapes(C_VERTICAL_BAR_NAME).Top = sngTop
         sh.Shapes(C_VERTICAL_BAR_NAME).Left = r.Left
-        sh.Shapes(C_VERTICAL_BAR_NAME).width = 0
+        
+        If blnFillVisible Then
+            sh.Shapes(C_VERTICAL_BAR_NAME).width = 0
+        Else
+            sh.Shapes(C_VERTICAL_BAR_NAME).width = r.width
+        End If
+        
+'        If Not blnFillVisible Then
+            sh.Shapes(C_VERTICAL_BAR_NAME).OnAction = strOnAction
+'        End If
+        
         sh.Shapes(C_VERTICAL_BAR_NAME).Height = sngHeight 'r.Height
 
         With sh.Shapes(C_VERTICAL_BAR_NAME).Fill
             .visible = True
-'            .ForeColor.RGB = lngFillColor
-'            .Transparency = dblFillTransparency / 100
+            .ForeColor.RGB = lngFillColor
+            .Transparency = dblFillTransparency / 100
             .Solid
         End With
 
@@ -605,7 +640,9 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
             .Weight = sngLineWeight
 '            .Transparency = 0
         End With
-
+        
+        sh.Shapes(C_XY_BAR_NAME).OnAction = strOnAction
+        
         Dim strBuf As String
 
         strBuf = "  列:" & Target(1).Column & vbCrLf

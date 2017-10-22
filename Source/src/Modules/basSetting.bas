@@ -30,25 +30,42 @@ Attribute VB_Name = "basSetting"
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 Option Private Module
-
-
-Sub getCrossLineSetting(ByRef lngType As Long, ByRef lngLineColor As Long, ByRef sngLineWeight As Single, ByRef blnGuid As Boolean, ByRef lngFontColor As Long)
+Sub getCrossLineSetting(ByRef lngType As Long, ByRef blnFillVisible As Boolean, ByRef lngFillColor As Long, ByRef dblFillTransparency As Double, ByRef lngLineVisible As Long, ByRef lngLineColor As Long, ByRef sngLineWeight As Single, ByRef strOnAction As String, ByRef blnGuid As Boolean, ByRef lngFontColor As Long, ByRef blnEdit As Boolean, ByRef blnLineWidth As Boolean)
 
     lngType = Val(GetSetting(C_TITLE, "CrossLine", "Type", C_ALL))
-    lngLineColor = CLng(GetSetting(C_TITLE, "CrossLine", "LineColor", "&H8000"))
+    blnFillVisible = GetSetting(C_TITLE, "CrossLine", "FillVisible", True)
+    lngFillColor = CLng(GetSetting(C_TITLE, "CrossLine", "FillColor", "&H0050B000"))
+    dblFillTransparency = Val(GetSetting(C_TITLE, "CrossLine", "FillTransparency", "50"))
+        
+    lngLineVisible = Val(GetSetting(C_TITLE, "CrossLine", "LineVisible", "0"))
+    lngLineColor = CLng(GetSetting(C_TITLE, "CrossLine", "LineColor", "&H0050B000"))
     sngLineWeight = Val(GetSetting(C_TITLE, "CrossLine", "LineWeight", "2"))
     
+    strOnAction = GetSetting(C_TITLE, "CrossLine", "OnAction", "rlxCrossClick")
+    
     blnGuid = GetSetting(C_TITLE, "CrossLine", "Guid", True)
-    lngFontColor = CLng(GetSetting(C_TITLE, "CrossLine", "FontColor", "&H8000"))
+    blnEdit = GetSetting(C_TITLE, "CrossLine", "Edit", False)
+    blnLineWidth = GetSetting(C_TITLE, "CrossLine", "LineWidth", False)
+    
+    lngFontColor = CLng(GetSetting(C_TITLE, "CrossLine", "FontColor", "&H0050B000"))
 
 End Sub
-Sub setCrossLineSetting(ByVal strType As String, ByVal strLineColor As String, ByVal strLineWeight As String, ByVal blnGuid As Boolean, ByVal strFontColor As String)
+Sub setCrossLineSetting(ByVal strType As String, ByVal strFillVisible As String, ByVal strFillColor As String, ByVal strFillTransparency As String, ByVal strLineVisible As String, ByVal strLineColor As String, ByVal strLineWeight As String, ByVal blnGuid As Boolean, ByVal strFontColor As String, ByVal blnEdit As Boolean, ByVal blnLineWidth As Boolean)
 
     Call SaveSetting(C_TITLE, "CrossLine", "Type", strType)
+    Call SaveSetting(C_TITLE, "CrossLine", "FillVisible", strFillVisible)
+    Call SaveSetting(C_TITLE, "CrossLine", "FillColor", strFillColor)
+    Call SaveSetting(C_TITLE, "CrossLine", "FillTransparency", strFillTransparency)
+        
+    Call SaveSetting(C_TITLE, "CrossLine", "LineVisible", strLineVisible)
     Call SaveSetting(C_TITLE, "CrossLine", "LineColor", strLineColor)
     Call SaveSetting(C_TITLE, "CrossLine", "LineWeight", strLineWeight)
+    
     Call SaveSetting(C_TITLE, "CrossLine", "FontColor", strFontColor)
+    
     Call SaveSetting(C_TITLE, "CrossLine", "Guid", blnGuid)
+    Call SaveSetting(C_TITLE, "CrossLine", "Edit", blnEdit)
+    Call SaveSetting(C_TITLE, "CrossLine", "LineWidth", blnLineWidth)
     
 End Sub
 Sub getCopyScreenSetting(ByRef blnFillVisible As Boolean, ByRef lngFillColor As Long, ByRef blnLine As Boolean)
@@ -65,3 +82,4 @@ Sub setCopyScreenSetting(ByVal blnFillVisible As Boolean, ByVal strFillColor As 
     Call SaveSetting(C_TITLE, "CopyScreen", "Line", blnLine)
         
 End Sub
+

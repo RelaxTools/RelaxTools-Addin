@@ -121,6 +121,8 @@ Private Sub IVersion_Brouser()
     
     strCommand = CMD_BROUSER & GetPath(WB.FullName) & OPT_END0
     Run strCommand
+    
+    
 
     WB.ChangeFileAccess Mode:=xlReadWrite
     
@@ -147,13 +149,14 @@ Private Sub IVersion_Cleanup()
         Exit Sub
     End If
     
+    strCommand = CMD_CLEANUP & "/PATH:" & rlxGetFullpathFromPathName(strBook) & " " & OPT_END0
+    If Run(strCommand) < 0 Then
+        Exit Sub
+    End If
+    
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
-    
-    strCommand = CMD_CLEANUP & "/PATH:" & rlxGetFullpathFromPathName(strBook) & " " & OPT_END0
     WB.Close False
-    
-    Run strCommand
 
     Workbooks.Open strBook
     Application.DisplayAlerts = True
@@ -180,18 +183,24 @@ Private Sub IVersion_Commit()
         Exit Sub
     End If
     
+    strCommand = CMD_COMMIT & GetPath(WB.FullName) & OPT_END0
+    If Run(strCommand) < 0 Then
+        Exit Sub
+    End If
+    
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
     
-    strCommand = CMD_COMMIT & GetPath(WB.FullName) & OPT_END0
     WB.Close False
+    Set WB = Nothing
     
-    Run strCommand
+    Set WB = Workbooks.Open(strBook)
+    WB.Windows(1).visible = False
     
-    Workbooks.Open strBook
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
+    WB.Windows(1).visible = True
     Exit Sub
 e:
     Application.DisplayAlerts = True
@@ -338,17 +347,25 @@ Private Sub IVersion_Unlocked()
     
     On Error Resume Next
         
+    strCommand = CMD_UNLOCK & GetPath(WB.FullName) & OPT_END0
+    If Run(strCommand) < 0 Then
+        Exit Sub
+    End If
+    
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
     
-    strCommand = CMD_UNLOCK & GetPath(WB.FullName) & OPT_END0
     WB.Close False
-    Run strCommand
-
-    Workbooks.Open strBook
+    Set WB = Nothing
+    
+    
+    Set WB = Workbooks.Open(strBook)
+    WB.Windows(1).visible = False
+    
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
+    WB.Windows(1).visible = True
     Exit Sub
 e:
     Application.DisplayAlerts = True
@@ -425,19 +442,23 @@ Private Sub IVersion_Revert()
     End If
     
     On Error Resume Next
-        
+    
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
     
     strCommand = CMD_REVERT & GetPath(WB.FullName) & OPT_END0
     WB.Close False
+    DoEvents
+    Set WB = Nothing
     
     Run strCommand
-
-    Workbooks.Open strBook
+    Set WB = Workbooks.Open(strBook)
+    WB.Windows(1).visible = False
+    
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
+    WB.Windows(1).visible = True
     Exit Sub
 e:
     Application.DisplayAlerts = True
@@ -482,19 +503,23 @@ Private Sub IVersion_Update()
     End If
     
     On Error Resume Next
-        
+
     Application.DisplayAlerts = False
     Application.ScreenUpdating = False
-
+    
     strCommand = CMD_UPDATE & GetPath(WB.FullName) & OPT_END0
     WB.Close False
-
+    DoEvents
+    Set WB = Nothing
+    
     Run strCommand
-
-    Workbooks.Open strBook
+    Set WB = Workbooks.Open(strBook)
+    WB.Windows(1).visible = False
+    
     Application.DisplayAlerts = True
     Application.ScreenUpdating = True
 
+    WB.Windows(1).visible = True
     Exit Sub
 e:
     Application.DisplayAlerts = True
@@ -517,21 +542,21 @@ e:
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 
-Private Sub Run(ByVal strExe As String)
+Private Function Run(ByVal strExe As String)
     On Error Resume Next
 
     Err.Clear
     With CreateObject("WScript.Shell")
-        .Run EXE_NAME & " " & OPT_COMMAND & strExe, 1, True
+        Run = .Run(EXE_NAME & " " & OPT_COMMAND & strExe, 1, True)
     End With
     If Err.Number <> 0 Then
         MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
     End If
     
-    Exit Sub
+    Exit Function
 e:
     MsgBox "TortoiseSVNの起動に失敗しました。インストールされていないか、PATHの設定を確認してください。", vbOKOnly + vbCritical, C_TITLE
-End Sub
+End Function
 Private Function GetPath(ByVal strBook As String) As String
     
     GetPath = OPT_PATH & """" & strBook & """ "
