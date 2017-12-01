@@ -46,6 +46,11 @@ End IF
 'ファイルコピー(上書き) 
 objFileSys.CopyFile  addInFileName ,installPath , True
 
+'イメージフォルダがない場合は作成
+IF Not objFileSys.FolderExists(imageFolder) THEN
+  objFileSys.CreateFolder(imageFolder)
+END IF
+
 'イメージフォルダをコピー(上書き) 
 objFileSys.CopyFolder  "Source\customUI\images" ,imageFolder , True
 
