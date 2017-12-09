@@ -72,6 +72,7 @@
           <box id="boxClipSearch" boxStyle="vertical">
             <menu id="clipboard1" label="クリップボード"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="clipboard" getEnabled="getRibbonEnabled" >
               <menuSeparator id="clipSep06" title="マージセルのコピー、ペースト"/>
+              <button id="copyMergeCellVal" image="clipCopy" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="copyMergeCell" image="clipCopy" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="pasteMergeCell" image="clipPaste" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <menuSeparator id="clipSep01" title="ブック名、シート名をコピーする"/>
