@@ -1,4 +1,15 @@
-﻿2017/10/22(sun) RelaxTools-Addin Version 4.14.5(RustRemover) 
+﻿2017/12/11(mon) RelaxTools-Addin Version 4.14.7(RustRemover) 
+◇新規機能
+・「結合セルを値のみをコピー」「結合セルに値を貼り付け」を追加。
+　結合セルでも通常のセルのように行列が規則正しくならんでいる場合、コピペができるようにした。
+◇バグ修正
+・右クリックメニューで一部の"Excel機能"などが使用できないため表示されないように修正。
+
+2017/12/04(tue) RelaxTools-Addin Version 4.14.6(RustRemover) 
+◇バグ修正
+・#45 新規インストール時に%APPDATA%\RelaxTools-Addinが作成されず、エラーになっていた不具合を修正。
+
+2017/10/22(sun) RelaxTools-Addin Version 4.14.5(RustRemover) 
 ◇機能改善
 ・yuki さんの要望で「十字カーソル」で行全体を選択するモードを復活。
 ・ToitoiseSVN のコミット時のブックの閉じ方を変更。
