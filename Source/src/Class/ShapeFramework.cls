@@ -48,8 +48,8 @@ Option Explicit
     Private Declare PtrSafe Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
     Private Declare PtrSafe Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
     Private Declare PtrSafe Function GetDeviceCaps Lib "gdi32" (ByVal hDc As LongPtr, ByVal nIndex As Long) As Long
-    Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hWnd As LongPtr) As LongPtr
-    Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hWnd As LongPtr, ByVal hDc As LongPtr) As Long
+    Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hwnd As LongPtr) As LongPtr
+    Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hwnd As LongPtr, ByVal hDc As LongPtr) As Long
 
     Private Type MOUSEINPUT
         dx As Long
@@ -71,8 +71,8 @@ Option Explicit
     Private Declare Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
     Private Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
     Private Declare Function GetDeviceCaps Lib "gdi32" (ByVal hDc As Long, ByVal nIndex As Long) As Long
-    Private Declare Function GetDC Lib "user32" (ByVal hWnd As Long) As Long
-    Private Declare Sub ReleaseDC Lib "user32" (ByVal hWnd As Long, ByVal hDc As Long)
+    Private Declare Function GetDC Lib "user32" (ByVal hwnd As Long) As Long
+    Private Declare Sub ReleaseDC Lib "user32" (ByVal hwnd As Long, ByVal hDc As Long)
     
     Private Type MOUSEINPUT
         dx As Long
@@ -359,17 +359,17 @@ End Function 'ポイント から スクリーン座標
 Private Sub GetDPI()
 
 #If VBA7 And Win64 Then
-    Dim hWnd As LongPtr
+    Dim hwnd As LongPtr
     Dim hDc As LongPtr
 #Else
-    Dim hWnd As Long
+    Dim hwnd As Long
     Dim hDc As Long
 #End If
-    hWnd = Application.hWnd
-    hDc = GetDC(hWnd)
+    hwnd = Application.hwnd
+    hDc = GetDC(hwnd)
     dblSx = GetDeviceCaps(hDc, LOGPIXELSX)
     dblSy = GetDeviceCaps(hDc, LOGPIXELSY)
-    ReleaseDC hWnd, hDc
+    ReleaseDC hwnd, hDc
     
 End Sub
 Private Function PointToPixel(ByRef pt As POINTAPI) As POINTAPI

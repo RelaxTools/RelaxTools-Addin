@@ -185,7 +185,7 @@ Sub pasteFusenOrg(ByVal strId As String, ByVal Index As Long)
     Selection.ShapeRange.TextFrame2.TextRange.Font.NameOther = strFont
 
     
-    Selection.ShapeRange.TextFrame2.TextRange.Font.Size = CDbl(strSize)
+    Selection.ShapeRange.TextFrame2.TextRange.Font.size = CDbl(strSize)
     Selection.ShapeRange.TextFrame2.TextRange.Text = strText
     
     If strId <> "fsGallery05" Then

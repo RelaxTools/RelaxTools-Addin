@@ -652,7 +652,7 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
             .TextRange.Font.NameComplexScript = "Meiryo UI"
             .TextRange.Font.NameFarEast = "Meiryo UI"
             .TextRange.Font.Name = "Meiryo UI"
-            .TextRange.Font.Size = 9
+            .TextRange.Font.size = 9
             .TextRange.Font.Bold = msoTrue
             .TextRange.Font.Fill.ForeColor.RGB = lngFontColor
             .TextRange.ParagraphFormat.Alignment = msoAlignLeft

@@ -275,8 +275,6 @@ End Sub
 '　Rangeが取得できるかどうかチェックする
 '--------------------------------------------------------------
 Function rlxCheckSelectRange() As Boolean
-Attribute rlxCheckSelectRange.VB_Description = "ワークシート関数として使用できません。"
-Attribute rlxCheckSelectRange.VB_ProcData.VB_Invoke_Func = " \n19"
     
     On Error GoTo ErrHandle
     
@@ -1054,8 +1052,6 @@ End Sub
 '　文字列の分割（カンマ）
 '--------------------------------------------------------------
 Public Function rlxCsvPart(ByVal strBuf As String) As Variant
-Attribute rlxCsvPart.VB_Description = "ワークシート関数として使用できません。"
-Attribute rlxCsvPart.VB_ProcData.VB_Invoke_Func = " \n19"
 
     Dim lngLen As Long
     Dim lngCnt As Long
@@ -1871,7 +1867,7 @@ Sub documentSheet()
     With r.Font
         .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
-        .Size = 9
+        .size = 9
         .Strikethrough = False
         .Superscript = False
         .Subscript = False
@@ -1900,7 +1896,7 @@ Sub documentSheetMeiryo()
     With r.Font
         .Name = "メイリオ"
         .FontStyle = "標準"
-        .Size = 9
+        .size = 9
         .Strikethrough = False
         .Superscript = False
         .Subscript = False
@@ -1929,7 +1925,7 @@ Sub documentSheetMeiryoUI()
     With r.Font
         .Name = "Meiryo UI"
         .FontStyle = "標準"
-        .Size = 9
+        .size = 9
         .Strikethrough = False
         .Superscript = False
         .Subscript = False
@@ -1972,7 +1968,7 @@ Sub documentSheetHogan2Gothic9()
     With r.Font
         .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
-        .Size = 9
+        .size = 9
     End With
     
 End Sub
@@ -1993,7 +1989,7 @@ Sub documentSheetHogan2Gothic9Str()
     With r.Font
         .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
-        .Size = 9
+        .size = 9
     End With
     
 End Sub
@@ -2013,7 +2009,7 @@ Sub documentSheetHogan2Gothic11()
     With r.Font
         .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
-        .Size = 11
+        .size = 11
     End With
     
 End Sub
@@ -2034,7 +2030,7 @@ Sub documentSheetHogan2Gothic11Str()
     With r.Font
         .Name = "ＭＳ ゴシック"
         .FontStyle = "標準"
-        .Size = 11
+        .size = 11
     End With
     
 End Sub
@@ -2076,7 +2072,7 @@ Sub documentSheetUser()
     With r.Font
         .Name = strFont
         .FontStyle = "標準"
-        .Size = Val(strPoint)
+        .size = Val(strPoint)
         .Strikethrough = False
         .Superscript = False
         .Subscript = False
@@ -3349,7 +3345,7 @@ Sub RegExport()
     Dim strReg As String
     
     Dim Reg, Locator, Service, SubKey, RegName, RegType
-    Dim i As Long, j As Long, buf As String, RegData As String
+    Dim i As Long, j As Long, Buf As String, RegData As String
     
     Dim fp As Integer
     
@@ -3433,5 +3429,350 @@ err_Handle:
     MsgBox "登録ファイルの保存に失敗しました。", vbOKOnly + vbInformation, C_TITLE
     
 End Sub
+
+'--------------------------------------------------------------
+' マージセルの代表セルの値コピー
+'--------------------------------------------------------------
+Sub copyMergeCellVal()
+
+    Dim i As Long
+    Dim j As Long
+    Dim r As Range
+
+    Dim strLine As String
+    Dim strBuf As String
+
+    If rlxCheckSelectRange = False Then
+        Exit Sub
+    End If
+
+    If ActiveCell Is Nothing Then
+        Exit Sub
+    End If
+    
+    On Error GoTo e
+    Application.ScreenUpdating = False
+
+    For i = Selection(1).Row To Selection(Selection.count).Row
+
+        For j = Selection(1).Column To Selection(Selection.count).Column
+        
+            Set r = Cells(i, j)
+        
+            'マージセルなら左上のみ処理
+            If (r.MergeCells = False Or r.MergeCells = True And r.MergeArea(1, 1).Address = r.Address) Then
+        
+                If j = Selection(1).Column Then
+                    strLine = addQuat(r.Value)
+                Else
+                    strLine = strLine & vbTab & addQuat(r.Value)
+                End If
+            End If
+        
+        Next
+        Set r = Cells(i, Selection(1).Column)
+        If (r.MergeCells = False Or r.MergeCells = True And r.MergeArea(1, 1).Address = r.Address) Then
+            If i = Selection(1).Row Then
+                strBuf = strLine
+            Else
+                strBuf = strBuf & vbCrLf & strLine
+            End If
+        End If
+    Next
+
+    If Len(strBuf) > 0 Then
+        SetClipText strBuf
+    End If
+    
+e:
+    Application.ScreenUpdating = True
+
+End Sub
+Sub pasteMergeCellValue()
+    Call pasteMergeCell(True, False)
+End Sub
+Sub pasteMergeCellValueRotate()
+    Call pasteMergeCell(True, True)
+End Sub
+Sub pasteMergeCellFormula()
+    Call pasteMergeCell(False, False)
+End Sub
+'--------------------------------------------------------------
+' マージセルの代表セルの値ペースト
+'--------------------------------------------------------------
+Sub pasteMergeCell(ByVal blnValue As Boolean, ByVal blnRotate)
+
+    Dim strBuf As String
+    Dim strLine As Variant
+    Dim strCell As Variant
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    Dim l As Long
+    Dim a As Range
+    Dim r As Range
+    Dim strRange() As String
+    
+    If rlxCheckSelectRange = False Then
+        Exit Sub
+    End If
+
+    If ActiveCell Is Nothing Then
+        Exit Sub
+    End If
+    
+    Application.ScreenUpdating = False
+    
+    strRange = Split(getCopyRange(), vbTab)
+    If UBound(strRange) = -1 Then
+        Exit Sub
+    End If
+    
+    If strRange(0) <> "Excel" Then
+        Exit Sub
+    End If
+    
+    If Application.CutCopyMode <> xlCopy Then
+        Exit Sub
+    End If
+    
+    '現在のリンク
+    On Error Resume Next
+    Err.Clear
+    strBuf = copyMergeCell(Range(Application.ConvertFormula("'" & Mid$(strRange(1), InStr(strRange(1), "[")) & "'!" & strRange(2), xlR1C1, xlA1)), blnValue, blnRotate)
+    If Err.Number <> 0 Then
+        MsgBox "コピー元の取得に失敗しました。", vbOKOnly + vbExclamation, C_TITLE
+        GoTo e
+    End If
+    On Error GoTo 0
+    
+    
+    Set r = Selection(1, 1)
+    
+    strLine = Split(strBuf, vbCrLf)
+
+    l = 0
+    For i = LBound(strLine) To UBound(strLine)
+
+        k = 0
+        strCell = Split(strLine(i), vbTab)
+        
+        Do Until r.Offset(l, k).MergeCells = False Or r.Offset(l, k).MergeCells = True And r.Offset(l, k).MergeArea(1, 1).Address = r.Offset(l, k).Address
+            l = l + 1
+        Loop
+        For j = LBound(strCell) To UBound(strCell)
+        
+            Do Until r.Offset(l, k).MergeCells = False Or r.Offset(l, k).MergeCells = True And r.Offset(l, k).MergeArea(1, 1).Address = r.Offset(l, k).Address
+                k = k + 1
+            Loop
+            If a Is Nothing Then
+                Set a = r.Offset(l, k)
+            Else
+                Set a = Union(a, r.Offset(l, k))
+            End If
+            
+            k = k + 1
+
+        Next
+        l = l + 1
+
+    Next
+    
+    '選択セルを数える
+    Dim ss As Range
+    Dim sr As Range
+    
+    For Each ss In Selection
+        If ss.MergeCells = False Or ss.MergeCells = True And ss.MergeArea(1, 1).Address = ss.Address Then
+            If sr Is Nothing Then
+                Set sr = ss
+            Else
+                Set sr = Union(sr, ss)
+            End If
+        End If
+    Next
+    
+    If a.count = 1 And sr.count > 1 Then
+    
+        ThisWorkbook.Worksheets("Undo").Cells.Clear
+    
+        Set mUndo.sourceRange = Selection
+        Set mUndo.destRange = ThisWorkbook.Worksheets("Undo").Range(Selection.Address)
+    
+        Dim rr As Range
+        For Each rr In mUndo.sourceRange.Areas
+            rr.Copy mUndo.destRange.Worksheet.Range(rr.Address)
+        Next
+        
+        Dim p As Range
+        For Each p In sr
+            p.FormulaLocal = delQuat(strBuf)
+        Next
+        
+        sr.Select
+    
+    Else
+    
+        ThisWorkbook.Worksheets("Undo").Cells.Clear
+    
+        Set mUndo.sourceRange = a
+        Set mUndo.destRange = ThisWorkbook.Worksheets("Undo").Range(a.Address)
+    
+        'Dim rr As Range
+        For Each rr In mUndo.sourceRange.Areas
+            rr.Copy mUndo.destRange.Worksheet.Range(rr.Address)
+        Next
+        
+        
+        strLine = Split(strBuf, vbCrLf)
+    
+        l = 0
+        For i = LBound(strLine) To UBound(strLine)
+    
+            k = 0
+            strCell = Split(strLine(i), vbTab)
+            
+            Do Until r.Offset(l, k).MergeCells = False Or r.Offset(l, k).MergeCells = True And r.Offset(l, k).MergeArea(1, 1).Address = r.Offset(l, k).Address
+                l = l + 1
+            Loop
+            For j = LBound(strCell) To UBound(strCell)
+            
+                Do Until r.Offset(l, k).MergeCells = False Or r.Offset(l, k).MergeCells = True And r.Offset(l, k).MergeArea(1, 1).Address = r.Offset(l, k).Address
+                    k = k + 1
+                Loop
+                r.Offset(l, k).FormulaLocal = delQuat(strCell(j))
+                k = k + 1
+    
+            Next
+            l = l + 1
+    
+        Next
+        
+        a.Select
+    End If
+    
+    'Undo
+    Application.OnUndo "Undo", "execUndo"
+    
+e:
+    Application.ScreenUpdating = True
+    
+End Sub
+
+
+'--------------------------------------------------------------
+' マージセルの代表セルの式コピー
+'--------------------------------------------------------------
+Private Function copyMergeCell(ByRef s As Range, ByVal blnValue As Boolean, ByVal blnRotate As Boolean) As String
+
+    Dim i As Long
+    Dim j As Long
+    Dim iMax As Long
+    Dim jMax As Long
+    Dim r As Range
+
+    Dim strLine As String
+    Dim strBuf As String
+
+    If rlxCheckSelectRange = False Then
+        Exit Function
+    End If
+
+    If ActiveCell Is Nothing Then
+        Exit Function
+    End If
+    
+    On Error GoTo e
+    
+    
+    If blnRotate Then
+        iMax = s(s.count).Column - s(1).Column + 1
+        jMax = s(s.count).Row - s(1).Row + 1
+    Else
+        iMax = s(s.count).Row - s(1).Row + 1
+        jMax = s(s.count).Column - s(1).Column + 1
+    End If
+
+    For i = 1 To iMax
+
+        For j = 1 To jMax
+        
+
+            If blnRotate Then
+                Set r = s(j, i)
+            Else
+                Set r = s(i, j)
+            End If
+            
+            'マージセルなら左上のみ処理
+            If (r.MergeCells = False Or r.MergeCells = True And r.MergeArea(1, 1).Address = r.Address) Then
+        
+                If j = 1 Then
+                    If blnValue Then
+                        strLine = addQuat(r.Value)
+                    Else
+                        strLine = addQuat(r.FormulaLocal)
+                    End If
+                Else
+                    If blnValue Then
+                        strLine = strLine & vbTab & addQuat(r.Value)
+                    Else
+                        strLine = strLine & vbTab & addQuat(r.FormulaLocal)
+                    End If
+                End If
+            End If
+        
+        Next
+        If blnRotate Then
+            Set r = s(1, i)
+        Else
+            Set r = s(i, 1)
+        End If
+        
+        If (r.MergeCells = False Or r.MergeCells = True And r.MergeArea(1, 1).Address = r.Address) Then
+            If i = 1 Then
+                strBuf = strLine
+            Else
+                strBuf = strBuf & vbCrLf & strLine
+            End If
+        End If
+    Next
+
+e:
+    If Len(strBuf) > 0 Then
+        copyMergeCell = strBuf
+    End If
+
+End Function
+
+Private Function addQuat(ByVal strVal As String) As String
+
+    If InStr(strVal, vbLf) > 0 Then
+        addQuat = """" & strVal & """"
+    Else
+        addQuat = strVal
+    End If
+
+End Function
+Private Function delQuat(ByVal strVal As String) As String
+
+    Dim strBuf As String
+
+    strBuf = strVal
+
+    If Left$(strBuf, 1) = """" Then
+        strBuf = Mid$(strBuf, 2)
+    End If
+    
+    If Right$(strBuf, 1) = """" Then
+        strBuf = Mid$(strBuf, 1, Len(strBuf) - 1)
+    End If
+
+    delQuat = strBuf
+
+End Function
+
+
+
 
 

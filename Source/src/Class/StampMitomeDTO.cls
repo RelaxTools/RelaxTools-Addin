@@ -42,7 +42,7 @@ Public StampType As String
 Public Text As String
 Public Font As String
 Public Color As String
-Public Size As String
+Public size As String
 Public Line As String
 Public FilePath As String
 Public Round As String

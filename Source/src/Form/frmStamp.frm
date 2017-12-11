@@ -301,7 +301,7 @@ Sub dispPreview()
 
     End Select
     s.Color = getHexColor(lblColor.BackColor)
-    s.Size = txtSize.Text
+    s.size = txtSize.Text
     s.UserDate = txtUserDate.Text
     
     If chkWordArt.Value = True Then
@@ -343,7 +343,7 @@ Sub dispPreview()
     varBuf(C_DateFormat) = s.DateFormat
     varBuf(C_UserDate) = s.UserDate
     varBuf(C_Color) = s.Color
-    varBuf(C_SIZE) = s.Size
+    varBuf(C_SIZE) = s.size
     varBuf(C_Line) = s.Line
     varBuf(C_Font) = s.Font
     varBuf(c_WordArt) = s.WordArt
@@ -381,7 +381,7 @@ Private Sub cmdOk_Click()
         s.UserDate = varBuf(C_UserDate)
         s.Font = varBuf(C_Font)
         s.Color = varBuf(C_Color)
-        s.Size = varBuf(C_SIZE)
+        s.size = varBuf(C_SIZE)
         s.Line = varBuf(C_Line)
         s.Lower = varBuf(C_Lower)
         s.WordArt = varBuf(c_WordArt)
@@ -398,7 +398,7 @@ Private Sub cmdOk_Click()
             End If
         End If
         
-        If IsNumeric(s.Size) Then
+        If IsNumeric(s.size) Then
         Else
             MsgBox "幅には数値をで入力してください。", vbExclamation + vbOKOnly, C_TITLE
             lstStamp.Selected(i) = True
@@ -406,7 +406,7 @@ Private Sub cmdOk_Click()
             Exit Sub
         End If
         
-        If CDbl(s.Size) < 0 Then
+        If CDbl(s.size) < 0 Then
             MsgBox "幅は０以上を入力してください。", vbExclamation + vbOKOnly, C_TITLE
             lstStamp.Selected(i) = True
             txtSize.SetFocus
@@ -671,7 +671,7 @@ Private Sub UserForm_Initialize()
         varBuf(C_Lower) = s.Lower
         varBuf(C_Font) = s.Font
         varBuf(C_Color) = s.Color
-        varBuf(C_SIZE) = s.Size
+        varBuf(C_SIZE) = s.size
         varBuf(C_Line) = s.Line
         varBuf(c_WordArt) = s.WordArt
         varBuf(C_Fill) = s.Fill

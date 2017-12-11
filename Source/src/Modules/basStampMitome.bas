@@ -239,7 +239,7 @@ Sub MitomePaste2(Optional ByVal Index As Variant)
     
     Dim sngSize As Single
     
-    sngSize = CSng(s.Size) * C_RASIO
+    sngSize = CSng(s.size) * C_RASIO
     
     Dim destLeft As Long
     Dim destWidth As Long
@@ -318,7 +318,7 @@ Public Function getPropertyMitome() As Collection
         s.Font = "ＭＳ ゴシック"
         s.Color = "&H0"
         s.Line = C_STAMP_LINE_SINGLE
-        s.Size = "10.5"
+        s.size = "10.5"
         s.FilePath = ""
         s.LineSize = "10"
         s.Round = "0.10"
@@ -337,7 +337,7 @@ Public Function getPropertyMitome() As Collection
         s.Font = "ＭＳ ゴシック"
         s.Color = "&HFF"
         s.Line = C_STAMP_LINE_DOUBLE
-        s.Size = "10.5"
+        s.size = "10.5"
         s.FilePath = ""
         s.LineSize = "10"
         s.Round = "0.10"
@@ -356,7 +356,7 @@ Public Function getPropertyMitome() As Collection
         s.Font = "ＭＳ ゴシック"
         s.Color = "&HFF"
         s.Line = C_STAMP_LINE_BOLD
-        s.Size = "30"
+        s.size = "30"
         s.FilePath = ""
         s.LineSize = "10"
         s.Round = "0.10"
@@ -378,7 +378,7 @@ Public Function getPropertyMitome() As Collection
             s.Font = GetSetting(C_TITLE, "StampMitome", "Font" & Format$(i, "000"), "ＭＳ ゴシック")
             s.Color = GetSetting(C_TITLE, "StampMitome", "Color" & Format$(i, "000"), "&HFF")
             s.Line = GetSetting(C_TITLE, "StampMitome", "Line" & Format$(i, "000"), C_STAMP_LINE_SINGLE)
-            s.Size = GetSetting(C_TITLE, "StampMitome", "Size" & Format$(i, "000"), "15")
+            s.size = GetSetting(C_TITLE, "StampMitome", "Size" & Format$(i, "000"), "15")
             s.FilePath = GetSetting(C_TITLE, "StampMitome", "FilePath" & Format$(i, "000"), "")
             s.LineSize = GetSetting(C_TITLE, "StampMitome", "LIneSize" & Format$(i, "000"), "10")
             s.Round = GetSetting(C_TITLE, "StampMitome", "Round" & Format$(i, "000"), "0.10")
@@ -428,7 +428,7 @@ Public Sub setPropertyMitome(ByRef Col As Collection)
         Call SaveSetting(C_TITLE, "StampMitome", "Color" & Format$(i, "000"), s.Color)
         Call SaveSetting(C_TITLE, "StampMitome", "Font" & Format$(i, "000"), s.Font)
         Call SaveSetting(C_TITLE, "StampMitome", "Line" & Format$(i, "000"), s.Line)
-        Call SaveSetting(C_TITLE, "StampMitome", "Size" & Format$(i, "000"), s.Size)
+        Call SaveSetting(C_TITLE, "StampMitome", "Size" & Format$(i, "000"), s.size)
         Call SaveSetting(C_TITLE, "StampMitome", "FilePath" & Format$(i, "000"), s.FilePath)
         Call SaveSetting(C_TITLE, "StampMitome", "LineSize" & Format$(i, "000"), s.LineSize)
         Call SaveSetting(C_TITLE, "StampMitome", "Round" & Format$(i, "000"), s.Round)

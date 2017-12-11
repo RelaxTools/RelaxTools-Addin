@@ -284,7 +284,7 @@ Sub pasteStamp2(ByVal Index As Long)
 
     Dim sngSize As Single
 
-    sngSize = CSng(s.Size) * C_RASIO
+    sngSize = CSng(s.size) * C_RASIO
 
     Dim destLeft As Long
     Dim destWidth As Long
@@ -350,7 +350,7 @@ Public Function getProperty() As Collection
         s.Font = "ＭＳ ゴシック"
         s.Color = "&H0"
         s.Line = C_STAMP_LINE_SINGLE
-        s.Size = "15"
+        s.size = "15"
         s.WordArt = C_STAMP_WORDART_ON
         s.Fill = C_STAMP_FILL_OFF
         s.rect = "0"
@@ -369,7 +369,7 @@ Public Function getProperty() As Collection
         s.Font = "ＭＳ ゴシック"
         s.Color = "&HFF"
         s.Line = C_STAMP_LINE_SINGLE
-        s.Size = "15"
+        s.size = "15"
         s.WordArt = C_STAMP_WORDART_ON
         s.Fill = C_STAMP_FILL_OFF
         s.rect = "0"
@@ -388,7 +388,7 @@ Public Function getProperty() As Collection
         s.Font = "ＭＳ ゴシック"
         s.Color = "&H0"
         s.Line = C_STAMP_LINE_SINGLE
-        s.Size = "15"
+        s.size = "15"
         s.WordArt = C_STAMP_WORDART_ON
         s.Fill = C_STAMP_FILL_OFF
         s.rect = "0"
@@ -409,7 +409,7 @@ Public Function getProperty() As Collection
             s.Font = GetSetting(C_TITLE, "Stamp", "Font" & Format$(i, "000"), "ＭＳ ゴシック")
             s.Color = GetSetting(C_TITLE, "Stamp", "Color" & Format$(i, "000"), "&H0")
             s.Line = GetSetting(C_TITLE, "Stamp", "Line" & Format$(i, "000"), C_STAMP_LINE_SINGLE)
-            s.Size = GetSetting(C_TITLE, "Stamp", "Size" & Format$(i, "000"), "15")
+            s.size = GetSetting(C_TITLE, "Stamp", "Size" & Format$(i, "000"), "15")
             s.WordArt = GetSetting(C_TITLE, "Stamp", "WordArt" & Format$(i, "000"), C_STAMP_WORDART_ON)
             s.Fill = GetSetting(C_TITLE, "Stamp", "Fill" & Format$(i, "000"), C_STAMP_FILL_OFF)
             s.rect = GetSetting(C_TITLE, "Stamp", "Rect" & Format$(i, "000"), "0")
@@ -459,7 +459,7 @@ Public Sub setProperty(ByRef Col As Collection)
         Call SaveSetting(C_TITLE, "Stamp", "Color" & Format$(i, "000"), s.Color)
         Call SaveSetting(C_TITLE, "Stamp", "Font" & Format$(i, "000"), s.Font)
         Call SaveSetting(C_TITLE, "Stamp", "Line" & Format$(i, "000"), s.Line)
-        Call SaveSetting(C_TITLE, "Stamp", "Size" & Format$(i, "000"), s.Size)
+        Call SaveSetting(C_TITLE, "Stamp", "Size" & Format$(i, "000"), s.size)
         Call SaveSetting(C_TITLE, "Stamp", "WordArt" & Format$(i, "000"), s.WordArt)
         Call SaveSetting(C_TITLE, "Stamp", "Fill" & Format$(i, "000"), s.Fill)
         Call SaveSetting(C_TITLE, "Stamp", "Rect" & Format$(i, "000"), s.rect)

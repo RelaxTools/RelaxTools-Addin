@@ -37,7 +37,7 @@ Option Private Module
 #If VBA7 And Win64 Then
     'VBA7 = Excel2010以降。赤くコンパイルエラーになって見えますが問題ありません。
     Private Declare PtrSafe Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
-    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hWnd As LongPtr) As Long
+    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hwnd As LongPtr) As Long
     Private Declare PtrSafe Function CloseClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function EmptyClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As LongPtr
@@ -58,6 +58,7 @@ Option Private Module
     Private Declare PtrSafe Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
     Declare PtrSafe Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA" (ByVal uAction As Long, ByVal uParam As Long, ByRef lpvParam As Any, ByVal fuWinIni As Long) As Long
     Private Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal ms As LongPtr)
+    Private Declare PtrSafe Function RegisterClipboardFormat Lib "user32" Alias "RegisterClipboardFormatA" (ByVal lpString As String) As Long
 
     Private Type ChooseColor
         lStructSize As LongPtr
@@ -85,7 +86,7 @@ Option Private Module
     
     Private Type FLASHWINFO
         cbsize As LongPtr
-        hWnd As LongPtr
+        hwnd As LongPtr
         dwFlags As Long
         uCount As Long
         dwTimeout As LongPtr
@@ -106,7 +107,7 @@ Option Private Module
     End Type
 #Else
     Private Declare Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
-    Declare Function OpenClipboard Lib "user32" (ByVal hWnd As Long) As Long
+    Declare Function OpenClipboard Lib "user32" (ByVal hwnd As Long) As Long
     Declare Function CloseClipboard Lib "user32" () As Long
     Declare Function EmptyClipboard Lib "user32" () As Long
     Declare Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As Long
@@ -118,15 +119,17 @@ Option Private Module
     Declare Function lstrcpy Lib "kernel32" Alias "lstrcpyA" (ByVal lpString1 As Any, ByVal lpString2 As Any) As Long
     Declare Function ChooseColor Lib "comdlg32.dll" Alias "ChooseColorA" (pChoosecolor As ChooseColor) As Long
     Declare Function DragQueryFile Lib "shell32.dll" Alias "DragQueryFileA" (ByVal hDrop As Long, ByVal UINT As Long, ByVal lpszFile As String, ByVal ch As Long) As Long
-    Private Declare Function FindWindow Lib "user32.dll" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
-    Private Declare Function FlashWindowEx Lib "user32.dll" (pfwi As FLASHWINFO) As Long
-    Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
-    Private Declare Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
-    Private Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (ByRef lpPictDesc As PICTDESC, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As Long, ByRef IPic As IPicture) As Long
-    Private Declare Function CopyImage Lib "user32" (ByVal handle As Long, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As Long
-    Private Declare Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
+    Declare Function FindWindow Lib "user32.dll" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
+    Declare Function FlashWindowEx Lib "user32.dll" (pfwi As FLASHWINFO) As Long
+    Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
+    Declare Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
+    Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (ByRef lpPictDesc As PICTDESC, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As Long, ByRef IPic As IPicture) As Long
+    Declare Function CopyImage Lib "user32" (ByVal handle As Long, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As Long
+    Declare Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
     Declare Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA" (ByVal uAction As Long, ByVal uParam As Long, ByRef lpvParam As Any, ByVal fuWinIni As Long) As Long
-    Private Declare Sub Sleep Lib "kernel32" (ByVal ms As Long)
+    Declare Sub Sleep Lib "kernel32" (ByVal ms As Long)
+    Public Declare Function RegisterClipboardFormat Lib "user32" Alias "RegisterClipboardFormatA" (ByVal lpString As String) As Long
+    
 
 Private Type ChooseColor
       lStructSize As Long
@@ -154,7 +157,7 @@ Private Type ChooseColor
     
     Private Type FLASHWINFO
         cbsize As Long
-        hWnd As Long
+        hwnd As Long
         dwFlags As Long
         uCount As Long
         dwTimeout As Long
@@ -1533,8 +1536,53 @@ Public Sub SetClipText(strData As String)
   If blnErrflg Then MsgBox "クリップボードに情報が書き込めません", vbOKOnly, C_TITLE
 
 End Sub
+'クリップボードからテキストデータを取得するプロシージャ
+Public Function GetClipText() As String
 
-'クリップボードにテキストデータを書き込むプロシージャ
+#If VBA7 And Win64 Then
+  Dim lngHwnd As LongPtr, lngMEM As LongPtr
+  Dim lngDataLen As LongPtr
+  Dim lngRet As LongPtr
+#Else
+  Dim lngHwnd As Long, lngMEM As Long
+  Dim lngDataLen As Long
+  Dim lngRet As Long
+#End If
+
+    Const MAXSIZE = 4096
+    Dim MyString As String
+  
+    'クリップボードをオープン
+    If OpenClipboard(0&) <> 0 Then
+    
+        lngMEM = GetClipboardData(CF_TEXT)
+        
+        If lngMEM <> 0 Then
+        
+            lngHwnd = GlobalLock(lngMEM)
+            
+            If lngHwnd <> 0 Then
+            
+                MyString = Space$(MAXSIZE)
+                
+                lngRet = lstrcpy(MyString, lngHwnd)
+                lngRet = GlobalUnlock(lngMEM)
+                
+                MyString = Mid(MyString, 1, InStr(1, MyString, Chr$(0), 0) - 1)
+            
+            End If
+        
+        End If
+        
+        lngRet = CloseClipboard()
+    
+    End If
+    
+    GetClipText = MyString
+
+End Function
+
+'クリップボードにファイルコピー情報を書き込むプロシージャ
 Public Sub SetCopyClipText(strBuf() As String)
 
 #If VBA7 And Win64 Then
@@ -1889,9 +1937,9 @@ End Function
 Sub rlxFlashWindow()
 
 #If VBA7 And Win64 Then
-    Dim hWnd As LongPtr
+    Dim hwnd As LongPtr
 #Else
-    Dim hWnd As Long
+    Dim hwnd As Long
 #End If
     Dim udtFLASHWINFO As FLASHWINFO
     
@@ -1902,12 +1950,12 @@ Sub rlxFlashWindow()
     Const FLASH_TIMER = &H4
     Const FLASH_TIMERNOFG = &HC
 
-    hWnd = FindWindow("XLMAIN", Application.Caption)
+    hwnd = FindWindow("XLMAIN", Application.Caption)
     
     '点滅の設定
     With udtFLASHWINFO
         .cbsize = Len(udtFLASHWINFO)
-        .hWnd = hWnd
+        .hwnd = hwnd
         .dwFlags = FLASH_ALL
         .uCount = 5
         .dwTimeout = 100
@@ -2827,3 +2875,59 @@ Public Sub MultiProsess(ByVal strMacro As String)
         .Run (.SpecialFolders("AppData") & "\" & C_TITLE & "\" & "RunMacro.vbs """ & strMacro & """")
     End With
 End Sub
+'**
+' コピーアドレスの取得
+'**
+Public Function getCopyRange() As String
+
+#If VBA7 And Win64 Then
+  Dim lngHwnd As LongPtr, lngMEM As LongPtr
+  Dim lngDataLen As LongPtr
+  Dim lngRet As LongPtr
+#Else
+  Dim lngHwnd As Long, lngMEM As Long
+  Dim lngDataLen As Long
+  Dim lngRet As Long
+#End If
+
+    Const MAXSIZE = 4096
+    Dim MyString As String
+    Dim size As Long
+    Dim data() As Byte
+    Dim i As Long
+  
+    'クリップボードをオープン
+    If OpenClipboard(0&) <> 0 Then
+    
+        lngMEM = GetClipboardData(RegisterClipboardFormat("Link"))
+        
+        If lngMEM <> 0 Then
+        
+            size = CLng(GlobalSize(lngMEM))
+            lngHwnd = GlobalLock(lngMEM)
+            
+            If lngHwnd <> 0 Then
+                
+                ReDim data(0 To size - 1)
+                Call CopyMemory(data(0), ByVal lngHwnd, size)
+                
+                lngRet = GlobalUnlock(lngMEM)
+                
+                For i = 0 To size - 1
+                    If data(i) = 0 Then
+                        data(i) = &H9
+                    End If
+                Next i
+                MyString = StrConv(data(), vbUnicode)
+                
+            End If
+        
+        End If
+        
+        lngRet = CloseClipboard()
+    
+    End If
+    
+    getCopyRange = MyString
+
+End Function

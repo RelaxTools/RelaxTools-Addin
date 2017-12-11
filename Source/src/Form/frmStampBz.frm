@@ -469,7 +469,7 @@ Sub dispPreview()
     bz.Color = "&H" & Right$("00000000" & Hex(lblColor.BackColor), 8)
     bz.Font = cmbFont.Text
     bz.Round = txtRound.Text
-    bz.Size = txtWidth.Text
+    bz.size = txtWidth.Text
     
     bz.LineSize = txtLineSize.Text
     
@@ -571,7 +571,7 @@ Private Sub cmdOk_Click()
         datStampBz.UserDate = varBuf(C_UserDate)
         datStampBz.Font = varBuf(C_Font)
         datStampBz.Color = varBuf(C_Color)
-        datStampBz.Size = varBuf(C_SIZE)
+        datStampBz.size = varBuf(C_SIZE)
         datStampBz.Round = varBuf(C_Round)
         datStampBz.Rotate = varBuf(C_Rotate)
         datStampBz.LineSize = varBuf(C_LineSize)
@@ -587,7 +587,7 @@ Private Sub cmdOk_Click()
             End If
         End If
         
-        If IsNumeric(datStampBz.Size) Then
+        If IsNumeric(datStampBz.size) Then
         Else
             MsgBox "幅には数値をで入力してください。", vbExclamation + vbOKOnly, C_TITLE
             lstStampBz.Selected(i) = True
@@ -595,7 +595,7 @@ Private Sub cmdOk_Click()
             Exit Sub
         End If
         
-        If CDbl(datStampBz.Size) < 0 Then
+        If CDbl(datStampBz.size) < 0 Then
             MsgBox "幅は０以上を入力してください。", vbExclamation + vbOKOnly, C_TITLE
             lstStampBz.Selected(i) = True
             txtWidth.SetFocus
@@ -965,7 +965,7 @@ Private Sub UserForm_Initialize()
         varBuf(C_UserDate) = datStampBz.UserDate
         varBuf(C_Font) = datStampBz.Font
         varBuf(C_Color) = datStampBz.Color
-        varBuf(C_SIZE) = datStampBz.Size
+        varBuf(C_SIZE) = datStampBz.size
         varBuf(C_Round) = datStampBz.Round
         varBuf(C_Rotate) = datStampBz.Rotate
         varBuf(C_LineSize) = datStampBz.LineSize

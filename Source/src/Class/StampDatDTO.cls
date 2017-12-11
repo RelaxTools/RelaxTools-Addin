@@ -47,7 +47,7 @@ Public DateFormat As String
 Public Lower As String
 Public Font As String
 Public Color As String
-Public Size As String
+Public size As String
 Public Line As String
 Public WordArt As String
 Public Fill As String

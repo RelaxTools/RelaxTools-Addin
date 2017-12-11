@@ -341,13 +341,17 @@ Private Sub UserForm_Initialize()
     cboCategory.AddItem "すべて"
     'マクロシートのロード
     Do Until WS.Cells(i, C_COM_NO).Value = ""
-
-        If WS.Cells(i, C_COM_USE).Value <> "－" Then
-            If WS.Cells(i, C_COM_CATEGORY).Value <> strBefore Then
-                cboCategory.AddItem WS.Cells(i, C_COM_CATEGORY).Value
-                strBefore = WS.Cells(i, C_COM_CATEGORY).Value
-            End If
-        End If
+    
+        Select Case True
+            Case WS.Cells(i, C_COM_USE).Value = "－"
+            Case WS.Cells(i, C_COM_CATEGORY).Value = "ショートカットキー用"
+            Case WS.Cells(i, C_COM_CATEGORY).Value = "Excel機能"
+            Case Else
+                If WS.Cells(i, C_COM_CATEGORY).Value <> strBefore Then
+                    cboCategory.AddItem WS.Cells(i, C_COM_CATEGORY).Value
+                    strBefore = WS.Cells(i, C_COM_CATEGORY).Value
+                End If
+        End Select
         i = i + 1
 
     Loop

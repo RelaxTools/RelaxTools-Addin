@@ -173,7 +173,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
             lngCol2 = lngCol2 + 1
         End If
         If chkFileSize.Value Then
-            Cells(lngRow, lngCol2) = Format(colFiles.Item(objKey).Size, "#,##0")
+            Cells(lngRow, lngCol2) = Format(colFiles.Item(objKey).size, "#,##0")
             lngCol2 = lngCol2 + 1
         End If
         If chkDate.Value Then
@@ -219,7 +219,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
                 lngCol2 = lngCol2 + 1
             End If
             If chkFileSize.Value Then
-                Cells(lngRow, lngCol2) = Format(colFolders.Item(objKey).Size, "#,##0")
+                Cells(lngRow, lngCol2) = Format(colFolders.Item(objKey).size, "#,##0")
                 lngCol2 = lngCol2 + 1
             End If
             If chkDate.Value Then

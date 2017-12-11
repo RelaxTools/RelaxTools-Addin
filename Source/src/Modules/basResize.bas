@@ -33,27 +33,27 @@ Option Private Module
 
 'Windows API宣言
 #If VBA7 And Win64 Then
-    Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As LongPtr
-    Private Declare PtrSafe Function SetWindowLong Lib "user32" Alias "SetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As LongPtr) As LongPtr
+    Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hwnd As LongPtr, ByVal nIndex As Long) As LongPtr
+    Private Declare PtrSafe Function SetWindowLong Lib "user32" Alias "SetWindowLongPtrA" (ByVal hwnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As LongPtr) As LongPtr
     Private Declare PtrSafe Function GetActiveWindow Lib "user32" () As LongPtr
-    Private Declare PtrSafe Function DrawMenuBar Lib "user32" (ByVal hWnd As LongPtr) As LongPtr
+    Private Declare PtrSafe Function DrawMenuBar Lib "user32" (ByVal hwnd As LongPtr) As LongPtr
     Private Declare PtrSafe Function SetWindowPos Lib "user32" _
-                                          (ByVal hWnd As LongPtr, _
+                                          (ByVal hwnd As LongPtr, _
                                            ByVal hWndInsertAfter As LongPtr, _
                                            ByVal X As Long, ByVal Y As Long, _
                                            ByVal cx As Long, ByVal cy As Long, _
                                            ByVal wFlags As Long) As Long
 #Else
     Private Declare Function SetWindowPos Lib "user32" _
-                                      (ByVal hWnd As Long, _
+                                      (ByVal hwnd As Long, _
                                        ByVal hWndInsertAfter As Long, _
                                        ByVal X As Long, ByVal Y As Long, _
                                        ByVal cx As Long, ByVal cy As Long, _
                                        ByVal wFlags As Long) As Long
-    Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long) As Long
-    Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hWnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+    Private Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long) As Long
+    Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
     Private Declare Function GetActiveWindow Lib "user32" () As Long
-    Private Declare Function DrawMenuBar Lib "user32" (ByVal hWnd As Long) As Long
+    Private Declare Function DrawMenuBar Lib "user32" (ByVal hwnd As Long) As Long
 #End If
 
 Private Const HWND_TOPMOST As Long = -1
@@ -70,19 +70,19 @@ Private Const WS_MAXIMIZEBOX = &H10000  '最大化ボタン
 Public Sub FormResize()
 #If VBA7 And Win64 Then
     Dim Result As LongPtr
-    Dim hWnd As LongPtr
+    Dim hwnd As LongPtr
     Dim Wnd_STYLE As LongPtr
 #Else
     Dim Result As Long
-    Dim hWnd As Long
+    Dim hwnd As Long
     Dim Wnd_STYLE As Long
 #End If
  
-    hWnd = GetActiveWindow()
-    Wnd_STYLE = GetWindowLong(hWnd, GWL_STYLE)
+    hwnd = GetActiveWindow()
+    Wnd_STYLE = GetWindowLong(hwnd, GWL_STYLE)
     Wnd_STYLE = (Wnd_STYLE Or WS_THICKFRAME Or &H30000) - WS_MINIMIZEBOX
  
-    Result = SetWindowLong(hWnd, GWL_STYLE, Wnd_STYLE)
-    Result = DrawMenuBar(hWnd)
+    Result = SetWindowLong(hwnd, GWL_STYLE, Wnd_STYLE)
+    Result = DrawMenuBar(hwnd)
     
 End Sub

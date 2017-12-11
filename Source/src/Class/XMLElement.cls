@@ -43,7 +43,7 @@ Public Enum EnumElementType
     EndTag
     StandAlone
     Header
-    Data
+    data
     CData
     Comment
 End Enum

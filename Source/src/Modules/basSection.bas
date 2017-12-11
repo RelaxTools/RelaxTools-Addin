@@ -208,7 +208,7 @@ Sub setSectionNo(ByRef r As Range, ByVal strNewNo As String)
     'フォント有効の場合
     If obj.useFormat Then
         r.Font.Name = obj.fontName
-        r.Font.Size = obj.fontSize
+        r.Font.size = obj.fontSize
         r.Font.Bold = obj.fontBold
         r.Font.Italic = obj.fontItalic
         r.Font.Underline = obj.fontUnderLine
@@ -245,7 +245,7 @@ Sub delSectionNo(ByRef r As Range)
     'フォント有効の場合
     If obj.useFormat2 Then
         r.Font.Name = obj.fontName2
-        r.Font.Size = obj.fontSize2
+        r.Font.size = obj.fontSize2
         r.Font.Bold = obj.fontBold2
         r.Font.Italic = obj.fontItalic2
         r.Font.Underline = obj.fontUnderLine2

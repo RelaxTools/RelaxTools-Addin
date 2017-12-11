@@ -78,7 +78,7 @@ Private Const PICTYPE_BITMAP As Long = 1
     Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32.dll" (PicDesc As PICTDESC, RefIID As Long, ByVal fPictureOwnsHandle As LongPtr, IPic As IPicture) As LongPtr
     
     Private Type PICTDESC
-        Size As Long
+        size As Long
         Type As Long
         hPic As LongPtr
         hPal As LongPtr
@@ -113,7 +113,7 @@ Private Const PICTYPE_BITMAP As Long = 1
     Private Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (PicDesc As PICTDESC, RefIID As Long, ByVal fPictureOwnsHandle As Long, IPic As IPicture) As Long
     
     Private Type PICTDESC
-      Size As Long
+      size As Long
       Type As Long
       hPic As Long
       hPal As Long
@@ -1113,14 +1113,14 @@ End Sub
 '--------------------------------------------------------------------
 '  リボンサイズ取得(未動作)
 '--------------------------------------------------------------------
- Sub GetSize(control As IRibbonControl, ByRef Size)
+ Sub GetSize(control As IRibbonControl, ByRef size)
  
     If Application.UsableWidth / 0.75 < 1420 Then
     
-        Size = RibbonControlSize.RibbonControlSizeRegular
+        size = RibbonControlSize.RibbonControlSizeRegular
     Else
     
-        Size = RibbonControlSize.RibbonControlSizeLarge
+        size = RibbonControlSize.RibbonControlSizeLarge
     End If
  
  End Sub
@@ -1779,7 +1779,7 @@ Private Function LoadImage(ByVal strFName As String) As IPicture
             Dim uPicInfo As PICTDESC
             
             With uPicInfo
-              .Size = LenB(uPicInfo)
+              .size = LenB(uPicInfo)
               .Type = PICTYPE_BITMAP
               .hPic = hBitmap
               .hPal = 0&
@@ -1832,7 +1832,7 @@ Private Function LoadImageColor(ByVal strFName As String, ByVal lngColor As Long
             Dim uPicInfo As PICTDESC
             
             With uPicInfo
-              .Size = LenB(uPicInfo)
+              .size = LenB(uPicInfo)
               .Type = PICTYPE_BITMAP
               .hPic = hBitmap
               .hPal = 0&

@@ -83,7 +83,7 @@ Public Function FormatXML(ByVal strBuf As String) As String
                             Else
                                 Set s = New XMLElement
                                 s.Element = strElement
-                                s.ElementType = Data
+                                s.ElementType = data
                                 s.ElementName = ""
                                 c.Add s
 
@@ -129,7 +129,7 @@ Public Function FormatXML(ByVal strBuf As String) As String
                                     s.ElementName = TrimTag(strElement)
 
                                 Case Else
-                                    s.ElementType = Data
+                                    s.ElementType = data
                                     s.ElementName = ""
 
                             End Select
@@ -178,7 +178,7 @@ Public Function FormatXML(ByVal strBuf As String) As String
 
             Case EnumElementType.StartTag
                 Select Case nextElement.ElementType
-                    Case Data
+                    Case data
                         strResult = strResult & GetIndentStr(lngIndent) & curElement.Element
                     Case EndTag
                         If curElement.ElementName <> nextElement.ElementName Then
@@ -202,7 +202,7 @@ Public Function FormatXML(ByVal strBuf As String) As String
                 End If
                 strResult = strResult & GetIndentStr(lngIndent) & curElement.Element & vbCrLf
 
-            Case EnumElementType.Data
+            Case EnumElementType.data
                 strResult = strResult & curElement.Element
                 Select Case nextElement.ElementType
                     Case EndTag

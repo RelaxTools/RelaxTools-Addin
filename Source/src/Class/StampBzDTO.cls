@@ -45,7 +45,7 @@ Public DateFormat As String
 Public UserDate As String
 Public Font As String
 Public Color As String
-Public Size As String
+Public size As String
 Public Round As String
 Public Rotate As String
 Public LineSize As String

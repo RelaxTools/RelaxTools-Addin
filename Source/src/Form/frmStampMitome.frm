@@ -161,7 +161,7 @@ Sub dispPreview()
     ThisWorkbook.Worksheets("stampEx").Shapes("shpMitome").Height = lngsize
     
     s.Color = getHexColor(lblColor.BackColor)
-    s.Size = txtSize.Text
+    s.size = txtSize.Text
     s.FilePath = txtFile.Text
     s.LineSize = txtLineSize.Text
     s.Round = txtRound.Text
@@ -199,7 +199,7 @@ Sub dispPreview()
     varBuf(C_TEXT) = s.Text
     varBuf(C_File) = s.FilePath
     varBuf(C_Color) = s.Color
-    varBuf(C_SIZE) = s.Size
+    varBuf(C_SIZE) = s.size
     varBuf(C_Line) = s.Line
     varBuf(C_Font) = s.Font
     varBuf(C_LineSize) = s.LineSize
@@ -442,7 +442,7 @@ Private Sub cmdOk_Click()
         s.Text = varBuf(C_TEXT)
         s.Font = varBuf(C_Font)
         s.Color = varBuf(C_Color)
-        s.Size = varBuf(C_SIZE)
+        s.size = varBuf(C_SIZE)
         s.Line = varBuf(C_Line)
         s.FilePath = varBuf(C_File)
         s.LineSize = varBuf(C_LineSize)
@@ -459,7 +459,7 @@ Private Sub cmdOk_Click()
             Exit Sub
         End If
         
-        If IsNumeric(s.Size) Then
+        If IsNumeric(s.size) Then
         Else
             MsgBox "幅には数値をで入力してください。", vbExclamation + vbOKOnly, C_TITLE
             lstStamp.Selected(i) = True
@@ -467,7 +467,7 @@ Private Sub cmdOk_Click()
             Exit Sub
         End If
         
-        If CDbl(s.Size) < 0 Then
+        If CDbl(s.size) < 0 Then
             MsgBox "幅は０以上を入力してください。", vbExclamation + vbOKOnly, C_TITLE
             lstStamp.Selected(i) = True
             txtSize.SetFocus
@@ -877,7 +877,7 @@ Private Sub UserForm_Initialize()
         varBuf(C_TEXT) = s.Text
         varBuf(C_Font) = s.Font
         varBuf(C_Color) = s.Color
-        varBuf(C_SIZE) = s.Size
+        varBuf(C_SIZE) = s.size
         varBuf(C_Line) = s.Line
         varBuf(C_File) = s.FilePath
         varBuf(C_LineSize) = s.LineSize

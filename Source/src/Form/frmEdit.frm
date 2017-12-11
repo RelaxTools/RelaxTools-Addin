@@ -54,7 +54,7 @@ Private Sub cmbFont_Change()
 End Sub
 
 Private Sub cmbSize_Change()
-    txtEdit.Font.Size = Val(cmbSize.Text)
+    txtEdit.Font.size = Val(cmbSize.Text)
 End Sub
 
 Private Sub cmdCancel_Click()
@@ -252,9 +252,9 @@ Private Sub UserForm_Terminate()
     
     strSize = cmbSize.Text
     If Val(strSize) = 0 Then
-        txtEdit.Font.Size = 12
+        txtEdit.Font.size = 12
     Else
-        txtEdit.Font.Size = Val(strSize)
+        txtEdit.Font.size = Val(strSize)
     End If
     SaveSetting C_TITLE, "Edit", "Size", strSize
     

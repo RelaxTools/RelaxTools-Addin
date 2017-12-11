@@ -224,7 +224,7 @@ Private Sub cmdOk_Click()
     
     
     Set mtray = New TaskTrayView
-    Call mtray.AddIcon(Application.hWnd, "Grepマルチプロセス版")  'システムトレイにアイコンを登録
+    Call mtray.AddIcon(Application.hwnd, "Grepマルチプロセス版")  'システムトレイにアイコンを登録
     Call mtray.ShowBalloon("Grep開始")
     
     XL.DisplayAlerts = False

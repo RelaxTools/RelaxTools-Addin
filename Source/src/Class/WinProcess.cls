@@ -41,7 +41,7 @@ Option Explicit
 #If VBA7 And Win64 Then
 
     Private Type PROCESSENTRY32
-        Size As Long
+        size As Long
         RefCount As Long
         ProcessID As Long
         HeapID As LongPtr
@@ -61,7 +61,7 @@ Option Explicit
 #Else
     
     Private Type PROCESSENTRY32
-        Size As Long
+        size As Long
         RefCount As Long
         ProcessID As Long
         HeapID As Long
@@ -145,7 +145,7 @@ Public Sub SnapShot()
     Dim lngRet As Long
     Dim lngPos As Long
     
-    procEntry.Size = LenB(procEntry)
+    procEntry.size = LenB(procEntry)
     
     mEntryCount = 1
     

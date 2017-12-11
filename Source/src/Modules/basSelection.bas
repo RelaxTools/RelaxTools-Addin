@@ -2781,3 +2781,18 @@ Sub execSelectionRemoveParenthesis()
     Set obj = Nothing
 
 End Sub
+'--------------------------------------------------------------
+' 選択セルにクリップボードのテキストを貼り付ける
+'--------------------------------------------------------------
+Sub execSelectionAllSetValue()
+    
+    Dim obj As SelectionAllSetValue
+    
+    Set obj = New SelectionAllSetValue
+    
+    obj.Run
+    
+    Set obj = Nothing
+
+End Sub
+
