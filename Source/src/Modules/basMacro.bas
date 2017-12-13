@@ -3521,32 +3521,29 @@ Sub pasteMergeCell(ByVal blnValue As Boolean, ByVal blnRotate)
         Exit Sub
     End If
     
-    Application.ScreenUpdating = False
-    
-    strRange = Split(getCopyRange(), vbTab)
-    If UBound(strRange) = -1 Then
-        Exit Sub
-    End If
-    
-    If strRange(0) <> "Excel" Then
-        Exit Sub
-    End If
-    
     If Application.CutCopyMode <> xlCopy Then
         Exit Sub
     End If
     
+    Application.ScreenUpdating = False
+    
     '現在のリンク
-    On Error Resume Next
-    Err.Clear
-    strBuf = copyMergeCell(Range(Application.ConvertFormula("'" & Mid$(strRange(1), InStr(strRange(1), "[")) & "'!" & strRange(2), xlR1C1, xlA1)), blnValue, blnRotate)
-    If Err.Number <> 0 Then
+    Dim bf As Range
+    
+    'コピー元のRangeを取得
+    Set bf = getCopyRange()
+    If bf Is Nothing Then
         MsgBox "コピー元の取得に失敗しました。", vbOKOnly + vbExclamation, C_TITLE
         GoTo e
     End If
-    On Error GoTo 0
     
+    strBuf = copyMergeCell(bf, blnValue, blnRotate)
     
+    If Len(strBuf) = 0 Then
+        Exit Sub
+    End If
+    
+    '貼り付けられる範囲をRangeで取得
     Set r = Selection(1, 1)
     
     strLine = Split(strBuf, vbCrLf)
@@ -3592,18 +3589,28 @@ Sub pasteMergeCell(ByVal blnValue As Boolean, ByVal blnRotate)
         End If
     Next
     
+    'コピー元が１セルでコピー先が複数セルの場合
     If a.count = 1 And sr.count > 1 Then
+    Else
+        a.Select
+    End If
     
-        ThisWorkbook.Worksheets("Undo").Cells.Clear
+
+    '現在の選択位置をUndo用にバックアップ
+    ThisWorkbook.Worksheets("Undo").Cells.Clear
+
+    Set mUndo.sourceRange = Selection
+    Set mUndo.destRange = ThisWorkbook.Worksheets("Undo").Range(Selection.Address)
+
+    Dim rr As Range
+    For Each rr In mUndo.sourceRange.Areas
+        rr.Copy mUndo.destRange.Worksheet.Range(rr.Address)
+    Next
     
-        Set mUndo.sourceRange = Selection
-        Set mUndo.destRange = ThisWorkbook.Worksheets("Undo").Range(Selection.Address)
-    
-        Dim rr As Range
-        For Each rr In mUndo.sourceRange.Areas
-            rr.Copy mUndo.destRange.Worksheet.Range(rr.Address)
-        Next
+    'コピー元が１セルでコピー先が複数セルの場合
+    If a.count = 1 And sr.count > 1 Then
         
+        '現在の選択セルにコピー
         Dim p As Range
         For Each p In sr
             p.FormulaLocal = delQuat(strBuf)
@@ -3612,18 +3619,8 @@ Sub pasteMergeCell(ByVal blnValue As Boolean, ByVal blnRotate)
         sr.Select
     
     Else
-    
-        ThisWorkbook.Worksheets("Undo").Cells.Clear
-    
-        Set mUndo.sourceRange = a
-        Set mUndo.destRange = ThisWorkbook.Worksheets("Undo").Range(a.Address)
-    
-        'Dim rr As Range
-        For Each rr In mUndo.sourceRange.Areas
-            rr.Copy mUndo.destRange.Worksheet.Range(rr.Address)
-        Next
         
-        
+        '現在の選択位置から右下方面へコピー
         strLine = Split(strBuf, vbCrLf)
     
         l = 0
@@ -3648,12 +3645,10 @@ Sub pasteMergeCell(ByVal blnValue As Boolean, ByVal blnRotate)
     
         Next
         
-        a.Select
     End If
     
     'Undo
     Application.OnUndo "Undo", "execUndo"
-    
 e:
     Application.ScreenUpdating = True
     
@@ -3695,6 +3690,7 @@ Private Function copyMergeCell(ByRef s As Range, ByVal blnValue As Boolean, ByVa
 
     For i = 1 To iMax
 
+        strLine = ""
         For j = 1 To jMax
         
 
@@ -3705,7 +3701,8 @@ Private Function copyMergeCell(ByRef s As Range, ByVal blnValue As Boolean, ByVa
             End If
             
             'マージセルなら左上のみ処理
-            If (r.MergeCells = False Or r.MergeCells = True And r.MergeArea(1, 1).Address = r.Address) Then
+'            If (r.MergeCells = False Or r.MergeCells = True And r.MergeArea(1, 1).Address = r.Address) Then
+            If r.MergeArea(1, 1).Address = r.Address Then
         
                 If j = 1 Then
                     If blnValue Then
@@ -3723,13 +3720,14 @@ Private Function copyMergeCell(ByRef s As Range, ByVal blnValue As Boolean, ByVa
             End If
         
         Next
-        If blnRotate Then
-            Set r = s(1, i)
-        Else
-            Set r = s(i, 1)
-        End If
-        
-        If (r.MergeCells = False Or r.MergeCells = True And r.MergeArea(1, 1).Address = r.Address) Then
+'        If blnRotate Then
+'            Set r = s(1, i)
+'        Else
+'            Set r = s(i, 1)
+'        End If
+'
+'        If (r.MergeCells = False Or r.MergeCells = True And r.MergeArea(1, 1).Address = r.Address) Then
+        If strLine <> "" Then
             If i = 1 Then
                 strBuf = strLine
             Else
@@ -3770,6 +3768,32 @@ Private Function delQuat(ByVal strVal As String) As String
 
     delQuat = strBuf
 
+End Function
+
+Private Function getCopyRange() As Range
+
+    '現在のリンク
+    Dim bf As Range
+    Dim strRange As Variant
+    
+    strRange = Split(getObjectLink(), vbTab)
+    If UBound(strRange) = -1 Then
+        Exit Function
+    End If
+    
+    If InStr(strRange(0), "Excel") = 0 Then
+        Exit Function
+    End If
+    
+    On Error Resume Next
+    Err.Clear
+    Set bf = Range("'[" & rlxGetFullpathFromFileName(strRange(1)) & "]" & Mid$(strRange(2), 1, InStr(strRange(2), "!") - 1) & "'!" & Application.ConvertFormula(Mid$(strRange(2), InStr(strRange(2), "!") + 1), xlR1C1, xlA1))
+    If Err.Number <> 0 Then
+        Set bf = Nothing
+    End If
+
+    Set getCopyRange = bf
+    
 End Function
 
 

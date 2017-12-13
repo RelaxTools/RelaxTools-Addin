@@ -2878,7 +2878,7 @@ End Sub
 '**
 ' コピーアドレスの取得
 '**
-Public Function getCopyRange() As String
+Public Function getObjectLink() As String
 
 #If VBA7 And Win64 Then
   Dim lngHwnd As LongPtr, lngMEM As LongPtr
@@ -2899,7 +2899,8 @@ Public Function getCopyRange() As String
     'クリップボードをオープン
     If OpenClipboard(0&) <> 0 Then
     
-        lngMEM = GetClipboardData(RegisterClipboardFormat("Link"))
+'        lngMEM = GetClipboardData(RegisterClipboardFormat("Link"))
+        lngMEM = GetClipboardData(RegisterClipboardFormat("ObjectLink"))
         
         If lngMEM <> 0 Then
         
@@ -2928,6 +2929,6 @@ Public Function getCopyRange() As String
     
     End If
     
-    getCopyRange = MyString
+    getObjectLink = MyString
 
 End Function
