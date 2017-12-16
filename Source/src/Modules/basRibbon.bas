@@ -167,7 +167,7 @@ Private Function getSheetItem(control As IRibbonControl, lngItem As Long) As Str
     Dim strBuf As String
     Dim i As Long
     Dim m As MenuDTO
-    Dim key As String
+    Dim Key As String
     
     getSheetItem = ""
     

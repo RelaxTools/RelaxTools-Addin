@@ -200,7 +200,7 @@ Private Sub cmdOk_Click()
     End If
     If chkWord.Value Then
         Dim WD As Object
-        Dim DC As Object
+        Dim dc As Object
         Set WD = CreateObject("Word.Application")
     End If
     If chkPoint.Value Then
@@ -248,14 +248,14 @@ Private Sub cmdOk_Click()
         
             Case InStr(UCase(varBook), C_WORD_FILE) > 0
             
-                Set DC = WD.Documents.Open(filename:=varBook, ReadOnly:=True)
+                Set dc = WD.Documents.Open(filename:=varBook, ReadOnly:=True)
                 
-                DC.Repaginate
+                dc.Repaginate
                 
-                ResultWS.Cells(lngCount, C_SEARCH_PAGE).Value = DC.BuiltinDocumentProperties(14)
+                ResultWS.Cells(lngCount, C_SEARCH_PAGE).Value = dc.BuiltinDocumentProperties(14)
                 
-                DC.Close SaveChanges:=False
-                Set DC = Nothing
+                dc.Close SaveChanges:=False
+                Set dc = Nothing
                 
             Case InStr(UCase(varBook), C_PPT_FILE) > 0
             

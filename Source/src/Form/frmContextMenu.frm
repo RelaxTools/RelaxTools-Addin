@@ -421,16 +421,21 @@ Sub dispCommand()
     'マクロシートのロード
     Do Until WS.Cells(i, C_COM_NO).Value = ""
         
-        If WS.Cells(i, C_COM_USE).Value <> "－" Then
-            If (cboCategory.ListIndex = 0 Or cboCategory.Text = WS.Cells(i, C_COM_CATEGORY).Value) And (txtKinou.Text = "" Or InStr(WS.Cells(i, C_COM_DISP_NAME).Value, txtKinou.Text) > 0) Then
-                lstCommand.AddItem ""
-                lstCommand.List(j, 0) = j + 1
-                lstCommand.List(j, 1) = WS.Cells(i, C_COM_CATEGORY).Value
-                lstCommand.List(j, 2) = WS.Cells(i, C_COM_DISP_NAME).Value
-                lstCommand.List(j, 3) = WS.Cells(i, C_COM_MACRO).Value
-                j = j + 1
-            End If
-        End If
+        Select Case True
+            Case WS.Cells(i, C_COM_USE).Value = "－"
+            Case WS.Cells(i, C_COM_CATEGORY).Value = "ショートカットキー用"
+            Case WS.Cells(i, C_COM_CATEGORY).Value = "Excel機能"
+            Case Else
+        
+                If (cboCategory.ListIndex = 0 Or cboCategory.Text = WS.Cells(i, C_COM_CATEGORY).Value) And (txtKinou.Text = "" Or InStr(WS.Cells(i, C_COM_DISP_NAME).Value, txtKinou.Text) > 0) Then
+                    lstCommand.AddItem ""
+                    lstCommand.List(j, 0) = j + 1
+                    lstCommand.List(j, 1) = WS.Cells(i, C_COM_CATEGORY).Value
+                    lstCommand.List(j, 2) = WS.Cells(i, C_COM_DISP_NAME).Value
+                    lstCommand.List(j, 3) = WS.Cells(i, C_COM_MACRO).Value
+                    j = j + 1
+                End If
+        End Select
         i = i + 1
 
     Loop

@@ -158,7 +158,7 @@ Private Sub searchStart()
     Dim objSheet1 As Worksheet
     Dim objSheet2 As Worksheet
     Dim WD As Object
-    Dim DC As Object
+    Dim dc As Object
     
     lstResult.Clear
     mlngCount = 0
@@ -173,7 +173,7 @@ Private Sub searchStart()
         Exit Sub
     End If
     
-    Set DC = WD.Documents.Add
+    Set dc = WD.Documents.Add
 '    WD.visible = True
 
     WD.DisplayAlerts = False
@@ -220,7 +220,7 @@ Private Sub searchStart()
 
     WD.DisplayAlerts = True
 
-    DC.Close False
+    dc.Close False
     WD.Quit
     Set WD = Nothing
 

@@ -241,7 +241,7 @@ Private Sub lstCategory_Change()
     Dim i As Long
     Dim c As Variant
     Dim fav As favoriteDTO
-    Dim key As String
+    Dim Key As String
     
     Dim blnFind As Boolean
     
@@ -255,14 +255,14 @@ Private Sub lstCategory_Change()
         
         .lstFavorite.Clear
         
-        key = .lstCategory.List(.lstCategory.ListIndex)
+        Key = .lstCategory.List(.lstCategory.ListIndex)
         
-        If Not mobjCategory.Exists(key) Then
+        If Not mobjCategory.Exists(Key) Then
             Exit Sub
         End If
         
         Dim cat As Variant
-        Set cat = mobjCategory.Item(key)
+        Set cat = mobjCategory.Item(Key)
         
         i = 0
         For Each c In cat
@@ -685,16 +685,16 @@ End Sub
 
 Sub favCurrentUpdate()
 
-    Dim key As String
+    Dim Key As String
     Dim i As Long
     Dim objfav As Variant
     Dim lngMax As Long
     Dim fav As favoriteDTO
     
     
-    key = lstCategory.List(lstCategory.ListIndex)
-    If mobjCategory.Exists(key) Then
-        mobjCategory.remove key
+    Key = lstCategory.List(lstCategory.ListIndex)
+    If mobjCategory.Exists(Key) Then
+        mobjCategory.remove Key
     End If
     
     Set objfav = CreateObject("Scripting.Dictionary")
@@ -713,7 +713,7 @@ Sub favCurrentUpdate()
               
     Next
     
-    mobjCategory.Add key, objfav
+    mobjCategory.Add Key, objfav
     
 End Sub
 Private Sub cmdReadOnly_Click()
@@ -1391,16 +1391,16 @@ Sub delCategory()
             Exit Sub
         End If
         
-        Dim key As String
+        Dim Key As String
         
         If MsgBox("カテゴリとそれ以下のお気に入りを削除しますがよろしいですか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
             Exit Sub
         End If
         
-        key = lstCategory.List(lstCategory.ListIndex)
+        Key = lstCategory.List(lstCategory.ListIndex)
         
-        If mobjCategory.Exists(key) Then
-            mobjCategory.remove key
+        If mobjCategory.Exists(Key) Then
+            mobjCategory.remove Key
         End If
         
         'お気に入りをクリア
