@@ -107,8 +107,8 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
         GoTo e
     End If
     
-    If bf.CountLarge > 1000 Then
-        MsgBox "大量のセルが選択されています。コピーするセルを1,000以下にしてください。", vbOKOnly + vbExclamation, C_TITLE
+    If bf.CountLarge > 5000 Then
+        MsgBox "大量のセルが選択されています。コピーするセルを5,000以下にしてください。", vbOKOnly + vbExclamation, C_TITLE
         Exit Sub
     End If
     
