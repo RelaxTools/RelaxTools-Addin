@@ -89,9 +89,7 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
         Exit Sub
     End If
     
-    If Application.CutCopyMode <> xlCopy Then
-        Exit Sub
-    End If
+
     
     Application.ScreenUpdating = False
     
@@ -100,19 +98,29 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
     '現在のリンク
     Dim bf As Range
     
-    'コピー元のRangeを取得
-    Set bf = getCopyRange()
-    If bf Is Nothing Then
-        MsgBox "コピー元の取得に失敗しました。", vbOKOnly + vbExclamation, C_TITLE
-        GoTo e
-    End If
     
-    If bf.CountLarge > 5000 Then
-        MsgBox "大量のセルが選択されています。コピーするセルを5,000以下にしてください。", vbOKOnly + vbExclamation, C_TITLE
-        Exit Sub
-    End If
+    If Application.CutCopyMode <> xlCopy Then
     
-    strBuf = copyMergeCell(bf, blnValue)
+        strBuf = rlxGetFileNameFromCli()
+        If Len(strBuf) = 0 Then
+            strBuf = GetClipText()
+        End If
+    
+    Else
+        'コピー元のRangeを取得
+        Set bf = getCopyRange()
+        If bf Is Nothing Then
+            MsgBox "コピー元の取得に失敗しました。", vbOKOnly + vbExclamation, C_TITLE
+            GoTo e
+        End If
+        
+        If bf.CountLarge > 5000 Then
+            MsgBox "大量のセルが選択されています。コピーするセルを5,000以下にしてください。", vbOKOnly + vbExclamation, C_TITLE
+            Exit Sub
+        End If
+        
+        strBuf = copyMergeCell(bf, blnValue)
+    End If
     
     If Len(strBuf) = 0 Then
         Exit Sub
@@ -215,7 +223,10 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
     End If
     
     '元の選択セルをコピー状態にする。
-    bf.Copy
+    If bf Is Nothing Then
+    Else
+        bf.Copy
+    End If
     
     'コピー元が１セルでコピー先が複数セルの場合
     If a.count = 1 And sr.count > 1 Then

@@ -361,6 +361,10 @@ Private Sub lstFavorite_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Sh
             If (Shift And 2) Then
                 Call favPaste
             End If
+        Case vbKeyC
+            If (Shift And 2) Then
+                Call favCopy
+            End If
         Case vbKeyEscape
             Unload Me
         Case vbKeyReturn
@@ -1295,7 +1299,38 @@ Sub moveCategory(ByVal strCategory As String)
     Call lstCategory_Change
 
 End Sub
+Sub favCopy()
 
+    Dim strBuf() As String
+    Dim i As Long
+    Dim lngCnt As Long
+    Dim strBook As String
+    
+    If lstFavorite.ListIndex = -1 Then
+        Exit Sub
+    End If
+    
+    On Error Resume Next
+
+    i = 1
+    
+    For lngCnt = 0 To lstFavorite.ListCount - 1
+    
+        If lstFavorite.Selected(lngCnt) Then
+    
+            strBook = lstFavorite.List(lngCnt, C_ORIGINAL)
+            ReDim Preserve strBuf(1 To i)
+            strBuf(i) = strBook
+            
+            i = i + 1
+        End If
+     
+    Next
+
+    Call SetCopyClipText(strBuf)
+    
+
+End Sub
 Sub favPaste()
 
     Dim files As Variant
@@ -1318,7 +1353,7 @@ Sub favPaste()
         strBuf = Replace(strBuf, """", "")
         files = Split(strBuf, vbCrLf)
     Else
-        files = Split(strBuf, vbTab)
+        files = Split(strBuf, vbCrLf)
     End If
     
 

@@ -3012,7 +3012,7 @@ Sub getFileNameFromClipboard()
         Exit Sub
     End If
     
-    files = Split(strBuf, vbTab)
+    files = Split(strBuf, vbCrLf)
     
     Dim i As Long
     For i = LBound(files) To UBound(files) Step 1
@@ -3051,7 +3051,7 @@ Sub openFileNameFromClipboard()
         Exit Sub
     End If
     
-    files = Split(strBuf, vbTab)
+    files = Split(strBuf, vbCrLf)
     
     If IsEmpty(files) Then
         Exit Sub

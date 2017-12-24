@@ -1604,9 +1604,7 @@ Public Sub SetCopyClipText(strBuf() As String)
     Dim i As Long
     
     For i = LBound(strBuf) To UBound(strBuf)
-    
         strData = strData & strBuf(i) & vbNullChar
-    
     Next
     strData = strData & vbNullChar
 
@@ -1645,6 +1643,36 @@ Public Sub SetCopyClipText(strBuf() As String)
                     
                 End If
                 
+            End If
+            
+            
+            'テキストも一緒に書き込んでおく
+            strData = ""
+            For i = LBound(strBuf) To UBound(strBuf)
+                strData = strData & strBuf(i) & vbCrLf
+            Next
+            
+            'グローバルメモリに書き込む領域を確保してそのハンドルを取得
+            lngDataLen = LenB(strData) + 1
+            
+            lngHwnd = GlobalAlloc(GMEM_MOVEABLE, lngDataLen)
+            
+            If lngHwnd <> 0 Then
+            
+                'グローバルメモリをロックしてそのポインタを取得
+                lngMEM = GlobalLock(lngHwnd)
+                
+                If lngMEM <> 0 Then
+            
+                    '書き込むテキストをグローバルメモリにコピー
+                    If lstrcpy(lngMEM, strData) <> 0 Then
+                        'クリップボードにメモリブロックのデータを書き込み
+                        lngRet = SetClipboardData(CF_TEXT, lngHwnd)
+                        blnErrflg = False
+                    End If
+                    'グローバルメモリブロックのロックを解除
+                    lngRet = GlobalUnlock(lngHwnd)
+                End If
             End If
             
         End If
@@ -1856,7 +1884,7 @@ Attribute rlxGetFileNameFromCli.VB_ProcData.VB_Invoke_Func = " \n19"
                 If i = 0 Then
                     ret = Mid$(strFilePath, 1, InStr(strFilePath, vbNullChar) - 1)
                 Else
-                    ret = ret & vbTab & Mid$(strFilePath, 1, InStr(strFilePath, vbNullChar) - 1)
+                    ret = ret & vbCrLf & Mid$(strFilePath, 1, InStr(strFilePath, vbNullChar) - 1)
                 End If
             Next
         End If
