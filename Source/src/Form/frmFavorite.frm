@@ -139,7 +139,7 @@ Public Sub execActiveAdd()
         
         .AddItem ""
         .List(lngCnt, C_FILE_NO) = i + 1
-        .List(lngCnt, C_FILE_NAME) = rlxGetFullpathFromFileName(strBook)
+        .List(lngCnt, C_FILE_NAME) = setFile(strBook)
         .List(lngCnt, C_PATH_NAME) = rlxGetFullpathFromPathName(strBook)
         .List(lngCnt, C_ORIGINAL) = strBook
         .List(lngCnt, C_CATEGORY) = lstCategory.List(lstCategory.ListIndex)
@@ -271,7 +271,7 @@ Private Sub lstCategory_Change()
         
             .lstFavorite.AddItem ""
             .lstFavorite.List(i, C_FILE_NO) = i + 1
-            .lstFavorite.List(i, C_FILE_NAME) = rlxGetFullpathFromFileName(fav.filename)
+            .lstFavorite.List(i, C_FILE_NAME) = setFile(fav.filename)
             .lstFavorite.List(i, C_PATH_NAME) = rlxGetFullpathFromPathName(fav.filename)
             .lstFavorite.List(i, C_ORIGINAL) = fav.filename
             .lstFavorite.List(i, C_CATEGORY) = fav.Category
@@ -364,6 +364,10 @@ Private Sub lstFavorite_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Sh
         Case vbKeyC
             If (Shift And 2) Then
                 Call favCopy
+            End If
+        Case vbKeyA
+            If (Shift And 2) Then
+                Call favAllSelect
             End If
         Case vbKeyEscape
             Unload Me
@@ -1008,6 +1012,7 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
                 .FaceId = 1436
             End With
         
+        
             Dim myCBCtrl2 As Variant
             Set myCBCtrl2 = .Controls.Add(Type:=msoControlPopup)
             With myCBCtrl2
@@ -1032,6 +1037,13 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
                     End If
                 Next
             End If
+        
+            With .Controls.Add
+                .BeginGroup = True
+                .Caption = "ファイル名のコピー"
+                .OnAction = "basFavorite.favCopy"
+                .FaceId = 19
+            End With
         
         End With
         mBarFav.ShowPopup
@@ -1306,7 +1318,7 @@ Sub favCopy()
     Dim lngCnt As Long
     Dim strBook As String
     
-    If lstFavorite.ListIndex = -1 Then
+    If lstFavorite.ListCount = 0 Then
         Exit Sub
     End If
     
@@ -1385,7 +1397,7 @@ Sub favPaste()
             
             .AddItem ""
             .List(j, C_FILE_NO) = j + 1
-            .List(j, C_FILE_NAME) = rlxGetFullpathFromFileName(files(i))
+            .List(j, C_FILE_NAME) = setFile(files(i))
             .List(j, C_PATH_NAME) = rlxGetFullpathFromPathName(files(i))
             .List(j, C_ORIGINAL) = files(i)
             .List(j, C_CATEGORY) = lstCategory.List(lstCategory.ListIndex)
@@ -1491,7 +1503,7 @@ Sub execEdit()
     
     If frmFavEdit.Start(C_FAVORITE_MOD, strFile) = vbOK Then
     
-        lstFavorite.List(lstFavorite.ListIndex, C_FILE_NAME) = rlxGetFullpathFromFileName(strFile)
+        lstFavorite.List(lstFavorite.ListIndex, C_FILE_NAME) = setFile(strFile)
         lstFavorite.List(lstFavorite.ListIndex, C_PATH_NAME) = rlxGetFullpathFromPathName(strFile)
         lstFavorite.List(lstFavorite.ListIndex, C_ORIGINAL) = strFile
 
@@ -1519,7 +1531,7 @@ Sub execAdd()
         End If
         
         lstFavorite.List(lngCnt, C_FILE_NO) = lstFavorite.ListCount
-        lstFavorite.List(lngCnt, C_FILE_NAME) = rlxGetFullpathFromFileName(strFile)
+        lstFavorite.List(lngCnt, C_FILE_NAME) = setFile(strFile)
         lstFavorite.List(lngCnt, C_PATH_NAME) = rlxGetFullpathFromPathName(strFile)
         lstFavorite.List(lngCnt, C_ORIGINAL) = strFile
         lstFavorite.List(lngCnt, C_CATEGORY) = strCategory
@@ -1536,7 +1548,13 @@ Sub execAdd()
     End If
 
 End Sub
-
+Function setFile(ByVal strBuf As String) As String
+    If rlxIsFolderExists(strBuf) Then
+        setFile = "<" & rlxGetFullpathFromFileName(strBuf) & ">"
+    Else
+        setFile = rlxGetFullpathFromFileName(strBuf)
+    End If
+End Function
 
 Private Sub MW_WheelDown(obj As Object)
 
@@ -1562,4 +1580,12 @@ Private Sub MW_WheelUp(obj As Object)
 
     obj.TopIndex = lngPos
 e:
+End Sub
+Sub favAllSelect()
+    Dim i As Long
+
+    For i = 0 To lstFavorite.ListCount - 1
+        lstFavorite.Selected(i) = True
+    Next
+    
 End Sub

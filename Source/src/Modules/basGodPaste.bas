@@ -22,7 +22,7 @@ Sub copyMergeCellVal()
     End If
     
     On Error GoTo e
-    Application.ScreenUpdating = False
+'    Application.ScreenUpdating = False
 
     For i = Selection(1).Row To Selection(Selection.count).Row
 
@@ -56,7 +56,7 @@ Sub copyMergeCellVal()
     End If
     
 e:
-    Application.ScreenUpdating = True
+'    Application.ScreenUpdating = True
 
 End Sub
 Sub pasteMergeCellValue()
