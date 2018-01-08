@@ -497,6 +497,9 @@ Private Sub UserForm_Initialize()
         End If
     Next
 
+    If Not mobjCategory.Exists("FastPin") Then
+        mobjCategory.Add "FastPin", CreateObject("Scripting.Dictionary")
+    End If
     
     Dim cat As Variant
     For Each cat In mobjCategory.Keys
@@ -981,8 +984,15 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
             End With
             
             With .Controls.Add
-                .Caption = "追加"
+                .Caption = "アクティブブックを追加"
                 .BeginGroup = True
+                .OnAction = "basFavorite.execActiveAdd"
+                .FaceId = 535
+            End With
+            
+            With .Controls.Add
+                .Caption = "追加"
+'                .BeginGroup = True
                 .OnAction = "basFavorite.execAdd"
                 .FaceId = 535
             End With
@@ -993,31 +1003,32 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
                 .FaceId = 534
             End With
             
+
+            With .Controls.Add
+                .BeginGroup = True
+                .Caption = "コピー"
+                .OnAction = "basFavorite.favCopy"
+                .FaceId = 19
+            End With
+            
+            With .Controls.Add
+                .Caption = "貼り付け"
+                .OnAction = "basFavorite.favPaste"
+                .FaceId = 1436
+            End With
+        
             With .Controls.Add
                 .Caption = "削除"
                 .OnAction = "basFavorite.execDel"
                 .FaceId = 536
             End With
             
-            With .Controls.Add
-                .Caption = "アクティブブックを追加"
-                .BeginGroup = True
-                .OnAction = "basFavorite.execActiveAdd"
-                .FaceId = 535
-            End With
-            
-            With .Controls.Add
-                .Caption = "エクスプローラから貼り付け"
-                .OnAction = "basFavorite.favPaste"
-                .FaceId = 1436
-            End With
-        
         
             Dim myCBCtrl2 As Variant
             Set myCBCtrl2 = .Controls.Add(Type:=msoControlPopup)
             With myCBCtrl2
                 .Caption = "カテゴリー移動"
-'                .BeginGroup = True
+                .BeginGroup = True
             End With
         
             If lstCategory.ListCount <= 1 Then
@@ -1038,12 +1049,6 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
                 Next
             End If
         
-            With .Controls.Add
-                .BeginGroup = True
-                .Caption = "ファイル名のコピー"
-                .OnAction = "basFavorite.favCopy"
-                .FaceId = 19
-            End With
         
         End With
         mBarFav.ShowPopup
@@ -1104,13 +1109,17 @@ Private Sub UserForm_Terminate()
     Dim strBuf As String
     Dim i As Long
     Dim blnFind As Boolean
+    Dim j As Long
     
     blnFind = False
         
     If lstFavorite.ListIndex <> -1 Then
         SaveSetting C_TITLE, "Favirite", "CurrentBook", lstFavorite.List(lstFavorite.ListIndex, C_ORIGINAL)
     End If
+    On Error Resume Next
+    DeleteSetting C_TITLE, "FastPin"
     
+    j = 0
     strBuf = ""
     For i = 0 To lstCategory.ListCount - 1
     
@@ -1120,7 +1129,7 @@ Private Sub UserForm_Terminate()
         
             Set cat = mobjCategory.Item(key1)
             
-            If cat.count = 0 Then
+            If cat.count = 0 And Not key1 = "FastPin" Then
                 blnFind = True
             End If
             
@@ -1133,6 +1142,11 @@ Private Sub UserForm_Terminate()
                 Else
                     strBuf = strBuf & vbVerticalTab & fav.filename & vbTab & key1
                 End If
+                If UCase(key1) = "FASTPIN" Then
+                    j = j + 1
+                    SaveSetting C_TITLE, "FastPin", "runFastPin" & Format(j, "00"), fav.filename
+                End If
+                
             Next
         
         End If
@@ -1283,14 +1297,11 @@ Sub moveCategory(ByVal strCategory As String)
     
         If lstFavorite.Selected(i) Then
         
-            Dim cat As Variant
-            Set cat = mobjCategory.Item(lstFavorite.List(i, C_CATEGORY))
-            cat.remove lstFavorite.List(i, C_ORIGINAL)
-        
+            Dim cat2 As Variant
             If mobjCategory.Exists(strCategory) Then
-                Set cat = mobjCategory.Item(strCategory)
+                Set cat2 = mobjCategory.Item(strCategory)
             Else
-                Set cat = CreateObject("Scripting.Dictionary")
+                Set cat2 = CreateObject("Scripting.Dictionary")
             End If
             Dim D As favoriteDTO
             
@@ -1298,17 +1309,29 @@ Sub moveCategory(ByVal strCategory As String)
             D.filename = lstFavorite.List(i, C_ORIGINAL)
             D.Category = strCategory
 '            d.Text = lstFavorite.List(i, C_FILE_NAME)
+
+            If cat2.Exists(D.filename) Then
+                Exit Sub
+            End If
             
-            cat.Add D.filename, D
+            cat2.Add D.filename, D
             If mobjCategory.Exists(strCategory) Then
                 mobjCategory.remove strCategory
             End If
-            mobjCategory.Add strCategory, cat
+            mobjCategory.Add strCategory, cat2
+        
+        
+            Dim cat As Variant
+            Set cat = mobjCategory.Item(lstFavorite.List(i, C_CATEGORY))
+            
+            cat.remove lstFavorite.List(i, C_ORIGINAL)
+        
         
         End If
     Next
     
     Call lstCategory_Change
+
 
 End Sub
 Sub favCopy()
@@ -1549,10 +1572,15 @@ Sub execAdd()
 
 End Sub
 Function setFile(ByVal strBuf As String) As String
-    If rlxIsFolderExists(strBuf) Then
-        setFile = "<" & rlxGetFullpathFromFileName(strBuf) & ">"
+
+    Dim strLine As String
+    
+    strLine = rlxGetFullpathFromFileName(strBuf)
+
+    If InStr(strLine, ".") = 0 Then
+        setFile = "<" & strLine & ">"
     Else
-        setFile = rlxGetFullpathFromFileName(strBuf)
+        setFile = strLine
     End If
 End Function
 

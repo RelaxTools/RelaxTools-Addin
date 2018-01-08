@@ -2995,35 +2995,37 @@ End Sub
 '--------------------------------------------------------------
 Sub getFileNameFromClipboard()
 
-    Dim files As Variant
-    Dim strBuf As String
-    
-    On Error GoTo ErrHandle
-  
-    If ActiveCell Is Nothing Then
-        Exit Sub
-    End If
-    
-    Application.ScreenUpdating = False
-    
-    strBuf = rlxGetFileNameFromCli()
-    
-    If strBuf = "" Then
-        Exit Sub
-    End If
-    
-    files = Split(strBuf, vbCrLf)
-    
-    Dim i As Long
-    For i = LBound(files) To UBound(files) Step 1
-        ActiveCell.Offset(i, 0).Value = files(i)
-    Next
-    
-    Application.ScreenUpdating = True
-    Exit Sub
-ErrHandle:
-    Application.ScreenUpdating = True
-    MsgBox "エラーが発生しました。", vbOKOnly, C_TITLE
+    MsgBox "この機能は「拡張貼り付け（値）」に統合されました。", vbInformation + vbOKOnly, C_TITLE
+
+'    Dim files As Variant
+'    Dim strBuf As String
+'
+'    On Error GoTo ErrHandle
+'
+'    If ActiveCell Is Nothing Then
+'        Exit Sub
+'    End If
+'
+'    Application.ScreenUpdating = False
+'
+'    strBuf = rlxGetFileNameFromCli()
+'
+'    If strBuf = "" Then
+'        Exit Sub
+'    End If
+'
+'    files = Split(strBuf, vbCrLf)
+'
+'    Dim i As Long
+'    For i = LBound(files) To UBound(files) Step 1
+'        ActiveCell.Offset(i, 0).Value = files(i)
+'    Next
+'
+'    Application.ScreenUpdating = True
+'    Exit Sub
+'ErrHandle:
+'    Application.ScreenUpdating = True
+'    MsgBox "エラーが発生しました。", vbOKOnly, C_TITLE
 
 End Sub
 '--------------------------------------------------------------

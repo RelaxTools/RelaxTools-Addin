@@ -190,3 +190,71 @@ End Sub
 Sub lstFavoriteDispDetail()
     Call frmFavorite.lstFavoriteDispDetail
 End Sub
+
+'Sub a(ByVal no As Long)
+'
+'
+'
+'    Dim strList() As String
+'    Dim strResult As String
+'    Dim i As Long
+'    Dim lngMax As Long
+'    Dim fav As favoriteDTO
+'    Dim strDat() As String
+'    Dim strCategory As String
+'    Dim objfav As Variant
+'    Dim c As Variant
+'
+'    Dim mobjCategory As Object
+'
+'    Set mobjCategory = CreateObject("Scripting.Dictionary")
+'
+'    strResult = GetSetting(C_TITLE, "Favirite", "FileList", "")
+'    strList = Split(strResult, vbVerticalTab)
+'
+'    lngMax = UBound(strList)
+'
+'
+'    strCategory = ""
+'    For i = 0 To lngMax
+'
+'       Set fav = New favoriteDTO
+'
+'       strDat = Split(strList(i), vbTab)
+'
+'        Select Case True
+'            Case UBound(strDat) = 0
+'            Case Else
+'                fav.filename = strDat(0)
+'                fav.Category = strDat(1)
+'
+'        End Select
+'
+'        If Not mobjCategory.Exists(fav.Category) Then
+'            Set objfav = CreateObject("Scripting.Dictionary")
+'            mobjCategory.Add fav.Category, objfav
+'       End If
+'
+'       If objfav.Exists(fav.filename) Then
+'       Else
+'           objfav.Add fav.filename, fav
+'        End If
+'    Next
+'
+'    Dim cat As Variant
+'    Set cat = mobjCategory.Item("ShortCut")
+'
+'    i = 0
+'    For Each c In cat
+'
+'        Set fav = cat.Item(c)
+'        i = i + 1
+'        If i = no Then
+'            fav.filename
+'            Exit Sub
+'        End If
+'
+'    Next
+'
+'
+'End Sub

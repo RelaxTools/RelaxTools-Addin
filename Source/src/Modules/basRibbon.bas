@@ -2017,4 +2017,139 @@ End Sub
 
 
 
+'--------------------------------------------------------------------
+'リボンより受け取ったIDをそのままマクロ名として実行するラッパー関数
+'--------------------------------------------------------------------
+Public Sub ribbonOnFastPin(control As IRibbonControl)
 
+    
+    On Error GoTo e
+    
+    Dim strBook As String
+    
+    strBook = GetSetting(C_TITLE, "FastPin", control.id, "")
+    
+    If strBook = "" Then
+        Exit Sub
+    End If
+    
+    
+    Select Case True
+        Case rlxIsExcelFile(strBook)
+            If Not rlxIsFileExists(strBook) Then
+                MsgBox "ブックが存在しません。", vbOKOnly + vbExclamation, C_TITLE
+            Else
+                On Error Resume Next
+                Err.Clear
+                Workbooks.Open filename:=strBook
+                If Err.Number <> 0 Then
+                    MsgBox "ブックを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
+                End If
+                AppActivate Application.Caption
+            End If
+        
+        Case rlxIsPowerPointFile(strBook)
+            On Error Resume Next
+            Err.Clear
+            With CreateObject("PowerPoint.Application")
+                .visible = True
+                Call .Presentations.Open(filename:=strBook)
+                If Err.Number <> 0 Then
+                    MsgBox "ファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
+                End If
+                AppActivate .Caption
+            End With
+            
+        Case rlxIsWordFile(strBook)
+            On Error Resume Next
+            Err.Clear
+            With CreateObject("Word.Application")
+                .visible = True
+                .Documents.Open filename:=strBook
+                If Err.Number <> 0 Then
+                    MsgBox "ファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
+                End If
+                AppActivate .Caption
+            End With
+            
+        Case Else
+            On Error Resume Next
+            Dim WSH As Object
+            Set WSH = CreateObject("WScript.Shell")
+            
+            WSH.Run ("""" & strBook & """")
+             If Err.Number <> 0 Then
+                MsgBox "ファイルを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
+            End If
+            Set WSH = Nothing
+    End Select
+    
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+'--------------------------------------------------------------------
+' ヘルプ内容を表示する。customUIから使用
+'--------------------------------------------------------------------
+Public Sub getFastPinSupertip(control As IRibbonControl, ByRef Screentip)
+
+    On Error GoTo e
+
+    Dim strBuf As String
+
+    strBuf = GetSetting(C_TITLE, "FastPin", control.id, "")
+    Screentip = rlxGetFullpathFromPathName(strBuf)
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+'--------------------------------------------------------------------
+' メニュー表示内容を表示する。customUIから使用
+'--------------------------------------------------------------------
+Public Sub getFastPinDescription(control As IRibbonControl, ByRef Screentip)
+
+    GetDescription control, Screentip
+
+End Sub
+'--------------------------------------------------------------------
+' ラベルを表示する。customUIから使用
+'--------------------------------------------------------------------
+Public Sub getFastPinLabel(control As IRibbonControl, ByRef Screentip)
+
+    On Error GoTo e
+    
+    Dim strBuf As String
+    
+    strBuf = GetSetting(C_TITLE, "FastPin", control.id, "")
+    
+    If strBuf = "" Then
+        Screentip = "(未登録)"
+    Else
+        Screentip = rlxGetFullpathFromFileName(strBuf)
+    End If
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+
+'--------------------------------------------------------------------
+' リボン表示設定取得
+'--------------------------------------------------------------------
+Sub getFastPinVisible(control As IRibbonControl, ByRef visible)
+
+    On Error GoTo e
+    
+    Dim strBuf As String
+    
+    strBuf = GetSetting(C_TITLE, "FastPin", control.id, "")
+    
+    If strBuf = "" Then
+        visible = False
+    Else
+        visible = True
+    End If
+    
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
