@@ -2015,19 +2015,71 @@ Public Sub ContextMenus_GetContent(control As IRibbonControl, ByRef returnedVal)
 
 End Sub
 
+Sub runFastPin01()
 
+    runFastPin "runFastPin01"
+    
+End Sub
+Sub runFastPin02()
+
+    runFastPin "runFastPin02"
+    
+End Sub
+Sub runFastPin03()
+
+    runFastPin "runFastPin03"
+    
+End Sub
+Sub runFastPin04()
+
+    runFastPin "runFastPin04"
+    
+End Sub
+Sub runFastPin05()
+
+    runFastPin "runFastPin05"
+    
+End Sub
+Sub runFastPin06()
+
+    runFastPin "runFastPin06"
+    
+End Sub
+Sub runFastPin07()
+
+    runFastPin "runFastPin07"
+    
+End Sub
+Sub runFastPin08()
+
+    runFastPin "runFastPin08"
+    
+End Sub
+Sub runFastPin09()
+
+    runFastPin "runFastPin09"
+    
+End Sub
+Sub runFastPin10()
+
+    runFastPin "runFastPin10"
+    
+End Sub
 
 '--------------------------------------------------------------------
 'リボンより受け取ったIDをそのままマクロ名として実行するラッパー関数
 '--------------------------------------------------------------------
 Public Sub ribbonOnFastPin(control As IRibbonControl)
 
+    runFastPin control.id
     
+End Sub
+Private Sub runFastPin(ByVal id As String)
     On Error GoTo e
     
     Dim strBook As String
     
-    strBook = GetSetting(C_TITLE, "FastPin", control.id, "")
+    strBook = GetSetting(C_TITLE, "FastPin", id, "")
     
     If strBook = "" Then
         Exit Sub
@@ -2087,6 +2139,7 @@ Public Sub ribbonOnFastPin(control As IRibbonControl)
     Exit Sub
 e:
     Call rlxErrMsg(Err)
+
 End Sub
 '--------------------------------------------------------------------
 ' ヘルプ内容を表示する。customUIから使用

@@ -497,8 +497,8 @@ Private Sub UserForm_Initialize()
         End If
     Next
 
-    If Not mobjCategory.Exists("FastPin") Then
-        mobjCategory.Add "FastPin", CreateObject("Scripting.Dictionary")
+    If Not mobjCategory.Exists("Fast Pin") Then
+        mobjCategory.Add "Fast Pin", CreateObject("Scripting.Dictionary")
     End If
     
     Dim cat As Variant
@@ -1129,7 +1129,7 @@ Private Sub UserForm_Terminate()
         
             Set cat = mobjCategory.Item(key1)
             
-            If cat.count = 0 And Not key1 = "FastPin" Then
+            If cat.count = 0 And Not key1 = "Fast Pin" Then
                 blnFind = True
             End If
             
@@ -1142,7 +1142,7 @@ Private Sub UserForm_Terminate()
                 Else
                     strBuf = strBuf & vbVerticalTab & fav.filename & vbTab & key1
                 End If
-                If UCase(key1) = "FASTPIN" Then
+                If key1 = "Fast Pin" Then
                     j = j + 1
                     SaveSetting C_TITLE, "FastPin", "runFastPin" & Format(j, "00"), fav.filename
                 End If
@@ -1155,6 +1155,8 @@ Private Sub UserForm_Terminate()
     If lstCategory.ListIndex <> -1 Then
         SaveSetting C_TITLE, "Favirite", "CurrentCategory", lstCategory.List(lstCategory.ListIndex)
     End If
+    
+    Call RefreshRibbon
     
     If blnFind Then
         MsgBox "中身のないカテゴリは削除されます。", vbOKOnly + vbExclamation, C_TITLE
