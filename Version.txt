@@ -1,4 +1,11 @@
-﻿2018/01/13(sat) RelaxTools-Addin Version 4.16.0(RustRemover) 
+﻿2018/01/20(sun) RelaxTools-Addin Version 4.17.0(RustRemover) 
+◇機能改善
+・以下の機能で改行文字(\n)が入れられるように修正。
+ 「セルの先頭に文字列追加」
+ 「セルの最後に文字列追加」
+ 「セルのｎ文字目に文字列追加」
+
+2018/01/13(sat) RelaxTools-Addin Version 4.16.0(RustRemover) 
 ◇新規機能
 ・お気に入りにFast Pin機能を追加。お気に入りのカテゴリ「Fast Pin」にファイルを追加すると、
 　お気に入りのメニューにそのファイルが表示されるようになる。

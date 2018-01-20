@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmInputStr 
    Caption         =   "文字列の追加"
-   ClientHeight    =   1035
+   ClientHeight    =   1350
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   6150
@@ -107,9 +107,24 @@ End Sub
 
 Public Function Start() As String
 
+
     Me.Show vbModal
     If mResult = vbOK Then
-        Start = txtInput.Text
+    
+        Dim strBuf As String
+        
+        strBuf = txtInput.Text
+        
+        Select Case True
+            Case InStr(strBuf, "\\n") > 0
+                strBuf = Replace(strBuf, "\\n", "\n")
+                
+            Case InStr(strBuf, "\n") > 0
+                strBuf = Replace(strBuf, "\n", vbLf)
+        
+        End Select
+        
+        Start = strBuf
     Else
         Start = ""
     End If

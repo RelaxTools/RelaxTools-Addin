@@ -89,6 +89,8 @@ Private Const C_FILE_INFO As String = "ファイル情報："
 
 Public mobjCategory As Object
 
+'Private mlngPos As Long
+
 
     
 Private Sub lstCategory_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
@@ -96,6 +98,10 @@ Private Sub lstCategory_MouseMove(ByVal Button As Integer, ByVal Shift As Intege
     Set MW.obj = lstCategory
 
 End Sub
+
+'Private Sub lstFavorite_Enter()
+'    mlngPos = -1
+'End Sub
 
 Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 
@@ -360,24 +366,44 @@ Private Sub lstFavorite_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Sh
         Case vbKeyV
             If (Shift And 2) Then
                 Call favPaste
+                Exit Sub
             End If
         Case vbKeyC
             If (Shift And 2) Then
                 Call favCopy
+                Exit Sub
             End If
         Case vbKeyA
             If (Shift And 2) Then
                 Call favAllSelect
+                Exit Sub
             End If
         Case vbKeyEscape
             Unload Me
+            Exit Sub
         Case vbKeyReturn
             execOpen False
+            Exit Sub
         Case vbKeyLeft
             lstCategory.SetFocus
+            Exit Sub
         Case vbKeyDelete
             execDel
+            Exit Sub
     End Select
+
+
+'    If lstFavorite.ListIndex >= 0 Then
+'        Dim i As Long
+'        For i = 0 To lstFavorite.ListCount - 1
+'            If i = lstFavorite.ListIndex Then
+'                lstFavorite.Selected(i) = True
+'            Else
+'                lstFavorite.Selected(i) = False
+'            End If
+'        Next
+'    End If
+
 End Sub
 Private Sub UserForm_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
     Select Case KeyCode
