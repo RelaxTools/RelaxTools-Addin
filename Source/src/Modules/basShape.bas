@@ -75,6 +75,36 @@ Sub straightLine()
 e:
 
 End Sub
+
+
+'選択したシェイプのサイズを合わせる
+'最初に選択したシェイプのサイズにそれ以降に選択したシェイプを合わせる
+Sub sameShapeSize()
+
+    Dim s As Shape
+    Dim blnFirst As Boolean
+    Dim dblWidth As Double
+    Dim dblHeight As Double
+    
+    On Error GoTo e
+    
+    blnFirst = True
+
+    For Each s In Selection.ShapeRange
+    
+        If blnFirst Then
+            blnFirst = False
+            dblWidth = s.width
+            dblHeight = s.Height
+        Else
+            s.width = dblWidth
+            s.Height = dblHeight
+        End If
+    
+    Next
+e:
+
+End Sub
 Sub largeShape()
 
     On Error Resume Next
