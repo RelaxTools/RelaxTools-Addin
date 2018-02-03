@@ -367,7 +367,7 @@ Private Function getSheets(ByVal strBook As String) As Collection
     
     On Error GoTo e
         
-    Set WB = XL.Workbooks.Open(filename:=strBook, ReadOnly:=True)
+    Set WB = XL.Workbooks.Open(filename:=strBook, ReadOnly:=True, UpdateLinks:=0, IgnoreReadOnlyRecommended:=True)
     
     For Each WS In WB.Sheets
         If WS.visible = xlSheetVisible Then

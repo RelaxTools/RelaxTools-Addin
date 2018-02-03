@@ -51,7 +51,7 @@ Public Const C_RASIO As Single = 2.83
 '--------------------------------------------------------------
 Sub showStamp()
 
-    frmStamp.Show
+    frmStamp.show
     
 End Sub
 

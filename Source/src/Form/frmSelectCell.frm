@@ -62,7 +62,7 @@ Public Function Start(ByRef strSearch As String, _
     mResult = vbCancel
     
 
-    Me.Show vbModal
+    Me.show vbModal
 
     strSearch = txtSearch.Text
 

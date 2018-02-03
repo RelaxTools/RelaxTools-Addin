@@ -233,7 +233,7 @@ Private Sub cmdOk_Click()
         Select Case True
             Case InStr(UCase(varBook), C_EXCEL_FILE) > 0
             
-                Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True)
+                Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, UpdateLinks:=0, IgnoreReadOnlyRecommended:=True)
                 
                 lngPage = 0
                 For Each WS In WB.Worksheets

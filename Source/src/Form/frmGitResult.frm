@@ -49,7 +49,7 @@ Public Sub Start(ByVal strMsg As String)
     txtResult.SelStart = Len(txtResult.Text)
     txtResult.SelStart = 0
     
-    Me.Show
+    Me.show
 
 End Sub
 

@@ -849,7 +849,7 @@ Function getBorderWeight(ByVal Tag As String) As XlBorderWeight
 End Function
 
 Sub showKantanDx()
-    frmKantanDx.Show
+    frmKantanDx.show
 End Sub
 '--------------------------------------------------------------
 '　選択範囲の表を取り込む

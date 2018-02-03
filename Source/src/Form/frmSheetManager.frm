@@ -106,7 +106,7 @@ Private Sub cmdPrint_Click()
     Else
         Me.Hide
         mBook.Sheets(Split(strSheets, vbTab)).PrintPreview
-        Me.Show
+        Me.show
     End If
 
     

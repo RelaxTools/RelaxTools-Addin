@@ -108,7 +108,7 @@ Sub Start(ByVal lngMode As Long)
             Me.txtCat.Text = frmFavorite.lstCategory.Text
     End Select
     
-    Me.Show
+    Me.show
 
 End Sub
 

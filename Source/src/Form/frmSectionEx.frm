@@ -450,7 +450,7 @@ Public Function Start(ByRef Col As Collection) As Collection
         
     End If
 
-    Me.Show
+    Me.show
     
     If mRet <> vbOK Then
         Set Start = Nothing

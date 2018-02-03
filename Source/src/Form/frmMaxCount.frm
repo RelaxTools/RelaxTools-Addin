@@ -50,7 +50,7 @@ Public Sub Start(ByVal lngByte As Long, ByVal lngString As Long)
     Me.txtByte.Value = lngByte
     Me.txtString.Value = lngString
 
-    Me.Show
+    Me.show
 
 End Sub
 

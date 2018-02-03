@@ -90,7 +90,7 @@ Sub Start(ByVal Mode As Boolean)
         Me.txtCat.Text = frmContextMenu.lstMenu1.Text
     End If
     
-    Me.Show
+    Me.show
 
 End Sub
 

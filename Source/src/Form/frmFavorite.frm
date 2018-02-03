@@ -796,7 +796,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                     Else
                         On Error Resume Next
                         Err.Clear
-                        Workbooks.Open filename:=strBook, ReadOnly:=blnReadOnly
+                        Workbooks.Open filename:=strBook, ReadOnly:=blnReadOnly, UpdateLinks:=0, IgnoreReadOnlyRecommended:=True
                         If Err.Number <> 0 Then
                             MsgBox "ブックを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
                         End If

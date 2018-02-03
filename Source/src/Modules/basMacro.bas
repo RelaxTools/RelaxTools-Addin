@@ -517,11 +517,12 @@ Sub setAllA1save()
         Exit Sub
     End If
 
-    Application.ScreenUpdating = False
+'    Application.ScreenUpdating = False
     
     Call setAllA1
     
-    On Error Resume Next
+'    On Error Resume Next
+    On Error GoTo e
     
     mA1Save = True
     
@@ -530,32 +531,40 @@ Sub setAllA1save()
         GoTo pass
     End If
     
-    If rlxIsFileExists(ActiveWorkbook.FullName) Then
-    Else
+    If InStr(ActiveWorkbook.FullName, ".") = 0 Then
         MsgBox "まだ一度も保存していないファイルです。一度Excelで保存を行ってください。", vbOKOnly + vbExclamation, C_TITLE
         GoTo pass
     End If
     
-    varRet = getAttr(ActiveWorkbook.FullName)
-    If Err.Number > 0 Then
-        MsgBox "現在のファイルにアクセスできませんでした。保存できませんでした。", vbOKOnly + vbExclamation, C_TITLE
-        GoTo pass
-    End If
+'    If rlxIsFileExists(ActiveWorkbook.FullName) Then
+'    Else
+'        MsgBox "まだ一度も保存していないファイルです。一度Excelで保存を行ってください。", vbOKOnly + vbExclamation, C_TITLE
+'        GoTo pass
+'    End If
     
-    If (varRet And vbReadOnly) > 0 Then
-        MsgBox "指定されたファイルは読み取り専用です。保存できませんでした。", vbOKOnly + vbExclamation, C_TITLE
-        GoTo pass
-    End If
+'    varRet = getAttr(ActiveWorkbook.FullName)
+'    If Err.Number > 0 Then
+'        MsgBox "現在のファイルにアクセスできませんでした。保存できませんでした。", vbOKOnly + vbExclamation, C_TITLE
+'        GoTo pass
+'    End If
+'
+'    If (varRet And vbReadOnly) > 0 Then
+'        MsgBox "指定されたファイルは読み取り専用です。保存できませんでした。", vbOKOnly + vbExclamation, C_TITLE
+'        GoTo pass
+'    End If
     
     
     ActiveWorkbook.Save
-
     
 pass:
     mA1Save = False
+    Exit Sub
     
-    Application.ScreenUpdating = True
+e:
+    mA1Save = False
 
+    MsgBox "保存できませんでした。", vbOKOnly + vbExclamation, C_TITLE
+    
 End Sub
 '--------------------------------------------------------------
 '　シート名をクリップボードに貼り付け
@@ -2637,7 +2646,7 @@ Sub cellEditExt()
     End If
     
     frmInformation.Message = "外部エディタ起動中です。作業を継続する場合には外部エディタを終了してください。"
-    frmInformation.Show
+    frmInformation.show
     
     Set r = ActiveCell
     
@@ -3094,7 +3103,7 @@ Sub openFileNameFromClipboard()
     
         FS.copyfile f, strTmpBook
     
-        WB.Open filename:=strTmpBook, ReadOnly:=True
+        WB.Open filename:=strTmpBook ', ReadOnly:=True, UpdateLinks:=1, IgnoreReadOnlyRecommended:=False
 pass:
     Next
     

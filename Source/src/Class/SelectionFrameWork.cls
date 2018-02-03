@@ -198,7 +198,7 @@ Public Sub Run()
     For Each r In a
     
         ''フィルタおよび非表示対策。
-        If r.Rows.Hidden Or r.Columns.Hidden Then
+        If r.Rows.Hidden Or r.Columns.Hidden Or r.MergeArea(1).Address <> r.Address Then
             'フィルタまたは非表示の行・列の処理は行わない。
         Else
             

@@ -108,7 +108,7 @@ End Sub
 Public Function Start() As String
 
 
-    Me.Show vbModal
+    Me.show vbModal
     If mResult = vbOK Then
     
         Dim strBuf As String

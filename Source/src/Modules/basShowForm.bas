@@ -46,7 +46,7 @@ Sub cellEdit()
         Exit Sub
     End If
     
-    frmEdit.Show
+    frmEdit.show
     
 End Sub
 '--------------------------------------------------------------
@@ -62,7 +62,7 @@ Sub cellSearch()
     frmSearchEx.txtSearch.Text = Replace(Replace(ActiveCell.Value, vbCrLf, "\n"), vbCr, "\n")
     frmSearchEx.txtSearch.SelStart = 0
     
-    frmSearchEx.Show
+    frmSearchEx.show
     
     
 End Sub
@@ -78,7 +78,7 @@ Sub replaceEx()
     
     frmSearchEx.schTab.Value = 1
     
-    frmSearchEx.Show
+    frmSearchEx.show
     
     
 End Sub
@@ -87,7 +87,7 @@ End Sub
 '--------------------------------------------------------------
 Sub FormatSqlSetting()
 
-    frmFormatSql.Show
+    frmFormatSql.show
     
 End Sub
 '--------------------------------------------------------------
@@ -95,7 +95,7 @@ End Sub
 '--------------------------------------------------------------
 Sub FormatXMLSetting()
 
-    frmFormatXml.Show
+    frmFormatXml.show
     
 End Sub
 
@@ -109,7 +109,7 @@ Sub backupSetting()
         Exit Sub
     End If
     
-    frmBackupSetting.Show
+    frmBackupSetting.show
     
 End Sub
 '--------------------------------------------------------------
@@ -122,7 +122,7 @@ Sub searchEx()
         Exit Sub
     End If
     
-    frmSearchEx.Show
+    frmSearchEx.show
     
 End Sub
 
@@ -148,7 +148,7 @@ Sub execSheetManager()
         End If
     Next
 
-    frmSheetManager.Show
+    frmSheetManager.show
 
 End Sub
 '--------------------------------------------------------------
@@ -156,7 +156,7 @@ End Sub
 '--------------------------------------------------------------
 Sub setJavaPackage()
 
-    frmSetPackage.Show
+    frmSetPackage.show
 
 End Sub
 '--------------------------------------------------------------
@@ -168,7 +168,7 @@ Sub createLinkTreeIn()
         Exit Sub
     End If
     
-    frmTreeList.Show
+    frmTreeList.show
     
 End Sub
 '--------------------------------------------------------------
@@ -176,7 +176,7 @@ End Sub
 '--------------------------------------------------------------
 Sub dispVer()
     
-    frmVersion.Show
+    frmVersion.show
 
 End Sub
 
@@ -189,7 +189,7 @@ Sub createFileListIn()
         Exit Sub
     End If
     
-    frmFileList.Show vbModeless
+    frmFileList.show vbModeless
 
 End Sub
 '--------------------------------------------------------------
@@ -206,7 +206,7 @@ Sub KantanLine()
         Exit Sub
     End If
 
-    frmGridText.Show
+    frmGridText.show
     
 End Sub
 '--------------------------------------------------------------
@@ -218,7 +218,7 @@ Sub loadCSV()
         Exit Sub
     End If
     
-    frmLoadCSV.Show
+    frmLoadCSV.show
     
 End Sub
 '--------------------------------------------------------------
@@ -231,7 +231,7 @@ Sub convertHtml()
         Exit Sub
     End If
     
-    frmHtml.Show vbModal
+    frmHtml.show vbModal
     
 End Sub
 
@@ -241,7 +241,7 @@ End Sub
 '--------------------------------------------------------------
 Sub documentSetting()
 
-    frmDoc.Show
+    frmDoc.show
     
 End Sub
 '--------------------------------------------------------------
@@ -249,7 +249,7 @@ End Sub
 '--------------------------------------------------------------
 Sub excelGrep()
 
-    frmGrep.Show
+    frmGrep.show
     
 End Sub
 '--------------------------------------------------------------
@@ -265,7 +265,7 @@ End Sub
 '--------------------------------------------------------------
 Sub excelGrepMultiShow()
 
-    frmGrepMulti.Show
+    frmGrepMulti.show
     
 End Sub
 '--------------------------------------------------------------
@@ -273,7 +273,7 @@ End Sub
 '--------------------------------------------------------------
 Sub excelPage()
 
-    frmPageList.Show
+    frmPageList.show
     
 End Sub
 ''--------------------------------------------------------------
@@ -285,70 +285,70 @@ End Sub
 '
 'End Sub
 Sub reSelect()
-    frmReSelect.Show
+    frmReSelect.show
 End Sub
 Sub showFavorite()
-    frmFavorite.Show
+    frmFavorite.show
 End Sub
 '--------------------------------------------------------------
 '　ワークシートの比較
 '--------------------------------------------------------------
 Sub compWorkSheets()
 
-    frmComp.Show
+    frmComp.show
     
 End Sub
 Sub cellEditExtSetting()
-    frmEditEx.Show
+    frmEditEx.show
 End Sub
 Sub A1SettingShow()
-    frmA1Setting.Show
+    frmA1Setting.show
 End Sub
 Sub electoricSetting()
-    frmElectoric.Show
+    frmElectoric.show
 End Sub
 Sub hotkey()
-    frmHotKey.Show
+    frmHotKey.show
 End Sub
 
 Sub sectionSettingShow()
-    frmSectionList.Show
+    frmSectionList.show
 End Sub
 Sub crossSetting()
     Dim obj As Object
     lineOnAction obj, False
-    frmCrossLine.Show
+    frmCrossLine.show
 End Sub
 Sub showBz()
-    frmStampBz.Show
+    frmStampBz.show
 End Sub
 Sub createFolderShow()
-    frmCreateFolder.Show
+    frmCreateFolder.show
 End Sub
 Sub VBAStepCountShow()
-    frmStepCount.Show
+    frmStepCount.show
 End Sub
 Sub execScreenShotSetting()
-    frmScreenSetting.Show
+    frmScreenSetting.show
 End Sub
 Sub execSourceExport()
-    frmSourceExport.Show
+    frmSourceExport.show
 End Sub
 Sub execComboSetting()
-    frmCombo.Show
+    frmCombo.show
 End Sub
 Sub execDelStyle()
-    frmStyle.Show
+    frmStyle.show
 End Sub
 Sub execCopyScreenSetting()
-    frmCopyScreen.Show
+    frmCopyScreen.show
 End Sub
 
 Sub execOptionSetting()
-    frmCommonOption.Show
+    frmCommonOption.show
 End Sub
 Sub scrollSetting()
-    frmScroll.Show
+    frmScroll.show
 End Sub
 Sub convertTextile()
 
@@ -357,7 +357,7 @@ Sub convertTextile()
         Exit Sub
     End If
 
-    frmRedmine.Show
+    frmRedmine.show
 End Sub
 Sub convertMarkdown()
 
@@ -366,38 +366,41 @@ Sub convertMarkdown()
         Exit Sub
     End If
     
-    frmMarkdown.Show
+    frmMarkdown.show
 End Sub
 Sub showGrammer()
-    frmGrammer.Show
+    frmGrammer.show
 End Sub
 Sub showInfo()
-    frmInfo.Show
+    frmInfo.show
 End Sub
 'Sub showHoldBook()
 '    frmHoldBook.Show
 'End Sub
 Sub showCheckList()
-    frmCheckList.Show
+    frmCheckList.show
 End Sub
 
 Sub execBinaryView()
-    frmBinary.Show
+    frmBinary.show
 End Sub
 Sub KanaSetting()
-    frmKana.Show
+    frmKana.show
 End Sub
 
 Sub PickSetting()
-    frmPickSetting.Show
+    frmPickSetting.show
 End Sub
 
 Sub ShowReport()
-    frmReport.Show
+    frmReport.show
 End Sub
 Sub contextMenu()
-    frmContextMenu.Show
+    frmContextMenu.show
 End Sub
 Sub showStaticCheck()
-    frmStaticCheck.Show
+    frmStaticCheck.show
+End Sub
+Sub showMergeFile()
+    frmMergeFile.show
 End Sub

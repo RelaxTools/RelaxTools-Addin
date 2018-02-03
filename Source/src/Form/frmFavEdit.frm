@@ -75,7 +75,7 @@ Function Start(ByVal lngMode As Long, ByRef strFile As String) As VbMsgBoxResult
             txtFile.Text = strFile
     End Select
    
-    Me.Show
+    Me.show
     
     If mResult = vbOK Then
         strFile = txtFile.Text

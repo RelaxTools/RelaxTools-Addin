@@ -1100,7 +1100,7 @@ Sub screenOnAction(control As IRibbonControl, pressed As Boolean)
     Call RefreshRibbon
 
     If pressed Then
-        frmScreenShot.Show
+        frmScreenShot.show
     Else
         Unload frmScreenShot
     End If

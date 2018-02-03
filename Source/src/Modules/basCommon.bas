@@ -1846,7 +1846,7 @@ Attribute rlxGetColorDlg.VB_ProcData.VB_Invoke_Func = " \n19"
     End If
     
     lngBackColor = ActiveWorkbook.Colors(1)
-    If Application.Dialogs(xlDialogEditColor).Show(1, lngRed, lngGreen, lngBlue) Then
+    If Application.Dialogs(xlDialogEditColor).show(1, lngRed, lngGreen, lngBlue) Then
         rlxGetColorDlg = ActiveWorkbook.Colors(1)
         ActiveWorkbook.Colors(1) = lngBackColor
     Else

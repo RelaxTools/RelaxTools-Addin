@@ -685,7 +685,7 @@ Private Sub lstResult_Change()
                         objShape.Shapes(1).Select False
                     Else
                         blnFlg = True
-                        Application.Goto setCellPos(objArt.TopLeftCell), True
+                        Application.GoTo setCellPos(objArt.TopLeftCell), True
                         objShape.Shapes(1).Select
                     End If
                     On Error GoTo 0
@@ -695,7 +695,7 @@ Private Sub lstResult_Change()
                         objShape.Select False
                     Else
                         blnFlg = True
-                        Application.Goto setCellPos(objShape.TopLeftCell), True
+                        Application.GoTo setCellPos(objShape.TopLeftCell), True
                         objShape.Select
                     End If
                     On Error GoTo 0
@@ -704,7 +704,7 @@ Private Sub lstResult_Change()
             End If
         Next
 
-        Me.Show
+        Me.show
 
     End If
 End Sub
@@ -866,7 +866,7 @@ Public Sub Start(ByVal lngTab As Long)
 
 '    schTab.value = lngTab
 
-    Me.Show
+    Me.show
 
 End Sub
 

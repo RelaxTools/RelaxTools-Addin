@@ -52,7 +52,7 @@ Function Start(ByVal strMsg As String) As VbMsgBoxResult
     
     txtMessage.SelStart = 0
     
-    Me.Show
+    Me.show
 
     Start = m
 

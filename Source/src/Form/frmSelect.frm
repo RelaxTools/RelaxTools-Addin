@@ -59,7 +59,7 @@ Public Function Start(ByRef lngRowSel As Long, _
     
     ret = vbCancel
 
-    Me.Show vbModal
+    Me.show vbModal
 
     lngRowSel = txtRowSel.Text
     lngRowGap = txtRowGap.Text

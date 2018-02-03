@@ -495,7 +495,7 @@ Sub createContents()
     
     On Error GoTo ErrHandle
 
-    frmContents.Show
+    frmContents.show
 
     Exit Sub
 ErrHandle:

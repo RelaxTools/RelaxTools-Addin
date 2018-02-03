@@ -241,7 +241,7 @@ Private Sub cmdOk_Click()
 '        If Len(txtPassword.Text) <> 0 Then
             For Each pass In varPassword
                 Err.Clear
-                Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, notify:=False, Password:=pass, local:=True)
+                Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, UpdateLinks:=0, notify:=False, Password:=pass, local:=True)
                 If Err.Number = 0 Then
                     Exit For
                 End If

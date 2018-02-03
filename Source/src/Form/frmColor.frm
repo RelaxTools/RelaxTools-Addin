@@ -70,7 +70,7 @@ Public Function Start(ByRef lngColor As Long) As VbMsgBoxResult
 
     mResult = vbCancel
 
-    Me.Show vbModal
+    Me.show vbModal
 
     If mResult = vbOK Then
         lngColor = mColor

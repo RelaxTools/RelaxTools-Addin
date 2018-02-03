@@ -38,7 +38,7 @@ Public Const C_STAMP_MITOME_FILE As Long = 2
 '--------------------------------------------------------------
 Sub showMitome()
 
-    frmStampMitome.Show
+    frmStampMitome.show
 End Sub
 Public Function editStampMitome(ByRef s As StampMitomeDTO, ByVal lngFormat As Long) As StdPicture
    
