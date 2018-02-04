@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCrossLine 
    Caption         =   "十字カーソル設定"
-   ClientHeight    =   4710
+   ClientHeight    =   4245
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   6780
+   ClientWidth     =   6375
    OleObjectBlob   =   "frmCrossLine.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
@@ -74,6 +74,8 @@ Private Sub cmdInit_Click()
     lblEven.BackColor = &H50B000
     txtCol.Value = "2"
     lblFont.BackColor = &H50B000
+    lblBack.BackColor = &HFFFFFF
+    txtGuidTransparency.Value = "50"
     
 End Sub
 
@@ -90,6 +92,8 @@ Private Sub cmdOk_Click()
     Dim blnEdit As Boolean
     Dim strFontColor As String
     Dim blnLineWidth As Boolean
+    Dim strBackColor As Long
+    Dim strGuidTransparency As String
     
     
     Select Case Val(txtFillTransparency.Value)
@@ -133,7 +137,11 @@ Private Sub cmdOk_Click()
     
     strFontColor = "&H" & Right$("00000000" & Hex(lblFont.BackColor), 8)
     
-    Call setCrossLineSetting(lngType, blnFillVisible, strFillColor, strFillTransparency, strLineVisible, strLineColor, strLineWeight, blnGuid, strFontColor, blnEdit, blnLineWidth)
+    strBackColor = "&H" & Right$("00000000" & Hex(lblBack.BackColor), 8)
+    
+    strGuidTransparency = txtGuidTransparency.Value
+    
+    Call setCrossLineSetting(lngType, blnFillVisible, strFillColor, strFillTransparency, strLineVisible, strLineColor, strLineWeight, blnGuid, strFontColor, blnEdit, blnLineWidth, strBackColor, strGuidTransparency)
 
 
     Unload Me
@@ -142,6 +150,21 @@ End Sub
 
 Private Sub CommandButton1_Click()
 
+End Sub
+
+Private Sub lblBack_Click()
+
+    Dim lngColor As Long
+    Dim Result As VbMsgBoxResult
+
+    lngColor = lblBack.BackColor
+
+    Result = frmColor.Start(lngColor)
+
+    If Result = vbOK Then
+        lblBack.BackColor = lngColor
+    End If
+    
 End Sub
 
 Private Sub lblFillColor_Click()
@@ -259,6 +282,14 @@ Private Sub spnFillTransparency_SpinUp()
     txtFillTransparency.Text = spinUp(txtFillTransparency.Text)
 End Sub
 
+Private Sub spnGuidTransparency_SpinDown()
+    txtGuidTransparency.Text = spinDown(txtGuidTransparency.Text)
+End Sub
+
+Private Sub spnGuidTransparency_SpinUp()
+    txtGuidTransparency.Text = spinUp(txtGuidTransparency.Text)
+End Sub
+
 Private Sub UserForm_Initialize()
 
     Dim blnFillVisible As Boolean
@@ -273,8 +304,10 @@ Private Sub UserForm_Initialize()
     Dim blnGuid As Boolean
     Dim blnEdit As Boolean
     Dim blnLineWidth As Boolean
+    Dim lngBackColor As Long
+    Dim dblGuidTransparency As Double
 
-    Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
+    Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth, lngBackColor, dblGuidTransparency)
     
     
     
@@ -304,6 +337,8 @@ Private Sub UserForm_Initialize()
     txtCol.Value = sngLineWeight
     
     lblFont.BackColor = lngFontColor
+    lblBack.BackColor = lngBackColor
 
+    txtGuidTransparency.Value = dblGuidTransparency
     
 End Sub

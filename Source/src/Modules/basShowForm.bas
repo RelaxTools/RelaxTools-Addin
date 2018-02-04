@@ -371,9 +371,9 @@ End Sub
 Sub showGrammer()
     frmGrammer.show
 End Sub
-Sub showInfo()
-    frmInfo.show
-End Sub
+'Sub showInfo()
+'    frmInfo.show
+'End Sub
 'Sub showHoldBook()
 '    frmHoldBook.Show
 'End Sub

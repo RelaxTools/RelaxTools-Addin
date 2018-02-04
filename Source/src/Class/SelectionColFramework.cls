@@ -158,7 +158,7 @@ Public Sub Run()
             
             For i = 1 To lngRows
                 ''フィルタおよび非表示対策。
-                If rArea(i, lngCur).Rows.Hidden Or rArea(i, lngCur).Columns.Hidden Or r.MergeArea(1).Address <> r.Address Then
+                If rArea(i, lngCur).Rows.Hidden Or rArea(i, lngCur).Columns.Hidden Or rArea(i, lngCur).MergeArea(1).Address <> rArea(i, lngCur).Address Then
                 Else
                     If r Is Nothing Then
                         Set r = rArea(i, lngCur)

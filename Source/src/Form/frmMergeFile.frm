@@ -191,6 +191,10 @@ pass:
     
     MsgBox "マージしました。", vbOKOnly + vbInformation, C_TITLE
     motoWB.Worksheets(1).Select
+    
+    Call SaveSetting(C_TITLE, "MergeFiles", "chkLink", chkLink.Value)
+    Call SaveSetting(C_TITLE, "MergeFiles", "FolderStr", txtFolder.Text)
+    
     Exit Sub
     
     
@@ -248,7 +252,10 @@ End Sub
 Private Sub UserForm_Initialize()
     lblGauge.visible = False
     mblnCancel = False
-'    chkLink.Value = True
+    
+    chkLink.Value = GetSetting(C_TITLE, "MergeFiles", "chkLink", False)
+    txtFolder.Text = GetSetting(C_TITLE, "MergeFiles", "FolderStr", "")
+    
 End Sub
 
 Private Sub UserForm_Terminate()

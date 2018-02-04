@@ -708,8 +708,6 @@ Sub execSelectionRowDrawGrid()
     obj.EvenColor = -1
     obj.Custom = False
     
-'    obj.HoganMode = True
-    
     obj.Run
     
     Set obj = Nothing

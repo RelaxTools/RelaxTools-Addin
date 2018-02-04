@@ -441,6 +441,43 @@ Private Sub checkSheetHyperlink(ByVal strCheck As String)
             End If
         Next
         
+        
+        
+'        'ブックのリンクがあったら解除
+'        Dim LK As Variant
+'        Dim a As Variant
+'
+'
+'        a = WB.LinkSources(Type:=xlLinkTypeExcelLinks)
+'
+'        If Not IsEmpty(a) Then
+'            For Each LK In WB.LinkSources(Type:=xlLinkTypeExcelLinks)
+'                WB.BreakLink Name:=LK, Type:=xlLinkTypeExcelLinks
+'            Next
+'        End If
+
+        
+
+        
+'        '画面レイアウトのリンクを削除
+'        Dim ss As Picture
+'        For Each ss In WS.Pictures
+'
+'            If ss.HasFormula And InStr(ss.Formula, "\") > 0 Then
+'                lstResult.AddItem ""
+'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
+'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
+'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = r.Address(RowAbsolute:=False, ColumnAbsolute:=False)
+'
+'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
+'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
+'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+'            End If
+'
+'        Next
+        
+
+        
     Next
 
     

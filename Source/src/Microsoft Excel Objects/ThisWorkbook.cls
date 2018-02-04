@@ -365,8 +365,10 @@ Private Sub addCrossLine()
         Dim lngFontColor As Long
         Dim blnEdit As Boolean
         Dim blnLineWidth As Boolean
+        Dim lngBackColor As Long
+        Dim dblGuidTransparency As Double
     
-        Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
+        Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth, lngBackColor, dblGuidTransparency)
         
         
         If lngType And C_HOLIZON Then
@@ -541,8 +543,10 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
     Dim lngFontColor As Long
     Dim blnEdit As Boolean
     Dim blnLineWidth As Boolean
+    Dim lngBackColor As Long
+    Dim dblGuidTransparency As Double
 
-    Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth)
+    Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth, lngBackColor, dblGuidTransparency)
         
     '横軸
     If lngType And C_HOLIZON Then
@@ -629,8 +633,9 @@ Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Ran
             .visible = True
 '            .ForeColor.RGB = lngFillColor
 '            .Transparency = 0
-            .ForeColor.RGB = vbWhite
-            .Transparency = 0
+'            .ForeColor.RGB = vbWhite
+            .ForeColor.RGB = lngBackColor
+            .Transparency = dblGuidTransparency / 100
             .Solid
         End With
 

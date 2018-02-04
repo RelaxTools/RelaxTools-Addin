@@ -30,7 +30,7 @@ Attribute VB_Name = "basSetting"
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
 Option Private Module
-Sub getCrossLineSetting(ByRef lngType As Long, ByRef blnFillVisible As Boolean, ByRef lngFillColor As Long, ByRef dblFillTransparency As Double, ByRef lngLineVisible As Long, ByRef lngLineColor As Long, ByRef sngLineWeight As Single, ByRef strOnAction As String, ByRef blnGuid As Boolean, ByRef lngFontColor As Long, ByRef blnEdit As Boolean, ByRef blnLineWidth As Boolean)
+Sub getCrossLineSetting(ByRef lngType As Long, ByRef blnFillVisible As Boolean, ByRef lngFillColor As Long, ByRef dblFillTransparency As Double, ByRef lngLineVisible As Long, ByRef lngLineColor As Long, ByRef sngLineWeight As Single, ByRef strOnAction As String, ByRef blnGuid As Boolean, ByRef lngFontColor As Long, ByRef blnEdit As Boolean, ByRef blnLineWidth As Boolean, ByRef lngFBackColor As Long, ByRef dblGuidTransparency As Double)
 
     lngType = Val(GetSetting(C_TITLE, "CrossLine", "Type", C_ALL))
     blnFillVisible = GetSetting(C_TITLE, "CrossLine", "FillVisible", True)
@@ -48,9 +48,12 @@ Sub getCrossLineSetting(ByRef lngType As Long, ByRef blnFillVisible As Boolean, 
     blnLineWidth = GetSetting(C_TITLE, "CrossLine", "LineWidth", False)
     
     lngFontColor = CLng(GetSetting(C_TITLE, "CrossLine", "FontColor", "&H0050B000"))
+    lngFBackColor = CLng(GetSetting(C_TITLE, "CrossLine", "BackColor", "&H00FFFFFF"))
+
+    dblGuidTransparency = Val(GetSetting(C_TITLE, "CrossLine", "GuidTransparency", "100"))
 
 End Sub
-Sub setCrossLineSetting(ByVal strType As String, ByVal strFillVisible As String, ByVal strFillColor As String, ByVal strFillTransparency As String, ByVal strLineVisible As String, ByVal strLineColor As String, ByVal strLineWeight As String, ByVal blnGuid As Boolean, ByVal strFontColor As String, ByVal blnEdit As Boolean, ByVal blnLineWidth As Boolean)
+Sub setCrossLineSetting(ByVal strType As String, ByVal strFillVisible As String, ByVal strFillColor As String, ByVal strFillTransparency As String, ByVal strLineVisible As String, ByVal strLineColor As String, ByVal strLineWeight As String, ByVal blnGuid As Boolean, ByVal strFontColor As String, ByVal blnEdit As Boolean, ByVal blnLineWidth As Boolean, ByVal strFBackColor As String, ByVal strGuidTransparency As String)
 
     Call SaveSetting(C_TITLE, "CrossLine", "Type", strType)
     Call SaveSetting(C_TITLE, "CrossLine", "FillVisible", strFillVisible)
@@ -66,6 +69,9 @@ Sub setCrossLineSetting(ByVal strType As String, ByVal strFillVisible As String,
     Call SaveSetting(C_TITLE, "CrossLine", "Guid", blnGuid)
     Call SaveSetting(C_TITLE, "CrossLine", "Edit", blnEdit)
     Call SaveSetting(C_TITLE, "CrossLine", "LineWidth", blnLineWidth)
+    Call SaveSetting(C_TITLE, "CrossLine", "BackColor", strFBackColor)
+    
+    Call SaveSetting(C_TITLE, "CrossLine", "GuidTransparency", strGuidTransparency)
     
 End Sub
 Sub getCopyScreenSetting(ByRef blnFillVisible As Boolean, ByRef lngFillColor As Long, ByRef blnLine As Boolean)
