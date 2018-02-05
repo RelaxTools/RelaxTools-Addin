@@ -1,4 +1,8 @@
-﻿2018/02/04(sun) RelaxTools-Addin Version 4.17.2(RustRemover) 
+﻿2018/02/06(tue) RelaxTools-Addin Version 4.17.3(RustRemover) 
+◇バグ修正
+・ページ数取得で空のシートが１ページにカウントされてしまう不具合を修正。
+
+2018/02/04(sun) RelaxTools-Addin Version 4.17.2(RustRemover) 
 ◇新規機能
 ・フォルダ指定でブックをマージする処理を追加。
 ◇バグ修正

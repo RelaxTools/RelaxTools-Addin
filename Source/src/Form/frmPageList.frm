@@ -117,6 +117,7 @@ Private Sub cmdOk_Click()
     Dim lngBookMax As Long
     
     Dim ResultWS As Worksheet
+    Dim ResultWB As Workbook
     
     Dim strPath As String
     Dim strPtn As String
@@ -182,7 +183,10 @@ Private Sub cmdOk_Click()
     Set objFs = Nothing
     
     ThisWorkbook.Worksheets("ページ数カウント結果").Copy
-    Set ResultWS = Application.Workbooks(Application.Workbooks.count).Worksheets(1)
+    Set ResultWB = Application.Workbooks(Application.Workbooks.count)
+'    ResultWB.Parent.visible = False
+    
+    Set ResultWS = ResultWB.Worksheets(1)
     
     ResultWS.Cells(1, C_SEARCH_NO).Value = "No."
     ResultWS.Cells(1, C_SEARCH_BOOK).Value = "ファイル名"
@@ -239,13 +243,14 @@ Private Sub cmdOk_Click()
                 lngPage = 0
                 w = lngCount
                 
-                
                 For Each WS In WB.Worksheets
                     If WS.visible = xlSheetVisible Then
                     
                         Dim p As Long
                         
-                        p = (WS.VPageBreaks.count + 1) * (WS.HPageBreaks.count + 1)
+                        'p = (WS.VPageBreaks.count + 1) * (WS.HPageBreaks.count + 1)
+                        WB.Windows(1).View = xlPageBreakPreview
+                        p = WS.PageSetup.Pages.count
                         
                         If chkExcelSheet.Value Then
                             lngCount = lngCount + 1
@@ -332,9 +337,13 @@ Private Sub cmdOk_Click()
     
     Unload Me
     
+'    ResultWB.Parent.visible = True
+'    DoEvents
+    
     AppActivate ResultWS.Application.Caption
     execSelectionRowDrawGrid
     Set ResultWS = Nothing
+    Set ResultWB = Nothing
 
 End Sub
 Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As String, objCol As Collection)
