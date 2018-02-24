@@ -111,7 +111,7 @@ Private Sub Worksheet_FollowHyperlink(ByVal Target As Hyperlink)
     
     Dim s As Shape
     Set s = getObjFromID(WS, Mid$(strId, InStrRev(strId, ":") + 1))
-    Application.GoTo Reference:=setCellPos(s.TopLeftCell), Scroll:=True
+    Application.Goto Reference:=setCellPos(s.TopLeftCell), Scroll:=True
     s.Select
     
 End Sub
@@ -212,7 +212,7 @@ Sub ReplaceStr()
         strBook = Cells(lngRow, C_SEARCH_BOOK).Value
         
         'バックアップする
-        FS.copyfile strBook, strBook & "." & Format$(Now(), "yyyymmddhhnnss")
+        FS.CopyFile strBook, strBook & "." & Format$(Now(), "yyyymmddhhnnss")
         
         If strBuf = "" Then
             Set WB = Workbooks.Open(filename:=strBook, local:=True)

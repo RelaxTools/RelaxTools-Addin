@@ -106,7 +106,7 @@ Private Sub cmdPrint_Click()
     Else
         Me.Hide
         mBook.Sheets(Split(strSheets, vbTab)).PrintPreview
-        Me.show
+        Me.Show
     End If
 
     
@@ -142,7 +142,7 @@ Private Sub cmdSaveBook_Click()
         Dim o As Object
         Dim vntFileName As Variant
         
-        vntFileName = Application.GetSaveAsFilename(InitialFileName:="", FileFilter:="Excel ブック(*.xlsx),*.xlsx,Excel マクロ有効ブック(*.xlsm),*.xlsm,Excel 97-2003ブック(*.xls),*.xls", Title:="ブックの保存")
+        vntFileName = Application.GetSaveAsFilename(InitialFileName:="", fileFilter:="Excel ブック(*.xlsx),*.xlsx,Excel マクロ有効ブック(*.xlsm),*.xlsm,Excel 97-2003ブック(*.xls),*.xls", Title:="ブックの保存")
         
         If vntFileName <> False Then
         

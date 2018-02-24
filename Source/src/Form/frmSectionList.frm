@@ -260,7 +260,7 @@ Private Sub UserForm_Initialize()
     
     Dim strClass As String
     Dim ss As SectionStructDTO
-    Dim Col As Collection
+    Dim col As Collection
     
     
     

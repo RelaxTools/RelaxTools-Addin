@@ -46,7 +46,7 @@ Attribute SFWork.VB_VarHelpID = -1
 '------------------------------------------------------------------------------------------------------------------------
 ' メンバ変数宣言部(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Public Folder As String
+Public folder As String
 Dim mlngCount As Long
 
 '------------------------------------------------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boo
 
     'フォルダ名取得
 '    mstrFolder = rlxSelectFolder()
-    If Folder = "" Then
+    If folder = "" Then
         'キャンセル
         Cancel = True
     End If
@@ -102,7 +102,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     
     s = r.Value
     
-    lngRet = createFolder(rlxAddFileSeparator(Folder) & s)
+    lngRet = createFolder(rlxAddFileSeparator(folder) & s)
     If lngRet <> 0 Then
         mlngCount = mlngCount + 1
         With r.Interior

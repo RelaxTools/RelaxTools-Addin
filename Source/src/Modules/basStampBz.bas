@@ -47,9 +47,9 @@ Public Function getPropertyBz() As Collection
     Dim lngMax As Long
     Dim i As Long
     
-    Dim Col As Collection
+    Dim col As Collection
     
-    Set Col = New Collection
+    Set col = New Collection
 
     lngMax = GetSetting(C_TITLE, "StampBz", "Count", "-1")
     If lngMax = -1 Then
@@ -68,7 +68,7 @@ Public Function getPropertyBz() As Collection
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
         s.LineSize = "5"
     
-        Col.Add s
+        col.Add s
         
         Set s = Nothing
     
@@ -86,7 +86,7 @@ Public Function getPropertyBz() As Collection
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
         s.LineSize = "5"
     
-        Col.Add s
+        col.Add s
         
         Set s = Nothing
         
@@ -104,7 +104,7 @@ Public Function getPropertyBz() As Collection
         s.Rotate = C_STAMP_ROTATE_VERTICAL
         s.LineSize = "5"
     
-        Col.Add s
+        col.Add s
         
         Set s = Nothing
         
@@ -122,7 +122,7 @@ Public Function getPropertyBz() As Collection
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
         s.LineSize = "5"
     
-        Col.Add s
+        col.Add s
         
         Set s = Nothing
         
@@ -140,7 +140,7 @@ Public Function getPropertyBz() As Collection
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
         s.LineSize = "5"
     
-        Col.Add s
+        col.Add s
         
         Set s = Nothing
         
@@ -158,7 +158,7 @@ Public Function getPropertyBz() As Collection
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
         s.LineSize = "5"
     
-        Col.Add s
+        col.Add s
         
         Set s = Nothing
     
@@ -176,7 +176,7 @@ Public Function getPropertyBz() As Collection
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
         s.LineSize = "5"
     
-        Col.Add s
+        col.Add s
         
         Set s = Nothing
     
@@ -194,7 +194,7 @@ Public Function getPropertyBz() As Collection
         s.Rotate = C_STAMP_ROTATE_HOLIZONTAL
         s.LineSize = "5"
     
-        Col.Add s
+        col.Add s
         
         Set s = Nothing
     
@@ -215,19 +215,19 @@ Public Function getPropertyBz() As Collection
             s.Rotate = GetSetting(C_TITLE, "StampBz", "Rotate" & Format$(i, "000"), C_STAMP_ROTATE_HOLIZONTAL)
             s.LineSize = GetSetting(C_TITLE, "StampBz", "LineSize" & Format$(i, "000"), "5")
         
-            Col.Add s
+            col.Add s
             
             Set s = Nothing
         Next
     End If
     
-    Set getPropertyBz = Col
+    Set getPropertyBz = col
     
 End Function
 '--------------------------------------------------------------
 '　レジストリ設定値取得
 '--------------------------------------------------------------
-Public Sub setPropertyBz(ByRef Col As Collection)
+Public Sub setPropertyBz(ByRef col As Collection)
 
     Dim strBuf As String
     Dim s As StampBzDTO
@@ -247,9 +247,9 @@ Public Sub setPropertyBz(ByRef Col As Collection)
     DeleteSetting C_TITLE, "StampBz", "Rotate"
     DeleteSetting C_TITLE, "StampBz", "LineSize"
     
-    For i = 0 To Col.count - 1
+    For i = 0 To col.count - 1
         
-        Set s = Col(i + 1)
+        Set s = col(i + 1)
         
         Call SaveSetting(C_TITLE, "StampBz", "StampType" & Format$(i, "000"), s.StampType)
         Call SaveSetting(C_TITLE, "StampBz", "Text" & Format$(i, "000"), Replace(s.Text, vbCrLf, vbVerticalTab))
@@ -266,7 +266,7 @@ Public Sub setPropertyBz(ByRef Col As Collection)
         Set s = Nothing
     Next
     
-    Call SaveSetting(C_TITLE, "StampBz", "Count", Col.count)
+    Call SaveSetting(C_TITLE, "StampBz", "Count", col.count)
     
 End Sub
 '--------------------------------------------------------------
@@ -312,18 +312,18 @@ End Sub
 Sub pasteStampBz2(Optional ByVal Index As Variant)
 
     '設定情報取得
-    Dim Col As Collection
+    Dim col As Collection
     Dim datStampBz As StampBzDTO
     Dim r As Worksheet
     
     On Error Resume Next
     
-    Set Col = getPropertyBz()
+    Set col = getPropertyBz()
 
     Select Case True
-        Case Col Is Nothing
+        Case col Is Nothing
             Exit Sub
-        Case Col.count = 0
+        Case col.count = 0
             Exit Sub
         Case Else
     End Select
@@ -333,7 +333,7 @@ Sub pasteStampBz2(Optional ByVal Index As Variant)
         Index = 1
     End If
 
-    Set datStampBz = Col(Index)
+    Set datStampBz = col(Index)
 
     Call editStampBz(datStampBz, xlPicture)
     
@@ -374,14 +374,14 @@ End Sub
 '--------------------------------------------------------------
 Function getImageStampBz(ByVal Index As Long) As StdPicture
 
-    Dim Col As Collection
+    Dim col As Collection
     Dim bz As StampBzDTO
     
     Set getImageStampBz = Nothing
     
-    Set Col = getPropertyBz()
+    Set col = getPropertyBz()
 
-    Set bz = Col(Index)
+    Set bz = col(Index)
     
     Set getImageStampBz = editStampBz(bz, xlBitmap)
 

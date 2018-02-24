@@ -110,18 +110,18 @@ Private Sub UserForm_Initialize()
     setBorder lngPos
 
 
-    Dim Col As Collection
+    Dim col As Collection
     
-    Set Col = basKantan.getPropertyKantan()
+    Set col = basKantan.getPropertyKantan()
 
     Dim k As KantanLineDTO
 
-    For i = 0 To Col.count - 1
+    For i = 0 To col.count - 1
     
         lstStamp.AddItem ""
         strBuf = GetSetting(C_TITLE, "KantanDx", Format(i + 1, "000"), "")
         
-        Set k = Col(i + 1)
+        Set k = col(i + 1)
         lstStamp.List(i, C_TEXT) = k.Text
         
         'デシリアライズ
@@ -130,7 +130,7 @@ Private Sub UserForm_Initialize()
     
     Next
 
-    If Col.count > 0 Then
+    If col.count > 0 Then
         lstStamp.Selected(0) = True
     End If
 
@@ -278,11 +278,11 @@ End Sub
 Private Sub cmdOk_Click()
 
     Dim s As KantanLineDTO
-    Dim Col As Collection
+    Dim col As Collection
     Dim i As Long
     Dim varBuf As Variant
 
-    Set Col = New Collection
+    Set col = New Collection
     '設定情報取得
 
     For i = 0 To lstStamp.ListCount - 1
@@ -291,16 +291,16 @@ Private Sub cmdOk_Click()
 
         Set s = deserialize(varBuf)
 
-        Col.Add s
+        col.Add s
 
         Set s = Nothing
 
     Next
 
     'プロパティ保存
-    setPropertyKantan Col
+    setPropertyKantan col
 
-    Set Col = Nothing
+    Set col = Nothing
 
     'リボンのリフレッシュ
     Call RefreshRibbon

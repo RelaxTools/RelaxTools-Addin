@@ -895,7 +895,7 @@ Public Sub lstFavoriteDispDetail()
     
     If lngCount = 1 Then
     
-        Dim Shell As Object, Folder As Object
+        Dim shell As Object, folder As Object
         
         strBook = lstFavorite.List(lstFavorite.ListIndex, C_ORIGINAL)
         
@@ -907,13 +907,13 @@ Public Sub lstFavoriteDispDetail()
             strMsg = strMsg & "　ファイル名：" & rlxGetFullpathFromFileName(strBook) & vbCrLf           ''ファイル名
             
             If GetSetting(C_TITLE, "Favirite", "Detail", False) Then
-                Set Shell = CreateObject("Shell.Application")
-                Set Folder = Shell.Namespace(rlxGetFullpathFromPathName(strBook))
-                strMsg = strMsg & "　作成者：" & Folder.GetDetailsOf(Folder.ParseName(rlxGetFullpathFromFileName(strBook)), 20) & vbCrLf  ''作成者
-                strMsg = strMsg & "　タイトル：" & Folder.GetDetailsOf(Folder.ParseName(rlxGetFullpathFromFileName(strBook)), 21) & vbCrLf   ''タイトル
-                strMsg = strMsg & "　サブタイトル：" & Folder.GetDetailsOf(Folder.ParseName(rlxGetFullpathFromFileName(strBook)), 22) & vbCrLf   ''サブタイトル
-                Set Folder = Nothing
-                Set Shell = Nothing
+                Set shell = CreateObject("Shell.Application")
+                Set folder = shell.Namespace(rlxGetFullpathFromPathName(strBook))
+                strMsg = strMsg & "　作成者：" & folder.GetDetailsOf(folder.ParseName(rlxGetFullpathFromFileName(strBook)), 20) & vbCrLf  ''作成者
+                strMsg = strMsg & "　タイトル：" & folder.GetDetailsOf(folder.ParseName(rlxGetFullpathFromFileName(strBook)), 21) & vbCrLf   ''タイトル
+                strMsg = strMsg & "　サブタイトル：" & folder.GetDetailsOf(folder.ParseName(rlxGetFullpathFromFileName(strBook)), 22) & vbCrLf   ''サブタイトル
+                Set folder = Nothing
+                Set shell = Nothing
             End If
             
             Select Case True
@@ -1331,18 +1331,18 @@ Sub moveCategory(ByVal strCategory As String)
             Else
                 Set cat2 = CreateObject("Scripting.Dictionary")
             End If
-            Dim D As favoriteDTO
+            Dim d As favoriteDTO
             
-            Set D = New favoriteDTO
-            D.filename = lstFavorite.List(i, C_ORIGINAL)
-            D.Category = strCategory
+            Set d = New favoriteDTO
+            d.filename = lstFavorite.List(i, C_ORIGINAL)
+            d.Category = strCategory
 '            d.Text = lstFavorite.List(i, C_FILE_NAME)
 
-            If cat2.Exists(D.filename) Then
+            If cat2.Exists(d.filename) Then
                 Exit Sub
             End If
             
-            cat2.Add D.filename, D
+            cat2.Add d.filename, d
             If mobjCategory.Exists(strCategory) Then
                 mobjCategory.remove strCategory
             End If

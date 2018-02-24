@@ -67,7 +67,7 @@ Private Sub MW_WheelDown(obj As Object)
     Else
         scrBar.Value = lngValue
     End If
-    disp
+    Disp
 e:
 End Sub
 
@@ -82,16 +82,16 @@ Private Sub MW_WheelUp(obj As Object)
     Else
         scrBar.Value = lngValue
     End If
-    disp
+    Disp
 e:
 End Sub
 
 Private Sub scrBar_Change()
-    disp
+    Disp
 End Sub
 
 Private Sub scrBar_Scroll()
-    disp
+    Disp
 End Sub
 
 'Private Sub UserForm_Activate()
@@ -217,23 +217,23 @@ Private Sub UserForm_Initialize()
     
     
     scrBar.Min = 1
-    Dim D As Long
-    D = lngLine
-    If D <= 0 Then
+    Dim d As Long
+    d = lngLine
+    If d <= 0 Then
         scrBar.Max = 1
     Else
-        scrBar.Max = D
+        scrBar.Max = d
     End If
     scrBar.LargeChange = 16
     scrBar.SmallChange = 1
-    disp
+    Disp
     
     Set MW = basMouseWheel.GetInstance
     MW.Install Me
     Set MW.obj = scrBar
 
 End Sub
-Sub disp()
+Sub Disp()
     Dim i As Long
     Dim j As Long
     Dim k As Long

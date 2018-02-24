@@ -71,7 +71,7 @@ Sub sushiOnAction(control As IRibbonControl)
         Case "sushiStop"
             mSushiEnable = False
         Case "sushiSetting"
-            frmSushiSetting.show
+            frmSushiSetting.Show
             Exit Sub
     End Select
 
@@ -170,7 +170,7 @@ Sub SushiGoRound()
     For i = 1 To lngMaisu
         Set f = New frmSushi
         If i = 1 Then
-            f.show
+            f.Show
         End If
         f.Left = Application.Left - i * 40
         f.Top = Application.Top + Application.Height - 36
@@ -206,7 +206,7 @@ Sub SushiGoRound()
 
                 If i <> c.count Then
                     If f.Left > Application.Left + 40 And c(i + 1).visible = False Then
-                        c(i + 1).show
+                        c(i + 1).Show
                     End If
                 End If
 

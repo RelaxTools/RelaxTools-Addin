@@ -209,7 +209,7 @@ Private Sub cmdExport_Click()
     
     Dim vntFileName As Variant
     
-    vntFileName = Application.GetSaveAsFilename(InitialFileName:="export.key", FileFilter:="キー定義(*.key),*.key", Title:="キー定義のエクスポート")
+    vntFileName = Application.GetSaveAsFilename(InitialFileName:="export.key", fileFilter:="キー定義(*.key),*.key", Title:="キー定義のエクスポート")
     
     If vntFileName = False Then
         Exit Sub

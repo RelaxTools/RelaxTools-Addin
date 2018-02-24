@@ -1349,7 +1349,7 @@ End Function
 '--------------------------------------------------------------
 '  コレクションのソート
 '--------------------------------------------------------------
-Public Sub rlxSortCollection(ByRef Col As Collection)
+Public Sub rlxSortCollection(ByRef col As Collection)
 
     Dim i As Long
     Dim j As Long
@@ -1361,20 +1361,20 @@ Public Sub rlxSortCollection(ByRef Col As Collection)
     Dim wk As String
 
     'Collectionが空ならなにもしない
-    If Col Is Nothing Then
+    If col Is Nothing Then
         Exit Sub
     End If
 
     'Collectionの要素数が０または１の場合ソート不要
-    If Col.count <= 1 Then
+    If col.count <= 1 Then
         Exit Sub
     End If
 
-    n = Col.count
+    n = col.count
     ReDim strKey(1 To n)
 
     For i = 1 To n
-        strKey(i) = Col.Item(i).Name
+        strKey(i) = col.Item(i).Name
     Next
 
     '挿入ソート
@@ -1405,17 +1405,17 @@ Public Sub rlxSortCollection(ByRef Col As Collection)
     Set col2 = New Collection
 
     For i = 1 To n
-        col2.Add Col.Item(strKey(i)), Col.Item(strKey(i)).Name
+        col2.Add col.Item(strKey(i)), col.Item(strKey(i)).Name
     Next
 
-    Set Col = col2
+    Set col = col2
     Set col2 = Nothing
 
 End Sub
 '--------------------------------------------------------------
 '  ディクショナリのソート
 '--------------------------------------------------------------
-Public Sub rlxSortDictionary(ByRef Col As Object)
+Public Sub rlxSortDictionary(ByRef col As Object)
 
     Dim i As Long
     Dim j As Long
@@ -1427,21 +1427,21 @@ Public Sub rlxSortDictionary(ByRef Col As Object)
     Dim wk As String
 
     'Collectionが空ならなにもしない
-    If Col Is Nothing Then
+    If col Is Nothing Then
         Exit Sub
     End If
 
     'Collectionの要素数が０または１の場合ソート不要
-    If Col.count <= 1 Then
+    If col.count <= 1 Then
         Exit Sub
     End If
 
-    n = Col.count
+    n = col.count
     ReDim strKey(1 To n)
 
     i = i + 1
     Dim v As Variant
-    For Each v In Col
+    For Each v In col
         strKey(i) = v
         i = i + 1
     Next
@@ -1474,10 +1474,10 @@ Public Sub rlxSortDictionary(ByRef Col As Object)
     Set col2 = CreateObject("Scripting.Dictionary")
 
     For i = 1 To n
-        col2.Add Col.Item(strKey(i)).Name, Col.Item(strKey(i))
+        col2.Add col.Item(strKey(i)).Name, col.Item(strKey(i))
     Next
 
-    Set Col = col2
+    Set col = col2
     Set col2 = Nothing
 
 End Sub
@@ -1846,7 +1846,7 @@ Attribute rlxGetColorDlg.VB_ProcData.VB_Invoke_Func = " \n19"
     End If
     
     lngBackColor = ActiveWorkbook.Colors(1)
-    If Application.Dialogs(xlDialogEditColor).show(1, lngRed, lngGreen, lngBlue) Then
+    If Application.Dialogs(xlDialogEditColor).Show(1, lngRed, lngGreen, lngBlue) Then
         rlxGetColorDlg = ActiveWorkbook.Colors(1)
         ActiveWorkbook.Colors(1) = lngBackColor
     Else

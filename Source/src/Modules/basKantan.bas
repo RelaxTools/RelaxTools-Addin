@@ -144,14 +144,14 @@ End Function
 Function getImageKantan(ByVal Index As Long) As StdPicture
 
     '設定情報取得
-    Dim Col As Collection
+    Dim col As Collection
     Dim k As KantanLineDTO
 
     Set getImageKantan = Nothing
 
-    Set Col = getPropertyKantan()
+    Set col = getPropertyKantan()
 
-    Set k = Col(Index)
+    Set k = col(Index)
 
     Set getImageKantan = editKantan(k, xlBitmap)
 
@@ -183,7 +183,7 @@ End Sub
 Sub kantanPaste2(ByVal Index As Long)
 
     '設定情報取得
-    Dim Col As Collection
+    Dim col As Collection
     Dim s As KantanLineDTO
     Dim r As Range
     Dim i As Long
@@ -200,17 +200,17 @@ Sub kantanPaste2(ByVal Index As Long)
         Exit Sub
     End If
 
-    Set Col = getPropertyKantan()
+    Set col = getPropertyKantan()
 
     Select Case True
-        Case Col Is Nothing
+        Case col Is Nothing
             Exit Sub
-        Case Col.count = 0
+        Case col.count = 0
             Exit Sub
         Case Else
     End Select
 
-    Set s = Col(Index)
+    Set s = col(Index)
     
     ThisWorkbook.Worksheets("Undo").Cells.Clear
     Set mUndo.sourceRange = Selection
@@ -353,9 +353,9 @@ Public Function getPropertyKantan() As Collection
     Dim lngMax As Long
     Dim i As Long
 
-    Dim Col As Collection
+    Dim col As Collection
 
-    Set Col = New Collection
+    Set col = New Collection
     
     lngMax = Val(GetSetting(C_TITLE, "KantanDx", "Count", -1))
     
@@ -386,7 +386,7 @@ Public Function getPropertyKantan() As Collection
         k.AuthoHogan = True
         k.HoganJudgeLineCount = 1
 
-        Col.Add k
+        col.Add k
 
         Set k = Nothing
 
@@ -415,7 +415,7 @@ Public Function getPropertyKantan() As Collection
         k.AuthoHogan = True
         k.HoganJudgeLineCount = 1
 
-        Col.Add k
+        col.Add k
 
         Set k = Nothing
         
@@ -445,7 +445,7 @@ Public Function getPropertyKantan() As Collection
         k.AuthoHogan = True
         k.HoganJudgeLineCount = 1
 
-        Col.Add k
+        col.Add k
 
         Set k = Nothing
         
@@ -474,7 +474,7 @@ Public Function getPropertyKantan() As Collection
         k.AuthoHogan = True
         k.HoganJudgeLineCount = 1
 
-        Col.Add k
+        col.Add k
 
         Set k = Nothing
 
@@ -503,7 +503,7 @@ Public Function getPropertyKantan() As Collection
         k.AuthoHogan = True
         k.HoganJudgeLineCount = 1
         
-        Col.Add k
+        col.Add k
 
         Set k = Nothing
     
@@ -532,7 +532,7 @@ Public Function getPropertyKantan() As Collection
         k.AuthoHogan = True
         k.HoganJudgeLineCount = 1
         
-        Col.Add k
+        col.Add k
 
         Set k = Nothing
         
@@ -561,7 +561,7 @@ Public Function getPropertyKantan() As Collection
         k.AuthoHogan = True
         k.HoganJudgeLineCount = 1
         
-        Col.Add k
+        col.Add k
 
         Set k = Nothing
         
@@ -590,7 +590,7 @@ Public Function getPropertyKantan() As Collection
         k.AuthoHogan = True
         k.HoganJudgeLineCount = 1
         
-        Col.Add k
+        col.Add k
 
         Set k = Nothing
     
@@ -602,19 +602,19 @@ Public Function getPropertyKantan() As Collection
             
             Set k = deserialize(strBuf)
         
-            Col.Add k
+            col.Add k
 
             Set k = Nothing
         Next
     End If
 
-    Set getPropertyKantan = Col
+    Set getPropertyKantan = col
 
 End Function
 '--------------------------------------------------------------
 '　レジストリ設定値取得
 '--------------------------------------------------------------
-Public Sub setPropertyKantan(ByRef Col As Collection)
+Public Sub setPropertyKantan(ByRef col As Collection)
 
     Dim strBuf As String
     Dim s As KantanLineDTO
@@ -625,9 +625,9 @@ Public Sub setPropertyKantan(ByRef Col As Collection)
     
     DeleteSetting C_TITLE, "KantanDx"
 
-    For i = 0 To Col.count - 1
+    For i = 0 To col.count - 1
 
-        Set s = Col(i + 1)
+        Set s = col(i + 1)
         
         strBuf = serialize(s)
         Call SaveSetting(C_TITLE, "KantanDx", Format$(i, "000"), strBuf)
@@ -635,7 +635,7 @@ Public Sub setPropertyKantan(ByRef Col As Collection)
         Set s = Nothing
     Next
 
-    Call SaveSetting(C_TITLE, "KantanDx", "Count", Col.count)
+    Call SaveSetting(C_TITLE, "KantanDx", "Count", col.count)
 
 End Sub
 Function serialize(ByRef k As KantanLineDTO) As String
@@ -849,7 +849,7 @@ Function getBorderWeight(ByVal Tag As String) As XlBorderWeight
 End Function
 
 Sub showKantanDx()
-    frmKantanDx.show
+    frmKantanDx.Show
 End Sub
 '--------------------------------------------------------------
 '　選択範囲の表を取り込む

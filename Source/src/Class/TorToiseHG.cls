@@ -340,7 +340,7 @@ Private Sub Run(ByVal strPath As String, ByVal strExe As String)
     
     Err.Clear
     
-    Pid = Shell(EXE_NAME & " " & strExe)
+    Pid = shell(EXE_NAME & " " & strExe)
     
     Set p = New WinProcess
     

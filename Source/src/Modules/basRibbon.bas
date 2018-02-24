@@ -603,7 +603,7 @@ Sub ribbonLoaded(ByRef IR As IRibbonUI)
     On Error GoTo e
     
     Set mIR = IR
-    Call ThisWorkbook.setIRibbon(IR)
+'    Call ThisWorkbook.setIRibbon(IR)
     
     'リボンハンドルのアドレスをレジストリに保存、実行時エラーの場合に復元する。
     SaveSetting C_TITLE, "Ribbon", "Address", CStr(ObjPtr(IR))
@@ -1100,7 +1100,7 @@ Sub screenOnAction(control As IRibbonControl, pressed As Boolean)
     Call RefreshRibbon
 
     If pressed Then
-        frmScreenShot.show
+        frmScreenShot.Show
     Else
         Unload frmScreenShot
     End If
@@ -1156,11 +1156,11 @@ Public Sub GetSizeLabel(control As IRibbonControl, ByRef lbl)
  Sub stampGetItemCount(control As IRibbonControl, ByRef count)
 
     '設定情報取得
-    Dim Col As Collection
+    Dim col As Collection
     
-    Set Col = getProperty()
+    Set col = getProperty()
 
-    count = Col.count
+    count = col.count
 
 End Sub
 '--------------------------------------------------------------------
@@ -1194,11 +1194,11 @@ End Sub
 Sub stampMitomeGetItemCount(control As IRibbonControl, ByRef count)
 
     '設定情報取得
-    Dim Col As Collection
+    Dim col As Collection
     
-    Set Col = getPropertyMitome()
+    Set col = getPropertyMitome()
 
-    count = Col.count
+    count = col.count
 
 End Sub
 '--------------------------------------------------------------------
@@ -1232,11 +1232,11 @@ End Sub
 Sub stampBzGetItemCount(control As IRibbonControl, ByRef count)
 
     '設定情報取得
-    Dim Col As Collection
+    Dim col As Collection
     
-    Set Col = getPropertyBz()
+    Set col = getPropertyBz()
 
-    count = Col.count
+    count = col.count
 
 End Sub
 '--------------------------------------------------------------------
@@ -1379,11 +1379,11 @@ End Sub
  Sub kantanGetItemCount(control As IRibbonControl, ByRef count)
 
     '設定情報取得
-    Dim Col As Collection
+    Dim col As Collection
     
-    Set Col = getPropertyKantan()
+    Set col = getPropertyKantan()
 
-    count = Col.count
+    count = col.count
 
 End Sub
 '--------------------------------------------------------------------
@@ -1956,7 +1956,7 @@ Public Sub ContextMenus_GetVisible(control As IRibbonControl, ByRef visible)
 End Sub
 Public Sub ContextMenus_GetContent(control As IRibbonControl, ByRef returnedVal)
 
-    Dim D As Object
+    Dim d As Object
     Dim elmMenu As Object
     Dim elmButton As Object
     Dim i As Long
@@ -1971,9 +1971,9 @@ Public Sub ContextMenus_GetContent(control As IRibbonControl, ByRef returnedVal)
     
     If Len(strBuf) <> 0 Then
     
-        Set D = CreateObject("Msxml2.DOMDocument")
+        Set d = CreateObject("Msxml2.DOMDocument")
         
-        Set elmMenu = D.createElement("menu")
+        Set elmMenu = d.createElement("menu")
 '        elmMenu.setAttribute "xmlns", "http://schemas.microsoft.com/office/2006/01/customui"
         elmMenu.setAttribute "xmlns", "http://schemas.microsoft.com/office/2009/07/customui"
   
@@ -1984,14 +1984,14 @@ Public Sub ContextMenus_GetContent(control As IRibbonControl, ByRef returnedVal)
             varCol = Split(varRow(j), vbTab)
             
             If varCol(2) = "-" Then
-                Set elmButton = D.createElement("menuSeparator")
+                Set elmButton = d.createElement("menuSeparator")
                 With elmButton
                   .setAttribute "id", control.id & "Sep" & j
                 End With
                 elmMenu.appendChild elmButton
                 Set elmButton = Nothing
             Else
-                Set elmButton = D.createElement("button")
+                Set elmButton = d.createElement("button")
                 With elmButton
                   .setAttribute "id", varCol(2) & ".dyn" & j
                   .setAttribute "label", varCol(1)
@@ -2002,12 +2002,12 @@ Public Sub ContextMenus_GetContent(control As IRibbonControl, ByRef returnedVal)
             End If
         Next
     
-      D.appendChild elmMenu
+      d.appendChild elmMenu
     
-      returnedVal = D.XML
+      returnedVal = d.XML
       
       Set elmMenu = Nothing
-      Set D = Nothing
+      Set d = Nothing
       
     Else
         returnedVal = ""
@@ -2206,3 +2206,32 @@ Sub getFastPinVisible(control As IRibbonControl, ByRef visible)
 e:
     Call rlxErrMsg(Err)
 End Sub
+Sub timeLeapPressed(control As IRibbonControl, ByRef returnValue)
+    
+    returnValue = CBool(GetSetting(C_TITLE, "TimeLeap", "Check", False))
+    
+End Sub
+
+'--------------------------------------------------------------------
+'  十字カーソルの押下時イベント
+'--------------------------------------------------------------------
+Sub timeLeapOnAction(control As IRibbonControl, pressed As Boolean)
+
+  
+    On Error GoTo e
+  
+    Call RefreshRibbon
+
+    If pressed Then
+        Call SaveSetting(C_TITLE, "TimeLeap", "Check", True)
+        ThisWorkbook.StartTimeLeap
+    Else
+        Call SaveSetting(C_TITLE, "TimeLeap", "Check", False)
+        ThisWorkbook.StopTimeLeap
+    End If
+
+    Exit Sub
+e:
+    Call rlxErrMsg(Err)
+End Sub
+

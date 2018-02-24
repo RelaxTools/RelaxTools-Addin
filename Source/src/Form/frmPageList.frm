@@ -182,9 +182,13 @@ Private Sub cmdOk_Click()
     
     Set objFs = Nothing
     
+    On Error GoTo e
+    
     ThisWorkbook.Worksheets("ページ数カウント結果").Copy
     Set ResultWB = Application.Workbooks(Application.Workbooks.count)
-'    ResultWB.Parent.visible = False
+    
+    'Application.ScreenUpdating の代わり
+    ResultWB.Windows(1).visible = False
     
     Set ResultWS = ResultWB.Worksheets(1)
     
@@ -294,7 +298,7 @@ Private Sub cmdOk_Click()
         lngCount = lngCount + 1
         mMm.DisplayGauge lngBookCount
     Next
-    
+e:
     If chkPoint.Value Then
         PP.Quit
         Set PP = Nothing
@@ -307,6 +311,9 @@ Private Sub cmdOk_Click()
         XL.Quit
         Set XL = Nothing
     End If
+    
+    ResultWB.Windows(1).visible = True
+    DoEvents
     
     Dim r As Range
     Set r = ResultWS.Cells(C_START_ROW, 1).CurrentRegion
@@ -337,11 +344,9 @@ Private Sub cmdOk_Click()
     
     Unload Me
     
-'    ResultWB.Parent.visible = True
-'    DoEvents
-    
     AppActivate ResultWS.Application.Caption
     execSelectionRowDrawGrid
+    
     Set ResultWS = Nothing
     Set ResultWB = Nothing
 
@@ -366,7 +371,7 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
         DoEvents
         DoEvents
         For Each f In strPatterns
-            If LCase(objfl.Name) Like LCase(f) Then
+            If LCase(objfl.Name) Like LCase(f) And Left$(objfl.Name, 2) <> "~$" Then
                 blnFind = True
                 Exit For
             End If

@@ -59,7 +59,7 @@ Public Function Start(ByRef lngHead As Long, ByRef lngCol As Long, ByRef lngHead
     txtCol.Text = lngCol
     chkHoganMode.Value = blnHoganMode
 
-    Me.show vbModal
+    Me.Show vbModal
     
     lngHead = Val(txtHead.Text)
     lngCol = Val(txtCol.Text)

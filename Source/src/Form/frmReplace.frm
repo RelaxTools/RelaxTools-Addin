@@ -54,7 +54,7 @@ Public Function Start(ByRef strFolder As String, ByRef blnSubFolder As Boolean) 
     mResult = vbCancel
     
     'フォームの表示
-    Me.show vbModal
+    Me.Show vbModal
 
     '結果の設定
     strFolder = txtFolder.Text

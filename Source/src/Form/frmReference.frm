@@ -62,7 +62,7 @@ Public Function Start(ByRef blnResult As Boolean) As Long
     lngResult = VbMsgBoxResult.vbCancel
     optRef1.Value = True
     
-    Me.show vbModal
+    Me.Show vbModal
 
     Select Case True
         Case optRef1.Value

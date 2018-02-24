@@ -65,7 +65,7 @@ Sub saveWorkSheets()
     
     On Error GoTo ErrHandle
         
-    vntFileName = Application.GetSaveAsFilename(InitialFileName:="", FileFilter:="Excel ブック(*.xlsx),*.xlsx,Excel マクロ有効ブック(*.xlsm),*.xlsm,Excel 97-2003ブック(*.xls),*.xls", Title:="ブックの保存")
+    vntFileName = Application.GetSaveAsFilename(InitialFileName:="", fileFilter:="Excel ブック(*.xlsx),*.xlsx,Excel マクロ有効ブック(*.xlsm),*.xlsm,Excel 97-2003ブック(*.xls),*.xls", Title:="ブックの保存")
     
     If vntFileName <> False Then
     
@@ -351,7 +351,7 @@ End Sub
 Sub commandList()
 
     Dim c As CommandBar
-    Dim D As CommandBarControl
+    Dim d As CommandBarControl
     
     Dim lngCnt As Long
     
@@ -369,13 +369,13 @@ Sub commandList()
 
     For Each c In CommandBars
 
-        For Each D In c.Controls
+        For Each d In c.Controls
 
             Cells(lngCnt, 1) = c.Name
             Cells(lngCnt, 2) = c.NameLocal
         
-            Cells(lngCnt, 3) = D.Caption
-            Cells(lngCnt, 4) = D.id
+            Cells(lngCnt, 3) = d.Caption
+            Cells(lngCnt, 4) = d.id
             
             lngCnt = lngCnt + 1
         Next
@@ -1018,7 +1018,7 @@ Sub pasteCSV()
     End If
     
     Dim i As Long
-    Dim Col As Collection
+    Dim col As Collection
     Dim lngCol As Long
     Dim lngRow As Long
     Dim r As Range
@@ -1317,7 +1317,7 @@ Public Sub createReferenceBook()
     strActBook = ActiveWorkbook.FullName
     strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(ActiveWorkbook.Name)
 
-    FS.copyfile strActBook, strTmpBook
+    FS.CopyFile strActBook, strTmpBook
 
     If blnResult Then
         Set XL = New Excel.Application
@@ -1373,7 +1373,7 @@ Public Sub changeReferenceBook()
     strActBook = ActiveWorkbook.FullName
     strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(ActiveWorkbook.Name)
 
-    FS.copyfile strActBook, strTmpBook
+    FS.CopyFile strActBook, strTmpBook
 
     WB.Close
 
@@ -1427,7 +1427,7 @@ Public Sub OpenReferenceBook()
     strActBook = strFile
     strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(strFile)
 
-    FS.copyfile strActBook, strTmpBook
+    FS.CopyFile strActBook, strTmpBook
 
     If blnResult Then
         Set XL = New Excel.Application
@@ -2646,7 +2646,7 @@ Sub cellEditExt()
     End If
     
     frmInformation.Message = "外部エディタ起動中です。作業を継続する場合には外部エディタを終了してください。"
-    frmInformation.show
+    frmInformation.Show
     
     Set r = ActiveCell
     
@@ -3101,7 +3101,7 @@ Sub openFileNameFromClipboard()
             
         strTmpBook = rlxGetTempFolder() & C_REF_TEXT & FS.getFileName(f)
     
-        FS.copyfile f, strTmpBook
+        FS.CopyFile f, strTmpBook
     
         WB.Open filename:=strTmpBook ', ReadOnly:=True, UpdateLinks:=1, IgnoreReadOnlyRecommended:=False
 pass:
@@ -3362,7 +3362,7 @@ Sub RegExport()
     
     SetMyDocument
     
-    filename = Application.GetSaveAsFilename(InitialFileName:="RelaxTools-Addin.reg", FileFilter:="登録ファイル,*.reg")
+    filename = Application.GetSaveAsFilename(InitialFileName:="RelaxTools-Addin.reg", fileFilter:="登録ファイル,*.reg")
     If filename = False Then
         Exit Sub
     End If

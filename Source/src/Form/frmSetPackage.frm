@@ -131,7 +131,7 @@ Private Sub setJavaPackage()
     DEST_FOLDER = rlxAddFileSeparator(txtPackage.Text)
     
     Dim FS As Object
-    Dim D As Object
+    Dim d As Object
     Dim f As Object
     
     strDir = Dir(BASE_FOLDER & "*.java")
@@ -141,14 +141,14 @@ Private Sub setJavaPackage()
     End If
     
     Set FS = CreateObject("Scripting.FileSystemObject")
-    Set D = FS.GetFolder(BASE_FOLDER)
+    Set d = FS.GetFolder(BASE_FOLDER)
 
     '処理結果リストのクリア
     lstResult.Clear
     lngCount = 0
 
     'Do Until strDir = ""
-    For Each f In D.files
+    For Each f In d.files
         
         blnNoPackage = True
     

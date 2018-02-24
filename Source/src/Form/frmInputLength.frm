@@ -49,7 +49,7 @@ Public Function Start(ByVal strTitle As String) As Long
 
     lblMessage.Caption = strTitle
 
-    Me.show vbModal
+    Me.Show vbModal
     If mResult = vbOK Then
         Start = Val(txtHead.Text)
     Else

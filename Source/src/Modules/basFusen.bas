@@ -41,7 +41,7 @@ Public Const C_FUSEN_DATE_USER As String = "2"
 '--------------------------------------------------------------
 Sub showFusenSetting()
 
-    frmFusen.show
+    frmFusen.Show
     
 End Sub
 '--------------------------------------------------------------
@@ -49,7 +49,7 @@ End Sub
 '--------------------------------------------------------------
 Sub searchFusen()
 
-    frmSearchFusen.show
+    frmSearchFusen.Show
     
 End Sub
 '--------------------------------------------------------------

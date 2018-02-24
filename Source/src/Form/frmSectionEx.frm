@@ -416,41 +416,41 @@ End Function
 'Private Sub UserForm_Activate()
 '    MW.Activate
 'End Sub
-Public Function Start(ByRef Col As Collection) As Collection
+Public Function Start(ByRef col As Collection) As Collection
     
     Dim i As Long
     Dim j As Long
     On Error GoTo 0
     
-    For i = 1 To Col.count
+    For i = 1 To col.count
             
         lstSetting.AddItem ""
         lstSetting.List(lstSetting.ListCount - 1, C_LEVEL) = i
-        lstSetting.List(lstSetting.ListCount - 1, C_SECTION) = Col(i).classObj.SectionName
-        lstSetting.List(lstSetting.ListCount - 1, C_ENABLE) = chgBoolToStr(Col(i).useFormat)
-        lstSetting.List(lstSetting.ListCount - 1, C_FONT_NAME) = Col(i).fontName
-        lstSetting.List(lstSetting.ListCount - 1, C_FONT_SIZE) = Col(i).fontSize
-        lstSetting.List(lstSetting.ListCount - 1, C_FONT_BOLD) = chgBoolToStr(Col(i).fontBold)
-        lstSetting.List(lstSetting.ListCount - 1, C_FONT_ITALIC) = chgBoolToStr(Col(i).fontItalic)
-        lstSetting.List(lstSetting.ListCount - 1, C_FONT_UNDER_LINE) = chgBoolToStr(Col(i).fontUnderLine)
-        lstSetting.List(lstSetting.ListCount - 1, C_CLASS) = Col(i).classObj.Class
+        lstSetting.List(lstSetting.ListCount - 1, C_SECTION) = col(i).classObj.SectionName
+        lstSetting.List(lstSetting.ListCount - 1, C_ENABLE) = chgBoolToStr(col(i).useFormat)
+        lstSetting.List(lstSetting.ListCount - 1, C_FONT_NAME) = col(i).fontName
+        lstSetting.List(lstSetting.ListCount - 1, C_FONT_SIZE) = col(i).fontSize
+        lstSetting.List(lstSetting.ListCount - 1, C_FONT_BOLD) = chgBoolToStr(col(i).fontBold)
+        lstSetting.List(lstSetting.ListCount - 1, C_FONT_ITALIC) = chgBoolToStr(col(i).fontItalic)
+        lstSetting.List(lstSetting.ListCount - 1, C_FONT_UNDER_LINE) = chgBoolToStr(col(i).fontUnderLine)
+        lstSetting.List(lstSetting.ListCount - 1, C_CLASS) = col(i).classObj.Class
     
     Next
     If lstSetting.ListCount > 0 Then
         lstSetting.Selected(0) = True
         
-        chkUseFormat2.Value = Col(1).useFormat2
+        chkUseFormat2.Value = col(1).useFormat2
             
-        cboFont2.Text = Col(1).fontName2
-        txtFontSize2.Text = Col(1).fontSize2
+        cboFont2.Text = col(1).fontName2
+        txtFontSize2.Text = col(1).fontSize2
         
-        chkFontBold2.Value = Col(1).fontBold2
-        chkFontItalic2.Value = Col(1).fontItalic2
-        chkFontUnderLine2.Value = Col(1).fontUnderLine2
+        chkFontBold2.Value = col(1).fontBold2
+        chkFontItalic2.Value = col(1).fontItalic2
+        chkFontUnderLine2.Value = col(1).fontUnderLine2
         
     End If
 
-    Me.show
+    Me.Show
     
     If mRet <> vbOK Then
         Set Start = Nothing

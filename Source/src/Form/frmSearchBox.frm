@@ -55,7 +55,7 @@ Public Function Start() As Long
 
     mlngRet = C_RET_CANCEL
 
-    Me.show vbModal
+    Me.Show vbModal
 
     Start = mlngRet
 

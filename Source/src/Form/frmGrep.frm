@@ -378,7 +378,7 @@ Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As Stri
         DoEvents
         DoEvents
         For Each f In strPatterns
-            If LCase(objfl.Name) Like LCase(f) Then
+            If LCase(objfl.Name) Like LCase(f) And Left$(objfl.Name, 2) <> "~$" Then
                 blnFind = True
                 Exit For
             End If

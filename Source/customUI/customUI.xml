@@ -81,10 +81,12 @@
             <menu id="bookSetting" label="保存"  itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  image="save"  getEnabled="getRibbonEnabled">
               <menuSeparator id="saveSep01" title="シート毎の保存"/>
               <button id="saveWorkSheets" image="save" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+<!--
               <menuSeparator id="saveSep03" title="ブックの簡易世代管理（バックアップ）" />
               <checkBox id="backupCheck" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getPressed = "CheckGetPressed" onAction="CheckOnAction" getEnabled="CheckSetEnabled"/>
               <menuSeparator id="saveSep04"/>
               <button id="backupSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"  getEnabled="getRibbonEnabled" />
+-->
             </menu>
           </box>
           <separator id="clipSep"/>
@@ -248,6 +250,20 @@
                 <button id="execSelectionRemoveRightToChar"  image="bottomDel" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
               </menu>
             </menu>
+            
+          <box id="boxEdit" boxStyle="vertical">
+            <splitButton id="cellEditSplit" getEnabled="getRibbonEnabled">
+              <button id="cellEditExt"  image="editor" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              <menu id="cellEditMenu" itemSize="large">
+                <menuSeparator id="cellEditSep01" title="外部エディタ設定" />
+                <button id="cellEditExtSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              </menu>
+            </splitButton>
+            <button id="cellEdit"  image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            <button id="execBinaryView"  image="binView"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+          </box>
+            
+            
           <separator id="convSep"/>
           <box id="box31" boxStyle="vertical">
             <menu id="convert" label="文字・日付"  itemSize="large"        image="firstUpper" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getRibbonEnabled">
@@ -311,6 +327,8 @@
               <button id="execSelectionStringZeroPadding" image="convert" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
           </box>
+          
+          
         </group>
         <group id="format" label="書式" image="format">
           <button id="execSelectionToFormula" image="refresh" label="書式リフレッシュ" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" size="large" />
@@ -370,6 +388,7 @@
             <button id="execSelectionAllPlus"  image="RelaxFillPlus"  getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
             <button id="execSelectionAllMinus" image="RelaxFillMinus" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           </menu>
+
 
 <!--
           <separator id="filSep"/>
@@ -624,7 +643,7 @@
             <button id="nextWorkbook" image="greenDown" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           </box>
         </group>
-        
+<!--
         <group id="cellEditGroup" label="セル編集/表示" image="editor">
           <box id="boxEdit" boxStyle="vertical">
             <splitButton id="cellEditSplit" getEnabled="getRibbonEnabled">
@@ -638,6 +657,7 @@
             <button id="execBinaryView" label="Unicode" image="binView"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           </box>
         </group>
+-->        
         <group id="kantanGroup" label="ツール" image="kantanDx">
           <gallery id="kantanGallery" label="かんたん表&#xD;&#xA;DX" size="large" image="kantanDx" showImage="false" columns="4" rows="5" itemWidth="64" itemHeight="64" getSupertip="getSupertip" getDescription="getDescription" getItemCount="kantanGetItemCount" getItemID="kantanGetItemId" getItemImage="kantanGetItemImage" onAction="KantanOnAction" getEnabled="getRibbonEnabled">
             <button id="showKantanDx"   image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction"/>
@@ -649,6 +669,20 @@
             <button id="execSelectionRowDrawGridBlue" image="shimaBlue" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           </box>
           <separator id="matomeSep"/>
+          
+          <splitButton id="timeLeapSplit" size="large" getEnabled="getRibbonEnabled">
+            <toggleButton id="timeLeapToggle" label="TimeLeap" image="timeleap" getSupertip="getSupertip" getDescription="getDescription" getPressed="timeLeapPressed" onAction="timeLeapOnAction"/>
+            <menu id="timeLeapMenu"  itemSize="large" >
+              <menuSeparator id="timeLeapSep01" title="TimeLeapリスト" />
+              <button id="timeLeapList" image="timeleap" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getScrollEnabled" onAction="ribbonOnAction"/>
+              <button id="opentimeLeapFolder" image="folder" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getScrollEnabled" onAction="ribbonOnAction"/>
+              <menuSeparator id="timeLeapSep02" title="TimeLeap設定" />
+              <button id="timeLeapSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getScrollEnabled" onAction="ribbonOnAction"/>
+            </menu>
+          </splitButton>
+
+          <separator id="execBinaryViewSep"/>
+
           <menu id="matomeMenu" label ="まとめ実行" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="tool32">
             <button id="execMatome01" image="No1" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
             <button id="execMatome02" image="No2" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
@@ -658,6 +692,7 @@
             <menuSeparator id="matomeSettingSep" title="まとめ設定"/>
             <button id="execComboSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
           </menu>
+
           <splitButton id="scrollSplit"  getEnabled="getRibbonEnabled">
             <toggleButton id="scrollMenu" label="ホイール量(小)" image="mouse" getSupertip="getSupertip" getDescription="getDescription" getPressed="scrollPressed" onAction="scrollOnAction"/>
             <menu id="scrolMenu2"  itemSize="large" >
@@ -665,12 +700,14 @@
               <button id="scrollSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" getEnabled="getScrollEnabled" onAction="ribbonOnAction"/>
             </menu>
           </splitButton>
+
           
           <menu id="customMenu" label ="カスタマイズ" itemSize="large" getSupertip="getSupertip" getDescription="getDescription" image="keyboard">
             <menuSeparator id="customSep01" title="ショートカット・右クリック設定" />
             <button id="hotkey" image="keyboard" label="ショートカット割当" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             <button id="contextMenu" image="LegendHS" label="右クリックメニュー割当" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           </menu>
+
         </group>
         <group id="helpGroup" label="オプション" image="help32">
           <box id="boxOpt" boxStyle="horizontal">

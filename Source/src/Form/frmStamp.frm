@@ -361,10 +361,10 @@ End Sub
 Private Sub cmdOk_Click()
         
     Dim s As StampDatDTO
-    Dim Col As Collection
+    Dim col As Collection
     Dim i As Long
 
-    Set Col = New Collection
+    Set col = New Collection
     '設定情報取得
 
     For i = 0 To lstStamp.ListCount - 1
@@ -419,18 +419,18 @@ Private Sub cmdOk_Click()
             txtSize.SetFocus
             Exit Sub
         End If
-        Col.Add s
+        col.Add s
         
         Set s = Nothing
         
     Next
 
     'プロパティ保存
-    setProperty Col
+    setProperty col
     Call SaveSetting(C_TITLE, "Stamp", "Confirm", chkConfirm.Value)
 
     
-    Set Col = Nothing
+    Set col = Nothing
     
     'リボンのリフレッシュ
     Call RefreshRibbon
@@ -649,7 +649,7 @@ End Sub
 Private Sub UserForm_Initialize()
 
     Dim s As StampDatDTO
-    Dim Col As Collection
+    Dim col As Collection
     Dim i As Long
     
     Dim strBuf As String
@@ -658,11 +658,11 @@ Private Sub UserForm_Initialize()
     ReDim varBuf(C_TEXT To C_Rect)
     
     '設定情報取得
-    Set Col = getProperty()
+    Set col = getProperty()
 
-    For i = 1 To Col.count
+    For i = 1 To col.count
         
-        Set s = Col(i)
+        Set s = col(i)
         
         varBuf(C_Upper) = s.Upper
         varBuf(C_DateType) = s.DateType
@@ -693,7 +693,7 @@ Private Sub UserForm_Initialize()
         Next i
     End With
     
-    If Col.count > 0 Then
+    If col.count > 0 Then
         lstStamp.Selected(0) = True
     Else
         mblnRefresh = True

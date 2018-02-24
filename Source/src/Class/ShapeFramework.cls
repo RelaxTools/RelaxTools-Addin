@@ -102,7 +102,7 @@ End Type
 
 Private Type TABLE
     Row As Long
-    Col As Long
+    col As Long
 End Type
 Private Const LOGPIXELSX As Long = &H58&
 Private Const LOGPIXELSY As Long = &H5A&
@@ -243,12 +243,12 @@ Public Sub Run()
     
     '表示シートの左上を取得
     Dim tb As TABLE
-    tb.Col = WD.ActivePane.ScrollColumn
+    tb.col = WD.ActivePane.ScrollColumn
     tb.Row = WD.ActivePane.ScrollRow
     
     Dim cr_pt As POINTAPI
-    cr_pt.X = WS.Cells(tb.Row, tb.Col).Left + wk_pt.X
-    cr_pt.Y = WS.Cells(tb.Row, tb.Col).Top + wk_pt.Y
+    cr_pt.X = WS.Cells(tb.Row, tb.col).Left + wk_pt.X
+    cr_pt.Y = WS.Cells(tb.Row, tb.col).Top + wk_pt.Y
     
     'マウスカーソルが作業ウィンドウ内にある場合
     Dim r As Range
@@ -314,8 +314,8 @@ Public Sub Run()
             dx_pt.Y = objDataSet.Top + objDataSet.Height - margin
     End Select
             
-    dx_pt.X = dx_pt.X - WS.Cells(tb.Row, tb.Col).Left
-    dx_pt.Y = dx_pt.Y - WS.Cells(tb.Row, tb.Col).Top
+    dx_pt.X = dx_pt.X - WS.Cells(tb.Row, tb.col).Left
+    dx_pt.Y = dx_pt.Y - WS.Cells(tb.Row, tb.col).Top
     
     '実際の移動位置でもう一度精度を高めるためにズーム値を計算。
     Application.ScreenUpdating = (Val(Application.Version) <= C_EXCEL_VERSION_2010)

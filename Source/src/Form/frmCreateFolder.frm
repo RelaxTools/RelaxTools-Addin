@@ -75,7 +75,7 @@ Private Sub cmdRun_Click()
     
     Set obj = New SelectionCreateFolder
     
-    obj.Folder = strFolder
+    obj.folder = strFolder
     obj.Run
     
     Set obj = Nothing
