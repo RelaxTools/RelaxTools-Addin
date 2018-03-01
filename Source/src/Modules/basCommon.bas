@@ -2432,6 +2432,7 @@ Sub rlxCreateFolder(ByVal strPath As String)
         End If
     
     Next
+    Err.Clear
 
 End Sub
 '--------------------------------------------------------------

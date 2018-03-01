@@ -63,6 +63,8 @@ Sub reboot()
 
     If Err.Number <> 0 Then
         MsgBox "再起動中にエラーがありました。Excel自体の再起動が必要な場合があります。", vbExclamation + vbOKOnly, C_TITLE
+    Else
+        MsgBox "RelaxToolsの再起動が完了しました。", vbInformation + vbOKOnly, C_TITLE
     End If
 
 End Sub
@@ -93,6 +95,8 @@ Sub RelaxInit()
 
     If Err.Number <> 0 Then
         MsgBox "初期化中にエラーがありました。Excel自体の再起動が必要な場合があります。", vbExclamation + vbOKOnly, C_TITLE
+    Else
+        MsgBox "RelaxToolsの初期化が完了しました。", vbInformation + vbOKOnly, C_TITLE
     End If
 
 End Sub

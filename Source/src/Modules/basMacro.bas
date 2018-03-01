@@ -77,7 +77,7 @@ Sub saveWorkSheets()
         Next
         
         If rlxIsFileExists(vntFileName) Then
-            If MsgBox("すでに同名のブックが存在すします。上書きしますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+            If MsgBox("すでに同名のブックが存在します。上書きしますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
                 Exit Sub
             End If
         End If
@@ -2929,6 +2929,9 @@ Sub setShortCutKey()
                 Application.OnKey strKey(2), strKey(5)
             Else
                 Application.OnKey strKey(2), "'execOnKey """ & strKey(5) & """,""" & strKey(4) & """'"
+'                If InStr(strKey(1), "/") > 0 Then
+'                    Application.TransitionMenuKey = ""
+'                End If
             End If
         End If
     Next

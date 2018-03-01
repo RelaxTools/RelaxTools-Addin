@@ -1,4 +1,11 @@
-﻿2018/02/24(sat) RelaxTools-Addin Version 4.18.0(RustRemover) 
+﻿2018/03/01(thu) RelaxTools-Addin Version 4.18.1(RustRemover) 
+◇機能改善
+・ショートカットにスラッシュ(/)が使えるように修正。
+◇バグ修正
+・RelaxToolsの再起動で正常に終了してもエラーメッセージが表示されていた不具合を修正。
+　ついでに完了メッセージが表示されるように修正。
+
+2018/02/24(sat) RelaxTools-Addin Version 4.18.0(RustRemover) 
 ◇新規機能
 ・ブックの世代管理機能をリニューアル。TimeLeap機能に変更。
 　有効にしておけば保存前のブックにすぐ戻せます。

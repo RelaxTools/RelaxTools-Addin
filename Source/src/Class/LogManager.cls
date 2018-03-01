@@ -124,10 +124,6 @@ Private Sub OpenLog()
     
     On Error GoTo e
     
-    'ログフォルダ作成
-    strLogFolder = rlxGetAppDataFolder & "Log"
-    rlxCreateFolder strLogFolder
-    
     '保存件数を取得(最新５ファイルを残す)
     lngHistory = CLng(GetSetting(C_TITLE, "Log", "History", 5))
     
@@ -137,6 +133,17 @@ Private Sub OpenLog()
     Dim objFile As Object
     
     Set objFs = CreateObject("Scripting.FileSystemObject")
+    
+    'ログフォルダ作成
+    strLogFolder = rlxGetAppDataFolder & "Log"
+    
+'    rlxCreateFolder strLogFolder
+    
+    If Not objFs.FolderExists(strLogFolder) Then
+        Call objFs.createFolder(strLogFolder)
+    End If
+    
+    
     Set objDic = CreateObject("Scripting.Dictionary")
     
     'ログフォルダを Dictionaryに追加
