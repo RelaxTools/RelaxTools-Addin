@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmStaticCheck 
    Caption         =   "ブックの静的チェック"
-   ClientHeight    =   7395
+   ClientHeight    =   7740
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   11970
@@ -13,6 +13,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 '-----------------------------------------------------------------------------------------------------
 '
 ' [RelaxTools-Addin] v4
@@ -51,7 +52,9 @@ Private Const C_SEARCH_ID As Long = 4
 Private Const C_SEARCH_BOOK As Long = 5
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-
+Private Const C_SEARCH_ID_SHAPE As String = "Shape"
+Private Const C_DEFAULT_CELL As String = "$A$1"
+Private mblnRefresh As Boolean
 Private Sub cmdAll_Click()
     Dim i As Long
     For i = 0 To lstContents.ListCount - 1
@@ -73,43 +76,380 @@ Private Sub lstContents_MouseMove(ByVal Button As Integer, ByVal Shift As Intege
 #End If
 End Sub
 
-Private Sub lstResult_Click()
+'Private Sub lstResult_Click()
+'
+'
+'    Dim strAddress As String
+'    Dim strSheet As String
+'    Dim strBook As String
+'    Dim WB As Workbook
+'    Dim WS As Worksheet
+'
+'    strBook = lstResult.List(lstResult.ListIndex, C_SEARCH_BOOK)
+'    strSheet = lstResult.List(lstResult.ListIndex, C_SEARCH_SHEET)
+'    strAddress = lstResult.List(lstResult.ListIndex, C_SEARCH_ADDRESS)
+'
+'    Set WB = Workbooks(strBook)
+'
+'    If Len(strSheet) <= 0 Then
+'        Set WB = Nothing
+'        Exit Sub
+'    End If
+'
+'    On Error Resume Next
+'
+'    Set WS = WB.Sheets(strSheet)
+'    If WS.visible = xlSheetVisible Then
+'        WS.Select
+'        If Len(strAddress) <= 0 Then
+'            Set WB = Nothing
+'            Set WS = Nothing
+'            Exit Sub
+'        End If
+'
+'        WS.Range(strAddress).Select
+'    End If
+'
+'
+'End Sub
+Private Sub lstResult_Change()
 
 
-    Dim strAddress As String
-    Dim strSheet As String
-    Dim strBook As String
-    Dim WB As Workbook
-    Dim WS As Worksheet
+    If mblnRefresh = False Then
+         Exit Sub
+    End If
+
+    Dim lngCnt As Long
+    Dim strRange As String
+    Dim r As Range
+    Dim s As String
     
-    strBook = lstResult.List(lstResult.ListIndex, C_SEARCH_BOOK)
-    strSheet = lstResult.List(lstResult.ListIndex, C_SEARCH_SHEET)
-    strAddress = lstResult.List(lstResult.ListIndex, C_SEARCH_ADDRESS)
+    Dim selSheet As String
+    Dim selBook As String
+    Dim blnCell As Boolean
+'    Dim blnShape As Boolean
+    Dim strPath As String
+    selSheet = ""
+    selBook = ""
     
-    Set WB = Workbooks(strBook)
+    blnCell = False
     
-    If Len(strSheet) <= 0 Then
-        Set WB = Nothing
+    For lngCnt = 0 To lstResult.ListCount - 1
+    
+        If lstResult.Selected(lngCnt) Then
+            If selSheet = "" Then
+                selSheet = lstResult.List(lngCnt, C_SEARCH_SHEET)
+                selBook = lstResult.List(lngCnt, C_SEARCH_BOOK)
+                If Left$(lstResult.List(lngCnt, C_SEARCH_ID), 1) = "$" Or lstResult.List(lngCnt, C_SEARCH_ID) = "" Then
+                    blnCell = True
+                Else
+                    Dim p() As String
+                    p = Split(lstResult.List(lngCnt, C_SEARCH_ID), ":")
+'                    blnShape = True
+                    strPath = p(0)
+                End If
+            Else
+                If selSheet <> lstResult.List(lngCnt, C_SEARCH_SHEET) Then
+                    mblnRefresh = False
+                    lstResult.Selected(lngCnt) = False
+                    mblnRefresh = True
+                Else
+                    If blnCell Then
+                        '１行目がセルで２行目以降でセル以外
+                        If Left$(lstResult.List(lngCnt, C_SEARCH_ID), 1) <> "$" Then
+                            mblnRefresh = False
+                            lstResult.Selected(lngCnt) = False
+                            mblnRefresh = True
+                        End If
+                    Else
+                        '１行目がシェイプ
+                        If Left$(lstResult.List(lngCnt, C_SEARCH_ID), 1) = "$" Then
+                            mblnRefresh = False
+                            lstResult.Selected(lngCnt) = False
+                            mblnRefresh = True
+                        Else
+                            p = Split(lstResult.List(lngCnt, C_SEARCH_ID), ":")
+                            If strPath <> p(0) Then
+                                mblnRefresh = False
+                                lstResult.Selected(lngCnt) = False
+                                mblnRefresh = True
+                            End If
+                        End If
+                    
+                    End If
+                    
+                    
+                End If
+            End If
+        
+        End If
+    Next
+    
+    If Len(selSheet) = 0 Then
         Exit Sub
     End If
     
-    On Error Resume Next
-    
-    Set WS = WB.Sheets(strSheet)
-    If WS.visible = xlSheetVisible Then
-        WS.Select
-        If Len(strAddress) <= 0 Then
-            Set WB = Nothing
-            Set WS = Nothing
+    Workbooks(selBook).Activate
+    If Worksheets(selSheet).visible <> xlSheetVisible Then
+        If MsgBox("非表示のシートです。表示しますか？", vbOKCancel + vbQuestion, C_TITLE) = vbOK Then
+            Worksheets(selSheet).visible = xlSheetVisible
+        Else
             Exit Sub
         End If
-        
-        WS.Range(strAddress).Select
     End If
-   
+    Worksheets(selSheet).Select
     
-End Sub
+    If blnCell Then
+        For lngCnt = 0 To lstResult.ListCount - 1
+    
+            If lstResult.Selected(lngCnt) Then
+                If r Is Nothing Then
+'                    If lstResult.List(lngCnt, C_SEARCH_ID) = "" Then
+'                    Else
+                        Set r = Range("'[" & lstResult.List(lngCnt, C_SEARCH_BOOK) & "]" & lstResult.List(lngCnt, C_SEARCH_SHEET) & "'!" & lstResult.List(lngCnt, C_SEARCH_ID))
+'                    End If
+                Else
+                    Set r = Union(r, Range("'[" & lstResult.List(lngCnt, C_SEARCH_BOOK) & "]" & lstResult.List(lngCnt, C_SEARCH_SHEET) & "'!" & lstResult.List(lngCnt, C_SEARCH_ID)))
+                End If
+            End If
+        Next
+        If r Is Nothing Then
+        Else
+            Application.GoTo setCellPos(r(1)), True
+            r.Select
+        End If
+    Else
+    
+        Dim strBuf As String
+        Dim strId As String
+        Dim objShape As Object
+        Dim objArt As Object
+        Dim blnFlg As Boolean
+        blnFlg = False
+        For lngCnt = 0 To lstResult.ListCount - 1
 
+            If lstResult.Selected(lngCnt) Then
+
+                strBuf = lstResult.List(lngCnt, C_SEARCH_ID)
+                
+                Set objShape = getObjFromID(Worksheets(selSheet), Mid$(strBuf, InStrRev(strBuf, ":") + 1))
+                
+'                'SmartArtの場合
+'                If InStr(strBuf, C_SEARCH_ID_SMARTART) > 0 Then
+'
+'                    Set objArt = getObjFromID2(Worksheets(selSheet), Mid$(strBuf, InStrRev(strBuf, ":") + 1))
+'
+'                    On Error Resume Next
+'                    If blnFlg Then
+'                        objShape.Shapes(1).Select False
+'                    Else
+'                        blnFlg = True
+'                        Application.GoTo setCellPos(objArt.TopLeftCell), True
+'                        objShape.Shapes(1).Select
+'                    End If
+'                    On Error GoTo 0
+'                Else
+                    On Error Resume Next
+                    If blnFlg Then
+                        objShape.Select False
+                    Else
+                        blnFlg = True
+                        Application.GoTo setCellPos(objShape.TopLeftCell), True
+                        objShape.Select
+                    End If
+                    On Error GoTo 0
+'                End If
+
+            End If
+        Next
+
+        Me.Show
+
+    End If
+End Sub
+Private Function getObjFromID(ByRef WS As Worksheet, ByVal id As String) As Object
+    Dim ret As Object
+    Dim s As Shape
+    
+    For Each s In WS.Shapes
+        Select Case s.Type
+            Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
+                If s.id = CLng(id) Then
+                    Set ret = s
+                    Exit For
+                End If
+            
+            Case msoGroup
+                Set ret = getObjFromIDSub(s, id)
+                If ret Is Nothing Then
+                Else
+                    Exit For
+                End If
+'            Case msoSmartArt
+'                Set ret = getSmartArtFromIDSub(s, id)
+'                If ret Is Nothing Then
+'                Else
+'                    Exit For
+'                End If
+        End Select
+    Next
+    Set getObjFromID = ret
+
+End Function
+Private Function getObjFromIDSub(ByRef objShape As Shape, ByVal id As String) As Object
+    
+    Dim s As Shape
+    Dim ret As Object
+    
+    For Each s In objShape.GroupItems
+        Select Case s.Type
+            Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
+                If s.id = CLng(id) Then
+                    Set ret = s
+                    Exit For
+                End If
+            
+            Case msoGroup
+                Set ret = getObjFromIDSub(s, id)
+                If ret Is Nothing Then
+                Else
+                    Exit For
+                End If
+                
+'            Case msoSmartArt
+'                Set ret = getSmartArtFromIDSub(s, id)
+'                If ret Is Nothing Then
+'                Else
+'                    Exit For
+'                End If
+        End Select
+    Next
+
+    Set getObjFromIDSub = ret
+End Function
+Private Function setCellPos(ByRef r As Range) As Range
+
+    Dim lngRow As Long
+    Dim lngCol As Long
+    
+    Dim lngCol1 As Long
+    Dim lngCol2 As Long
+    
+    lngCol1 = Windows(1).VisibleRange(1).Column
+    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.count).Column
+    
+    Select Case r.Column
+        Case lngCol1 To lngCol2
+            lngCol = lngCol1
+        Case Else
+            lngCol = r.Column
+    End Select
+
+    Set setCellPos = r.Worksheet.Cells(r.Row, lngCol)
+
+End Function
+Private Sub searchShape(ByRef objSheet As Worksheet, ByVal strCheck As String)
+
+    Dim matchCount As Long
+    Dim objMatch As Object
+    Dim strPattern As String
+
+    Dim objShape As Shape
+    Dim objAct As Worksheet
+    Dim c As Shape
+    
+    Dim strBuf As String
+
+    Dim colShapes As Collection
+    Set colShapes = New Collection
+
+    Const C_RESULT_NAME As String = "シェイプ検索Result"
+    
+'    strPattern = txtSearch.Text
+    
+'    '正規表現の場合
+'    If chkRegEx Then
+'        Set mobjRegx = CreateObject("VBScript.RegExp")
+'        mobjRegx.Pattern = strPattern
+'        mobjRegx.IgnoreCase = Not (chkCase.value)
+'        mobjRegx.Global = True
+'    End If
+    
+    For Each c In objSheet.Shapes
+        
+        Select Case c.Type
+            Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
+                'シェイプに文字があるかないか判断がつかないためエラー検出にて処理
+
+                If c.TextFrame2.HasText Then
+                    
+                    
+                    If c.TextFrame2.TextRange.Font.Name <> "ＭＳ ゴシック" Or c.TextFrame2.TextRange.Font.size <> 9 Then
+                        ReportCheck strCheck, c.Name, objSheet.Name, C_SEARCH_ID_SHAPE & ":" & c.id, objSheet.Parent.Name
+                    End If
+                        
+                Else
+                    On Error GoTo 0
+                    Err.Clear
+                End If
+            Case msoGroup
+                grouprc objSheet, c, c, colShapes, strCheck
+
+
+        End Select
+        DoEvents
+    Next
+
+End Sub
+'再帰にてグループ以下のシェイプを検索
+Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape As Shape, ByRef colShapes As Collection, ByVal strCheck As String)
+
+    Dim matchCount As Long
+    Dim c As Shape
+    Dim strBuf As String
+    Dim objMatch As Object
+    Dim strPattern As String
+'    strPattern = txtSearch.Text
+    
+    For Each c In objShape.GroupItems
+        
+        Select Case c.Type
+            Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
+                'シェイプに文字があるかないか判断がつかないためエラー検出にて処理
+                If c.TextFrame2.HasText Then
+                    
+                    If c.TextFrame2.TextRange.Font.Name <> "ＭＳ ゴシック" Or c.TextFrame2.TextRange.Font.size <> 9 Then
+                        ReportCheck strCheck, c.Name, WS.Name, C_SEARCH_ID_SHAPE & getGroupId(c) & ":" & c.id, WS.Parent.Name
+                    End If
+                Else
+                    On Error GoTo 0
+                    Err.Clear
+                End If
+            Case msoGroup
+                '再帰呼出
+                grouprc WS, objTop, c, colShapes, strCheck
+            
+        End Select
+    Next
+
+End Sub
+'グループ文字列を取得
+Private Function getGroupId(ByRef objShape As Object) As String
+
+    Dim strBuf As String
+    Dim s As Object
+    
+    On Error Resume Next
+    Err.Clear
+    Set s = objShape.ParentGroup
+    Do Until Err.Number <> 0
+        strBuf = "/" & s.id & strBuf
+        Set s = s.ParentGroup
+    Loop
+    
+    getGroupId = strBuf
+
+End Function
 Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 #If VBA7 And Win64 Then
 #Else
@@ -134,6 +474,10 @@ Private Sub UserForm_Initialize()
     lstContents.AddItem ""
     lstContents.List(lstContents.ListCount - 1, 0) = "リンク：他ブックへの参照が無いことをチェックする。"
     lstContents.List(lstContents.ListCount - 1, 1) = "リンク：他ブックへの参照があります。"
+    
+    lstContents.AddItem ""
+    lstContents.List(lstContents.ListCount - 1, 0) = "リンク：他ブックへのハイパーリンク切れをチェックする。"
+    lstContents.List(lstContents.ListCount - 1, 1) = "リンク：他ブックへのハイパーリンク切れがあります。"
 
     lstContents.AddItem ""
     lstContents.List(lstContents.ListCount - 1, 0) = "式　　：式のエラーが無いことをチェックする。"
@@ -174,7 +518,7 @@ Private Sub UserForm_Initialize()
     
     Me.Top = (Application.Top + Application.Height - Me.Height) - 20
     Me.Left = (Application.Left + Application.width - Me.width) - 20
-
+    mblnRefresh = True
 #If VBA7 And Win64 Then
 #Else
     Set MW = basMouseWheel.GetInstance
@@ -201,20 +545,22 @@ Private Sub cmdOk_Click()
                 Case 3
                     Call checkSheetHyperlink(lstContents.List(i, 1))
                 Case 4
-                    Call checkSheetError(lstContents.List(i, 1))
+                    checkBreakHyperlink (lstContents.List(i, 1))
                 Case 5
-                    Call checkSheetFormura(lstContents.List(i, 1))
+                    Call checkSheetError(lstContents.List(i, 1))
                 Case 6
-                    Call checkSheetMerge(lstContents.List(i, 1))
+                    Call checkSheetFormura(lstContents.List(i, 1))
                 Case 7
-                    Call checkSheetCol(lstContents.List(i, 1))
+                    Call checkSheetMerge(lstContents.List(i, 1))
                 Case 8
-                    Call checkSheetRow(lstContents.List(i, 1))
+                    Call checkSheetCol(lstContents.List(i, 1))
                 Case 9
-                    Call checkSheetA1(lstContents.List(i, 1))
+                    Call checkSheetRow(lstContents.List(i, 1))
                 Case 10
-                    Call checkSheetZoom(lstContents.List(i, 1))
+                    Call checkSheetA1(lstContents.List(i, 1))
                 Case 11
+                    Call checkSheetZoom(lstContents.List(i, 1))
+                Case 12
                     Call checkSheetNormal(lstContents.List(i, 1))
             End Select
             
@@ -234,6 +580,11 @@ Private Sub cmdOk_Click()
     End If
     txtANS.Text = lngAns
     
+    If lstResult.ListCount = 0 Then
+        lblStatus.Caption = "エラーはありませんでした。"
+    Else
+        lblStatus.Caption = "エラーが" & lstResult.ListCount & "件あります。"
+    End If
     
 End Sub
 
@@ -258,13 +609,7 @@ Private Sub checkSheet1(ByVal strCheck As String)
             .Global = True
             
             If .Test(WS.Name) Then
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                ReportCheck strCheck, "-", WS.Name, C_DEFAULT_CELL, WB.Name
             End If
             
         End With
@@ -283,13 +628,7 @@ Private Sub checkSheetNoUse(ByVal strCheck As String)
     For Each WS In WB.Sheets
             
         If Application.WorksheetFunction.CountA(WS.UsedRange) = 0 And WS.Shapes.count = 0 Then
-            lstResult.AddItem ""
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = ""
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+            ReportCheck strCheck, "-", WS.Name, C_DEFAULT_CELL, WB.Name
         End If
         
     Next
@@ -306,14 +645,7 @@ Private Sub checkSheetNoVisible(ByVal strCheck As String)
     For Each WS In WB.Sheets
             
         If WS.visible = xlSheetHidden Or WS.visible = xlSheetVeryHidden Then
-        
-            lstResult.AddItem ""
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = ""
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-            lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+            ReportCheck strCheck, "-", WS.Name, C_DEFAULT_CELL, WB.Name
         End If
         
     Next
@@ -335,13 +667,7 @@ Private Sub checkSheetA1(ByVal strCheck As String)
         If WS.visible = xlSheetVisible Then
             WS.Select
             If WB.Windows(1).Selection.Address <> "$A$1" Then
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                ReportCheck strCheck, "-", WS.Name, C_DEFAULT_CELL, WB.Name
             End If
         End If
     Next
@@ -362,13 +688,7 @@ Private Sub checkSheetZoom(ByVal strCheck As String)
         If WS.visible = xlSheetVisible Then
             WS.Select
             If WB.Windows(1).Zoom <> 100 Then
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                ReportCheck strCheck, "-", WS.Name, C_DEFAULT_CELL, WB.Name
             End If
         End If
     Next
@@ -389,13 +709,7 @@ Private Sub checkSheetNormal(ByVal strCheck As String)
         If WS.visible = xlSheetVisible Then
             WS.Select
             If WB.Windows(1).View <> xlNormalView Then
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                ReportCheck strCheck, "-", WS.Name, C_DEFAULT_CELL, WB.Name
             End If
         End If
     Next
@@ -416,28 +730,19 @@ Private Sub checkSheetHyperlink(ByVal strCheck As String)
     
         For Each HL In WS.Hyperlinks
             
-            If InStr(HL.Name, "\") > 0 Then
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = HL.Range.Address(RowAbsolute:=False, ColumnAbsolute:=False)
-                
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+            If InStr(HL.Address, "\") > 0 Then
+                Select Case HL.Type
+                    Case msoHyperlinkRange
+                        ReportCheck strCheck, HL.Range.Address, WS.Name, HL.Range.Address, WB.Name
+                    Case msoHyperlinkShape
+                        ReportCheck strCheck, HL.Shape.Name, WS.Name, HL.Shape.id, WB.Name
+                End Select
             End If
         Next
         
         For Each r In WS.UsedRange
-            If r.HasFormula And InStr(r.Formula, "\") > 0 Then
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = r.Address(RowAbsolute:=False, ColumnAbsolute:=False)
-                
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+            If r.HasFormula And InStr(r.Formula, "=[") = 1 Then
+                ReportCheck strCheck, r.Address, WS.Name, r.Address, WB.Name
             End If
         Next
         
@@ -458,30 +763,49 @@ Private Sub checkSheetHyperlink(ByVal strCheck As String)
 
         
 
-        
+'
 '        '画面レイアウトのリンクを削除
 '        Dim ss As Picture
 '        For Each ss In WS.Pictures
-'
 '            If ss.HasFormula And InStr(ss.Formula, "\") > 0 Then
-'                lstResult.AddItem ""
-'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = r.Address(RowAbsolute:=False, ColumnAbsolute:=False)
-'
-'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-'                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+'                ReportCheck strCheck, "-", WS.Name, r.Address, WB.Name
 '            End If
-'
 '        Next
-        
-
         
     Next
 
     
 End Sub
+
+Private Sub checkBreakHyperlink(ByVal strCheck As String)
+    
+    Dim WB As Workbook
+    Dim WS As Worksheet
+    Dim BS As Worksheet
+    Dim HL As Hyperlink
+    Dim r As Range
+    
+    Set WB = ActiveWorkbook
+    
+    For Each WS In WB.Sheets
+    
+        For Each HL In WS.Hyperlinks
+            If rlxIsExcelFile(HL.Address) Then
+                If rlxIsFileExists(HL.Address) Then
+                Else
+                    Select Case HL.Type
+                        Case msoHyperlinkRange
+                            ReportCheck strCheck, HL.Range.Address, WS.Name, HL.Range.Address, WB.Name
+                        Case msoHyperlinkShape
+                            ReportCheck strCheck, HL.Shape.Name, WS.Name, HL.Shape.id, WB.Name
+                    End Select
+                End If
+            End If
+        Next
+    Next
+        
+End Sub
+
 Private Sub checkSheetError(ByVal strCheck As String)
     
     Dim WB As Workbook
@@ -501,14 +825,7 @@ Private Sub checkSheetError(ByVal strCheck As String)
         Set r = WS.UsedRange.SpecialCells(xlCellTypeFormulas, xlErrors)
         If Err.Number = 0 Then
             For Each s In r
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = s.Address(RowAbsolute:=False, ColumnAbsolute:=False)
-                
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                ReportCheck strCheck, s.Address, WS.Name, s.Address, WB.Name
             Next
         End If
         
@@ -516,14 +833,7 @@ Private Sub checkSheetError(ByVal strCheck As String)
         Set r = WS.UsedRange.SpecialCells(xlCellTypeConstants, xlErrors)
         If Err.Number = 0 Then
             For Each s In r
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = s.Address(RowAbsolute:=False, ColumnAbsolute:=False)
-                
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                ReportCheck strCheck, s.Address, WS.Name, s.Address, WB.Name
             Next
         End If
         
@@ -549,14 +859,7 @@ Private Sub checkSheetFormura(ByVal strCheck As String)
         Set r = WS.UsedRange.SpecialCells(xlCellTypeFormulas, xlLogical Or xlNumbers Or xlTextValues)
         If Err.Number = 0 Then
             For Each s In r
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = s.Address(RowAbsolute:=False, ColumnAbsolute:=False)
-                
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                ReportCheck strCheck, s.Address, WS.Name, s.Address, WB.Name
             Next
         End If
         
@@ -579,14 +882,7 @@ Private Sub checkSheetMerge(ByVal strCheck As String)
         
             If r.MergeCells Then
                 If r.MergeArea(1).Address = r(1).Address Then
-                    lstResult.AddItem ""
-                    lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                    lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                    lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = r.Address(RowAbsolute:=False, ColumnAbsolute:=False)
-                    
-                    lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                    lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                    lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                    ReportCheck strCheck, r.Address, WS.Name, r.Address, WB.Name
                 End If
             End If
         
@@ -606,14 +902,7 @@ Private Sub checkSheetCol(ByVal strCheck As String)
     
         For i = WS.UsedRange(1).Column To WS.UsedRange(WS.UsedRange.count).Column
             If WS.Columns(i).Hidden Then
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = WS.Columns(i).Address(RowAbsolute:=False, ColumnAbsolute:=False)
-                
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                ReportCheck strCheck, WS.Columns(i).Address, WS.Name, WS.Columns(i).Address, WB.Name
             End If
         Next
     Next
@@ -631,14 +920,7 @@ Private Sub checkSheetRow(ByVal strCheck As String)
     
         For i = WS.UsedRange(1).Row To WS.UsedRange(WS.UsedRange.count).Row
             If WS.Rows(i).Hidden Then
-                lstResult.AddItem ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = WS.Rows(i).Address(RowAbsolute:=False, ColumnAbsolute:=False)
-                
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = WS.Name
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = ""
-                lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = WB.Name
+                ReportCheck strCheck, WS.Rows(i).Address, WS.Name, WS.Rows(i).Address, WB.Name
             End If
         Next
     Next
@@ -689,4 +971,15 @@ Private Sub MW_WheelUp(obj As Object)
 
     obj.TopIndex = lngPos
 e:
+End Sub
+Sub ReportCheck(ByVal strCheck As String, ByVal strAddress As String, ByVal strSheet As String, ByVal strId As String, ByVal strBook As String)
+
+    lstResult.AddItem ""
+    lstResult.List(lstResult.ListCount - 1, C_SEARCH_NO) = lstResult.ListCount
+    lstResult.List(lstResult.ListCount - 1, C_SEARCH_STR) = strCheck
+    lstResult.List(lstResult.ListCount - 1, C_SEARCH_ADDRESS) = strAddress
+    lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = strSheet
+    lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = strId
+    lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = strBook
+
 End Sub

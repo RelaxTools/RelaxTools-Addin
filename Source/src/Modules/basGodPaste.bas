@@ -174,8 +174,10 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
     'コピー元が１セルでコピー先が複数セルの場合
     If a.count = 1 And sr.count > 1 Then
         sr.Select
+'        Range(sr(1), sr(sr.count)).Select
     Else
         a.Select
+'        Range(a(1), a(a.count)).Select
     End If
     
     '現在の選択位置をUndo用にバックアップ
@@ -231,8 +233,10 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
     'コピー元が１セルでコピー先が複数セルの場合
     If a.count = 1 And sr.count > 1 Then
         sr.Select
+        Range(sr(1), sr(sr.count).MergeArea(sr(sr.count).MergeArea.count)).Select
     Else
         a.Select
+        Range(a(1), a(a.count).MergeArea(a(a.count).MergeArea.count)).Select
     End If
     
     'Undo
