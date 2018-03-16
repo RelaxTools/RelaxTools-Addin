@@ -14,6 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 '-----------------------------------------------------------------------------------------------------
 '
 ' [RelaxTools-Addin] v4
@@ -537,31 +538,31 @@ Private Sub cmdOk_Click()
         If lstContents.Selected(i) Then
             Select Case i
                 Case 0
-                    Call checkSheet1(lstContents.List(i, 1))
+                    Call checkSheet1(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 1
-                    Call checkSheetNoUse(lstContents.List(i, 1))
+                    Call checkSheetNoUse(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 2
-                    Call checkSheetNoVisible(lstContents.List(i, 1))
+                    Call checkSheetNoVisible(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 3
-                    Call checkSheetHyperlink(lstContents.List(i, 1))
+                    Call checkSheetHyperlink(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 4
-                    checkBreakHyperlink (lstContents.List(i, 1))
+                    Call checkBreakHyperlink(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 5
-                    Call checkSheetError(lstContents.List(i, 1))
+                    Call checkSheetError(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 6
-                    Call checkSheetFormura(lstContents.List(i, 1))
+                    Call checkSheetFormura(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 7
-                    Call checkSheetMerge(lstContents.List(i, 1))
+                    Call checkSheetMerge(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 8
-                    Call checkSheetCol(lstContents.List(i, 1))
+                    Call checkSheetCol(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 9
-                    Call checkSheetRow(lstContents.List(i, 1))
+                    Call checkSheetRow(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 10
-                    Call checkSheetA1(lstContents.List(i, 1))
+                    Call checkSheetA1(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 11
-                    Call checkSheetZoom(lstContents.List(i, 1))
+                    Call checkSheetZoom(lstContents.List(i, 0), lstContents.List(i, 1))
                 Case 12
-                    Call checkSheetNormal(lstContents.List(i, 1))
+                    Call checkSheetNormal(lstContents.List(i, 0), lstContents.List(i, 1))
             End Select
             
         End If
@@ -592,7 +593,7 @@ Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
-Private Sub checkSheet1(ByVal strCheck As String)
+Private Sub checkSheet1(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim RE As Object
@@ -618,7 +619,7 @@ Private Sub checkSheet1(ByVal strCheck As String)
     Set RE = Nothing
     
 End Sub
-Private Sub checkSheetNoUse(ByVal strCheck As String)
+Private Sub checkSheetNoUse(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -635,7 +636,7 @@ Private Sub checkSheetNoUse(ByVal strCheck As String)
     
     
 End Sub
-Private Sub checkSheetNoVisible(ByVal strCheck As String)
+Private Sub checkSheetNoVisible(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -653,7 +654,7 @@ Private Sub checkSheetNoVisible(ByVal strCheck As String)
     
 End Sub
 
-Private Sub checkSheetA1(ByVal strCheck As String)
+Private Sub checkSheetA1(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -674,7 +675,7 @@ Private Sub checkSheetA1(ByVal strCheck As String)
     BS.Select
     
 End Sub
-Private Sub checkSheetZoom(ByVal strCheck As String)
+Private Sub checkSheetZoom(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -695,7 +696,7 @@ Private Sub checkSheetZoom(ByVal strCheck As String)
     BS.Select
     
 End Sub
-Private Sub checkSheetNormal(ByVal strCheck As String)
+Private Sub checkSheetNormal(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -716,36 +717,44 @@ Private Sub checkSheetNormal(ByVal strCheck As String)
     BS.Select
     
 End Sub
-Private Sub checkSheetHyperlink(ByVal strCheck As String)
+Private Sub checkSheetHyperlink(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
     Dim BS As Worksheet
     Dim HL As Hyperlink
     Dim r As Range
+    Dim i As Long
     
     Set WB = ActiveWorkbook
     
     For Each WS In WB.Sheets
     
+        i = 0
+        StartBar strCheckNm, WS.Hyperlinks.count + WS.UsedRange.count
         For Each HL In WS.Hyperlinks
             
             If InStr(HL.Address, "\") > 0 Then
                 Select Case HL.Type
                     Case msoHyperlinkRange
-                        ReportCheck strCheck, HL.Range.Address, WS.Name, HL.Range.Address, WB.Name
+                        ReportCheck strCheck, "-", WS.Name, HL.Range.Address, WB.Name
                     Case msoHyperlinkShape
-                        ReportCheck strCheck, HL.Shape.Name, WS.Name, HL.Shape.id, WB.Name
+                        ReportCheck strCheck, "-", WS.Name, HL.Shape.id, WB.Name
                 End Select
             End If
+            i = i + 1
+            ReportBar i
         Next
         
         For Each r In WS.UsedRange
             If r.HasFormula And InStr(r.Formula, "=[") = 1 Then
-                ReportCheck strCheck, r.Address, WS.Name, r.Address, WB.Name
+                ReportCheck strCheck, "-", WS.Name, r.Address, WB.Name
             End If
+            i = i + 1
+            ReportBar i
         Next
         
+        StopBar
         
         
 '        'ブックのリンクがあったら解除
@@ -777,7 +786,7 @@ Private Sub checkSheetHyperlink(ByVal strCheck As String)
     
 End Sub
 
-Private Sub checkBreakHyperlink(ByVal strCheck As String)
+Private Sub checkBreakHyperlink(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -787,26 +796,31 @@ Private Sub checkBreakHyperlink(ByVal strCheck As String)
     
     Set WB = ActiveWorkbook
     
+    Dim i As Long
     For Each WS In WB.Sheets
-    
+        i = 0
+        StartBar strCheckNm, WS.Hyperlinks.count
         For Each HL In WS.Hyperlinks
             If rlxIsExcelFile(HL.Address) Then
                 If rlxIsFileExists(HL.Address) Then
                 Else
                     Select Case HL.Type
                         Case msoHyperlinkRange
-                            ReportCheck strCheck, HL.Range.Address, WS.Name, HL.Range.Address, WB.Name
+                            ReportCheck strCheck, "-", WS.Name, HL.Range.Address, WB.Name
                         Case msoHyperlinkShape
-                            ReportCheck strCheck, HL.Shape.Name, WS.Name, HL.Shape.id, WB.Name
+                            ReportCheck strCheck, "-", WS.Name, HL.Shape.id, WB.Name
                     End Select
                 End If
             End If
+            i = i + 1
+            ReportBar i
         Next
+        StopBar
     Next
         
 End Sub
 
-Private Sub checkSheetError(ByVal strCheck As String)
+Private Sub checkSheetError(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -840,7 +854,7 @@ Private Sub checkSheetError(ByVal strCheck As String)
     Next
     
 End Sub
-Private Sub checkSheetFormura(ByVal strCheck As String)
+Private Sub checkSheetFormura(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -862,13 +876,10 @@ Private Sub checkSheetFormura(ByVal strCheck As String)
                 ReportCheck strCheck, s.Address, WS.Name, s.Address, WB.Name
             Next
         End If
-        
-
-        
     Next
     
 End Sub
-Private Sub checkSheetMerge(ByVal strCheck As String)
+Private Sub checkSheetMerge(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -878,6 +889,8 @@ Private Sub checkSheetMerge(ByVal strCheck As String)
     
     For Each WS In WB.Sheets
     
+        Dim i As Long
+        StartBar strCheckNm, WS.UsedRange.count
         For Each r In WS.UsedRange
         
             If r.MergeCells Then
@@ -885,12 +898,14 @@ Private Sub checkSheetMerge(ByVal strCheck As String)
                     ReportCheck strCheck, r.Address, WS.Name, r.Address, WB.Name
                 End If
             End If
-        
+            i = i + 1
+            ReportBar i
         Next
+        StopBar
     Next
     
 End Sub
-Private Sub checkSheetCol(ByVal strCheck As String)
+Private Sub checkSheetCol(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -900,15 +915,20 @@ Private Sub checkSheetCol(ByVal strCheck As String)
     
     For Each WS In WB.Sheets
     
+        Dim i As Long
+        StartBar strCheckNm, WS.UsedRange.count
         For i = WS.UsedRange(1).Column To WS.UsedRange(WS.UsedRange.count).Column
             If WS.Columns(i).Hidden Then
                 ReportCheck strCheck, WS.Columns(i).Address, WS.Name, WS.Columns(i).Address, WB.Name
             End If
+            i = i + 1
+            ReportBar i
         Next
+        StopBar
     Next
     
 End Sub
-Private Sub checkSheetRow(ByVal strCheck As String)
+Private Sub checkSheetRow(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
     Dim WS As Worksheet
@@ -918,11 +938,16 @@ Private Sub checkSheetRow(ByVal strCheck As String)
     
     For Each WS In WB.Sheets
     
+        Dim i As Long
+        StartBar strCheckNm, WS.UsedRange.count
         For i = WS.UsedRange(1).Row To WS.UsedRange(WS.UsedRange.count).Row
             If WS.Rows(i).Hidden Then
                 ReportCheck strCheck, WS.Rows(i).Address, WS.Name, WS.Rows(i).Address, WB.Name
             End If
+            i = i + 1
+            ReportBar i
         Next
+        StopBar
     Next
     
 End Sub
@@ -981,5 +1006,43 @@ Sub ReportCheck(ByVal strCheck As String, ByVal strAddress As String, ByVal strS
     lstResult.List(lstResult.ListCount - 1, C_SEARCH_SHEET) = strSheet
     lstResult.List(lstResult.ListCount - 1, C_SEARCH_ID) = strId
     lstResult.List(lstResult.ListCount - 1, C_SEARCH_BOOK) = strBook
+
+End Sub
+
+Private Sub StartBar(ByVal strMsg As String, ByVal lngMax As Long)
+
+    lblBar.visible = True
+    lblBar.width = 0
+    lblBar.Caption = strMsg
+    
+    lblStatus.Caption = strMsg
+'    lblStatus.TextAlign = fmTextAlignCenter
+    lblStatus.Tag = strMsg
+    lblBar.Tag = lngMax
+    
+    'ReportBar 1
+
+End Sub
+Private Sub ReportBar(ByVal lngPos As Long)
+
+    Dim dblPercent As Double
+    
+    dblPercent = (lngPos / Val(lblBar.Tag))
+
+    lblBar.width = lblStatus.width * dblPercent
+    lblBar.Caption = lblStatus.Tag & " 処理中です..." & Fix(dblPercent * 100) & "%"
+    lblStatus.Caption = lblBar.Caption
+    DoEvents
+
+End Sub
+
+Private Sub StopBar()
+    
+    lblBar.visible = False
+    lblBar.width = 0
+    lblBar.Caption = ""
+    
+    lblStatus.Caption = ""
+'    lblStatus.TextAlign = fmTextAlignLeft
 
 End Sub

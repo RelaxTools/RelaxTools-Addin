@@ -97,6 +97,9 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
         With .TextFrame2.TextRange.Characters.Font
             .Fill.ForeColor.RGB = RGB(0, 0, 0)
         End With
+        
+        .width = C_RECT_X * C_NORMAL_WIDTH * 3
+        .Height = C_RECT_Y * C_NORMAL_HEIGHT
             
         .Select
         .Placement = xlMove
