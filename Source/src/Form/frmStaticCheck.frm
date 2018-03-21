@@ -915,7 +915,7 @@ Private Sub checkSheetCol(ByVal strCheckNm As String, ByVal strCheck As String)
     
     For Each WS In WB.Sheets
     
-        Dim i As Long
+'        Dim i As Long
         StartBar strCheckNm, WS.UsedRange.count
         For i = WS.UsedRange(1).Column To WS.UsedRange(WS.UsedRange.count).Column
             If WS.Columns(i).Hidden Then
@@ -938,7 +938,7 @@ Private Sub checkSheetRow(ByVal strCheckNm As String, ByVal strCheck As String)
     
     For Each WS In WB.Sheets
     
-        Dim i As Long
+'        Dim i As Long
         StartBar strCheckNm, WS.UsedRange.count
         For i = WS.UsedRange(1).Row To WS.UsedRange(WS.UsedRange.count).Row
             If WS.Rows(i).Hidden Then
