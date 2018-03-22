@@ -90,8 +90,8 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
             .EndArrowheadWidth = msoArrowheadWide
         End With
             
-        obj.width = Selection.Left + (Selection.width / 2)
-        obj.Height = Selection.Top + Selection.Height
+'        obj.width = Selection.Left + (Selection.width / 2)
+'        obj.Height = Selection.Top + Selection.Height
             
         obj.Select
         obj.Placement = xlMove

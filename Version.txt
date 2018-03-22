@@ -1,4 +1,8 @@
-﻿2018/03/21(wed) RelaxTools-Addin Version 4.18.1(RustRemover) 
+﻿2018/03/22(thu) RelaxTools-Addin Version 4.18.2(RustRemover) 
+◇バグ修正
+・強調シェイプの矢印が大きくなってしまう不具合を修正。
+
+2018/03/21(wed) RelaxTools-Addin Version 4.18.1(RustRemover) 
 ◇機能改善
 ・ショートカットにスラッシュ(/)が使えるように修正。
 ・静的チェックに「ハイパーリングのリンク切れチェック」を追加。
