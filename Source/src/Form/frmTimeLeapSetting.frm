@@ -4,7 +4,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmTimeLeapSetting
    ClientHeight    =   6585
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   9165
+   ClientWidth     =   9165.001
    OleObjectBlob   =   "frmTimeLeapSetting.frx":0000
    ShowModal       =   0   'False
    StartUpPosition =   1  'オーナー フォームの中央

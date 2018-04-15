@@ -113,6 +113,13 @@ End Property
 'End Property
 Public Sub Install(f As UserForm)
 
+'最新版ではMouseホイールでエラーになるため封印
+#If Win64 Then
+    If Format(Val(Application.Version), "00") & Format(Val(Application.Build), "0000") >= "169126" Then '16.9126
+        Exit Sub
+    End If
+#End If
+
     If mIsRunning = False Then
     
         mActWnd = FindWindowA("ThunderDFrame", f.Caption)
