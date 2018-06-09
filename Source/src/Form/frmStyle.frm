@@ -103,7 +103,7 @@ End Sub
 
 Private Sub cmdSearch_Click()
 
-    Dim s As Style
+    Dim s As style
     
     On Error Resume Next
     
@@ -175,7 +175,7 @@ Function SearchStyle(ByVal strBuf As String) As Boolean
     
     For Each WS In ActiveWorkbook.Worksheets
         For Each r In WS.UsedRange
-            If r.Style = strBuf Then
+            If r.style = strBuf Then
                 SearchStyle = True
                 Exit Function
             End If

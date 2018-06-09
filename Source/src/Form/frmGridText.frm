@@ -4,7 +4,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmGridText
    ClientHeight    =   6000
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   8415.001
+   ClientWidth     =   8415
    OleObjectBlob   =   "frmGridText.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

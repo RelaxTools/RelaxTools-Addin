@@ -1,4 +1,12 @@
-﻿2018/04/15(sun) RelaxTools-Addin Version 4.18.3(RustRemover) 
+﻿2018/06/10(sun) RelaxTools-Addin Version 4.19.0(RustRemover) 
+◇機能改善
+・セル・シェイプの正規表現検索／置換でENTERキーの２重押し対策
+・十字カーソルの方式を変更（シェイプからフォームへ変更）
+　・共有シートでも使用できるようにした。
+　・Undoができなかったが使用できるようにした。
+　・シート保護がされていても使用できるようにした。
+
+2018/04/15(sun) RelaxTools-Addin Version 4.18.3(RustRemover) 
 ◇暫定対応
 ・Excel 2016(2016.9126.2109)でマウスホイールの処理で異常終了するため処理を無効化。
 

@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCrossLine 
    Caption         =   "十字カーソル設定"
-   ClientHeight    =   4245
+   ClientHeight    =   2415
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   6375
@@ -50,14 +50,14 @@ Private mResult As VBA.VbMsgBoxResult
 
 Private Sub chkFillVisible_Change()
         
-    fraFill.enabled = chkFillVisible.Value
-    fraFillColor.enabled = chkFillVisible.Value
-    fraFillTransparency.enabled = chkFillVisible.Value
-    lblClick.enabled = chkFillVisible.Value
-    lblPercent.enabled = chkFillVisible.Value
-    lblFillColor.enabled = chkFillVisible.Value
-    txtFillTransparency.enabled = chkFillVisible.Value
-    spnFillTransparency.enabled = chkFillVisible.Value
+'    fraFill.enabled = chkFillVisible.Value
+'    fraFillColor.enabled = chkFillVisible.Value
+'    fraFillTransparency.enabled = chkFillVisible.Value
+'    lblClick.enabled = chkFillVisible.Value
+'    lblPercent.enabled = chkFillVisible.Value
+'    lblFillColor.enabled = chkFillVisible.Value
+'    txtFillTransparency.enabled = chkFillVisible.Value
+'    spnFillTransparency.enabled = chkFillVisible.Value
 
 End Sub
 
@@ -67,15 +67,15 @@ End Sub
 
 Private Sub cmdInit_Click()
 
-    chkFillVisible.Value = False
+'    chkFillVisible.Value = False
     lblFillColor.BackColor = &H50B000
     txtFillTransparency.Value = "50"
 
-    lblEven.BackColor = &H50B000
-    txtCol.Value = "2"
-    lblFont.BackColor = &H50B000
-    lblBack.BackColor = &HFFFFFF
-    txtGuidTransparency.Value = "50"
+'    lblEven.BackColor = &H50B000
+'    txtCol.Value = "2"
+'    lblFont.BackColor = &H50B000
+'    lblBack.BackColor = &HFFFFFF
+'    txtGuidTransparency.Value = "50"
     
 End Sub
 
@@ -103,12 +103,12 @@ Private Sub cmdOk_Click()
             Exit Sub
     End Select
     
-    Select Case Val(txtCol.Value)
-        Case 0.25! To 100
-        Case Else
-            MsgBox "線の幅は0.25～10を入力してください。", vbOKOnly + vbExclamation, C_TITLE
-            Exit Sub
-    End Select
+'    Select Case Val(txtCol.Value)
+'        Case 0.25! To 100
+'        Case Else
+'            MsgBox "線の幅は0.25～10を入力してください。", vbOKOnly + vbExclamation, C_TITLE
+'            Exit Sub
+'    End Select
     
         
     Select Case True
@@ -121,25 +121,25 @@ Private Sub cmdOk_Click()
     End Select
     
     
-    If chkFillVisible.Value Then
-        blnFillVisible = False
-    Else
-        blnFillVisible = True
-    End If
+'    If chkFillVisible.Value Then
+'        blnFillVisible = False
+'    Else
+'        blnFillVisible = True
+'    End If
     
     strFillColor = "&H" & Right$("00000000" & Hex(lblFillColor.BackColor), 8)
     strFillTransparency = txtFillTransparency.Value
     
-    strLineColor = "&H" & Right$("00000000" & Hex(lblEven.BackColor), 8)
-    strLineWeight = txtCol.Value
+'    strLineColor = "&H" & Right$("00000000" & Hex(lblEven.BackColor), 8)
+'    strLineWeight = txtCol.Value
     
     blnGuid = chkGuid.Value
     
-    strFontColor = "&H" & Right$("00000000" & Hex(lblFont.BackColor), 8)
+'    strFontColor = "&H" & Right$("00000000" & Hex(lblFont.BackColor), 8)
     
-    strBackColor = "&H" & Right$("00000000" & Hex(lblBack.BackColor), 8)
+'    strBackColor = "&H" & Right$("00000000" & Hex(lblBack.BackColor), 8)
     
-    strGuidTransparency = txtGuidTransparency.Value
+'    strGuidTransparency = txtGuidTransparency.Value
     
     Call setCrossLineSetting(lngType, blnFillVisible, strFillColor, strFillTransparency, strLineVisible, strLineColor, strLineWeight, blnGuid, strFontColor, blnEdit, blnLineWidth, strBackColor, strGuidTransparency)
 
@@ -148,24 +148,24 @@ Private Sub cmdOk_Click()
 End Sub
 
 
-Private Sub CommandButton1_Click()
-
-End Sub
-
-Private Sub lblBack_Click()
-
-    Dim lngColor As Long
-    Dim Result As VbMsgBoxResult
-
-    lngColor = lblBack.BackColor
-
-    Result = frmColor.Start(lngColor)
-
-    If Result = vbOK Then
-        lblBack.BackColor = lngColor
-    End If
-    
-End Sub
+'Private Sub CommandButton1_Click()
+'
+'End Sub
+'
+'Private Sub lblBack_Click()
+'
+'    Dim lngColor As Long
+'    Dim Result As VbMsgBoxResult
+'
+''    lngColor = lblBack.BackColor
+'
+'    Result = frmColor.Start(lngColor)
+'
+'    If Result = vbOK Then
+''        lblBack.BackColor = lngColor
+'    End If
+'
+'End Sub
 
 Private Sub lblFillColor_Click()
 
@@ -182,44 +182,44 @@ Private Sub lblFillColor_Click()
     
 End Sub
 
-Private Sub lblFont_Click()
+'Private Sub lblFont_Click()
+'
+'    Dim lngColor As Long
+'    Dim Result As VbMsgBoxResult
+'
+'
+'    lngColor = lblFont.BackColor
+'
+'    Result = frmColor.Start(lngColor)
+'
+'    If Result = vbOK Then
+'        lblFont.BackColor = lngColor
+'    End If
+'
+'End Sub
 
-    Dim lngColor As Long
-    Dim Result As VbMsgBoxResult
+'Private Sub lblEven_Click()
+'
+'    Dim lngColor As Long
+'    Dim Result As VbMsgBoxResult
+'
+'    lngColor = lblEven.BackColor
+'
+'    Result = frmColor.Start(lngColor)
+'
+'    If Result = vbOK Then
+'        lblEven.BackColor = lngColor
+'    End If
+'
+'End Sub
 
-
-    lngColor = lblFont.BackColor
-
-    Result = frmColor.Start(lngColor)
-
-    If Result = vbOK Then
-        lblFont.BackColor = lngColor
-    End If
-    
-End Sub
-
-Private Sub lblEven_Click()
-
-    Dim lngColor As Long
-    Dim Result As VbMsgBoxResult
-
-    lngColor = lblEven.BackColor
-
-    Result = frmColor.Start(lngColor)
-
-    If Result = vbOK Then
-        lblEven.BackColor = lngColor
-    End If
-
-End Sub
-
-Private Sub spnCol_SpinDown()
-    txtCol.Text = spinDown2(txtCol.Text)
-End Sub
-
-Private Sub spnCol_SpinUp()
-    txtCol.Text = spinUp2(txtCol.Text)
-End Sub
+'Private Sub spnCol_SpinDown()
+'    txtCol.Text = spinDown2(txtCol.Text)
+'End Sub
+'
+'Private Sub spnCol_SpinUp()
+'    txtCol.Text = spinUp2(txtCol.Text)
+'End Sub
 
 Private Function spinUp2(ByVal vntValue As Variant) As Variant
 
@@ -282,13 +282,13 @@ Private Sub spnFillTransparency_SpinUp()
     txtFillTransparency.Text = spinUp(txtFillTransparency.Text)
 End Sub
 
-Private Sub spnGuidTransparency_SpinDown()
-    txtGuidTransparency.Text = spinDown(txtGuidTransparency.Text)
-End Sub
-
-Private Sub spnGuidTransparency_SpinUp()
-    txtGuidTransparency.Text = spinUp(txtGuidTransparency.Text)
-End Sub
+'Private Sub spnGuidTransparency_SpinDown()
+'    txtGuidTransparency.Text = spinDown(txtGuidTransparency.Text)
+'End Sub
+'
+'Private Sub spnGuidTransparency_SpinUp()
+'    txtGuidTransparency.Text = spinUp(txtGuidTransparency.Text)
+'End Sub
 
 Private Sub UserForm_Initialize()
 
@@ -321,24 +321,24 @@ Private Sub UserForm_Initialize()
             optAll.Value = True
     End Select
 
-    If blnFillVisible Then
-        chkFillVisible.Value = False
-    Else
-        chkFillVisible.Value = True
-    End If
+'    If blnFillVisible Then
+'        chkFillVisible.Value = False
+'    Else
+'        chkFillVisible.Value = True
+'    End If
     
     lblFillColor.BackColor = lngFillColor
     txtFillTransparency.Value = dblFillTransparency
     
     chkGuid.Value = blnGuid
     
-    lblEven.BackColor = lngLineColor
+'    lblEven.BackColor = lngLineColor
     
-    txtCol.Value = sngLineWeight
+'    txtCol.Value = sngLineWeight
     
-    lblFont.BackColor = lngFontColor
-    lblBack.BackColor = lngBackColor
+'    lblFont.BackColor = lngFontColor
+'    lblBack.BackColor = lngBackColor
 
-    txtGuidTransparency.Value = dblGuidTransparency
+'    txtGuidTransparency.Value = dblGuidTransparency
     
 End Sub

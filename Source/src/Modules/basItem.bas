@@ -200,7 +200,7 @@ End Sub
 '--------------------------------------------------------------
 '　クラス名からオブジェクトを取得
 '--------------------------------------------------------------
-Function rlxGetItemObject(ByVal className As String) As Object
+Function rlxGetItemObject(ByVal classname As String) As Object
 Attribute rlxGetItemObject.VB_Description = "ワークシート関数として使用できません。"
 Attribute rlxGetItemObject.VB_ProcData.VB_Invoke_Func = " \n19"
 
@@ -214,7 +214,7 @@ Attribute rlxGetItemObject.VB_ProcData.VB_Invoke_Func = " \n19"
     
     For Each obj In mColAllItem
     
-        If className = obj.Class Then
+        If classname = obj.Class Then
             Set ret = obj
             Exit For
         End If

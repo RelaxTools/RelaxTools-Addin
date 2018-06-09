@@ -154,13 +154,13 @@ Public Function editStamp(ByRef s As StampDatDTO, ByVal lngFormat As Long) As St
     Select Case s.Line
         Case C_STAMP_LINE_SINGLE
             WS.Shapes("shpCircle").Line.Weight = 10
-            WS.Shapes("shpCircle").Line.Style = msoLineSingle
+            WS.Shapes("shpCircle").Line.style = msoLineSingle
         Case C_STAMP_LINE_DOUBLE
             WS.Shapes("shpCircle").Line.Weight = 20
-            WS.Shapes("shpCircle").Line.Style = msoLineThinThin
+            WS.Shapes("shpCircle").Line.style = msoLineThinThin
         Case Else
             WS.Shapes("shpCircle").Line.Weight = 20
-            WS.Shapes("shpCircle").Line.Style = msoLineSingle
+            WS.Shapes("shpCircle").Line.style = msoLineSingle
     End Select
     
     If s.Fill = C_STAMP_FILL_ON Then

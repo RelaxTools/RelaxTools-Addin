@@ -88,7 +88,7 @@ Private Sub SFWork_SelectionMain(obj As Object, pos As ClickPosition, margin As 
         With .Line
             .Weight = 2.25
             .DashStyle = msoLineSingle
-            .Style = msoLineSingle
+            .style = msoLineSingle
             .Transparency = 0#
             .visible = msoTrue
             .ForeColor.SchemeColor = 10

@@ -136,6 +136,14 @@ Private Sub cmdOk_Click()
     
     Logger.LogBegin TypeName(Me) & ".cmdOk_Click"
     
+    Static sw
+    
+    If sw Then
+        Exit Sub
+    End If
+    
+    sw = True
+    
     Call searchStart
     
     Dim strBuf As String
@@ -181,6 +189,8 @@ Private Sub cmdOk_Click()
         MsgBox "検索対象が見つかりませんでした。", vbInformation + vbOKOnly, C_TITLE
     End If
     
+    sw = False
+
 End Sub
 
 

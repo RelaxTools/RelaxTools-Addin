@@ -56,10 +56,11 @@ Private mSelection() As Object
 Private Const C_HOLIZONTAL_BAR_NAME As String = "rlxHolizontalBar"
 Private Const C_VERTICAL_BAR_NAME As String = "rlxVerticalBar"
 Private Const C_XY_BAR_NAME As String = "rlxXYBar"
-Private mWS As Worksheet
+'Private mWB As Worksheet
 'Public Sub setIRibbon(ByRef r As IRibbonUI)
 '    Set XL = Excel.Application
 'End Sub
+'Private mstrCrossBook As String
 
 '--------------------------------------------------------------
 '　ブックオープンイベント
@@ -344,120 +345,75 @@ Public Sub enableCrossLine()
 End Sub
 Private Sub addCrossLine()
 
-    Dim s As Shape
-    Dim b As Boolean
-    Dim z As Single
-    Dim r As Long
-    Dim c As Long
-    Dim a As Boolean
+    Dim blnFillVisible As Boolean
+    Dim lngFillColor As Long
+    Dim dblFillTransparency As Double
+    Dim lngLineVisible As Long
+    Dim lngLineColor As Long
+    Dim lngFontColor As Long
+    Dim sngLineWeight As Single
+    Dim strOnAction As String
+    Dim lngType As Long
+    Dim blnGuid As Boolean
+    Dim blnEdit As Boolean
+    Dim blnLineWidth As Boolean
+    Dim lngBackColor As Long
+    Dim dblGuidTransparency As Double
+
+    Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth, lngBackColor, dblGuidTransparency)
     
-    If ActiveWorkbook.ActiveSheet Is Nothing Then
-    Else
-        
-        a = Application.ScreenUpdating
-        Application.ScreenUpdating = False
-        
-        b = ActiveWorkbook.Saved
-        Set mWS = ActiveWorkbook.ActiveSheet
-        
-        z = ActiveWindow.Zoom
-        c = ActiveWindow.ScrollColumn
-        r = ActiveWindow.ScrollRow
-        
-        ActiveWindow.Zoom = 100
-        
-        Call deleteCrossLine
-        
-        Dim blnFillVisible As Boolean
-        Dim lngFillColor As Long
-        Dim dblFillTransparency As Double
-        Dim lngLineVisible As Long
-        Dim lngLineColor As Long
-        Dim sngLineWeight As Single
-        Dim strOnAction As String
-        Dim lngType As Long
-        Dim blnGuid As Boolean
-        Dim lngFontColor As Long
-        Dim blnEdit As Boolean
-        Dim blnLineWidth As Boolean
-        Dim lngBackColor As Long
-        Dim dblGuidTransparency As Double
     
-        Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth, lngBackColor, dblGuidTransparency)
-        
-        
-        If lngType And C_HOLIZON Then
-            Set s = mWS.Shapes.AddShape(msoShapeRectangle, 10, 10, 10, 10)
-            
-            s.Name = C_HOLIZONTAL_BAR_NAME
-            s.Line.visible = msoFalse
-            
-            s.Select
-            Selection.PrintObject = msoFalse
-            Selection.Placement = xlFreeFloating
-        
-            With s.Fill
-                .visible = msoTrue
-                .ForeColor.RGB = RGB(0, 176, 80)
-                .Transparency = 0.5
-                .Solid
-            End With
-        
-            Set s = Nothing
-        End If
-        
-        If lngType And C_VERTICAL Then
-            Set s = mWS.Shapes.AddShape(msoShapeRectangle, 20, 20, 10, 10)
-        
-            s.Name = C_VERTICAL_BAR_NAME
-            s.Line.visible = msoFalse
-            
-            s.Select
-            Selection.PrintObject = msoFalse
-            Selection.Placement = xlFreeFloating
-        
-            With s.Fill
-                .visible = msoTrue
-                .ForeColor.RGB = RGB(0, 176, 80)
-                .Transparency = 0.5
-                .Solid
-            End With
-            
-            Set s = Nothing
-        End If
-        
-        If blnGuid Then
-            Set s = mWS.Shapes.AddShape(msoShapeRectangle, 20, 20, 10, 10)
-        
-            s.Name = C_XY_BAR_NAME
-            s.Line.visible = msoFalse
-            
-            s.Select
-            Selection.PrintObject = msoFalse
-            Selection.Placement = xlFreeFloating
-        
-            With s.Fill
-                .visible = msoTrue
-                .ForeColor.RGB = RGB(0, 176, 80)
-                .Transparency = 1
-                .Solid
-            End With
-            
-            Set s = Nothing
-        End If
-        
-        Call XL_LINE_SheetSelectionChange(mWS, ActiveCell)
-        
-        ActiveCell.Select
-        ActiveWorkbook.Saved = b
-        
-        ActiveWindow.Zoom = z
-        ActiveWindow.ScrollColumn = c
-        ActiveWindow.ScrollRow = r
-        
-        Application.ScreenUpdating = a
     
+    
+'    Select Case lngType
+'        Case C_HOLIZON
+'            optHolizon.Value = True
+'        Case C_VERTICAL
+'            optVertical.Value = True
+'        Case Else
+'            optAll.Value = True
+'    End Select
+'
+'    If blnFillVisible Then
+'        chkFillVisible.Value = False
+'    Else
+'        chkFillVisible.Value = True
+'    End If
+'
+'    lblFillColor.BackColor = lngFillColor
+'    txtFillTransparency.Value = dblFillTransparency
+'
+'    chkGuid.Value = blnGuid
+'
+'    lblEven.BackColor = lngLineColor
+'
+'    txtCol.Value = sngLineWeight
+'
+'    lblFont.BackColor = lngFontColor
+'    lblBack.BackColor = lngBackColor
+
+'    frmCrossLineGauge.BackColor = lngBackColor
+'    frmCrossLineGauge.Transparency = dblGuidTransparency
+
+    If blnGuid Then
+        frmCrossLineGauge.Run
     End If
+    
+    If lngType And 2 Then
+        frmCrossLineH.BackColor = lngFillColor
+        frmCrossLineH.Transparency = dblFillTransparency
+        frmCrossLineH.Run
+    End If
+    
+    If lngType And 1 Then
+        frmCrossLineV.BackColor = lngFillColor
+        frmCrossLineV.Transparency = dblFillTransparency
+        frmCrossLineV.Run
+    End If
+    
+    mstrCrossBook = ActiveWorkbook.Name
+    
+    Call ShowCursor
 
 End Sub
 
@@ -465,278 +421,157 @@ Public Sub disableCrossLine()
 
     Set XL_LINE = Nothing
     
-    If mWS Is Nothing Then
-    Else
+'    If mWS Is Nothing Then
+'    Else
         Call deleteCrossLine
-    End If
-    Set mWS = Nothing
+'    End If
+'    Set mWS = Nothing
+    
 End Sub
 
 Private Sub deleteCrossLine()
+
     On Error Resume Next
     
-    Dim b As Boolean
-    
-    b = mWS.Parent.Saved
-    
-    mWS.Shapes(C_HOLIZONTAL_BAR_NAME).Delete
-    mWS.Shapes(C_VERTICAL_BAR_NAME).Delete
-    mWS.Shapes(C_XY_BAR_NAME).Delete
-    
-    mWS.Parent.Saved = b
+    Unload frmCrossLineH
+    Unload frmCrossLineV
+    Unload frmCrossLineGauge
 
 End Sub
 
 Private Sub XL_LINE_SheetSelectionChange(ByVal sh As Object, ByVal Target As Range)
 
     On Error Resume Next
-
-    Const C_MAX As Long = 50000
-
-    Dim lngRow As Long
-    Dim lngCol As Long
-    Dim r As Range
-    Dim b As Boolean
-    Dim s As Boolean
-
+    
     Static blnCall As Boolean
 
     If blnCall Then
         Exit Sub
     End If
-
-    If mWS.Name <> sh.Name Then
-        Exit Sub
+    
+    If Val(Application.Version) > C_EXCEL_VERSION_2010 Then
+        If mstrCrossBook <> sh.Parent.Name Then
+            Exit Sub
+        End If
     End If
-
-    If existCrossLine(sh) Then
-    Else
-        Exit Sub
-    End If
-
-    s = sh.Parent.Saved
-
-    b = Application.ScreenUpdating
-
+    
     blnCall = True
 
-    lngRow = Target(1).Row
-    lngCol = Target(1).Column
-
-    Dim sngTop As Single
-    Dim sngLeft As Single
-    Dim sngHeight As Single
-    Dim sngWidth As Single
-
-    sngTop = Target(1).Top - C_MAX / 2
-    If sngTop < 0 Then
-        sngTop = 0
-    End If
-    sngHeight = Target(1).Top + C_MAX / 2
-    If sngHeight > C_MAX Then
-        sngHeight = C_MAX
-    End If
-
-    sngLeft = Target(1).Left - C_MAX / 2
-    If sngLeft < 0 Then
-        sngLeft = 0
-    End If
-    sngWidth = Target(1).Left + C_MAX / 2
-    If sngWidth > C_MAX Then
-        sngWidth = C_MAX
-    End If
-
-    Dim blnFillVisible As Boolean
-    Dim lngFillColor As Long
-    Dim dblFillTransparency As Double
-    Dim lngLineVisible As Long
-    Dim lngLineColor As Long
-    Dim sngLineWeight As Single
-    Dim strOnAction As String
-    Dim lngType As Long
-    Dim blnGuid As Boolean
-    Dim lngFontColor As Long
-    Dim blnEdit As Boolean
-    Dim blnLineWidth As Boolean
-    Dim lngBackColor As Long
-    Dim dblGuidTransparency As Double
-
-    Call getCrossLineSetting(lngType, blnFillVisible, lngFillColor, dblFillTransparency, lngLineVisible, lngLineColor, sngLineWeight, strOnAction, blnGuid, lngFontColor, blnEdit, blnLineWidth, lngBackColor, dblGuidTransparency)
-        
-    '横軸
-    If lngType And C_HOLIZON Then
-        Set r = Range(sh.Cells(lngRow, 1), sh.Cells(lngRow, sh.Columns.count - 1))
-
-        sh.Shapes(C_HOLIZONTAL_BAR_NAME).Top = r.Top
-        sh.Shapes(C_HOLIZONTAL_BAR_NAME).Left = sngLeft
-        sh.Shapes(C_HOLIZONTAL_BAR_NAME).width = sngWidth 'r.Width
-        
-        If blnFillVisible Then
-            sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = 0
-        Else
-            sh.Shapes(C_HOLIZONTAL_BAR_NAME).Height = r.Height
-        End If
-    
-'        If Not blnFillVisible Then
-            sh.Shapes(C_HOLIZONTAL_BAR_NAME).OnAction = strOnAction
-'        End If
-
-        With sh.Shapes(C_HOLIZONTAL_BAR_NAME).Fill
-            .visible = True
-            .ForeColor.RGB = lngFillColor
-            .Transparency = dblFillTransparency / 100
-            .Solid
-        End With
-
-        With sh.Shapes(C_HOLIZONTAL_BAR_NAME).Line
-            .visible = True
-            .ForeColor.RGB = lngLineColor
-            .Weight = sngLineWeight
-            .Transparency = 0
-        End With
-
-        Set r = Nothing
-    End If
-
-    '縦軸
-    If lngType And C_VERTICAL Then
-        Set r = Range(sh.Cells(1, lngCol), sh.Cells(sh.Rows.count - 1, lngCol))
-
-        sh.Shapes(C_VERTICAL_BAR_NAME).Top = sngTop
-        sh.Shapes(C_VERTICAL_BAR_NAME).Left = r.Left
-        
-        If blnFillVisible Then
-            sh.Shapes(C_VERTICAL_BAR_NAME).width = 0
-        Else
-            sh.Shapes(C_VERTICAL_BAR_NAME).width = r.width
-        End If
-        
-'        If Not blnFillVisible Then
-            sh.Shapes(C_VERTICAL_BAR_NAME).OnAction = strOnAction
-'        End If
-        
-        sh.Shapes(C_VERTICAL_BAR_NAME).Height = sngHeight 'r.Height
-
-        With sh.Shapes(C_VERTICAL_BAR_NAME).Fill
-            .visible = True
-            .ForeColor.RGB = lngFillColor
-            .Transparency = dblFillTransparency / 100
-            .Solid
-        End With
-
-        With sh.Shapes(C_VERTICAL_BAR_NAME).Line
-            .visible = True
-            .ForeColor.RGB = lngLineColor
-            .Weight = sngLineWeight
-            .Transparency = 0
-        End With
-
-        Set r = Nothing
-    End If
-
-    'ＸＹラベル
-    If blnGuid Then
-        Set r = Range(sh.Cells(1, lngCol), sh.Cells(sh.Rows.count - 1, lngCol))
-
-        sh.Shapes(C_XY_BAR_NAME).width = 80
-        sh.Shapes(C_XY_BAR_NAME).Height = 50
-        sh.Shapes(C_XY_BAR_NAME).Top = Target(1).Top + Target(1).Height + 10
-        sh.Shapes(C_XY_BAR_NAME).Left = Target(1).Left + Target(1).width + 10
-
-
-        With sh.Shapes(C_XY_BAR_NAME).Fill
-            .visible = True
-'            .ForeColor.RGB = lngFillColor
-'            .Transparency = 0
-'            .ForeColor.RGB = vbWhite
-            .ForeColor.RGB = lngBackColor
-            .Transparency = dblGuidTransparency / 100
-            .Solid
-        End With
-
-        With sh.Shapes(C_XY_BAR_NAME).Line
-            .visible = True
-            .ForeColor.RGB = lngLineColor
-            .Weight = sngLineWeight
-'            .Transparency = 0
-        End With
-        
-        sh.Shapes(C_XY_BAR_NAME).OnAction = strOnAction
-        
-        Dim strBuf As String
-
-        strBuf = "  列:" & Target(1).Column & vbCrLf
-        strBuf = strBuf & "  行:" & Target(1).Row
-        With sh.Shapes(C_XY_BAR_NAME).TextFrame2
-            .TextRange.Text = strBuf
-            .TextRange.Font.NameComplexScript = "Meiryo UI"
-            .TextRange.Font.NameFarEast = "Meiryo UI"
-            .TextRange.Font.Name = "Meiryo UI"
-            .TextRange.Font.size = 9
-            .TextRange.Font.Bold = msoTrue
-            .TextRange.Font.Fill.ForeColor.RGB = lngFontColor
-            .TextRange.ParagraphFormat.Alignment = msoAlignLeft
-            .VerticalAnchor = msoAnchorMiddle
-        End With
-
-        Set r = Nothing
-    End If
-
+    Call ShowCursor
 
     blnCall = False
-
-    sh.Parent.Saved = s
-
-End Sub
-
-Private Sub XL_LINE_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolean, Cancel As Boolean)
-#If VBA7 Then
-    On Error Resume Next
-    Call deleteCrossLine
-#Else
-    On Error Resume Next
-    Dim obj As Object
-    Call lineOnAction(obj, False)
-#End If
-End Sub
-Private Sub XL_LINE_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
-    On Error Resume Next
-    If mLineEnable Then
-        Call addCrossLine
-    End If
-End Sub
-Private Sub XL_LINE_SheetDeactivate(ByVal sh As Object)
-    On Error Resume Next
-    Call deleteCrossLine
-End Sub
-Private Sub XL_LINE_WorkbookDeactivate(ByVal WB As Workbook)
-    On Error Resume Next
-    Call deleteCrossLine
-End Sub
-Private Sub XL_LINE_SheetActivate(ByVal sh As Object)
-    On Error Resume Next
-    If mLineEnable Then
-        Call addCrossLine
-    End If
-
-End Sub
-Private Sub XL_LINE_WorkbookActivate(ByVal WB As Workbook)
-    On Error Resume Next
-    If mLineEnable Then
-        Call addCrossLine
-    End If
-
-End Sub
-
-
-
-Private Sub XL_LINE_WorkbookBeforeClose(ByVal WB As Workbook, Cancel As Boolean)
-    On Error Resume Next
-    Dim obj As Object
     
-    Call lineOnAction(obj, False)
-
 End Sub
+Private Sub ShowCursor()
+
+    Dim spx As Long
+    Dim spy As Long
+
+    Dim re As rect
+    Dim re2 As rect
+    Dim r As Range
+    Dim s As Range
+
+    GetWindowRect Application.hwnd, re
+
+    With ActiveWindow.ActivePane
+
+        Set r = ActiveWindow.Panes(1).VisibleRange(1)
+        
+        spx = ActiveWindow.Panes(1).PointsToScreenPixelsX(r.Left)
+        spy = ActiveWindow.Panes(1).PointsToScreenPixelsY(r.Top)
+    
+'        If TypeName(Selection) = "Range" Then
+'            Set s = Selection
+'        Else
+            Set s = ActiveCell.MergeArea
+'        End If
+        
+        Dim X As Long
+        Dim Y As Long
+        
+        X = .PointsToScreenPixelsX(s.Left + s.width) - .PointsToScreenPixelsX(s.Left)
+'        If x > re.Bottom - spy Then
+'            x = re.Bottom - spy
+'        End If
+        
+        Y = .PointsToScreenPixelsY(ActiveCell.Top + s.Height) - .PointsToScreenPixelsY(s.Top)
+'        If y > re.Right - spx Then
+'            y = re.Right - spx
+'        End If
+        
+        MoveWindow frmCrossLineH.hwnd, .PointsToScreenPixelsX(s.Left), spy, X, re.Bottom - spy, True
+        MoveWindow frmCrossLineV.hwnd, spx, .PointsToScreenPixelsY(s.Top), re.Right - spx, Y, True
+        
+        GetWindowRect frmCrossLineGauge.hwnd, re2
+        
+        If .PointsToScreenPixelsX(s.Left + s.width + 10) + (re2.Right - re2.Left) > re.Right Then
+            MoveWindow frmCrossLineGauge.hwnd, .PointsToScreenPixelsX(s.Left - 10) - (re2.Right - re2.Left), .PointsToScreenPixelsY(s.Top - 10) - (re2.Bottom - re2.Top), re2.Right - re2.Left, re2.Bottom - re2.Top, True
+        Else
+            MoveWindow frmCrossLineGauge.hwnd, .PointsToScreenPixelsX(s.Left + s.width + 10), .PointsToScreenPixelsY(s.Top - 10) - (re2.Bottom - re2.Top), re2.Right - re2.Left, re2.Bottom - re2.Top, True
+        End If
+
+'        frmCrossLineGauge.txtAddress = s(1).Address(False, False)
+        If s.Rows.count = 1 Then
+            frmCrossLineGauge.txtRow = s(1).Row
+        Else
+            frmCrossLineGauge.txtRow = s(1).Row & ":" & s(s.count).Row
+        End If
+        
+        If s.Columns.count = 1 Then
+            frmCrossLineGauge.txtColumn = s(1).Column
+        Else
+            frmCrossLineGauge.txtColumn = s(1).Column & ":" & s(s.count).Column
+        End If
+        
+    End With
+    
+End Sub
+'Private Sub XL_LINE_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolean, Cancel As Boolean)
+'#If VBA7 Then
+'    On Error Resume Next
+'    Call deleteCrossLine
+'#Else
+'    On Error Resume Next
+'    Dim obj As Object
+'    Call lineOnAction(obj, False)
+'#End If
+'End Sub
+'Private Sub XL_LINE_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
+'    On Error Resume Next
+'    If mLineEnable Then
+'        Call addCrossLine
+'    End If
+'End Sub
+'Private Sub XL_LINE_SheetDeactivate(ByVal sh As Object)
+'    On Error Resume Next
+'    Call deleteCrossLine
+'End Sub
+'Private Sub XL_LINE_WorkbookDeactivate(ByVal WB As Workbook)
+'    On Error Resume Next
+'    Call deleteCrossLine
+'End Sub
+'Private Sub XL_LINE_SheetActivate(ByVal sh As Object)
+'    On Error Resume Next
+'    If mLineEnable Then
+'        Call addCrossLine
+'    End If
+'
+'End Sub
+'Private Sub XL_LINE_WorkbookActivate(ByVal WB As Workbook)
+'    On Error Resume Next
+'    If mLineEnable Then
+'        Call addCrossLine
+'    End If
+'
+'End Sub
+'Private Sub XL_LINE_WorkbookBeforeClose(ByVal WB As Workbook, Cancel As Boolean)
+'    On Error Resume Next
+'    Dim obj As Object
+'
+'    Call lineOnAction(obj, False)
+'
+'End Sub
 Function existCrossLine(ByVal sh As Worksheet) As Boolean
     
     Dim s As Shape
@@ -773,6 +608,30 @@ Public Sub StopTimeLeap()
 End Sub
 
 
+
+'Private Sub XL_LINE_WindowResize(ByVal Wb As Workbook, ByVal Wn As Window)
+'
+'    On Error Resume Next
+'
+'    Static blnCall As Boolean
+'
+'    If blnCall Then
+'        Exit Sub
+'    End If
+'
+'    If Val(Application.Version) > C_EXCEL_VERSION_2010 Then
+'        If mstrCrossBook <> Wb.Name Then
+'            Exit Sub
+'        End If
+'    End If
+'
+'    blnCall = True
+'
+'    Call ShowCursor
+'
+'    blnCall = False
+'
+'End Sub
 
 '--------------------------------------------------------------
 '　ブック保存前イベント
@@ -885,4 +744,5 @@ e:
     Application.DisplayAlerts = blnDisplayAlerts
     MsgBox Err.Description, vbOKOnly + vbCritical, C_TITLE
 End Sub
+
 

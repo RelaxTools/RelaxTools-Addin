@@ -464,7 +464,7 @@ Private Function getDefault(ByVal strBuf As String, ByVal lngCol As Long) As Var
     getDefault = strRet
 
 End Function
-Function rlxCreateSectionObject(ByVal className As String) As Object
+Function rlxCreateSectionObject(ByVal classname As String) As Object
 Attribute rlxCreateSectionObject.VB_Description = "ワークシート関数として使用できません。"
 Attribute rlxCreateSectionObject.VB_ProcData.VB_Invoke_Func = " \n19"
 
@@ -478,7 +478,7 @@ Attribute rlxCreateSectionObject.VB_ProcData.VB_Invoke_Func = " \n19"
     
     For Each obj In mColAllSection
     
-        If className = obj.Class Then
+        If classname = obj.Class Then
             Set ret = obj
             Exit For
         End If

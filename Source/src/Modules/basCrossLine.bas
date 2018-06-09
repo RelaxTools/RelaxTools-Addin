@@ -33,30 +33,40 @@ Option Private Module
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
     Private Declare PtrSafe Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
+    Public Declare PtrSafe Function SetWindowLong Lib "user32" Alias "SetWindowLongPtrA" (ByVal hwnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As LongPtr) As LongPtr
+    Public Declare PtrSafe Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hwnd As LongPtr, ByVal nIndex As Long) As Long
+    Public Declare PtrSafe Function SetLayeredWindowAttributes Lib "user32.dll" (ByVal hwnd As LongPtr, ByVal crKey As Long, ByVal bAlpha As Byte, ByVal dwFlags As Long) As Long
+    Public Declare PtrSafe Function GetWindowRect Lib "user32" (ByVal hwnd As LongPtr, lpRect As rect) As Long
+    Public Declare PtrSafe Function MoveWindow Lib "user32" (ByVal hwnd As LongPtr, ByVal X As Long, ByVal Y As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal bRepaint As Long) As Long
 
-Private Type KEYBDINPUT
-    wVk As Integer
-    wScan As Integer
-    dwFlags As LongPtr
-    time As LongPtr
-    dwExtraInfo As LongPtr
-    dummy1 As Long
-    dummy2 As Long
-End Type
+    Private Type KEYBDINPUT
+        wVk As Integer
+        wScan As Integer
+        dwFlags As LongPtr
+        time As LongPtr
+        dwExtraInfo As LongPtr
+        dummy1 As Long
+        dummy2 As Long
+    End Type
 
 #Else
     Private Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
     Private Declare Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
+    Public Declare Function SetWindowLong Lib "user32.dll" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
+    Public Declare Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long) As Long
+    Public Declare Function SetLayeredWindowAttributes Lib "user32.dll" (ByVal hwnd As Long, ByVal crKey As Long, ByVal bAlpha As Byte, ByVal dwFlags As Long) As Long
+    Public Declare Function GetWindowRect Lib "user32" (ByVal hwnd As Long, lpRect As rect) As Long
+    Public Declare Function MoveWindow Lib "user32" (ByVal hwnd As Long, ByVal X As Long, ByVal Y As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal bRepaint As Long) As Long
 
-Private Type KEYBDINPUT
-    wVk As Integer
-    wScan As Integer
-    dwFlags As Long
-    time As Long
-    dwExtraInfo As Long
-    dummy1 As Long
-    dummy2 As Long
-End Type
+    Private Type KEYBDINPUT
+        wVk As Integer
+        wScan As Integer
+        dwFlags As Long
+        time As Long
+        dwExtraInfo As Long
+        dummy1 As Long
+        dummy2 As Long
+    End Type
 
 #End If
 
@@ -70,11 +80,28 @@ Private Type INPUT_TYPE
     ki As KEYBDINPUT
 End Type
 
-Private Const INPUT_KEYBOARD As Integer = 1
-Private Const VK_TAB As Integer = 9
-Private Const VK_ENTER As Integer = 13
-Private Const KEYEVENTF_KEYDOWN As Integer = 0
-Private Const KEYEVENTF_KEYUP As Integer = 2
+Public Const INPUT_KEYBOARD As Integer = 1
+Public Const VK_TAB As Integer = 9
+Public Const VK_ENTER As Integer = 13
+Public Const KEYEVENTF_KEYDOWN As Integer = 0
+Public Const KEYEVENTF_KEYUP As Integer = 2
+
+Public Type rect
+    Left As Long
+    Top As Long
+    Right As Long
+    Bottom As Long
+End Type
+
+Public Const GWL_EXSTYLE = (-20)
+Public Const GWL_STYLE = (-16)
+
+Public Const WS_EX_TOOLWINDOW = &H80
+Public Const WS_EX_LAYERED = &H80000
+Public Const WS_CAPTION = &HC00000
+Public Const WS_EX_DLGMODALFRAME = &H1&
+Public Const WS_SYSMENU = &H80000      '最大化／最小化／消去ボタンなど全て
+Public Const LWA_ALPHA = 2
 
 '------------------------------------------------------------------------------------------------------------------------
 ' 十字カーソルクリック時の処理

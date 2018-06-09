@@ -596,14 +596,14 @@ End Sub
 Private Sub checkSheet1(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
-    Dim RE As Object
+    Dim re As Object
     Dim WS As Worksheet
     
     Set WB = ActiveWorkbook
-    Set RE = CreateObject("VBScript.RegExp")
+    Set re = CreateObject("VBScript.RegExp")
     
     For Each WS In WB.Sheets
-        With RE
+        With re
             
             .Pattern = "^Sheet[0-9]+$"
             .IgnoreCase = False
@@ -616,7 +616,7 @@ Private Sub checkSheet1(ByVal strCheckNm As String, ByVal strCheck As String)
         End With
     Next
     
-    Set RE = Nothing
+    Set re = Nothing
     
 End Sub
 Private Sub checkSheetNoUse(ByVal strCheckNm As String, ByVal strCheck As String)

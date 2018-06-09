@@ -56,6 +56,8 @@ Public pblnA1SaveCheck As Boolean
 
 
 Public mLineEnable As Boolean
+Public mstrCrossBook As String
+
 Public mScrollEnable As Boolean
 Public mScreenEnable As Boolean
 
@@ -744,8 +746,18 @@ End Sub
 '--------------------------------------------------------------------
 Sub linePressed(control As IRibbonControl, ByRef returnValue)
     
-    returnValue = mLineEnable
-    
+'    returnValue = False
+'
+'    If Val(Application.Version) > C_EXCEL_VERSION_2010 Then
+'        If Not ActiveWorkbook Is Nothing Then
+'            If mstrCrossBook = ActiveWorkbook.Name Then
+'                returnValue = mLineEnable
+'            End If
+'        End If
+'    Else
+        returnValue = mLineEnable
+'    End If
+
 End Sub
 
 '--------------------------------------------------------------------
@@ -753,11 +765,11 @@ End Sub
 '--------------------------------------------------------------------
 Sub lineOnAction(control As IRibbonControl, pressed As Boolean)
 
-    If ActiveSheet.ProtectContents Then
-        MsgBox "保護されているシートでは十字カーソルは実行できません。", vbOKOnly + vbExclamation, C_TITLE
-        pressed = False
-        Exit Sub
-    End If
+'    If ActiveSheet.ProtectContents Then
+'        MsgBox "保護されているシートでは十字カーソルは実行できません。", vbOKOnly + vbExclamation, C_TITLE
+'        pressed = False
+'        Exit Sub
+'    End If
   
     On Error GoTo e
     
