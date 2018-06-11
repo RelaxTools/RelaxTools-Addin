@@ -272,14 +272,14 @@ Private Sub changeValue()
 '        txtEdit.Locked = True
 '        cmdFormatSql.enabled = False
         cmdReload.enabled = False
-        cmdOK.enabled = False
+        cmdOk.enabled = False
     Else
         txtEdit.BackColor = vbWhite
         txtEdit.Text = txtFormura.Text
 '        txtEdit.Locked = False
 '        cmdFormatSql.enabled = True
         cmdReload.enabled = True
-        cmdOK.enabled = True
+        cmdOk.enabled = True
     End If
     
 '    txtEdit.SetFocus

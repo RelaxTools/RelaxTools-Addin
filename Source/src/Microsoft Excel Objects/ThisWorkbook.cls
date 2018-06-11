@@ -641,6 +641,10 @@ Private Sub XL_WorkbookBeforeSave(ByVal WB As Workbook, ByVal SaveAsUI As Boolea
     Dim blnDisplayAlerts As Boolean
     Dim strName As String
     
+    If WB.IsAddin Then
+        Exit Sub
+    End If
+    
     blnDisplayAlerts = Application.DisplayAlerts
     Application.DisplayAlerts = False
     
@@ -688,6 +692,10 @@ Private Sub XL_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
 '    Dim DateCreated As Date
 '    Dim FT As FileTime
     Dim blnDisplayAlerts As Boolean
+    
+    If WB.IsAddin Then
+        Exit Sub
+    End If
     
     blnDisplayAlerts = Application.DisplayAlerts
     Application.DisplayAlerts = False
