@@ -4,7 +4,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmScreenSetting
    ClientHeight    =   2700
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   8400
+   ClientWidth     =   8400.001
    OleObjectBlob   =   "frmScreenSetting.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

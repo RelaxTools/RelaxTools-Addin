@@ -751,8 +751,10 @@ Sub divideWorkBook()
     Dim motoWB As Workbook
     Dim WB As Workbook
     Dim WSH As Object
+    Dim FSO As Object
     
     On Error GoTo ErrHandle
+    Set FSO = CreateObject("Scripting.FileSystemObject")
     
     If ActiveWorkbook Is Nothing Then
         MsgBox "アクティブなブックが見つかりません。", vbCritical, C_TITLE
@@ -787,7 +789,7 @@ Sub divideWorkBook()
             
             '新規作成したワークブックを保存する。フォーマットは親と同じ
             Application.DisplayAlerts = False
-            WB.SaveAs filename:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name, FileFormat:=motoWB.FileFormat, local:=True
+            WB.SaveAs filename:=rlxAddFileSeparator(strWorkPath) & rlxGetFullpathFromExt(motoWB.Name) & "_" & WS.Name & "." & FSO.GetExtensionName(motoWB.Name), FileFormat:=motoWB.FileFormat, local:=True
             Application.DisplayAlerts = True
             WB.Close
     
@@ -804,6 +806,7 @@ Sub divideWorkBook()
     WSH.Run ("""" & rlxGetFullpathFromPathName(rlxDriveToUNC(motoWB.FullName)) & """")
     
     Set WSH = Nothing
+    Set FSO = Nothing
     
     Exit Sub
 ErrHandle:
