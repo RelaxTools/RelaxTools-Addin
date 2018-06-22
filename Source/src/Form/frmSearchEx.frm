@@ -510,73 +510,60 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
     Dim strPattern As String
     Dim objFind As Range
     Dim strFirstAddress As String
+    Dim r As Range
+    Dim objRegx As Object
+    Dim schStr As Variant
     
     strPattern = txtSearch.Text
         
     '正規表現の場合
     If chkRegEx Then
     
-        Dim objRegx As Object
         Set objRegx = CreateObject("VBScript.RegExp")
         
         objRegx.Pattern = strPattern
         objRegx.IgnoreCase = Not (chkCase.Value)
         objRegx.Global = True
         
-        If cboValue.Value = C_SEARCH_VALUE_VALUE Then
-            Set objFind = objSheet.UsedRange.Find("*", , xlValues, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
-        Else
-            Set objFind = objSheet.UsedRange.Find("*", , xlFormulas, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
+        Set r = SpecialCellsEx(objSheet.UsedRange)
+        If r Is Nothing Then
+            Exit Sub
         End If
-        
-        If Not objFind Is Nothing Then
-        
-            strFirstAddress = objFind.Address
     
-            Do
+        For Each objFind In r
     
-                Dim schStr As Variant
-                
-                If cboValue.Value = C_SEARCH_VALUE_VALUE Then
-                    schStr = objFind.Value
+            If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+                schStr = objFind.Value
+            Else
+                If objFind.HasFormula Then
+                    schStr = objFind.FormulaLocal
                 Else
-                    If objFind.HasFormula Then
-                        schStr = objFind.FormulaLocal
-                    Else
-                        schStr = objFind.Value
-                    End If
+                    schStr = objFind.Value
                 End If
+            End If
                 
-                Dim objMatch As Object
-                Set objMatch = objRegx.Execute(schStr)
-    
-                If objMatch.count > 0 Then
+            '式エラーの場合パス
+            If IsError(schStr) Then
+                GoTo pass
+            End If
                 
-                    lstResult.AddItem ""
-                    lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
-                    
-                    lstResult.List(mlngCount, C_SEARCH_STR) = Left(schStr, C_SIZE)
-                    
-                    lstResult.List(mlngCount, C_SEARCH_ADDRESS) = objFind.Address
-                    lstResult.List(mlngCount, C_SEARCH_ID) = objFind.Address
-                    lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
-                    lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.Name
-    
-                    mlngCount = mlngCount + 1
-                End If
+            If objRegx.Test(schStr) Then
+            
+                lstResult.AddItem ""
+                lstResult.List(mlngCount, C_SEARCH_NO) = mlngCount + 1
                 
-                Set objMatch = Nothing
-                Set objFind = objSheet.UsedRange.FindNext(objFind)
+                lstResult.List(mlngCount, C_SEARCH_STR) = Left(schStr, C_SIZE)
                 
-                DoEvents
-                
-                If objFind Is Nothing Then
-                    Exit Do
-                End If
-                
-            Loop Until strFirstAddress = objFind.Address
-            Set objRegx = Nothing
-        End If
+                lstResult.List(mlngCount, C_SEARCH_ADDRESS) = objFind.Address
+                lstResult.List(mlngCount, C_SEARCH_ID) = objFind.Address
+                lstResult.List(mlngCount, C_SEARCH_SHEET) = objSheet.Name
+                lstResult.List(mlngCount, C_SEARCH_BOOK) = objSheet.Parent.Name
+
+                mlngCount = mlngCount + 1
+            End If
+pass:
+        Next
+        Set objRegx = Nothing
     Else
         
         If cboValue.Value = C_SEARCH_VALUE_VALUE Then
@@ -618,7 +605,7 @@ Private Sub seachCell(ByRef objSheet As Worksheet)
                     Exit Do
                 End If
                 
-                DoEvents
+'                DoEvents
                 
             Loop Until strFirstAddress = objFind.Address
             

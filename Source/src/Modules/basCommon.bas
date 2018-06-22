@@ -2961,3 +2961,31 @@ Public Function getObjectLink() As String
     getObjectLink = MyString
 
 End Function
+Function SpecialCellsEx(v As Range) As Range
+
+    Dim r As Range
+    Dim c As Range
+    Dim f As Range
+
+    On Error Resume Next
+
+    Set c = v.SpecialCells(xlCellTypeConstants)
+    Set f = v.SpecialCells(xlCellTypeFormulas)
+
+    Set r = Nothing
+
+    If Not c Is Nothing Then
+        Set r = c
+    End If
+
+    If Not f Is Nothing Then
+        If r Is Nothing Then
+            Set r = f
+        Else
+            Set r = v.Application.Union(r, f)
+        End If
+    End If
+
+    Set SpecialCellsEx = r
+
+End Function

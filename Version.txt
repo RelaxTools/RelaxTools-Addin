@@ -1,4 +1,9 @@
-﻿2018/06/12(wed) RelaxTools-Addin Version 4.19.1(RustRemover) 
+﻿2018/06/22(fri) RelaxTools-Addin Version 4.19.2(RustRemover) 
+◇バグ修正
+・セル・シェイプの正規表現検索／置換で正規表現検索をしたシートに式エラーがある場合、検索が中断していた不具合を修正。
+　正規表現の検索方法をFIND系からSecialCells系に変更。
+
+2018/06/12(wed) RelaxTools-Addin Version 4.19.1(RustRemover) 
 ◇バグ修正
 ・TimeLeap有効時にアドインの保存が行われない不具合を修正。
 ・シート毎にブックを分割で拡張子以外にドットがある場合、拡張子が付かない不具合を修正。
