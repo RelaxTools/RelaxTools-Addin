@@ -2900,9 +2900,28 @@ xp:
 End Function
 'マルチプロセス実行用
 Public Sub MultiProsess(ByVal strMacro As String)
-    With CreateObject("WScript.Shell")
-        .Run (.SpecialFolders("AppData") & "\" & C_TITLE & "\" & "RunMacro.vbs """ & strMacro & """")
+
+
+'    With CreateObject("WScript.Shell")
+'        .Run (.SpecialFolders("AppData") & "\" & C_TITLE & "\" & "RunMacro.vbs """ & strMacro & """")
+'    End With
+
+'    Dim strAddin As String
+'
+'    strAddin = CreateObject("WScript.Shell").SpecialFolders("Appdata") & "\Microsoft\Addins\Relaxtools.xlam"
+    
+    Err.Clear
+    
+    On Error Resume Next
+    With CreateObject("Excel.Application")
+        .Workbooks.Open ThisWorkbook.FullName
+        .Run strMacro
     End With
+    If Err.Number <> 0 Then
+        MsgBox "Grep検索(Multi Process版)の起動に失敗しました。", vbCritical + vbOKOnly, C_TITLE
+    End If
+    
+    
 End Sub
 '**
 ' コピーアドレスの取得

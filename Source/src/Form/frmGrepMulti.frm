@@ -581,6 +581,10 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                     schStr = objFind.FormulaLocal
                 End If
                 
+                If IsError(schStr) Then
+                    GoTo pass
+                End If
+                
                 Dim objMatch As Object
                 Set objMatch = objRegx.Execute(schStr)
     
@@ -601,8 +605,8 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                     ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = schStr
                     mlngCount = mlngCount + 1
                 End If
-                
                 Set objMatch = Nothing
+pass:
                 Set objFind = objSheet.UsedRange.FindNext(objFind)
                 
                 If objFind Is Nothing Then
