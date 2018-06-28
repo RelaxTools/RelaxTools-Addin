@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmGrepMulti 
    Caption         =   "ExcelファイルのGrep(マルチプロセス版)"
-   ClientHeight    =   4860
+   ClientHeight    =   6120
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   8115
@@ -75,6 +75,13 @@ Private mMm As MacroManager
 
 Private mtray As TaskTrayView
 
+Private Sub chkOffset_Change()
+
+    txtRow.enabled = chkOffset.Value
+    txtCol.enabled = chkOffset.Value
+
+End Sub
+
 Private Sub chkRegEx_Change()
 '    chkZenHan.enabled = Not (chkRegEx.Value)
 End Sub
@@ -134,10 +141,6 @@ Private Sub cmdOk_Click()
     Dim strPath As String
     Dim strPatterns() As String
     
-'    Dim a As Variant
-'
-'    a = Timer
-    
     If Len(Trim(cboSearch.Text)) = 0 Then
         MsgBox "検索文字列を指定してください...", vbExclamation, C_TITLE
         cboSearch.SetFocus
@@ -162,8 +165,19 @@ Private Sub cmdOk_Click()
         End If
     End If
     
+    If chkOffset.Value Then
+        If Not IsNum(txtRow.Value) Then
+            MsgBox "行には数値を入れてください。", vbExclamation + vbOKOnly, C_TITLE
+            Exit Sub
+        End If
+        If Not IsNum(txtCol.Value) Then
+            MsgBox "列には数値を入れてください。", vbExclamation + vbOKOnly, C_TITLE
+            Exit Sub
+        End If
+    End If
+    
     strPath = cboFolder.Text
-    strPatterns = Split(txtPattern.Text, ";")
+    strPatterns = Split(cboPattern.Text, ";")
 
     Set colBook = New Collection
     
@@ -196,7 +210,7 @@ Private Sub cmdOk_Click()
     
     ResultWS.Cells(1, C_SEARCH_NO).Value = "ExcelファイルのGrep"
     ResultWS.Cells(2, C_SEARCH_NO).Value = "条件：" & cboSearch.Text
-    ResultWS.Cells(3, C_SEARCH_NO).Value = "ファイル：" & txtPattern.Text
+    ResultWS.Cells(3, C_SEARCH_NO).Value = "ファイル：" & cboPattern.Text
     ResultWS.Cells(4, C_SEARCH_NO).Value = "フォルダ：" & cboFolder.Text
     ResultWS.Cells(5, C_SEARCH_NO).Value = "検索オブジェクト：" & cboObj.Text
     ResultWS.Cells(6, C_SEARCH_NO).Value = "検索対象：" & cboValue.Text
@@ -209,7 +223,6 @@ Private Sub cmdOk_Click()
     ResultWS.Cells(10, C_SEARCH_SHEET).Value = "シート名"
     ResultWS.Cells(10, C_SEARCH_ADDRESS).Value = "セル/シェイプ"
     ResultWS.Cells(10, C_SEARCH_STR).Value = "検索文字列"
-'    ResultWS.Cells(9, C_SEARCH_ID).Value = "ID"
     mlngCount = C_START_ROW
 
     cmdCancel.Caption = "キャンセル"
@@ -221,11 +234,6 @@ Private Sub cmdOk_Click()
     lngBookCount = 0
     lngBookMax = colBook.count
     mMm.StartGauge lngBookMax
-    
-    
-    Set mtray = New TaskTrayView
-    Call mtray.AddIcon(Application.hwnd, "Grepマルチプロセス版")  'システムトレイにアイコンを登録
-    Call mtray.ShowBalloon("Grep開始")
     
     XL.DisplayAlerts = False
     XL.EnableEvents = False
@@ -245,18 +253,14 @@ Private Sub cmdOk_Click()
             Exit For
         End If
     
-'        If Len(txtPassword.Text) <> 0 Then
-            For Each pass In varPassword
-                Err.Clear
-                Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, UpdateLinks:=0, IgnoreReadOnlyRecommended:=True, notify:=False, Password:=pass, local:=True)
-                If Err.Number = 0 Then
-                    Exit For
-                End If
-            Next
-'        Else
-'            err.Clear
-'            Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, IgnoreReadOnlyRecommended:=True, Notify:=False, Password:="", Local:=True)
-'        End If
+        For Each pass In varPassword
+            Err.Clear
+            Set WB = XL.Workbooks.Open(filename:=varBook, ReadOnly:=True, UpdateLinks:=0, IgnoreReadOnlyRecommended:=True, notify:=False, Password:=pass, local:=True)
+            If Err.Number = 0 Then
+                Exit For
+            End If
+        Next
+        
         If Err.Number = 0 Then
             For Each WS In WB.Worksheets
                 If WS.visible = xlSheetVisible Then
@@ -271,6 +275,11 @@ Private Sub cmdOk_Click()
                             Call seachCell(WS, ResultWS)
                             Call searchShape(WS, ResultWS)
                     End Select
+                    
+                    '１シート目のみ検索
+                    If chkFirstSheet.Value Then
+                        Exit For
+                    End If
                 End If
                 Set WS = Nothing
             Next
@@ -297,13 +306,6 @@ Private Sub cmdOk_Click()
     XL.Quit
     Set XL = Nothing
     
-    
-'    ResultWS.Columns("B:E").AutoFit
-'    ResultWS.Columns("B:B").ColumnWidth = 70
-'    ResultWS.Columns("C:C").ColumnWidth = 20
-'    ResultWS.Columns("D:D").ColumnWidth = 20
-'    ResultWS.Columns("E:E").ColumnWidth = 120
-'    ResultWS.Columns("F:F").ColumnWidth = 0
     Dim r As Range
     Set r = ResultWS.Cells(C_START_ROW, 1).CurrentRegion
     
@@ -313,6 +315,20 @@ Private Sub cmdOk_Click()
     Dim strBuf As String
     Dim i As Long
     Dim lngCount As Long
+    
+    strBuf = cboPattern.Text
+    lngCount = 1
+    For i = 0 To cboPattern.ListCount - 1
+        If cboPattern.List(i) <> cboPattern.Text Then
+            strBuf = strBuf & vbTab & cboPattern.List(i)
+            lngCount = lngCount + 1
+            'リストは最大１０
+            If lngCount >= 10 Then
+                Exit For
+            End If
+        End If
+    Next
+    SaveSetting C_TITLE, "ExcelGrep", "PatternStr", strBuf
     
     strBuf = cboSearch.Text
     lngCount = 1
@@ -349,14 +365,15 @@ Private Sub cmdOk_Click()
     SaveSetting C_TITLE, "ExcelGrep", "cboValue", cboValue.ListIndex
     SaveSetting C_TITLE, "ExcelGrep", "chkZenHan", chkZenHan.Value
     SaveSetting C_TITLE, "ExcelGrep", "Password", txtPassword.Text
+    SaveSetting C_TITLE, "ExcelGrep", "chkFirstSheet", chkFirstSheet.Value
+    
+    
+    SaveSetting C_TITLE, "ExcelGrep", "chkOffset", chkOffset.Value
+    
+    SaveSetting C_TITLE, "ExcelGrep", "txtRow", txtRow.Value
+    SaveSetting C_TITLE, "ExcelGrep", "txtCol", txtCol.Value
     
     Set mMm = Nothing
-    
-    Call mtray.ShowBalloon("Grep終了しました")
-    mtray.DeleteIcon
-    Set mtray = Nothing
-    
-'    MsgBox Timer - a
     
     Unload Me
     
@@ -367,12 +384,41 @@ Private Sub cmdOk_Click()
 
     Set ResultWS = Nothing
     
-    
     If mlngCount - C_START_ROW = 0 Then
         MsgBox "検索対象が見つかりませんでした。", vbInformation + vbOKOnly, C_TITLE
     End If
     
 End Sub
+'--------------------------------------------------------------
+'　数字チェック
+'--------------------------------------------------------------
+Function IsNum(ByVal strNo As String) As Boolean
+
+    Dim lngLen As Long
+    Dim i As Long
+    
+    IsNum = True
+    
+    lngLen = Len(strNo)
+    
+    For i = 1 To lngLen
+    
+        Select Case Mid(strNo, i, 1)
+            Case "0" To "9", "-"
+            Case Else
+                IsNum = False
+                Exit Function
+        End Select
+    Next
+    
+    Select Case Val(strNo)
+        Case -1000 To 1000
+        Case Else
+            IsNum = False
+            Exit Function
+    End Select
+
+End Function
 Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As String, objCol As Collection)
 
     Dim objfld As Object
@@ -548,6 +594,15 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
     Dim strPattern As String
     Dim objFind As Range
     Dim strFirstAddress As String
+    Dim r As Range
+    
+    Dim lngRow As Long
+    Dim lngCol As Long
+    
+'    On Error GoTo 0
+    
+    lngRow = Val(txtRow.Value)
+    lngCol = Val(txtCol.Value)
     
     strPattern = cboSearch.Text
         
@@ -592,17 +647,33 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                     ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                     ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
                     ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
-                    ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = objFind.Address
-    '                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = c.Address
-            
+                    
+                    
+                    If chkOffset.Value Then
+                        Set r = GetOffset(objFind, lngRow, lngCol)
+                        
+                        If cboValue.Value = C_SEARCH_VALUE_VALUE Then
+                            schStr = r.Value
+                        Else
+                            schStr = r.FormulaLocal
+                        End If
+                        
+                    Else
+                        Set r = objFind
+                        
+                    End If
+                    
+                    ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = r.Address
+        
                     ResultWS.Hyperlinks.Add _
                         Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                         Address:="", _
                         SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
-                        TextToDisplay:=objFind.Address
-            
+                        TextToDisplay:=r.Address
+        
                     ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                     ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = schStr
+                    
                     mlngCount = mlngCount + 1
                 End If
                 Set objMatch = Nothing
@@ -632,24 +703,29 @@ pass:
     
             Do
             
+                If chkOffset.Value Then
+                    Set r = GetOffset(objFind, lngRow, lngCol)
+                Else
+                    Set r = objFind
+                End If
+            
                 ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                 ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
-                ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = objFind.Address
-'                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = objFind.Address
+                ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = r.Address
                 ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
                 
                 ResultWS.Hyperlinks.Add _
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
                     SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
-                    TextToDisplay:=objFind.Address
+                    TextToDisplay:=r.Address
         
                 ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                 
                 If cboValue.Value = C_SEARCH_VALUE_VALUE Then
-                    ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = objFind.Value
+                    ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = r.Value
                 Else
-                    ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = objFind.FormulaLocal
+                    ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = r.FormulaLocal
                 End If
 
                 mlngCount = mlngCount + 1
@@ -666,6 +742,16 @@ pass:
     End If
     
 End Sub
+Function GetOffset(r As Range, ByVal lngRow As Long, ByVal lngCol As Long) As Range
+
+    On Error Resume Next
+    
+    Set GetOffset = r
+
+    Set GetOffset = r.Offset(lngRow, lngCol)
+
+
+End Function
 Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
 
     Dim matchCount As Long
@@ -872,14 +958,26 @@ Private Sub UserForm_Initialize()
     chkSubFolder.Value = GetSetting(C_TITLE, "ExcelGrep", "chkSubFolder", False)
     
     chkRegEx.Value = GetSetting(C_TITLE, "ExcelGrep", "chkRegEx", False)
-'    chkRegEx_Change
     chkCase.Value = GetSetting(C_TITLE, "ExcelGrep", "chkCase", False)
     chkZenHan.Value = GetSetting(C_TITLE, "ExcelGrep", "chkZenHan", False)
     
-'    chkCase.Value = False
-'    chkCase.enabled = False
+    chkFirstSheet.Value = GetSetting(C_TITLE, "ExcelGrep", "chkFirstSheet", False)
+    chkOffset.Value = GetSetting(C_TITLE, "ExcelGrep", "chkOffset", False)
     
-    txtPattern.Text = "*.xlsx;*.xlsm;*.xls"
+    txtRow.enabled = chkOffset.Value
+    txtCol.enabled = chkOffset.Value
+    
+    txtRow.Value = GetSetting(C_TITLE, "ExcelGrep", "txtRow", 0)
+    txtCol.Value = GetSetting(C_TITLE, "ExcelGrep", "txtCol", 0)
+    
+    strBuf = GetSetting(C_TITLE, "ExcelGrep", "PatternStr", "*.xlsx;*.xlsm;*.xls")
+    strSearch = Split(strBuf, vbTab)
+    For i = LBound(strSearch) To UBound(strSearch)
+        cboPattern.AddItem strSearch(i)
+    Next
+    If cboPattern.ListCount > 0 Then
+        cboPattern.ListIndex = 0
+    End If
     
     
     strBuf = GetSetting(C_TITLE, "ExcelGrep", "SearchStr", "")
@@ -914,3 +1012,16 @@ Private Sub UserForm_Initialize()
     
 End Sub
 
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+
+    'コントロールボックスからClose
+    If CloseMode = vbFormControlMenu Then
+        If cmdCancel.Caption = "閉じる" Then
+            Unload Me
+            Application.Quit
+        Else
+            mblnCancel = True
+        End If
+    End If
+    
+End Sub
