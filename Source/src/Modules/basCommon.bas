@@ -2901,6 +2901,7 @@ End Function
 'マルチプロセス実行用
 Public Sub MultiProsess(ByVal strMacro As String)
 
+    frmMulti.Show
 
 '    With CreateObject("WScript.Shell")
 '        .Run (.SpecialFolders("AppData") & "\" & C_TITLE & "\" & "RunMacro.vbs """ & strMacro & """")
@@ -2917,6 +2918,10 @@ Public Sub MultiProsess(ByVal strMacro As String)
         .Workbooks.Open ThisWorkbook.FullName
         .Run strMacro
     End With
+    
+    
+    Unload frmMulti
+    
     If Err.Number <> 0 Then
         MsgBox "Grep検索(Multi Process版)の起動に失敗しました。", vbCritical + vbOKOnly, C_TITLE
     End If

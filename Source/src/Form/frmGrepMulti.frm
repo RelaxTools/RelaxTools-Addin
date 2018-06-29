@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmGrepMulti 
    Caption         =   "ExcelファイルのGrep(マルチプロセス版)"
-   ClientHeight    =   6120
+   ClientHeight    =   5775
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   8115
@@ -96,7 +96,9 @@ End Sub
 Private Sub cmdCancel_Click()
     If cmdCancel.Caption = "閉じる" Then
         Unload Me
-        Application.Quit
+        If ThisWorkbook.IsAddin Then
+            Application.Quit
+        End If
     Else
         mblnCancel = True
     End If
@@ -141,6 +143,9 @@ Private Sub cmdOk_Click()
     Dim strPath As String
     Dim strPatterns() As String
     
+    Dim o As Object
+    Set o = CreateObject("VBScript.RegExp")
+    
     If Len(Trim(cboSearch.Text)) = 0 Then
         MsgBox "検索文字列を指定してください...", vbExclamation, C_TITLE
         cboSearch.SetFocus
@@ -150,13 +155,11 @@ Private Sub cmdOk_Click()
     
     '正規表現の場合
     If chkRegEx.Value Then
-        Dim o As Object
-        Set o = CreateObject("VBScript.RegExp")
+        Err.Clear
+        On Error Resume Next
         o.Pattern = cboSearch.Text
         o.IgnoreCase = Not (chkCase.Value)
         o.Global = True
-        Err.Clear
-        On Error Resume Next
         o.Execute ""
         If Err.Number <> 0 Then
             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
@@ -166,14 +169,44 @@ Private Sub cmdOk_Click()
     End If
     
     If chkOffset.Value Then
-        If Not IsNum(txtRow.Value) Then
+        
+        o.Pattern = "([0-9]+|\-[0-9]+)"
+        o.IgnoreCase = False
+        o.Global = True
+        
+        If Not o.Test(txtRow.Value) Then
             MsgBox "行には数値を入れてください。", vbExclamation + vbOKOnly, C_TITLE
+            txtRow.SetFocus
             Exit Sub
         End If
-        If Not IsNum(txtCol.Value) Then
+        If Not o.Test(txtCol.Value) Then
             MsgBox "列には数値を入れてください。", vbExclamation + vbOKOnly, C_TITLE
+            txtCol.SetFocus
             Exit Sub
         End If
+        
+        Dim lngRow As Long
+        Dim lngCol As Long
+        
+        lngRow = Val(txtRow.Value)
+        lngCol = Val(txtCol.Value)
+        
+        Select Case lngRow
+            Case -100 To 100
+            Case Else
+                MsgBox "行には-100～100を入れてください。", vbExclamation + vbOKOnly, C_TITLE
+                txtRow.SetFocus
+                Exit Sub
+        End Select
+        Select Case lngCol
+            Case -100 To 100
+            Case Else
+                MsgBox "列には-100～100を入れてください。", vbExclamation + vbOKOnly, C_TITLE
+                txtCol.SetFocus
+                Exit Sub
+        End Select
+        
+        
     End If
     
     strPath = cboFolder.Text
@@ -389,36 +422,6 @@ Private Sub cmdOk_Click()
     End If
     
 End Sub
-'--------------------------------------------------------------
-'　数字チェック
-'--------------------------------------------------------------
-Function IsNum(ByVal strNo As String) As Boolean
-
-    Dim lngLen As Long
-    Dim i As Long
-    
-    IsNum = True
-    
-    lngLen = Len(strNo)
-    
-    For i = 1 To lngLen
-    
-        Select Case Mid(strNo, i, 1)
-            Case "0" To "9", "-"
-            Case Else
-                IsNum = False
-                Exit Function
-        End Select
-    Next
-    
-    Select Case Val(strNo)
-        Case -1000 To 1000
-        Case Else
-            IsNum = False
-            Exit Function
-    End Select
-
-End Function
 Private Sub FileSearch(objFs As Object, strPath As String, strPatterns() As String, objCol As Collection)
 
     Dim objfld As Object
@@ -650,7 +653,12 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                     
                     
                     If chkOffset.Value Then
+                    
                         Set r = GetOffset(objFind, lngRow, lngCol)
+                        
+                        If r Is Nothing Then
+                            GoTo pass
+                        End If
                         
                         If cboValue.Value = C_SEARCH_VALUE_VALUE Then
                             schStr = r.Value
@@ -705,6 +713,9 @@ pass:
             
                 If chkOffset.Value Then
                     Set r = GetOffset(objFind, lngRow, lngCol)
+                    If r Is Nothing Then
+                        GoTo pass
+                    End If
                 Else
                     Set r = objFind
                 End If
@@ -743,13 +754,13 @@ pass:
     
 End Sub
 Function GetOffset(r As Range, ByVal lngRow As Long, ByVal lngCol As Long) As Range
-
-    On Error Resume Next
     
-    Set GetOffset = r
+    Set GetOffset = Nothing
 
+    On Error GoTo e
+    
     Set GetOffset = r.Offset(lngRow, lngCol)
-
+e:
 
 End Function
 Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
@@ -970,10 +981,16 @@ Private Sub UserForm_Initialize()
     txtRow.Value = GetSetting(C_TITLE, "ExcelGrep", "txtRow", 0)
     txtCol.Value = GetSetting(C_TITLE, "ExcelGrep", "txtCol", 0)
     
-    strBuf = GetSetting(C_TITLE, "ExcelGrep", "PatternStr", "*.xlsx;*.xlsm;*.xls")
+    Dim strdef As String
+    strdef = "*.xlsx;*.xlsm;*.xls"
+    
+    cboPattern.AddItem strdef
+    strBuf = GetSetting(C_TITLE, "ExcelGrep", "PatternStr", strdef)
     strSearch = Split(strBuf, vbTab)
     For i = LBound(strSearch) To UBound(strSearch)
-        cboPattern.AddItem strSearch(i)
+        If strSearch(i) <> strdef Then
+            cboPattern.AddItem strSearch(i)
+        End If
     Next
     If cboPattern.ListCount > 0 Then
         cboPattern.ListIndex = 0
@@ -1018,7 +1035,9 @@ Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
     If CloseMode = vbFormControlMenu Then
         If cmdCancel.Caption = "閉じる" Then
             Unload Me
-            Application.Quit
+            If ThisWorkbook.IsAddin Then
+                Application.Quit
+            End If
         Else
             mblnCancel = True
         End If

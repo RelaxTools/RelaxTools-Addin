@@ -131,9 +131,8 @@
                 <button id="replaceEx"   image="searchShape" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <menuSeparator id="searchSep02" title="指定フォルダ以下のExcelファイルをGrepする"/>
                 <button id="excelGrep"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-<!--
+                <menuSeparator id="searchSep03" />
                 <button id="excelGrepMulti"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
--->
               </menu>
             </splitButton>
             <splitButton id="printSplit" getEnabled="getRibbonEnabled">
@@ -1168,8 +1167,10 @@
       </tab>
     </tabs>
   </ribbon>
-  
+<!--  
   <backstage onHide="OnHide">
+-->
+  <backstage>
     <tab id="tabRelaxtools" label="RelaxTools Addin について" title="RelaxTools Addin について" visible="true">
       <firstColumn>
         <group id="grpRelaxtools1" label="バージョン情報" visible="true">
