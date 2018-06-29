@@ -97,8 +97,70 @@ Sub sameShapeSize()
             dblWidth = s.width
             dblHeight = s.Height
         Else
+            
+            Dim a As Double
+            Dim b As Double
+            
+            a = s.Top + (s.Height / 2)
+            b = s.Left + (s.width / 2)
+            
+            s.Top = a - (dblHeight / 2)
+            s.Left = b - (dblWidth / 2)
+        
             s.width = dblWidth
             s.Height = dblHeight
+        
+        End If
+    
+    Next
+e:
+
+End Sub
+
+'選択したシェイプのサイズを合わせる
+'最初に選択したシェイプの上に合わせる
+Sub sameShapeTop()
+
+    Dim s As Shape
+    Dim blnFirst As Boolean
+    Dim dblTop As Double
+    
+    On Error GoTo e
+    
+    blnFirst = True
+
+    For Each s In Selection.ShapeRange
+    
+        If blnFirst Then
+            blnFirst = False
+            dblTop = s.Top
+        Else
+            s.Top = dblTop
+        End If
+    
+    Next
+e:
+
+End Sub
+'選択したシェイプのサイズを合わせる
+'最初に選択したシェイプの左に合わせる
+Sub sameShapeLeft()
+
+    Dim s As Shape
+    Dim blnFirst As Boolean
+    Dim dblLeft As Double
+    
+    On Error GoTo e
+    
+    blnFirst = True
+
+    For Each s In Selection.ShapeRange
+    
+        If blnFirst Then
+            blnFirst = False
+            dblLeft = s.Left
+        Else
+            s.Left = dblLeft
         End If
     
     Next
