@@ -580,12 +580,16 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                     ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = objFind.Address
     '                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = c.Address
             
+'                    ResultWS.Hyperlinks.Add _
+'                        Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+'                        Address:="", _
+'                        SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
+'                        TextToDisplay:=objFind.Address
                     ResultWS.Hyperlinks.Add _
                         Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                         Address:="", _
-                        SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
                         TextToDisplay:=objFind.Address
-            
+                        
                     ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                     ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = schStr
                     mlngCount = mlngCount + 1
@@ -624,12 +628,17 @@ pass:
 '                ResultWS.Cells(mlngCount, C_SEARCH_ID).Value = objFind.Address
                 ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
                 
+'                ResultWS.Hyperlinks.Add _
+'                    Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+'                    Address:="", _
+'                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
+'                    TextToDisplay:=objFind.Address
+        
                 ResultWS.Hyperlinks.Add _
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
-                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
                     TextToDisplay:=objFind.Address
-        
+                
                 ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                 
                 If cboValue.Value = C_SEARCH_VALUE_VALUE Then
@@ -726,10 +735,14 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
 '                    Address:="", _
 '                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
 '                    TextToDisplay:=c.Name
+'                ResultWS.Hyperlinks.Add _
+'                    Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+'                    Address:="", _
+'                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
+'                    TextToDisplay:=c.Name & ":" & c.id
                 ResultWS.Hyperlinks.Add _
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
-                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
                     TextToDisplay:=c.Name & ":" & c.id
                     
                         ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
@@ -802,10 +815,14 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
 '                    Address:="", _
 '                    SubAddress:=Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
 '                    TextToDisplay:=c.Name
+'                ResultWS.Hyperlinks.Add _
+'                    Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+'                    Address:="", _
+'                    SubAddress:=Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
+'                    TextToDisplay:=c.Name & ":" & c.id
                 ResultWS.Hyperlinks.Add _
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
-                    SubAddress:=Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
                     TextToDisplay:=c.Name & ":" & c.id
                         
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"

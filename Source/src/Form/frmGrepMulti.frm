@@ -673,10 +673,14 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                     
                     ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = r.Address
         
+'                    ResultWS.Hyperlinks.Add _
+'                        Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+'                        Address:="", _
+'                        SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address(False, False), _
+'                        TextToDisplay:=r.Address(False, False)
                     ResultWS.Hyperlinks.Add _
                         Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                         Address:="", _
-                        SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
                         TextToDisplay:=r.Address
         
                     ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
@@ -725,11 +729,17 @@ pass:
                 ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = r.Address
                 ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
                 
+'                ResultWS.Hyperlinks.Add _
+'                    Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+'                    Address:="", _
+'                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address(False, False), _
+'                    TextToDisplay:=r.Address(False, False)
                 ResultWS.Hyperlinks.Add _
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
-                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
+                    SubAddress:="", _
                     TextToDisplay:=r.Address
+        
         
                 ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                 
@@ -837,10 +847,14 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
 '                    Address:="", _
 '                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
 '                    TextToDisplay:=c.Name
+'                ResultWS.Hyperlinks.Add _
+'                    Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+'                    Address:="", _
+'                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
+'                    TextToDisplay:=c.Name & ":" & c.id
                 ResultWS.Hyperlinks.Add _
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
-                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
                     TextToDisplay:=c.Name & ":" & c.id
                     
                         ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
@@ -913,10 +927,14 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
 '                    Address:="", _
 '                    SubAddress:=Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
 '                    TextToDisplay:=c.Name
+'                ResultWS.Hyperlinks.Add _
+'                    Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+'                    Address:="", _
+'                    SubAddress:=Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
+'                    TextToDisplay:=c.Name & ":" & c.id
                 ResultWS.Hyperlinks.Add _
                     Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
                     Address:="", _
-                    SubAddress:=Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
                     TextToDisplay:=c.Name & ":" & c.id
                         
                         ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
