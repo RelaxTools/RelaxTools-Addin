@@ -6,6 +6,7 @@
 ' VBScript で Excel にアドインを自動でインストール/アンインストールする方法
 ' http://fnya.cocolog-nifty.com/blog/2014/03/vbscript-excel-.html
 ' 修正
+'   1.0.4 マルチプロセス用VBSが不要になったので削除。
 '   1.0.3 マルチプロセス用VBSをコピーするよう修正。
 '   1.0.3 images フォルダをコピーするように修正。
 '   1.0.2 Windows Update にて インターネットより取得したアドインファイルが Excel にて読み込まれない場合に対応。
@@ -53,9 +54,6 @@ END IF
 
 'イメージフォルダをコピー(上書き) 
 objFileSys.CopyFolder  "Source\customUI\images" ,imageFolder , True
-
-'マルチプロセス実行用VBSをコピー(上書き) 
-objFileSys.CopyFile  "RunMacro.vbs" ,imageFolder , True
 
 Set objFileSys = Nothing
 
