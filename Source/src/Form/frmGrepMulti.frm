@@ -1000,16 +1000,24 @@ Private Sub UserForm_Initialize()
     txtCol.Value = GetSetting(C_TITLE, "ExcelGrep", "txtCol", 0)
     
     Dim strdef As String
-    strdef = "*.xlsx;*.xlsm;*.xls"
+    Dim blnFind As Boolean
     
-    cboPattern.AddItem strdef
+    strdef = "*.xlsx;*.xlsm;*.xls"
+    blnFind = False
+    
     strBuf = GetSetting(C_TITLE, "ExcelGrep", "PatternStr", strdef)
     strSearch = Split(strBuf, vbTab)
     For i = LBound(strSearch) To UBound(strSearch)
-        If strSearch(i) <> strdef Then
-            cboPattern.AddItem strSearch(i)
+        If strSearch(i) = strdef Then
+            blnFind = True
         End If
+        cboPattern.AddItem strSearch(i)
     Next
+    
+    If Not blnFind Then
+        cboPattern.AddItem strdef
+    End If
+    
     If cboPattern.ListCount > 0 Then
         cboPattern.ListIndex = 0
     End If

@@ -130,7 +130,7 @@
                 <button id="searchEx.2"   image="searchShape" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <button id="replaceEx"   image="searchShape" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <menuSeparator id="searchSep02" title="指定フォルダ以下のExcelファイルをGrepする"/>
-                <button id="excelGrep"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+<!--                <button id="excelGrep"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />-->
                 <menuSeparator id="searchSep03" />
                 <button id="excelGrepMulti"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               </menu>
@@ -780,6 +780,8 @@
           <button id="smallShape.2"   image="sshape"        label="10%縮小"      getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           <button id="straightLine"   image="lineModify"    label="直線に修正"   getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           <button id="sameShapeSize"  imageMso="ShapesDuplicate" label="サイズ&#xD;&#xA;合わせ" size="large" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+          <button id="sameShapeTop"  imageMso="ObjectsAlignTop" label="上位置&#xD;&#xA;合わせ" size="large" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+          <button id="sameShapeLeft"  imageMso="ObjectsAlignLeft" label="左位置&#xD;&#xA;合わせ" size="large" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
         </group>
         <group id="grpFusen" label="付箋" image="fusen_l">
 

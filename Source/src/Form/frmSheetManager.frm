@@ -72,6 +72,8 @@ Private mSainyu As Boolean
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
 
+
+
 Private Sub cmdPrint_Click()
 
     Dim lngCnt As Long
@@ -622,12 +624,18 @@ End Sub
 Private Sub cmdUp_Click()
      Call moveList(C_UP)
 End Sub
+
+Private Sub cmdDown_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+    Call cmdDown_Click
+End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 選択行を下に移動
 '------------------------------------------------------------------------------------------------------------------------
 Private Sub cmdDown_Click()
      Call moveList(C_DOWN)
 End Sub
+
+
 '------------------------------------------------------------------------------------------------------------------------
 ' 移動処理
 '------------------------------------------------------------------------------------------------------------------------

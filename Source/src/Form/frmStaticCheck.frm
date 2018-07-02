@@ -216,7 +216,7 @@ Private Sub lstResult_Change()
         Next
         If r Is Nothing Then
         Else
-            Application.Goto setCellPos(r(1)), True
+            Application.GoTo setCellPos(r(1)), True
             r.Select
         End If
     Else
@@ -255,7 +255,7 @@ Private Sub lstResult_Change()
                         objShape.Select False
                     Else
                         blnFlg = True
-                        Application.Goto setCellPos(objShape.TopLeftCell), True
+                        Application.GoTo setCellPos(objShape.TopLeftCell), True
                         objShape.Select
                     End If
                     On Error GoTo 0
