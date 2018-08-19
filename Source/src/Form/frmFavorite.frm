@@ -1518,14 +1518,16 @@ Sub execOpenFolder()
     
         If lstFavorite.Selected(lngCnt) Then
     
-            strBook = lstFavorite.List(lngCnt, C_PATH_NAME)
+            strBook = lstFavorite.List(lngCnt, C_ORIGINAL)
             
-            Dim WSH As Object
-            Set WSH = CreateObject("WScript.Shell")
-            
-            WSH.Run ("""" & strBook & """")
-            
-            Set WSH = Nothing
+            SelFileInExplorer strBook
+
+'            Dim WSH As Object
+'            Set WSH = CreateObject("WScript.Shell")
+'
+'            WSH.Run ("""" & strBook & """")
+'
+'            Set WSH = Nothing
 
         End If
      

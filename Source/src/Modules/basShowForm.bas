@@ -399,3 +399,6 @@ End Sub
 Sub showMergeFile()
     frmMergeFile.Show
 End Sub
+Sub showCharacter()
+    frmCharacter.Show
+End Sub

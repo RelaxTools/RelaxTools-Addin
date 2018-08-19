@@ -722,7 +722,7 @@ End Sub
 Sub openDocumentPath()
     
     Dim WSH As Object
-    Dim wExec As Object
+'    Dim wExec As Object
     
     On Error Resume Next
 
@@ -732,12 +732,14 @@ Sub openDocumentPath()
     End If
     
    
-    Set WSH = CreateObject("WScript.Shell")
-    
-    WSH.Run ("""" & rlxGetFullpathFromPathName(rlxDriveToUNC(ActiveWorkbook.FullName)) & """")
-    
-    Set wExec = Nothing
-    Set WSH = Nothing
+'    Set WSH = CreateObject("WScript.Shell")
+'
+'    WSH.Run ("""" & rlxGetFullpathFromPathName(rlxDriveToUNC(ActiveWorkbook.FullName)) & """")
+'
+'    Set wExec = Nothing
+'    Set WSH = Nothing
+
+    SelFileInExplorer rlxDriveToUNC(ActiveWorkbook.FullName)
     
 End Sub
 '--------------------------------------------------------------
@@ -3379,7 +3381,7 @@ Sub RegExport()
 
     Set Locator = CreateObject("WbemScripting.SWbemLocator")
     Set Service = Locator.ConnectServer(vbNullString, "root\default")
-    Set Reg = Service.Get("StdRegProv")
+    Set Reg = Service.get("StdRegProv")
     
     Const HKEY_CURRENT_USER = &H80000001
     
@@ -3445,4 +3447,103 @@ Sub RegExport()
 err_Handle:
     MsgBox "登録ファイルの保存に失敗しました。", vbOKOnly + vbInformation, C_TITLE
     
+End Sub
+Sub btnMoveTableLeft()
+    
+    TableMove 0, -1
+
+End Sub
+Sub btnMoveTableRight()
+
+    TableMove 0, 1
+
+End Sub
+Sub btnMoveTableDown()
+
+    TableMove 1, 0
+
+End Sub
+Sub btnMoveTableUp()
+
+    TableMove -1, 0
+
+End Sub
+
+Private Sub TableMove(ByVal offsetRow As Long, ByVal offsetCol As Long)
+
+    Dim r As Range
+    Dim c As Range
+    Dim strAddress As String
+    
+    On Error Resume Next
+    
+    If Selection.Areas.count > 1 Then
+        Exit Sub
+    End If
+    
+    If offsetRow + Selection(1).Row <= 0 Then
+        Exit Sub
+    End If
+    
+    If offsetCol + Selection(1).Column <= 0 Then
+        Exit Sub
+    End If
+    
+    '削除されるセルに文字があったら移動しない
+    Select Case True
+        'Left
+        Case offsetRow = 0 And offsetCol = -1
+            Set r = Range(Cells(Selection(1).Row, Selection(1).Column - 1), Cells(Selection(Selection.count).Row, Selection(1).Column - 1))
+        'Right
+        Case offsetRow = 0 And offsetCol = 1
+            Set r = Range(Cells(Selection(1).Row, Selection(Selection.count).Column + 1), Cells(Selection(Selection.count).Row, Selection(Selection.count).Column + 1))
+        'Up
+        Case offsetRow = -1 And offsetCol = 0
+            Set r = Range(Cells(Selection(1).Row - 1, Selection(1).Column), Cells(Selection(1).Row - 1, Selection(Selection.count).Column))
+        'Down
+        Case offsetRow = 1 And offsetCol = 0
+            Set r = Range(Cells(Selection(Selection.count).Row + 1, Selection(1).Column), Cells(Selection(Selection.count).Row + 1, Selection(Selection.count).Column))
+        Case Else
+            Exit Sub
+    End Select
+    For Each c In r
+        If c.MergeCells Then
+            Exit Sub
+        End If
+        If c.Value <> "" Then
+            Exit Sub
+        End If
+    Next
+    
+    Application.ScreenUpdating = False
+    
+    With ThisWorkbook.Worksheets("Undo")
+    
+        .Cells.Clear
+    
+        strAddress = Selection.Address
+        
+        Selection.Cut Destination:=.Range(strAddress)
+        
+        SelectionShiftCell offsetRow, offsetCol
+        
+        .Range(strAddress).Cut Destination:=Selection
+    
+    End With
+
+    Application.ScreenUpdating = True
+
+End Sub
+
+'初心者忘備録
+'https://www.ka-net.org/blog/?p=9180
+'指定したファイルをエクスプローラーで開いて選択するVBAマクロ
+'
+Sub SelFileInExplorer(ByVal TargetFilePath As String)
+'指定したファイルをエクスプローラーで開いて選択する
+  With CreateObject("Scripting.FileSystemObject")
+    If .FileExists(TargetFilePath) = True Then
+      shell "EXPLORER.EXE /select,""" & TargetFilePath & """", vbNormalFocus
+    End If
+  End With
 End Sub

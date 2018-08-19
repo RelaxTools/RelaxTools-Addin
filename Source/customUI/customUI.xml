@@ -124,6 +124,7 @@
                 <button id="execSelectionSetClipboardCopy"  image="clipCopy" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
             <splitButton id="searchSplit" getEnabled="getRibbonEnabled">
+            
               <button id="searchEx" label="検索/置換" getSupertip="getSupertip" getDescription="getDescription" image="searchShape" onAction="ribbonOnAction" />
               <menu id="SearchMenu" itemSize="large" >
                 <menuSeparator id="searchSep01" title="現ブックを検索/置換する"/>
@@ -133,6 +134,9 @@
 <!--                <button id="excelGrep"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />-->
                 <menuSeparator id="searchSep03" />
                 <button id="excelGrepMulti"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+                <menuSeparator id="searchSep04" />
+                <button id="showCharacter"  imageMso="ControlLineColorPicker" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+
               </menu>
             </splitButton>
             <splitButton id="printSplit" getEnabled="getRibbonEnabled">
@@ -250,17 +254,19 @@
               </menu>
             </menu>
             
-          <box id="boxEdit" boxStyle="vertical">
-            <splitButton id="cellEditSplit" getEnabled="getRibbonEnabled">
-              <button id="cellEditExt"  image="editor" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              <menu id="cellEditMenu" itemSize="large">
-                <menuSeparator id="cellEditSep01" title="外部エディタ設定" />
-                <button id="cellEditExtSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-              </menu>
-            </splitButton>
-            <button id="cellEdit"  image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-            <button id="execBinaryView"  image="binView"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
-          </box>
+            <separator id="editSep12" />
+
+            <box id="boxEdit" boxStyle="vertical">
+              <splitButton id="cellEditSplit" getEnabled="getRibbonEnabled">
+                <button id="cellEditExt"  image="editor" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+                <menu id="cellEditMenu" itemSize="large">
+                  <menuSeparator id="cellEditSep01" title="外部エディタ設定" />
+                  <button id="cellEditExtSetting" image="gear32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+                </menu>
+              </splitButton>
+              <button id="cellEdit"  image="zoom16"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+              <button id="execBinaryView"  image="binView"  getSupertip="getSupertip" getDescription="getDescription"  onAction="ribbonOnAction" />
+            </box>
             
             
           <separator id="convSep"/>
@@ -580,6 +586,7 @@
             </gallery>
           </box>
         </group>
+        
         <group id="RelaxSelection" label="選択範囲" imageMso="SelectCell">
           <splitButton id="crossSplit" size="large" getEnabled="getRibbonEnabled">
             <toggleButton id="crossLine" image="cross" label="十字&#xD;&#xA;カーソル" getSupertip="getSupertip" getDescription="getDescription" getPressed="linePressed" onAction="lineOnAction"/>
@@ -589,6 +596,7 @@
             </menu>
           </splitButton>
           <separator id="crossSep"/>
+
           <box id="box72" boxStyle="vertical">
             <menu id="select" label="選択" imageMso="SelectCell" itemSize="large" getSupertip="getSupertip" getDescription="getDescription"  getEnabled="getRibbonEnabled" >
               <menuSeparator id="selectSep01" title="選択範囲の保存／復元"/>
@@ -617,15 +625,22 @@
               <menuSeparator id="selectSep08"/>
               <button id="execSelectionRowSelect"          imageMso="SelectCell"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </menu>
+
             <box id="box42" boxStyle="horizontal">
               <button id="ShiftLeft"  image="blueLeft" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="ShiftRight" image="blueRight" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="btnMoveTableLeft"  imageMso="TableColumnsInsertLeft" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="btnMoveTableRight" imageMso="TableColumnsInsertRight" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </box>
             <box id="box43" boxStyle="horizontal">
               <button id="ShiftUp"    image="blueUp" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
               <button id="ShiftDown"  image="blueDown" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="btnMoveTableUp"    imageMso="TableInsertRowsAbove" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+              <button id="btnMoveTableDown"  imageMso="TableInsertRowsBelow" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
             </box>
+
           </box>
+
         </group>
         <group id="RelaxBook" label="ブック/シート" image="splitSheet">
           <button id="execSheetManager"      image="sheet16"   getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" getEnabled="getRibbonEnabled" />
@@ -1011,6 +1026,9 @@
             <menuSeparator id="hoganSep04.2"/>
             <button id="documentSetting.2"              image="gear32"    getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
           </menu>
+
+
+
         </group>
         <group id="lineGroup" label="ツール" image="vLine">
           <button id="verticalLineToggle.2" image="vLine32" size="large" label="縦中線&#xD;&#xA;トグル" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
