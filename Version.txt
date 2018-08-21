@@ -1,4 +1,8 @@
-﻿2018/06/19(sun) RelaxTools-Addin Version 4.21.0(RustRemover) 
+﻿2018/06/21(tue) RelaxTools-Addin Version 4.21.1(RustRemover) 
+◇機能改善
+・段落番号に「（１）」を追加。
+
+2018/06/19(sun) RelaxTools-Addin Version 4.21.0(RustRemover) 
 ◇新規機能
 ・「選択セルの左移動」「選択セルの右移動」「選択セルの上移動」「選択セルの下移動」を追加。
 　結合されたセルも上下左右に移動可能です。ただし移動先に文字や結合セルがあると移動できません。

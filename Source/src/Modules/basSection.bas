@@ -57,6 +57,7 @@ Public Sub createAllSectionObject()
     mColAllSection.Add New SecNum1E
     mColAllSection.Add New SecNum1K
     mColAllSection.Add New SecNum1
+    mColAllSection.Add New SecNum1Zen
     mColAllSection.Add New SecNumA
     mColAllSection.Add New SecNumA2
     mColAllSection.Add New SecNumK
