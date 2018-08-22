@@ -48,7 +48,7 @@ Private Sub cmdRun_Click()
             End If
         
             lngStart = InStr(r.Value, s)
-            If lngStart > 0 Then
+            Do Until lngStart = 0
             
                 With r.Characters(lngStart, Len(s)).Font
                     .Color = lblColor.BackColor
@@ -57,7 +57,8 @@ Private Sub cmdRun_Click()
                     .Underline = cmdUnderline.Value
                 End With
                 
-            End If
+                lngStart = InStr(lngStart + 1, r.Value, s)
+            Loop
         Next
     
     Next
@@ -73,7 +74,6 @@ e:
 '    Unload Me
     
 End Sub
-
 Private Sub lblColor_Click()
 
     Dim lngColor As Long
