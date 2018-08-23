@@ -1,11 +1,12 @@
 ' -------------------------------------------------------------------------------
-' RelaxTools-Addin インストールスクリプト Ver.1.0.4
+' RelaxTools-Addin インストールスクリプト Ver.1.0.5
 ' -------------------------------------------------------------------------------
 ' 参考サイト
 ' ある SE のつぶやき
 ' VBScript で Excel にアドインを自動でインストール/アンインストールする方法
 ' http://fnya.cocolog-nifty.com/blog/2014/03/vbscript-excel-.html
 ' 修正
+'   1.0.5 ブック名を変更して開くVBSをインストールするよう修正。
 '   1.0.4 マルチプロセス用VBSが不要になったので削除。
 '   1.0.3 マルチプロセス用VBSをコピーするよう修正。
 '   1.0.3 images フォルダをコピーするように修正。
@@ -24,6 +25,7 @@ Dim imageFolder
 'アドイン情報を設定 
 addInName = "RelaxTools Addin" 
 addInFileName = "Relaxtools.xlam"
+appFile = "rlxAliasOpen.vbs"
 
 Set objWshShell = CreateObject("WScript.Shell") 
 Set objFileSys = CreateObject("Scripting.FileSystemObject")
@@ -55,6 +57,9 @@ END IF
 'イメージフォルダをコピー(上書き) 
 objFileSys.CopyFolder  "Source\customUI\images" ,imageFolder , True
 
+'ファイルをコピー(上書き) 
+objFileSys.CopyFile  appFile, imageFolder & appFile, True
+
 Set objFileSys = Nothing
 
 'Excel インスタンス化 
@@ -83,11 +88,16 @@ ELSE
     WScript.Quit 
 End IF
 
+If MsgBox("エクスプローラ右クリック(ブック名を変更して開く)を有効にしますか？" & vbCrLf & "実行には管理者権限が必要です。", vbYesNo + vbQuestion, "ブック名を変更して開く") <> vbNo Then 
+    objWshShell.Run "rlxAliasOpen.vbs /install", 1, true
+End IF
+
 If MsgBox("エクスプローラ右クリック(Excelの読み取り専用)を有効にしますか？" & vbCrLf & "実行には管理者権限が必要です。", vbYesNo + vbQuestion, "読み取り専用有効化") = vbNo Then 
     WScript.Quit 
 End IF
 
-objWshShell.Run "ExcelReadOnly.vbs"
+objWshShell.Run "ExcelReadOnly.vbs", 1, true
+
 
 Set objWshShell = Nothing 
 

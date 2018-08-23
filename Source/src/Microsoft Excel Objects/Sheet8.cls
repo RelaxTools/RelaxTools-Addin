@@ -110,7 +110,7 @@ Sub RelaxUninstall()
     If MsgBox("RelaxToolsをアンインストールしますがよろしいですか？", vbYesNo + vbQuestion, C_TITLE) <> vbYes Then
         Exit Sub
     End If
-
+    
     For Each a In Application.AddIns
 
         If UCase(a.Name) = C_File Then
@@ -121,6 +121,11 @@ Sub RelaxUninstall()
 
     Next
     
+    'ブックの名前を変更して開くのレジストリ削除
+    With CreateObject("WScript.Shell")
+        .Run .SpecialFolders("AppData") & "\" & C_TITLE & "\" & "rlxAliasOpen.vbs ""/uninstall""", 1, True
+    End With
+
     With CreateObject("Scripting.FileSystemObject")
     
         strFolder = .BuildPath(CreateObject("Wscript.Shell").SpecialFolders("AppData"), C_TITLE)
@@ -132,6 +137,7 @@ Sub RelaxUninstall()
     End With
 
     DeleteSetting C_TITLE
+    
     MsgBox "正常にアンインストールされました。", vbInformation + vbOKOnly, C_TITLE
     Exit Sub
 e:

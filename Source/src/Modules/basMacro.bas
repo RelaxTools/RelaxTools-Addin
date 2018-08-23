@@ -3547,3 +3547,21 @@ Sub SelFileInExplorer(ByVal TargetFilePath As String)
     End If
   End With
 End Sub
+
+'Sub a()
+'
+'    Dim varExt As Variant
+'    Dim v As Variant
+'
+'    With CreateObject("WScript.Shell")
+''HKEY_CLASSES_ROOT\Excel.SheetMacroEnabled.12
+'
+'        'ブック名を変更して開く
+'        varExt = Array("Excel.Sheet.8", "Excel.Sheet.12", "Excel.SheetMacroEnabled.12")
+'        For Each v In varExt
+'            .RegDelete "HKEY_CLASSES_ROOT\" & v & "\shell\rlxAliasOpen\command\"
+'            .RegDelete "HKEY_CLASSES_ROOT\" & v & "\shell\rlxAliasOpen\"
+'        Next
+'
+'    End With
+'End Sub
