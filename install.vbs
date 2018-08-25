@@ -6,7 +6,7 @@
 ' VBScript で Excel にアドインを自動でインストール/アンインストールする方法
 ' http://fnya.cocolog-nifty.com/blog/2014/03/vbscript-excel-.html
 ' 修正
-'   1.0.5 ブック名を変更して開くVBSをインストールするよう修正。
+'   1.0.5 同名ブックを参照用に開くVBSをインストールするよう修正。
 '   1.0.4 マルチプロセス用VBSが不要になったので削除。
 '   1.0.3 マルチプロセス用VBSをコピーするよう修正。
 '   1.0.3 images フォルダをコピーするように修正。
@@ -88,11 +88,11 @@ ELSE
     WScript.Quit 
 End IF
 
-If MsgBox("エクスプローラ右クリック(ブック名を変更して開く)を有効にしますか？" & vbCrLf & "実行には管理者権限が必要です。", vbYesNo + vbQuestion, "ブック名を変更して開く") <> vbNo Then 
+If MsgBox("エクスプローラ右クリック(同名ブックを参照用に開く)を有効にしますか？" & vbCrLf & "実行には管理者権限が必要です。", vbYesNo + vbQuestion, addInName) <> vbNo Then 
     objWshShell.Run "rlxAliasOpen.vbs /install", 1, true
 End IF
 
-If MsgBox("エクスプローラ右クリック(Excelの読み取り専用)を有効にしますか？" & vbCrLf & "実行には管理者権限が必要です。", vbYesNo + vbQuestion, "読み取り専用有効化") = vbNo Then 
+If MsgBox("エクスプローラ右クリック(Excelの読み取り専用)を有効にしますか？" & vbCrLf & "実行には管理者権限が必要です。", vbYesNo + vbQuestion, addInName) = vbNo Then 
     WScript.Quit 
 End IF
 

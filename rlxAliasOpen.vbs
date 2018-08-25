@@ -1,7 +1,7 @@
 '-------------------------------------------------------------------------------
-' ブック名を変更して開くスクリプト
+' 同名ブックを参照用に開くスクリプト
 ' 
-' ExcelReadOnly.vbs
+' rlxAliasOpen.vbs
 ' 
 ' Copyright (c) 2018 Y.Watanabe
 ' 
@@ -48,14 +48,14 @@ Option Explicit
                     'ブック名を変更して開く
                     varExt = Array("Excel.Sheet.8", "Excel.Sheet.12", "Excel.SheetMacroEnabled.12")
                     For Each k In varExt
-                       .RegWrite "HKCR\" & k & "\shell\rlxAliasOpen\","ブック名を変更して開く(&A)", "REG_SZ"
+                       .RegWrite "HKCR\" & k & "\shell\rlxAliasOpen\","同名ブックを参照用に開く(&B)", "REG_SZ"
                        .RegWrite "HKCR\" & k & "\shell\rlxAliasOpen\command\","""" & CreateObject("Scripting.FileSystemObject").GetSpecialFolder(1) & "\wscript.exe"" """ & .SpecialFolders("AppData") & "\RelaxTools-Addin\rlxAliasOpen.vbs"" ""%1""", "REG_SZ"
                     Next            
                 End With
                 If Err.Number = 0 Then
-                    MsgBox "レジストリを更新しました。", vbInformation + vbOkOnly, "ブック名を変更して開く"
+                    MsgBox "レジストリを更新しました。", vbInformation + vbOkOnly, C_TITLE
                 Else
-                    MsgBox "エラーが発生しました。", vbCritical + vbOkOnly, "ブック名を変更して開く"
+                    MsgBox "エラーが発生しました。", vbCritical + vbOkOnly, C_TITLE
                 End IF                
             Case "/RUNUNINSTALL"
                 On Error Resume Next
@@ -68,11 +68,11 @@ Option Explicit
                        .RegDelete "HKCR\" & k & "\shell\rlxAliasOpen\"
                     Next            
                 End With
-                'MsgBox "アンインストールしました。", vbInformation + vbOkOnly, "ブック名を変更して開く"
+                'MsgBox "アンインストールしました。", vbInformation + vbOkOnly, C_TITLE
                 
             Case Else
                 strActBook = v
-                strTmpBook = rlxGetTempFolder() & C_REF & FS.GetBaseName(v) & "_" & replace(time,":","") & "." & FS.GetExtensionName(v)
+                strTmpBook = rlxGetTempFolder() & C_REF & FS.GetFileName(v)
                 FS.CopyFile strActBook, strTmpBook
                 Err.Clear
                 On Error Resume Next
