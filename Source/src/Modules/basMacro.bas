@@ -1311,11 +1311,15 @@ Public Sub createReferenceBook()
         Exit Sub
     End If
 
+    '2013以降はSDIなのでウィンドウを出さない
     Dim blnResult As Boolean
-    If frmReference.Start(blnResult) = vbCancel Then
-        Exit Sub
+    If Val(Application.Version) >= C_EXCEL_VERSION_2013 Then
+        blnResult = False
+    Else
+        If frmReference.Start(blnResult) = vbCancel Then
+            Exit Sub
+        End If
     End If
-
 
     Set FS = CreateObject("Scripting.FileSystemObject")
 
@@ -1411,17 +1415,22 @@ Public Sub OpenReferenceBook()
     End If
     
     'ファイルの存在チェック
+    Dim blnResult As Boolean
     If rlxIsFileExists(strFile) Then
+        blnResult = False
     Else
         MsgBox "ファイルが存在しません。", vbExclamation, C_TITLE
         Exit Sub
     End If
 
-    Dim blnResult As Boolean
-    If frmReference.Start(blnResult) = vbCancel Then
-        Exit Sub
+    '2013以降はSDIなのでウィンドウを出さない
+    If Val(Application.Version) >= C_EXCEL_VERSION_2013 Then
+        blnResult = False
+    Else
+        If frmReference.Start(blnResult) = vbCancel Then
+            Exit Sub
+        End If
     End If
-
 
     Dim FS As Object
     Dim WB As Workbook
@@ -3082,9 +3091,14 @@ Sub openFileNameFromClipboard()
         End If
     End If
     
+    '2013以降はSDIなのでウィンドウを出さない
     Dim blnResult As Boolean
-    If frmReference.Start(blnResult) = vbCancel Then
-        Exit Sub
+    If Val(Application.Version) >= C_EXCEL_VERSION_2013 Then
+        blnResult = False
+    Else
+        If frmReference.Start(blnResult) = vbCancel Then
+            Exit Sub
+        End If
     End If
         
     If blnResult Then

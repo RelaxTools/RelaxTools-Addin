@@ -196,6 +196,7 @@ Private cbRemoteName As Long
 Public Const IMAGE_BITMAP As Long = 0
 Public Const LR_COPYRETURNORG As Long = &H4
 
+Public Const C_EXCEL_VERSION_2016 As Long = 16
 Public Const C_EXCEL_VERSION_2013 As Long = 15
 Public Const C_EXCEL_VERSION_2010 As Long = 14
 Public Const C_EXCEL_VERSION_2007 As Long = 12

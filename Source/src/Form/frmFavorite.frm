@@ -99,6 +99,10 @@ Private Sub lstCategory_MouseMove(ByVal Button As Integer, ByVal Shift As Intege
 
 End Sub
 
+Private Sub lstFavorite_AfterUpdate()
+
+End Sub
+
 'Private Sub lstFavorite_Enter()
 '    mlngPos = -1
 'End Sub
@@ -845,7 +849,61 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
     Unload Me
 '    Application.ScreenUpdating = True
 End Sub
+Public Sub execOpenRef()
 
+    Dim strBook As String
+    Dim lngCnt As Long
+    
+    Dim varFile As Variant
+    
+    If lstFavorite.ListIndex = -1 Then
+        Exit Sub
+    End If
+    
+    On Error Resume Next
+    Me.Hide
+    For lngCnt = 0 To lstFavorite.ListCount - 1
+    
+        If lstFavorite.Selected(lngCnt) Then
+    
+            strBook = lstFavorite.List(lngCnt, C_ORIGINAL)
+            
+            Select Case True
+                Case rlxIsExcelFile(strBook)
+                
+                    Dim WB As Workbook
+                
+                    If Not rlxIsFileExists(strBook) Then
+                        MsgBox "ブックが存在しません。", vbOKOnly + vbExclamation, C_TITLE
+                    Else
+                        Dim strActBook As String
+                        Dim strTmpBook As String
+                        With CreateObject("Scripting.FileSystemObject")
+                            strActBook = strBook
+                            strTmpBook = rlxGetTempFolder() & C_REF_TEXT & .getFileName(strBook)
+                        
+                            .CopyFile strActBook, strTmpBook
+                        
+                            On Error Resume Next
+                            Err.Clear
+                            Workbooks.Open filename:=strTmpBook, ReadOnly:=True, UpdateLinks:=0, IgnoreReadOnlyRecommended:=True
+                            If Err.Number <> 0 Then
+                                MsgBox "ブックを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
+                            End If
+                            AppActivate Application.Caption
+                        
+                        End With
+                    End If
+                    
+                Case Else
+                    MsgBox "Ｅｘｃｅｌブック以外は実行できません。", vbOKOnly + vbExclamation, C_TITLE
+            End Select
+        End If
+     
+    Next
+     
+    Unload Me
+End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 選択行を上に移動
 '------------------------------------------------------------------------------------------------------------------------
@@ -979,6 +1037,11 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
             With .Controls.Add
                 .Caption = "読み取り専用で開く"
                 .OnAction = "'basFavorite.execOpen(""" & True & """)'"
+                .FaceId = 456
+            End With
+            With .Controls.Add
+                .Caption = "同名ブックを参照用に開く(Excelのみ)"
+                .OnAction = "'basFavorite.execOpenRef'"
                 .FaceId = 456
             End With
             With .Controls.Add
