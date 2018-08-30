@@ -1,4 +1,9 @@
-﻿2018/08/26(sun) RelaxTools-Addin Version 4.22.1(RustRemover) 
+﻿2018/08/30(thu) RelaxTools-Addin Version 4.22.2(RustRemover) 
+◇機能改善
+・エクスプローラの右クリックメニューに「同名ブックを参照用に開き比較」を追加。
+　同名ブックを開いた後、Excel機能の「表示」→「並べて比較」を行います。
+
+2018/08/26(sun) RelaxTools-Addin Version 4.22.1(RustRemover) 
 ◇機能改善
 ・以下、現機能を「同名ブックを参照用に開く」の追加に合わせて名称を変更
 　「ブックを開く（同名ブック可）」→「ブックを参照用に開く（同名ブック可）」に変更。
