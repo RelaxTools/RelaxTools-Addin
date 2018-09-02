@@ -14,7 +14,7 @@
 '   /uninstall ：アンインストールします。
 '-------------------------------------------------------------------------------
 ' 修正履歴
-'   1.1.0 同名ブックを参照用に開き比較(&F)コマンドを追加。
+'   1.1.0 同名ブックを並べて比較(&F)コマンドを追加。
 '   1.0.0 新規作成
 '-------------------------------------------------------------------------------
 Option Explicit
@@ -50,7 +50,7 @@ Option Explicit
                     .ShellExecute WScript.FullName, """" & WScript.ScriptFullName & """ " & C_UNINSTALL, "", "runas"
                 End With
                 WScript.Quit
-                
+
             Case C_INSTALL
                 On Error Resume Next
                 Err.Clear
@@ -60,7 +60,7 @@ Option Explicit
                     For Each k In varExt
                        .RegWrite "HKCR\" & k & "\shell\rlxAliasOpen\","同名ブックを参照用に開く(&B)", "REG_SZ"
                        .RegWrite "HKCR\" & k & "\shell\rlxAliasOpen\command\","""" & FS.GetSpecialFolder(1) & "\wscript.exe"" """ & .SpecialFolders("AppData") & "\RelaxTools-Addin\rlxAliasOpen.vbs"" ""%1""", "REG_SZ"
-                       .RegWrite "HKCR\" & k & "\shell\rlxAliasOpenDiff\","同名ブックを参照用に開き比較(&F)", "REG_SZ"
+                       .RegWrite "HKCR\" & k & "\shell\rlxAliasOpenDiff\","同名ブックを並べて比較(&F)", "REG_SZ"
                        .RegWrite "HKCR\" & k & "\shell\rlxAliasOpenDiff\command\","""" & FS.GetSpecialFolder(1) & "\wscript.exe"" """ & .SpecialFolders("AppData") & "\RelaxTools-Addin\rlxAliasOpen.vbs"" """ & C_COMPARE & """ ""%1""", "REG_SZ"
                     Next            
                 End With
@@ -68,7 +68,8 @@ Option Explicit
                     MsgBox "レジストリを更新しました。", vbInformation + vbOkOnly, C_TITLE
                 Else
                     MsgBox "エラーが発生しました。", vbCritical + vbOkOnly, C_TITLE
-                End IF                
+                End IF
+
             Case C_UNINSTALL
                 On Error Resume Next
                 Err.Clear
@@ -83,7 +84,7 @@ Option Explicit
                     Next            
                 End With
                 'MsgBox "アンインストールしました。", vbInformation + vbOkOnly, C_TITLE
-                
+
             Case C_COMPARE
                 '比較モード
                 If WScript.Arguments.Count > 1 Then
@@ -92,6 +93,7 @@ Option Explicit
                 Else
                     MsgBox "ファイル名が設定されていません。", vbInformation + vbOkOnly, C_TITLE 
                 End If
+
             Case Else
                 '通常モード
                 ExecExcel v, False
@@ -145,7 +147,10 @@ Sub ExecExcel(v, c)
             WB.Activate
         End If
     Else
-        MsgBox "Excelを起動していないと実行できません。", vbInformation + vbOkOnly, C_TITLE 
+        'MsgBox "Excelを起動していないと実行できません。", vbInformation + vbOkOnly, C_TITLE 
+        With WScript.CreateObject("WScript.Shell")
+            .Run strTmpBook
+        End With
     End If
 
 End Sub
