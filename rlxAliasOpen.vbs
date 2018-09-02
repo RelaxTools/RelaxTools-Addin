@@ -149,7 +149,7 @@ Sub ExecExcel(v, c)
     Else
         'MsgBox "Excel‚ğ‹N“®‚µ‚Ä‚¢‚È‚¢‚ÆÀs‚Å‚«‚Ü‚¹‚ñB", vbInformation + vbOkOnly, C_TITLE 
         With WScript.CreateObject("WScript.Shell")
-            .Run strTmpBook
+            .Run strTmpBook, 1, True
         End With
     End If
 
