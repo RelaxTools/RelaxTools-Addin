@@ -467,12 +467,12 @@ Private Sub ShowCursor()
     Dim spx As Long
     Dim spy As Long
 
-    Dim re As rect
+    Dim RE As rect
     Dim re2 As rect
     Dim r As Range
     Dim s As Range
 
-    GetWindowRect Application.hwnd, re
+    GetWindowRect Application.hwnd, RE
 
     With ActiveWindow.ActivePane
 
@@ -500,12 +500,12 @@ Private Sub ShowCursor()
 '            y = re.Right - spx
 '        End If
         
-        MoveWindow frmCrossLineH.hwnd, .PointsToScreenPixelsX(s.Left), spy, X, re.Bottom - spy, True
-        MoveWindow frmCrossLineV.hwnd, spx, .PointsToScreenPixelsY(s.Top), re.Right - spx, Y, True
+        MoveWindow frmCrossLineH.hwnd, .PointsToScreenPixelsX(s.Left), spy, X, RE.Bottom - spy, True
+        MoveWindow frmCrossLineV.hwnd, spx, .PointsToScreenPixelsY(s.Top), RE.Right - spx, Y, True
         
         GetWindowRect frmCrossLineGauge.hwnd, re2
         
-        If .PointsToScreenPixelsX(s.Left + s.width + 10) + (re2.Right - re2.Left) > re.Right Then
+        If .PointsToScreenPixelsX(s.Left + s.width + 10) + (re2.Right - re2.Left) > RE.Right Then
             MoveWindow frmCrossLineGauge.hwnd, .PointsToScreenPixelsX(s.Left - 10) - (re2.Right - re2.Left), .PointsToScreenPixelsY(s.Top - 10) - (re2.Bottom - re2.Top), re2.Right - re2.Left, re2.Bottom - re2.Top, True
         Else
             MoveWindow frmCrossLineGauge.hwnd, .PointsToScreenPixelsX(s.Left + s.width + 10), .PointsToScreenPixelsY(s.Top - 10) - (re2.Bottom - re2.Top), re2.Right - re2.Left, re2.Bottom - re2.Top, True

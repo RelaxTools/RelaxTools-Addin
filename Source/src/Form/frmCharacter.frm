@@ -14,6 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 Option Explicit
 
 Private Sub cmdDef_Click()
@@ -24,19 +25,44 @@ Private Sub cmdRun_Click()
 End Sub
 Private Sub Modify(ByVal def As Boolean)
 
+    Dim RE As Object
+    Set RE = CreateObject("VBScript.RegExp")
+    
     Dim v As Variant
     Dim s As Variant
     Dim r As Range
     Dim lngStart As Long
+    Dim lngLen As Long
     Dim lngCount As Long
     Dim lngCng As Long
 
     Dim strBuf As String
     Dim rr As Range
     
+    Dim strPattern As String
+    
     strBuf = Replace(txtText.Text, vbCrLf, vbLf)
     v = Split(strBuf, vbLf)
-              
+    
+    '正規表現の場合の入力チェック
+    If Not optNormal.Value Then
+        lngCount = 0
+        On Error Resume Next
+        For Each s In v
+            lngCount = lngCount + 1
+            Err.Clear
+            RE.Pattern = s
+            RE.IgnoreCase = True
+            RE.Global = True
+            RE.Test ""
+            If Err.Number <> 0 Then
+                MsgBox lngCount & "行目の文字列が正規表現として認識できません。", vbOKOnly + vbExclamation, C_TITLE
+                txtText.SetFocus
+                Exit Sub
+            End If
+        Next
+    End If
+    
     Select Case True
         Case optSheet.Value
             Set rr = SpecialCellsEx(ActiveSheet.UsedRange)
@@ -60,30 +86,70 @@ Private Sub Modify(ByVal def As Boolean)
                 Exit For
             End If
         
-            lngStart = InStr(r.Value, s)
-            Do Until lngStart = 0
             
-                If def Then
-                    With r.Characters(lngStart, Len(s)).Font
-                        .ColorIndex = xlAutomatic
-                        .Bold = False
-                        .Italic = False
-                        .Underline = False
-                    End With
-                Else
-                    With r.Characters(lngStart, Len(s)).Font
-                        .Color = lblColor.BackColor
-                        .Bold = cmdBold.Value
-                        .Italic = cmdItalic.Value
-                        .Underline = cmdUnderline.Value
-                    End With
-                End If
+            If optNormal.Value Then
+            
+                lngStart = InStr(r.Value, s)
+                lngLen = Len(s)
+                Do Until lngStart = 0
                 
-                lngCng = lngCng + 1
+                    If def Then
+                        With r.Characters(lngStart, lngLen).Font
+                            .ColorIndex = xlAutomatic
+                            .Bold = False
+                            .Italic = False
+                            .Underline = False
+                        End With
+                    Else
+                        With r.Characters(lngStart, lngLen).Font
+                            .Color = lblColor.BackColor
+                            .Bold = cmdBold.Value
+                            .Italic = cmdItalic.Value
+                            .Underline = cmdUnderline.Value
+                        End With
+                    End If
+                    
+                    lngCng = lngCng + 1
+                    
+                    lngStart = InStr(lngStart + 1, r.Value, s)
+                    
+                Loop
+            
+            Else
+            
+                RE.Pattern = s
+                RE.IgnoreCase = True
+                RE.Global = True
+                Dim matches As Object
                 
-                lngStart = InStr(lngStart + 1, r.Value, s)
+                Set matches = RE.Execute(r.Value)
                 
-            Loop
+                Dim match As Object
+                For Each match In matches
+                
+                    lngStart = match.FirstIndex + 1
+                    lngLen = match.Length
+            
+                    If def Then
+                        With r.Characters(lngStart, lngLen).Font
+                            .ColorIndex = xlAutomatic
+                            .Bold = False
+                            .Italic = False
+                            .Underline = False
+                        End With
+                    Else
+                        With r.Characters(lngStart, lngLen).Font
+                            .Color = lblColor.BackColor
+                            .Bold = cmdBold.Value
+                            .Italic = cmdItalic.Value
+                            .Underline = cmdUnderline.Value
+                        End With
+                    End If
+                    lngCng = lngCng + 1
+                Next
+            
+            End If
+            
         Next
         lngCount = lngCount + 1
         ReportBar lngCount
@@ -96,6 +162,7 @@ Private Sub Modify(ByVal def As Boolean)
     Call SaveSetting(C_TITLE, "Character", "Underline", cmdUnderline.Value)
     Call SaveSetting(C_TITLE, "Character", "Color", CLng(lblColor.BackColor))
     Call SaveSetting(C_TITLE, "Character", "ActiveSheet", optSheet.Value)
+    Call SaveSetting(C_TITLE, "Character", "Compare", optNormal.Value)
     
     lblStatus.Caption = lngCng & "件処理しました。"
 e:
@@ -132,6 +199,12 @@ Private Sub UserForm_Initialize()
         optSheet.Value = True
     Else
         optSelection.Value = True
+    End If
+    
+    If GetSetting(C_TITLE, "Character", "Compare", True) Then
+        optNormal.Value = True
+    Else
+        optRegEx.Value = True
     End If
     
     lblColor.BackColor = CLng(GetSetting(C_TITLE, "Character", "Color", vbRed))

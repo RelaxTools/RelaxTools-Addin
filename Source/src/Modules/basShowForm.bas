@@ -400,5 +400,14 @@ Sub showMergeFile()
     frmMergeFile.Show
 End Sub
 Sub showCharacter()
-    frmCharacter.Show
+'    frmCharacter.Show
+    If ActiveWorkbook Is Nothing Then
+        MsgBox "アクティブなブックが見つかりません。", vbCritical, C_TITLE
+        Exit Sub
+    End If
+    
+    frmSearchEx.schTab.Value = 2
+    
+    frmSearchEx.Show
+
 End Sub

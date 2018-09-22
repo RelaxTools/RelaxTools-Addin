@@ -99,10 +99,6 @@ Private Sub lstCategory_MouseMove(ByVal Button As Integer, ByVal Shift As Intege
 
 End Sub
 
-Private Sub lstFavorite_AfterUpdate()
-
-End Sub
-
 'Private Sub lstFavorite_Enter()
 '    mlngPos = -1
 'End Sub

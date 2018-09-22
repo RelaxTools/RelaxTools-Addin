@@ -125,17 +125,16 @@
             </menu>
             <splitButton id="searchSplit" getEnabled="getRibbonEnabled">
             
-              <button id="searchEx" label="検索/置換" getSupertip="getSupertip" getDescription="getDescription" image="searchShape" onAction="ribbonOnAction" />
+              <button id="searchEx" label="検索/置換/修飾" getSupertip="getSupertip" getDescription="getDescription" image="searchShape" onAction="ribbonOnAction" />
               <menu id="SearchMenu" itemSize="large" >
-                <menuSeparator id="searchSep01" title="現ブックを検索/置換する"/>
+                <menuSeparator id="searchSep01" title="現ブックを検索/置換/文字修飾する"/>
                 <button id="searchEx.2"   image="searchShape" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <button id="replaceEx"   image="searchShape" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
+                <button id="showCharacter"  imageMso="ControlLineColorPicker" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
                 <menuSeparator id="searchSep02" title="指定フォルダ以下のExcelファイルをGrepする"/>
 <!--                <button id="excelGrep"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />-->
                 <menuSeparator id="searchSep03" />
                 <button id="excelGrepMulti"  image="grep32" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
-                <menuSeparator id="searchSep04" />
-                <button id="showCharacter"  imageMso="ControlLineColorPicker" getLabel="getLabel" getSupertip="getSupertip" getDescription="getDescription" onAction="ribbonOnAction" />
 
               </menu>
             </splitButton>

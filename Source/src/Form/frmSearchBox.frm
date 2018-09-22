@@ -51,9 +51,13 @@ Private Const C_RET_CANCEL As Long = 8
 Private mlngRet As Long
 
 
-Public Function Start() As Long
+Public Function Start(ByVal cmd As String) As Long
 
     mlngRet = C_RET_CANCEL
+    
+    lblMsg.Caption = cmd & "します。よろしいですか？"
+    cmdReplace.Caption = cmd
+    cmdAll.Caption = "すべて" & cmd
 
     Me.Show vbModal
 

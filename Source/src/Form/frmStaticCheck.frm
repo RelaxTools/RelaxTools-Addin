@@ -216,7 +216,7 @@ Private Sub lstResult_Change()
         Next
         If r Is Nothing Then
         Else
-            Application.Goto setCellPos(r(1)), True
+            Application.GoTo setCellPos(r(1)), True
             r.Select
         End If
     Else
@@ -255,7 +255,7 @@ Private Sub lstResult_Change()
                         objShape.Select False
                     Else
                         blnFlg = True
-                        Application.Goto setCellPos(objShape.TopLeftCell), True
+                        Application.GoTo setCellPos(objShape.TopLeftCell), True
                         objShape.Select
                     End If
                     On Error GoTo 0
@@ -596,14 +596,14 @@ End Sub
 Private Sub checkSheet1(ByVal strCheckNm As String, ByVal strCheck As String)
     
     Dim WB As Workbook
-    Dim re As Object
+    Dim RE As Object
     Dim WS As Worksheet
     
     Set WB = ActiveWorkbook
-    Set re = CreateObject("VBScript.RegExp")
+    Set RE = CreateObject("VBScript.RegExp")
     
     For Each WS In WB.Sheets
-        With re
+        With RE
             
             .Pattern = "^Sheet[0-9]+$"
             .IgnoreCase = False
@@ -616,7 +616,7 @@ Private Sub checkSheet1(ByVal strCheckNm As String, ByVal strCheck As String)
         End With
     Next
     
-    Set re = Nothing
+    Set RE = Nothing
     
 End Sub
 Private Sub checkSheetNoUse(ByVal strCheckNm As String, ByVal strCheck As String)

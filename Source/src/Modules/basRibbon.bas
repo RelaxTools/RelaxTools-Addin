@@ -782,6 +782,7 @@ Sub lineOnAction(control As IRibbonControl, pressed As Boolean)
     Else
         ThisWorkbook.disableCrossLine
     End If
+    AppActivate Application.Caption
 
     Exit Sub
 e:
