@@ -710,8 +710,8 @@ Private Sub XL_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
     Dim DateCreated As Date
     Dim DateLastModified As Date
 
-    Dim a As FileTime
-    Set a = New FileTime
+    Dim a As FILETIME
+    Set a = New FILETIME
     
         
     '-------------------------------------------------

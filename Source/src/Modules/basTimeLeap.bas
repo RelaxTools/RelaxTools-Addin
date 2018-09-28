@@ -74,8 +74,8 @@ Sub CreateHistory(ByVal strBook As String)
         Dim DateCreated As Date
         Dim DateLastModified As Date
 
-        Dim a As FileTime
-        Set a = New FileTime
+        Dim a As FILETIME
+        Set a = New FILETIME
         
         '99～1までバックアップ
         For i = lngGen To 1 Step -1

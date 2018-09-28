@@ -41,9 +41,9 @@ Option Explicit
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function CreateFile Lib "kernel32" Alias "CreateFileA" (ByVal lpFileName As String, ByVal dwDesiredAccess As Long, ByVal dwShareMode As Long, ByVal lpSecurityAttributes As LongPtr, ByVal dwCreationDisposition As Long, ByVal dwFlagsAndAttributes As Long, ByVal hTemplateFile As LongPtr) As LongPtr
     Private Declare PtrSafe Function CloseHandle Lib "kernel32" (ByVal hObject As LongPtr) As Long
-    Private Declare PtrSafe Function LocalFileTimeToFileTime Lib "kernel32" (lpLocalFileTime As FileTime, lpFileTime As FileTime) As Long
-    Private Declare PtrSafe Function SystemTimeToFileTime Lib "kernel32" (lpSystemTime As SystemTime, lpFileTime As FileTime) As Long
-    Private Declare PtrSafe Function SetFileTime Lib "kernel32" (ByVal hFile As LongPtr, lpCreationTime As FileTime, lpLastAccessTime As FileTime, lpLastWriteTime As FileTime) As Long
+    Private Declare PtrSafe Function LocalFileTimeToFileTime Lib "kernel32" (lpLocalFileTime As FILETIME, lpFileTime As FILETIME) As Long
+    Private Declare PtrSafe Function SystemTimeToFileTime Lib "kernel32" (lpSystemTime As SystemTime, lpFileTime As FILETIME) As Long
+    Private Declare PtrSafe Function SetFileTime Lib "kernel32" (ByVal hFile As LongPtr, lpCreationTime As FILETIME, lpLastAccessTime As FILETIME, lpLastWriteTime As FILETIME) As Long
 #Else
     Private Declare Function CreateFile Lib "kernel32" Alias "CreateFileA" (ByVal lpFileName As String, ByVal dwDesiredAccess As Long, ByVal dwShareMode As Long, ByVal lpSecurityAttributes As Long, ByVal dwCreationDisposition As Long, ByVal dwFlagsAndAttributes As Long, ByVal hTemplateFile As Long) As Long
     Private Declare Function CloseHandle Lib "kernel32" (ByVal hObject As Long) As Long
@@ -65,7 +65,7 @@ Private Type SystemTime
 End Type
 
 ' FileTime 構造体
-Private Type FileTime
+Private Type FILETIME
     LowDateTime As Long
     HighDateTime As Long
 End Type
@@ -83,8 +83,8 @@ Public Sub SetCreationTime(ByVal stFilePath As String, ByVal dtCreateTime As Dat
 #Else
     Dim cFileHandle As Long
 #End If
-    Dim tFileTime As FileTime
-    Dim tNullable As FileTime
+    Dim tFileTime As FILETIME
+    Dim tNullable As FILETIME
     
     cFileHandle = GetFileHandle(stFilePath)
     If cFileHandle <> 0 Then
@@ -101,8 +101,8 @@ Public Sub SetLastWriteTime(ByVal stFilePath As String, ByVal dtUpdateTime As Da
 #Else
     Dim cFileHandle As Long
 #End If
-    Dim tFileTime As FileTime
-    Dim tNullable As FileTime
+    Dim tFileTime As FILETIME
+    Dim tNullable As FILETIME
     
     cFileHandle = GetFileHandle(stFilePath)
     If cFileHandle <> 0 Then
@@ -120,8 +120,8 @@ Public Sub SetLastAccessTime(ByVal stFilePath As String, ByVal dtAccessTime As D
 #Else
     Dim cFileHandle As Long
 #End If
-    Dim tNullable As FileTime
-    Dim tFileTime As FileTime
+    Dim tNullable As FILETIME
+    Dim tFileTime As FILETIME
     
     cFileHandle = GetFileHandle(stFilePath)
     If cFileHandle <> 0 Then
@@ -134,7 +134,7 @@ End Sub
 
 
 ' FileTime を取得する
-Private Function GetFileTime(ByVal dtSetting As Date) As FileTime
+Private Function GetFileTime(ByVal dtSetting As Date) As FILETIME
 
     Dim tSystemTime As SystemTime
     
@@ -148,10 +148,10 @@ Private Function GetFileTime(ByVal dtSetting As Date) As FileTime
         .Second = Second(dtSetting)
     End With
     
-    Dim tLocalTime As FileTime
+    Dim tLocalTime As FILETIME
     Call SystemTimeToFileTime(tSystemTime, tLocalTime)
     
-    Dim tFileTime As FileTime
+    Dim tFileTime As FILETIME
     Call LocalFileTimeToFileTime(tLocalTime, tFileTime)
     
     GetFileTime = tFileTime

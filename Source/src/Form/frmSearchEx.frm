@@ -532,6 +532,7 @@ Private Function markupStart(ByVal blnAsk As Boolean) As Long
     Dim lngLen As Long
     Dim def As Boolean
     
+    def = chkDefault.Value
     
     strPattern = txtSearch.Text
     strReplace = txtReplace.Text
@@ -665,11 +666,11 @@ Private Function markupStart(ByVal blnAsk As Boolean) As Long
 
             Set s = getObjFromID(Worksheets(strSheet), Mid$(strAddress, InStrRev(strAddress, ":") + 1))
                 
-            If InStr(strAddress, C_SEARCH_ID_SMARTART) > 0 Then
+'            If InStr(strAddress, C_SEARCH_ID_SMARTART) > 0 Then
                 Set c = s.TextFrame2.TextRange
-            Else
-                Set c = s.TextFrame
-            End If
+'            Else
+'                Set c = s.TextFrame
+'            End If
             
             strBuf = c.Characters.Text
 
@@ -694,7 +695,7 @@ Private Function markupStart(ByVal blnAsk As Boolean) As Long
                             .ColorIndex = xlAutomatic
                             .Bold = False
                             .Italic = False
-                            .Underline = msoNoUnderline
+                            .UnderlineStyle = msoNoUnderline
                         End With
                     Else
                         With c.Characters(lngStart, lngLen).Font
@@ -702,9 +703,9 @@ Private Function markupStart(ByVal blnAsk As Boolean) As Long
                             .Bold = cmdBold.Value
                             .Italic = cmdItalic.Value
                             If cmdUnderline.Value Then
-                                .Underline = msoUnderlineSingleLine
+                                .UnderlineStyle = msoUnderlineSingleLine
                             Else
-                                .Underline = msoNoUnderline
+                                .UnderlineStyle = msoNoUnderline
                             End If
                         End With
                     End If
@@ -725,21 +726,21 @@ Private Function markupStart(ByVal blnAsk As Boolean) As Long
                 
                     If def Then
                         With c.Characters(lngStart, lngLen).Font
-                            .ColorIndex = xlAutomatic
+                            .Fill.ForeColor.RGB = RGB(0, 0, 0)
                             .Bold = False
                             .Italic = False
-                            .Underline = msoNoUnderline
+                            .UnderlineStyle = msoNoUnderline
                         End With
                     Else
                         With c.Characters(lngStart, lngLen).Font
-                            .Color = lblColor.BackColor
+                            .Fill.ForeColor.RGB = lblColor.BackColor
                             .Bold = cmdBold.Value
                             .Italic = cmdItalic.Value
                             
                             If cmdUnderline.Value Then
-                                .Underline = msoUnderlineSingleLine
+                                .UnderlineStyle = msoUnderlineSingleLine
                             Else
-                                .Underline = msoNoUnderline
+                                .UnderlineStyle = msoNoUnderline
                             End If
                         End With
                     End If

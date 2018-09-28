@@ -322,7 +322,7 @@ Public Sub execOverwrite()
     Dim strBook As String
     Dim strBook2 As String
     Dim lngCnt As Long
-    Dim a As FileTime
+    Dim a As FILETIME
     Dim DateCreated As Date
     Dim DateLastModified As Date
     Dim varFile As Variant
@@ -359,7 +359,7 @@ Public Sub execOverwrite()
     
     WB.Close SaveChanges:=False
         
-    Set a = New FileTime
+    Set a = New FILETIME
     With CreateObject("Scripting.FileSystemObject")
     
         DateCreated = .GetFile(strBook).DateCreated
@@ -387,7 +387,7 @@ Public Sub execExport()
     Dim strBook As String
     Dim strExt As String
     
-    Dim a As FileTime
+    Dim a As FILETIME
     Dim DateCreated As Date
     Dim DateLastModified As Date
 
@@ -405,7 +405,7 @@ Public Sub execExport()
         Exit Sub
     End If
         
-    Set a = New FileTime
+    Set a = New FILETIME
     
     With CreateObject("Scripting.FileSystemObject")
     
@@ -528,13 +528,28 @@ Sub Disp()
         If Not .FolderExists(strFolder) Then
             .createFolder strFolder
         End If
-        Set objfld = .GetFolder(strFolder)
+'        Set objfld = .GetFolder(strFolder)
+'
+'        For Each objFile In objfld.files
+'            If rlxGetFullpathFromExt(objFile.Name) = WB.Name Then
+'                col.Add objFile
+'            End If
+'        Next
     
-        For Each objFile In objfld.files
-            If rlxGetFullpathFromExt(objFile.Name) = WB.Name Then
-                col.Add objFile
-            End If
-        Next
+        Dim strSearchPath As String
+        strSearchPath = .BuildPath(strFolder, WB.Name & ".*")
+        
+        Dim ff As FindFile
+        Dim strFile As String
+        Set ff = New FindFile
+        
+        strFile = ff.Find(strSearchPath)
+        Do Until strFile = ""
+            Set objfld = .GetFile(.BuildPath(strFolder, strFile))
+            col.Add objfld
+            strFile = ff.FindNext()
+        Loop
+    
     End With
     
     Dim strBeforeSize As String

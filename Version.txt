@@ -1,4 +1,11 @@
-﻿2018/09/22(sat) RelaxTools-Addin Version 4.23.0(RustRemover) 
+﻿2018/09/29(sat) RelaxTools-Addin Version 4.23.1(RustRemover) 
+◇バグ修正
+・64bit版でマウスホイールを無効にしたはずが、ビルド番号が５桁になった影響で有効に戻っていたのを修正。
+・「指定文字列の修飾」で「文字修飾なし＆規定食（自動）」をシェイプに実行すると実行時エラーになる不具合を修正。
+◇機能改善
+・「TimeLeap」の履歴表示の高速化対策。
+
+2018/09/22(sat) RelaxTools-Addin Version 4.23.0(RustRemover) 
 ◇機能改善
 ・「十字カーソル」で起動時にExcelからフォーカスが外れる不具合を修正。
 ・「指定文字列の修飾」を「セル・シェイプの正規表現検索」に統一。
