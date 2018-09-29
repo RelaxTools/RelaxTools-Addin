@@ -37,7 +37,7 @@ Option Private Module
 #If VBA7 And Win64 Then
     'VBA7 = Excel2010以降。赤くコンパイルエラーになって見えますが問題ありません。
     Declare PtrSafe Function WNetGetConnection32 Lib "MPR.DLL" Alias "WNetGetConnectionA" (ByVal lpszLocalName As String, ByVal lpszRemoteName As String, lSize As Long) As Long
-    Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hwnd As LongPtr) As Long
+    Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hWnd As LongPtr) As Long
     Declare PtrSafe Function CloseClipboard Lib "user32" () As Long
     Declare PtrSafe Function EmptyClipboard Lib "user32" () As Long
     Declare PtrSafe Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As LongPtr
@@ -86,7 +86,7 @@ Option Private Module
     
     Private Type FLASHWINFO
         cbsize As LongPtr
-        hwnd As LongPtr
+        hWnd As LongPtr
         dwFlags As Long
         uCount As Long
         dwTimeout As LongPtr
@@ -157,7 +157,7 @@ Private Type ChooseColor
     
     Private Type FLASHWINFO
         cbsize As Long
-        hwnd As Long
+        hWnd As Long
         dwFlags As Long
         uCount As Long
         dwTimeout As Long
@@ -1966,9 +1966,9 @@ End Function
 Sub rlxFlashWindow()
 
 #If VBA7 And Win64 Then
-    Dim hwnd As LongPtr
+    Dim hWnd As LongPtr
 #Else
-    Dim hwnd As Long
+    Dim hWnd As Long
 #End If
     Dim udtFLASHWINFO As FLASHWINFO
     
@@ -1979,12 +1979,12 @@ Sub rlxFlashWindow()
     Const FLASH_TIMER = &H4
     Const FLASH_TIMERNOFG = &HC
 
-    hwnd = FindWindow("XLMAIN", Application.Caption)
+    hWnd = FindWindow("XLMAIN", Application.Caption)
     
     '点滅の設定
     With udtFLASHWINFO
         .cbsize = Len(udtFLASHWINFO)
-        .hwnd = hwnd
+        .hWnd = hWnd
         .dwFlags = FLASH_ALL
         .uCount = 5
         .dwTimeout = 100

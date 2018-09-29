@@ -33,12 +33,12 @@ Option Private Module
 
 'Windows API宣言
 #If VBA7 And Win64 Then
-    Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hwnd As LongPtr, ByVal nIndex As Long) As LongPtr
-    Private Declare PtrSafe Function SetWindowLong Lib "user32" Alias "SetWindowLongPtrA" (ByVal hwnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As LongPtr) As LongPtr
+    Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As LongPtr
+    Private Declare PtrSafe Function SetWindowLong Lib "user32" Alias "SetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long, ByVal dwNewLong As LongPtr) As LongPtr
     Private Declare PtrSafe Function GetActiveWindow Lib "user32" () As LongPtr
-    Private Declare PtrSafe Function DrawMenuBar Lib "user32" (ByVal hwnd As LongPtr) As LongPtr
+    Private Declare PtrSafe Function DrawMenuBar Lib "user32" (ByVal hWnd As LongPtr) As LongPtr
     Private Declare PtrSafe Function SetWindowPos Lib "user32" _
-                                          (ByVal hwnd As LongPtr, _
+                                          (ByVal hWnd As LongPtr, _
                                            ByVal hWndInsertAfter As LongPtr, _
                                            ByVal X As Long, ByVal Y As Long, _
                                            ByVal cx As Long, ByVal cy As Long, _
@@ -70,19 +70,19 @@ Private Const WS_MAXIMIZEBOX = &H10000  '最大化ボタン
 Public Sub FormResize()
 #If VBA7 And Win64 Then
     Dim Result As LongPtr
-    Dim hwnd As LongPtr
+    Dim hWnd As LongPtr
     Dim Wnd_STYLE As LongPtr
 #Else
     Dim Result As Long
-    Dim hwnd As Long
+    Dim hWnd As Long
     Dim Wnd_STYLE As Long
 #End If
  
-    hwnd = GetActiveWindow()
-    Wnd_STYLE = GetWindowLong(hwnd, GWL_STYLE)
+    hWnd = GetActiveWindow()
+    Wnd_STYLE = GetWindowLong(hWnd, GWL_STYLE)
     Wnd_STYLE = (Wnd_STYLE Or WS_THICKFRAME Or &H30000) - WS_MINIMIZEBOX
  
-    Result = SetWindowLong(hwnd, GWL_STYLE, Wnd_STYLE)
-    Result = DrawMenuBar(hwnd)
+    Result = SetWindowLong(hWnd, GWL_STYLE, Wnd_STYLE)
+    Result = DrawMenuBar(hWnd)
     
 End Sub

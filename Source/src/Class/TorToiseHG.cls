@@ -327,7 +327,7 @@ Private Sub Run(ByVal strPath As String, ByVal strExe As String)
 #Else
     Dim hProc  As Long          'プロセスハンドル
 #End If
-    Dim hwnd As Long
+    Dim hWnd As Long
     Dim lngCount As Long
     Dim p As WinProcess
 

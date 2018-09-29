@@ -48,8 +48,8 @@ Option Explicit
     Private Declare PtrSafe Function SendInput Lib "user32.dll" (ByVal nInputs As Long, pInputs As INPUT_TYPE, ByVal cbsize As Long) As Long
     Private Declare PtrSafe Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
     Private Declare PtrSafe Function GetDeviceCaps Lib "gdi32" (ByVal hDc As LongPtr, ByVal nIndex As Long) As Long
-    Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hwnd As LongPtr) As LongPtr
-    Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hwnd As LongPtr, ByVal hDc As LongPtr) As Long
+    Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hWnd As LongPtr) As LongPtr
+    Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hWnd As LongPtr, ByVal hDc As LongPtr) As Long
 
     Private Type MOUSEINPUT
         dx As Long
@@ -359,17 +359,17 @@ End Function 'ポイント から スクリーン座標
 Private Sub GetDPI()
 
 #If VBA7 And Win64 Then
-    Dim hwnd As LongPtr
+    Dim hWnd As LongPtr
     Dim hDc As LongPtr
 #Else
-    Dim hwnd As Long
+    Dim hWnd As Long
     Dim hDc As Long
 #End If
-    hwnd = Application.hwnd
-    hDc = GetDC(hwnd)
+    hWnd = Application.hWnd
+    hDc = GetDC(hWnd)
     dblSx = GetDeviceCaps(hDc, LOGPIXELSX)
     dblSy = GetDeviceCaps(hDc, LOGPIXELSY)
-    ReleaseDC hwnd, hDc
+    ReleaseDC hWnd, hDc
     
 End Sub
 Private Function PointToPixel(ByRef pt As POINTAPI) As POINTAPI

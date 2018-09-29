@@ -53,7 +53,7 @@ End Property
 ' SetWindowsHookExのコールバックメソッド(直接呼ばないこと)
 '--------------------------------------------------------------
 #If VBA7 And Win64 Then
-    Public Function MouseEventHookHandler(ByVal uMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As LongPtr
+    Public Function MouseEventHookHandler(ByVal uMsg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
     
         On Error GoTo ErrorHandler
         MouseEventHookHandler = GetInstance.MouseLLHookProc(uMsg, wParam, lParam)

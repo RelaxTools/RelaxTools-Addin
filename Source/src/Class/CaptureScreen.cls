@@ -43,19 +43,19 @@ Option Explicit
     Private Declare PtrSafe Function GetForegroundWindow Lib "user32" () As LongPtr
     Private Declare PtrSafe Function GetDesktopWindow Lib "user32" () As LongPtr
     
-    Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hwnd As LongPtr) As LongPtr
-    Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hwnd As LongPtr, ByVal hDc As LongPtr) As Long
+    Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hWnd As LongPtr) As LongPtr
+    Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hWnd As LongPtr, ByVal hDc As LongPtr) As Long
     Private Declare PtrSafe Function BitBlt Lib "gdi32" (ByVal hDestDC As LongPtr, ByVal X As Long, ByVal Y As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal hSrcDC As LongPtr, ByVal XSrc As Long, ByVal YSrc As Long, ByVal dwRop As Long) As Long
     
-    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hwnd As LongPtr) As Long
+    Private Declare PtrSafe Function OpenClipboard Lib "user32" (ByVal hWnd As LongPtr) As Long
     Private Declare PtrSafe Function CloseClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function EmptyClipboard Lib "user32" () As Long
     Private Declare PtrSafe Function GetClipboardData Lib "user32" (ByVal wFormat As Long) As LongPtr
     Private Declare PtrSafe Function SetClipboardData Lib "user32" (ByVal wFormat As Long, ByVal hMem As LongPtr) As LongPtr
 
-    Private Declare PtrSafe Function GetWindowRect Lib "user32" (ByVal hwnd As LongPtr, lpRect As rect) As Long
+    Private Declare PtrSafe Function GetWindowRect Lib "user32" (ByVal hWnd As LongPtr, lpRect As rect) As Long
     Private Declare PtrSafe Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
-    Private Declare PtrSafe Function GetWindowDC Lib "user32" (ByVal hwnd As LongPtr) As LongPtr
+    Private Declare PtrSafe Function GetWindowDC Lib "user32" (ByVal hWnd As LongPtr) As LongPtr
     Private Declare PtrSafe Function CreateCompatibleDC Lib "gdi32" (ByVal hDc As LongPtr) As LongPtr
     Private Declare PtrSafe Function CreateCompatibleBitmap Lib "gdi32" (ByVal hDc As LongPtr, ByVal nWidth As Long, ByVal nHeight As Long) As LongPtr
     Private Declare PtrSafe Function SelectObject Lib "gdi32" (ByVal hDc As LongPtr, ByVal hObject As LongPtr) As LongPtr
@@ -63,8 +63,8 @@ Option Explicit
     Private Declare PtrSafe Function DeleteObject Lib "gdi32" (ByVal hObject As LongPtr) As Long
     
     Private Declare PtrSafe Function LoadImage Lib "user32" Alias "LoadImageA" (ByVal hInst As LongPtr, ByVal lpsz As String, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As LongPtr
-    Private Declare PtrSafe Function PrintWindow Lib "user32.dll" (ByVal hwnd As LongPtr, ByVal hdcBlt As LongPtr, ByVal nFlags As Long) As Long
-    Private Declare PtrSafe Function UpdateWindow Lib "user32" (ByVal hwnd As LongPtr) As Long
+    Private Declare PtrSafe Function PrintWindow Lib "user32.dll" (ByVal hWnd As LongPtr, ByVal hdcBlt As LongPtr, ByVal nFlags As Long) As Long
+    Private Declare PtrSafe Function UpdateWindow Lib "user32" (ByVal hWnd As LongPtr) As Long
 
     Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32" (PicDesc As PicBmp, RefIID As GUID, ByVal fPictureOwnsHandle As LongPtr, IPic As IPicture) As Long
     Private Declare PtrSafe Function GetDeviceCaps Lib "gdi32" (ByVal hDc As LongPtr, ByVal nIndex As Long) As Long
@@ -74,7 +74,7 @@ Option Explicit
     Private Declare PtrSafe Function RealizePalette Lib "gdi32" (ByVal hDc As LongPtr) As Long
     Private Declare PtrSafe Function GetSystemMetrics Lib "user32" (ByVal nIndex As Long) As Long
 
-    Private Declare PtrSafe Function DwmGetWindowAttribute Lib "Dwmapi" (ByVal hwnd As LongPtr, ByVal t As Long, lpRect As rect, ByVal size As Long) As Long
+    Private Declare PtrSafe Function DwmGetWindowAttribute Lib "Dwmapi" (ByVal hWnd As LongPtr, ByVal t As Long, lpRect As rect, ByVal size As Long) As Long
     
     Private Declare PtrSafe Function PatBlt Lib "gdi32" (ByVal hDc As LongPtr, ByVal nXLeft As Long, ByVal nYLeft As Long, ByVal nWidth As Long, ByVal nHeight As Long, ByVal dwRop As Long) As Long
     

@@ -17,27 +17,27 @@ Attribute VB_Exposed = False
 Option Explicit
 
 #If VBA7 And Win64 Then
-    Public hwnd As LongPtr
+    Public hWnd As LongPtr
 #Else
-    Public hwnd As Long
+    Public hWnd As Long
 #End If
 Public Transparency As Double
 
 Public Sub Run()
 
-    hwnd = FindWindow("ThunderDFrame", Me.Caption)
+    hWnd = FindWindow("ThunderDFrame", Me.Caption)
     
-    If hwnd <> 0& Then
-        SetWindowLong hwnd, GWL_EXSTYLE, GetWindowLong(hwnd, GWL_EXSTYLE) Or WS_EX_LAYERED Or &H20
+    If hWnd <> 0& Then
+        SetWindowLong hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) Or WS_EX_LAYERED Or &H20
         
         'フレーム無
-        SetWindowLong hwnd, GWL_EXSTYLE, GetWindowLong(hwnd, GWL_EXSTYLE) And Not WS_EX_DLGMODALFRAME
+        SetWindowLong hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) And Not WS_EX_DLGMODALFRAME
         
         'キャプションなし
-        SetWindowLong hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) And Not WS_CAPTION
+        SetWindowLong hWnd, GWL_STYLE, GetWindowLong(hWnd, GWL_STYLE) And Not WS_CAPTION
         
         '半透明化
-        SetLayeredWindowAttributes hwnd, 0, Transparency * 0.01 * 255, LWA_ALPHA
+        SetLayeredWindowAttributes hWnd, 0, Transparency * 0.01 * 255, LWA_ALPHA
         
     End If
     
