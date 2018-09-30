@@ -94,7 +94,7 @@ Public Sub LogFinish(Message As String)
             t = 0
         Else
             t = colStack.Item(colStack.count)
-            colStack.remove colStack.count
+            colStack.Remove colStack.count
         End If
     End If
     

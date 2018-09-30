@@ -53,6 +53,8 @@ Private Const C_SEARCH_ID As Long = 4
 Private Const C_SEARCH_BOOK As Long = 5
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+Private mstrhWnd As String
+
 Private Const C_SEARCH_ID_SHAPE As String = "Shape"
 Private Const C_DEFAULT_CELL As String = "$A$1"
 Private mblnRefresh As Boolean
@@ -522,8 +524,9 @@ Private Sub UserForm_Initialize()
     mblnRefresh = True
 #If VBA7 And Win64 Then
 #Else
-    Set MW = basMouseWheel.GetInstance
-    MW.Install Me
+    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
+    Set MW = basMouseWheel.Install(mstrhWnd)
+
 #End If
     
 End Sub
@@ -962,8 +965,7 @@ Private Sub UserForm_Terminate()
 
 #If VBA7 And Win64 Then
 #Else
-    MW.UnInstall
-    Set MW = Nothing
+    Set MW = basMouseWheel.UnInstall(mstrhWnd)
 #End If
 
     Dim i As Long

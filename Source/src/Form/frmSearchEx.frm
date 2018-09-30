@@ -90,6 +90,7 @@ Private mlngLblPlaceLeft As Long
 Private mlngColumnWidth As Long
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+Private mstrhWnd As String
 
 Private Sub chkDefault_Change()
     
@@ -1480,6 +1481,13 @@ Private Sub UserForm_Initialize()
     Dim strReplace() As String
     Dim i As Long
     
+#If VBA7 And Win64 Then
+#Else
+    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
+    Set MW = basMouseWheel.Install(mstrhWnd)
+#End If
+    
+    
     Set RW = New ResizeWindow
     
     strBuf = GetSetting(C_TITLE, "Search", "SearchStr", "")
@@ -1562,11 +1570,6 @@ Private Sub UserForm_Initialize()
     mlngLblPlaceLeft = Me.lblPlace.Left
     mlngColumnWidth = Val(Split(Me.lstResult.ColumnWidths, ";")(1))
 
-#If VBA7 And Win64 Then
-#Else
-    Set MW = basMouseWheel.GetInstance
-    MW.Install Me
-#End If
 '
 '    Set TR = New Transparent
 '    TR.Init Me
@@ -1797,8 +1800,7 @@ Private Sub UserForm_Terminate()
 
 #If VBA7 And Win64 Then
 #Else
-    MW.UnInstall
-    Set MW = Nothing
+    Set MW = basMouseWheel.UnInstall(mstrhWnd)
 #End If
     
 '    TR.Term

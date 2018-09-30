@@ -77,6 +77,7 @@ Const C_DISABLE As String = " × "
 
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+Private mstrhWnd As String
 
 Private Sub cboCategory_Click()
     Call dispCommand
@@ -692,9 +693,11 @@ Private Sub UserForm_Initialize()
     Else
         cmdDel.enabled = False
     End If
-    
-    Set MW = basMouseWheel.GetInstance
-    MW.Install Me
+        
+    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
+    Set MW = basMouseWheel.Install(mstrhWnd)
+
+'    MW.Install Me
     
 End Sub
 Function getEnable(ByVal strBuf As String) As String
@@ -774,8 +777,7 @@ Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, 
 End Sub
 
 Private Sub UserForm_Terminate()
-    MW.UnInstall
-    Set MW = Nothing
+    Set MW = basMouseWheel.UnInstall(mstrhWnd)
 End Sub
 
 'Private Sub MW_WheelDown(ByVal Name As String)

@@ -68,6 +68,7 @@ Private mblnSainyu As Boolean
 
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+Private mstrhWnd As String
 
 Private Sub cboCategory_Click()
     Call dispCommand
@@ -397,8 +398,9 @@ Private Sub UserForm_Initialize()
         cmdDel.enabled = False
     End If
     
-    Set MW = basMouseWheel.GetInstance
-    MW.Install Me
+    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
+    Set MW = basMouseWheel.Install(mstrhWnd)
+
 End Sub
 'Private Sub UserForm_Activate()
 '    MW.Activate
@@ -472,6 +474,5 @@ Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, 
 End Sub
 
 Private Sub UserForm_Terminate()
-    MW.UnInstall
-    Set MW = Nothing
+    Set MW = basMouseWheel.UnInstall(mstrhWnd)
 End Sub

@@ -46,6 +46,7 @@ Option Explicit
 
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+Private mstrhWnd As String
 
 Private objLabel() As Object
 
@@ -228,8 +229,9 @@ Private Sub UserForm_Initialize()
     scrBar.SmallChange = 1
     Disp
     
-    Set MW = basMouseWheel.GetInstance
-    MW.Install Me
+    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
+    Set MW = basMouseWheel.Install(mstrhWnd)
+
     Set MW.obj = scrBar
 
 End Sub
@@ -314,7 +316,6 @@ End Function
 Private Sub UserForm_Terminate()
     If MW Is Nothing Then
     Else
-        MW.UnInstall
-        Set MW = Nothing
+        Set MW = basMouseWheel.UnInstall(mstrhWnd)
     End If
 End Sub

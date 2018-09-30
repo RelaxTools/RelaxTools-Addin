@@ -45,6 +45,7 @@ Attribute VB_Exposed = False
 Option Explicit
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+Private mstrhWnd As String
 
 Private Sub cmdCancel_Click()
     Unload Me
@@ -321,8 +322,8 @@ Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer,
 End Sub
 
 Private Sub UserForm_Initialize()
-    Set MW = basMouseWheel.GetInstance
-    MW.Install Me
+    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
+    Set MW = basMouseWheel.Install(mstrhWnd)
 End Sub
 
 Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
@@ -330,8 +331,7 @@ Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, 
 End Sub
 
 Private Sub UserForm_Terminate()
-    MW.UnInstall
-    Set MW = Nothing
+    Set MW = basMouseWheel.UnInstall(mstrhWnd)
 End Sub
 Private Sub MW_WheelDown(obj As Object)
 

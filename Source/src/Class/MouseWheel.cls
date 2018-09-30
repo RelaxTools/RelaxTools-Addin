@@ -52,174 +52,66 @@ Option Explicit
 Public Event WheelUp(ByRef obj As Object)
 Public Event WheelDown(ByRef obj As Object)
 
-#If VBA7 And Win64 Then
-    Private Declare PtrSafe Function SetWindowsHookEx Lib "user32" Alias "SetWindowsHookExA" (ByVal idHook As Long, ByVal lpfn As LongPtr, ByVal hmod As LongPtr, ByVal dwThreadId As Long) As LongPtr
-    Private Declare PtrSafe Function UnhookWindowsHookEx Lib "user32" (ByVal hhk As LongPtr) As Long
-    Private Declare PtrSafe Function CallNextHookEx Lib "user32" (ByVal hHook As LongPtr, ByVal ncode As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
-    Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As LongPtr
-    Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
-    Private Declare PtrSafe Function GetActiveWindow Lib "user32" () As LongPtr
-    Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
-#Else
-    Private Declare Function SetWindowsHookEx Lib "user32.dll" Alias "SetWindowsHookExA" (ByVal idHook As Long, ByVal lpfn As Long, ByVal hmod As Long, ByVal dwThreadId As Long) As Long
-    Private Declare Function UnhookWindowsHookEx Lib "user32.dll" (ByVal hhk As Long) As Long
-    Private Declare Function CallNextHookEx Lib "user32.dll" (ByVal hhk As Long, ByVal ncode As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
-    Private Declare Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long) As Long
-    Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
-    Private Declare Function GetActiveWindow Lib "user32" () As Long
-    Private Declare Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
+'#If VBA7 And Win64 Then
+'    Private Declare PtrSafe Function SetWindowsHookEx Lib "user32" Alias "SetWindowsHookExA" (ByVal idHook As Long, ByVal lpfn As LongPtr, ByVal hmod As LongPtr, ByVal dwThreadId As Long) As LongPtr
+'    Private Declare PtrSafe Function UnhookWindowsHookEx Lib "user32" (ByVal hhk As LongPtr) As Long
+'    Private Declare PtrSafe Function CallNextHookEx Lib "user32" (ByVal hHook As LongPtr, ByVal ncode As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
+'    Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As LongPtr
+'    Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
+'    Private Declare PtrSafe Function GetActiveWindow Lib "user32" () As LongPtr
+'    Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
+'#Else
+'    Private Declare Function SetWindowsHookEx Lib "user32.dll" Alias "SetWindowsHookExA" (ByVal idHook As Long, ByVal lpfn As Long, ByVal hmod As Long, ByVal dwThreadId As Long) As Long
+'    Private Declare Function UnhookWindowsHookEx Lib "user32.dll" (ByVal hhk As Long) As Long
+'    Private Declare Function CallNextHookEx Lib "user32.dll" (ByVal hhk As Long, ByVal ncode As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+'    Private Declare Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long) As Long
+'    Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
+'    Private Declare Function GetActiveWindow Lib "user32" () As Long
+'    Private Declare Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
+'
+'#End If
+'
+'Private Type POINT
+'    X As Long
+'    Y As Long
+'End Type
+'
+'Private Type MouseLLHookStruct
+'    POINT As POINT
+'    mouseData As Long
+'    Flags As Long
+'    time As Long
+'    dwExtraInfo As Long
+'End Type
 
-#End If
 
-Private Type POINT
-    X As Long
-    Y As Long
-End Type
-    
-Private Type MouseLLHookStruct
-    POINT As POINT
-    mouseData As Long
-    Flags As Long
-    time As Long
-    dwExtraInfo As Long
-End Type
-
-Private Const GWL_HINSTANCE As Long = -6
-Private Const WH_MOUSE_LL As Long = 14
-
-Private mlngRefCount As Long
-
-#If VBA7 And Win64 Then
-    Private mHandle As LongPtr
-    Private mActWnd As LongPtr
-#Else
-    Private mHandle As Long
-    Private mActWnd As Long
-#End If
 
 Private mobj As Object
 Public Property Set obj(s As Object)
     Set mobj = s
 End Property
-Public Sub Install(f As UserForm)
 
-'最新版ではMouseホイールでエラーになるため封印
-'#If Win64 Then
-'    If Format(Val(Application.Version), "00") & Format(Val(Application.Build), "00000") >= "1609126" Then '16.9126
-'        Exit Sub
-'    End If
-'#End If
+Public Sub MouseLLHookProc(ByVal mouseData As Long)
 
-    '参照カウンタ
-    mlngRefCount = mlngRefCount + 1
-    
-    If mlngRefCount = 1 Then
-        mHandle = SetWindowsHookEx(WH_MOUSE_LL, AddressOf basMouseWheel.MouseEventHookHandler, GetWindowLong(Application.hWnd, GWL_HINSTANCE), 0)
+    If mobj Is Nothing Then
+        Exit Sub
     End If
     
-    If mHandle <> 0 Then
-        mActWnd = FindWindowA("ThunderDFrame", f.Caption)
-    End If
+    Select Case mouseData
+        Case Is > 0
+            If mobj Is Nothing Then
+            Else
+                RaiseEvent WheelUp(mobj)
+            End If
+        Case Is < 0
+            If mobj Is Nothing Then
+            Else
+                RaiseEvent WheelDown(mobj)
+            End If
+    End Select
     
 End Sub
-#If VBA7 And Win64 Then
-    Public Function MouseLLHookProc(ByVal ncode As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
-    
-        Dim m_MouseLLHookStruct As MouseLLHookStruct
-    
-        On Error GoTo ErrorHandler
-        
-        If ncode < 0 Or wParam <> 522 Then
-            GoTo ErrorHandler
-        End If
-            
-        '登録した画面以外ホイール対象外
-        If GetActiveWindow <> mActWnd Then
-            GoTo ErrorHandler
-        End If
-                
-        If mobj Is Nothing Then
-            GoTo ErrorHandler
-        End If
-        
-        CopyMemory m_MouseLLHookStruct.POINT.X, ByVal lParam, LenB(m_MouseLLHookStruct)
-            
-        Select Case m_MouseLLHookStruct.mouseData
-            Case Is > 0
-                If mobj Is Nothing Then
-                Else
-                    RaiseEvent WheelUp(mobj)
-                End If
-            Case Is < 0
-                If mobj Is Nothing Then
-                Else
-                    RaiseEvent WheelDown(mobj)
-                End If
-        End Select
-        
-        MouseLLHookProc = 1
-        Exit Function
 
-ErrorHandler:
-        MouseLLHookProc = CallNextHookEx(mHandle, ncode, wParam, lParam)
-        
-    End Function
-#Else
-    Public Function MouseLLHookProc(ByVal ncode As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
-    
-        Dim m_MouseLLHookStruct As MouseLLHookStruct
-    
-        On Error GoTo ErrorHandler
-        
-        If ncode < 0 Or wParam <> 522 Then
-            GoTo ErrorHandler
-        End If
-            
-        '登録した画面以外ホイール対象外
-        If GetActiveWindow <> mActWnd Then
-            GoTo ErrorHandler
-        End If
-                
-        If mobj Is Nothing Then
-            GoTo ErrorHandler
-        End If
-        
-        CopyMemory m_MouseLLHookStruct.POINT.X, ByVal lParam, LenB(m_MouseLLHookStruct)
-            
-        Select Case m_MouseLLHookStruct.mouseData
-            Case Is > 0
-                If mobj Is Nothing Then
-                Else
-                    RaiseEvent WheelUp(mobj)
-                End If
-            Case Is < 0
-                If mobj Is Nothing Then
-                Else
-                    RaiseEvent WheelDown(mobj)
-                End If
-        End Select
-        
-        MouseLLHookProc = 1
-        Exit Function
-
-ErrorHandler:
-        MouseLLHookProc = CallNextHookEx(mHandle, ncode, wParam, lParam)
-        
-    End Function
-#End If
-
-Public Sub UnInstall()
-
-    If mlngRefCount = 1 Then
-        If mHandle <> 0 Then
-            Call UnhookWindowsHookEx(mHandle)
-            mHandle = 0
-        End If
-    End If
-    
-    mlngRefCount = mlngRefCount - 1
-
-End Sub
 
 
 

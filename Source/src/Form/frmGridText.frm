@@ -158,6 +158,8 @@ Private Const C_SQUARE_BOTTOM_MIDDLE As Long = 7
 Private Const C_SQUARE_BOTTOM_RIGHT As Long = 8
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+Private mstrhWnd As String
+
 '--------------------------------------------------------------
 '　かんたん罫線
 '--------------------------------------------------------------
@@ -1952,8 +1954,8 @@ Private Sub UserForm_Initialize()
 
     Call kantanLineRun
     
-    Set MW = basMouseWheel.GetInstance
-    MW.Install Me
+    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
+    Set MW = basMouseWheel.Install(mstrhWnd)
     
 End Sub
 Private Sub UserForm_Activate()
@@ -1990,8 +1992,7 @@ Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, 
 End Sub
 
 Private Sub UserForm_Terminate()
-    MW.UnInstall
-    Set MW = Nothing
+    Set MW = basMouseWheel.UnInstall(mstrhWnd)
 End Sub
 Private Sub MW_WheelDown(obj As Object)
     

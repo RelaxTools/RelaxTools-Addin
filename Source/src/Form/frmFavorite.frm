@@ -46,6 +46,7 @@ Attribute VB_Exposed = False
 
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
+Private mstrhWnd As String
 
 Option Explicit
 Private Const C_FILE_NO As Long = 0
@@ -578,8 +579,8 @@ Private Sub UserForm_Initialize()
     
     chkDetail.Value = GetSetting(C_TITLE, "Favirite", "Detail", False)
     
-    Set MW = basMouseWheel.GetInstance
-    MW.Install Me
+    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
+    Set MW = basMouseWheel.Install(mstrhWnd)
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
@@ -731,7 +732,7 @@ Sub favCurrentUpdate()
     
     Key = lstCategory.List(lstCategory.ListIndex)
     If mobjCategory.Exists(Key) Then
-        mobjCategory.remove Key
+        mobjCategory.Remove Key
     End If
     
     Set objfav = CreateObject("Scripting.Dictionary")
@@ -1184,8 +1185,7 @@ End Sub
 
 Private Sub UserForm_Terminate()
 
-    MW.UnInstall
-    Set MW = Nothing
+    Set MW = basMouseWheel.UnInstall(mstrhWnd)
         
     Dim key1 As Variant
     Dim key2 As Variant
@@ -1403,7 +1403,7 @@ Sub moveCategory(ByVal strCategory As String)
             
             cat2.Add d.filename, d
             If mobjCategory.Exists(strCategory) Then
-                mobjCategory.remove strCategory
+                mobjCategory.Remove strCategory
             End If
             mobjCategory.Add strCategory, cat2
         
@@ -1411,7 +1411,7 @@ Sub moveCategory(ByVal strCategory As String)
             Dim cat As Variant
             Set cat = mobjCategory.Item(lstFavorite.List(i, C_CATEGORY))
             
-            cat.remove lstFavorite.List(i, C_ORIGINAL)
+            cat.Remove lstFavorite.List(i, C_ORIGINAL)
         
         
         End If
@@ -1557,7 +1557,7 @@ Sub delCategory()
         Key = lstCategory.List(lstCategory.ListIndex)
         
         If mobjCategory.Exists(Key) Then
-            mobjCategory.remove Key
+            mobjCategory.Remove Key
         End If
         
         'お気に入りをクリア
