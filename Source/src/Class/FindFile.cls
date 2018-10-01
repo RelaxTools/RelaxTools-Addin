@@ -41,7 +41,7 @@ End Type
     Private Declare PtrSafe Function FindClose Lib "kernel32" (ByVal hFindFile As LongPtr) As LongPtr
     Private lngFindFileHandle       As LongPtr                 '[FindFirstFile]のハンドル
 #Else
-    Private Declare Function FindFirstFile Lib "kernel32" Alias "FindFirstFileW" (ByVal lpFileName As String, lpFindFileData As WIN32_FIND_DATA) As Long
+    Private Declare Function FindFirstFile Lib "kernel32" Alias "FindFirstFileW" (ByVal lpFileName As Long, lpFindFileData As WIN32_FIND_DATA) As Long
     Private Declare Function FindNextFile Lib "kernel32" Alias "FindNextFileW" (ByVal hFindFile As Long, lpFindFileData As WIN32_FIND_DATA) As Long
     Private Declare Function FindClose Lib "kernel32" (ByVal hFindFile As Long) As Long
     Private lngFindFileHandle       As Long                 '[FindFirstFile]のハンドル
