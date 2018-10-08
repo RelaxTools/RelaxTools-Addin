@@ -46,7 +46,6 @@ Attribute VB_Exposed = False
 
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
 
 Option Explicit
 Private Const C_FILE_NO As Long = 0
@@ -579,8 +578,8 @@ Private Sub UserForm_Initialize()
     
     chkDetail.Value = GetSetting(C_TITLE, "Favirite", "Detail", False)
     
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
+    Set MW = New MouseWheel
+    MW.Install Me
 
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
@@ -1185,7 +1184,8 @@ End Sub
 
 Private Sub UserForm_Terminate()
 
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
+    MW.Uninstall
+    Set MW = Nothing
         
     Dim key1 As Variant
     Dim key2 As Variant

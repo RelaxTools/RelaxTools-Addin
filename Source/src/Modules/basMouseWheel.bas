@@ -43,7 +43,6 @@ Option Private Module
     Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As LongPtr
     Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
     Private Declare PtrSafe Function GetActiveWindow Lib "user32" () As LongPtr
-    Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
 #Else
     Private Declare Function SetWindowsHookEx Lib "user32.dll" Alias "SetWindowsHookExA" (ByVal idHook As Long, ByVal lpfn As Long, ByVal hmod As Long, ByVal dwThreadId As Long) As Long
     Private Declare Function UnhookWindowsHookEx Lib "user32.dll" (ByVal hhk As Long) As Long
@@ -51,7 +50,6 @@ Option Private Module
     Private Declare Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long) As Long
     Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
     Private Declare Function GetActiveWindow Lib "user32" () As Long
-    Private Declare Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
 #End If
 
 Private Type POINT
@@ -69,6 +67,7 @@ End Type
 
 Private Const GWL_HINSTANCE As Long = -6
 Private Const WH_MOUSE_LL As Long = 14
+Private Const WM_MOUSEWHEEL As Long = 522
 
 Private mlngRefCount As Long
 
@@ -80,9 +79,7 @@ Private mlngRefCount As Long
 
 Private mColhWnd As Object
 
-Public Function Install(ByVal strhWnd As String) As MouseWheel
-
-    Dim MH As MouseWheel
+Public Sub Install(MH As MouseWheel, ByVal strhWnd As String)
 
     '参照カウンタ
     mlngRefCount = mlngRefCount + 1
@@ -92,18 +89,18 @@ Public Function Install(ByVal strhWnd As String) As MouseWheel
     End If
     
     If mHandle <> 0 Then
-        Set MH = New MouseWheel
-        
         If mColhWnd Is Nothing Then
             Set mColhWnd = CreateObject("Scripting.Dictionary")
         End If
-        
-        mColhWnd.Add strhWnd, MH
-        Set Install = MH
+        If Not mColhWnd.Exists(strhWnd) Then
+            mColhWnd.Add strhWnd, MH
+        End If
+    Else
+        MsgBox "マウスの低レベルフックに失敗しました。", vbCritical + vbOKOnly, C_TITLE
     End If
     
-End Function
-Public Function UnInstall(ByVal strhWnd As String) As MouseWheel
+End Sub
+Public Sub Uninstall(ByVal strhWnd As String)
 
     If mHandle <> 0 Then
         If mColhWnd.Exists(strhWnd) Then
@@ -120,9 +117,7 @@ Public Function UnInstall(ByVal strhWnd As String) As MouseWheel
     
     mlngRefCount = mlngRefCount - 1
     
-    Set UnInstall = Nothing
-
-End Function
+End Sub
 '--------------------------------------------------------------
 ' SetWindowsHookExのコールバックメソッド(直接呼ばないこと)
 '--------------------------------------------------------------
@@ -135,7 +130,7 @@ End Function
         
         On Error GoTo ErrorHandler
         
-        If uMsg < 0 Or wParam <> 522 Then
+        If uMsg < 0 Or wParam <> WM_MOUSEWHEEL Then
             GoTo ErrorHandler
         End If
     
@@ -164,7 +159,7 @@ ErrorHandler:
         
         On Error GoTo ErrorHandler
         
-        If uMsg < 0 Or wParam <> 522 Then
+        If uMsg < 0 Or wParam <> WM_MOUSEWHEEL Then
             GoTo ErrorHandler
         End If
     

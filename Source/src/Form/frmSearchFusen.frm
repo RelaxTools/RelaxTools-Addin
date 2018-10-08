@@ -61,7 +61,6 @@ Private Const C_SEARCH_ID_SMARTART As String = "SmartArt"
 Private Const C_SIZE As Long = 256
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
 
 Private Sub searchShape(ByRef strPattern As String, ByRef objSheet As Worksheet)
 
@@ -479,8 +478,8 @@ Private Sub UserForm_Initialize()
     Me.Top = (Application.Top + Application.Height - Me.Height) - 20
     Me.Left = (Application.Left + Application.width - Me.width) - 20
     
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
+    Set MW = New MouseWheel
+    MW.Install Me
     
 End Sub
 
@@ -531,7 +530,8 @@ Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, 
 End Sub
 
 Private Sub UserForm_Terminate()
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
+    MW.Uninstall
+    Set MW = Nothing
 End Sub
 Private Sub MW_WheelDown(obj As Object)
 

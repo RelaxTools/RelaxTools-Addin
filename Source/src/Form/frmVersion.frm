@@ -45,7 +45,7 @@ Attribute VB_Exposed = False
 Option Explicit
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
+
 
 'Private TR As Transparent
 
@@ -246,9 +246,8 @@ Private Sub UserForm_Initialize()
 '    txtDebug.SetFocus
 '    SendKeys "^A"
     
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
-
+    Set MW = New MouseWheel
+    MW.Install Me
     
 '    Set TR = New Transparent
 '    TR.Init Me
@@ -290,8 +289,8 @@ Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, 
 End Sub
 
 Private Sub UserForm_Terminate()
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
 
-'    TR.Term
-'    Set TR = Nothing
+    MW.Uninstall
+    Set MW = Nothing
+
 End Sub

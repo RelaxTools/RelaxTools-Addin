@@ -52,44 +52,31 @@ Option Explicit
 Public Event WheelUp(ByRef obj As Object)
 Public Event WheelDown(ByRef obj As Object)
 
-'#If VBA7 And Win64 Then
-'    Private Declare PtrSafe Function SetWindowsHookEx Lib "user32" Alias "SetWindowsHookExA" (ByVal idHook As Long, ByVal lpfn As LongPtr, ByVal hmod As LongPtr, ByVal dwThreadId As Long) As LongPtr
-'    Private Declare PtrSafe Function UnhookWindowsHookEx Lib "user32" (ByVal hhk As LongPtr) As Long
-'    Private Declare PtrSafe Function CallNextHookEx Lib "user32" (ByVal hHook As LongPtr, ByVal ncode As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
-'    Private Declare PtrSafe Function GetWindowLong Lib "user32" Alias "GetWindowLongPtrA" (ByVal hWnd As LongPtr, ByVal nIndex As Long) As LongPtr
-'    Private Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
-'    Private Declare PtrSafe Function GetActiveWindow Lib "user32" () As LongPtr
-'    Private Declare PtrSafe Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
-'#Else
-'    Private Declare Function SetWindowsHookEx Lib "user32.dll" Alias "SetWindowsHookExA" (ByVal idHook As Long, ByVal lpfn As Long, ByVal hmod As Long, ByVal dwThreadId As Long) As Long
-'    Private Declare Function UnhookWindowsHookEx Lib "user32.dll" (ByVal hhk As Long) As Long
-'    Private Declare Function CallNextHookEx Lib "user32.dll" (ByVal hhk As Long, ByVal ncode As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
-'    Private Declare Function GetWindowLong Lib "user32.dll" Alias "GetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long) As Long
-'    Private Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
-'    Private Declare Function GetActiveWindow Lib "user32" () As Long
-'    Private Declare Function FindWindowA Lib "user32" (ByVal clpClassName As String, ByVal lpWindowName As String) As Long
-'
-'#End If
-'
-'Private Type POINT
-'    X As Long
-'    Y As Long
-'End Type
-'
-'Private Type MouseLLHookStruct
-'    POINT As POINT
-'    mouseData As Long
-'    Flags As Long
-'    time As Long
-'    dwExtraInfo As Long
-'End Type
+#If VBA7 And Win64 Then
+    Private hWnd As LongPtr
+#Else
+    Private hWnd As Long
+#End If
 
+#If VBA7 And Win64 Then
+    Private Declare PtrSafe Function WindowFromAccessibleObject Lib "oleacc" (ByVal obj As Object, hWnd As LongPtr) As LongPtr
+#Else
+    Private Declare Function WindowFromAccessibleObject Lib "oleacc" (ByVal obj As Object, hWnd As Long) As Long
+#End If
 
 
 Private mobj As Object
 Public Property Set obj(s As Object)
     Set mobj = s
 End Property
+
+Public Sub Install(frm As UserForm)
+    WindowFromAccessibleObject frm, hWnd
+    basMouseWheel.Install Me, CStr(hWnd)
+End Sub
+Public Sub Uninstall()
+    basMouseWheel.Uninstall CStr(hWnd)
+End Sub
 
 Public Sub MouseLLHookProc(ByVal mouseData As Long)
 

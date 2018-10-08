@@ -56,7 +56,7 @@ Private Const C_COLUMN_LIST As Long = 1
 Private Const C_COLUMN_PAGE As Long = 2
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
+
 
 Private Sub cmdCancel_Click()
     Unload Me
@@ -465,9 +465,9 @@ Private Sub UserForm_Initialize()
     txtPageCell.Text = get1toA(C_COLUMN_PAGE)
     txtRow.Text = C_START_ROW
     
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
-
+    Set MW = New MouseWheel
+    MW.Install Me
+    
 End Sub
 Private Function getAto1(ByVal strCol As String) As Long
 
@@ -527,7 +527,8 @@ Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, 
 End Sub
 
 Private Sub UserForm_Terminate()
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
+    MW.Uninstall
+    Set MW = Nothing
 End Sub
 Private Sub MW_WheelDown(obj As Object)
 

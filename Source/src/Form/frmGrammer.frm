@@ -87,7 +87,7 @@ Private mlngLblPlaceLeft As Long
 Private mlngColumnWidth As Long
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
+
 
 'Private Const C_SEARCH_VALUE_FORMULA_NO As Long = 2
 'Private Const C_SEACH_VALUE_VALUE_NO As Long = 1
@@ -859,8 +859,8 @@ Private Sub UserForm_Initialize()
 '    mlngLblPlaceLeft = Me.lblPlace.Left
 '    mlngColumnWidth = Val(Split(Me.lstResult.ColumnWidths, ";")(1))
 
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
+    Set MW = New MouseWheel
+    MW.Install Me
     
 End Sub
 Public Sub Start(ByVal lngTab As Long)
@@ -1082,7 +1082,8 @@ End Sub
 
 Private Sub UserForm_Terminate()
 
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
+    MW.Uninstall
+    Set MW = Nothing
 
 End Sub
 

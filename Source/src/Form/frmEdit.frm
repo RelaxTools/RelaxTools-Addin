@@ -47,7 +47,7 @@ Private mblnArrowKeyFlg As Boolean
 Private mBlnFormura As Boolean
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
+
 
 Private Sub cmbFont_Change()
 
@@ -241,8 +241,8 @@ Private Sub UserForm_Initialize()
     
     optFormura.Value = True
     
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
+    Set MW = New MouseWheel
+    MW.Install Me
     
 End Sub
 
@@ -260,7 +260,8 @@ Private Sub UserForm_Terminate()
     End If
     SaveSetting C_TITLE, "Edit", "Size", strSize
     
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
+    MW.Uninstall
+    Set MW = Nothing
     
 End Sub
 Private Sub changeValue()

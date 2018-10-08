@@ -50,7 +50,6 @@ Option Explicit
 '
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
 
 Private Const C_FILE_NO As Long = 0
 Private Const C_FILE_REV As Long = 1
@@ -673,12 +672,13 @@ Function timeAfter(ByVal s As Date, ByVal d As Date) As String
 End Function
 Private Sub UserForm_Initialize()
     Disp
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
+    Set MW = New MouseWheel
+    MW.Install Me
 End Sub
 
 Private Sub UserForm_Terminate()
     
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
-
+    MW.Uninstall
+    Set MW = Nothing
+    
 End Sub

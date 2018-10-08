@@ -46,7 +46,7 @@ Option Explicit
 
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
+
 
 Private Sub cmdAll_Click()
 
@@ -164,8 +164,8 @@ Private Sub UserForm_Initialize()
     
     Call cmdSearch_Click
     
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
+    Set MW = New MouseWheel
+    MW.Install Me
 End Sub
 Function SearchStyle(ByVal strBuf As String) As Boolean
 
@@ -214,5 +214,6 @@ Private Sub MW_WheelUp(obj As Object)
 e:
 End Sub
 Private Sub UserForm_Terminate()
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
+    MW.Uninstall
+    Set MW = Nothing
 End Sub

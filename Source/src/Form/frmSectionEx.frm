@@ -66,7 +66,6 @@ Private Const C_FALSE As String = "－"
 Private mRet As VbMsgBoxResult
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
 
 Private Sub cmdAdd_Click()
 
@@ -405,8 +404,8 @@ Private Sub UserForm_Initialize()
     chkUseFormat_Click
     chkUseFormat2_Click
     
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
+    Set MW = New MouseWheel
+    MW.Install Me
 
 End Sub
 Private Function chgBoolToStr(ByVal blnFlg As Boolean) As String
@@ -556,5 +555,7 @@ Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, 
 End Sub
 
 Private Sub UserForm_Terminate()
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
+    
+    MW.Uninstall
+    Set MW = Nothing
 End Sub

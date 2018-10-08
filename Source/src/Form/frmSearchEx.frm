@@ -90,7 +90,6 @@ Private mlngLblPlaceLeft As Long
 Private mlngColumnWidth As Long
 Private WithEvents MW As MouseWheel
 Attribute MW.VB_VarHelpID = -1
-Private mstrhWnd As String
 
 Private Sub chkDefault_Change()
     
@@ -1483,8 +1482,8 @@ Private Sub UserForm_Initialize()
     
 #If VBA7 And Win64 Then
 #Else
-    mstrhWnd = CStr(FindWindow("ThunderDFrame", Me.Caption))
-    Set MW = basMouseWheel.Install(mstrhWnd)
+    Set MW = New MouseWheel
+    MW.Install Me
 #End If
     
     
@@ -1800,7 +1799,8 @@ Private Sub UserForm_Terminate()
 
 #If VBA7 And Win64 Then
 #Else
-    Set MW = basMouseWheel.UnInstall(mstrhWnd)
+    MW.Uninstall
+    Set MW = Nothing
 #End If
     
 '    TR.Term
