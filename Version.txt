@@ -1,4 +1,12 @@
-﻿2018/10/01(mon) RelaxTools-Addin Version 4.23.3(RustRemover) 
+﻿2018/10/13(sat) RelaxTools-Addin Version 4.24.0(RustRemover) 
+◇機能追加
+・結合セルのサイズを自在に変更できる機能を追加。
+　「結合セルの幅拡張」
+　「結合セルの幅縮小」
+　「結合セルの高さ拡張」
+　「結合セルの高さ縮小」
+
+2018/10/01(mon) RelaxTools-Addin Version 4.23.3(RustRemover) 
 ◇バグ修正
 ・4.23.1のデグレード。「TimeLeap」の履歴表示が32bit版で動作しない不具合を修正。
 
