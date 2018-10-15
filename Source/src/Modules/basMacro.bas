@@ -1536,7 +1536,7 @@ End Function
 '--------------------------------------------------------------
 Sub execPreview()
     On Error Resume Next
-    ActiveWindow.SelectedSheets.PrintOut preview:=True
+    ActiveWindow.SelectedSheets.PrintOut Preview:=True
 End Sub
 Sub verticalLine()
 
@@ -3579,3 +3579,61 @@ End Sub
 '
 '    End With
 'End Sub
+'アクティブなセルのプレビュー
+Sub previewActivePage()
+
+    Dim lngHCount As Long
+    Dim lngVCount As Long
+    Dim lngPage As Long
+    
+    Dim i As Long
+    Dim WS As Worksheet
+    
+    On Error GoTo e
+    
+    Set WS = ActiveSheet
+    
+    Application.PrintCommunication = False
+    
+    lngHCount = WS.HPageBreaks.count + 1
+    For i = 1 To WS.HPageBreaks.count
+
+        If WS.HPageBreaks(i).Location.Row > ActiveCell.Row Then
+            lngHCount = i
+            Exit For
+        End If
+
+    Next
+    
+    lngVCount = WS.VPageBreaks.count + 1
+    For i = 1 To WS.VPageBreaks.count
+
+        If WS.VPageBreaks(i).Location.Column > ActiveCell.Column Then
+            lngVCount = i
+            Exit For
+        End If
+
+    Next
+    
+    Select Case ActiveSheet.PageSetup.Order
+
+        '左から右（通常）
+        Case xlDownThenOver
+        
+            lngPage = (WS.HPageBreaks.count + 1) * (lngVCount - 1) + lngHCount
+        
+        '上から下
+        Case xlOverThenDown
+    
+            lngPage = (WS.VPageBreaks.count + 1) * (lngHCount - 1) + lngVCount
+    
+    End Select
+    
+    Application.PrintCommunication = True
+    
+    WS.PrintOut From:=lngPage, To:=lngPage, Preview:=True
+    
+    Exit Sub
+e:
+    MsgBox "Previewに失敗しました。", vbOKOnly + vbExclamation, C_TITLE
+End Sub
