@@ -32,7 +32,7 @@ Public Sub Run()
         
         'フレーム無
         SetWindowLong hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) And Not WS_EX_DLGMODALFRAME
-        
+
         'キャプションなし
         SetWindowLong hWnd, GWL_STYLE, GetWindowLong(hWnd, GWL_STYLE) And Not WS_CAPTION
         

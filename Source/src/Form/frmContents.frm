@@ -198,7 +198,7 @@ Private Sub cmdOk_Click()
         Set WS = WB.Worksheets(cboSheet.Text)
     End If
     
-    Application.ScreenUpdating = False
+'    Application.ScreenUpdating = False
     
     lngLevel = Val(txtLevel.Text)
     
@@ -297,7 +297,7 @@ Private Sub cmdOk_Click()
     WS.Activate
     Set WS = Nothing
     
-    Application.ScreenUpdating = True
+'    Application.ScreenUpdating = True
     Unload Me
     
 End Sub

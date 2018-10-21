@@ -48,18 +48,27 @@ Sub SizeToWidest()
         blnValue = False
         For i = lngTop To lngBottom
 
-            If Cells(i, j).MergeCells Then
-                blnMerge = True
-                Exit For
-            End If
-            If Cells(i, j).Value <> "" Then
-                blnValue = True
-                Exit For
-            End If
+            With Cells(i, j)
+            
+                If .MergeCells Then
+                    blnMerge = True
+                End If
+            
+                If .Value <> "" Or .HasFormula Then
+                    blnValue = True
+                End If
+                
+            End With
 
         Next
         
-        If blnMerge = False And blnValue = False Then
+        If blnMerge = False Then
+
+            If blnValue = True Then
+                If MsgBox("拡張先に文字または式がありますが続行しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+                    Exit For
+                End If
+            End If
 
             Dim r As Range
             Dim s As Range
@@ -80,11 +89,7 @@ Sub SizeToWidest()
                     For i = lngTop To lngBottom
             
                         If .Cells(i, lngLeft).Address = .Cells(i, lngLeft).MergeArea(1).Address Then
-'                            '書式維持のためのコピー
-'                            .Cells(i, lngLeft).MergeArea.Copy .Cells(i, lngLeft).MergeArea.Offset(, 1)
-'                            Application.DisplayAlerts = False
                             .Cells(i, lngLeft).MergeArea.Resize(, 2).Merge
-'                            Application.DisplayAlerts = True
                         End If
             
                     Next
@@ -227,18 +232,29 @@ Sub SizeToTallest()
         blnValue = False
         For j = lngLeft To lngRight
 
-            If Cells(i, j).MergeCells Then
-                blnMerge = True
-                Exit For
-            End If
-            If Cells(i, j).Value <> "" Then
-                blnValue = True
-                Exit For
-            End If
+            
+            With Cells(i, j)
+            
+                If .MergeCells Then
+                    blnMerge = True
+                End If
+            
+                If .Value <> "" Or .HasFormula Then
+                    blnValue = True
+                End If
+                
+            End With
 
         Next
-        If blnMerge = False And blnValue = False Then
+        
+        If blnMerge = False Then
 
+            If blnValue = True Then
+                If MsgBox("拡張先に文字または式がありますが続行しますか？", vbOKCancel + vbQuestion, C_TITLE) <> vbOK Then
+                    Exit For
+                End If
+            End If
+            
             Dim r As Range
             Dim s As Range
             
@@ -258,11 +274,7 @@ Sub SizeToTallest()
                     For j = lngLeft To lngRight
             
                         If .Cells(lngTop, j).Address = .Cells(lngTop, j).MergeArea(1).Address Then
-'                            '書式維持のためのコピー
-'                            .Cells(lngTop, j).MergeArea.Copy .Cells(lngTop, j).MergeArea.Offset(1)
-'                            Application.DisplayAlerts = False
                             .Cells(lngTop, j).MergeArea.Resize(2).Merge
-'                            Application.DisplayAlerts = True
                         End If
             
                     Next

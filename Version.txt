@@ -1,7 +1,9 @@
-﻿2018/10/15(mon) RelaxTools-Addin Version 4.25.0(RustRemover) 
+﻿2018/10/21(sun) RelaxTools-Addin Version 4.25.0(RustRemover) 
 ◇機能追加
 ・アクティブセルのあるページのプレビューを表示。
 　文字切れの確認がすぐできるので便利です。
+◇バグ修正
+・目次の作成でIndexエラーになるのを軽減したつもり。
 
 2018/10/13(sat) RelaxTools-Addin Version 4.24.0(RustRemover) 
 ◇機能追加
