@@ -66,7 +66,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 初期処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
     Undo = True
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
@@ -89,10 +89,10 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     End If
 
     If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
-        Select Case r.Characters(r.Characters.count, 1).Text
+        Select Case r.Characters(r.Characters.Count, 1).Text
             Case vbCr, vbLf, vbCrLf
             Case Else
-                r.Characters(r.Characters.count + 1, 0).Insert vbLf
+                r.Characters(r.Characters.Count + 1, 0).Insert vbLf
         End Select
     Else
         '最後の文字が改行か、それ以外か？

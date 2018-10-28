@@ -339,7 +339,7 @@ Private Function setCellPos(ByRef r As Range) As Range
     Dim lngCol2 As Long
     
     lngCol1 = Windows(1).VisibleRange(1).Column
-    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.count).Column
+    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.Count).Column
     
     Select Case r.Column
         Case lngCol1 To lngCol2
@@ -630,7 +630,7 @@ Private Sub checkSheetNoUse(ByVal strCheckNm As String, ByVal strCheck As String
     
     For Each WS In WB.Sheets
             
-        If Application.WorksheetFunction.CountA(WS.UsedRange) = 0 And WS.Shapes.count = 0 Then
+        If Application.WorksheetFunction.CountA(WS.UsedRange) = 0 And WS.Shapes.Count = 0 Then
             ReportCheck strCheck, "-", WS.Name, C_DEFAULT_CELL, WB.Name
         End If
         
@@ -733,7 +733,7 @@ Private Sub checkSheetHyperlink(ByVal strCheckNm As String, ByVal strCheck As St
     For Each WS In WB.Sheets
     
         i = 0
-        StartBar strCheckNm, WS.Hyperlinks.count + WS.UsedRange.count
+        StartBar strCheckNm, WS.Hyperlinks.Count + WS.UsedRange.Count
         For Each HL In WS.Hyperlinks
             
             If InStr(HL.Address, "\") > 0 Then
@@ -801,7 +801,7 @@ Private Sub checkBreakHyperlink(ByVal strCheckNm As String, ByVal strCheck As St
     Dim i As Long
     For Each WS In WB.Sheets
         i = 0
-        StartBar strCheckNm, WS.Hyperlinks.count
+        StartBar strCheckNm, WS.Hyperlinks.Count
         For Each HL In WS.Hyperlinks
             If rlxIsExcelFile(HL.Address) Then
                 If rlxIsFileExists(HL.Address) Then
@@ -892,7 +892,7 @@ Private Sub checkSheetMerge(ByVal strCheckNm As String, ByVal strCheck As String
     For Each WS In WB.Sheets
     
         Dim i As Long
-        StartBar strCheckNm, WS.UsedRange.count
+        StartBar strCheckNm, WS.UsedRange.Count
         For Each r In WS.UsedRange
         
             If r.MergeCells Then
@@ -918,8 +918,8 @@ Private Sub checkSheetCol(ByVal strCheckNm As String, ByVal strCheck As String)
     For Each WS In WB.Sheets
     
 '        Dim i As Long
-        StartBar strCheckNm, WS.UsedRange.count
-        For i = WS.UsedRange(1).Column To WS.UsedRange(WS.UsedRange.count).Column
+        StartBar strCheckNm, WS.UsedRange.Count
+        For i = WS.UsedRange(1).Column To WS.UsedRange(WS.UsedRange.Count).Column
             If WS.Columns(i).Hidden Then
                 ReportCheck strCheck, WS.Columns(i).Address, WS.Name, WS.Columns(i).Address, WB.Name
             End If
@@ -941,8 +941,8 @@ Private Sub checkSheetRow(ByVal strCheckNm As String, ByVal strCheck As String)
     For Each WS In WB.Sheets
     
 '        Dim i As Long
-        StartBar strCheckNm, WS.UsedRange.count
-        For i = WS.UsedRange(1).Row To WS.UsedRange(WS.UsedRange.count).Row
+        StartBar strCheckNm, WS.UsedRange.Count
+        For i = WS.UsedRange(1).Row To WS.UsedRange(WS.UsedRange.Count).Row
             If WS.Rows(i).Hidden Then
                 ReportCheck strCheck, WS.Rows(i).Address, WS.Name, WS.Rows(i).Address, WB.Name
             End If

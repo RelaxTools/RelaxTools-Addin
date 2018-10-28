@@ -185,7 +185,7 @@ Private Sub cmdOk_Click()
     On Error GoTo e
     
     ThisWorkbook.Worksheets("ページ数カウント結果").Copy
-    Set ResultWB = Application.Workbooks(Application.Workbooks.count)
+    Set ResultWB = Application.Workbooks(Application.Workbooks.Count)
     
     'Application.ScreenUpdating の代わり
     ResultWB.Windows(1).visible = False
@@ -218,7 +218,7 @@ Private Sub cmdOk_Click()
     End If
 
     lngBookCount = 0
-    lngBookMax = colBook.count
+    lngBookMax = colBook.Count
     mMm.StartGauge lngBookMax
     
     For Each varBook In colBook
@@ -254,7 +254,7 @@ Private Sub cmdOk_Click()
                         
                         'p = (WS.VPageBreaks.count + 1) * (WS.HPageBreaks.count + 1)
                         WB.Windows(1).View = xlPageBreakPreview
-                        p = WS.PageSetup.Pages.count
+                        p = WS.PageSetup.Pages.Count
                         
                         If chkExcelSheet.Value Then
                             lngCount = lngCount + 1
@@ -287,7 +287,7 @@ Private Sub cmdOk_Click()
             
                 Set pt = PP.Presentations.Open(filename:=varBook, ReadOnly:=True, withwindow:=False)
                     
-                ResultWS.Cells(lngCount, C_SEARCH_PAGE).Value = pt.Slides.count
+                ResultWS.Cells(lngCount, C_SEARCH_PAGE).Value = pt.Slides.Count
                 
                 pt.Close
                 Set pt = Nothing

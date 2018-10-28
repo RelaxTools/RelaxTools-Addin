@@ -174,7 +174,7 @@ Private Sub SFWork_SelectionMain(r As Range)
     
     '１列目を選択
     Dim s As Range
-    Set s = Application.Range(Selection(1), r(1).Offset(r.Rows.count - 1, 0))
+    Set s = Application.Range(Selection(1), r(1).Offset(r.Rows.Count - 1, 0))
 
     '１列目の横中線を削除、右側に線を引く
     If s Is Nothing Then

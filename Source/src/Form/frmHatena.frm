@@ -68,11 +68,11 @@ Private Sub MarkdownConv()
     Dim lngCol As Long
     Dim r As Range
 
-    For lngRow = 1 To Selection.Rows.count
+    For lngRow = 1 To Selection.Rows.Count
     
         strBuf = strBuf & C_SPLIT
         
-        For lngCol = 1 To Selection.Columns.count
+        For lngCol = 1 To Selection.Columns.Count
             
             Set r = Selection(lngRow, lngCol)
             

@@ -66,7 +66,7 @@ Option Explicit
     Private Declare PtrSafe Function PrintWindow Lib "user32.dll" (ByVal hWnd As LongPtr, ByVal hdcBlt As LongPtr, ByVal nFlags As Long) As Long
     Private Declare PtrSafe Function UpdateWindow Lib "user32" (ByVal hWnd As LongPtr) As Long
 
-    Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32" (PicDesc As PicBmp, RefIID As GUID, ByVal fPictureOwnsHandle As LongPtr, IPic As IPicture) As Long
+    Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32" (PicDesc As PicBmp, refiid As GUID, ByVal fPictureOwnsHandle As LongPtr, IPic As IPicture) As Long
     Private Declare PtrSafe Function GetDeviceCaps Lib "gdi32" (ByVal hDc As LongPtr, ByVal nIndex As Long) As Long
     Private Declare PtrSafe Function GetSystemPaletteEntries Lib "gdi32" (ByVal hDc As LongPtr, ByVal wStartIndex As Long, ByVal wNumEntries As Long, lpPaletteEntries As PALETTEENTRY) As Long
     Private Declare PtrSafe Function CreatePalette Lib "gdi32" (lpLogPalette As LOGPALETTE) As LongPtr
@@ -105,7 +105,7 @@ Option Explicit
     Private Declare Function PrintWindow Lib "user32.dll" (ByVal hwnd As Long, ByVal hdcBlt As Long, ByVal nFlags As Long) As Long
     Private Declare Function UpdateWindow Lib "user32" (ByVal hwnd As Long) As Long
 
-    Private Declare Function OleCreatePictureIndirect Lib "olepro32" (PicDesc As PicBmp, RefIID As GUID, ByVal fPictureOwnsHandle As Long, IPic As IPicture) As Long
+    Private Declare Function OleCreatePictureIndirect Lib "olepro32" (PicDesc As PicBmp, refiid As GUID, ByVal fPictureOwnsHandle As Long, IPic As IPicture) As Long
     Private Declare Function GetDeviceCaps Lib "gdi32" (ByVal hDc As Long, ByVal iCapabilitiy As Long) As Long
     Private Declare Function GetSystemPaletteEntries Lib "gdi32" (ByVal hDc As Long, ByVal wStartIndex As Long, ByVal wNumEntries As Long, lpPaletteEntries As PALETTEENTRY) As Long
     Private Declare Function CreatePalette Lib "gdi32" (lpLogPalette As LOGPALETTE) As Long

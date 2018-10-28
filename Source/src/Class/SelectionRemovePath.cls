@@ -64,7 +64,7 @@ Public Sub Run()
     SFWork.Run
 End Sub
 
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
     Undo = True
 End Sub
 

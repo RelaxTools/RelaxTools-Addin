@@ -90,7 +90,7 @@ Private Sub cmdPrint_Click()
             On Error Resume Next
             Set s = mBook.Sheets(lstSheet.List(lngCnt, C_SHEET_OLD_NAME))
             If Err.Number = 0 And s.Type = xlWorksheet Then
-                If s.PageSetup.Pages.count > 0 Then
+                If s.PageSetup.Pages.Count > 0 Then
     
                     If strSheets = "" Then
                         strSheets = lstSheet.List(lngCnt, C_SHEET_OLD_NAME)
@@ -160,7 +160,7 @@ Private Sub cmdSaveBook_Click()
             ActiveWorkbook.Sheets(Split(strSheets, vbTab)).Copy
             
             'ActiveWorkbook.Windows(1).SelectedSheets.Copy
-            Set b = Application.Workbooks(Application.Workbooks.count)
+            Set b = Application.Workbooks(Application.Workbooks.Count)
             
             Select Case LCase(Mid$(vntFileName, InStr(vntFileName, ".") + 1))
                 Case "xls"
@@ -559,9 +559,9 @@ Private Sub sortList(ByVal lngSort As Long)
 '        Next
 '    Next
 
-    For lngCnt = 1 To idx.count - 1
+    For lngCnt = 1 To idx.Count - 1
     
-        For lngCmp = lngCnt + 1 To idx.count
+        For lngCmp = lngCnt + 1 To idx.Count
                 
             If lngSort = C_SORT_ASC Then
                 strCmp1 = lstSheet.List(idx(lngCnt), C_SHEET_NEW_NAME)

@@ -70,10 +70,10 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 前処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
 
     lngAsc = 0
-    Func = True
+    func = True
     Undo = True
 
 End Sub

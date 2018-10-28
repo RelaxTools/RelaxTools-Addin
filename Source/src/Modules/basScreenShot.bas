@@ -161,7 +161,7 @@ Public Function WndProc(ByVal hWnd As LongPtr, ByVal uMsg As Long, ByVal wParam 
         Select Case uMsg
             Case WM_CLIPBOARDUPDATE
                 If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hWnd Then
-                    Application.OnTime Now, "pasteScreenShot"
+                    Application.OnTime Now, MacroHelper.BuildPath("pasteScreenShot")
                 End If
         End Select
         
@@ -184,7 +184,7 @@ Public Function WndProc(ByVal hWnd As Long, ByVal uMsg As Long, ByVal wParam As 
         Select Case uMsg
             Case WM_CLIPBOARDUPDATE
                 If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hWnd Then
-                    Application.OnTime Now, "pasteScreenShot"
+                    Application.OnTime Now, MacroHelper.BuildPath("pasteScreenShot")
                 End If
         End Select
         

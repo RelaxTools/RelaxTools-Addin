@@ -156,7 +156,7 @@ pass:
     
     If Undo Then
         'Undo
-        Application.OnUndo "Undo", "execUndo"
+        Application.OnUndo "Undo", MacroHelper.BuildPath("execUndo")
     End If
     
     Exit Sub

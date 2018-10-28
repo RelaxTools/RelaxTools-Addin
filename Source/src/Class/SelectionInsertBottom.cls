@@ -72,7 +72,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 前処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
 
     mstrIns = frmInputStr.Start()
     If mstrIns = "" Then
@@ -93,7 +93,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     End If
 
     If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
-        r.Characters(r.Characters.count + 1, 0).Insert mstrIns
+        r.Characters(r.Characters.Count + 1, 0).Insert mstrIns
     Else
         If Len(r.PrefixCharacter) > 0 Then
             r.Value = r.PrefixCharacter & r.Value & mstrIns

@@ -205,8 +205,8 @@ Private Sub htmlConv(ByVal flg As Variant)
     Dim blnExWidth As Boolean
     Dim blnExColor As Boolean
     
-    ReDim lngPoint(1 To Selection.Columns.count)
-    ReDim lngWidth(1 To Selection.Columns.count)
+    ReDim lngPoint(1 To Selection.Columns.Count)
+    ReDim lngWidth(1 To Selection.Columns.Count)
     
     blnExLine = optLine1.Value
     blnExTag = optTag1.Value
@@ -214,7 +214,7 @@ Private Sub htmlConv(ByVal flg As Variant)
     blnExColor = optColor2.Value
     
     lngTotal = 0
-    For lngCol = 1 To Selection.Columns.count
+    For lngCol = 1 To Selection.Columns.Count
         lngPoint(lngCol) = Selection.Columns(lngCol).width
         lngTotal = lngTotal + lngPoint(lngCol)
     Next
@@ -224,7 +224,7 @@ Private Sub htmlConv(ByVal flg As Variant)
     lngMaxPos = 0
     lngMin = 101
     lngMinPos = 0
-    For lngCol = 1 To Selection.Columns.count
+    For lngCol = 1 To Selection.Columns.Count
         lngWidth(lngCol) = Fix((lngPoint(lngCol) / lngTotal) * 100)
         lngTotal2 = lngTotal2 + lngWidth(lngCol)
         If lngMin > lngWidth(lngCol) Then
@@ -243,7 +243,7 @@ Private Sub htmlConv(ByVal flg As Variant)
     lngMaxCnt = 0
     lngMinCnt = 0
     
-    For lngCol = 1 To Selection.Columns.count
+    For lngCol = 1 To Selection.Columns.Count
         If lngWidth(lngMinPos) = lngWidth(lngCol) Then
             lngMinCnt = lngMinCnt + 1
         End If
@@ -276,11 +276,11 @@ Private Sub htmlConv(ByVal flg As Variant)
         strTdEnd = C_TH_END
     End If
     
-    For lngRow = 1 To Selection.Rows.count
+    For lngRow = 1 To Selection.Rows.Count
     
         strBuf = AddTag(strBuf, C_TR_START)
     
-        For lngCol = 1 To Selection.Columns.count
+        For lngCol = 1 To Selection.Columns.Count
             
             Set r = Selection(lngRow, lngCol)
             
@@ -294,7 +294,7 @@ Private Sub htmlConv(ByVal flg As Variant)
                         strBuf = strBuf & strTdStartFrom
                         
                         lngSum = 0
-                        For lngPos = lngCol To lngCol + r.MergeArea.Columns.count - 1
+                        For lngPos = lngCol To lngCol + r.MergeArea.Columns.Count - 1
                             lngSum = lngSum + lngWidth(lngPos)
                         Next
                         If blnExWidth Then
@@ -316,12 +316,12 @@ Private Sub htmlConv(ByVal flg As Variant)
 '                    strBuf = strBuf & " style=""text-align:" & getAlign(r) & ";"""
                     strBuf = strBuf & "text-align:" & getAlign(r) & ";"""
                     
-                    If r.MergeArea.Columns.count > 1 Then
-                        strBuf = strBuf & " colspan=""" & r.MergeArea.Columns.count & """"
+                    If r.MergeArea.Columns.Count > 1 Then
+                        strBuf = strBuf & " colspan=""" & r.MergeArea.Columns.Count & """"
                     End If
                     
-                    If r.MergeArea.Rows.count > 1 Then
-                        strBuf = strBuf & " rowspan=""" & r.MergeArea.Rows.count & """"
+                    If r.MergeArea.Rows.Count > 1 Then
+                        strBuf = strBuf & " rowspan=""" & r.MergeArea.Rows.Count & """"
                     End If
                     
                     If lngRow = 1 Then

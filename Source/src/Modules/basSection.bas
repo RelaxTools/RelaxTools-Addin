@@ -92,7 +92,7 @@ Attribute rlxIsSectionNo.VB_ProcData.VB_Invoke_Func = " \n19"
         Call createAllSectionObject
     End If
 
-    For i = 1 To mColAllSection.count
+    For i = 1 To mColAllSection.Count
     
         strSecNo = mColAllSection(i).SectionNumber(strBuf)
         If Len(strSecNo) > 0 Then
@@ -127,7 +127,7 @@ Attribute rlxGetSectionNoAny.VB_ProcData.VB_Invoke_Func = " \n19"
         Call createAllSectionObject
     End If
     
-    For i = 1 To mColAllSection.count
+    For i = 1 To mColAllSection.Count
     
         strSecNo = mColAllSection(i).SectionNumber(strBuf)
         If Len(strSecNo) > 0 Then
@@ -269,7 +269,7 @@ Attribute rlxGetSectionObject.VB_ProcData.VB_Invoke_Func = " \n19"
         Set mColSection = rlxInitSectionSetting()
     End If
     
-    Key = Format$((lngLevel Mod mColSection.count) + 1, "00")
+    Key = Format$((lngLevel Mod mColSection.Count) + 1, "00")
     
     Set rlxGetSectionObject = mColSection(Key)
 
@@ -413,7 +413,7 @@ Sub setSectionSetting(ByVal strNo As String, ByRef col As Collection)
         Call DeleteSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "fontUnderLine2")
     Next
     
-    For i = 1 To col.count
+    For i = 1 To col.Count
         
         If col(i).classObj Is Nothing Then
             Call SaveSetting(C_TITLE, "Section", "Section" & strNo & Format$(i, "00") & "class", "")

@@ -73,7 +73,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 前処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
 
     On Error GoTo e
     
@@ -101,7 +101,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     lngPos = rlxSetLimit(0, Len(r.Value), mlngIns)
         
     If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
-        r.Characters(r.Characters.count - lngPos + 1, lngPos).Delete
+        r.Characters(r.Characters.Count - lngPos + 1, lngPos).Delete
     Else
         lngPos = Len(r.Value) - lngPos
         

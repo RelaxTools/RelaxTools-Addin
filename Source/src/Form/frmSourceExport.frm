@@ -80,11 +80,12 @@ Private Sub UserForm_Initialize()
     Dim b As Workbook
     
     For Each b In Workbooks
-        If b.Name = "RelaxTools.xlam" Then
-        Else
+'        If b.Name = "RelaxTools.xlam" Then
+'        Else
             cboSrcBook.AddItem b.Name
-        End If
+'        End If
     Next
+    cboSrcBook.AddItem "RelaxTools.xlam"
     
     If cboSrcBook.ListCount > 0 Then
         cboSrcBook.ListIndex = 0
@@ -127,7 +128,7 @@ Private Sub cmdOk_Click()
     Set mMm.Form = Me
     mMm.Disable
     
-    mMm.StartGauge Workbooks(cboSrcBook.Text).VBProject.VBComponents.count
+    mMm.StartGauge Workbooks(cboSrcBook.Text).VBProject.VBComponents.Count
     lngCnt = 1
     
     Dim vb_component As Object

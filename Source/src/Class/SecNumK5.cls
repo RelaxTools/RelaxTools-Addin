@@ -71,7 +71,7 @@ Public Property Get SectionNumber(ByVal v As String) As String
 
     Set objMatch = objRegx.Execute(v)
     
-    If objMatch.count > 0 Then
+    If objMatch.Count > 0 Then
         SectionNumber = objMatch(0).Value
     Else
         SectionNumber = ""

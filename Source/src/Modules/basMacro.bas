@@ -42,10 +42,10 @@ Sub execOnKey(ByVal strMacro As String, ByVal strLabel As String)
     '開始ログ
     Logger.LogBegin strMacro
     
-    Application.Run strMacro
+    Application.Run MacroHelper.BuildPath(strMacro)
     
     If CBool(GetSetting(C_TITLE, "Option", "OnRepeat", True)) Then
-        Application.OnRepeat strLabel, strMacro
+        Application.OnRepeat strLabel, MacroHelper.BuildPath(strMacro)
     End If
     
     '終了ログ
@@ -84,7 +84,7 @@ Sub saveWorkSheets()
     
         Application.DisplayAlerts = False
         ActiveWorkbook.Windows(1).SelectedSheets.Copy
-        Set b = Application.Workbooks(Application.Workbooks.count)
+        Set b = Application.Workbooks(Application.Workbooks.Count)
         Select Case LCase(Mid$(vntFileName, InStr(vntFileName, ".") + 1))
             Case "xls"
                 b.SaveAs filename:=vntFileName, FileFormat:=xlExcel8, local:=True
@@ -121,7 +121,7 @@ Sub lineCopy()
     Dim t As Long
     
     f = Selection(1, 1).Row
-    t = f + Selection.Rows.count - 1
+    t = f + Selection.Rows.Count - 1
     
     On Error Resume Next
     Application.ScreenUpdating = False
@@ -135,12 +135,12 @@ Sub lineCopy()
     Rows(f & ":" & t).Insert Shift:=xlDown
     Application.CutCopyMode = False
     
-    SelectionShiftCell Selection.Rows.count, 0
+    SelectionShiftCell Selection.Rows.Count, 0
     
     Application.ScreenUpdating = True
     
     'Undo
-    Application.OnUndo "行追加", "execInsUndo"
+    Application.OnUndo "行追加", MacroHelper.BuildPath("execInsUndo")
     
     
 End Sub
@@ -161,7 +161,7 @@ Sub lineInsert()
     Dim t As Long
     
     f = Selection(1, 1).Row
-    t = f + Selection.Rows.count - 1
+    t = f + Selection.Rows.Count - 1
     
     On Error Resume Next
     Application.ScreenUpdating = False
@@ -176,12 +176,12 @@ Sub lineInsert()
     
     Set mUndo.sourceRange = Rows(f & ":" & t)
     
-    SelectionShiftCell Selection.Rows.count, 0
+    SelectionShiftCell Selection.Rows.Count, 0
     
     Application.ScreenUpdating = True
     
     'Undo
-    Application.OnUndo "行追加", "execInsUndo"
+    Application.OnUndo "行追加", MacroHelper.BuildPath("execInsUndo")
     
 End Sub
 '--------------------------------------------------------------
@@ -201,21 +201,21 @@ Sub lineDel()
     Dim t As Long
     
     f = Selection(1, 1).Row
-    t = f + Selection.Rows.count - 1
+    t = f + Selection.Rows.Count - 1
     
     On Error Resume Next
     Application.ScreenUpdating = False
     
     ThisWorkbook.Worksheets("Undo").Cells.Clear
     
-    Set mUndo.sourceRange = Intersect(Range(Cells(f, 1), Cells(t, Columns.count - 1)), ActiveSheet.UsedRange)
+    Set mUndo.sourceRange = Intersect(Range(Cells(f, 1), Cells(t, Columns.Count - 1)), ActiveSheet.UsedRange)
     Set mUndo.destRange = ThisWorkbook.Worksheets("Undo").Range(mUndo.sourceRange.Address)
     
     mUndo.sourceRange.Copy mUndo.destRange
     
     Rows(f & ":" & t).Delete xlUp
     
-    Set mUndo.sourceRange = Intersect(Range(Cells(f, 1), Cells(t, Columns.count - 1)), ActiveSheet.UsedRange)
+    Set mUndo.sourceRange = Intersect(Range(Cells(f, 1), Cells(t, Columns.Count - 1)), ActiveSheet.UsedRange)
     
     Application.CutCopyMode = False
     Application.ScreenUpdating = True
@@ -223,7 +223,7 @@ Sub lineDel()
     Selection.Select
     
     'Undo
-    Application.OnUndo "行削除", "execDelUndo"
+    Application.OnUndo "行削除", MacroHelper.BuildPath("execDelUndo")
     
     
 End Sub
@@ -259,7 +259,7 @@ Sub lineNCopy()
     lngDest = lngBuf
 
     f = Selection(1, 1).Row
-    t = f + Selection.Rows.count - 1
+    t = f + Selection.Rows.Count - 1
 
     On Error Resume Next
     Application.ScreenUpdating = False
@@ -787,7 +787,7 @@ Sub divideWorkBook()
             '現在のシートをコピーして新規のワークブックを作成する。
             WS.Copy
             
-            Set WB = Application.Workbooks(Application.Workbooks.count)
+            Set WB = Application.Workbooks(Application.Workbooks.Count)
             
             '新規作成したワークブックを保存する。フォーマットは親と同じ
             Application.DisplayAlerts = False
@@ -832,7 +832,7 @@ Sub mergeWorkBook()
     
     
     'ワークブックが２未満の場合、処理不要
-    If Workbooks.count < 2 Then
+    If Workbooks.Count < 2 Then
         Exit Sub
     End If
     
@@ -843,10 +843,10 @@ Sub mergeWorkBook()
         For Each WS In WB.Worksheets
             If blnFirst Then
                 WS.Copy
-                Set motoWB = Application.Workbooks(Application.Workbooks.count)
+                Set motoWB = Application.Workbooks(Application.Workbooks.Count)
                 blnFirst = False
             Else
-                WS.Copy , motoWB.Worksheets(motoWB.Worksheets.count)
+                WS.Copy , motoWB.Worksheets(motoWB.Worksheets.Count)
             End If
         Next
         
@@ -2422,7 +2422,7 @@ Sub nextWorksheet()
         Exit Sub
     End If
     
-    For i = ActiveSheet.Index + 1 To ActiveWorkbook.Sheets.count
+    For i = ActiveSheet.Index + 1 To ActiveWorkbook.Sheets.Count
         If ActiveWorkbook.Sheets(i).visible = xlSheetVisible Then
             ActiveWorkbook.Sheets(i).Select
             Exit For
@@ -2472,7 +2472,7 @@ Sub nextWorkbook()
     
     blnFind = False
     
-    For i = 1 To Workbooks.count
+    For i = 1 To Workbooks.Count
         If blnFind Then
             Workbooks(i).Activate
             Exit For
@@ -2502,7 +2502,7 @@ Sub prevWorkbook()
     
     blnFind = False
     
-    For i = Workbooks.count To 1 Step -1
+    For i = Workbooks.Count To 1 Step -1
         If blnFind Then
             Workbooks(i).Activate
             Exit For
@@ -2595,7 +2595,7 @@ Sub createContentsEx()
                     Case Else
                         WS.Cells(lngCount, C_PAPER_SIZE).Value = "その他"
                 End Select
-                WS.Cells(lngCount, C_PAGES).Value = s.PageSetup.Pages.count
+                WS.Cells(lngCount, C_PAGES).Value = s.PageSetup.Pages.Count
             
                 lngCount = lngCount + 1
             End If
@@ -2654,7 +2654,7 @@ Sub cellEditExt()
     End If
     
 '    If selection.count > 1 And selection.count <> selection(1, 1).MergeArea.count Then
-    If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.count Then
+    If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.Count Then
         MsgBox "複数セル選択されています。セルは１つのみ選択してください。", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If
@@ -2865,13 +2865,13 @@ Sub swapAreas()
         Exit Sub
     End If
     
-    If Selection.Areas.count <> 2 Then
+    If Selection.Areas.Count <> 2 Then
         MsgBox "２つの範囲を選択してください。", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If
     
-    If Selection.Areas(1).Rows.count <> Selection.Areas(2).Rows.count Or _
-       Selection.Areas(1).Columns.count <> Selection.Areas(2).Columns.count Then
+    If Selection.Areas(1).Rows.Count <> Selection.Areas(2).Rows.Count Or _
+       Selection.Areas(1).Columns.Count <> Selection.Areas(2).Columns.Count Then
         MsgBox "２つの範囲の縦横サイズは同じにしてください。", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If
@@ -2904,7 +2904,7 @@ Sub swapAreas()
     ActiveSheet.Range(strAddress).Select
     
     'Undo
-    Application.OnUndo "Undo", "execUndo"
+    Application.OnUndo "Undo", MacroHelper.BuildPath("execUndo")
     
     Exit Sub
 ErrHandle:
@@ -2940,9 +2940,9 @@ Sub setShortCutKey()
         strKey = Split(strList(i) & vbTab & C_ON, vbTab)
         If strKey(6) = C_ON Then
             If InStr(strKey(5), "RunMso") > 0 Then
-                Application.OnKey strKey(2), strKey(5)
+                Application.OnKey strKey(2), MacroHelper.BuildPath(strKey(5))
             Else
-                Application.OnKey strKey(2), "'execOnKey """ & strKey(5) & """,""" & strKey(4) & """'"
+                Application.OnKey strKey(2), MacroHelper.BuildPath("'execOnKey """ & strKey(5) & """,""" & strKey(4) & """'")
 '                If InStr(strKey(1), "/") > 0 Then
 '                    Application.TransitionMenuKey = ""
 '                End If
@@ -3352,7 +3352,7 @@ Private Sub execMatome(ByVal strNo As String)
         
     For i = LBound(varLine) To UBound(varLine)
         varCol = Split(varLine(i), vbTab)
-        Application.Run varCol(3)
+        Application.Run MacroHelper.BuildPath(varCol(3))
     Next
 
 End Sub
@@ -3491,7 +3491,7 @@ Private Sub TableMove(ByVal offsetRow As Long, ByVal offsetCol As Long)
     
     On Error Resume Next
     
-    If Selection.Areas.count > 1 Then
+    If Selection.Areas.Count > 1 Then
         Exit Sub
     End If
     
@@ -3507,16 +3507,16 @@ Private Sub TableMove(ByVal offsetRow As Long, ByVal offsetCol As Long)
     Select Case True
         'Left
         Case offsetRow = 0 And offsetCol = -1
-            Set r = Range(Cells(Selection(1).Row, Selection(1).Column - 1), Cells(Selection(Selection.count).Row, Selection(1).Column - 1))
+            Set r = Range(Cells(Selection(1).Row, Selection(1).Column - 1), Cells(Selection(Selection.Count).Row, Selection(1).Column - 1))
         'Right
         Case offsetRow = 0 And offsetCol = 1
-            Set r = Range(Cells(Selection(1).Row, Selection(Selection.count).Column + 1), Cells(Selection(Selection.count).Row, Selection(Selection.count).Column + 1))
+            Set r = Range(Cells(Selection(1).Row, Selection(Selection.Count).Column + 1), Cells(Selection(Selection.Count).Row, Selection(Selection.Count).Column + 1))
         'Up
         Case offsetRow = -1 And offsetCol = 0
-            Set r = Range(Cells(Selection(1).Row - 1, Selection(1).Column), Cells(Selection(1).Row - 1, Selection(Selection.count).Column))
+            Set r = Range(Cells(Selection(1).Row - 1, Selection(1).Column), Cells(Selection(1).Row - 1, Selection(Selection.Count).Column))
         'Down
         Case offsetRow = 1 And offsetCol = 0
-            Set r = Range(Cells(Selection(Selection.count).Row + 1, Selection(1).Column), Cells(Selection(Selection.count).Row + 1, Selection(Selection.count).Column))
+            Set r = Range(Cells(Selection(Selection.Count).Row + 1, Selection(1).Column), Cells(Selection(Selection.Count).Row + 1, Selection(Selection.Count).Column))
         Case Else
             Exit Sub
     End Select
@@ -3595,8 +3595,8 @@ Sub previewActivePage()
     
     Application.PrintCommunication = False
     
-    lngHCount = WS.HPageBreaks.count + 1
-    For i = 1 To WS.HPageBreaks.count
+    lngHCount = WS.HPageBreaks.Count + 1
+    For i = 1 To WS.HPageBreaks.Count
 
         If WS.HPageBreaks(i).Location.Row > ActiveCell.Row Then
             lngHCount = i
@@ -3605,8 +3605,8 @@ Sub previewActivePage()
 
     Next
     
-    lngVCount = WS.VPageBreaks.count + 1
-    For i = 1 To WS.VPageBreaks.count
+    lngVCount = WS.VPageBreaks.Count + 1
+    For i = 1 To WS.VPageBreaks.Count
 
         If WS.VPageBreaks(i).Location.Column > ActiveCell.Column Then
             lngVCount = i
@@ -3620,12 +3620,12 @@ Sub previewActivePage()
         '左から右（通常）
         Case xlDownThenOver
         
-            lngPage = (WS.HPageBreaks.count + 1) * (lngVCount - 1) + lngHCount
+            lngPage = (WS.HPageBreaks.Count + 1) * (lngVCount - 1) + lngHCount
         
         '上から下
         Case xlOverThenDown
     
-            lngPage = (WS.VPageBreaks.count + 1) * (lngHCount - 1) + lngVCount
+            lngPage = (WS.VPageBreaks.Count + 1) * (lngHCount - 1) + lngVCount
     
     End Select
     

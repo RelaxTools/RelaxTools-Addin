@@ -48,7 +48,7 @@ Attribute SFWork.VB_VarHelpID = -1
 '------------------------------------------------------------------------------------------------------------------------
 Private mlngMatch As Long
 'Private mobjCol As Collection
-Private mobjCol As Object
+Private mobjCol As DictionaryEx
 
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 作成
@@ -78,13 +78,14 @@ Private Sub SFWork_SelectionInit(ByRef rAreas As Excel.Areas, Cancel As Boolean,
     
     On Error GoTo e
     
-    If rAreas.count > 1 Then
+    If rAreas.Count > 1 Then
         MsgBox "複数のエリアには対応していません。", vbExclamation, C_TITLE
         Cancel = True
         Exit Sub
     End If
 
-    Set mobjCol = CreateObject("Scripting.Dictionary")
+'    Set mobjCol = CreateObject("Scripting.Dictionary")
+    Set mobjCol = New DictionaryEx
     mlngMatch = 0
 
     Undo = True

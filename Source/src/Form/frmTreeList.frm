@@ -177,8 +177,8 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     Dim lngCol2 As Long
     
     Dim strLine As String
-    Dim colFolders As Object
-    Dim colFiles As Object
+    Dim colFolders As DictionaryEx
+    Dim colFiles As DictionaryEx
     Dim v As Variant
     
     '罫線の列幅を２とする。
@@ -190,7 +190,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     lngCol2 = lngCol + 2
     lngRow = lngRow + 1
     
-    lngFolderCount = objfld.SubFolders.count
+    lngFolderCount = objfld.SubFolders.Count
     
     Select Case lngFolderCount > 0
         Case 0
@@ -201,16 +201,21 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     
     If chkFileName.Value Then
         
-        Set colFiles = CreateObject("Scripting.Dictionary")
+'        Set colFiles = CreateObject("Scripting.Dictionary")
+        Set colFiles = New DictionaryEx
         
         For Each objfl In objfld.files
             colFiles.Add objfl.Name, objfl
         Next
         
-        rlxSortDictionary colFiles
+        'rlxSortDictionary colFiles
+        
+'        Dim sortKey As Variant
+'
+'        sortKey = colFiles.SortedKeys
         
         'ファイルの一覧を作成する。
-        For Each objKey In colFiles.Keys
+        For Each objKey In colFiles.keys
             DoEvents
             If mblnCancel Then
                 Exit Sub
@@ -257,15 +262,19 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
     'サブフォルダ検索あり
     i = 1
     
-    Set colFolders = CreateObject("Scripting.Dictionary")
+'    Set colFolders = CreateObject("Scripting.Dictionary")
+    Set colFolders = New DictionaryEx
     
     For Each objSub In objfld.SubFolders
         colFolders.Add objSub.Name, objSub
     Next
     
-    rlxSortDictionary colFolders
+'    rlxSortDictionary colFolders
+'    Dim sortKeys As Variant
+    
+'    sortKeys = colFolders.SortedKeys
         
-    For Each objKey In colFolders
+    For Each objKey In colFolders.keys
         DoEvents
         If mblnCancel Then
             Exit Sub
@@ -298,7 +307,9 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         
         i = i + 1
         lngFolderCnt = lngFolderCnt + 1
-        mMm.DisplayGauge lngFolderCnt
+        If Not mMm Is Nothing Then
+            mMm.DisplayGauge lngFolderCnt
+        End If
         
     Next
     Set colFolders = Nothing

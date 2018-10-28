@@ -151,7 +151,7 @@ Private Sub cmdRun_Click()
         '結果シートのカウンタ
         creCol = 1
 
-        For i = 1 To ColLine.count
+        For i = 1 To ColLine.Count
         
             strBuf = ColLine.Item(i)
             '定義シートのカウンタ

@@ -61,7 +61,7 @@ Public Event WheelDown(ByRef obj As Object)
 #If VBA7 And Win64 Then
     Private Declare PtrSafe Function WindowFromAccessibleObject Lib "oleacc" (ByVal obj As Object, hWnd As LongPtr) As LongPtr
 #Else
-    Private Declare Function WindowFromAccessibleObject Lib "oleacc" (ByVal obj As Object, hWnd As Long) As Long
+    Private Declare Function WindowFromAccessibleObject Lib "oleacc" (ByVal obj As Object, hwnd As Long) As Long
 #End If
 
 

@@ -87,7 +87,11 @@ Sub DisplayGauge(ByVal lngValue As Long)
     If lngValue > mlngMax Then
         lngValue = mlngMax
     End If
-    dblValue = (CDbl(lngValue) / mlngMax)
+    If mlngMax = 0 Then
+        dblValue = 0
+    Else
+        dblValue = (CDbl(lngValue) / mlngMax)
+    End If
     mFrm.lblGauge.width = mFrm.lblBack.width * dblValue
     
     strMessage = Space$(Fix(mFrm.lblBack.width * 0.16)) & Format$(rlxRoundDown(dblValue * 100, 0), "0") & "%"

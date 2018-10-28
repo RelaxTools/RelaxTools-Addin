@@ -44,7 +44,7 @@ Attribute VB_Exposed = False
 Option Explicit
 
 '初期化イベント
-Public Event SelectionInit(ByRef Cancel As Boolean, ByRef Undo As Boolean, ByRef Func As Boolean)
+Public Event SelectionInit(ByRef Cancel As Boolean, ByRef Undo As Boolean, ByRef func As Boolean)
 'メインイベント
 Public Event SelectionMain(ByRef r As Range, ByVal NotHoldFormat As Boolean, ByRef Cancel As Boolean)
 'メインイベント(Shape)
@@ -61,7 +61,7 @@ Public Sub Run()
     Dim r As Range
     Dim Cancel As Boolean
     Dim Undo As Boolean
-    Dim Func As Boolean
+    Dim func As Boolean
     
     Dim a As Range
 
@@ -76,7 +76,7 @@ Public Sub Run()
     Undo = False
     
     '式に対しても処理を行うか？
-    Func = False
+    func = False
     
     '
     mblnNotHoldFormat = CBool(GetSetting(C_TITLE, "Option", "NotHoldFormat", False))
@@ -107,7 +107,7 @@ Public Sub Run()
     
     'Shepeの場合の実行処理
     If blnObject Then
-        If Selection.ShapeRange.count > 0 Then
+        If Selection.ShapeRange.Count > 0 Then
         
             Application.ScreenUpdating = False
         
@@ -159,7 +159,7 @@ Public Sub Run()
     '---------------------------
     '初期化イベント
     '---------------------------
-    RaiseEvent SelectionInit(Cancel, Undo, Func)
+    RaiseEvent SelectionInit(Cancel, Undo, func)
     
     'キャンセルの場合
     If Cancel Then
@@ -189,7 +189,7 @@ Public Sub Run()
     'Selection進捗バーInstance化
     Set objStatus = New SelectionStatusBar
     
-    objStatus.MaxItems = a.count
+    objStatus.MaxItems = a.Count
     
     Set colMerge = New Collection
     Dim strAddress As String
@@ -218,7 +218,7 @@ Public Sub Run()
                 '---------------------------
                 'メインイベント
                 '---------------------------
-                If IsEmpty(r.Value) Or IsError(r.Value) Or (Not Func And r.HasFormula) Then
+                If IsEmpty(r.Value) Or IsError(r.Value) Or (Not func And r.HasFormula) Then
                 Else
                     RaiseEvent SelectionMain(r, mblnNotHoldFormat, Cancel)
                     If Cancel Then
@@ -250,7 +250,7 @@ Public Sub Run()
     
     If Undo Then
         'Undo
-        Application.OnUndo "Undo", "execUndo"
+        Application.OnUndo "Undo", MacroHelper.BuildPath("execUndo")
     End If
     
     

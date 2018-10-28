@@ -424,7 +424,7 @@ Public Function Start(ByRef col As Collection) As Collection
     Dim j As Long
     On Error GoTo 0
     
-    For i = 1 To col.count
+    For i = 1 To col.Count
             
         lstSetting.AddItem ""
         lstSetting.List(lstSetting.ListCount - 1, C_LEVEL) = i

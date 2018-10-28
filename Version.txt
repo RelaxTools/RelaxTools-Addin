@@ -1,4 +1,12 @@
-﻿2018/10/21(sun) RelaxTools-Addin Version 4.25.0(RustRemover) 
+﻿2018/10/28(sun) RelaxTools-Addin Version 4.25.1(RustRemover) 
+◇機能改善
+・お気に入りでブックを開いた際に、履歴に登録されるよう修正。
+・リボンからの実行及びOnAction/OnKey/OnUndo/OnRepeat/OnTIme で RelaxTools.xlamのパスを追加。
+　同名のマクロ名での誤作動しないように修正。
+◇バグ修正
+・目次の作成でIndexエラーになるのを軽減したつもりパート２。
+
+2018/10/21(sun) RelaxTools-Addin Version 4.25.0(RustRemover) 
 ◇機能追加
 ・アクティブセルのあるページのプレビューを表示。
 　文字切れの確認がすぐできるので便利です。

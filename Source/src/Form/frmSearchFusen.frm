@@ -452,7 +452,7 @@ Private Function setCellPos(ByRef r As Range) As Range
     Dim lngCol2 As Long
     
     lngCol1 = Windows(1).VisibleRange(1).Column
-    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.count).Column
+    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.Count).Column
     
     Select Case r.Column
         Case lngCol1 To lngCol2

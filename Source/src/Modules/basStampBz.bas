@@ -247,7 +247,7 @@ Public Sub setPropertyBz(ByRef col As Collection)
     DeleteSetting C_TITLE, "StampBz", "Rotate"
     DeleteSetting C_TITLE, "StampBz", "LineSize"
     
-    For i = 0 To col.count - 1
+    For i = 0 To col.Count - 1
         
         Set s = col(i + 1)
         
@@ -266,7 +266,7 @@ Public Sub setPropertyBz(ByRef col As Collection)
         Set s = Nothing
     Next
     
-    Call SaveSetting(C_TITLE, "StampBz", "Count", col.count)
+    Call SaveSetting(C_TITLE, "StampBz", "Count", col.Count)
     
 End Sub
 '--------------------------------------------------------------
@@ -323,7 +323,7 @@ Sub pasteStampBz2(Optional ByVal Index As Variant)
     Select Case True
         Case col Is Nothing
             Exit Sub
-        Case col.count = 0
+        Case col.Count = 0
             Exit Sub
         Case Else
     End Select

@@ -88,7 +88,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal col As Long, Cancel As Boolea
             If mr Is Nothing Then
                 Set mr = s
             Else
-                If s.Value = mr(mr.count).Value Then
+                If s.Value = mr(mr.Count).Value Then
                     Set mr = Union(mr, s)
                 Else
                     mr.Merge

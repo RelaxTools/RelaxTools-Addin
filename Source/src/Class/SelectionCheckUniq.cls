@@ -49,7 +49,7 @@ Attribute SFWork.VB_VarHelpID = -1
 Private mlngMax As Long
 Private mlngMatch As Long
 'Private mobjCol As Collection
-Private mobjCol As Object
+Private mobjCol As DictionaryEx
 
 '------------------------------------------------------------------------------------------------------------------------
 ' SelectionFrameWork 作成
@@ -75,17 +75,18 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 前処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
 
     On Error GoTo e
     
-    Set mobjCol = CreateObject("Scripting.Dictionary")
+'    Set mobjCol = CreateObject("Scripting.Dictionary")
+    Set mobjCol = New DictionaryEx
     
     mlngMax = 0
     mlngMatch = 0
     
     Undo = True
-    Func = True
+    func = True
 
     Exit Sub
 e:

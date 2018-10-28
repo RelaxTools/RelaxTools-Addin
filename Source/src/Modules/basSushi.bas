@@ -83,7 +83,7 @@ Sub sushiOnAction(control As IRibbonControl)
         mlngInterval = Val(GetSetting(C_TITLE, "Sushi", "Interval", 10))
         mstrValue = GetSetting(C_TITLE, "Sushi", "Show", "1")
 
-        Application.OnTime Now, "SushiGoRound"
+        Application.OnTime Now, MacroHelper.BuildPath("SushiGoRound")
         
     End If
 
@@ -186,7 +186,7 @@ Sub SushiGoRound()
 
 
     Do While mSushiEnable
-        For i = 1 To c.count
+        For i = 1 To c.Count
 
             Set f = c(i)
 
@@ -204,7 +204,7 @@ Sub SushiGoRound()
                 f.Left = f.Left + lngMove
                 f.Top = Application.Top + Application.Height - lngLeftfrgin
 
-                If i <> c.count Then
+                If i <> c.Count Then
                     If f.Left > Application.Left + 40 And c(i + 1).visible = False Then
                         c(i + 1).Show
                     End If

@@ -47,9 +47,9 @@ Option Explicit
 #Else
     Private Declare Function CreateFile Lib "kernel32" Alias "CreateFileA" (ByVal lpFileName As String, ByVal dwDesiredAccess As Long, ByVal dwShareMode As Long, ByVal lpSecurityAttributes As Long, ByVal dwCreationDisposition As Long, ByVal dwFlagsAndAttributes As Long, ByVal hTemplateFile As Long) As Long
     Private Declare Function CloseHandle Lib "kernel32" (ByVal hObject As Long) As Long
-    Private Declare Function LocalFileTimeToFileTime Lib "kernel32" (ByRef lpLocalFileTime As FileTime, ByRef lpFileTime As FileTime) As Long
-    Private Declare Function SystemTimeToFileTime Lib "kernel32" (ByRef lpSystemTime As SystemTime, ByRef lpFileTime As FileTime) As Long
-    Private Declare Function SetFileTime Lib "kernel32" (ByVal cFile As Long, ByRef lpCreationTime As FileTime, ByRef lpLastAccessTime As FileTime, ByRef lpLastWriteTime As FileTime) As Long
+    Private Declare Function LocalFileTimeToFileTime Lib "kernel32" (ByRef lpLocalFileTime As FILETIME, ByRef lpFileTime As FILETIME) As Long
+    Private Declare Function SystemTimeToFileTime Lib "kernel32" (ByRef lpSystemTime As SystemTime, ByRef lpFileTime As FILETIME) As Long
+    Private Declare Function SetFileTime Lib "kernel32" (ByVal cFile As Long, ByRef lpCreationTime As FILETIME, ByRef lpLastAccessTime As FILETIME, ByRef lpLastWriteTime As FILETIME) As Long
 #End If
 
 ' SystemTime 構造体

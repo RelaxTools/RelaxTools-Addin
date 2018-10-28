@@ -75,7 +75,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 前処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
 
     mlngIns = frmInputLength.Start("セルの何文字目の前に文字を挿入するかを入力してください。")
     If mlngIns = 0 Then

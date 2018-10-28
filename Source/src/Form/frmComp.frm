@@ -299,7 +299,7 @@ Private Sub cmdOk_Click()
     
     Dim ResultWS As Worksheet
     ThisWorkbook.Worksheets("比較結果").Copy
-    Set ResultWS = Application.Workbooks(Application.Workbooks.count).Worksheets(1)
+    Set ResultWS = Application.Workbooks(Application.Workbooks.Count).Worksheets(1)
     
     ResultWS.Name = "比較結果"
     
@@ -329,9 +329,9 @@ Private Sub cmdOk_Click()
     mm.Disable
     mm.DispGuidance "セル数をカウントしています..."
     
-    mm.StartGauge r1.count
+    mm.StartGauge r1.Count
     
-    For i = 1 To r1.count
+    For i = 1 To r1.Count
             
         If mblnCancel Then
             GoTo e

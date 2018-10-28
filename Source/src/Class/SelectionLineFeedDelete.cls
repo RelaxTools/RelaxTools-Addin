@@ -64,7 +64,7 @@ Public Sub Run()
     SFWork.Run
 End Sub
 
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
     Undo = True
 End Sub
 '------------------------------------------------------------------------------------------------------------------------
@@ -92,7 +92,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
 
     If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
 
-        For i = r.Characters.count To 1 Step -1
+        For i = r.Characters.Count To 1 Step -1
             Select Case r.Characters(i, 1).Text
                 Case vbCr, vbLf, vbCrLf
                     r.Characters(i, 1).Delete

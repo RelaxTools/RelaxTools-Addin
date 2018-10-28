@@ -86,7 +86,7 @@ Attribute rlxGetItemNoAny.VB_ProcData.VB_Invoke_Func = " \n19"
         Call createAllItemObject
     End If
 
-    For i = 1 To mColAllItem.count
+    For i = 1 To mColAllItem.Count
     
         strSecNo = mColAllItem(i).SectionNumber(strBuf)
         If Len(strSecNo) > 0 Then

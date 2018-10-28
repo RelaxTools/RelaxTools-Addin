@@ -70,7 +70,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 初期処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
 
     Undo = True
     
@@ -122,7 +122,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
             If lngRow = C_NOT_FOUND Then
                 lngRow = r.Row - 1
             Else
-                lngRow = WS.UsedRange.Item(WS.UsedRange.count).Row
+                lngRow = WS.UsedRange.Item(WS.UsedRange.Count).Row
             End If
             
             For lngCnt = lngRow To 1 Step -1

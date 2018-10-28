@@ -116,7 +116,7 @@ Private Sub UserForm_Initialize()
 
     Dim k As KantanLineDTO
 
-    For i = 0 To col.count - 1
+    For i = 0 To col.Count - 1
     
         lstStamp.AddItem ""
         strBuf = GetSetting(C_TITLE, "KantanDx", Format(i + 1, "000"), "")
@@ -130,7 +130,7 @@ Private Sub UserForm_Initialize()
     
     Next
 
-    If col.count > 0 Then
+    If col.Count > 0 Then
         lstStamp.Selected(0) = True
     End If
 
@@ -585,7 +585,7 @@ Private Function getBorder() As Long
     
     getBorder = 2
     
-    For i = 1 To colBorder.count
+    For i = 1 To colBorder.Count
         If colBorder(i).BorderStyle = fmBorderStyleSingle Then
             getBorder = i
             Exit Function
@@ -600,7 +600,7 @@ Private Sub setBorder(ByVal lngNo As Long)
 
     Dim i As Long
     
-    For i = 1 To colBorder.count
+    For i = 1 To colBorder.Count
 
         If i = lngNo Then
             colBorder(i).BorderStyle = fmBorderStyleSingle

@@ -24,9 +24,9 @@ Sub copyMergeCellVal()
     On Error GoTo e
 '    Application.ScreenUpdating = False
 
-    For i = Selection(1).Row To Selection(Selection.count).Row
+    For i = Selection(1).Row To Selection(Selection.Count).Row
 
-        For j = Selection(1).Column To Selection(Selection.count).Column
+        For j = Selection(1).Column To Selection(Selection.Count).Column
         
             Set r = Cells(i, j)
         
@@ -172,7 +172,7 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
     Next
 
     'コピー元が１セルでコピー先が複数セルの場合
-    If a.count = 1 And sr.count > 1 Then
+    If a.Count = 1 And sr.Count > 1 Then
         sr.Select
 '        Range(sr(1), sr(sr.count)).Select
     Else
@@ -192,7 +192,7 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
     Next
     
     'コピー元が１セルでコピー先が複数セルの場合
-    If a.count = 1 And sr.count > 1 Then
+    If a.Count = 1 And sr.Count > 1 Then
         '現在の選択セルにコピー
         Dim p As Range
         For Each p In sr
@@ -231,7 +231,7 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
     End If
     
     'コピー元が１セルでコピー先が複数セルの場合
-    If a.count = 1 And sr.count > 1 Then
+    If a.Count = 1 And sr.Count > 1 Then
         sr.Select
 '        Range(sr(1), sr(sr.count).MergeArea(sr(sr.count).MergeArea.count)).Select
     Else
@@ -240,7 +240,7 @@ Sub pasteMergeCell(ByVal blnValue As Boolean)
     End If
     
     'Undo
-    Application.OnUndo "Undo", "execUndo"
+    Application.OnUndo "Undo", MacroHelper.BuildPath("execUndo")
 e:
     Application.ScreenUpdating = True
 End Sub
@@ -379,19 +379,21 @@ Private Function copyMergeCell(ByRef s As Range, ByVal blnValue As Boolean) As S
     Dim j As Long
     
     Dim r As Range
-    Dim di As Object
-    Dim dj As Object
+    Dim di As DictionaryEx
+    Dim dj As DictionaryEx
     
     Dim Key As String
     
     On Error GoTo e
     
-    Set di = CreateObject("Scripting.Dictionary")
-    Set dj = CreateObject("Scripting.Dictionary")
+'    Set di = CreateObject("Scripting.Dictionary")
+'    Set dj = CreateObject("Scripting.Dictionary")
+    Set di = New DictionaryEx
+    Set dj = New DictionaryEx
     
     'コピー元セルで最小限必要なセルの数を求める
-    For i = 1 To s.Rows.count
-        For j = 1 To s.Columns.count
+    For i = 1 To s.Rows.Count
+        For j = 1 To s.Columns.Count
             
             Set r = s(i, j)
             
@@ -414,11 +416,11 @@ Private Function copyMergeCell(ByRef s As Range, ByVal blnValue As Boolean) As S
     Dim tbl() As String
     
     '必要な分だけ配列を作成
-    ReDim tbl(0 To di.count - 1, 0 To dj.count - 1)
+    ReDim tbl(0 To di.Count - 1, 0 To dj.Count - 1)
 
     '初期値（結合セルの代表以外の値になる）
-    For i = 0 To di.count - 1
-        For j = 0 To dj.count - 1
+    For i = 0 To di.Count - 1
+        For j = 0 To dj.Count - 1
             tbl(i, j) = vbNullChar
         Next
     Next
@@ -426,12 +428,12 @@ Private Function copyMergeCell(ByRef s As Range, ByVal blnValue As Boolean) As S
     Dim ai As Variant
     Dim aj As Variant
     
-    ai = di.Keys
-    aj = dj.Keys
+    ai = di.keys
+    aj = dj.keys
 
     'Rangeの値を配列にコピー
-    For i = 0 To di.count - 1
-        For j = 0 To dj.count - 1
+    For i = 0 To di.Count - 1
+        For j = 0 To dj.Count - 1
             Set r = s(CLng(ai(i)), CLng(aj(j)))
             If blnValue Then
                 tbl(i, j) = addQuat(r.Value)
@@ -446,10 +448,10 @@ Private Function copyMergeCell(ByRef s As Range, ByVal blnValue As Boolean) As S
     Dim strLine As String
     
     strBuf = ""
-    For i = 0 To di.count - 1
+    For i = 0 To di.Count - 1
         
         strLine = ""
-        For j = 0 To dj.count - 1
+        For j = 0 To dj.Count - 1
         
             If j = 0 Then
                 strLine = tbl(i, j)

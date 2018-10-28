@@ -189,7 +189,7 @@ Private Sub cmdOk_Click()
     
     ThisWorkbook.Worksheets("Grep結果").Copy
     DoEvents
-    Set ResultWS = Application.Workbooks(Application.Workbooks.count).Worksheets(1)
+    Set ResultWS = Application.Workbooks(Application.Workbooks.Count).Worksheets(1)
     ResultWS.Name = "Grep結果"
     
     ResultWS.Cells(1, C_SEARCH_NO).Value = "ExcelファイルのGrep"
@@ -217,7 +217,7 @@ Private Sub cmdOk_Click()
     AppActivate Me.Caption
     
     lngBookCount = 0
-    lngBookMax = colBook.count
+    lngBookMax = colBook.Count
     mMm.StartGauge lngBookMax
     
     XL.DisplayAlerts = False
@@ -573,7 +573,7 @@ Private Sub seachCell(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet)
                 Dim objMatch As Object
                 Set objMatch = objRegx.Execute(schStr)
     
-                If objMatch.count > 0 Then
+                If objMatch.Count > 0 Then
                     ResultWS.Cells(mlngCount, C_SEARCH_NO).Value = mlngCount - C_START_ROW + 1
                     ResultWS.Cells(mlngCount, C_SEARCH_BOOK).Value = objSheet.Parent.FullName
                     ResultWS.Cells(mlngCount, C_SEARCH_SHEET).Value = objSheet.Name
@@ -708,7 +708,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                             cboSearch.SetFocus
                             Exit Sub
                         End If
-                        matchCount = objMatch.count
+                        matchCount = objMatch.Count
                     Else
 '                        matchCount = InStr(strBuf, strPattern)
                         If chkCase.Value Then
@@ -792,7 +792,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                             cboSearch.SetFocus
                             Exit Sub
                         End If
-                        matchCount = objMatch.count
+                        matchCount = objMatch.Count
                     Else
                         matchCount = InStr(strBuf, strPattern)
                     End If

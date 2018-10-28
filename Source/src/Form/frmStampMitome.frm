@@ -869,7 +869,7 @@ Private Sub UserForm_Initialize()
     '設定情報取得
     Set col = getPropertyMitome()
 
-    For i = 1 To col.count
+    For i = 1 To col.Count
         
         Set s = col(i)
         
@@ -902,7 +902,7 @@ Private Sub UserForm_Initialize()
     End With
         
 
-    If col.count > 0 Then
+    If col.Count > 0 Then
         lstStamp.Selected(0) = True
     Else
         

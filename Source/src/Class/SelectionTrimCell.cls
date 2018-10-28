@@ -64,7 +64,7 @@ Public Sub Run()
     SFWork.Run
 End Sub
 
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
     Undo = True
 End Sub
 
@@ -86,7 +86,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     Else
         If VarType(r.Value) = vbString Then
             
-            For i = 1 To r.Characters.count
+            For i = 1 To r.Characters.Count
                 Select Case r.Characters(i, 1).Text
                     Case Is <= Space$(1)
                     Case "　"
@@ -96,7 +96,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
             Next
             r.Characters(1, i - 1).Delete
 
-            For i = r.Characters.count To 1 Step -1
+            For i = r.Characters.Count To 1 Step -1
                 Select Case r.Characters(i, 1).Text
                     Case Is <= Space$(1)
                     Case "　"
@@ -105,7 +105,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
                 End Select
             
             Next
-            r.Characters(i + 1, r.Characters.count - i).Delete
+            r.Characters(i + 1, r.Characters.Count - i).Delete
         
         Else
             If Len(r.PrefixCharacter) > 0 Then

@@ -131,7 +131,7 @@ Public Sub Run()
     Dim nArea As Range
     lngMax = 0
     For Each nArea In Selection.Areas
-        lngMax = lngMax + nArea.Rows.count
+        lngMax = lngMax + nArea.Rows.Count
     Next
     objStatus.MaxItems = lngMax
 
@@ -148,8 +148,8 @@ Public Sub Run()
             Exit For
         End If
         
-        lngRows = rArea.Rows.count
-        lngCols = rArea.Columns.count
+        lngRows = rArea.Rows.Count
+        lngCols = rArea.Columns.Count
     
         For lngCur = 1 To lngRows
         
@@ -207,7 +207,7 @@ Public Sub Run()
     
     If Undo Then
         'Undo
-        Application.OnUndo "Undo", "execUndo"
+        Application.OnUndo "Undo", MacroHelper.BuildPath("execUndo")
     End If
     
     Exit Sub

@@ -112,7 +112,7 @@ Private Sub cmdOk_Click()
             txtDanrakuCell.SetFocus
             Exit Sub
         End If
-        If getAto1(txtDanrakuCell.Text) > ActiveSheet.Columns.count Then
+        If getAto1(txtDanrakuCell.Text) > ActiveSheet.Columns.Count Then
             MsgBox "列(段落番号)の最大値を超えています。", vbOKOnly + vbExclamation, C_TITLE
             txtDanrakuCell.SetFocus
             Exit Sub
@@ -129,7 +129,7 @@ Private Sub cmdOk_Click()
             txtPageCell.SetFocus
             Exit Sub
         End If
-        If getAto1(txtPageCell.Text) > ActiveSheet.Columns.count Then
+        If getAto1(txtPageCell.Text) > ActiveSheet.Columns.Count Then
             MsgBox "列(ページ)の最大値を超えています。", vbOKOnly + vbExclamation, C_TITLE
             txtPageCell.SetFocus
             Exit Sub
@@ -154,7 +154,7 @@ Private Sub cmdOk_Click()
             txtRow.SetFocus
             Exit Sub
         End If
-        If Val(txtRow.Text) > ActiveSheet.Rows.count Then
+        If Val(txtRow.Text) > ActiveSheet.Rows.Count Then
             MsgBox "行の最大値を超えています。", vbOKOnly + vbExclamation, C_TITLE
             txtRow.SetFocus
             Exit Sub
@@ -198,7 +198,7 @@ Private Sub cmdOk_Click()
         Set WS = WB.Worksheets(cboSheet.Text)
     End If
     
-'    Application.ScreenUpdating = False
+    Application.ScreenUpdating = False
     
     lngLevel = Val(txtLevel.Text)
     
@@ -213,79 +213,92 @@ Private Sub cmdOk_Click()
             
             strSheet = lstSheets.List(lngCount, 1)
             
-            Worksheets(strSheet).Activate
-            varView = ActiveWindow.View
-            ActiveWindow.View = xlPageBreakPreview
-    
-            l = Worksheets(strSheet).HPageBreaks.count
-            If l <> 0 Then
-                ReDim p(1 To l)
-                For k = 1 To l
-                    p(k) = Worksheets(strSheet).HPageBreaks(k).Location.Row
-                Next
-            End If
+            With Worksheets(strSheet)
             
-            lngRow = Worksheets(strSheet).UsedRange.Item(Worksheets(strSheet).UsedRange.count).Row
-            lngCol = getSectionCol(Worksheets(strSheet))
-            If lngCol = 0 Then
-                Exit For
-            End If
-            
-'            WS.Cells(j, C_CONTENT_LIST).Value = "<<" & Worksheets(strSheet).Name & ">>"
-'            j = j + 1
-                        
-            For i = 1 To lngRow
-            
-                strBuf = Worksheets(strSheet).Cells(i, lngCol).Value
-                            
-                If Worksheets(strSheet).Cells(i, lngCol).IndentLevel < lngLevel Then
-                
-                    Dim blnAns As Boolean
-                    blnAns = False
-                    For m = 0 To lngLevel - 1
-                        blnAns = blnAns Or rlxHasSectionNo(strBuf, m)
-                    Next
-                    
-                    If blnAns Then
-
-                        
-                        If chkPeriod.Value Then
-                            WS.Cells(j, C_CONTENT_LIST).Value = Worksheets(strSheet).Cells(i, lngCol).Value & C_PERIOD
-                        Else
-                            WS.Cells(j, C_CONTENT_LIST).Value = Worksheets(strSheet).Cells(i, lngCol).Value
-                        End If
-                        WS.Cells(j, C_CONTENT_LIST).IndentLevel = Worksheets(strSheet).Cells(i, lngCol).IndentLevel
-                        
-                        If l = 0 Then
-                            k = 1
-                            WS.Cells(j, C_CONTENT_PAGE).Value = k + lngPage
-                        Else
-                            For k = 1 To UBound(p)
-                                If p(k) > i Then
-                                    WS.Cells(j, C_CONTENT_PAGE).Value = k + lngPage
-                                    Exit For
-                                End If
-                            Next
-                            WS.Cells(j, C_CONTENT_PAGE).Value = k + lngPage
-                        End If
-                        
-                        If chkHyperLink.Value Then
-                            WS.Hyperlinks.Add _
-                                Anchor:=WS.Cells(j, C_CONTENT_LIST), _
-                                Address:="", _
-                                SubAddress:="'" & Worksheets(strSheet).Name & "'!" & Worksheets(strSheet).Cells(i, lngCol).Address, _
-                                TextToDisplay:=WS.Cells(j, C_CONTENT_LIST).Value
-                        End If
-                        
-                        j = j + 1
-                        
-                    End If
-                End If
-            
-            Next
-            lngPage = lngPage + k
-            ActiveWindow.View = varView
+                .Activate
+                varView = ActiveWindow.View
+                ActiveWindow.View = xlPageBreakPreview
         
+                '[XL2002] HPageBreaks または VPageBreaks.Location 使用時の "インデックスが有効範囲にありません" エラーについて
+                'https://support.microsoft.com/ja-jp/help/210663/you-receive-a-subscript-out-of-range-error-message-when-you-use-hpageb
+                Dim currcell As Range
+                Set currcell = ActiveWindow.ActiveCell
+                .Range("a1").SpecialCells(xlCellTypeLastCell).Select
+                
+                l = .HPageBreaks.Count
+                If l <> 0 Then
+                    ReDim p(1 To l)
+                    For k = 1 To l
+                        p(k) = .HPageBreaks(k).Location.Row
+                    Next
+                End If
+                
+                '[XL2002] HPageBreaks または VPageBreaks.Location 使用時の "インデックスが有効範囲にありません" エラーについて
+                'https://support.microsoft.com/ja-jp/help/210663/you-receive-a-subscript-out-of-range-error-message-when-you-use-hpageb
+                currcell.Select
+                
+                lngRow = .UsedRange.Item(.UsedRange.Count).Row
+                lngCol = getSectionCol(Worksheets(strSheet))
+                If lngCol = 0 Then
+                    Exit For
+                End If
+                
+    '            WS.Cells(j, C_CONTENT_LIST).Value = "<<" & Worksheets(strSheet).Name & ">>"
+    '            j = j + 1
+                            
+                For i = 1 To lngRow
+                
+                    strBuf = .Cells(i, lngCol).Value
+                                
+                    If .Cells(i, lngCol).IndentLevel < lngLevel Then
+                    
+                        Dim blnAns As Boolean
+                        blnAns = False
+                        For m = 0 To lngLevel - 1
+                            blnAns = blnAns Or rlxHasSectionNo(strBuf, m)
+                        Next
+                        
+                        If blnAns Then
+    
+                            
+                            If chkPeriod.Value Then
+                                WS.Cells(j, C_CONTENT_LIST).Value = .Cells(i, lngCol).Value & C_PERIOD
+                            Else
+                                WS.Cells(j, C_CONTENT_LIST).Value = .Cells(i, lngCol).Value
+                            End If
+                            WS.Cells(j, C_CONTENT_LIST).IndentLevel = .Cells(i, lngCol).IndentLevel
+                            
+                            If l = 0 Then
+                                k = 1
+                                WS.Cells(j, C_CONTENT_PAGE).Value = k + lngPage
+                            Else
+                                For k = 1 To UBound(p)
+                                    If p(k) > i Then
+                                        WS.Cells(j, C_CONTENT_PAGE).Value = k + lngPage
+                                        Exit For
+                                    End If
+                                Next
+                                WS.Cells(j, C_CONTENT_PAGE).Value = k + lngPage
+                            End If
+                            
+                            If chkHyperLink.Value Then
+                                WS.Hyperlinks.Add _
+                                    Anchor:=WS.Cells(j, C_CONTENT_LIST), _
+                                    Address:="", _
+                                    SubAddress:="'" & .Name & "'!" & .Cells(i, lngCol).Address, _
+                                    TextToDisplay:=WS.Cells(j, C_CONTENT_LIST).Value
+                            End If
+                            
+                            j = j + 1
+                            
+                        End If
+                    End If
+                
+                Next
+                lngPage = lngPage + k
+                ActiveWindow.View = varView
+                
+            End With
         End If
     Next
     
@@ -297,7 +310,7 @@ Private Sub cmdOk_Click()
     WS.Activate
     Set WS = Nothing
     
-'    Application.ScreenUpdating = True
+    Application.ScreenUpdating = True
     Unload Me
     
 End Sub
@@ -310,9 +323,9 @@ Private Function getSectionCol(ByRef WS As Worksheet) As Long
     Dim i As Long
     Dim j As Long
     
-    For j = 1 To WS.UsedRange.Item(WS.UsedRange.count).Column
+    For j = 1 To WS.UsedRange.Item(WS.UsedRange.Count).Column
     
-        For i = 1 To WS.UsedRange.Item(WS.UsedRange.count).Row
+        For i = 1 To WS.UsedRange.Item(WS.UsedRange.Count).Row
         
             strBuf = WS.Cells(i, j).Value
                         
@@ -388,8 +401,8 @@ Private Function spinColUp(ByVal vntValue As Variant) As Variant
     
     lngValue = getAto1(vntValue)
     lngValue = lngValue + 1
-    If lngValue > ActiveSheet.Columns.count Then
-        lngValue = ActiveSheet.Columns.count
+    If lngValue > ActiveSheet.Columns.Count Then
+        lngValue = ActiveSheet.Columns.Count
     End If
     spinColUp = get1toA(lngValue)
 
@@ -434,7 +447,7 @@ Private Sub UserForm_Initialize()
     Dim i As Long
     Dim j As Long
     j = 1
-    For i = 1 To Worksheets.count
+    For i = 1 To Worksheets.Count
     
         If Worksheets(i).visible = xlSheetVisible Then
             cboSheet.AddItem Worksheets(i).Name

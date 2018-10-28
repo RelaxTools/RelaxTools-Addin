@@ -41,7 +41,7 @@ Sub cellEdit()
         Exit Sub
     End If
     
-    If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.count Then
+    If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.Count Then
         MsgBox "複数セル選択されています。セルは１つのみ選択してください。", vbExclamation + vbOKOnly, C_TITLE
         Exit Sub
     End If

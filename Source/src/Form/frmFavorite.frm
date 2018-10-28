@@ -87,7 +87,7 @@ Private mblnSainyu As Boolean
 Private mstrFirstBook As String
 Private Const C_FILE_INFO As String = "ファイル情報："
 
-Public mobjCategory As Object
+Public mobjCategory As DictionaryEx
 
 'Private mlngPos As Long
 
@@ -271,7 +271,7 @@ Private Sub lstCategory_Change()
         Set cat = mobjCategory.Item(Key)
         
         i = 0
-        For Each c In cat
+        For Each c In cat.keys
         
             Set fav = cat.Item(c)
         
@@ -434,44 +434,45 @@ Private Sub UserForm_Initialize()
     With mBarCat
         With .Controls.Add
             .Caption = "先頭に移動"
-            .OnAction = "'basFavorite.moveListCategoryFirst(""" & C_HEAD & """)'"
+            .OnAction = MacroHelper.BuildPath("'basFavorite.moveListCategoryFirst(""" & C_HEAD & """)'")
             .FaceId = 594
         End With
         With .Controls.Add
             .Caption = "1つ上に移動"
-            .OnAction = "'basFavorite.moveListCategory(""" & C_UP & """)'"
+            .OnAction = MacroHelper.BuildPath("'basFavorite.moveListCategory(""" & C_UP & """)'")
             .FaceId = 595
         End With
         With .Controls.Add
             .BeginGroup = True
             .Caption = "1つ下に移動"
-            .OnAction = "'basFavorite.moveListCategory(""" & C_DOWN & """)'"
+            .OnAction = MacroHelper.BuildPath("'basFavorite.moveListCategory(""" & C_DOWN & """)'")
             .FaceId = 596
         End With
         With .Controls.Add
             .Caption = "最後に移動"
-            .OnAction = "'basFavorite.moveListCategoryFirst(""" & C_TAIL & """)'"
+            .OnAction = MacroHelper.BuildPath("'basFavorite.moveListCategoryFirst(""" & C_TAIL & """)'")
             .FaceId = 597
         End With
         With .Controls.Add
             .BeginGroup = True
             .Caption = "カテゴリの追加"
-            .OnAction = "basFavorite.addCategory"
+            .OnAction = MacroHelper.BuildPath("basFavorite.addCategory")
             .FaceId = 535
         End With
         With .Controls.Add
             .Caption = "カテゴリの変更"
-            .OnAction = "basFavorite.modCategory"
+            .OnAction = MacroHelper.BuildPath("basFavorite.modCategory")
             .FaceId = 534
         End With
         With .Controls.Add
             .Caption = "カテゴリの削除"
-            .OnAction = "basFavorite.delCategory"
+            .OnAction = MacroHelper.BuildPath("basFavorite.delCategory")
             .FaceId = 536
         End With
     End With
     
-    Set mobjCategory = CreateObject("Scripting.Dictionary")
+'    Set mobjCategory = CreateObject("Scripting.Dictionary")
+    Set mobjCategory = New DictionaryEx
     
     
     mstrFirstBook = GetSetting(C_TITLE, "Favirite", "CurrentBook", "")
@@ -486,7 +487,7 @@ Private Sub UserForm_Initialize()
     
     Dim strCategory As String
     
-    Dim objfav As Variant
+    Dim objfav As DictionaryEx
     
     strCategory = ""
     For i = 0 To lngMax
@@ -513,7 +514,8 @@ Private Sub UserForm_Initialize()
         End Select
          
         If Not mobjCategory.Exists(fav.Category) Then
-            Set objfav = CreateObject("Scripting.Dictionary")
+'            Set objfav = CreateObject("Scripting.Dictionary")
+            Set objfav = New DictionaryEx
             mobjCategory.Add fav.Category, objfav
        End If
        
@@ -524,11 +526,12 @@ Private Sub UserForm_Initialize()
     Next
 
     If Not mobjCategory.Exists("Fast Pin") Then
-        mobjCategory.Add "Fast Pin", CreateObject("Scripting.Dictionary")
+'        mobjCategory.Add "Fast Pin", CreateObject("Scripting.Dictionary")
+        mobjCategory.Add "Fast Pin", New DictionaryEx
     End If
     
     Dim cat As Variant
-    For Each cat In mobjCategory.Keys
+    For Each cat In mobjCategory.keys
         lstCategory.AddItem cat
     Next
     
@@ -724,7 +727,7 @@ Sub favCurrentUpdate()
 
     Dim Key As String
     Dim i As Long
-    Dim objfav As Variant
+    Dim objfav As DictionaryEx
     Dim lngMax As Long
     Dim fav As favoriteDTO
     
@@ -734,7 +737,8 @@ Sub favCurrentUpdate()
         mobjCategory.Remove Key
     End If
     
-    Set objfav = CreateObject("Scripting.Dictionary")
+'    Set objfav = CreateObject("Scripting.Dictionary")
+    Set objfav = New DictionaryEx
     
     lngMax = lstFavorite.ListCount - 1
     
@@ -796,7 +800,7 @@ Public Sub execOpen(ByVal blnReadOnly As Boolean)
                     Else
                         On Error Resume Next
                         Err.Clear
-                        Workbooks.Open filename:=strBook, ReadOnly:=blnReadOnly, UpdateLinks:=0, IgnoreReadOnlyRecommended:=True
+                        Workbooks.Open filename:=strBook, ReadOnly:=blnReadOnly, UpdateLinks:=0, IgnoreReadOnlyRecommended:=True, AddToMru:=True
                         If Err.Number <> 0 Then
                             MsgBox "ブックを開けませんでした。", vbOKOnly + vbExclamation, C_TITLE
                         End If
@@ -917,7 +921,7 @@ End Sub
 
 Private Sub lstFavorite_Change()
     
-    Application.OnTime Now, "lstFavoriteDispDetail"
+    Application.OnTime Now, MacroHelper.BuildPath("lstFavoriteDispDetail")
 
 End Sub
 'Private Sub lstFavorite_Click()
@@ -1027,64 +1031,64 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
         With mBarFav
             With .Controls.Add
                 .Caption = "開く"
-                .OnAction = "'basFavorite.execOpen(""" & False & """)'"
+                .OnAction = MacroHelper.BuildPath("'basFavorite.execOpen(""" & False & """)'")
                 .FaceId = 23
             End With
             With .Controls.Add
                 .Caption = "読み取り専用で開く"
-                .OnAction = "'basFavorite.execOpen(""" & True & """)'"
+                .OnAction = MacroHelper.BuildPath("'basFavorite.execOpen(""" & True & """)'")
                 .FaceId = 456
             End With
             With .Controls.Add
                 .Caption = "同名ブックを参照用に開く(Excelのみ)"
-                .OnAction = "'basFavorite.execOpenRef'"
+                .OnAction = MacroHelper.BuildPath("'basFavorite.execOpenRef'")
                 .FaceId = 456
             End With
             With .Controls.Add
                 .Caption = "ファイルのあるフォルダを開く"
-                .OnAction = "basFavorite.execOpenFolder"
+                .OnAction = MacroHelper.BuildPath("basFavorite.execOpenFolder")
                 .FaceId = 23
             End With
             With .Controls.Add
                 .BeginGroup = True
                 .Caption = "先頭に移動"
-                .OnAction = "'basFavorite.moveListFirst(""" & C_HEAD & """)'"
+                .OnAction = MacroHelper.BuildPath("'basFavorite.moveListFirst(""" & C_HEAD & """)'")
                 .FaceId = 594
             End With
             With .Controls.Add
                 .Caption = "1つ上に移動"
-                .OnAction = "'basFavorite.moveList(""" & C_UP & """)'"
+                .OnAction = MacroHelper.BuildPath("'basFavorite.moveList(""" & C_UP & """)'")
                 .FaceId = 595
             End With
             With .Controls.Add
                 .BeginGroup = True
                 .Caption = "1つ下に移動"
-                .OnAction = "'basFavorite.moveList(""" & C_DOWN & """)'"
+                .OnAction = MacroHelper.BuildPath("'basFavorite.moveList(""" & C_DOWN & """)'")
                 .FaceId = 596
             End With
             With .Controls.Add
                 .Caption = "最後に移動"
-                .OnAction = "'basFavorite.moveListFirst(""" & C_TAIL & """)'"
+                .OnAction = MacroHelper.BuildPath("'basFavorite.moveListFirst(""" & C_TAIL & """)'")
                 .FaceId = 597
             End With
             
             With .Controls.Add
                 .Caption = "アクティブブックを追加"
                 .BeginGroup = True
-                .OnAction = "basFavorite.execActiveAdd"
+                .OnAction = MacroHelper.BuildPath("basFavorite.execActiveAdd")
                 .FaceId = 535
             End With
             
             With .Controls.Add
                 .Caption = "追加"
 '                .BeginGroup = True
-                .OnAction = "basFavorite.execAdd"
+                .OnAction = MacroHelper.BuildPath("basFavorite.execAdd")
                 .FaceId = 535
             End With
             
             With .Controls.Add
                 .Caption = "編集"
-                .OnAction = "basFavorite.execEdit"
+                .OnAction = MacroHelper.BuildPath("basFavorite.execEdit")
                 .FaceId = 534
             End With
             
@@ -1092,19 +1096,19 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
             With .Controls.Add
                 .BeginGroup = True
                 .Caption = "コピー"
-                .OnAction = "basFavorite.favCopy"
+                .OnAction = MacroHelper.BuildPath("basFavorite.favCopy")
                 .FaceId = 19
             End With
             
             With .Controls.Add
                 .Caption = "貼り付け"
-                .OnAction = "basFavorite.favPaste"
+                .OnAction = MacroHelper.BuildPath("basFavorite.favPaste")
                 .FaceId = 1436
             End With
         
             With .Controls.Add
                 .Caption = "削除"
-                .OnAction = "basFavorite.execDel"
+                .OnAction = MacroHelper.BuildPath("basFavorite.execDel")
                 .FaceId = 536
             End With
             
@@ -1127,7 +1131,7 @@ Private Sub lstFavorite_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
                     If i <> lstCategory.ListIndex Then
                         With myCBCtrl2.Controls.Add
                             .Caption = lstCategory.List(i)
-                            .OnAction = "'basFavorite.moveCategory(""" & lstCategory.List(i) & """)'"
+                            .OnAction = MacroHelper.BuildPath("'basFavorite.moveCategory(""" & lstCategory.List(i) & """)'")
                             .FaceId = 526
                         End With
                     End If
@@ -1214,11 +1218,11 @@ Private Sub UserForm_Terminate()
         
             Set cat = mobjCategory.Item(key1)
             
-            If cat.count = 0 And Not key1 = "Fast Pin" Then
+            If cat.Count = 0 And Not key1 = "Fast Pin" Then
                 blnFind = True
             End If
             
-            For Each key2 In cat
+            For Each key2 In cat.keys
             
                 Set fav = cat.Item(key2)
             
@@ -1384,11 +1388,12 @@ Sub moveCategory(ByVal strCategory As String)
     
         If lstFavorite.Selected(i) Then
         
-            Dim cat2 As Variant
+            Dim cat2 As DictionaryEx
             If mobjCategory.Exists(strCategory) Then
                 Set cat2 = mobjCategory.Item(strCategory)
             Else
-                Set cat2 = CreateObject("Scripting.Dictionary")
+'                Set cat2 = CreateObject("Scripting.Dictionary")
+                Set cat2 = New DictionaryEx
             End If
             Dim d As favoriteDTO
             

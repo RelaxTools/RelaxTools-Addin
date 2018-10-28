@@ -74,7 +74,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 前処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
 
     On Error GoTo e
     
@@ -98,7 +98,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     Dim blnMatch As Boolean
     
     Dim i As Long
-    Dim count As Long
+    Dim Count As Long
     
     On Error GoTo e
     

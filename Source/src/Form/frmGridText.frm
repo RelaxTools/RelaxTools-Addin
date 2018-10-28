@@ -169,20 +169,20 @@ Private Sub kantanLineRun()
     Dim lngIdxCol As Long
     Dim i As Long
     
-    mlngRow = Selection.Rows.count
-    mlngCol = Selection.Columns.count
+    mlngRow = Selection.Rows.Count
+    mlngCol = Selection.Columns.Count
 
     'メモリの確保
-    ReDim mlngWidth(1 To Selection.Columns.count)
-    ReDim mlngMaxColWidth(1 To Selection.Columns.count)
-    ReDim mlngHeight(1 To Selection.Rows.count)
+    ReDim mlngWidth(1 To Selection.Columns.Count)
+    ReDim mlngMaxColWidth(1 To Selection.Columns.Count)
+    ReDim mlngHeight(1 To Selection.Rows.Count)
     ReDim mudtGrid(1 To mlngRow, 1 To mlngCol)
-    ReDim mblnFixColumn(1 To Selection.Columns.count)
+    ReDim mblnFixColumn(1 To Selection.Columns.Count)
 
     '最大幅より、罫線幅を引いた実際の幅
     lngJitsuLineMax = mlngMaxKeta - (mlngCol + 1) * 2
 
-    If Selection.Areas.count > 1 Then
+    If Selection.Areas.Count > 1 Then
         Exit Sub
     End If
     
@@ -824,7 +824,7 @@ Private Sub setGridData()
             If Selection(lngIdxRow, lngIdxCol).MergeCells Then
                 If Selection(lngIdxRow, lngIdxCol).MergeArea(1, 1).Address = Selection(lngIdxRow, lngIdxCol).Address Then
                     lngNewSize = 0
-                    For i = 0 To Selection(lngIdxRow, lngIdxCol).MergeArea.Columns.count - 1
+                    For i = 0 To Selection(lngIdxRow, lngIdxCol).MergeArea.Columns.Count - 1
                         lngNewSize = lngNewSize + mlngWidth(lngIdxCol + i)
                     Next
                 End If
@@ -952,8 +952,8 @@ Private Sub setGridData()
             
             If Selection(lngIdxRow, lngIdxCol).MergeCells Then
                 If Selection(lngIdxRow, lngIdxCol).MergeArea(1, 1).Address = Selection(lngIdxRow, lngIdxCol).Address Then
-                    mudtGrid(lngIdxRow, lngIdxCol).ColSpan = Selection(lngIdxRow, lngIdxCol).MergeArea.Columns.count
-                    mudtGrid(lngIdxRow, lngIdxCol).RowSpan = Selection(lngIdxRow, lngIdxCol).MergeArea.Rows.count
+                    mudtGrid(lngIdxRow, lngIdxCol).ColSpan = Selection(lngIdxRow, lngIdxCol).MergeArea.Columns.Count
+                    mudtGrid(lngIdxRow, lngIdxCol).RowSpan = Selection(lngIdxRow, lngIdxCol).MergeArea.Rows.Count
                 End If
             End If
             
@@ -1893,7 +1893,7 @@ Private Sub cmdRun_Click()
     If chkKetaEnabled.Value Then
     
         lngKeta = Val(txtKeta.Text)
-        mlngMinKeta = (Selection.Columns.count + 1) * 2 + (Selection.Columns.count * 2)
+        mlngMinKeta = (Selection.Columns.Count + 1) * 2 + (Selection.Columns.Count * 2)
     
         If mlngMinKeta > lngKeta Then
             MsgBox CStr(mlngMinKeta) & "桁以下には指定できません。" & "これ以上表を小さくする場合は選択列を減らしてください。", vbExclamation, C_TITLE
@@ -1941,7 +1941,7 @@ Private Sub UserForm_Initialize()
     chkDate.Value = CBool(GetSetting(C_TITLE, "EasyLine", "chkDate", "False"))
     chkNum.Value = CBool(GetSetting(C_TITLE, "EasyLine", "chkNum", "False"))
 
-    mlngMinKeta = (Selection.Columns.count + 1) * 2 + (Selection.Columns.count * 2)
+    mlngMinKeta = (Selection.Columns.Count + 1) * 2 + (Selection.Columns.Count * 2)
     
     If chkKetaEnabled.Value Then
         mlngMaxKeta = CLng(txtKeta.Text)
@@ -1975,7 +1975,7 @@ Private Function spinDown(ByVal vntValue As Variant) As Variant
 
     Dim lngValue As Long
     
-    mlngMinKeta = (Selection.Columns.count + 1) * 2 + (Selection.Columns.count * 2)
+    mlngMinKeta = (Selection.Columns.Count + 1) * 2 + (Selection.Columns.Count * 2)
 
     lngValue = Val(vntValue)
     lngValue = lngValue - 2

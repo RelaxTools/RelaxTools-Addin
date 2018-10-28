@@ -253,7 +253,7 @@ Public Sub Run()
     'マウスカーソルが作業ウィンドウ内にある場合
     Dim r As Range
     Set r = WD.ActivePane.VisibleRange
-    If r(1).Top < cr_pt.Y And r(1).Left < cr_pt.X And r(r.count).Offset(-1, -1).Top + r(r.count).Offset(-1, -1).Height > cr_pt.Y And r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).width > cr_pt.X Then
+    If r(1).Top < cr_pt.Y And r(1).Left < cr_pt.X And r(r.Count).Offset(-1, -1).Top + r(r.Count).Offset(-1, -1).Height > cr_pt.Y And r(r.Count).Offset(-1, -1).Left + r(r.Count).Offset(-1, -1).width > cr_pt.X Then
     
         'シェイプをマウスカーソル位置に移動する。ただし、かならずカーソルの中心に移動できるわけではないため、下でシェイプにあわせてカーソルを移動
         objDataSet.Top = cr_pt.Y - (objDataSet.Height / 2)
@@ -271,12 +271,12 @@ Public Sub Run()
             objDataSet.Left = r.Left
         End If
         
-        If cr_pt.Y > r(r.count).Offset(-1, -1).Top + r(r.count).Offset(-1, -1).Height - objDataSet.Height Then
-            objDataSet.Top = r(r.count).Offset(-1, -1).Top + r(r.count).Offset(-1, -1).Height - objDataSet.Height
+        If cr_pt.Y > r(r.Count).Offset(-1, -1).Top + r(r.Count).Offset(-1, -1).Height - objDataSet.Height Then
+            objDataSet.Top = r(r.Count).Offset(-1, -1).Top + r(r.Count).Offset(-1, -1).Height - objDataSet.Height
         End If
         
-        If cr_pt.X > r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).width - objDataSet.width Then
-            objDataSet.Left = r(r.count).Offset(-1, -1).Left + r(r.count).Offset(-1, -1).width - objDataSet.width
+        If cr_pt.X > r(r.Count).Offset(-1, -1).Left + r(r.Count).Offset(-1, -1).width - objDataSet.width Then
+            objDataSet.Left = r(r.Count).Offset(-1, -1).Left + r(r.Count).Offset(-1, -1).width - objDataSet.width
         End If
 
     End If

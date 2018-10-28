@@ -118,7 +118,7 @@ Sub replaceFiles()
     Application.DisplayStatusBar = blnStatusBar
     '''==================================================
 
-    MsgBox colResult.count & "ファイル置換しました。", vbInformation, C_TITLE
+    MsgBox colResult.Count & "ファイル置換しました。", vbInformation, C_TITLE
     
 End Sub
 '--------------------------------------------------------------

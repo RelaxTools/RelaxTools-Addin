@@ -439,29 +439,29 @@ Private Sub lstTimeLeap_MouseDown(ByVal Button As Integer, ByVal Shift As Intege
 
             With .Controls.Add
                 .Caption = "開く（読み取り専用）"
-                .OnAction = "'basTimeLeap.execOpen(""" & True & """)'"
+                .OnAction = MacroHelper.BuildPath("'basTimeLeap.execOpen(""" & True & """)'")
                 .FaceId = 456
             End With
             With .Controls.Add
                 .BeginGroup = True
                 .Caption = "最新のブックと比較"
-                .OnAction = "basTimeLeap.execCompare"
+                .OnAction = MacroHelper.BuildPath("basTimeLeap.execCompare")
                 .FaceId = 19
             End With
             With .Controls.Add
                 .Caption = "直前のブックと比較"
-                .OnAction = "'basTimeLeap.execCompareBefore'"
+                .OnAction = MacroHelper.BuildPath("'basTimeLeap.execCompareBefore'")
                 .FaceId = 19
             End With
             With .Controls.Add
                 .BeginGroup = True
                 .Caption = "エクスポート"
-                .OnAction = "'basTimeLeap.execExport'"
+                .OnAction = MacroHelper.BuildPath("'basTimeLeap.execExport'")
                 .FaceId = 526
             End With
             With .Controls.Add
                 .Caption = "このブックを最新のブックに上書き"
-                .OnAction = "'basTimeLeap.execOverwrite'"
+                .OnAction = MacroHelper.BuildPath("'basTimeLeap.execOverwrite'")
                 .FaceId = 534
             End With
 

@@ -912,9 +912,9 @@ pass:
         End Select
         
         If cboValue.Value = C_SEARCH_VALUE_VALUE Then
-            Set objFind = r.Find(strPattern, r(r.count), xlValues, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
+            Set objFind = r.Find(strPattern, r(r.Count), xlValues, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
         Else
-            Set objFind = r.Find(strPattern, r(r.count), xlFormulas, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
+            Set objFind = r.Find(strPattern, r(r.Count), xlFormulas, xlPart, xlByRows, xlNext, chkCase.Value, chkZenHan.Value)
         End If
         
         If Not objFind Is Nothing Then
@@ -1004,7 +1004,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet)
                             txtSearch.SetFocus
                             Exit Sub
                         End If
-                        matchCount = objMatch.count
+                        matchCount = objMatch.Count
                     Else
                         If chkCase.Value Then
                             matchCount = InStr(strBuf, strPattern)
@@ -1072,7 +1072,7 @@ Private Sub grouprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objShape
                             txtSearch.SetFocus
                             Exit Sub
                         End If
-                        matchCount = objMatch.count
+                        matchCount = objMatch.Count
                     Else
                         If chkCase.Value Then
                             matchCount = InStr(strBuf, strPattern)
@@ -1124,7 +1124,7 @@ Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objS
     strPattern = txtSearch.Text
     
     
-    For lngIdx = 1 To objShape.SmartArt.AllNodes.count
+    For lngIdx = 1 To objShape.SmartArt.AllNodes.Count
     
         Set c = objShape.SmartArt.AllNodes(lngIdx)
                 
@@ -1143,7 +1143,7 @@ Private Sub SmartArtprc(ByRef WS As Worksheet, ByRef objTop As Shape, ByRef objS
                     txtSearch.SetFocus
                     Exit Sub
                 End If
-                matchCount = objMatch.count
+                matchCount = objMatch.Count
             Else
                 If chkCase.Value Then
                     matchCount = InStr(strBuf, strPattern)
@@ -1356,7 +1356,7 @@ Private Function setCellPos(ByRef r As Range) As Range
     Dim lngCol2 As Long
     
     lngCol1 = Windows(1).VisibleRange(1).Column
-    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.count).Column
+    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.Count).Column
     
     Select Case r.Column
         Case lngCol1 To lngCol2
@@ -1385,7 +1385,7 @@ Private Sub lstResult_MouseDown(ByVal Button As Integer, ByVal Shift As Integer,
         With CommandBars.Add(Position:=msoBarPopup, Temporary:=True)
             With .Controls.Add
                 .Caption = "クリップボードにコピー"
-                .OnAction = "basSearchEx.listCopy"
+                .OnAction = MacroHelper.BuildPath("basSearchEx.listCopy")
                 .FaceId = 1436
             End With
             .ShowPopup
@@ -1733,7 +1733,7 @@ Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal id As Strin
         
         If lngID = objShape.id Then
         
-            For i = 1 To objShape.SmartArt.AllNodes.count
+            For i = 1 To objShape.SmartArt.AllNodes.Count
             
                 If i = lngPos Then
                     Set ret = objShape.SmartArt.AllNodes(i)

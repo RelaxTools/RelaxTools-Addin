@@ -67,7 +67,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 初期処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
 
     Undo = True
     
@@ -83,7 +83,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     If r.HasFormula Then
     Else
         If Not (NotHoldFormat) And VarType(r.Value) = vbString Then
-            r.Characters(r.Characters.count, 1).Delete
+            r.Characters(r.Characters.Count, 1).Delete
         Else
             If Len(r.PrefixCharacter) > 0 Then
                 r.Value = r.PrefixCharacter & Mid$(r.Value, 1, Len(r.Value) - 1)

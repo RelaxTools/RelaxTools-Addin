@@ -146,7 +146,7 @@ Public Function FormatXML(ByVal strBuf As String) As String
 
     '構文解析
 
-    lngMax = c.count
+    lngMax = c.Count
 
     Dim curElement As XMLElement
     Dim nextElement As XMLElement

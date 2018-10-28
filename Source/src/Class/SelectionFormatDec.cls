@@ -76,13 +76,13 @@ Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean)
     Dim lngCol As Long
     Dim lngMax As Long
     
-    lngMax = (2 ^ Selection.Rows.count)
+    lngMax = (2 ^ Selection.Rows.Count)
     
-    If Selection(1).Column + lngMax - 1 > Application.Columns.count Then
+    If Selection(1).Column + lngMax - 1 > Application.Columns.Count Then
     Else
-        If Selection.Columns.count < lngMax Then
+        If Selection.Columns.Count < lngMax Then
             If MsgBox("デシジョンを表現する列が足りません。拡張しますか？", vbOKCancel + vbQuestion, C_TITLE) = vbOK Then
-                lngCol = (2 ^ Selection.Rows.count) - Selection.Columns.count
+                lngCol = (2 ^ Selection.Rows.Count) - Selection.Columns.Count
                 Range(Selection, Selection.Offset(0, lngCol)).Select
             End If
         End If
@@ -101,12 +101,12 @@ Private Sub SFWork_SelectionMain(r As Range)
     
     Dim lngSeed As Long
     
-    For lngRow = 1 To r.Rows.count
+    For lngRow = 1 To r.Rows.Count
     
         sw = 1
-        lngSeed = 2 ^ (r.Rows.count - lngRow)
+        lngSeed = 2 ^ (r.Rows.Count - lngRow)
         
-        For lngCol = 1 To r.Columns.count
+        For lngCol = 1 To r.Columns.Count
     
             If sw Mod 2 = 1 Then
                 r(lngRow, lngCol).Value = "Y"
@@ -119,7 +119,7 @@ Private Sub SFWork_SelectionMain(r As Range)
             End If
             
             '行の２乗以上はパターンが重複するのでパス
-            If lngCol >= (2 ^ r.Rows.count) Then
+            If lngCol >= (2 ^ r.Rows.Count) Then
                 Exit For
             End If
                 

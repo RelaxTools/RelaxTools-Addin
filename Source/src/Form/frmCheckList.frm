@@ -118,7 +118,7 @@ Function getBorder() As Long
     
     getBorder = 2
     
-    For i = 1 To colBorder.count
+    For i = 1 To colBorder.Count
         If colBorder(i).BorderStyle = fmBorderStyleSingle Then
             getBorder = i
             Exit Function
@@ -132,7 +132,7 @@ Sub setBorder(ByVal lngNo As Long)
 
     Dim i As Long
     
-    For i = 1 To colBorder.count
+    For i = 1 To colBorder.Count
 
         If i = lngNo Then
             colBorder(i).BorderStyle = fmBorderStyleSingle

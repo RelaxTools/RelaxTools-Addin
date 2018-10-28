@@ -134,15 +134,16 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
     Dim objfld As Object
     Dim objfl As Object
     Dim objSub As Object
-    Dim colFiles As Object
-    Dim colFolders As Object
+    Dim colFiles As DictionaryEx
+    Dim colFolders As DictionaryEx
     Dim objKey As Variant
     
     Dim lngCol2 As Long
 
     Set objfld = objFs.GetFolder(strPath)
     
-    Set colFiles = CreateObject("Scripting.Dictionary")
+'    Set colFiles = CreateObject("Scripting.Dictionary")
+    Set colFiles = New DictionaryEx
     
     'ファイル名取得
     For Each objfl In objfld.files
@@ -156,7 +157,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
 '    'コレクションのソート
 '    rlxSortCollection colFiles
     
-    For Each objKey In colFiles.Keys
+    For Each objKey In colFiles.keys
         DoEvents
         If mblnCancel Then
             Exit Sub
@@ -187,7 +188,8 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
     Set colFiles = Nothing
     
     
-    Set colFolders = CreateObject("Scripting.Dictionary")
+'    Set colFolders = CreateObject("Scripting.Dictionary")
+    Set colFolders = New DictionaryEx
 
     For Each objSub In objfld.SubFolders
         DoEvents
@@ -200,7 +202,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
 '    'コレクションのソート
 '    rlxSortCollection colFolders
     
-    For Each objKey In colFolders.Keys
+    For Each objKey In colFolders.keys
         DoEvents
         If mblnCancel Then
             Exit Sub
@@ -236,9 +238,7 @@ Private Sub FileDisp(objFs, strPath, lngRow, lngCol, lngCount, lngMax)
         End If
     Next
     Set colFolders = Nothing
-    
     mMm.DisplayGauge lngCount
-
 End Sub
 
 Private Sub UserForm_Initialize()

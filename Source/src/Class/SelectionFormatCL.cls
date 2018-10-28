@@ -73,7 +73,7 @@ End Sub
 Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean)
     Undo = True
     
-    If Selection.Rows.count = 1 Then
+    If Selection.Rows.Count = 1 Then
         mstrSeed = "1"
     Else
         mstrSeed = InputBox("Ｘ方向の繰り返し数を入力してください。", "デシジョン作成(○)", "1")
@@ -97,13 +97,13 @@ Private Sub SFWork_SelectionMain(r As Range)
     lngSeed = Val(mstrSeed)
     
     lngRow = 1
-    For lngCol = 1 To r.Columns.count
+    For lngCol = 1 To r.Columns.Count
 
         r(lngRow, lngCol).Value = "○"
             
         If (lngCol Mod lngSeed) = 0 Then
             lngRow = lngRow + 1
-            If lngRow > r.Rows.count Then
+            If lngRow > r.Rows.Count Then
                 lngRow = 1
             End If
         End If

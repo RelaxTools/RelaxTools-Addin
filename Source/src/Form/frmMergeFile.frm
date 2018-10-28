@@ -163,13 +163,13 @@ Private Sub cmdRun_Click()
                 WS.Copy
                 
                 '追加された最後のブックがマージ用ブック
-                Set motoWB = Application.Workbooks(Application.Workbooks.count)
+                Set motoWB = Application.Workbooks(Application.Workbooks.Count)
                 
                 blnFirst = False
             Else
             
                 'シートの最後にコピー
-                WS.Copy , motoWB.Sheets(motoWB.Worksheets.count)
+                WS.Copy , motoWB.Sheets(motoWB.Worksheets.Count)
             End If
             
             
@@ -223,7 +223,7 @@ Sub mergeWorkBook()
     
     
     'ワークブックが２未満の場合、処理不要
-    If Workbooks.count < 2 Then
+    If Workbooks.Count < 2 Then
         Exit Sub
     End If
     
@@ -234,10 +234,10 @@ Sub mergeWorkBook()
         For Each WS In WB.Worksheets
             If blnFirst Then
                 WS.Copy
-                Set motoWB = Application.Workbooks(Application.Workbooks.count)
+                Set motoWB = Application.Workbooks(Application.Workbooks.Count)
                 blnFirst = False
             Else
-                WS.Copy , motoWB.Worksheets(motoWB.Worksheets.count)
+                WS.Copy , motoWB.Worksheets(motoWB.Worksheets.Count)
             End If
         Next
         
@@ -272,11 +272,11 @@ Public Sub rlxGetFilesCount(ByRef objFs As Object, ByVal strPath As String, ByRe
     Set objfld = objFs.GetFolder(strPath)
     
     If blnFile Then
-        lngFCnt = lngFCnt + objfld.files.count
+        lngFCnt = lngFCnt + objfld.files.Count
     End If
     
     If blnFolder Then
-        lngFCnt = lngFCnt + objfld.SubFolders.count
+        lngFCnt = lngFCnt + objfld.SubFolders.Count
     End If
     
         'フォルダ取得あり

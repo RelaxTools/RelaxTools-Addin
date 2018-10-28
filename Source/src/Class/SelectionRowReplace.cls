@@ -76,7 +76,7 @@ Private Sub SFWork_SelectionInit(rAreas As Excel.Areas, Cancel As Boolean, Undo 
 
     On Error GoTo e
     
-    If rAreas.count > 1 Then
+    If rAreas.Count > 1 Then
         MsgBox "複数のエリアには対応していません。", vbExclamation, C_TITLE
         Cancel = True
         Exit Sub

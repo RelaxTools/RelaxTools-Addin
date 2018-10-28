@@ -90,11 +90,11 @@ Public Sub LogFinish(Message As String)
     If colStack Is Nothing Then
         t = 0
     Else
-        If colStack.count = 0 Then
+        If colStack.Count = 0 Then
             t = 0
         Else
-            t = colStack.Item(colStack.count)
-            colStack.Remove colStack.count
+            t = colStack.Item(colStack.Count)
+            colStack.Remove colStack.Count
         End If
     End If
     

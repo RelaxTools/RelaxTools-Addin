@@ -119,7 +119,7 @@ Private Sub cmdSearch_Click()
     Set mMm.Form = Me
     mMm.Disable
     
-    mMm.StartGauge ActiveWorkbook.Styles.count
+    mMm.StartGauge ActiveWorkbook.Styles.Count
     lngCnt = 1
     
     For Each s In ActiveWorkbook.Styles

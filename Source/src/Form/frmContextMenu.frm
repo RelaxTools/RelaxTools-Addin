@@ -277,7 +277,7 @@ Private Sub lstMenu1_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, 
                 If i <> lstMenu1.ListIndex Then
                     With myCBCtrl2.Controls.Add
                         .Caption = lstMenu1.List(i)
-                        .OnAction = "'basContextMenu.copyMenu(""" & i & """)'"
+                        .OnAction = MacroHelper.BuildPath("'basContextMenu.copyMenu(""" & i & """)'")
                        '.FaceId = 526
                         .FaceId = 525
                     End With

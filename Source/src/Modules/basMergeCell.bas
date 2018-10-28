@@ -30,7 +30,7 @@ Sub SizeToWidest()
     
     Application.CutCopyMode = False
     
-    If Selection(1).MergeArea.Columns.count = 1 Then
+    If Selection(1).MergeArea.Columns.Count = 1 Then
         blnOnly1 = True
     End If
     
@@ -40,10 +40,10 @@ Sub SizeToWidest()
 
     lngLeft = Selection(1).Column
     lngTop = Selection(1).Row
-    lngBottom = Selection(Selection.count).Row
-    lngRight = Selection(Selection.count).Column + 1
+    lngBottom = Selection(Selection.Count).Row
+    lngRight = Selection(Selection.Count).Column + 1
 
-    For j = lngRight To Cells.Columns.count
+    For j = lngRight To Cells.Columns.Count
         blnMerge = False
         blnValue = False
         For i = lngTop To lngBottom
@@ -95,12 +95,12 @@ Sub SizeToWidest()
                     Next
                 End If
 
-                Set s = .Range(r.Address).Resize(, r.Columns.count + 1)
+                Set s = .Range(r.Address).Resize(, r.Columns.Count + 1)
 
                 s.Cut Destination:=Range(s.Address)
                 
                 Set s = Range(strSel)
-                s.Resize(, s.Columns.count + 1).Select
+                s.Resize(, s.Columns.Count + 1).Select
 
             End With
 
@@ -133,7 +133,7 @@ Sub SizeToNarrowest()
     
     On Error GoTo e
     
-    If Selection(1).MergeArea.Columns.count <= 1 Then
+    If Selection(1).MergeArea.Columns.Count <= 1 Then
         Exit Sub
     End If
     
@@ -143,10 +143,10 @@ Sub SizeToNarrowest()
 
     lngLeft = Selection(1).Column
     lngTop = Selection(1).Row
-    lngBottom = Selection(Selection.count).Row
-    lngRight = Selection(Selection.count).Column + 1
+    lngBottom = Selection(Selection.Count).Row
+    lngRight = Selection(Selection.Count).Column + 1
 
-    For j = lngRight To Cells.Columns.count
+    For j = lngRight To Cells.Columns.Count
         blnMerge = False
         For i = lngTop To lngBottom
 
@@ -173,7 +173,7 @@ Sub SizeToNarrowest()
 
                 .Columns(r.Columns(2).Column).Delete Shift:=xlToLeft
 
-                Set s = .Range(r.Address).Resize(, r.Columns.count - 1)
+                Set s = .Range(r.Address).Resize(, r.Columns.Count - 1)
 
                 s.Cut Destination:=Range(s.Address)
                 
@@ -181,7 +181,7 @@ Sub SizeToNarrowest()
             End With
 
             Set s = Range(strSel)
-            s.Resize(, s.Columns.count - 1).Select
+            s.Resize(, s.Columns.Count - 1).Select
             
             Application.ScreenUpdating = True
 
@@ -216,7 +216,7 @@ Sub SizeToTallest()
     
     Application.CutCopyMode = False
     
-    If Selection(1).MergeArea.Rows.count = 1 Then
+    If Selection(1).MergeArea.Rows.Count = 1 Then
         blnOnly1 = True
     End If
     
@@ -224,10 +224,10 @@ Sub SizeToTallest()
 
     lngLeft = Selection(1).Column
     lngTop = Selection(1).Row
-    lngBottom = Selection(Selection.count).Row + 1
-    lngRight = Selection(Selection.count).Column
+    lngBottom = Selection(Selection.Count).Row + 1
+    lngRight = Selection(Selection.Count).Column
 
-    For i = lngBottom To Cells.Rows.count
+    For i = lngBottom To Cells.Rows.Count
         blnMerge = False
         blnValue = False
         For j = lngLeft To lngRight
@@ -280,14 +280,14 @@ Sub SizeToTallest()
                     Next
                 End If
 
-                Set s = .Range(r.Address).Resize(r.Rows.count + 1)
+                Set s = .Range(r.Address).Resize(r.Rows.Count + 1)
 
                 s.Cut Destination:=Range(s.Address)
 
             End With
             
             Set s = Range(strSel)
-            s.Resize(s.Rows.count + 1).Select
+            s.Resize(s.Rows.Count + 1).Select
 
             Application.ScreenUpdating = True
 
@@ -316,7 +316,7 @@ Sub SizeToShortest()
     
     On Error GoTo e
     
-    If Selection(1).MergeArea.Rows.count <= 1 Then
+    If Selection(1).MergeArea.Rows.Count <= 1 Then
         Exit Sub
     End If
     
@@ -326,10 +326,10 @@ Sub SizeToShortest()
 
     lngLeft = Selection(1).Column
     lngTop = Selection(1).Row
-    lngBottom = Selection(Selection.count).Row + 1
-    lngRight = Selection(Selection.count).Column
+    lngBottom = Selection(Selection.Count).Row + 1
+    lngRight = Selection(Selection.Count).Column
 
-    For i = lngBottom To Cells.Rows.count
+    For i = lngBottom To Cells.Rows.Count
         blnMerge = False
         For j = lngLeft To lngRight
 
@@ -356,14 +356,14 @@ Sub SizeToShortest()
 
                 .Rows(r.Rows(2).Row).Delete Shift:=xlUp
 
-                Set s = .Range(r.Address).Resize(r.Rows.count - 1)
+                Set s = .Range(r.Address).Resize(r.Rows.Count - 1)
 
                 s.Cut Destination:=Range(s.Address)
                 
             End With
 
             Set s = Range(strSel)
-            s.Resize(s.Rows.count - 1).Select
+            s.Resize(s.Rows.Count - 1).Select
             
             Application.ScreenUpdating = True
 

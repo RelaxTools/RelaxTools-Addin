@@ -61,7 +61,7 @@ Public Function editKantan(ByRef s As KantanLineDTO, ByVal lngFormat As Long) As
         
     'ヘッダ線
     For i = 1 To s.HHeadLineCount
-        If i > r.Rows.count Then
+        If i > r.Rows.Count Then
             Exit For
         End If
         If s.EnableHRepeat Or i = s.HHeadLineCount Then
@@ -76,14 +76,14 @@ Public Function editKantan(ByRef s As KantanLineDTO, ByVal lngFormat As Long) As
     Next
     
     If s.EnableEvenColor Then
-        For i = s.HHeadLineCount + 2 To r.Rows.count Step 2
+        For i = s.HHeadLineCount + 2 To r.Rows.Count Step 2
             r.Rows(i).Interior.Color = s.EvenColor
         Next
         
     End If
     
     For i = 1 To s.VHeadLineCount
-        If i > r.Columns.count Then
+        If i > r.Columns.Count Then
             Exit For
         End If
         If s.EnableVRepeat Or i = s.VHeadLineCount Then
@@ -95,7 +95,7 @@ Public Function editKantan(ByRef s As KantanLineDTO, ByVal lngFormat As Long) As
         
         Dim j As Long
         Dim t As Range
-        For j = s.HHeadLineCount To r.Rows.count
+        For j = s.HHeadLineCount To r.Rows.Count
             If t Is Nothing Then
                 Set t = r(j, i)
             Else
@@ -205,7 +205,7 @@ Sub kantanPaste2(ByVal Index As Long)
     Select Case True
         Case col Is Nothing
             Exit Sub
-        Case col.count = 0
+        Case col.Count = 0
             Exit Sub
         Case Else
     End Select
@@ -224,16 +224,16 @@ Sub kantanPaste2(ByVal Index As Long)
     For Each r In Selection.Areas
 
         'ヘッダの境界行（方眼紙の際の列判定）
-        If s.HHeadLineCount < r.Rows.count Then
+        If s.HHeadLineCount < r.Rows.Count Then
             lngHLine = s.HHeadLineCount
         Else
-            lngHLine = r.Rows.count
+            lngHLine = r.Rows.Count
         End If
         
-        If s.VHeadLineCount < r.Columns.count Then
+        If s.VHeadLineCount < r.Columns.Count Then
             lngVLine = s.VHeadLineCount
         Else
-            lngVLine = r.Columns.count
+            lngVLine = r.Columns.Count
         End If
         
         If s.AuthoHogan Then
@@ -250,7 +250,7 @@ Sub kantanPaste2(ByVal Index As Long)
         r.Borders(xlInsideHorizontal).LineStyle = getLineStyle(s.HInsideLine)
         
         If s.EnableHogan Then
-            For j = 2 To r.Columns.count
+            For j = 2 To r.Columns.Count
                 If r(z, j).Value <> "" Then
                     r.Columns(j).Borders(xlEdgeLeft).Weight = getBorderWeight(s.VHeadBorderLine)
                     r.Columns(j).Borders(xlEdgeLeft).LineStyle = getLineStyle(s.VHeadBorderLine)
@@ -265,7 +265,7 @@ Sub kantanPaste2(ByVal Index As Long)
         
         'ヘッダ線
         For i = 1 To s.HHeadLineCount
-            If i > r.Rows.count Then
+            If i > r.Rows.Count Then
                 Exit For
             End If
             
@@ -277,7 +277,7 @@ Sub kantanPaste2(ByVal Index As Long)
             End If
             
             If s.EnableHogan Then
-                For j = 2 To r.Columns.count
+                For j = 2 To r.Columns.Count
                     If r(z, j).Value <> "" Then
                         r(i, j).Borders(xlEdgeLeft).Weight = getBorderWeight(s.VHeadBorderLine)
                         r(i, j).Borders(xlEdgeLeft).LineStyle = getLineStyle(s.VHeadBorderLine)
@@ -293,14 +293,14 @@ Sub kantanPaste2(ByVal Index As Long)
         Next
         
         If s.EnableEvenColor Then
-            For i = s.HHeadLineCount + 2 To r.Rows.count Step 2
+            For i = s.HHeadLineCount + 2 To r.Rows.Count Step 2
                 r.Rows(i).Interior.Color = s.EvenColor
             Next
             
         End If
         
         For i = 1 To s.VHeadLineCount
-            If i > r.Columns.count Then
+            If i > r.Columns.Count Then
                 Exit For
             End If
             If s.EnableVRepeat Or i = lngVLine Then
@@ -312,7 +312,7 @@ Sub kantanPaste2(ByVal Index As Long)
             
             Dim k As Long
             Dim t As Range
-            For k = s.HHeadLineCount To r.Rows.count
+            For k = s.HHeadLineCount To r.Rows.Count
                 If t Is Nothing Then
                     Set t = r(k, i)
                 Else
@@ -339,7 +339,7 @@ Sub kantanPaste2(ByVal Index As Long)
 
     Next
     
-    Application.OnUndo "Undo", "execUndo"
+    Application.OnUndo "Undo", MacroHelper.BuildPath("execUndo")
 
 End Sub
 
@@ -625,7 +625,7 @@ Public Sub setPropertyKantan(ByRef col As Collection)
     
     DeleteSetting C_TITLE, "KantanDx"
 
-    For i = 0 To col.count - 1
+    For i = 0 To col.Count - 1
 
         Set s = col(i + 1)
         
@@ -635,7 +635,7 @@ Public Sub setPropertyKantan(ByRef col As Collection)
         Set s = Nothing
     Next
 
-    Call SaveSetting(C_TITLE, "KantanDx", "Count", col.count)
+    Call SaveSetting(C_TITLE, "KantanDx", "Count", col.Count)
 
 End Sub
 Function serialize(ByRef k As KantanLineDTO) As String

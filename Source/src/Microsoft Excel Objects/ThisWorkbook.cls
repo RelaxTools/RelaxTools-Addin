@@ -512,16 +512,16 @@ Private Sub ShowCursor()
         End If
 
 '        frmCrossLineGauge.txtAddress = s(1).Address(False, False)
-        If s.Rows.count = 1 Then
+        If s.Rows.Count = 1 Then
             frmCrossLineGauge.txtRow = s(1).Row
         Else
-            frmCrossLineGauge.txtRow = s(1).Row & ":" & s(s.count).Row
+            frmCrossLineGauge.txtRow = s(1).Row & ":" & s(s.Count).Row
         End If
         
-        If s.Columns.count = 1 Then
+        If s.Columns.Count = 1 Then
             frmCrossLineGauge.txtColumn = s(1).Column
         Else
-            frmCrossLineGauge.txtColumn = s(1).Column & ":" & s(s.count).Column
+            frmCrossLineGauge.txtColumn = s(1).Column & ":" & s(s.Count).Column
         End If
         
     End With

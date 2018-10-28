@@ -76,7 +76,7 @@ Private Sub cmdSetting01_Click()
     Else
         Set mColSection1 = ret
         For i = 1 To 6
-            If mColSection1.count < i Then
+            If mColSection1.Count < i Then
                 mColLevel01(i).Caption = ""
             Else
                 If mColSection1(i).classObj Is Nothing Then
@@ -100,7 +100,7 @@ Private Sub cmdSetting02_Click()
     Else
         Set mColSection2 = ret
         For i = 1 To 6
-            If mColSection2.count < i Then
+            If mColSection2.Count < i Then
                 mColLevel02(i).Caption = ""
             Else
                 If mColSection2(i).classObj Is Nothing Then
@@ -124,7 +124,7 @@ Private Sub cmdSetting03_Click()
     Else
         Set mColSection3 = ret
         For i = 1 To 6
-            If mColSection3.count < i Then
+            If mColSection3.Count < i Then
                 mColLevel03(i).Caption = ""
             Else
                 If mColSection3(i).classObj Is Nothing Then
@@ -148,7 +148,7 @@ Private Sub cmdSetting04_Click()
     Else
         Set mColSection4 = ret
         For i = 1 To 6
-            If mColSection4.count < i Then
+            If mColSection4.Count < i Then
                 mColLevel04(i).Caption = ""
             Else
                 If mColSection4(i).classObj Is Nothing Then
@@ -172,7 +172,7 @@ Private Sub cmdSetting05_Click()
     Else
         Set mColSection5 = ret
         For i = 1 To 6
-            If mColSection5.count < i Then
+            If mColSection5.Count < i Then
                 mColLevel05(i).Caption = ""
             Else
                 If mColSection5(i).classObj Is Nothing Then
@@ -196,7 +196,7 @@ Private Sub cmdSetting06_Click()
     Else
         Set mColSection6 = ret
         For i = 1 To 6
-            If mColSection6.count < i Then
+            If mColSection6.Count < i Then
                 mColLevel06(i).Caption = ""
             Else
                 If mColSection6(i).classObj Is Nothing Then
@@ -267,7 +267,7 @@ Private Sub UserForm_Initialize()
     'カスタム（１）
     Set mColSection1 = rlxGetSectionSetting("01")
     For i = 1 To 6
-        If mColSection1.count < i Then
+        If mColSection1.Count < i Then
             mColLevel01(i).Caption = ""
         Else
             If mColSection1(i).classObj Is Nothing Then
@@ -281,7 +281,7 @@ Private Sub UserForm_Initialize()
     'カスタム（２）
     Set mColSection2 = rlxGetSectionSetting("02")
     For i = 1 To 6
-        If mColSection2.count < i Then
+        If mColSection2.Count < i Then
             mColLevel02(i).Caption = ""
         Else
             If mColSection2(i).classObj Is Nothing Then
@@ -295,7 +295,7 @@ Private Sub UserForm_Initialize()
     'カスタム（３）
     Set mColSection3 = rlxGetSectionSetting("03")
     For i = 1 To 6
-        If mColSection3.count < i Then
+        If mColSection3.Count < i Then
             mColLevel03(i).Caption = ""
         Else
             If mColSection3(i).classObj Is Nothing Then
@@ -309,7 +309,7 @@ Private Sub UserForm_Initialize()
     'カスタム（４）
     Set mColSection4 = rlxGetSectionSetting("04")
     For i = 1 To 6
-        If mColSection4.count < i Then
+        If mColSection4.Count < i Then
             mColLevel04(i).Caption = ""
         Else
             If mColSection4(i).classObj Is Nothing Then
@@ -323,7 +323,7 @@ Private Sub UserForm_Initialize()
     'カスタム（５）
     Set mColSection5 = rlxGetSectionSetting("05")
     For i = 1 To 6
-        If mColSection5.count < i Then
+        If mColSection5.Count < i Then
             mColLevel05(i).Caption = ""
         Else
             If mColSection5(i).classObj Is Nothing Then
@@ -337,7 +337,7 @@ Private Sub UserForm_Initialize()
     'カスタム（６）
     Set mColSection6 = rlxGetSectionSetting("06")
     For i = 1 To 6
-        If mColSection6.count < i Then
+        If mColSection6.Count < i Then
             mColLevel06(i).Caption = ""
         Else
             If mColSection6(i).classObj Is Nothing Then

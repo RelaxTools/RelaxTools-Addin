@@ -70,7 +70,7 @@ End Sub
 '------------------------------------------------------------------------------------------------------------------------
 ' 初期処理(UOC)
 '------------------------------------------------------------------------------------------------------------------------
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
 
     Undo = True
     mlngPos = Selection(1).Row

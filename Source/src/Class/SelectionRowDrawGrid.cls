@@ -158,8 +158,8 @@ Private Sub SFWork_SelectionBegin(rArea As Range, Cancel As Boolean)
         .ColorIndex = xlAutomatic
     End With
     
-    lngRows = rArea.Rows.count
-    lngCols = rArea.Columns.count
+    lngRows = rArea.Rows.Count
+    lngCols = rArea.Columns.Count
         
     ''内部縦線
     If lngCols > 1 Then
@@ -178,7 +178,7 @@ Private Sub SFWork_SelectionBegin(rArea As Range, Cancel As Boolean)
                 .LineStyle = xlNone
             End With
             
-            For lngCol = 2 To rArea.Columns.count
+            For lngCol = 2 To rArea.Columns.Count
             
                 If rArea.Cells(lngRow, lngCol).Value <> "" Then
                     With rArea.Columns(lngCol).Borders(xlLeft)
@@ -328,8 +328,8 @@ Private Sub SFWork_SelectionFinal(rArea As Range)
     Dim lngCols As Long
     Dim lngRows As Long
     
-    lngRows = rArea.Rows.count
-    lngCols = rArea.Columns.count
+    lngRows = rArea.Rows.Count
+    lngCols = rArea.Columns.Count
     
     Dim r As Range
     

@@ -128,7 +128,7 @@ Private Sub OpenLog()
     lngHistory = CLng(GetSetting(C_TITLE, "Log", "History", 5))
     
     Dim objFs As Object
-    Dim objDic As Object
+    Dim objDic As DictionaryEx
     Dim objFolder As Object
     Dim objFile As Object
     
@@ -144,7 +144,8 @@ Private Sub OpenLog()
     End If
     
     
-    Set objDic = CreateObject("Scripting.Dictionary")
+'    Set objDic = CreateObject("Scripting.Dictionary")
+    Set objDic = New DictionaryEx
     
     'ログフォルダを Dictionaryに追加
     Set objFolder = objFs.GetFolder(strLogFolder)
@@ -156,8 +157,8 @@ Private Sub OpenLog()
     Dim v As Variant
     
     'フォルダ名の昇順に処理する
-    i = objDic.count
-    For Each v In objDic
+    i = objDic.Count
+    For Each v In objDic.keys
     
         If i > lngHistory Then
             Kill strLogFolder & "\" & v

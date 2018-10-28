@@ -85,11 +85,11 @@ Private Sub TextileConv()
     Dim lngCol As Long
     Dim r As Range
 
-    For lngRow = 1 To Selection.Rows.count
+    For lngRow = 1 To Selection.Rows.Count
     
         strBuf = strBuf & C_SPLIT
         
-        For lngCol = 1 To Selection.Columns.count
+        For lngCol = 1 To Selection.Columns.Count
             
             Set r = Selection(lngRow, lngCol)
             
@@ -102,12 +102,12 @@ Private Sub TextileConv()
                         strBuf = strBuf & C_HEAD
                     End If
                     
-                    If r.MergeArea.Columns.count > 1 Then
-                        strBuf = strBuf & "\" & r.MergeArea.Columns.count
+                    If r.MergeArea.Columns.Count > 1 Then
+                        strBuf = strBuf & "\" & r.MergeArea.Columns.Count
                     End If
                     
-                    If r.MergeArea.Rows.count > 1 Then
-                        strBuf = strBuf & "/" & r.MergeArea.Rows.count
+                    If r.MergeArea.Rows.Count > 1 Then
+                        strBuf = strBuf & "/" & r.MergeArea.Rows.Count
                     End If
                     
                     strBuf = strBuf & getAttr(r) & C_SPLIT
@@ -227,7 +227,7 @@ Function CharacterStyle(ByRef r As Range) As String
     Dim blnStart As Boolean
     Dim blnEnd As Boolean
 
-    For i = 1 To r.Characters.count
+    For i = 1 To r.Characters.Count
 
         blnStart = False
         blnEnd = False

@@ -77,7 +77,7 @@ Private Const PICTYPE_BITMAP As Long = 1
     Private Declare PtrSafe Function GdiplusShutdown Lib "gdiplus" (ByVal token As LongPtr) As LongPtr
     Private Declare PtrSafe Function GdiplusStartup Lib "gdiplus" (token As LongPtr, inputbuf As GdiplusStartupInput, Optional ByVal outputbuf As LongPtr = 0) As LongPtr
     Private Declare PtrSafe Function IIDFromString Lib "ole32" (ByVal lpsz As LongPtr, lpiid As Any) As Long
-    Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32.dll" (PicDesc As PICTDESC, RefIID As Long, ByVal fPictureOwnsHandle As LongPtr, IPic As IPicture) As LongPtr
+    Private Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32.dll" (PicDesc As PICTDESC, refiid As Long, ByVal fPictureOwnsHandle As LongPtr, IPic As IPicture) As LongPtr
     
     Private Type PICTDESC
         size As Long
@@ -112,7 +112,7 @@ Private Const PICTYPE_BITMAP As Long = 1
     Private Declare Function GdiplusShutdown Lib "gdiplus" (ByVal token As Long) As Long
     Private Declare Function GdiplusStartup Lib "gdiplus" (token As Long, inputbuf As GdiplusStartupInput, Optional ByVal outputbuf As Long = 0) As Long
     Private Declare Function IIDFromString Lib "ole32" (ByVal lpsz As Long, lpiid As Any) As Long
-    Private Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (PicDesc As PICTDESC, RefIID As Long, ByVal fPictureOwnsHandle As Long, IPic As IPicture) As Long
+    Private Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (PicDesc As PICTDESC, refiid As Long, ByVal fPictureOwnsHandle As Long, IPic As IPicture) As Long
     
     Private Type PICTDESC
       size As Long
@@ -177,7 +177,8 @@ Private Function getSheetItem(control As IRibbonControl, lngItem As Long) As Str
     
     If mObjMenu Is Nothing Then
     
-        Set mObjMenu = CreateObject("Scripting.Dictionary")
+'        Set mObjMenu = CreateObject("Scripting.Dictionary")
+        Set mObjMenu = New DictionaryEx
     
         i = C_START_ROW
         
@@ -270,7 +271,7 @@ Public Sub RibbonOnAction(control As IRibbonControl)
     Logger.LogBegin strBuf
     
     '文字列のマクロ名を実行する。
-    Application.Run strBuf
+    Application.Run MacroHelper.BuildPath(strBuf)
     
     
     Call RefreshRibbon(control)
@@ -279,7 +280,7 @@ Public Sub RibbonOnAction(control As IRibbonControl)
     If CBool(GetSetting(C_TITLE, "Option", "OnRepeat", True)) Then
         Dim strLabel As String
         strLabel = getSheetItem(control, C_COL_LABEL)
-        Application.OnRepeat strLabel, strBuf
+        Application.OnRepeat strLabel, MacroHelper.BuildPath(strBuf)
     End If
     
     '終了ログ
@@ -440,7 +441,7 @@ Public Sub colorOnAction(control As IRibbonControl, selectedId As String, select
     Logger.LogBegin strBuf
     
     '文字列のマクロ名を実行する。
-    Application.Run strBuf
+    Application.Run MacroHelper.BuildPath(strBuf)
     
     Call RefreshRibbon(control)
 
@@ -448,7 +449,7 @@ Public Sub colorOnAction(control As IRibbonControl, selectedId As String, select
     If CBool(GetSetting(C_TITLE, "Option", "OnRepeat", True)) Then
         Dim strLabel As String
         strLabel = getSheetItem(control, C_COL_LABEL)
-        Application.OnRepeat strLabel, strBuf
+        Application.OnRepeat strLabel, MacroHelper.BuildPath(strBuf)
     End If
     
     '終了ログ
@@ -1166,14 +1167,14 @@ Public Sub GetSizeLabel(control As IRibbonControl, ByRef lbl)
 '--------------------------------------------------------------------
 ' データ印の数を取得
 '--------------------------------------------------------------------
- Sub stampGetItemCount(control As IRibbonControl, ByRef count)
+ Sub stampGetItemCount(control As IRibbonControl, ByRef Count)
 
     '設定情報取得
     Dim col As Collection
     
     Set col = getProperty()
 
-    count = col.count
+    Count = col.Count
 
 End Sub
 '--------------------------------------------------------------------
@@ -1204,14 +1205,14 @@ End Sub
 '--------------------------------------------------------------------
 ' 認印の数を取得
 '--------------------------------------------------------------------
-Sub stampMitomeGetItemCount(control As IRibbonControl, ByRef count)
+Sub stampMitomeGetItemCount(control As IRibbonControl, ByRef Count)
 
     '設定情報取得
     Dim col As Collection
     
     Set col = getPropertyMitome()
 
-    count = col.count
+    Count = col.Count
 
 End Sub
 '--------------------------------------------------------------------
@@ -1242,14 +1243,14 @@ End Sub
 '--------------------------------------------------------------------
 'ビジネス印の数を取得
 '--------------------------------------------------------------------
-Sub stampBzGetItemCount(control As IRibbonControl, ByRef count)
+Sub stampBzGetItemCount(control As IRibbonControl, ByRef Count)
 
     '設定情報取得
     Dim col As Collection
     
     Set col = getPropertyBz()
 
-    count = col.count
+    Count = col.Count
 
 End Sub
 '--------------------------------------------------------------------
@@ -1284,9 +1285,9 @@ End Sub
 '--------------------------------------------------------------------
 '  さくら印の数を取得
 '--------------------------------------------------------------------
-Sub sakuraGetItemCount(control As IRibbonControl, ByRef count)
+Sub sakuraGetItemCount(control As IRibbonControl, ByRef Count)
 
-    count = 3
+    Count = 3
 
 End Sub
 '--------------------------------------------------------------------
@@ -1317,9 +1318,9 @@ End Sub
 '--------------------------------------------------------------------
 '  付箋の数を取得
 '--------------------------------------------------------------------
-Sub fusenGetItemCount(control As IRibbonControl, ByRef count)
+Sub fusenGetItemCount(control As IRibbonControl, ByRef Count)
 
-    count = 5
+    Count = 5
 
 End Sub
 '--------------------------------------------------------------------
@@ -1389,14 +1390,14 @@ End Sub
 '--------------------------------------------------------------------
 ' かんたん表の数を取得
 '--------------------------------------------------------------------
- Sub kantanGetItemCount(control As IRibbonControl, ByRef count)
+ Sub kantanGetItemCount(control As IRibbonControl, ByRef Count)
 
     '設定情報取得
     Dim col As Collection
     
     Set col = getPropertyKantan()
 
-    count = col.count
+    Count = col.Count
 
 End Sub
 '--------------------------------------------------------------------

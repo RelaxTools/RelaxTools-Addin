@@ -954,7 +954,7 @@ Private Sub UserForm_Initialize()
     '設定情報取得
     Set col = getPropertyBz()
 
-    For i = 1 To col.count
+    For i = 1 To col.Count
         
         Set datStampBz = col(i)
         
@@ -984,7 +984,7 @@ Private Sub UserForm_Initialize()
         Next i
     End With
     
-    If col.count > 0 Then
+    If col.Count > 0 Then
         lstStampBz.Selected(0) = True
     Else
         mblnRefresh = True

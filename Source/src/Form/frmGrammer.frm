@@ -295,7 +295,7 @@ Private Function GetGrammer(ByRef WD As Object, ByVal Value As String, ByRef str
     WD.ActiveDocument.Range.Text = Value
     DoEvents
     
-    lngMax = WD.ActiveDocument.GrammaticalErrors.count
+    lngMax = WD.ActiveDocument.GrammaticalErrors.Count
     DoEvents
     
     For lngCnt = 1 To lngMax
@@ -718,7 +718,7 @@ Private Function setCellPos(ByRef r As Range) As Range
     Dim lngCol2 As Long
     
     lngCol1 = Windows(1).VisibleRange(1).Column
-    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.count).Column
+    lngCol2 = Windows(1).VisibleRange(Windows(1).VisibleRange.Count).Column
     
     If lngCol1 <= r.Column And r.Column <= lngCol2 Then
         lngCol = lngCol1
@@ -1021,7 +1021,7 @@ Private Function getSmartArtFromIDSub(ByRef objShape As Shape, ByVal id As Strin
         
         If lngID = objShape.id Then
         
-            For i = 1 To objShape.SmartArt.AllNodes.count
+            For i = 1 To objShape.SmartArt.AllNodes.Count
             
                 If i = lngPos Then
                     Set ret = objShape.SmartArt.AllNodes(i)

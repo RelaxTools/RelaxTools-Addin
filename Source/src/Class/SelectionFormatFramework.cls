@@ -93,7 +93,7 @@ Public Sub Run()
     
     'Shepeの場合の実行処理
     If blnObject Then
-        If Selection.ShapeRange.count > 0 Then
+        If Selection.ShapeRange.Count > 0 Then
         
 '            Application.ScreenUpdating = True
         
@@ -187,7 +187,7 @@ Public Sub Run()
     
     If Undo Then
         'Undo
-        Application.OnUndo "Undo", "execUndo"
+        Application.OnUndo "Undo", MacroHelper.BuildPath("execUndo")
     End If
     
     Range(strRange).Select

@@ -73,7 +73,7 @@ Private Sub SFWork_SelectionInit(rAreas As Excel.Areas, Cancel As Boolean, Undo 
 
     On Error GoTo e
     
-    If rAreas.count > 1 Then
+    If rAreas.Count > 1 Then
         MsgBox "複数のエリアには対応していません。", vbExclamation, C_TITLE
         Cancel = True
         Exit Sub
@@ -126,7 +126,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal lngRow As Long, Cancel As Boo
         
     Next
     
-    Set last = r.Columns(r.Columns.count)
+    Set last = r.Columns(r.Columns.Count)
     Set out = r.Worksheet.Cells(last.Row, last.Column + 1)
 
     out.Value = mInsert & strSQL & ");"""

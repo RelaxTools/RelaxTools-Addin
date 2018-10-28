@@ -213,7 +213,7 @@ Sub PickShape(ByRef objDataSet As Object)
     Set r = ActiveWindow.ActivePane.VisibleRange
     
     'マウスカーソルが作業ウィンドウ内にある場合
-    If r(1).Top < Y And r(1).Left < X And r(r.count).Top + r(r.count).Height > Y + objDataSet.Height And r(r.count).Left + r(r.count).width > X + objDataSet.width Then
+    If r(1).Top < Y And r(1).Left < X And r(r.Count).Top + r(r.Count).Height > Y + objDataSet.Height And r(r.Count).Left + r(r.Count).width > X + objDataSet.width Then
     
         'シェイプをマウスカーソル位置に移動する
         objDataSet.Left = X - (objDataSet.width / 2)

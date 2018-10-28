@@ -77,7 +77,7 @@ Private mlngRefCount As Long
     Private mHandle As Long
 #End If
 
-Private mColhWnd As Object
+Private mColhWnd As DictionaryEx
 
 Public Sub Install(MH As MouseWheel, ByVal strhWnd As String)
 
@@ -90,7 +90,8 @@ Public Sub Install(MH As MouseWheel, ByVal strhWnd As String)
     
     If mHandle <> 0 Then
         If mColhWnd Is Nothing Then
-            Set mColhWnd = CreateObject("Scripting.Dictionary")
+'            Set mColhWnd = CreateObject("Scripting.Dictionary")
+            Set mColhWnd = New DictionaryEx
         End If
         If Not mColhWnd.Exists(strhWnd) Then
             mColhWnd.Add strhWnd, MH

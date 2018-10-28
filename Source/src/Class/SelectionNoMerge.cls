@@ -64,7 +64,7 @@ Public Sub Run()
     SFWork.Run
 End Sub
 
-Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, Func As Boolean)
+Private Sub SFWork_SelectionInit(Cancel As Boolean, Undo As Boolean, func As Boolean)
     Undo = True
     Application.DisplayAlerts = False
 End Sub
@@ -83,7 +83,7 @@ Private Sub SFWork_SelectionMain(r As Range, ByVal NotHoldFormat As Boolean, Can
     If r.MergeCells Then
         Set p = r.MergeArea
         r.UnMerge
-        For i = 1 To p.count
+        For i = 1 To p.Count
             If i = 1 Then
                s = p(i).Value
             Else

@@ -120,7 +120,7 @@ Private Sub cmdRun_Click()
     mm.Disable
     mm.DispGuidance "ＣＳＶファイルの行数をカウントしています..."
     
-    Set WS = ActiveWorkbook.Worksheets.Add(after:=ActiveWorkbook.Worksheets(ActiveWorkbook.Worksheets.count))
+    Set WS = ActiveWorkbook.Worksheets.Add(after:=ActiveWorkbook.Worksheets(ActiveWorkbook.Worksheets.Count))
     
     If chkUTF8.Value Then
         'UTF8からUNICODE

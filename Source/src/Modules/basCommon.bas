@@ -53,7 +53,7 @@ Option Private Module
     Declare PtrSafe Function FlashWindowEx Lib "user32.dll" (pfwi As FLASHWINFO) As LongPtr
     Declare PtrSafe Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As LongPtr)
     Declare PtrSafe Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
-    Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32" (ByRef lpPictDesc As PICTDESC, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As LongPtr, ByRef IPic As IPicture) As Long
+    Declare PtrSafe Function OleCreatePictureIndirect Lib "oleaut32" (ByRef lpPictDesc As PICTDESC, ByRef refiid As GUID, ByVal fPictureOwnsHandle As LongPtr, ByRef IPic As IPicture) As Long
     Declare PtrSafe Function CopyImage Lib "user32" (ByVal handle As LongPtr, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As LongPtr
     Declare PtrSafe Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
     Declare PtrSafe Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA" (ByVal uAction As Long, ByVal uParam As Long, ByRef lpvParam As Any, ByVal fuWinIni As Long) As Long
@@ -123,7 +123,7 @@ Option Private Module
     Declare Function FlashWindowEx Lib "user32.dll" (pfwi As FLASHWINFO) As Long
     Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
     Declare Function IsClipboardFormatAvailable Lib "user32.dll" (ByVal wFormat As Long) As Long
-    Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (ByRef lpPictDesc As PICTDESC, ByRef RefIID As GUID, ByVal fPictureOwnsHandle As Long, ByRef IPic As IPicture) As Long
+    Declare Function OleCreatePictureIndirect Lib "olepro32.dll" (ByRef lpPictDesc As PICTDESC, ByRef refiid As GUID, ByVal fPictureOwnsHandle As Long, ByRef IPic As IPicture) As Long
     Declare Function CopyImage Lib "user32" (ByVal handle As Long, ByVal un1 As Long, ByVal n1 As Long, ByVal n2 As Long, ByVal un2 As Long) As Long
     Declare Function EnumClipboardFormats Lib "user32" (ByVal wFormat As Long) As Long
     Declare Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA" (ByVal uAction As Long, ByVal uParam As Long, ByRef lpvParam As Any, ByVal fuWinIni As Long) As Long
@@ -303,11 +303,11 @@ Public Sub rlxGetFilesCount(ByRef objFs As Object, ByVal strPath As String, ByRe
     Set objfld = objFs.GetFolder(strPath)
     
     If blnFile Then
-        lngFCnt = lngFCnt + objfld.files.count
+        lngFCnt = lngFCnt + objfld.files.Count
     End If
     
     If blnFolder Then
-        lngFCnt = lngFCnt + objfld.SubFolders.count
+        lngFCnt = lngFCnt + objfld.SubFolders.Count
     End If
     
         'フォルダ取得あり
@@ -1367,11 +1367,11 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     End If
 
     'Collectionの要素数が０または１の場合ソート不要
-    If col.count <= 1 Then
+    If col.Count <= 1 Then
         Exit Sub
     End If
 
-    n = col.count
+    n = col.Count
     ReDim strKey(1 To n)
 
     For i = 1 To n
@@ -1413,75 +1413,75 @@ Public Sub rlxSortCollection(ByRef col As Collection)
     Set col2 = Nothing
 
 End Sub
-'--------------------------------------------------------------
-'  ディクショナリのソート
-'--------------------------------------------------------------
-Public Sub rlxSortDictionary(ByRef col As Object)
-
-    Dim i As Long
-    Dim j As Long
-    Dim n As Long
-    Dim key1 As String
-    Dim key2 As String
-    Dim col2 As Object
-    Dim strKey() As String
-    Dim wk As String
-
-    'Collectionが空ならなにもしない
-    If col Is Nothing Then
-        Exit Sub
-    End If
-
-    'Collectionの要素数が０または１の場合ソート不要
-    If col.count <= 1 Then
-        Exit Sub
-    End If
-
-    n = col.count
-    ReDim strKey(1 To n)
-
-    i = i + 1
-    Dim v As Variant
-    For Each v In col
-        strKey(i) = v
-        i = i + 1
-    Next
-
-    '挿入ソート
-    For i = 2 To n
-
-        wk = strKey(i)
-
-        If strKey(i - 1) > wk Then
-
-            j = i
-
-            Do
-
-                strKey(j) = strKey(j - 1)
-
-                j = j - 1
-
-                If j = 1 Then
-                    Exit Do
-                End If
-
-            Loop While strKey(j - 1) > wk
-            strKey(j) = wk
-
-        End If
-    Next
-
-    Set col2 = CreateObject("Scripting.Dictionary")
-
-    For i = 1 To n
-        col2.Add col.Item(strKey(i)).Name, col.Item(strKey(i))
-    Next
-
-    Set col = col2
-    Set col2 = Nothing
-
-End Sub
+''--------------------------------------------------------------
+''  ディクショナリのソート
+''--------------------------------------------------------------
+'Public Sub rlxSortDictionary(ByRef col As Object)
+'
+'    Dim i As Long
+'    Dim j As Long
+'    Dim n As Long
+'    Dim key1 As String
+'    Dim key2 As String
+'    Dim col2 As Object
+'    Dim strKey() As String
+'    Dim wk As String
+'
+'    'Collectionが空ならなにもしない
+'    If col Is Nothing Then
+'        Exit Sub
+'    End If
+'
+'    'Collectionの要素数が０または１の場合ソート不要
+'    If col.Count <= 1 Then
+'        Exit Sub
+'    End If
+'
+'    n = col.Count
+'    ReDim strKey(1 To n)
+'
+'    i = i + 1
+'    Dim v As Variant
+'    For Each v In col
+'        strKey(i) = v
+'        i = i + 1
+'    Next
+'
+'    '挿入ソート
+'    For i = 2 To n
+'
+'        wk = strKey(i)
+'
+'        If strKey(i - 1) > wk Then
+'
+'            j = i
+'
+'            Do
+'
+'                strKey(j) = strKey(j - 1)
+'
+'                j = j - 1
+'
+'                If j = 1 Then
+'                    Exit Do
+'                End If
+'
+'            Loop While strKey(j - 1) > wk
+'            strKey(j) = wk
+'
+'        End If
+'    Next
+'
+'    Set col2 = CreateObject("Scripting.Dictionary")
+'
+'    For i = 1 To n
+'        col2.Add col.Item(strKey(i)).Name, col.Item(strKey(i))
+'    Next
+'
+'    Set col = col2
+'    Set col2 = Nothing
+'
+'End Sub
 
 'クリップボードにテキストデータを書き込むプロシージャ
 Public Sub SetClipText(strData As String)
@@ -2191,7 +2191,7 @@ Public Sub RestoreClipData(c As Collection)
   
     Dim s As ClipDataDTO
     
-    If c.count = 0 Then
+    If c.Count = 0 Then
         Exit Sub
     End If
 
@@ -2649,7 +2649,7 @@ End Function
 ' 非同期実行
 '------------------------------------------------------------------------------------------------------------------------
 Function UnSyncRun(ByVal strMacro As String, Optional ByVal lngSec As Long = 0) As Long
-    Application.OnTime DateAdd("s", lngSec, Now), strMacro
+    Application.OnTime DateAdd("s", lngSec, Now), MacroHelper.BuildPath(strMacro)
 End Function
 Function getHtmlRGB(ByVal lngColor As Variant) As String
 

@@ -261,7 +261,7 @@ Sub pasteStamp2(ByVal Index As Long)
 
     If GetSetting(C_TITLE, "Stamp", "Confirm", False) Then
     Else
-        If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.count Then
+        If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.Count Then
             If MsgBox("複数セル選択されています。すべてのセルに張り付けますがよろしいですか？", vbQuestion + vbYesNo, C_TITLE) <> vbYes Then
                 Exit Sub
             End If
@@ -273,7 +273,7 @@ Sub pasteStamp2(ByVal Index As Long)
     Select Case True
         Case col Is Nothing
             Exit Sub
-        Case col.count = 0
+        Case col.Count = 0
             Exit Sub
         Case Else
     End Select
@@ -447,7 +447,7 @@ Public Sub setProperty(ByRef col As Collection)
     DeleteSetting C_TITLE, "Stamp", "Fill"
     DeleteSetting C_TITLE, "Stamp", "Rect"
     
-    For i = 0 To col.count - 1
+    For i = 0 To col.Count - 1
         
         Set s = col(i + 1)
         
@@ -467,7 +467,7 @@ Public Sub setProperty(ByRef col As Collection)
         Set s = Nothing
     Next
     
-    Call SaveSetting(C_TITLE, "Stamp", "Count", col.count)
+    Call SaveSetting(C_TITLE, "Stamp", "Count", col.Count)
     
 End Sub
 

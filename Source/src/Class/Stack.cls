@@ -49,24 +49,24 @@ Sub Push(ByVal strBuf As String)
 End Sub
 
 Function Pop() As String
-    If mCol.count = 0 Then
+    If mCol.Count = 0 Then
         Pop = ""
     Else
-        Pop = mCol(mCol.count)
-        mCol.Remove mCol.count
+        Pop = mCol(mCol.Count)
+        mCol.Remove mCol.Count
     End If
 End Function
 
 Function Value() As String
-    If mCol.count = 0 Then
+    If mCol.Count = 0 Then
         Value = ""
     Else
-        Value = mCol(mCol.count)
+        Value = mCol(mCol.Count)
     End If
 End Function
 
 Function Eof() As Boolean
-    If mCol.count = 0 Then
+    If mCol.Count = 0 Then
         Eof = True
     Else
         Eof = False
