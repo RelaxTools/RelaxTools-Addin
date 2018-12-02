@@ -357,7 +357,7 @@ Private Sub lstResult_Change()
                     objShape.Select False
                 Else
                     blnFlg = True
-                    Application.GoTo setCellPos(objShape.TopLeftCell), True
+                    Application.Goto setCellPos(objShape.TopLeftCell), True
                     objShape.Select
                 End If
                 On Error GoTo 0
@@ -466,7 +466,10 @@ Private Function setCellPos(ByRef r As Range) As Range
 End Function
 
 Private Sub lstResult_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+#If VBA7 And Win64 Then
+#Else
     Set MW.obj = lstResult
+#End If
 End Sub
 
 Private Sub UserForm_Initialize()
@@ -478,9 +481,11 @@ Private Sub UserForm_Initialize()
     Me.Top = (Application.Top + Application.Height - Me.Height) - 20
     Me.Left = (Application.Left + Application.width - Me.width) - 20
     
+#If VBA7 And Win64 Then
+#Else
     Set MW = New MouseWheel
     MW.Install Me
-    
+#End If
 End Sub
 
 Sub dispList()
@@ -526,12 +531,20 @@ End Sub
 '    MW.Activate
 'End Sub
 Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+#If VBA7 And Win64 Then
+#Else
     Set MW.obj = Nothing
+#End If
 End Sub
 
 Private Sub UserForm_Terminate()
+    
+#If VBA7 And Win64 Then
+#Else
     MW.Uninstall
     Set MW = Nothing
+#End If
+    
 End Sub
 Private Sub MW_WheelDown(obj As Object)
 

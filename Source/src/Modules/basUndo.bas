@@ -53,6 +53,8 @@ Sub execUndo()
 
     Application.ScreenUpdating = False
 
+    mUndo.sourceRange.Worksheet.Activate
+    
     For Each rr In mUndo.destRange.Areas
         rr.Copy mUndo.sourceRange.Worksheet.Range(rr.Address)
     Next
@@ -75,6 +77,8 @@ Sub execInsUndo()
     End If
 
     Application.ScreenUpdating = False
+    
+    mUndo.sourceRange.Worksheet.Activate
 
     mUndo.sourceRange.Delete xlUp
     
@@ -96,6 +100,8 @@ Sub execDelUndo()
 
     Application.ScreenUpdating = False
 
+    mUndo.sourceRange.Worksheet.Activate
+    
     mUndo.destRange.Copy
     mUndo.sourceRange.Insert Shift:=xlDown
     

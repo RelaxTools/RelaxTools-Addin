@@ -151,7 +151,7 @@ Private Sub cmdOk_Click()
         o.IgnoreCase = Not (chkCase.Value)
         o.Global = True
         Err.Clear
-        On Error Resume Next
+'        On Error Resume Next
         o.Execute ""
         If Err.Number <> 0 Then
             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
@@ -167,7 +167,7 @@ Private Sub cmdOk_Click()
     
     Set objFs = CreateObject("Scripting.FileSystemObject")
     
-    On Error Resume Next
+'    On Error Resume Next
     
     Set mMm = New MacroManager
     Set mMm.Form = Me
@@ -634,11 +634,11 @@ pass:
 '                    SubAddress:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Address, _
 '                    TextToDisplay:=objFind.Address
         
-                ResultWS.Hyperlinks.Add _
-                    Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
-                    Address:="", _
-                    TextToDisplay:=objFind.Address
-                
+'                ResultWS.Hyperlinks.Add _
+'                    Anchor:=ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS), _
+'                    Address:="", _
+'                    TextToDisplay:=objFind.Address
+'
                 ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
                 
                 If cboValue.Value = C_SEARCH_VALUE_VALUE Then
@@ -693,15 +693,15 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
         Select Case c.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
                 'シェイプに文字があるかないか判断がつかないためエラー検出にて処理
-                On Error Resume Next
+'                On Error Resume Next
                 strBuf = c.TextFrame.Characters.Text
                 If Err.Number = 0 Then
-                    On Error GoTo 0
+'                    On Error GoTo 0
                     
                     '正規表現の場合
                     If chkRegEx Then
                         Err.Clear
-                        On Error Resume Next
+'                        On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
                         If Err.Number <> 0 Then
                             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
@@ -752,7 +752,7 @@ Private Sub searchShape(ByRef objSheet As Worksheet, ByRef ResultWS As Worksheet
                         
                     End If
                 Else
-                    On Error GoTo 0
+'                    On Error GoTo 0
                     Err.Clear
                 End If
             Case msoGroup
@@ -777,15 +777,15 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
         Select Case c.Type
             Case msoAutoShape, msoTextBox, msoCallout, msoFreeform
                 'シェイプに文字があるかないか判断がつかないためエラー検出にて処理
-                On Error Resume Next
+'                On Error Resume Next
                 strBuf = c.TextFrame.Characters.Text
                 If Err.Number = 0 Then
-                    On Error GoTo 0
+'                    On Error GoTo 0
                     
                     '正規表現の場合
                     If chkRegEx Then
                         Err.Clear
-                        On Error Resume Next
+'                        On Error Resume Next
                         Set objMatch = mobjRegx.Execute(strBuf)
                         If Err.Number <> 0 Then
                             MsgBox "検索文字列の正規表現が正しくありません。", vbExclamation, C_TITLE
@@ -831,7 +831,7 @@ Private Sub grouprc(ByRef objTop As Shape, ByRef objShape As Shape, ByRef colSha
                     
                     End If
                 Else
-                    On Error GoTo 0
+'                    On Error GoTo 0
                     Err.Clear
                 End If
             Case msoGroup

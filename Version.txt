@@ -1,4 +1,9 @@
-﻿2018/10/28(sun) RelaxTools-Addin Version 4.25.1(RustRemover) 
+﻿2018/12/02(sun) RelaxTools-Addin Version 4.25.2(RustRemover) 
+◇バグ修正
+・Undoを修正。別ブックに移動後にUndoを実行すると元シートに戻らずに動作を行うため、戻ったかどうかわからないのを修正。
+・付箋の検索を64bit版で動かすと動作が不安定になるためマウスホイールを無効に修正。
+
+2018/10/28(sun) RelaxTools-Addin Version 4.25.1(RustRemover) 
 ◇機能改善
 ・お気に入りでブックを開いた際に、履歴に登録されるよう修正。
 ・リボンからの実行及びOnAction/OnKey/OnUndo/OnRepeat/OnTIme で RelaxTools.xlamのパスを追加。
