@@ -123,7 +123,15 @@ Sub lineCopy()
     f = Selection(1, 1).Row
     t = f + Selection.Rows.Count - 1
     
-    On Error Resume Next
+    If Selection.CountLarge > C_MAX_CELLS Then
+        Dim ret As VbMsgBoxResult
+        ret = MsgBox("大量のセルが選択されています。処理に時間がかかる＆元に戻せませんが続行しますか？", vbInformation + vbOKCancel + vbDefaultButton2, C_TITLE)
+        If ret = vbCancel Then
+            Exit Sub
+        End If
+    End If
+    
+    On Error GoTo ErrHandle
     Application.ScreenUpdating = False
     
     ThisWorkbook.Worksheets("Undo").Cells.Clear
@@ -142,7 +150,9 @@ Sub lineCopy()
     'Undo
     Application.OnUndo "行追加", MacroHelper.BuildPath("execInsUndo")
     
-    
+    Exit Sub
+ErrHandle:
+    MsgBox "エラーが発生しました。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 '--------------------------------------------------------------
 '　行挿入
@@ -163,7 +173,15 @@ Sub lineInsert()
     f = Selection(1, 1).Row
     t = f + Selection.Rows.Count - 1
     
-    On Error Resume Next
+    If Selection.CountLarge > C_MAX_CELLS Then
+        Dim ret As VbMsgBoxResult
+        ret = MsgBox("大量のセルが選択されています。処理に時間がかかる＆元に戻せませんが続行しますか？", vbInformation + vbOKCancel + vbDefaultButton2, C_TITLE)
+        If ret = vbCancel Then
+            Exit Sub
+        End If
+    End If
+    
+    On Error GoTo ErrHandle
     Application.ScreenUpdating = False
     
     ThisWorkbook.Worksheets("Undo").Cells.Clear
@@ -183,6 +201,9 @@ Sub lineInsert()
     'Undo
     Application.OnUndo "行追加", MacroHelper.BuildPath("execInsUndo")
     
+    Exit Sub
+ErrHandle:
+    MsgBox "エラーが発生しました。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 '--------------------------------------------------------------
 '　行削除
@@ -203,7 +224,15 @@ Sub lineDel()
     f = Selection(1, 1).Row
     t = f + Selection.Rows.Count - 1
     
-    On Error Resume Next
+    If Selection.CountLarge > C_MAX_CELLS Then
+        Dim ret As VbMsgBoxResult
+        ret = MsgBox("大量のセルが選択されています。処理に時間がかかる＆元に戻せませんが続行しますか？", vbInformation + vbOKCancel + vbDefaultButton2, C_TITLE)
+        If ret = vbCancel Then
+            Exit Sub
+        End If
+    End If
+    
+    On Error GoTo ErrHandle
     Application.ScreenUpdating = False
     
     ThisWorkbook.Worksheets("Undo").Cells.Clear
@@ -225,7 +254,9 @@ Sub lineDel()
     'Undo
     Application.OnUndo "行削除", MacroHelper.BuildPath("execDelUndo")
     
-    
+    Exit Sub
+ErrHandle:
+    MsgBox "エラーが発生しました。", vbOKOnly + vbCritical, C_TITLE
 End Sub
 '--------------------------------------------------------------
 '　複数行コピー
