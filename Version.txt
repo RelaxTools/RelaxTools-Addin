@@ -1,4 +1,8 @@
-﻿2018/12/03(mon) RelaxTools-Addin Version 4.25.2(RustRemover) 
+﻿2018/12/10(mon) RelaxTools-Addin Version 4.25.3(RustRemover) 
+◇バグ修正
+・「お気に入り」でカテゴリ変更するとエラーになるのを修正。
+
+2018/12/03(mon) RelaxTools-Addin Version 4.25.2(RustRemover) 
 ◇バグ修正
 ・Undoを修正。別ブックに移動後にUndoを実行すると元シートに戻らずに動作を行うため、戻ったかどうかわからないのを修正。
 ・付箋の検索を64bit版で動かすと動作が不安定になるためマウスホイールを無効に修正。

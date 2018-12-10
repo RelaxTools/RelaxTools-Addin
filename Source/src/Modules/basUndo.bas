@@ -58,7 +58,7 @@ Sub execUndo()
     For Each rr In mUndo.destRange.Areas
         rr.Copy mUndo.sourceRange.Worksheet.Range(rr.Address)
     Next
-    
+        
     Application.ScreenUpdating = True
 
 End Sub

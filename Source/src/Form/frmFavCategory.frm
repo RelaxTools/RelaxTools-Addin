@@ -82,7 +82,7 @@ Private Sub cmdOk_Click()
                     Set cat = frmFavorite.mobjCategory.Item(Me.txtCat.Text)
                     
                     i = 0
-                    For Each c In cat
+                    For Each c In cat.keys
                     
                         Set fav = cat.Item(c)
                         fav.Category = Me.txtCat.Text
