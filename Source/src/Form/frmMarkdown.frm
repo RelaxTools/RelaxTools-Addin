@@ -178,6 +178,7 @@ Function CharacterStyle(ByRef r As Range) As String
     Dim strTag As String
     Dim blnStart As Boolean
     Dim blnEnd As Boolean
+    Dim strTmp As String
     
     For i = 1 To r.Characters.Count
     
@@ -221,7 +222,8 @@ Function CharacterStyle(ByRef r As Range) As String
             Case blnEnd
                 strBuf = strBuf & strTag & r.Characters(i, 1).Text
             Case Else
-                strBuf = strBuf & r.Characters(i, 1).Text
+                strTmp = r.Characters(i, 1).Text
+                strBuf = strBuf & IIf(strTmp = vbLf, "<br>", strTmp)
         End Select
     
     Next
