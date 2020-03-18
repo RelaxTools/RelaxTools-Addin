@@ -2494,7 +2494,7 @@ Sub RenameActiveBook()
     End If
     
     strName = rlxGetFullpathFromExt(strFile)
-    strExt = Mid(strFile, InStr(strFile, "."))
+    strExt = Mid(strFile, InStrRev(strFile, "."))
     
     strBuf = InputBox("変更後のブック名を入力してください。", "アクティブなブックの名前を変更", strName)
     If Trim(strBuf) = "" Then
