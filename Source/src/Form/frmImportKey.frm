@@ -2,8 +2,8 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmImportKey 
    Caption         =   "インポート"
    ClientHeight    =   4335
-   ClientLeft      =   45
-   ClientTop       =   390
+   ClientLeft      =   48
+   ClientTop       =   396
    ClientWidth     =   8100
    OleObjectBlob   =   "frmImportKey.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央

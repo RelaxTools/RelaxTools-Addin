@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSearchEx 
    Caption         =   "セル・シェイプの正規表現検索／置換／文字修飾"
    ClientHeight    =   6180
-   ClientLeft      =   45
-   ClientTop       =   435
-   ClientWidth     =   12270
+   ClientLeft      =   48
+   ClientTop       =   432
+   ClientWidth     =   12264
    OleObjectBlob   =   "frmSearchEx.frx":0000
    ShowModal       =   0   'False
 End
@@ -778,7 +778,8 @@ Private Sub searchStart()
     Set colSheet = New Collection
 
     Select Case cboPlace.Text
-        Case C_SEARCH_PLACE_SHEET
+        '検索範囲を「選択範囲」としたときの検索処理で別のシートが検索結果に現れる #55
+        Case C_SEARCH_PLACE_SHEET, C_SEARCH_PLACE_SELECTION
             colSheet.Add ActiveSheet
             
         Case C_SEARCH_PLACE_SELECT

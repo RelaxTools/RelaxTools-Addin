@@ -37,7 +37,7 @@ Attribute VB_Exposed = False
 '
 '-----------------------------------------------------------------------------------------------------
 Option Explicit
-Private Const C_SECTION_REGEXP As String = "^[ivx]\.+[ ]"
+Private Const C_SECTION_REGEXP As String = "^[ivx]+\.[ ]"
 Private Const C_SECTION_SEPARATER As String = " "
 Private Const C_SECTION_NAME As String = "i., ii., iii. ･･･ xx."
 Private Const C_SECTION_CLASS As String = "SecNumI"

@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSectionList 
    Caption         =   "段落番号リスト"
    ClientHeight    =   5940
-   ClientLeft      =   45
-   ClientTop       =   390
-   ClientWidth     =   9090.001
+   ClientLeft      =   48
+   ClientTop       =   396
+   ClientWidth     =   9084.001
    OleObjectBlob   =   "frmSectionList.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

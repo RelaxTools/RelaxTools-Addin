@@ -2,8 +2,8 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCrossLineV 
    Caption         =   "frmCrossLineV"
    ClientHeight    =   2205
-   ClientLeft      =   45
-   ClientTop       =   330
+   ClientLeft      =   48
+   ClientTop       =   336
    ClientWidth     =   9240.001
    OleObjectBlob   =   "frmCrossLineV.frx":0000
    ShowModal       =   0   'False

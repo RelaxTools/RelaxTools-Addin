@@ -3,8 +3,8 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmStaticCheck
    Caption         =   "ブックの静的チェック"
    ClientHeight    =   7740
    ClientLeft      =   120
-   ClientTop       =   465
-   ClientWidth     =   11970
+   ClientTop       =   468
+   ClientWidth     =   11976
    OleObjectBlob   =   "frmStaticCheck.frx":0000
    ShowModal       =   0   'False
 End

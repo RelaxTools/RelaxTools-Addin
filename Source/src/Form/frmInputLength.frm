@@ -2,8 +2,8 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmInputLength 
    Caption         =   "入力ウィンドウ"
    ClientHeight    =   1680
-   ClientLeft      =   45
-   ClientTop       =   435
+   ClientLeft      =   48
+   ClientTop       =   432
    ClientWidth     =   3000
    OleObjectBlob   =   "frmInputLength.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央

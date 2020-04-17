@@ -2,8 +2,8 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmReSelect 
    Caption         =   "選択範囲の復元"
    ClientHeight    =   1695
-   ClientLeft      =   45
-   ClientTop       =   435
+   ClientLeft      =   48
+   ClientTop       =   432
    ClientWidth     =   4620
    OleObjectBlob   =   "frmReSelect.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央

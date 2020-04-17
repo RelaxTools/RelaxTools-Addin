@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmReference 
    Caption         =   "参照用に開く"
    ClientHeight    =   3045
-   ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   7125
+   ClientLeft      =   48
+   ClientTop       =   336
+   ClientWidth     =   7128
    OleObjectBlob   =   "frmReference.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

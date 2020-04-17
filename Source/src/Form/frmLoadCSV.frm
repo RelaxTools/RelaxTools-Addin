@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmLoadCSV 
    Caption         =   "CSVファイル取込"
    ClientHeight    =   2055
-   ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   7230
+   ClientLeft      =   48
+   ClientTop       =   336
+   ClientWidth     =   7224
    OleObjectBlob   =   "frmLoadCSV.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

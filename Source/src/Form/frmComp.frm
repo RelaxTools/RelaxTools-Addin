@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmComp 
    Caption         =   "シート比較"
    ClientHeight    =   2085
-   ClientLeft      =   45
-   ClientTop       =   435
-   ClientWidth     =   7590
+   ClientLeft      =   48
+   ClientTop       =   432
+   ClientWidth     =   7584
    OleObjectBlob   =   "frmComp.frx":0000
    ShowModal       =   0   'False
    StartUpPosition =   2  '画面の中央

@@ -3,7 +3,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmSushi
    Caption         =   "スシ"
    ClientHeight    =   3240
    ClientLeft      =   120
-   ClientTop       =   465
+   ClientTop       =   468
    ClientWidth     =   4380
    OleObjectBlob   =   "frmSushi.frx":0000
    ShowModal       =   0   'False

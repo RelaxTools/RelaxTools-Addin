@@ -1,4 +1,11 @@
-﻿2018/12/10(mon) RelaxTools-Addin Version 4.25.3(RustRemover) 
+﻿2019/04/17(fri) RelaxTools-Addin Version 4.25.4(RustRemover) 
+◇バグ修正
+・「アクティブなブックの名前を変更」にてファイル名の最初のピリオド以下を拡張子として扱う問題の修正 #59
+・Markdown変換でセル内改行を<br>に変換するようにした #56
+・検索範囲を「選択範囲」としたときの検索処理で別のシートが検索結果に現れる #55
+・段落番号(ローマ数字ivx)でうまく動作しなかった不具合を修正
+
+2018/12/10(mon) RelaxTools-Addin Version 4.25.3(RustRemover) 
 ◇バグ修正
 ・「お気に入り」でカテゴリ変更するとエラーになるのを修正。
 

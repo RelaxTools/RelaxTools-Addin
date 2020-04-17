@@ -3,8 +3,8 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFavCategory
    Caption         =   "カテゴリー編集"
    ClientHeight    =   1605
    ClientLeft      =   120
-   ClientTop       =   465
-   ClientWidth     =   4470
+   ClientTop       =   468
+   ClientWidth     =   4476
    OleObjectBlob   =   "frmFavCategory.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

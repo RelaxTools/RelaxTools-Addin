@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmMarkdown 
    Caption         =   "表のMarkdown変換"
-   ClientHeight    =   6825
-   ClientLeft      =   45
-   ClientTop       =   435
-   ClientWidth     =   11565
+   ClientHeight    =   6828
+   ClientLeft      =   48
+   ClientTop       =   432
+   ClientWidth     =   11568
    OleObjectBlob   =   "frmMarkdown.frx":0000
    ShowModal       =   0   'False
    StartUpPosition =   1  'オーナー フォームの中央
@@ -163,7 +163,8 @@ Private Function getAttr(ByRef r As Range) As String
         End If
     End If
 
-    getAttr = strValue
+    'Markdown変換でセル内改行を<br>に変換するようにした #56
+    getAttr = Replace(Replace(strValue, vbCrLf, "<br>"), vbLf, "<br>")
 
 End Function
 Function CharacterStyle(ByRef r As Range) As String
