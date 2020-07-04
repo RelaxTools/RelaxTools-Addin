@@ -2811,7 +2811,9 @@ e:
     Set FS = Nothing
     Set utf8 = Nothing
     
-    Kill strFileName
+    If strFileName <> "" Then
+        Kill strFileName
+    End If
     
     Unload frmInformation
     
