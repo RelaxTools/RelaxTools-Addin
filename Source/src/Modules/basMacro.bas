@@ -497,7 +497,7 @@ Sub setAllA1()
     For Each WS In WB.Worksheets
         If WS.visible = xlSheetVisible Then
             WS.Activate
-            WS.Range("A1").Activate
+            WS.Range("A1").Select
             WB.Windows(1).ScrollRow = 1
             WB.Windows(1).ScrollColumn = 1
             
