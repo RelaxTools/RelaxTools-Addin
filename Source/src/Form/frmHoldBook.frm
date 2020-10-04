@@ -3,7 +3,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmHoldBook
    Caption         =   "ピン留め中のブック"
    ClientHeight    =   3180
    ClientLeft      =   120
-   ClientTop       =   468
+   ClientTop       =   465
    ClientWidth     =   11640
    OleObjectBlob   =   "frmHoldBook.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央

@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmContents 
    Caption         =   "目次の作成"
    ClientHeight    =   7545
-   ClientLeft      =   48
-   ClientTop       =   432
-   ClientWidth     =   5988
+   ClientLeft      =   45
+   ClientTop       =   435
+   ClientWidth     =   5985
    OleObjectBlob   =   "frmContents.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

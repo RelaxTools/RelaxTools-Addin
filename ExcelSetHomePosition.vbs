@@ -153,7 +153,8 @@ Sub setAllA1(WB)
     For Each WS In WB.Worksheets
         If WS.visible Then
             WS.Activate
-            WS.Range("A1").Activate
+'A1セットの際に複数セルの選択が解除されない問題 #65 #66
+            WS.Range("A1").Select
             WB.Windows(1).ScrollRow = 1
             WB.Windows(1).ScrollColumn = 1
             WB.Windows(1).Zoom = 100

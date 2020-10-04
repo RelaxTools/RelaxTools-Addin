@@ -3,8 +3,8 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCrossLineGauge
    Caption         =   "ガイド"
    ClientHeight    =   870
    ClientLeft      =   120
-   ClientTop       =   468
-   ClientWidth     =   1992
+   ClientTop       =   465
+   ClientWidth     =   1995
    OleObjectBlob   =   "frmCrossLineGauge.frx":0000
    ShowModal       =   0   'False
    StartUpPosition =   1  'オーナー フォームの中央

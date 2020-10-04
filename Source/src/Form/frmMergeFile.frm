@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmMergeFile 
    Caption         =   "指定フォルダ一括マージ"
    ClientHeight    =   1785
-   ClientLeft      =   48
-   ClientTop       =   336
-   ClientWidth     =   7128
+   ClientLeft      =   45
+   ClientTop       =   330
+   ClientWidth     =   7125
    OleObjectBlob   =   "frmMergeFile.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

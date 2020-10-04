@@ -1,6 +1,6 @@
-﻿# RelaxTools Addin For Excel 2010/2013/2016 
+﻿# RelaxTools Addin For Excel 2010/2013/2016/2019/Office365 
 *対応OS: Windows Vista, Windws 7, Windows 8, Windows 8.1, Windows 10(macには対応していません)
-*対応Excel: 2010, 2013, 2016
+*対応Excel: 2010, 2013, 2016, 2019, Office365(Desktop)
 
 各種変換、編集、検索などの機能追加を行うツールです。
 Copyright(C) Yasuhiro Watanabe 2009

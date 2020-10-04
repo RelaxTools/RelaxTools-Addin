@@ -3,7 +3,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCheckList
    Caption         =   "逆Ｌ罫線設定"
    ClientHeight    =   2670
    ClientLeft      =   120
-   ClientTop       =   468
+   ClientTop       =   465
    ClientWidth     =   5340
    OleObjectBlob   =   "frmCheckList.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央

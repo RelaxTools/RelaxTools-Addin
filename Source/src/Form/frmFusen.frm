@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFusen 
    Caption         =   "付箋の設定"
    ClientHeight    =   8385.001
-   ClientLeft      =   48
-   ClientTop       =   396
-   ClientWidth     =   12384
+   ClientLeft      =   45
+   ClientTop       =   390
+   ClientWidth     =   12390
    OleObjectBlob   =   "frmFusen.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

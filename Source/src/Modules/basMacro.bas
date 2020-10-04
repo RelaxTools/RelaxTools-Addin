@@ -497,7 +497,9 @@ Sub setAllA1()
     For Each WS In WB.Worksheets
         If WS.visible = xlSheetVisible Then
             WS.Activate
-            WS.Range("A1").Activate
+'A1セットの際に複数セルの選択が解除されない #65
+'            WS.Range("A1").Activate
+            WS.Range("A1").Select
             WB.Windows(1).ScrollRow = 1
             WB.Windows(1).ScrollColumn = 1
             
@@ -2683,6 +2685,24 @@ Sub cellEditExt()
     If ActiveCell Is Nothing Then
         Exit Sub
     End If
+    
+    'Update basMacro.bas #62
+    'シェイプを選択していた場合にエラーになる件の修正
+    Select Case True
+        Case ActiveWorkbook Is Nothing
+            Exit Sub
+        Case ActiveCell Is Nothing
+            Exit Sub
+        Case Selection Is Nothing
+            Exit Sub
+        Case TypeOf Selection Is Shape
+            Exit Sub
+        Case TypeOf Selection Is Range
+        Case TypeOf Selection Is Object
+            Exit Sub
+        Case Else
+    End Select
+    
     
 '    If selection.count > 1 And selection.count <> selection(1, 1).MergeArea.count Then
     If Selection.CountLarge > 1 And Selection.CountLarge <> Selection(1, 1).MergeArea.Count Then

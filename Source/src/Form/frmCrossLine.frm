@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCrossLine 
    Caption         =   "十字カーソル設定"
    ClientHeight    =   2415
-   ClientLeft      =   48
-   ClientTop       =   432
-   ClientWidth     =   6372
+   ClientLeft      =   45
+   ClientTop       =   435
+   ClientWidth     =   6375
    OleObjectBlob   =   "frmCrossLine.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

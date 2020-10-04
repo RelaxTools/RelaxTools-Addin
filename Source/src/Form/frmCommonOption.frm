@@ -3,8 +3,8 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCommonOption
    Caption         =   "RelaxTools共通設定"
    ClientHeight    =   5670
    ClientLeft      =   120
-   ClientTop       =   468
-   ClientWidth     =   12108
+   ClientTop       =   465
+   ClientWidth     =   12105
    OleObjectBlob   =   "frmCommonOption.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End

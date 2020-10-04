@@ -1,4 +1,9 @@
-﻿2019/04/17(fri) RelaxTools-Addin Version 4.25.4(RustRemover) 
+﻿2020/10/04(sun) RelaxTools-Addin Version 4.25.5(RustRemover) 
+◇バグ修正
+・A1セットの際に複数セルの選択が解除されない問題 #65 #66
+・シェイプを選択して外部エディタ編集するとエラーになる件 #62
+
+2020/04/17(fri) RelaxTools-Addin Version 4.25.4(RustRemover) 
 ◇バグ修正
 ・「アクティブなブックの名前を変更」にてファイル名の最初のピリオド以下を拡張子として扱う問題の修正 #59
 ・Markdown変換でセル内改行を<br>に変換するようにした #56

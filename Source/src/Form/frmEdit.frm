@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmEdit 
    Caption         =   "セルの拡大表示＋編集"
    ClientHeight    =   9390.001
-   ClientLeft      =   48
-   ClientTop       =   432
-   ClientWidth     =   13344
+   ClientLeft      =   45
+   ClientTop       =   435
+   ClientWidth     =   13350
    OleObjectBlob   =   "frmEdit.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
@@ -274,14 +274,14 @@ Private Sub changeValue()
 '        txtEdit.Locked = True
 '        cmdFormatSql.enabled = False
         cmdReload.enabled = False
-        cmdOk.enabled = False
+        cmdOK.enabled = False
     Else
         txtEdit.BackColor = vbWhite
         txtEdit.Text = txtFormura.Text
 '        txtEdit.Locked = False
 '        cmdFormatSql.enabled = True
         cmdReload.enabled = True
-        cmdOk.enabled = True
+        cmdOK.enabled = True
     End If
     
 '    txtEdit.SetFocus

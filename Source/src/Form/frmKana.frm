@@ -3,8 +3,8 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmKana
    Caption         =   "ひらがな⇔カタカナ変換の設定"
    ClientHeight    =   9555.001
    ClientLeft      =   120
-   ClientTop       =   468
-   ClientWidth     =   10716
+   ClientTop       =   465
+   ClientWidth     =   10710
    OleObjectBlob   =   "frmKana.frx":0000
    StartUpPosition =   1  'オーナー フォームの中央
 End
