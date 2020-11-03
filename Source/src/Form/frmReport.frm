@@ -68,9 +68,6 @@ Private Sub UserForm_Initialize()
     strBuf = strBuf & "◆GitHub Issue(GitHubのアカウントが必要です)：" & vbCrLf
     strBuf = strBuf & "https://github.com/RelaxTools/RelaxTools-Addin/issues" & vbCrLf & vbCrLf
     
-    strBuf = strBuf & "◆掲示板：" & vbCrLf
-    strBuf = strBuf & "http://software.opensquare.net/relaxtools/bbs/wforum.cgi" & vbCrLf & vbCrLf
-    
     strBuf = strBuf & "◆メール(relaxtools@opensquare.net)でも受け付けます。" & vbCrLf
 
     txtEdit.Text = strBuf
