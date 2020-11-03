@@ -1242,7 +1242,8 @@
           <topItems>
             <layoutContainer id="layoutBug" layoutChildren="horizontal">
               <button id="showReport" label="バグ報告"  image="bug" style="large" onAction="RelaxTools.xlam!ribbonOnAction"/>
-              <button id="GotoBBS"    label="掲示板"  image="web" style="large" onAction="RelaxTools.xlam!ribbonOnAction" />
+<!-- BBS廃止 -->
+<!--              <button id="GotoBBS"    label="掲示板"  image="web" style="large" onAction="RelaxTools.xlam!ribbonOnAction" />-->
               <button id="GotoIssue"  label="GitHub Issue"  image="github" style="large" onAction="RelaxTools.xlam!ribbonOnAction" />
               <button id="GotoMail"   label="メール" imageMso="MailMergeStartEmail" style="large" onAction="RelaxTools.xlam!ribbonOnAction" />
             </layoutContainer>

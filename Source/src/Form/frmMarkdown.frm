@@ -150,7 +150,9 @@ Private Function getAttr(ByRef r As Range) As String
     
     strValue = r.Text
             
-    If VarType(r.Value) = vbString Then
+'#1166
+'    If VarType(r.Value) = vbString Then
+    If VarType(r.Value) = vbString And (Not r.HasFormula) Then
     
         strValue = CharacterStyle(r)
     
