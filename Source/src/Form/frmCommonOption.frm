@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmCommonOption 
    Caption         =   "RelaxTools共通設定"
-   ClientHeight    =   5670
+   ClientHeight    =   7275
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   12105
@@ -84,6 +84,8 @@ Private Sub cmdOk_Click()
     Call SaveSetting(C_TITLE, "Option", "NotHoldFormat", chkNotHoldFormat.Value)
     Call SaveSetting(C_TITLE, "Option", "ClipboardSleep", txtSleep.Text)
     
+    Call SaveSetting(C_TITLE, "Option", "ExitMode", chkExitMode.Value)
+    
     Logger.Level = cboLogLevel.ListIndex
     
     Unload Me
@@ -118,6 +120,7 @@ Private Sub UserForm_Initialize()
     
     chkOnRepeat.Value = CBool(GetSetting(C_TITLE, "Option", "OnRepeat", True))
     chkNotHoldFormat.Value = CBool(GetSetting(C_TITLE, "Option", "NotHoldFormat", False))
+    chkExitMode.Value = CBool(GetSetting(C_TITLE, "Option", "ExitMode", False))
     
     strBuf = ""
     strBuf = strBuf & "・セルの最後に文字列挿入" & vbCrLf

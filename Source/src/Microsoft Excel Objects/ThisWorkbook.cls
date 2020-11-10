@@ -43,7 +43,6 @@ Attribute XL.VB_VarHelpID = -1
 Private WithEvents XL_LINE As Excel.Application
 Attribute XL_LINE.VB_VarHelpID = -1
 
-
 Private mScrollRow() As Long
 Private mScrollCol() As Long
 Private mZoom() As Long
@@ -51,17 +50,14 @@ Private mActiveSheet As String
 Private mblnEventCancel As Boolean
 Private mSelection() As Object
 
-
-
 Private Const C_HOLIZONTAL_BAR_NAME As String = "rlxHolizontalBar"
 Private Const C_VERTICAL_BAR_NAME As String = "rlxVerticalBar"
 Private Const C_XY_BAR_NAME As String = "rlxXYBar"
-'Private mWB As Worksheet
-'Public Sub setIRibbon(ByRef r As IRibbonUI)
-'    Set XL = Excel.Application
-'End Sub
-'Private mstrCrossBook As String
 
+Private Declare PtrSafe Function ShowWindow Lib "user32" (ByVal hWnd As LongPtr, ByVal nCmdShow As Long) As Long
+
+Private Const SW_HIDE As Long = 0
+Private Const SW_FORCEMINIMIZE = 11
 '--------------------------------------------------------------
 '　ブックオープンイベント
 '--------------------------------------------------------------
@@ -94,7 +90,6 @@ Private Sub Workbook_BeforeClose(Cancel As Boolean)
     
     Logger.LogBegin "Workbook_BeforeClose"
     
-    Call removeShortCutKey
     If XL_LINE Is Nothing Then
     Else
         Call deleteCrossLine
@@ -104,7 +99,24 @@ Private Sub Workbook_BeforeClose(Cancel As Boolean)
     End If
     
     Call DeleteTemporaryFile
-
+    
+    '終了モード
+    If CBool(GetSetting(C_TITLE, "Option", "ExitMode", False)) Then
+        If Workbooks.Count > 0 Then
+            Dim WB As Workbook
+            For Each WB In Workbooks
+                WB.Close
+            Next
+            ShowWindow Application.hWnd, SW_FORCEMINIMIZE
+            DoEvents
+            Cancel = True
+        Else
+            Call removeShortCutKey
+        End If
+    Else
+        Call removeShortCutKey
+    End If
+    
     Logger.LogFinish "Workbook_BeforeClose"
 
 End Sub
