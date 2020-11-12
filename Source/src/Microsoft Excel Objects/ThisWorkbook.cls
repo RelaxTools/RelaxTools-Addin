@@ -58,12 +58,22 @@ Private Declare PtrSafe Function ShowWindow Lib "user32" (ByVal hWnd As LongPtr,
 
 Private Const SW_HIDE As Long = 0
 Private Const SW_FORCEMINIMIZE = 11
+
+Private TV As TaskTrayView
+Private MultiProcess As Boolean
 '--------------------------------------------------------------
 '　ブックオープンイベント
 '--------------------------------------------------------------
 Private Sub Workbook_Open()
     
     Logger.LogBegin "Workbook_Open"
+    
+    'CreateObjectでRelaxToolsが開かれた場合
+    If Application.visible Then
+        MultiProcess = False
+    Else
+        MultiProcess = True
+    End If
     
     '情報ログの出力
     Logger.LogInfo vbCrLf & getVersionInfo
@@ -77,6 +87,9 @@ Private Sub Workbook_Open()
     Call SetTimeLeap
     
     Set mColSection = rlxInitSectionSetting()
+    
+    'Excel常駐
+    Me.Regident
     
     Logger.LogFinish "Workbook_Open"
 
@@ -100,20 +113,33 @@ Private Sub Workbook_BeforeClose(Cancel As Boolean)
     
     Call DeleteTemporaryFile
     
-    '終了モード
-    If CBool(GetSetting(C_TITLE, "Option", "ExitMode", False)) Then
+    '常駐モード
+    If CBool(GetSetting(C_TITLE, "Option", "RegidentMode", False)) And MultiProcess = False Then
         If Workbooks.Count > 0 Then
             Dim WB As Workbook
             For Each WB In Workbooks
                 WB.Close
             Next
+'            Workbooks.Add
             ShowWindow Application.hWnd, SW_FORCEMINIMIZE
             DoEvents
             Cancel = True
         Else
+            If MsgBox("Excelを終了します。よろしいですか？", vbQuestion + vbOKCancel, C_TITLE) <> vbOK Then
+'                ShowWindow Application.hwnd, SW_FORCEMINIMIZE
+'                DoEvents
+                Cancel = True
+                Exit Sub
+            End If
+            
+            'ショートカットの削除
             Call removeShortCutKey
+        
+            Me.Unregident
+        
         End If
     Else
+        'ショートカットの削除
         Call removeShortCutKey
     End If
     
@@ -764,5 +790,26 @@ e:
     Application.DisplayAlerts = blnDisplayAlerts
     MsgBox Err.Description, vbOKOnly + vbCritical, C_TITLE
 End Sub
-
+'--------------------------------------------------------------
+' Excel常駐コマンド
+'--------------------------------------------------------------
+Public Sub Regident()
+    '常駐モード
+    If CBool(GetSetting(C_TITLE, "Option", "RegidentMode", False)) And MultiProcess = False Then
+        Set TV = New TaskTrayView
+        TV.AddIcon Application.hWnd, "Excel常駐モード"
+        TV.ShowBalloon "Excel常駐モード" & vbCrLf & "完全に終了させたい場合は、最小化されている空のウィンドウを閉じてください。"
+    End If
+End Sub
+'--------------------------------------------------------------
+' Excel常駐コマンドの解除
+'--------------------------------------------------------------
+Public Sub Unregident()
+    '常駐モードの解除
+    If TV Is Nothing Then
+    Else
+        TV.DeleteIcon
+        Set TV = Nothing
+    End If
+End Sub
 

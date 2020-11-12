@@ -226,8 +226,12 @@ End Function
 '--------------------------------------------------------------------
 Sub tabGetVisible(control As IRibbonControl, ByRef visible)
 
-    visible = GetSetting(C_TITLE, "Ribbon", Replace(control.id, "Tab", ""), True)
-
+    'Tortoiseシリーズは初期値、非表示
+    If InStr(control.id, "Tortoise") > 0 Then
+        visible = GetSetting(C_TITLE, "Ribbon", Replace(control.id, "Tab", ""), False)
+    Else
+        visible = GetSetting(C_TITLE, "Ribbon", Replace(control.id, "Tab", ""), True)
+    End If
 End Sub
 '--------------------------------------------------------------------
 ' スシ表示取得
@@ -242,8 +246,12 @@ End Sub
 '--------------------------------------------------------------------
 Sub tabGetPressed(control As IRibbonControl, ByRef returnValue)
     
-    returnValue = GetSetting(C_TITLE, "Ribbon", control.id, True)
-
+    'Tortoiseシリーズは初期値、非表示
+    If InStr(control.id, "Tortoise") > 0 Then
+        returnValue = GetSetting(C_TITLE, "Ribbon", control.id, False)
+    Else
+        returnValue = GetSetting(C_TITLE, "Ribbon", control.id, True)
+    End If
 End Sub
 '--------------------------------------------------------------------
 ' リボン表示設定

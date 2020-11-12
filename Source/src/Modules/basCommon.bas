@@ -31,7 +31,6 @@ Attribute VB_Name = "basCommon"
 Option Explicit
 Option Private Module
 
-
 ' 32-bit Function version.
 ' ドライブ名からネットワークドライブを取得
 #If VBA7 And Win64 Then

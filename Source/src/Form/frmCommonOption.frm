@@ -84,7 +84,14 @@ Private Sub cmdOk_Click()
     Call SaveSetting(C_TITLE, "Option", "NotHoldFormat", chkNotHoldFormat.Value)
     Call SaveSetting(C_TITLE, "Option", "ClipboardSleep", txtSleep.Text)
     
-    Call SaveSetting(C_TITLE, "Option", "ExitMode", chkExitMode.Value)
+    '常駐モード
+    Call SaveSetting(C_TITLE, "Option", "RegidentMode", chkRegidentMode.Value)
+    
+    If chkRegidentMode.Value Then
+        ThisWorkbook.Regident
+    Else
+        ThisWorkbook.Unregident
+    End If
     
     Logger.Level = cboLogLevel.ListIndex
     
@@ -120,7 +127,7 @@ Private Sub UserForm_Initialize()
     
     chkOnRepeat.Value = CBool(GetSetting(C_TITLE, "Option", "OnRepeat", True))
     chkNotHoldFormat.Value = CBool(GetSetting(C_TITLE, "Option", "NotHoldFormat", False))
-    chkExitMode.Value = CBool(GetSetting(C_TITLE, "Option", "ExitMode", False))
+    chkRegidentMode.Value = CBool(GetSetting(C_TITLE, "Option", "RegidentMode", False))
     
     strBuf = ""
     strBuf = strBuf & "・セルの最後に文字列挿入" & vbCrLf

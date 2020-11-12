@@ -237,14 +237,16 @@ Sub lineDel()
     
     ThisWorkbook.Worksheets("Undo").Cells.Clear
     
-    Set mUndo.sourceRange = Intersect(Range(Cells(f, 1), Cells(t, Columns.Count - 1)), ActiveSheet.UsedRange)
+'    Set mUndo.sourceRange = Intersect(Range(Cells(f, 1), Cells(t, Columns.Count - 1)), ActiveSheet.UsedRange)
+    Set mUndo.sourceRange = Range(Cells(f, 1), Cells(t, Columns.Count - 1))
     Set mUndo.destRange = ThisWorkbook.Worksheets("Undo").Range(mUndo.sourceRange.Address)
     
     mUndo.sourceRange.Copy mUndo.destRange
     
     Rows(f & ":" & t).Delete xlUp
     
-    Set mUndo.sourceRange = Intersect(Range(Cells(f, 1), Cells(t, Columns.Count - 1)), ActiveSheet.UsedRange)
+'    Set mUndo.sourceRange = Intersect(Range(Cells(f, 1), Cells(t, Columns.Count - 1)), ActiveSheet.UsedRange)
+    Set mUndo.sourceRange = Range(Cells(f, 1), Cells(t, Columns.Count - 1))
     
     Application.CutCopyMode = False
     Application.ScreenUpdating = True
