@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmScreenSetting 
    Caption         =   "Excelスクショモード設定"
-   ClientHeight    =   2700
+   ClientHeight    =   4080
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   8400.001
@@ -87,6 +87,7 @@ Private Sub cmdOk_Click()
     Dim lngBlankNum As Long
     Dim blnPageBreakEnable As Boolean
     Dim lngPageBreakNun As Long
+    Dim lngSleep As Long
     
     If chkZoomEnable.Value Then
         If IsNumeric(txtZoomNum.Text) Then
@@ -138,14 +139,29 @@ Private Sub cmdOk_Click()
         txtPageBreakNum.Text = "1"
     End If
     
+    If IsNumeric(txtSleep.Text) Then
+    Else
+        MsgBox "待ち時間には数値を入力してください", vbOKOnly + vbExclamation, C_TITLE
+        txtSleep.SetFocus
+        Exit Sub
+    End If
+    Select Case Val(txtSleep.Text)
+        Case 0 To 99
+        Case Else
+            MsgBox "待ち時間には0～9999を入力してください", vbOKOnly + vbExclamation, C_TITLE
+            txtSleep.SetFocus
+            Exit Sub
+    End Select
+    
     blnZoomEnable = chkZoomEnable.Value
     lngZoomNum = Val(txtZoomNum.Value)
     blnSave = chkSave.Value
     lngBlankNum = Val(txtBlankNum.Value)
     blnPageBreakEnable = chkPageBreakEnable.Value
     lngPageBreakNun = Val(txtPageBreakNum.Value)
+    lngSleep = Val(txtSleep.Value)
     
-    SetScreenSetting blnZoomEnable, lngZoomNum, blnSave, lngBlankNum, blnPageBreakEnable, lngPageBreakNun
+    SetScreenSetting blnZoomEnable, lngZoomNum, blnSave, lngBlankNum, blnPageBreakEnable, lngPageBreakNun, lngSleep
     
     Unload Me
     
@@ -182,8 +198,9 @@ Private Sub UserForm_Initialize()
     Dim lngBlankNum As Long
     Dim blnPageBreakEnable As Boolean
     Dim lngPageBreakNun As Long
+    Dim lngSleep As Long
 
-    GetScreenSetting blnZoomEnable, lngZoomNum, blnSave, lngBlankNum, blnPageBreakEnable, lngPageBreakNun
+    GetScreenSetting blnZoomEnable, lngZoomNum, blnSave, lngBlankNum, blnPageBreakEnable, lngPageBreakNun, lngSleep
     
     txtZoomNum.Text = lngZoomNum
     txtBlankNum.Text = lngBlankNum
@@ -192,6 +209,7 @@ Private Sub UserForm_Initialize()
     chkZoomEnable.Value = blnZoomEnable
     chkSave.Value = blnSave
     chkPageBreakEnable.Value = blnPageBreakEnable
+    txtSleep.Value = lngSleep
     
     Call chkZoomEnable_Change
     Call chkPageBreakEnable_Change

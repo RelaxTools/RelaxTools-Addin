@@ -795,7 +795,7 @@ End Sub
 '--------------------------------------------------------------
 Public Sub Regident()
     '常駐モード
-    If CBool(GetSetting(C_TITLE, "Option", "RegidentMode", False)) And MultiProcess = False Then
+    If CBool(GetSetting(C_TITLE, "Option", "RegidentMode", False)) And MultiProcess = False And TV Is Nothing Then
         Set TV = New TaskTrayView
         TV.AddIcon Application.hWnd, "Excel常駐モード"
         TV.ShowBalloon "Excel常駐モード" & vbCrLf & "完全に終了させたい場合は、最小化されている空のウィンドウを閉じてください。"

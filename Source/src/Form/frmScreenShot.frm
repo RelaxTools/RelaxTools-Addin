@@ -69,8 +69,9 @@ Private Sub cmdOk_Click()
     Dim lngBlankNum As Long
     Dim blnPageBreakEnable As Boolean
     Dim lngPageBreakNun As Long
+    Dim lngSleep As Long
 
-    GetScreenSetting blnZoomEnable, lngZoomNum, blnSave, lngBlankNum, blnPageBreakEnable, lngPageBreakNun
+    GetScreenSetting blnZoomEnable, lngZoomNum, blnSave, lngBlankNum, blnPageBreakEnable, lngPageBreakNun, lngSleep
     
     If blnSave Then
         If rlxIsFileExists(ActiveWorkbook.FullName) Then

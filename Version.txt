@@ -1,4 +1,11 @@
-﻿2020/11/12(thu) RelaxTools-Addin Version 4.26.1(RustRemover) 
+﻿2020/11/18(thu) RelaxTools-Addin Version 4.26.2(RustRemover) 
+◇バグ修正
+・Excelスクショモードで2枚貼付けされる #67 を修正。
+　クリップボードからメッセージが来てから500ms待ち時間をした後に貼り付けるようにした。
+　待ち時間は設定画面で修正可能とした。
+・RelaxTools共通設定で、Excel常駐モードが２重に起動する場合があるのを修正。
+
+2020/11/12(thu) RelaxTools-Addin Version 4.26.1(RustRemover) 
 ◇機能追加
 ・オプションに「Excel常駐モード」を追加。
 　起動時のレスポンス向上のため、ブックをすべて閉じてもExcelを終了しないようにする。

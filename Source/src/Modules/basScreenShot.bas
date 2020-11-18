@@ -42,6 +42,8 @@ Option Private Module
     Private Declare PtrSafe Function RemoveClipboardFormatListener Lib "user32.dll" (ByVal hWnd As LongPtr) As Long
     Private Declare PtrSafe Function GetForegroundWindow Lib "user32" () As LongPtr
     
+    Declare PtrSafe Function GetTickCount Lib "kernel32" Alias "GetTickCount64" () As LongLong
+
 #Else
     
     Private Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
@@ -52,6 +54,7 @@ Option Private Module
     Private Declare Function AddClipboardFormatListener Lib "user32.dll" (ByVal hwnd As Long) As Long
     Private Declare Function RemoveClipboardFormatListener Lib "user32.dll" (ByVal hwnd As Long) As Long
     Private Declare Function GetForegroundWindow Lib "user32" () As Long
+    Private Declare Function GetTickCount Lib "kernel32" () As Long
     
 #End If
 
@@ -75,10 +78,12 @@ Private mlngBlankNum As Long
 Private mblnPageBreakEnable As Boolean
 Private mlngPageBreakNun As Long
 
+Private mlngSleep As Long
+
 Public tray As TaskTrayView
 
 Private WS As Worksheet
-Sub GetScreenSetting(ByRef blnZoomEnable As Boolean, ByRef lngZoomNum As Long, ByRef blnSave As Boolean, ByRef lngBlankNum As Long, ByRef blnPageBreakEnable As Boolean, ByRef lngPageBreakNun As Long)
+Sub GetScreenSetting(ByRef blnZoomEnable As Boolean, ByRef lngZoomNum As Long, ByRef blnSave As Boolean, ByRef lngBlankNum As Long, ByRef blnPageBreakEnable As Boolean, ByRef lngPageBreakNun As Long, ByRef lngSleep As Long)
 
     blnZoomEnable = GetSetting(C_TITLE, "ScreenShot", "ZoomEnable", False)
     lngZoomNum = GetSetting(C_TITLE, "ScreenShot", "ZoomNum", 100)
@@ -86,9 +91,10 @@ Sub GetScreenSetting(ByRef blnZoomEnable As Boolean, ByRef lngZoomNum As Long, B
     lngBlankNum = GetSetting(C_TITLE, "ScreenShot", "BlankNum", 2)
     blnPageBreakEnable = GetSetting(C_TITLE, "ScreenShot", "PageBreakEnable", False)
     lngPageBreakNun = GetSetting(C_TITLE, "ScreenShot", "PageBreakNum", 1)
+    lngSleep = GetSetting(C_TITLE, "ScreenShot", "Sleep", 500)
 
 End Sub
-Sub SetScreenSetting(ByRef blnZoomEnable As Boolean, ByRef lngZoomNum As Long, ByRef blnSave As Boolean, ByRef lngBlankNum As Long, ByRef blnPageBreakEnable As Boolean, ByRef lngPageBreakNun As Long)
+Sub SetScreenSetting(ByRef blnZoomEnable As Boolean, ByRef lngZoomNum As Long, ByRef blnSave As Boolean, ByRef lngBlankNum As Long, ByRef blnPageBreakEnable As Boolean, ByRef lngPageBreakNun As Long, ByRef lngSleep As Long)
 
     Call SaveSetting(C_TITLE, "ScreenShot", "ZoomEnable", blnZoomEnable)
     Call SaveSetting(C_TITLE, "ScreenShot", "ZoomNum", lngZoomNum)
@@ -96,6 +102,7 @@ Sub SetScreenSetting(ByRef blnZoomEnable As Boolean, ByRef lngZoomNum As Long, B
     Call SaveSetting(C_TITLE, "ScreenShot", "BlankNum", lngBlankNum)
     Call SaveSetting(C_TITLE, "ScreenShot", "PageBreakEnable", blnPageBreakEnable)
     Call SaveSetting(C_TITLE, "ScreenShot", "PageBreakNum", lngPageBreakNun)
+    Call SaveSetting(C_TITLE, "ScreenShot", "ScreenShot", lngSleep)
 
 End Sub
 Public Sub StartScreenShot()
@@ -106,8 +113,9 @@ Public Sub StartScreenShot()
     Dim lngBlankNum As Long
     Dim blnPageBreakEnable As Boolean
     Dim lngPageBreakNun As Long
+    Dim lngSleep As Long
 
-    GetScreenSetting blnZoomEnable, lngZoomNum, blnSave, lngBlankNum, blnPageBreakEnable, lngPageBreakNun
+    GetScreenSetting blnZoomEnable, lngZoomNum, blnSave, lngBlankNum, blnPageBreakEnable, lngPageBreakNun, lngSleep
     
     mblnZoomEnable = blnZoomEnable
     mlngZoomNum = lngZoomNum
@@ -115,6 +123,7 @@ Public Sub StartScreenShot()
     mlngBlankNum = lngBlankNum
     mblnPageBreakEnable = blnPageBreakEnable
     mlngPageBreakNun = lngPageBreakNun
+    mlngSleep = lngSleep
     Set WS = ActiveSheet
 
     mSetHWnd = frmScreenShot.hWnd
@@ -153,6 +162,7 @@ End Sub
 Public Function WndProc(ByVal hWnd As LongPtr, ByVal uMsg As Long, ByVal wParam As LongPtr, ByVal lParam As LongPtr) As LongPtr
 
     Static bolWndProcCheck As Boolean
+    Static t As LongLong
 
     If Not bolWndProcCheck Then
         
@@ -160,8 +170,15 @@ Public Function WndProc(ByVal hWnd As LongPtr, ByVal uMsg As Long, ByVal wParam 
         
         Select Case uMsg
             Case WM_CLIPBOARDUPDATE
-                If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hWnd Then
-                    Application.OnTime Now, MacroHelper.BuildPath("pasteScreenShot")
+            
+                If t < GetTickCount() Then
+            
+                    t = GetTickCount() + mlngSleep
+                    
+                    If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hWnd Then
+                        Application.OnTime Now, MacroHelper.BuildPath("pasteScreenShot")
+                    End If
+                
                 End If
         End Select
         
@@ -176,6 +193,8 @@ End Function
 Public Function WndProc(ByVal hWnd As Long, ByVal uMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
 
     Static bolWndProcCheck As Boolean
+    Static t As Long
+
 
     If Not bolWndProcCheck Then
         
@@ -183,8 +202,15 @@ Public Function WndProc(ByVal hWnd As Long, ByVal uMsg As Long, ByVal wParam As 
         
         Select Case uMsg
             Case WM_CLIPBOARDUPDATE
-                If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hWnd Then
-                    Application.OnTime Now, MacroHelper.BuildPath("pasteScreenShot")
+            
+                If t < GetTickCount() Then
+            
+                    t = GetTickCount() + mlngSleep
+                        
+                    If IsClipboardFormatAvailable(CF_BITMAP) <> 0 And GetForegroundWindow() <> Application.hWnd Then
+                        Application.OnTime Now, MacroHelper.BuildPath("pasteScreenShot")
+                    End If
+                
                 End If
         End Select
         
@@ -204,6 +230,8 @@ Public Sub pasteScreenShot()
     If WS Is Nothing Then
         tray.ShowBalloon "貼りつけるシートが見つかりません。コピー失敗しました"
     Else
+    
+        Sleep mlngSleep
         
         '画像を張付
         WS.Paste
