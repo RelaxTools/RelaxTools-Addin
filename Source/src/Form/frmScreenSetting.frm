@@ -146,7 +146,7 @@ Private Sub cmdOk_Click()
         Exit Sub
     End If
     Select Case Val(txtSleep.Text)
-        Case 0 To 99
+        Case 0 To 9999
         Case Else
             MsgBox "待ち時間には0～9999を入力してください", vbOKOnly + vbExclamation, C_TITLE
             txtSleep.SetFocus
