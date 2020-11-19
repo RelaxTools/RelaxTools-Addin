@@ -102,7 +102,7 @@ Sub SetScreenSetting(ByRef blnZoomEnable As Boolean, ByRef lngZoomNum As Long, B
     Call SaveSetting(C_TITLE, "ScreenShot", "BlankNum", lngBlankNum)
     Call SaveSetting(C_TITLE, "ScreenShot", "PageBreakEnable", blnPageBreakEnable)
     Call SaveSetting(C_TITLE, "ScreenShot", "PageBreakNum", lngPageBreakNun)
-    Call SaveSetting(C_TITLE, "ScreenShot", "ScreenShot", lngSleep)
+    Call SaveSetting(C_TITLE, "ScreenShot", "Sleep", lngSleep)
 
 End Sub
 Public Sub StartScreenShot()

@@ -1,4 +1,4 @@
-﻿2020/11/19(thu) RelaxTools-Addin Version 4.26.3(RustRemover) 
+﻿2020/11/19(thu) RelaxTools-Addin Version 4.26.4(RustRemover) 
 ◇バグ修正
 ・Excelスクショモードで2枚貼付けされる #67 でデグレード。
 　スクショモードの待ち時間チェックがダメで設定画面が閉じられなくなる
