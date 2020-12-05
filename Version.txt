@@ -1,4 +1,9 @@
-﻿2020/11/19(thu) RelaxTools-Addin Version 4.26.5(RustRemover) 
+﻿2020/12/05(sat) RelaxTools-Addin Version 4.26.6(RustRemover) 
+◇バグ修正
+・キー定義のExport時に不要な空白行が作成され、Importできなくなる不具合を修正。
+　（バージョン定義部分の改行不正のためコード修正なし）
+
+2020/11/19(thu) RelaxTools-Addin Version 4.26.5(RustRemover) 
 ◇バグ修正
 ・Excelスクショモードで2枚貼付けされる #67 でデグレード。
 　スクショモードの待ち時間チェックがダメで設定画面が閉じられなくなる
