@@ -3690,3 +3690,17 @@ Sub previewActivePage()
 e:
     MsgBox "Previewに失敗しました。", vbOKOnly + vbExclamation, C_TITLE
 End Sub
+'--------------------------------------------------------------
+' 背景を「セル結合禁止」にする
+'--------------------------------------------------------------
+Sub stopcelljoin()
+
+    Dim file As String
+    
+    On Error Resume Next
+    
+    file = rlxGetAppDataFolder & "images\nocelljoin.png"
+    
+    ActiveSheet.SetBackgroundPicture filename:=file
+
+End Sub
