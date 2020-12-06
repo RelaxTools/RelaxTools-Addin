@@ -1,8 +1,9 @@
-﻿2020/12/06(sun) RelaxTools-Addin Version 4.27.0(RustRemover) 
+﻿2020/12/06(sun) RelaxTools-Addin Version 4.27.1(RustRemover) 
 ◇機能追加
-・背景に「セル結合禁止」をうっすら表示して、セルを結合するなよ～というプレッシャーを与える機能です。
-　解除は、「ページレイアウト」→「背景」の削除で可能です。
-　この機能は Twitter@blacklist_ryu さん考案の機能です。
+・背景に文字列を表示して注意喚起する機能です。印刷はされませんので注意。
+　「セル結合禁止」は りゅうりゅう(Twitter@blacklist_ryu) さん考案の機能ですが
+　便乗して「河野太郎内閣府特命担当大臣」の「機械判読可能なデータの表記方法の統一ルール案」の一部を
+　表示する機能として追加しました。
 
 2020/12/05(sat) RelaxTools-Addin Version 4.26.6(RustRemover) 
 ◇バグ修正

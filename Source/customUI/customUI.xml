@@ -1106,10 +1106,28 @@
           <button id="convertMarkdown.2"  size="large"   image="markdown" label="markdown&#xD;&#xA;変換" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"  />
         </group>
 
+        <group id="backGroundGroup" label="背景" imageMso="BackgroundImageGallery">
+          <menu id="backGroundMenu" label="背景の&#xD;&#xA;設定" imageMso="BackgroundImageGallery" size="large" itemSize="large" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" getEnabled="RelaxTools.xlam!getRibbonEnabled" >
+            <menuSeparator id="backGroundSep01" title="一般"/>
+            <button id="backSecret"       imageMso="BackgroundImageGallery" label="機密情報" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <button id="backConfidential" imageMso="BackgroundImageGallery" label="Confidential" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <button id="backDraft"        imageMso="BackgroundImageGallery" label="draft" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <button id="backDeadline"     imageMso="BackgroundImageGallery" label="締め切り厳守" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <button id="backGraphPaper"   imageMso="BackgroundImageGallery" label="Excel方眼紙禁止" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <button id="backFomula"       imageMso="BackgroundImageGallery" label="数式注意" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <menuSeparator id="backGroundSep02" title="機械判読可能なデータの表記方法"/>
+            <button id="back1cell1data"   imageMso="BackgroundImageGallery" label="１セル１データの原則" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <button id="backNoCellJoin"   imageMso="BackgroundImageGallery" label="セル結合禁止" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <button id="backNotSpace"     imageMso="BackgroundImageGallery" label="スペースで体裁を整えない" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <button id="backNotString"    imageMso="BackgroundImageGallery" label="数値に文字列を含めない" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <button id="backStampAll"     imageMso="BackgroundImageGallery" label="上記すべて" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+            <menuSeparator id="backGroundSep03" title="クリア"/>
+            <button id="backClear"        imageMso="BackgroundImageGallery" label="背景の削除" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
+          </menu>
+        </group>
         <group id="InformationGroup" label="その他" image="countpage">
           <button id="encryptionFileEx" size="large" image="Encrypt"  label="ファイルの&#xD;&#xA;難読化" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction" />
           <button id="excelPage" image="countpage" size="large" label="Word/Excel/PP&#xD;&#xA;ページ数取得" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
-          <button id="stopcelljoin" image="stopcelljoin" size="large" label="背景をセル結合&#xD;&#xA;禁止にする" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription"  onAction="RelaxTools.xlam!ribbonOnAction" />
 <!--
           <splitButton id="sushiSplit" size="large" getEnabled="RelaxTools.xlam!getRibbonEnabled" getVisible="RelaxTools.xlam!sushiGetVisible">
             <toggleButton id="sushiShow" image="sushi" label="スシを&#xD;&#xA;流す" supertip="スシをExcelの周囲に流します。" description="スシをExcelの周囲に流します。" getPressed="RelaxTools.xlam!sushiPressed" onAction="RelaxTools.xlam!sushiOnAction"/>

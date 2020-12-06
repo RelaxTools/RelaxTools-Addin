@@ -3691,15 +3691,113 @@ e:
     MsgBox "Previewに失敗しました。", vbOKOnly + vbExclamation, C_TITLE
 End Sub
 '--------------------------------------------------------------
-' 背景を「セル結合禁止」にする
+' 背景に文字列を設定する（機密情報）
 '--------------------------------------------------------------
-Sub stopcelljoin()
+Sub backSecret()
+
+    SetBackgroundPicture "backSecret"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（Confidential）
+'--------------------------------------------------------------
+Sub backConfidential()
+
+    SetBackgroundPicture "backConfidential"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（draft）
+'--------------------------------------------------------------
+Sub backDraft()
+
+    SetBackgroundPicture "backDraft"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（締め切り厳守）
+'--------------------------------------------------------------
+Sub backDeadline()
+
+    SetBackgroundPicture "backDeadline"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（Excel方眼紙禁止）
+'--------------------------------------------------------------
+Sub backGraphPaper()
+
+    SetBackgroundPicture "backGraphPaper"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（数式注意）
+'--------------------------------------------------------------
+Sub backFomula()
+
+    SetBackgroundPicture "backFomula"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（１セル１データの原則）
+'--------------------------------------------------------------
+Sub back1cell1data()
+
+    SetBackgroundPicture "back1cell1data"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（セル結合禁止）
+'--------------------------------------------------------------
+Sub backNoCellJoin()
+
+    SetBackgroundPicture "backNoCellJoin"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（スペースで体裁を整えない）
+'--------------------------------------------------------------
+Sub backNotSpace()
+
+    SetBackgroundPicture "backNotSpace"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（数値に文字列を含めない）
+'--------------------------------------------------------------
+Sub backNotString()
+
+    SetBackgroundPicture "backNotString"
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（すべて）
+'--------------------------------------------------------------
+Sub backStampAll()
+
+    SetBackgroundPicture "backStampAll"
+
+End Sub
+'--------------------------------------------------------------
+' 背景の文字列を削除
+'--------------------------------------------------------------
+Sub backClear()
+
+    On Error Resume Next
+    
+    ActiveSheet.SetBackgroundPicture filename:=""
+
+End Sub
+'--------------------------------------------------------------
+' 背景に文字列を設定する（共通）
+'--------------------------------------------------------------
+Private Sub SetBackgroundPicture(ByVal Key As String)
 
     Dim file As String
     
     On Error Resume Next
     
-    file = rlxGetAppDataFolder & "images\nocelljoin.png"
+    file = rlxGetAppDataFolder & "images\" & Key & ".png"
     
     ActiveSheet.SetBackgroundPicture filename:=file
 
