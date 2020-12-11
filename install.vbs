@@ -1,11 +1,12 @@
 ' -------------------------------------------------------------------------------
-' RelaxTools-Addin インストールスクリプト Ver.1.0.5
+' RelaxTools-Addin インストールスクリプト Ver.1.0.6
 ' -------------------------------------------------------------------------------
 ' 参考サイト
 ' ある SE のつぶやき
 ' VBScript で Excel にアドインを自動でインストール/アンインストールする方法
 ' http://fnya.cocolog-nifty.com/blog/2014/03/vbscript-excel-.html
 ' 修正
+'   1.0.6 インストールパスを Application.UserLibraryPath を利用するように修正。
 '   1.0.5 同名ブックを参照用に開くVBSをインストールするよう修正。
 '   1.0.4 マルチプロセス用VBSが不要になったので削除。
 '   1.0.3 マルチプロセス用VBSをコピーするよう修正。
@@ -13,6 +14,7 @@
 '   1.0.2 Windows Update にて インターネットより取得したアドインファイルが Excel にて読み込まれない場合に対応。
 '         警告とプロパティウィンドウを表示して「ブロック解除」をお願いするようにした。
 ' -------------------------------------------------------------------------------
+Option Explicit
 On Error Resume Next
 
 Dim installPath 
@@ -21,6 +23,12 @@ Dim addInFileName
 Dim objExcel 
 Dim objAddin
 Dim imageFolder
+Dim appFile
+Dim objWshShell
+Dim objFileSys
+Dim strPath
+Dim objFolder
+Dim objFile
 
 'アドイン情報を設定 
 addInName = "RelaxTools Addin" 
@@ -29,62 +37,63 @@ appFile = "rlxAliasOpen.vbs"
 
 Set objWshShell = CreateObject("WScript.Shell") 
 Set objFileSys = CreateObject("Scripting.FileSystemObject")
-Set objShell = CreateObject("Shell.Application")
 
 IF Not objFileSys.FileExists(addInFileName) THEN
-   MsgBox "Zipファイルを展開してから実行してください。", vbExclamation, addInName 
-   WScript.Quit 
+    MsgBox "Zipファイルを展開してから実行してください。", vbExclamation, addInName 
+    WScript.Quit 
 END IF
-
-'インストール先パスの作成 
-'(ex)C:\Users\[User]\AppData\Roaming\Microsoft\AddIns\[addInFileName] 
-strPath = objWshShell.SpecialFolders("Appdata") & "\Microsoft\Addins\"
-installPath = strPath  & addInFileName
-imageFolder = objWshShell.SpecialFolders("Appdata") & "\RelaxTools-Addin\"
 
 IF MsgBox(addInName & " をインストールしますか？" & vbCrLf &  "Version 4.0.0 以降とそれ以前では設定が引き継がれませんのでご了承ください。", vbYesNo + vbQuestion, addInName) = vbNo Then 
-  WScript.Quit 
+    WScript.Quit 
 End IF
 
-'ファイルコピー(上書き) 
-objFileSys.CopyFile  addInFileName ,installPath , True
-
-'イメージフォルダがない場合は作成
-IF Not objFileSys.FolderExists(imageFolder) THEN
-  objFileSys.CreateFolder(imageFolder)
-END IF
-
-'イメージフォルダをコピー(上書き) 
-objFileSys.CopyFolder  "Source\customUI\images" ,imageFolder , True
-
-'ファイルをコピー(上書き) 
-objFileSys.CopyFile  appFile, imageFolder & appFile, True
-
-Set objFileSys = Nothing
-
 'Excel インスタンス化 
-Set objExcel = CreateObject("Excel.Application") 
-objExcel.Workbooks.Add
+With CreateObject("Excel.Application") 
 
-'アドイン登録 
-Set objAddin = objExcel.AddIns.Add(installPath, True) 
-objAddin.Installed = True
+    'インストール先パスの作成 
+    strPath = .UserLibraryPath
+    imageFolder = objWshShell.SpecialFolders("Appdata") & "\RelaxTools-Addin\"
 
-'Excel 終了 
-objExcel.Quit
-Set objAddin = Nothing 
-Set objExcel = Nothing
+    'インストールフォルダがない場合は作成
+    IF Not objFileSys.FolderExists(strPath) THEN
+        objFileSys.CreateFolder(strPath)
+    END IF
+
+    installPath = strPath & addInFileName
+
+    'ファイルコピー(上書き) 
+    objFileSys.CopyFile  addInFileName ,installPath , True
+
+    'イメージフォルダがない場合は作成
+    IF Not objFileSys.FolderExists(imageFolder) THEN
+        objFileSys.CreateFolder(imageFolder)
+    END IF
+
+    'イメージフォルダをコピー(上書き) 
+    objFileSys.CopyFolder  "Source\customUI\images" ,imageFolder , True
+
+    'ファイルをコピー(上書き) 
+    objFileSys.CopyFile  appFile, imageFolder & appFile, True
+
+    'アドイン登録 
+    .Workbooks.Add
+    Set objAddin = .AddIns.Add(installPath, True) 
+    objAddin.Installed = True
+
+    'Excel 終了 
+    .Quit
+
+End WIth
 
 IF Err.Number = 0 THEN 
-   MsgBox "アドインのインストールが終了しました。", vbInformation, addInName 
+    MsgBox "アドインのインストールが終了しました。", vbInformation, addInName 
 
-  Set objFolder = objShell.NameSpace(strPath)
-  Set objFile = objFolder.ParseName(addInFileName)
-  objFile.InvokeVerb("properties")
-  MsgBox "インターネットから取得したファイルはExcelよりブロックされる場合があります。" & vbCrlf & "プロパティウィンドウを開きますので「ブロックの解除」を行ってください。" & vbCrLf & vbCrLf & "プロパティに「ブロックの解除」が表示されない場合は特に操作の必要はありません。", vbExclamation, addInName 
+    'プロパティファイル表示
+    CreateObject("Shell.Application").NameSpace(strPath).ParseName(addInFileName).InvokeVerb("properties")
+    MsgBox "インターネットから取得したファイルはExcelよりブロックされる場合があります。" & vbCrlf & "プロパティウィンドウを開きますので「ブロックの解除」を行ってください。" & vbCrLf & vbCrLf & "プロパティに「ブロックの解除」が表示されない場合は特に操作の必要はありません。", vbExclamation, addInName 
 
 ELSE 
-   MsgBox "エラーが発生しました。" & vbCrLF & "Excelが起動している場合は終了してください。", vbExclamation, addInName 
+    MsgBox "エラーが発生しました。" & vbCrLF & "Excelが起動している場合は終了してください。", vbExclamation, addInName 
     WScript.Quit 
 End IF
 
@@ -98,6 +107,5 @@ End IF
 
 objWshShell.Run "ExcelReadOnly.vbs", 1, true
 
-
+Set objFileSys = Nothing
 Set objWshShell = Nothing 
-
