@@ -13,6 +13,7 @@
 　フォルダが変わることにより、履歴が無くなったように表示されるので気を付けてください。
 　以前までの履歴を有効にしたい場合、元フォルダからファイルをコピーするか、TimeLeapフォルダを
 　元のフォルダに指定してください。
+・インストーラのアドインフォルダを「%appdata%Microsoft\addins」から「Application.UserLibraryPath」に変更。
 
 2020/12/06(sun) RelaxTools-Addin Version 4.27.1(RustRemover) 
 ◇機能追加
