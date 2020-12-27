@@ -132,7 +132,7 @@ Public Function GetTimeLeapFolder() As String
     
     With CreateObject("Scripting.FileSystemObject")
     
-        strFolder = .BuildPath(CreateObject("Wscript.Shell").SpecialFolders("AppData"), C_TITLE) & "TimeLeap"
+        strFolder = .BuildPath(CreateObject("Wscript.Shell").SpecialFolders("AppData"), C_TITLE) & "\TimeLeap"
         
 '        If .FolderExists(strFolder) Then
 '        Else

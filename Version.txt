@@ -1,4 +1,20 @@
-﻿2020/12/06(sun) RelaxTools-Addin Version 4.27.1(RustRemover) 
+﻿2020/12/27(sun) RelaxTools-Addin Version 4.27.2(RustRemover) 
+◇バグ修正
+・「TimeLeap」のTimeLeapリストで年表示が年間通算日になっており、456年前とかふざけた数字になっていたのを修正。
+・「TimeLeap」の「このブックを最新のブックに上書き」を「000」に対して行うとうまくいかない不具合を修正。
+
+◇仕様変更
+・「TimeLeap」の「このブックを最新のブックに上書き」を行った場合、履歴を作成しないようにした。
+　→仕様の簡略化。上書きの度に履歴を作成していたので、同じ内容のファイルが増えてしまい使い勝手が悪かった。
+・「TimeLeap」の初期保存フォルダを変更。
+　「%appdata%\RelaxTools-AddinTimeLeap」となっていたのを「%appdata%\RelaxTools-Addin\TimeLeap」に修正。
+　以前までのバージョンで、特にTimeLeapの設定を変更したことが無い場合、
+　自動的に後者のフォルダがTimeLeapフォルダになります。
+　フォルダが変わることにより、履歴が無くなったように表示されるので気を付けてください。
+　以前までの履歴を有効にしたい場合、元フォルダからファイルをコピーするか、TimeLeapフォルダを
+　元のフォルダに指定してください。
+
+2020/12/06(sun) RelaxTools-Addin Version 4.27.1(RustRemover) 
 ◇機能追加
 ・「RelaxApps」→「背景の設定」を追加
 　背景に文字列を表示して注意喚起する機能です。印刷はされませんので注意。

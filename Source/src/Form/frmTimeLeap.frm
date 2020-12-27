@@ -348,14 +348,11 @@ Public Sub execOverwrite()
     On Error GoTo e
     
     strBook = lstTimeLeap.List(lstTimeLeap.ListIndex, C_FILE_ORIGINAL)
-    strBook = rlxGetFullpathFromExt(strBook) & "." & Format(Val(Right$(strBook, 3)) + 1, "000")
+    strBook = rlxGetFullpathFromExt(strBook) & "." & Format(Val(Right$(strBook, 3)), "000")
     
     strBook2 = WB.FullName
     
     Unload Me
-    
-    '履歴作成
-    Call CreateHistory(strBook2)
     
     WB.Close SaveChanges:=False
         
@@ -648,7 +645,7 @@ Function timeAfter(ByVal s As Date, ByVal d As Date) As String
         If lngRet > 31 Then
             lngRet = DateDiff("m", s, d)
             If lngRet > 12 Then
-                lngRet = DateDiff("y", s, d)
+                lngRet = DateDiff("yyyy", s, d)
                 strRet = CStr(lngRet) & "年前"
             Else
                 If lngRet = 1 Then
