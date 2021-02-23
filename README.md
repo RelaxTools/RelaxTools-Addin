@@ -7,11 +7,8 @@
 
 ---
 
-*対応OS: Windows Vista, Windws 7, Windows 8, Windows 8.1, Windows 10(macには対応していません)
-
-*対応Excel: 2013, 2016, 2019, Office365(Desktop)
-
----
+* 対応OS: Windows Vista, Windws 7, Windows 8, Windows 8.1, Windows 10(macには対応していません)
+* 対応Excel: 2013, 2016, 2019, Office365(Desktop)
 
 5年間(2009年～)にわたって作成したマクロを汎用的、体系的にまとめました。
 そのため非常に多機能なツールとなります。
