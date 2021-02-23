@@ -1,9 +1,15 @@
-# RelaxTools Addin For Excel 2013/2016/2019/Office365 
-*対応OS: Windows Vista, Windws 7, Windows 8, Windows 8.1, Windows 10(macには対応していません)
-*対応Excel: 2013, 2016, 2019, Office365(Desktop)
+<p align="center">
+  <img width="140" src="https://raw.githubusercontent.com/wiki/RelaxTools/RelaxTools-Addin/image/logo.png" />  
+  <h2 align="center">RelaxTools Addin For Excel 2013/2016/2019/Office365</h2>
+  <p align="center">各種変換、編集、検索などの機能追加を行うツールです。</p>
+  <p align="center">Copyright(C) Yasuhiro Watanabe 2009</p>
+</p>
 
-各種変換、編集、検索などの機能追加を行うツールです。
-Copyright(C) Yasuhiro Watanabe 2009
+---
+
+*対応OS: Windows Vista, Windws 7, Windows 8, Windows 8.1, Windows 10(macには対応していません)
+
+*対応Excel: 2013, 2016, 2019, Office365(Desktop)
 
 ---
 
