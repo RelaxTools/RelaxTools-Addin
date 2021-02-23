@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="140" src="https://raw.githubusercontent.com/wiki/RelaxTools/RelaxTools-Addin/image/logo.png" />  
+  <img src="https://raw.githubusercontent.com/wiki/RelaxTools/RelaxTools-Addin/image/logo.png" />  
   <h2 align="center">RelaxTools Addin For Excel 2013/2016/2019/Office365</h2>
   <p align="center">各種変換、編集、検索などの機能追加を行うツールです。</p>
   <p align="center">Copyright(C) Yasuhiro Watanabe 2009</p>
