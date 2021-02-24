@@ -1,4 +1,8 @@
-﻿2020/12/27(sun) RelaxTools-Addin Version 4.27.2(RustRemover) 
+﻿2021/02/25(thu) RelaxTools-Addin Version 4.27.3(RustRemover) 
+◇バグ修正
+・VBAステップカウントの誤字を修正。
+
+2020/12/27(sun) RelaxTools-Addin Version 4.27.2(RustRemover) 
 ◇バグ修正
 ・「TimeLeap」のTimeLeapリストで年表示が年間通算日になっており、456年前とかふざけた数字になっていたのを修正。
 ・「TimeLeap」の「このブックを最新のブックに上書き」を「000」に対して行うとうまくいかない不具合を修正。
