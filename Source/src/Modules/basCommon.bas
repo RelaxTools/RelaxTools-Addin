@@ -3015,3 +3015,8 @@ Function SpecialCellsEx(v As Range) As Range
     Set SpecialCellsEx = r
 
 End Function
+Function FileToURL(ByVal arg As String) As String
+
+    FileToURL = "file:///" & Replace(arg, "#", "%23")
+
+End Function

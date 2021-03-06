@@ -133,7 +133,7 @@ Private Sub cmdRun_Click()
     If chkFolder.Value Then
         ActiveSheet.Hyperlinks.Add _
             Anchor:=Cells(lngRow, lngCol), _
-            Address:=strPath, _
+            Address:=FileToURL(strPath), _
             TextToDisplay:=strPath
     End If
     
@@ -234,7 +234,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
             If chkFile.Value Then
                 ActiveSheet.Hyperlinks.Add _
                     Anchor:=Cells(lngRow, lngCol2), _
-                    Address:=rlxAddFileSeparator(strPath) & colFiles.Item(objKey).Name, _
+                    Address:=FileToURL(rlxAddFileSeparator(strPath) & colFiles.Item(objKey).Name), _
                     TextToDisplay:=colFiles.Item(objKey).Name
             End If
     
@@ -298,7 +298,7 @@ Private Sub FileDisp(objFs, ByVal strPath, lngRow, ByVal lngCol, ByVal lngHCol A
         If chkFolder.Value Then
             ActiveSheet.Hyperlinks.Add _
                 Anchor:=Cells(lngRow, lngCol2), _
-                Address:=colFolders.Item(objKey).Path, _
+                Address:=FileToURL(colFolders.Item(objKey).Path), _
                 TextToDisplay:=rlxGetFullpathFromFileName(colFolders.Item(objKey).Path)
         End If
                 
