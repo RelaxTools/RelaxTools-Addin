@@ -1,4 +1,8 @@
-﻿2021/03/06(sat) RelaxTools-Addin Version 4.27.3(RustRemover) 
+﻿2021/03/07(sun) RelaxTools-Addin Version 4.27.4(RustRemover) 
+◇バグ修正
+・Grep置換で「読み取り専用推奨」設定のファイルが置換できない #54
+
+2021/03/06(sat) RelaxTools-Addin Version 4.27.3(RustRemover) 
 ◇バグ修正
 ・VBAステップカウントの誤字を修正。
 ・結合セルの高さ拡張の誤字 #71

@@ -215,7 +215,7 @@ Sub ReplaceStr()
         FS.CopyFile strBook, strBook & "." & Format$(Now(), "yyyymmddhhnnss")
         
         If strBuf = "" Then
-            Set WB = Workbooks.Open(filename:=strBook, local:=True)
+            Set WB = Workbooks.Open(filename:=strBook, local:=True, IgnoreReadOnlyRecommended:=True)
         Else
             For Each varPass In varPassword
                 Err.Clear
