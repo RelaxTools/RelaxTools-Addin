@@ -1,4 +1,11 @@
-﻿2021/03/07(sun) RelaxTools-Addin Version 4.27.4(RustRemover) 
+﻿2021/04/08(thu) RelaxTools-Addin Version 4.27.5(RustRemover) 
+◇バグ修正
+・RelaxAppsタブ内の機能名の表記ゆれ #74
+・VBAソースエクスポートの誤字 #73
+・OneDrive上のファイルをTimeLeap機能を有効状態で保存した場合、「ファイルが見つかりません。」ダイアログが表示 #75
+　→動作としては、OneDrive/SharePoint上では履歴が作成されるため、Timeleapの対象外としました。
+
+2021/03/07(sun) RelaxTools-Addin Version 4.27.4(RustRemover) 
 ◇バグ修正
 ・Grep置換で「読み取り専用推奨」設定のファイルが置換できない #54
 

@@ -1101,9 +1101,9 @@
         </group>
         <group id="ConvTableGroup" label="Excel表の変換" image="grid32">
           <button id="kantanLine.2"       size="large"   image="grid32" label="テキスト&#xD;&#xA;変換" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"  />
-          <button id="convertHtml.2"      size="large"   image="html32" label="html&#xD;&#xA;変換" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"  />
+          <button id="convertHtml.2"      size="large"   image="html32" label="HTML&#xD;&#xA;変換" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"  />
           <button id="convertTextile.2"   size="large"   image="redmine" label="textile&#xD;&#xA;変換" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"  />
-          <button id="convertMarkdown.2"  size="large"   image="markdown" label="markdown&#xD;&#xA;変換" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"  />
+          <button id="convertMarkdown.2"  size="large"   image="markdown" label="Markdown&#xD;&#xA;変換" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"  />
         </group>
 
         <group id="backGroundGroup" label="背景" imageMso="BackgroundImageGallery">

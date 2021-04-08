@@ -3802,3 +3802,4 @@ Private Sub SetBackgroundPicture(ByVal Key As String)
     ActiveSheet.SetBackgroundPicture filename:=file
 
 End Sub
+

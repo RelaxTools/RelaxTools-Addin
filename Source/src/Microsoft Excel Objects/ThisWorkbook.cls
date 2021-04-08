@@ -764,6 +764,11 @@ Private Sub XL_WorkbookAfterSave(ByVal WB As Workbook, ByVal Success As Boolean)
             Dim strFolder As String
             Dim strFullName As String
             
+            'onedrive/sharepoint対策
+            If Not .FileExists(WB.FullName) Then
+                GoTo pass
+            End If
+            
             strFolder = GetSetting(C_TITLE, "TimeLeap", "Folder", GetTimeLeapFolder())
             If Not .FolderExists(strFolder) Then
                 .createFolder strFolder

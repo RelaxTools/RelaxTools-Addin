@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmMarkdown 
    Caption         =   "表のMarkdown変換"
-   ClientHeight    =   6828
+   ClientHeight    =   6825
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   11565
