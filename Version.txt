@@ -1,4 +1,8 @@
-﻿2021/04/08(thu) RelaxTools-Addin Version 4.27.5(RustRemover) 
+﻿2022/05/10(tue) RelaxTools-Addin Version 4.27.6(RustRemover) 
+◇バグ修正
+・「目次の作成」でページ番号がずれていってしまう #84
+
+2021/04/08(thu) RelaxTools-Addin Version 4.27.5(RustRemover) 
 ◇バグ修正
 ・RelaxAppsタブ内の機能名の表記ゆれ #74
 ・VBAソースエクスポートの誤字 #73

@@ -295,7 +295,9 @@ Private Sub cmdOk_Click()
                     End If
                 
                 Next
-                lngPage = lngPage + k
+'「目次の作成」でページ番号がずれていってしまう #84
+'                lngPage = lngPage + k
+                lngPage = lngPage + l + 1
                 ActiveWindow.View = varView
                 
             End With
