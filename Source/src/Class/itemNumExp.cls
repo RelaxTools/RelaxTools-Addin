@@ -87,18 +87,18 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngIndentLevel As Long) 
     Dim strNewNum As String
     Dim strNumber As String
     Dim lngPos As Long
-    Const STR As String = "１２３４５６７８９"
+    Const str As String = "１２３４５６７８９"
     
     strNumber = Trim(SectionNumber(v))
     
     If strNumber = "" Then
         strNewNum = "例１)" & C_SECTION_SEPARATER
     Else
-        lngPos = InStr(STR, Replace(Replace(strNumber, "例", ""), ")", "")) + 1
-        If lngPos > Len(STR) Then
+        lngPos = InStr(str, Replace(Replace(strNumber, "例", ""), ")", "")) + 1
+        If lngPos > Len(str) Then
             lngPos = 1
         End If
-        strNewNum = "例" & Mid$(STR, lngPos, 1) & ")" & C_SECTION_SEPARATER
+        strNewNum = "例" & Mid$(str, lngPos, 1) & ")" & C_SECTION_SEPARATER
     End If
     
     NextNumber = strNewNum

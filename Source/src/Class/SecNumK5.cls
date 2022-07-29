@@ -87,18 +87,18 @@ Public Property Get NextNumber(ByVal v As String, ByVal lngFromLevel As Long, By
     Dim strNewNum As String
     Dim strNumber As String
     Dim lngPos As Long
-    Const STR As String = "イロハニホヘトチリヌルヲワカヨタレソツネナラムウヱノオクヤマケフコエテアサキユメミシゑヒモセス"
+    Const str As String = "イロハニホヘトチリヌルヲワカヨタレソツネナラムウヱノオクヤマケフコエテアサキユメミシゑヒモセス"
     
     strNumber = Trim(SectionNumber(v))
     
     If strNumber = "" Or lngFromLevel <> lngIndentLevel Then
         strNewNum = "イ." & C_SECTION_SEPARATER
     Else
-        lngPos = InStr(STR, Replace(strNumber, ".", "")) + 1
-        If lngPos > Len(STR) Then
+        lngPos = InStr(str, Replace(strNumber, ".", "")) + 1
+        If lngPos > Len(str) Then
             lngPos = 1
         End If
-        strNewNum = Mid$(STR, lngPos, 1) & "." & C_SECTION_SEPARATER
+        strNewNum = Mid$(str, lngPos, 1) & "." & C_SECTION_SEPARATER
     End If
     
     NextNumber = strNewNum

@@ -238,7 +238,7 @@ ErrHandle:
     Else
         mMm.Enable
     End If
-    MsgBox "エラーが発生しました。" & vbCrLf & Err.Description, vbOKOnly + vbCritical, C_TITLE
+    MsgBox "エラーが発生しました。" & vbCrLf & Err.description, vbOKOnly + vbCritical, C_TITLE
     Set mMm = Nothing
 End Sub
 

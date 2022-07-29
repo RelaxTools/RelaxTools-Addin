@@ -200,7 +200,7 @@ pass:
     
 e:
     Application.DisplayAlerts = True
-    MsgBox Err.Description, vbOKOnly + vbCritical, C_TITLE
+    MsgBox Err.description, vbOKOnly + vbCritical, C_TITLE
     Unload Me
     Set objFs = Nothing
     

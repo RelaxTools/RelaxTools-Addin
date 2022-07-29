@@ -43,5 +43,5 @@ Public Macro As String
 Public Label As String
 Public Devision As String
 Public Help As String
-Public Description As String
+Public description As String
 

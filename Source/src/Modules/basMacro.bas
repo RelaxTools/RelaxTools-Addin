@@ -31,6 +31,87 @@ Attribute VB_Name = "basMacro"
 Option Explicit
 Option Private Module
 
+'--------------------------------------------------------------
+'　ユーザ定義関数ヘルプの登録
+'--------------------------------------------------------------
+Public Sub EntryMacroFunction()
+
+    On Error Resume Next
+
+    Dim FuncName As String
+    Dim FuncDesc As String
+    Dim Category As String
+    Dim ArgDesc(0 To 0) As String
+
+    FuncName = "GetSHA256"
+    FuncDesc = "ハッシュ値(SHA256)を取得する関数。.Net3.5のインストールが別途必要"
+    Category = "RelaxTools"
+    ArgDesc(0) = "ハッシュ値算出範囲"
+
+    Application.MacroOptions _
+            Macro:=FuncName, _
+            description:=FuncDesc, _
+            Category:=Category, _
+            ArgumentDescriptions:=ArgDesc
+
+    FuncName = "GetSHA384"
+    FuncDesc = "ハッシュ値(SHA384)を取得する関数。.Net3.5のインストールが別途必要"
+
+    Application.MacroOptions _
+            Macro:=FuncName, _
+            description:=FuncDesc, _
+            Category:=Category, _
+            ArgumentDescriptions:=ArgDesc
+
+    FuncName = "GetSHA512"
+    FuncDesc = "ハッシュ値(SHA512)を取得する関数。.Net3.5のインストールが別途必要"
+
+    Application.MacroOptions _
+            Macro:=FuncName, _
+            description:=FuncDesc, _
+            Category:=Category, _
+            ArgumentDescriptions:=ArgDesc
+
+End Sub
+'--------------------------------------------------------------
+'　ユーザ定義関数ヘルプの解除
+'--------------------------------------------------------------
+Public Sub RemoveMacroFunction()
+
+    On Error Resume Next
+
+    Dim FuncName As String
+    Dim FuncDesc As String
+    Dim Category As String
+    Dim ArgDesc(0 To 0) As String
+
+    FuncName = "GetSHA256"
+    FuncDesc = ""
+    Category = ""
+    ArgDesc(0) = ""
+
+    Application.MacroOptions _
+            Macro:=FuncName, _
+            description:=FuncDesc, _
+            Category:=Category, _
+            ArgumentDescriptions:=ArgDesc
+
+    FuncName = "GetSHA384"
+    Application.MacroOptions _
+            Macro:=FuncName, _
+            description:=FuncDesc, _
+            Category:=Category, _
+            ArgumentDescriptions:=ArgDesc
+
+    FuncName = "GetSHA512"
+    Application.MacroOptions _
+            Macro:=FuncName, _
+            description:=FuncDesc, _
+            Category:=Category, _
+            ArgumentDescriptions:=ArgDesc
+
+End Sub
+
 
 '--------------------------------------------------------------
 '　キー実行ラッパー
@@ -2963,6 +3044,81 @@ Sub swapAreas()
 ErrHandle:
     MsgBox "エラーが発生しました。", vbOKOnly, C_TITLE
 End Sub
+'--------------------------------------------------------------
+'　選択範囲の交換(値)
+'--------------------------------------------------------------
+Sub swapAreasValue()
+
+    '変数宣言
+    Dim r As Range
+    Dim blnRange As Boolean
+    
+    blnRange = False
+    Select Case True
+        Case ActiveWorkbook Is Nothing
+        Case ActiveCell Is Nothing
+        Case Selection Is Nothing
+        Case TypeOf Selection Is Range
+            blnRange = True
+        Case Else
+    End Select
+    If blnRange Then
+    Else
+        MsgBox "選択範囲が見つかりません。", vbCritical, C_TITLE
+        Exit Sub
+    End If
+
+    If Selection.CountLarge > C_MAX_CELLS Then
+        MsgBox "大量のセルが選択されています。 " & C_MAX_CELLS & "以下にしてください。", vbExclamation + vbOKOnly, C_TITLE
+        Exit Sub
+    End If
+    
+    If Selection.Areas.Count <> 2 Then
+        MsgBox "２つの範囲を選択してください。", vbExclamation + vbOKOnly, C_TITLE
+        Exit Sub
+    End If
+    
+    If Selection.Areas(1).Rows.Count <> Selection.Areas(2).Rows.Count Or _
+       Selection.Areas(1).Columns.Count <> Selection.Areas(2).Columns.Count Then
+        MsgBox "２つの範囲の縦横サイズは同じにしてください。", vbExclamation + vbOKOnly, C_TITLE
+        Exit Sub
+    End If
+    
+
+    Dim strAddress As String
+    
+    strAddress = Selection.Address
+    
+    ThisWorkbook.Worksheets("Undo").Cells.Clear
+    
+    Set mUndo.sourceRange = Selection
+    Set mUndo.destRange = ThisWorkbook.Worksheets("Undo").Range(Selection.Address)
+    
+    Dim rr As Range
+    For Each rr In mUndo.sourceRange.Areas
+        rr.Copy mUndo.destRange.Worksheet.Range(rr.Address)
+    Next
+    
+    On Error Resume Next
+    
+    Application.ScreenUpdating = False
+    
+    'エリアを交換する。
+    mUndo.sourceRange.Areas(1).Value = mUndo.destRange.Worksheet.Range(mUndo.sourceRange.Areas(2).Address).Value
+    mUndo.sourceRange.Areas(2).Value = mUndo.destRange.Worksheet.Range(mUndo.sourceRange.Areas(1).Address).Value
+    
+    Application.ScreenUpdating = True
+    
+    ActiveSheet.Range(strAddress).Select
+    
+    'Undo
+    Application.OnUndo "Undo", MacroHelper.BuildPath("execUndo")
+    
+    Exit Sub
+ErrHandle:
+    MsgBox "エラーが発生しました。", vbOKOnly, C_TITLE
+End Sub
+
 '--------------------------------------------------------------
 '  何もしない関数(キー無効用)
 '--------------------------------------------------------------

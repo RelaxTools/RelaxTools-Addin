@@ -190,7 +190,7 @@ Private Function getSheetItem(control As IRibbonControl, lngItem As Long) As Str
             m.Label = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_LABEL).Value
             m.Devision = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_DIVISION).Value
             m.Help = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_HELP).Value
-            m.Description = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_DESCRIPTION).Value
+            m.description = ThisWorkbook.Worksheets("HELP").Cells(i, C_COL_DESCRIPTION).Value
             
             If Not mObjMenu.Exists(m.Macro) Then
                 mObjMenu.Add m.Macro, m
@@ -215,7 +215,7 @@ Private Function getSheetItem(control As IRibbonControl, lngItem As Long) As Str
             Case C_COL_HELP
                 getSheetItem = mObjMenu.Item(strBuf).Help
             Case C_COL_DESCRIPTION
-                getSheetItem = mObjMenu.Item(strBuf).Description
+                getSheetItem = mObjMenu.Item(strBuf).description
         End Select
     Else
         getSheetItem = ""
@@ -637,6 +637,9 @@ Sub ribbonLoaded(ByRef IR As IRibbonUI)
         Case "6"
             mSecTog06 = True
     End Select
+    
+    'ユーザ定義関数の登録
+    Call EntryMacroFunction
     
     Exit Sub
 e:

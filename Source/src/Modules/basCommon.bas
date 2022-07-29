@@ -2003,7 +2003,7 @@ Sub rlxErrMsg(ByRef objErr As Object)
         Case 1004
             MsgBox "エラーです。シート保護などを確認してください。", vbCritical + vbOKOnly, C_TITLE
         Case Else
-            MsgBox objErr.Description & "(" & Err.Number & ")", vbCritical + vbOKOnly, C_TITLE
+            MsgBox objErr.description & "(" & Err.Number & ")", vbCritical + vbOKOnly, C_TITLE
     End Select
 
 End Sub

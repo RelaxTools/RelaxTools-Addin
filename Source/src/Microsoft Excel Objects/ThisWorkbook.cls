@@ -87,6 +87,8 @@ Private Sub Workbook_Open()
     Call SetTimeLeap
     
     Set mColSection = rlxInitSectionSetting()
+
+    Call EntryMacroFunction
     
     'Excel常駐
     Me.Regident
@@ -134,6 +136,7 @@ Private Sub Workbook_BeforeClose(Cancel As Boolean)
             
             'ショートカットの削除
             Call removeShortCutKey
+            Call RemoveMacroFunction
         
             Me.Unregident
         
@@ -141,11 +144,15 @@ Private Sub Workbook_BeforeClose(Cancel As Boolean)
     Else
         'ショートカットの削除
         Call removeShortCutKey
+        Call RemoveMacroFunction
+
     End If
+    
     
     Logger.LogFinish "Workbook_BeforeClose"
 
 End Sub
+
 Private Sub DeleteTemporaryFile()
 
     Dim FS As Object
@@ -719,7 +726,7 @@ pass:
 
 e:
     Application.DisplayAlerts = blnDisplayAlerts
-    MsgBox Err.Description, vbOKOnly + vbCritical, C_TITLE
+    MsgBox Err.description, vbOKOnly + vbCritical, C_TITLE
 End Sub
 
 '--------------------------------------------------------------
@@ -793,7 +800,7 @@ pass:
 
 e:
     Application.DisplayAlerts = blnDisplayAlerts
-    MsgBox Err.Description, vbOKOnly + vbCritical, C_TITLE
+    MsgBox Err.description, vbOKOnly + vbCritical, C_TITLE
 End Sub
 '--------------------------------------------------------------
 ' Excel常駐コマンド

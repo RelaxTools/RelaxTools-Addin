@@ -256,7 +256,7 @@ Public Sub Run()
     
     Exit Sub
 ErrHandle:
-    Logger.LogFatal TypeName(Me) & ".Run" & "(" & Err.Description & ")"
+    Logger.LogFatal TypeName(Me) & ".Run" & "(" & Err.description & ")"
     
 End Sub
 

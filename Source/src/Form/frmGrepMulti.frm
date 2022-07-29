@@ -323,7 +323,7 @@ Private Sub cmdOk_Click()
             ResultWS.Cells(mlngCount, C_SEARCH_ADDRESS).Value = ""
     
             ResultWS.Cells(mlngCount, C_SEARCH_STR).NumberFormatLocal = "@"
-            ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = Err.Description
+            ResultWS.Cells(mlngCount, C_SEARCH_STR).Value = Err.description
             mlngCount = mlngCount + 1
         End If
         WB.Close SaveChanges:=False

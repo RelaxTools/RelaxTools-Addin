@@ -281,7 +281,7 @@ pass:
     MsgBox "Grep置換完了しました。", vbOKOnly + vbInformation, C_TITLE
     Exit Sub
 e:
-    If MsgBox("ブック保存時にエラーになりました。(" & Err.Description & ")" & vbCrLf & "再試行しますか？", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
+    If MsgBox("ブック保存時にエラーになりました。(" & Err.description & ")" & vbCrLf & "再試行しますか？", vbYesNo + vbQuestion, C_TITLE) = vbYes Then
         Resume
     Else
         MsgBox "Grep置換を中断しました。", vbOKOnly + vbCritical, C_TITLE
