@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/wiki/RelaxTools/RelaxTools-Addin/image/logo.png" />  
+  <img src="https://raw.githubusercontent.com/wiki/RelaxTools/RelaxTools-Addin/image/RelaxChan.png" />  
   <h2 align="center">RelaxTools Addin For Excel 2013/2016/2019/Office365</h2>
   <p align="center">各種変換、編集、検索などの機能追加を行うツールです。</p>
   <p align="center">Copyright(C) Yasuhiro Watanabe 2009</p>
@@ -7,7 +7,7 @@
 
 ---
 
-* 対応OS: Windows Vista, Windws 7, Windows 8, Windows 8.1, Windows 10(macには対応していません)
+* 対応OS: Windows10/Windows11(macには対応していません)
 * 対応Excel: 2013, 2016, 2019, Office365(Desktop)
 
 5年間(2009年～)にわたって作成したマクロを汎用的、体系的にまとめました。

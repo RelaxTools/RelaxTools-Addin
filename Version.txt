@@ -1,4 +1,12 @@
-﻿2022/05/10(tue) RelaxTools-Addin Version 4.27.6(RustRemover) 
+﻿2022/07/29(fri) RelaxTools-Addin Version 4.28.0(RustRemover) 
+◇機能追加
+・RelaxTools Addin擬人化キャラクターRelaxToolsちゃん(仮称)を追加。
+・２つの範囲の入替について書式をコピーしないバージョンを追加。#83
+・ユーザ定義関数にハッシュ関数を3つ追加。
+  ただし、.Net3.5がインストールされていること。
+　GetSHA256/GetSHA384/GetSHA512
+
+2022/05/10(tue) RelaxTools-Addin Version 4.27.6(RustRemover) 
 ◇バグ修正
 ・「目次の作成」でページ番号がずれていってしまう #84
 

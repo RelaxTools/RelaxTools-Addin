@@ -207,6 +207,7 @@
               <button id="execSelectionRemoveCrLf"      image="lf" getLabel="RelaxTools.xlam!getLabel" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"/>
               <menuSeparator id="editSep04" title="２つ範囲を交換する"/>
               <button id="swapAreas"        image="swapcell" getLabel="RelaxTools.xlam!getLabel" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"/>
+              <button id="swapAreasValue"   image="swapcellvalue" getLabel="RelaxTools.xlam!getLabel" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction"/>
               <menuSeparator id="kakkoSep11" title="カッコ操作"/>
               <button id="execSelectionRemoveParenthesis"  image="kakkoDel" getLabel="RelaxTools.xlam!getLabel" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" onAction="RelaxTools.xlam!ribbonOnAction" />
               <menu id="ParenthesisConv1" label="半角カッコ挿入"    image="kakkoIns" itemSize="large" getSupertip="RelaxTools.xlam!getSupertip" getDescription="RelaxTools.xlam!getDescription" getEnabled="RelaxTools.xlam!getRibbonEnabled" >
@@ -1226,8 +1227,7 @@
         <group id="grpRelaxtools1" label="バージョン情報" visible="true">
           <topItems>
             <layoutContainer id="layoutLogo" layoutChildren="horizontal">
-              <imageControl id="imgLogo" image="logo" />
-              <imageControl id="imgmadoprize" image="madoprize" />
+              <imageControl id="imgLogo" image="RelaxChan" />
             </layoutContainer>
             <labelControl id="lblVersion" getLabel="RelaxTools.xlam!getVersion" />
           </topItems>
